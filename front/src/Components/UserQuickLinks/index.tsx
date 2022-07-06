@@ -1,0 +1,259 @@
+// import { Title } from '@mui/icons-material';
+import { Button, Card, CardActions, CardContent, Typography, TextField, createMuiTheme, ListItem, List, ListItemIcon, Link, ListItemText } from '@mui/material';
+import { useCreateListItemMutation, useGetQuickLinksQuery ,usePostGlobalListIdMutation,useCreateTokenwithDataMutation } from '../../services/APIs';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+interface IFolderProps {
+  globalquicklinks: any;
+  tokens:any
+  // onClick: any;
+  // onDownload?: (id: string) => void;
+  // onDelete?: (id: string) => void;
+  // onRename?: (id: string, name: string) => void;
+  // onShare?: (id: string) => void;
+}
+
+// const UserQuickLinks = () => {
+  const UserQuickLinks: React.FC<IFolderProps> = (props: IFolderProps) => {  
+  const [sendItem] = useCreateTokenwithDataMutation();
+  //  const [sendId] = usePostGlobalListIdMutation();
+  // const [sendEmail] = usePostEmailMutation();
+  // const { data, error, isLoading } = useGetQuickLinksQuery('');
+  // console.log(data)
+
+  const {globalquicklinks,tokens} = props;
+  // console.log(tokens,'yyy');
+  const list = {
+    fields: {
+      Title: 'My post Request',
+      Url: 'https://wwww.schhol.com'
+    }
+  };
+
+
+
+  // const [user, setUser] = useState<any>({fullname:"",email:""});
+  const [user, setUser] = useState<any>({
+
+    Title: '',
+    Url: '',
+    UserEmail: ''
+
+  });
+  // const [UserEmail,setUserEmail] = useState<any>('');
+  const [vals,setValues ] = useState<any>('')
+  // const [Title,setTitle] = useState<any>('')
+  // const [Url,setUrl] = useState<any>('')
+  // const [fetchedData, setFetchedData] = useState('')
+  // useEffect(()=>{
+  //     function sendItem(){
+  //         const requestOptions = {
+  //             method: 'POST',
+  //             headers: { 
+  //                 'Content-Type': 'application/json',
+
+  //             },
+  //             body: JSON.stringify(list)
+  //         };
+  //         fetch('http://localhost:4000/list/listItem', requestOptions)
+  //             .then(response => response.json())
+  //     }
+  //     sendItem();
+  // },[])
+
+  const handleChange = (event: any) => {
+    setUser({ ...user, [event.target.name]: event.target.value })
+    console.log(user)
+
+
+  }
+  // useEffect(()=>{
+  // const a = async function(){
+
+  //     if(data){
+  //     // return(
+
+  //     //     <div>
+
+  //             {data.map((item: any) => {
+  //                 const { createdBy = {} } = item;
+
+
+  //                 // let navLink=fields?.Navigation_x0020_Link;
+
+  //                 // let menuIcon = JSON.parse(fields?.Icon);
+  //                 // let menuImg =
+  //                 //   menuIcon?.serverUrl + menuIcon?.serverRelativeUrl;
+
+  //                 // let menuIconHover = JSON.parse(fields?.IconHover);
+  //                 // let menuImgHover =
+  //                 //   menuIconHover?.serverUrl +
+  //                 //   menuIconHover?.serverRelativeUrl;
+
+
+  //             //   console.log(createdBy.user.email,'iiiiii')
+  //             //   setUserEmail(createdBy.user.email)
+  //              const email ={
+  //                  Email:createdBy.user.email
+  //              }
+  //              sendEmail(email)
+  //             // console.log(UserEmail,'000000000000')
+  //             //  var Emil = createdBy.user
+  //             //      console.log(Emil.email,'uuu')
+  //               })}
+
+  //     //      </div>
+  //     // )
+
+  //             }
+  //   }
+  //   a();
+
+
+  // },[data])
+
+  
+  function handle (val: any) {
+
+
+    // console.log(val);
+  // let   Value = val;
+    setValues(val)
+    // //@ts-ignore
+    // if (Value) {
+    //   fetch('http://localhost:4000/list/globalid', {
+
+    //     method: 'POST', 
+    //     //@ts-ignore
+    //     body: JSON.stringify(Value) // body data type must match "Content-Type" header
+  
+    //   })
+    // }
+  console.log(vals,'hthytjytdgsdgtyt')
+    //  async function sendEventId(){
+    //     if (Value) {
+    
+    
+    //       // const requestOptions = {
+    //       //   method: 'POST',
+    //       //   headers: { 'Content-Type': 'application/json' },
+    //       //   body: JSON.stringify({ Value })
+    //       // };
+    //       // fetch('http://localhost:4000/list/globalid', requestOptions)
+    //       //   .then(response => response.json())
+    //      await   sendId({Value})
+    //     }
+    //   }
+    //   sendEventId()
+    
+ 
+
+  }
+  //  console.log(Value)
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    console.log("user created", user)
+    const Data = {
+      token:tokens,
+      userquicklink:user,
+      globalquicklink:vals
+    }
+    // const url = 'http://localhost:4000/list/listItem'
+    // const requestOptions = {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({
+    //         Title:user.Title,
+    //         Url:user.Url
+    //     })
+    // };
+    // fetch(url, requestOptions)
+    //     .then(response => console.log('Submitted successfully'))
+    //     .catch(error => console.log('Form submit error', error))
+
+  await sendItem(Data)
+  }
+ 
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>Title</label>
+        <input
+          type="text"
+          name="Title"
+          value={user.Title}
+          onChange={handleChange}
+        // onChange={e => setTitle(e.target.value)}
+        />
+        <label>Url</label>
+        <input
+          type="text"
+          name="Url"
+          value={user.Url}
+          onChange={handleChange} />
+        <label>UserEmail</label>
+        <input
+          type="text"
+          name="UserEmail"
+          value={user.UserEmail}
+          onChange={handleChange} />
+
+
+        <button>SendData</button>
+      </form>
+      <List >
+        {globalquicklinks &&
+          globalquicklinks?.map((item: any, index: any) => {
+            const { fields = {} } = item;
+
+            let linkName = fields?.Title;
+            // let navLink=fields?.Navigation_x0020_Link;
+
+            // let menuIcon = JSON.parse(fields?.Icon);
+            // let menuImg =
+            //   menuIcon?.serverUrl + menuIcon?.serverRelativeUrl;
+
+            // let menuIconHover = JSON.parse(fields?.IconHover);
+            // let menuImgHover =
+            //   menuIconHover?.serverUrl +
+            //   menuIconHover?.serverRelativeUrl;
+            var menuStatus = false;
+            if (linkName != "") {
+              menuStatus = true;
+            }
+
+            return (
+              <ListItem
+                key={index}
+                sx={{ padding: "16px !important" }}
+                className="quickLinkIcon"
+              >
+                {menuStatus && (
+                  <>
+                    <Card>
+
+                      <CardContent sx={{ fontSize: "0.87rem" }}
+                        onClick={() => handle(item.id)}
+                      >
+                        <Typography
+                          variant="body2"
+                          sx={{ paddingLeft: "15px" }}
+                          className="menuText"
+                        >
+                          {linkName}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </>
+                )}
+              </ListItem>
+            );
+          })}
+      </List>
+    </div>
+    // <h1>TTTT</h1>
+  )
+}
+
+export default UserQuickLinks

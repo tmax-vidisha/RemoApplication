@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="31" viewBox="0 0 48 31">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="0.001" x2="0.5" y2="0.547" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0571bf"/>
+      <stop offset="1" stop-color="#0268ba"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="0.002" x2="0.5" y2="0.999" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1684da"/>
+      <stop offset="1" stop-color="#107cd4"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.5" x2="0.5" y2="1.064" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#138cdd"/>
+      <stop offset="1" stop-color="#0c7dd4"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="0.338" y1="0.136" x2="0.651" y2="1.207" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#27a7ea"/>
+      <stop offset="1" stop-color="#1c94e3"/>
+    </linearGradient>
+  </defs>
+  <g id="icons8-microsoft-onedrive-2019" transform="translate(0 -7)">
+    <path id="Path_157" data-name="Path 157" d="M24.5,7A14.5,14.5,0,1,0,39,21.5,14.5,14.5,0,0,0,24.5,7Z" fill="url(#linear-gradient)"/>
+    <path id="Path_158" data-name="Path 158" d="M16.155,14.972A11.906,11.906,0,0,0,2.05,32.774c.061-.026,16.445-6.889,26.406-10.888C22.952,18.568,17.9,15.641,16.155,14.972Z" fill="url(#linear-gradient-2)"/>
+    <path id="Path_159" data-name="Path 159" d="M48,28.373a9.634,9.634,0,0,0-12.49-9.194c-1,.31-3.652,1.342-7.054,2.708,8.377,5.05,17.79,11,18.252,11.288A9.571,9.571,0,0,0,48,28.373Z" fill="url(#linear-gradient-3)"/>
+    <path id="Path_160" data-name="Path 160" d="M46.709,33.175c-.463-.292-9.875-6.238-18.252-11.288C18.5,25.885,2.111,32.748,2.05,32.774A12.007,12.007,0,0,0,11.9,38H38.258A9.627,9.627,0,0,0,46.709,33.175Z" fill="url(#linear-gradient-4)"/>
+  </g>
+</svg>
