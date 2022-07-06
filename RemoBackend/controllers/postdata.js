@@ -401,9 +401,9 @@ const createPostRequsetEvent =  async(url, token,title,desc,startdate,endDate) =
                                         Title: user.Title,
                                         Url:user.Url,
                                         UserEmail:user.UserEmail,
-                                      //  'GlobalQuickLinksLookupId@odata.type': "Collection(Edm.Int32)",
-                                        //  GlobalQuickLinksLookupId: globalId
-                                        GlobalQuickLinksLookupId: globalId                
+                                       'GlobalQuickLinksLookupId@odata.type': "Collection(Edm.Int32)",
+                                       GlobalQuickLinksLookupId: [globalId]
+                                        // GlobalQuickLinksLookupId: globalId                
                                       }
                                     } 
                           try {
@@ -425,37 +425,70 @@ const createPostRequsetEvent =  async(url, token,title,desc,startdate,endDate) =
                               console.log(error)
                              } 
                         }
-      const global   = async (url,token,GId) =>{
+
+      const global   =   (url,token,GId) =>{
+        // const listG = {
+        //         //  GlobalQuickLinksId :  GId
+        //         fields: {
+        //           //  Title: "Qwerty1",
+        //           // GlobalQuickLinksId :  GId
+        //           'GlobalQuickLinksLookupId@odata.type': "Collection(Edm.Int32)",
+        //           GlobalQuickLinksLookupId: GId
+        //         }
+          
+        //         // GlobalQuickLinksId: 1/s*{"results":["1","2"] }*/
+          
+        //       }
+        //       try {
+        //         const response = await fetch(url, {
+        //          method: 'PATCH',
+        //          headers: {
+        //           'Authorization': `Bearer ${token}`,
+        //            'Content-Type': 'application/json'
+        //            },
+        //            body:JSON.stringify(listG) 
+        //          });
+        //          const data = await response.json();
+        //       // enter you logic when the fetch is successful
+        //         //  console.log(data);
+        //         return data
+        //        } catch(error) {
+        //      // enter your logic for when there is an error (ex. error toast)
+        
+        //           console.log(error)
+        //          } 
+
         const listG = {
                 //  GlobalQuickLinksId :  GId
                 fields: {
-                  //  Title: "Qwerty1",
+                   Title: "Qwerty1grgrt",
                   // GlobalQuickLinksId :  GId
-                  'GlobalQuickLinksLookupId@odata.type': "Collection(Edm.Int32)",
-                  GlobalQuickLinksLookupId: GId
+                  // 'GlobalQuickLinksLookupId@odata.type': "Collection(Edm.Int32)",
+                   GlobalQuickLinksLookupId: GId
                 }
           
                 // GlobalQuickLinksId: 1/s*{"results":["1","2"] }*/
           
               }
-              try {
-                const response = await fetch(url, {
-                 method: 'PUT',
-                 headers: {
-                  'Authorization': `Bearer ${token}`,
-                   'Content-Type': 'application/json'
-                   },
-                   body:JSON.stringify(listG) 
-                 });
-                 const data = await response.json();
-              // enter you logic when the fetch is successful
-                //  console.log(data);
-                return data
-               } catch(error) {
-             // enter your logic for when there is an error (ex. error toast)
-        
-                  console.log(error)
-                 } 
+              // function postItem() {
+                let axiosConfig = {
+                  headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                  }
+                };
+          
+                axios.patch(url, listG, axiosConfig)
+                  .then((res) => {
+                    console.log("RESPONSE RECEIVED: ", res);
+                    console.log(res.data)
+                  })
+                  .catch((err) => {
+                    console.log("AXIOS ERROR: ", err);
+                  })
+          
+              // }
+              // postItem();
               
       }
 
@@ -560,7 +593,7 @@ const getPostData = asyncHandler(async(req, res) => {
 
       });
   }
-  if( token && userquicklink){
+  if( token && userquicklink && globalquicklink){
   const UserQuickLink = await createPostRequsetUserQuickLink(`${BASE_PATH}/${REMO_SITE_ID}/lists/${NewQuickLinkUser}/items`, token,userquicklink,globalquicklink)
   console.log(UserQuickLink,'ttryjyju7k76k76k')
   res.status(200).json({
@@ -570,8 +603,17 @@ const getPostData = asyncHandler(async(req, res) => {
    });
 
   }
-  // const Global = await global(`${BASE_PATH}/${REMO_SITE_ID}/lists/${NewQuickLinkUser}/items/1`,token,globalquicklink)
-  // console.log(Global,'thththtr')
+  // if( token  && globalquicklink ){
+  // const Global =  global(`${BASE_PATH}/${REMO_SITE_ID}/lists/${NewQuickLinkUser}/items/1`,token,globalquicklink)
+  //  console.log(Global,'ththtfbfbthyjujkukillolololhtr')
+  //  res.status(200).json({
+  //   // success: true,
+  //   Global
+
+  //  });
+
+  
+  // }
  }
 
 })
