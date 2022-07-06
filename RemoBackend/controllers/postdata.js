@@ -13,11 +13,15 @@ const REMO_SITE_ID = "tmxin.sharepoint.com,1649e6fd-df59-4f03-8e4b-4d765864f406,
 const Events_Id = "80d2331e-6970-4fe2-aa79-c6cae73bc150"
 const HeroImage_Id = "7dfccbdf-0469-40e8-ab99-501d6314491f"
 var azure = require('azure-storage');
-const AZURE_STORAGE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=remoblobstorage;AccountKey=2dyNCBrGp/3St5coni+Xca3mFbQA67byG6qnp81UjypSK65msMG461kPruQ/Vr0EaZS0qk9y7dxewDnnb3kcxQ==;EndpointSuffix=core.windows.net";
+require('dotenv').config();
+
 const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json({ limit: "50mb" }))
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
+
+
+console.log(process.env.AZURE_STORAGE_CONNECTION_STRING,'hyjyjyjyjyjyjyj')
 const createPostRequset =  async(url, token,title,desc) => {
 
                  
@@ -121,7 +125,7 @@ const createPostRequsetEvent =  async(url, token,title,desc,startdate,endDate) =
       // console.log(eventdate,'rgtreyrewyreyweywsF')
       // console.log(pic,'tey54u6565ieutudrusya')
       // console.log(title,'gregrthtrht')
-      var blobService = azure.createBlobService(AZURE_STORAGE_CONNECTION_STRING);
+      var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
                    var matches = pic.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
                    var type = matches[1];
                    var buffer = new Buffer.from(matches[2], 'base64');
@@ -186,7 +190,7 @@ const createPostRequsetEvent =  async(url, token,title,desc,startdate,endDate) =
           // console.log(title,'gregrthtrht')
           // console.log(username,'tey54u6565ieutudrusya')
           // console.log(position,'gregrthtrht')
-          var blobService = azure.createBlobService(AZURE_STORAGE_CONNECTION_STRING);
+          var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
                        var matches = pic.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
                        var type = matches[1];
                        var buffer = new Buffer.from(matches[2], 'base64');
@@ -255,7 +259,7 @@ const createPostRequsetEvent =  async(url, token,title,desc,startdate,endDate) =
               // console.log(title,'gregrthtrht')
               // console.log(username,'tey54u6565ieutudrusya')
               // console.log(position,'gregrthtrht')
-              var blobService = azure.createBlobService(AZURE_STORAGE_CONNECTION_STRING);
+              var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
                            var matches = pic.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
                            var type = matches[1];
                            var buffer = new Buffer.from(matches[2], 'base64');
@@ -324,7 +328,7 @@ const createPostRequsetEvent =  async(url, token,title,desc,startdate,endDate) =
                   // console.log(title,'gregrthtrht')
                   // console.log(dept,'tey54u6565ieutudrusya')
                   // console.log(position,'gregrthtrht')
-                  var blobService = azure.createBlobService(AZURE_STORAGE_CONNECTION_STRING);
+                  var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
                                var matches = pic.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
                                var type = matches[1];
                                var buffer = new Buffer.from(matches[2], 'base64');
