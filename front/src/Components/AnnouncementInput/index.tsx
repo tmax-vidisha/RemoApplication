@@ -34,7 +34,7 @@ import { Editor } from "react-draft-wysiwyg";
 import { configuration } from "../../index";
 import { convertToHTML } from "draft-convert";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useGetAnnouncementInfoQuery,useCreateAnnouncementMutation,useCreateTokenwithDataMutation } from '../../services/APIs';
+import { useGetAnnouncementInfoQuery,useCreateAnnouncementMutation,useCreateTokenwithDataMutation,useGetAllAnnoncementsQuery } from '../../services/APIs';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import moment from "moment-timezone";
 
@@ -147,6 +147,9 @@ const AnnoncementInput = () => {
         // sendItem(AnnouncementJSON)
         console.log('click');
       };
+
+      const { data, error, isLoading } =   useGetAllAnnoncementsQuery(tokens)
+      console.log(data,'980ccccccc9090')
   return (
     <AuthenticatedTemplate>
       <Container className={classes.contentEditorWidth}>
@@ -205,9 +208,9 @@ const AnnoncementInput = () => {
                 </TableCell>
               </TableRow>
             </TableHead>
-            {/* <TableBody>
-              {data &&
-                data?.map((item: any, index: any) => {
+            <TableBody>
+              {data?.response &&
+                data?.response?.map((item: any, index: any) => {
                   const { fields = {} } = item;
                   var annTitle = fields?.Title;
                   var annMessageAsText = fields.Desc;
@@ -242,7 +245,7 @@ const AnnoncementInput = () => {
                     </TableRow>
                   )
                 })}
-            </TableBody> */}
+            </TableBody>
           </Table>
         </TableContainer>
 

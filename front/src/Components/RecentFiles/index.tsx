@@ -1,5 +1,5 @@
-import React from 'react'
-import { useGetRecentFilesQuery } from '../../services/APIs'
+import React, { useEffect , useState} from 'react'
+import { useGetRecentFilesQuery,useUpdateRecentFilesTokenMutation,useGetAllRecentFilesQuery } from '../../services/APIs'
 import { AuthenticatedTemplate } from "@azure/msal-react";
 import {
     Card,
@@ -13,7 +13,8 @@ import {
   } from "@mui/material";
 import { useStyles } from "./Styles";
 import SkeletonAnimation from "../../Containers/Skeleton";
-
+import { PublicClientApplication } from "@azure/msal-browser";
+import { configuration } from "../../index";
 
 
 // import { AccessTime24Filled } from "@fluentui/react-icons";
@@ -26,19 +27,54 @@ interface IFolderProps {
   // onRename?: (id: string, name: string) => void;
   // onShare?: (id: string) => void;
 }
-// const RecentFiles = () => {
-const RecentFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
+ const RecentFiles = () => {
+// const RecentFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     // const { data, error, isLoading } =   useGetRecentFilesQuery('')
     // console.log(data,'t5y6y6y6')
-    const {recent} = props;
+    // const {recent} = props;
+    const pca = new PublicClientApplication(configuration);
+    const [token, setToken] = useState<string>();
+    // const [updateToken,{data,isLoading} ] = useUpdateRecentFilesTokenMutation();
+    // console.log(data?.response,'jyjtydggfgdhhtjytjytjytjty')
+    const accounts = pca.getAllAccounts();
+     useEffect(() => {
+      async function getAccessToken() {
+        if (accounts.length > 0) {
+          const request = {
+            scopes: ['user.read'],
+            account: accounts[0]
+          }
+          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+           
+            // updateToken(response.accessToken);
+             setToken(response.accessToken)
+            // console.log(token,'uuuuuu')
+          }).catch(error => {
+            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+            console.log(error);
+            return null;
+          });
+  
+  
+        }
+  
+        return null;
+      }
+      getAccessToken();
+  
+       
+      
+    }, [])
+    const { data, error, isLoading } = useGetAllRecentFilesQuery(token);
+    console.log(data,'thytjytjytjudddddddddddddd')
   return (
-    // <div>Recent Files</div>
+    //  <div>Recent Files</div>
     <AuthenticatedTemplate>
       <Paper elevation={0}>
-        {/* {isLoading ? (
+        {isLoading ? (
           <SkeletonAnimation />
-        ) : ( */}
+        ) : (
           <>
             <CardContent sx={{ pb: "4px!important", height: "391px" }}>
               <Typography
@@ -50,8 +86,8 @@ const RecentFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
                 Recent Files
               </Typography>
               <List className={classes.topList}>
-                {recent &&
-                  recent?.map((item: any, index: any) => {
+                {data?.response &&
+                  data?.response?.map((item: any, index: any) => {
                     let IconFileType;
                     const { remoteItem = {} } = item;
                     var createdDate = moment(
@@ -182,7 +218,7 @@ const RecentFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
               </List>
             </CardContent>
           </>
-        {/* )} */}
+         )}
       </Paper>
     </AuthenticatedTemplate>
     // <>grgrgtgtrgrtg</>

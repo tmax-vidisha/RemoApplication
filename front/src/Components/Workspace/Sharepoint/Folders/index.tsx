@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { breadcrumbsReducer, foldersReducer } from '../../../../Store copy/Reducer/foldersReducer';
 import { ActionType } from '../../../../Store copy/Actions/actionTypes';
-import { useGetFoldersQuery } from '../../../../services/APIs';
+import { useGetFoldersQuery,useCreateTokenwithSubSitesofItemsIdMutation } from '../../../../services/APIs';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import { Container, Grid, IconButton, Paper, Typography } from '@mui/material';
 import Loader from '../components/Loader';
@@ -23,7 +23,9 @@ const FolderScreen = () => {
   const classes = useStyles();
   const [subdrive, setSubDrive] = useState<any>([]);
 // const { data, error, isLoading } = useGetFoldersQuery('');
+const [sendItem, { data, isLoading, error }] = useCreateTokenwithSubSitesofItemsIdMutation();
 
+console.log(data?.response,'tttttttttttttttttttttttttttttttttttttttttttttt')
 let location = useLocation();
 console.log(location.state);
 //@ts-ignore
@@ -44,23 +46,24 @@ const folderClickHandler =  (id: string,name:string) => {
     itemId:id
   }
  console.log(Data,'ytrrttutyututyut')
+ sendItem(Data)
 
- function sendId(){
-  const requestOptions = {
-      method: 'POST',
-      // mode:'no-cors',
-      headers: { 
-          'Content-Type': 'application/json',
+//  function sendId(){
+//   const requestOptions = {
+//       method: 'POST',
+//       // mode:'no-cors',
+//       headers: { 
+//           'Content-Type': 'application/json',
 
-      },
-      body: JSON.stringify(Data)
+//       },
+//       body: JSON.stringify(Data)
      
-  };
-  fetch('http://localhost:4000/api/v1/sites/subSites', requestOptions)
-      .then(response => response.json())
-       .then(data =>setSubDrive(data.DriveSubItems));
-}
-sendId();
+//   };
+//   fetch('http://localhost:4000/api/v1/sites/subSites', requestOptions)
+//       .then(response => response.json())
+//        .then(data =>setSubDrive(data.DriveSubItems));
+// }
+// sendId();
 //   function send(){
 //       if (id) {
   // navigate('/workspace/drives/sites', { state:id   });
@@ -156,7 +159,7 @@ const deleteFileHandler = async (id: string,name:string) => {
                                                     getChildHandler={breadcrumbClickHandler} /> */}
                                                 <Folders folders={folderData}
                                                     onClick={folderClickHandler}
-                                                    subfolder={subdrive}
+                                                    subfolder={data?.response}
                                                     onDelete={deleteFileHandler}
                                                     // onDownload={downloadHandler}
                                                     // onRename={renameFileHandler}
@@ -174,6 +177,7 @@ const deleteFileHandler = async (id: string,name:string) => {
             </Container>
         </AuthenticatedTemplate>
     </>
+    // <>hhhhhhhhhhhhhhh</>
   )
 }
 

@@ -500,19 +500,20 @@ const getPostData = asyncHandler(async(req, res) => {
 
   // console.log(req.body)
   // const {token} = req.params
-  const {token,title,desc,eventtitle,eventdesc, 
-         eventdate,enddate,herotitle, heropic,
-         picname,ceotitle,ceodesc,ceousername,
-         ceoposition,ceopic,ceopicname,
-         newstitle,newsdesc,newspic,newspicname,
-         employyetitle, empname,empdept,emppic,emppicname,
-         userquicklink,globalquicklink
+  const {token,title,desc,
+        // eventtitle,eventdesc, 
+        //  eventdate,enddate,herotitle, heropic,
+        //  picname,ceotitle,ceodesc,ceousername,
+        //  ceoposition,ceopic,ceopicname,
+        //  newstitle,newsdesc,newspic,newspicname,
+        //  employyetitle, empname,empdept,emppic,emppicname,
+        //  userquicklink,globalquicklink
         } = req.body
   console.log(token,'llll')
   console.log(title,'ytjytjytjty')
   console.log(desc,'thgtrhj67k87k87k87k87')
-  console.log(userquicklink,'thgtrhj67k87k87k87k87')
-   console.log(globalquicklink,'rgtreyrewyreyweywsF')
+  // console.log(userquicklink,'thgtrhj67k87k87k87k87')
+  //  console.log(globalquicklink,'rgtreyrewyreyweywsF')
   // console.log(empname,'tey54u6565ieutudrusya')
   // console.log(empdept,'gregrthtrht')
   // console.log(emppicname,'gregrthtrht')
@@ -530,7 +531,7 @@ const getPostData = asyncHandler(async(req, res) => {
   });
 
   }else {
-    if(token && title ){
+    // if(token && title ){
     const Announcement = await createPostRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${AnnouncementId}/items`, token,title,desc )
     console.log(Announcement,'hyj8k87kvxvzx87k87')
     res.status(200).json({
@@ -538,8 +539,120 @@ const getPostData = asyncHandler(async(req, res) => {
       Announcement
    
     });
-  }
-  if(token && eventtitle && eventdesc && enddate ){
+  // }
+  // if(token && eventtitle && eventdesc && enddate ){
+  //    const Event = await createPostRequsetEvent(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items`, token,eventtitle,eventdesc,eventdate,enddate )
+  //    console.log(Event,'hyjgrgrehtrhtrh8k87kvxvzx87k87')
+  //    res.status(200).json({
+  //     // success: true,
+  //     Event
+ 
+  //    });
+
+
+  // }
+  //  if(token && herotitle && heropic  && picname ){
+  //    const Hero = await createPostRequsetHero(`${BASE_PATH}/${REMO_SITE_ID}/lists/${HeroImage_Id}/items`, token,herotitle,heropic,picname )
+  //    console.log(Hero,'h7kvxvzx87k87')
+  //    res.status(200).json({
+  //     // success: true,
+  //    Hero
+ 
+  //    });
+  
+  // }
+  // if( token && ceotitle && ceodesc && ceousername && ceoposition && ceopic && ceopicname){
+  //    const Ceo = await createPostRequsetCeo(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Ceo_Message}/items`, token,ceotitle,ceodesc,ceousername,ceoposition,ceopic,ceopicname )
+  //    console.log(Ceo,'h7kvxvzx8dgfgfdghth7k87')
+  //    res.status(200).json({
+  //    // success: true,
+  //    Ceo
+ 
+  //   });
+
+
+  // }
+  // if(token && newstitle && newsdesc && newspic && newspicname){
+  //    const News =  await createPostRequsetNews(`${BASE_PATH}/${REMO_SITE_ID}/lists/${News_Id}/items`, token,newstitle,newsdesc,newspic,newspicname)
+  //    console.log(News,'tjyjytjytjytjytjytjyj')
+  //    res.status(200).json({
+  //     // success: true,
+  //     News
+ 
+  //    });
+  // //    req.body = dataFiles
+  // //    res.send(req.body)
+  // //    sendData(dataFiles)
+  // // res.status(200).json({
+  // //   // success: true,
+  // //   Announcement
+ 
+  // // });
+  // }
+  // if(token && employyetitle && empname && empdept && emppic && emppicname){
+  //    const Employee = await createPostRequsetEmp(`${BASE_PATH}/${REMO_SITE_ID}/lists/${EmpHighlights}/items`, token,employyetitle,empname,empdept,emppic,emppicname)
+  //    console.log(Employee,'tththtrhtrhyjyjyj')
+  //    res.status(200).json({
+  //      // success: true,
+  //     Employee
+
+  //     });
+  // }
+  // if( token && userquicklink && globalquicklink){
+  // const UserQuickLink = await createPostRequsetUserQuickLink(`${BASE_PATH}/${REMO_SITE_ID}/lists/${NewQuickLinkUser}/items`, token,userquicklink,globalquicklink)
+  // console.log(UserQuickLink,'ttryjyju7k76k76k')
+  // res.status(200).json({
+  //   // success: true,
+  //   UserQuickLink
+
+  //  });
+
+  // }
+  // if( token  && globalquicklink ){
+  // const Global =  global(`${BASE_PATH}/${REMO_SITE_ID}/lists/${NewQuickLinkUser}/items/1`,token,globalquicklink)
+  //  console.log(Global,'ththtfbfbthyjujkukillolololhtr')
+  //  res.status(200).json({
+  //   // success: true,
+  //   Global
+
+  //  });
+
+  
+  // }
+ }
+
+})
+
+
+const postEventData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  const {token,eventtitle,eventdesc,eventdate,enddate} = req.body
+  console.log(token,'llll')
+  console.log(eventtitle,'ytjytjytjty')
+  console.log(eventdesc,'thgtrhj67k87k87k87k87')
+  console.log(eventdate,'thgtrhj67k87k87k87k87')
+   console.log(enddate,'rgtreyrewyreyweywsF')
+  // console.log(empname,'tey54u6565ieutudrusya')
+  // console.log(empdept,'gregrthtrht')
+  // console.log(emppicname,'gregrthtrht')
+  if(!token ){
+  // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+  // console.log(dataFiles,'dgdfgthtrhytjytjyt')
+  // return res.status(200).json({
+  //     success: true,
+  //     data: dataFiles
+  // });
+  //  res.send(dataFiles)
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+  // if(token && eventtitle && eventdesc && enddate ){
      const Event = await createPostRequsetEvent(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items`, token,eventtitle,eventdesc,eventdate,enddate )
      console.log(Event,'hyjgrgrehtrhtrh8k87kvxvzx87k87')
      res.status(200).json({
@@ -549,8 +662,49 @@ const getPostData = asyncHandler(async(req, res) => {
      });
 
 
-  }
-   if(token && herotitle && heropic  && picname ){
+  // }
+ 
+ }
+
+})
+
+const postHeroData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  const {token,
+          herotitle, heropic, picname
+          // ceotitle,ceodesc,ceousername,
+        //  ceoposition,ceopic,ceopicname,
+        //  newstitle,newsdesc,newspic,newspicname,
+        //  employyetitle, empname,empdept,emppic,emppicname,
+        //  userquicklink,globalquicklink
+        } = req.body
+  console.log(token,'llll')
+  console.log(herotitle,'ytjytjytjty')
+  console.log(picname,'thgtrhj67k87k87k87k87')
+  // console.log(userquicklink,'thgtrhj67k87k87k87k87')
+  //  console.log(globalquicklink,'rgtreyrewyreyweywsF')
+  // console.log(empname,'tey54u6565ieutudrusya')
+  // console.log(empdept,'gregrthtrht')
+  // console.log(emppicname,'gregrthtrht')
+  if(!token ){
+  // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+  // console.log(dataFiles,'dgdfgthtrhytjytjyt')
+  // return res.status(200).json({
+  //     success: true,
+  //     data: dataFiles
+  // });
+  //  res.send(dataFiles)
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+   
+  
+  //  if(token && herotitle && heropic  && picname ){
      const Hero = await createPostRequsetHero(`${BASE_PATH}/${REMO_SITE_ID}/lists/${HeroImage_Id}/items`, token,herotitle,heropic,picname )
      console.log(Hero,'h7kvxvzx87k87')
      res.status(200).json({
@@ -559,8 +713,47 @@ const getPostData = asyncHandler(async(req, res) => {
  
      });
   
-  }
-  if( token && ceotitle && ceodesc && ceousername && ceoposition && ceopic && ceopicname){
+  // }
+  
+  
+ }
+
+})
+
+const postCeoData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  const {token,
+       ceotitle,ceodesc,ceousername, ceoposition,ceopic,ceopicname,
+       
+        } = req.body
+  console.log(token,'llll')
+  // console.log(title,'ytjytjytjty')
+  // console.log(desc,'thgtrhj67k87k87k87k87')
+  // console.log(userquicklink,'thgtrhj67k87k87k87k87')
+  //  console.log(globalquicklink,'rgtreyrewyreyweywsF')
+  // console.log(empname,'tey54u6565ieutudrusya')
+  // console.log(empdept,'gregrthtrht')
+  // console.log(emppicname,'gregrthtrht')
+  if(!token ){
+  // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+  // console.log(dataFiles,'dgdfgthtrhytjytjyt')
+  // return res.status(200).json({
+  //     success: true,
+  //     data: dataFiles
+  // });
+  //  res.send(dataFiles)
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+   
+ 
+  
+  // if( token && ceotitle && ceodesc && ceousername && ceoposition && ceopic && ceopicname){
      const Ceo = await createPostRequsetCeo(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Ceo_Message}/items`, token,ceotitle,ceodesc,ceousername,ceoposition,ceopic,ceopicname )
      console.log(Ceo,'h7kvxvzx8dgfgfdghth7k87')
      res.status(200).json({
@@ -570,8 +763,53 @@ const getPostData = asyncHandler(async(req, res) => {
     });
 
 
-  }
-  if(token && newstitle && newsdesc && newspic && newspicname){
+  // }
+  
+ 
+  
+ 
+ }
+
+})
+
+const postNewsData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  const {token,
+        //  title,desc,
+        // eventtitle,eventdesc, 
+        //  eventdate,enddate,herotitle, heropic,
+        //  picname,ceotitle,ceodesc,ceousername,
+        //  ceoposition,ceopic,ceopicname,
+         newstitle,newsdesc,newspic,newspicname,
+        //  employyetitle, empname,empdept,emppic,emppicname,
+        //  userquicklink,globalquicklink
+        } = req.body
+  // console.log(token,'llll')
+  // console.log(title,'ytjytjytjty')
+  // console.log(desc,'thgtrhj67k87k87k87k87')
+  // console.log(userquicklink,'thgtrhj67k87k87k87k87')
+  //  console.log(globalquicklink,'rgtreyrewyreyweywsF')
+  // console.log(empname,'tey54u6565ieutudrusya')
+  // console.log(empdept,'gregrthtrht')
+  // console.log(emppicname,'gregrthtrht')
+  if(!token ){
+  // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+  // console.log(dataFiles,'dgdfgthtrhytjytjyt')
+  // return res.status(200).json({
+  //     success: true,
+  //     data: dataFiles
+  // });
+  //  res.send(dataFiles)
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+  // if(token && newstitle && newsdesc && newspic && newspicname){
      const News =  await createPostRequsetNews(`${BASE_PATH}/${REMO_SITE_ID}/lists/${News_Id}/items`, token,newstitle,newsdesc,newspic,newspicname)
      console.log(News,'tjyjytjytjytjytjytjyj')
      res.status(200).json({
@@ -579,16 +817,49 @@ const getPostData = asyncHandler(async(req, res) => {
       News
  
      });
-  //    req.body = dataFiles
-  //    res.send(req.body)
-  //    sendData(dataFiles)
-  // res.status(200).json({
-  //   // success: true,
-  //   Announcement
- 
+  
+  
+  
+ }
+
+})
+
+const postEmpData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  const {token,
+       
+        employyetitle, empname,empdept,emppic,emppicname,
+        //  userquicklink,globalquicklink
+        } = req.body
+  // console.log(token,'llll')
+  // console.log(title,'ytjytjytjty')
+  // console.log(desc,'thgtrhj67k87k87k87k87')
+  // console.log(userquicklink,'thgtrhj67k87k87k87k87')
+  //  console.log(globalquicklink,'rgtreyrewyreyweywsF')
+  // console.log(empname,'tey54u6565ieutudrusya')
+  // console.log(empdept,'gregrthtrht')
+  // console.log(emppicname,'gregrthtrht')
+  if(!token ){
+  // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+  // console.log(dataFiles,'dgdfgthtrhytjytjyt')
+  // return res.status(200).json({
+  //     success: true,
+  //     data: dataFiles
   // });
-  }
-  if(token && employyetitle && empname && empdept && emppic && emppicname){
+  //  res.send(dataFiles)
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+   
+ 
+ 
+ 
+  // if(token && employyetitle && empname && empdept && emppic && emppicname){
      const Employee = await createPostRequsetEmp(`${BASE_PATH}/${REMO_SITE_ID}/lists/${EmpHighlights}/items`, token,employyetitle,empname,empdept,emppic,emppicname)
      console.log(Employee,'tththtrhtrhyjyjyj')
      res.status(200).json({
@@ -596,8 +867,55 @@ const getPostData = asyncHandler(async(req, res) => {
       Employee
 
       });
-  }
-  if( token && userquicklink && globalquicklink){
+  // }
+ 
+ 
+ }
+
+})
+
+const postUserQuicklinkData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  const {token,
+          // title,desc,
+        // eventtitle,eventdesc, 
+        //  eventdate,enddate,herotitle, heropic,
+        //  picname,ceotitle,ceodesc,ceousername,
+        //  ceoposition,ceopic,ceopicname,
+        //  newstitle,newsdesc,newspic,newspicname,
+        //  employyetitle, empname,empdept,emppic,emppicname,
+         userquicklink,globalquicklink
+        } = req.body
+  // console.log(token,'llll')
+  // console.log(title,'ytjytjytjty')
+  // console.log(desc,'thgtrhj67k87k87k87k87')
+  // console.log(userquicklink,'thgtrhj67k87k87k87k87')
+  //  console.log(globalquicklink,'rgtreyrewyreyweywsF')
+  // console.log(empname,'tey54u6565ieutudrusya')
+  // console.log(empdept,'gregrthtrht')
+  // console.log(emppicname,'gregrthtrht')
+  if(!token ){
+  // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+  // console.log(dataFiles,'dgdfgthtrhytjytjyt')
+  // return res.status(200).json({
+  //     success: true,
+  //     data: dataFiles
+  // });
+  //  res.send(dataFiles)
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+   
+ 
+  
+  
+  
+  // if( token && userquicklink && globalquicklink){
   const UserQuickLink = await createPostRequsetUserQuickLink(`${BASE_PATH}/${REMO_SITE_ID}/lists/${NewQuickLinkUser}/items`, token,userquicklink,globalquicklink)
   console.log(UserQuickLink,'ttryjyju7k76k76k')
   res.status(200).json({
@@ -606,7 +924,7 @@ const getPostData = asyncHandler(async(req, res) => {
 
    });
 
-  }
+  // }
   // if( token  && globalquicklink ){
   // const Global =  global(`${BASE_PATH}/${REMO_SITE_ID}/lists/${NewQuickLinkUser}/items/1`,token,globalquicklink)
   //  console.log(Global,'ththtfbfbthyjujkukillolololhtr')
@@ -626,5 +944,11 @@ module.exports = {
     // getData,
     // queryGraphApi
   //  getTokens,
-  getPostData
+  getPostData,
+  postEventData,
+  postHeroData,
+  postCeoData,
+  postNewsData,
+  postEmpData,
+  postUserQuicklinkData
 }

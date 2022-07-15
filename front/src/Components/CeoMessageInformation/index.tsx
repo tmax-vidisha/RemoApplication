@@ -5,7 +5,8 @@ import {
  
 } from "react-router-dom";
 import { AuthenticatedTemplate } from "@azure/msal-react";
-
+import { PublicClientApplication } from "@azure/msal-browser";
+import { configuration } from "../../index";
 import {
   Breadcrumbs,
   Button,
@@ -19,7 +20,7 @@ import {
 } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useStyles } from "./Styles";
-import { useGetCeoMessageQuery } from '../../services/APIs'
+import { useGetCeoMessageQuery,useUpdateCeoMsgTokenMutation,useGetAllCeoMsgQuery } from '../../services/APIs'
 import moment from "moment";
 interface IFolderProps {
   ceomsg: any;
@@ -30,13 +31,48 @@ interface IFolderProps {
   // onShare?: (id: string) => void;
 }
 
-// const CeoMessageInformation = () => {
-  const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
+const CeoMessageInformation = () => {
+  // const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     // const { data, error, isLoading } = useGetCeoMessageQuery('')
+    const pca = new PublicClientApplication(configuration);
+    const [tokens, setTokens] = useState<string>();
+    // const [updateToken,{data,isLoading} ] = useUpdateCeoMsgTokenMutation();
+    // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
+    const accounts = pca.getAllAccounts();
+     useEffect(() => {
+      async function getAccessToken() {
+        if (accounts.length > 0) {
+          const request = {
+            scopes: ['user.read'],
+            account: accounts[0]
+          }
+          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+           
+            // updateToken(response.accessToken);
+               setTokens(response.accessToken)
+            // console.log(token,'uuuuuu')
+          }).catch(error => {
+            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+            console.log(error);
+            return null;
+          });
+  
+  
+        }
+  
+        return null;
+      }
+      getAccessToken();
+  
+       
+      
+    }, [])
     // console.log(data)
-    const {ceomsg} = props;
+    // const {ceomsg} = props;
     // console.log(data.value[6].fields.profileUrl,'yyyyyy')
+    const { data, error, isLoading } =   useGetAllCeoMsgQuery(tokens)
+    console.log(data,'980ccccccc9090')
 
   return (
 
@@ -65,7 +101,7 @@ interface IFolderProps {
         </Paper>
       </Card>
 
-      {ceomsg &&
+      {data?.response &&
         <Paper elevation={0} sx={{ mb: 3 }}>
           <Card className={classes.contentRoot} elevation={0}>
             <CardContent>
@@ -73,14 +109,14 @@ interface IFolderProps {
 
                 <CardMedia component="img" 
                   //  image={data.value[1].fields?.ImageURL.Url} 
-                  image={ceomsg.image} 
+                  image={data?.response.image} 
                   // image={data.value[7].fields?.profileUrl} 
                    />
                 {/* <img  src ="https://remoblobstorage.blob.core.windows.net/candidate/Bird.jpg?st=2022-06-08T12%3A55%3A31Z&se=2022-06-08T13%3A55%3A31Z&sp=r&sv=2018-03-28&sr=b&sig=y2SaHETj51cDcFSkY3eL%2Fj82O2S1XK2rKbl4jG8DvH0%3D" /> */}
               </div>
               <div className={classes.ceoContentHeader}>
                 <Typography variant="subtitle1" component="h6">
-                {ceomsg.value[0].fields?.UserName}
+                {data?.response.value[0].fields?.UserName}
                 </Typography>
                 <Typography
                   variant="caption"
@@ -88,7 +124,7 @@ interface IFolderProps {
                   gutterBottom
                   className={classes.ceoCreatedDate}
                 >
-                  {moment(ceomsg.value[0].fields?.Modified).fromNow()}
+                  {moment(data?.response.value[0].fields?.Modified).fromNow()}
                 </Typography>
                 <Typography
                   className={classes.ceoContent}
@@ -98,7 +134,7 @@ interface IFolderProps {
                   <Fragment>
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: ceomsg.value[0].fields.Description,
+                        __html: data?.response.value[0].fields.Description,
                       }}
                     />
                   </Fragment>

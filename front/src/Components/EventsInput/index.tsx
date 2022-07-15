@@ -36,13 +36,17 @@ import { configuration } from "../../index";
 import moment from "moment";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { LocalizationProvider } from "@mui/lab";
-import { useGetEventsQuery,useCreateEventMutation,useCreateTokenwithDataMutation } from "../../services/APIs";
+import { useGetEventsQuery,useCreateEventMutation,useCreateTokenwithDataMutation, useUpdateTokenMutation,useGetAllEventsQuery,
+              useCreateTokenwithEventDataMutation } from "../../services/APIs";
 import { PublicClientApplication } from "@azure/msal-browser";
 const EventsInput = () => {
     const classes = useStyles();
     // const { data, error, isLoading } = useGetEventsQuery('');
     // const [sendItem] = useCreateEventMutation();
-    const [sendItem] = useCreateTokenwithDataMutation();
+    
+    const [sendItem] = useCreateTokenwithEventDataMutation();
+    // const [updateToken,{data,isLoading} ] = useUpdateTokenMutation();
+    // console.log(data?.response,'thfhfhfhfhfhfh')
     const [eventTitle, setEventTitle] = useState<any>([]);
     const [tokens, setTokens] = useState<string>();
     const pca = new PublicClientApplication(configuration);
@@ -80,6 +84,8 @@ const EventsInput = () => {
 
     },[])
 
+    const { data, error, isLoading } =  useGetAllEventsQuery(tokens);
+     console.log(data,'888ddd88ttuytuytu888')
     const handleClickOpen = () => {
       setOpen(true);
     };
@@ -213,12 +219,13 @@ const EventsInput = () => {
                 </TableCell>
               </TableRow>
             </TableHead>
-            {/* <TableBody>
-              {data &&
-                data.map((item: any, index: any) => {
+            <TableBody>
+              {data?.response &&
+                data?.response.map((item: any, index: any) => {
                   const { fields = {} } = item;
-
+                  // console.log(fields,'yjyjyjyjyj')
                   var eventTitle = fields?.Title;
+                  console.log(eventTitle,'yjyjyjyjyj')
                   var eventStart = moment(fields?.EventDate).format("llll");
                   var eventDate = moment(fields?.EndDate).format("llll");
 
@@ -246,7 +253,7 @@ const EventsInput = () => {
                     </TableRow>
                   )
                 })}
-            </TableBody> */}
+            </TableBody>
           </Table>
         </TableContainer>
 

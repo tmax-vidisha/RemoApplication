@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-
+// import { cacher } from "../rtkQueryCacheUtils";
 
 // Define a service using a base URL and expected endpoints
 export const graphApi = createApi({
@@ -17,8 +17,9 @@ export const graphApi = createApi({
      
 
 
-
-
+    tagTypes: ['CeoMsg','Hero','Emp','Announcement','News','Events','Navigation','Quicklink','Recent'],
+    // keepUnusedDataFor: 30,
+    // tagTypes: [...cacher.defaultTags, "User"],
     endpoints: (builder) => ({
         getPokemonByName: builder.query<void, string>({
             query: () => ({
@@ -423,12 +424,200 @@ export const graphApi = createApi({
                 method: 'PATCH',
                 body: id
             }),
-            transformResponse: (response: []) => {
+            transformResponse: (response: any) => {
                 // let y;
                 const resp = response
                 return resp
                }
             // invalidatesTags: ['ObjectiveDescription']
+        }),
+        getAllEvents: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/folder/${id}`,
+               
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+             providesTags : [ 'Events'],
+        }),
+        updateQuicklinkToken: builder.mutation<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/quicklink/${id}`,
+                method: 'PATCH',
+                body: id
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                const resp = response
+                return resp
+               }
+            // invalidatesTags: ['ObjectiveDescription']
+        }),
+        getAllQuickLink: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/quicklink/${id}`
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            // keepUnusedDataFor: 5,
+             providesTags : [ 'Quicklink'],
+        }),
+        updateRecentFilesToken: builder.mutation<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/recentfiles/${id}`,
+                method: 'PATCH',
+                body: id
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                const resp = response
+                return resp
+               }
+            // invalidatesTags: ['ObjectiveDescription']
+        }),
+        getAllRecentFiles: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/recentfiles/${id}`
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+             providesTags : [ 'Recent'],
+        }),
+
+        updateAnnouncementToken: builder.mutation<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/announcement/${id}`,
+                method: 'PATCH',
+                body: id
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                const resp = response
+                return resp
+               }
+            // invalidatesTags: ['ObjectiveDescription']
+        }),
+        getAllAnnoncements: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/announcement/${id}`
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+             providesTags : [ 'Announcement'],
+        }),
+
+        updateNavigationToken: builder.mutation<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/navigation/${id}`,
+                method: 'PATCH',
+                body: id
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                const resp = response
+                return resp
+               }
+            // invalidatesTags: ['ObjectiveDescription']
+        }),
+        getAllNavigation: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/navigation/${id}`
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            // keepUnusedDataFor: 5,
+             providesTags : [ 'Navigation'],
+        }),
+        updateCeoMsgToken: builder.mutation<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/ceomsg/${id}`,
+                method: 'PATCH',
+                body: id
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                const resp = response
+                return resp
+               }
+            // invalidatesTags: ['ObjectiveDescription']
+        }),
+        getAllCeoMsg: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/ceomsg/${id}`
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+             providesTags : [ 'CeoMsg'],
+        }),
+        updateNewsToken: builder.mutation<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/news/${id}`,
+                method: 'PATCH',
+                body: id
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                const resp = response
+                return resp
+               }
+            // invalidatesTags: ['ObjectiveDescription']
+        }),
+        getAllNews: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/news/${id}`
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+            providesTags : [ 'News'],
+        }),
+        updateEmpToken: builder.mutation<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/emp/${id}`,
+                method: 'PATCH',
+                body: id
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                const resp = response
+                return resp
+               }
+            // invalidatesTags: ['ObjectiveDescription']
+        }),
+        getAllEmp: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/emp/${id}`
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+             providesTags : [ 'Emp'],
+        }),
+        updateHeroToken: builder.mutation<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/hero/${id}`,
+                method: 'PATCH',
+                body: id
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                const resp = response
+                return resp
+               }
+            // invalidatesTags: ['ObjectiveDescription']
+        }),
+        getAllHero: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/hero/${id}`
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+            providesTags : [ 'Hero'],
         }),
         getData: builder.query<any, any>({
             query: (id) => `/api/v1/token/folder`,
@@ -460,6 +649,111 @@ export const graphApi = createApi({
                 method: "POST",
                 body: data
             }),
+            
+        }),
+        createTokenwithEventData: builder.mutation<any, any>({
+            query: (data) => ({
+                url: 'api/v1/lists/eventdata',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            
+        }),
+        createTokenwithHeroData: builder.mutation<any, any>({
+            query: (data) => ({
+                url: 'api/v1/lists/herodata',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            
+        }),
+        createTokenwithCeoData: builder.mutation<any, any>({
+            query: (data) => ({
+                url: 'api/v1/lists/ceodata',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            
+        }),
+        createTokenwithNewsData: builder.mutation<any, any>({
+            query: (data) => ({
+                url: 'api/v1/lists/newsdata',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            
+        }),
+        createTokenwithEmpData: builder.mutation<any, any>({
+            query: (data) => ({
+                url: 'api/v1/lists/empdata',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            
+        }),
+        createTokenwithUserQuickData: builder.mutation<any, any>({
+            query: (data) => ({
+                url: 'api/v1/lists/userquicklinkdata',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            
+        }),
+        getAllsubSites: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/sites/subSites/${id}`
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+            // providesTags : [ 'Hero'],
+        }),
+        createTokenwithDrivesOfSubSites: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/sites/subSites/drives',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                // const resp = response
+                return response
+            }
+            
+        }),
+        createTokenwithSubSitesOfItems: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/sites/subSites/drives/root',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                // const resp = response
+                return response
+            }
+            
+        }),
+        createTokenwithSubSitesofItemsId: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/sites/subSites/drives/items/id',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            transformResponse: (response: any) => {
+                // let y;
+                // const resp = response
+                return response
+            }
             
         }),
         createTokenwithDataWorkspace: builder.mutation<any, any>({
@@ -521,8 +815,36 @@ export const {
     useUpdateTokenMutation,
     useGetDataQuery,
     useCreateResponseMutation,
+
     useCreateTokenwithDataMutation,
-    useCreateTokenwithDataWorkspaceMutation
+    useCreateTokenwithEventDataMutation,
+    useCreateTokenwithHeroDataMutation,
+    useCreateTokenwithCeoDataMutation,
+    useCreateTokenwithNewsDataMutation,
+    useCreateTokenwithEmpDataMutation,
+    useCreateTokenwithUserQuickDataMutation,
+    useGetAllsubSitesQuery,
+    useCreateTokenwithDrivesOfSubSitesMutation,
+    useCreateTokenwithSubSitesOfItemsMutation,
+    useCreateTokenwithSubSitesofItemsIdMutation,
+    useCreateTokenwithDataWorkspaceMutation,
+    useUpdateQuicklinkTokenMutation,
+    useUpdateRecentFilesTokenMutation,
+    useUpdateAnnouncementTokenMutation,
+    useUpdateNavigationTokenMutation,
+    useUpdateCeoMsgTokenMutation,
+    useUpdateNewsTokenMutation,
+    useUpdateEmpTokenMutation,
+    useUpdateHeroTokenMutation,
+    useGetAllEventsQuery,
+    useGetAllQuickLinkQuery,
+    useGetAllRecentFilesQuery,
+    useGetAllAnnoncementsQuery,
+    useGetAllNavigationQuery,
+    useGetAllCeoMsgQuery,
+    useGetAllNewsQuery,
+    useGetAllEmpQuery,
+    useGetAllHeroQuery
 
     
     

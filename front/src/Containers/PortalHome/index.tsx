@@ -42,116 +42,116 @@ const PortalHome = () => {
     const pca = new PublicClientApplication(configuration);
     const [token, setToken] = useState<string>();
     const [data1, setData1] = useState<any>([]);
-    const accounts = pca.getAllAccounts();
-    //  const [updateToken,{data} ] = useUpdateTokenMutation();
-    // const [sendItem,{data,isLoading}] =useCreateResponseMutation();
+    // const accounts = pca.getAllAccounts();
+    //   const [updateToken,{data} ] = useUpdateTokenMutation();
+    // // const [sendItem,{data,isLoading}] =useCreateResponseMutation();
 
-      //  console.log(data,'ytjytjy')
-    // console.log(data,'juyjukkkik')
-    // setData1(data)
-    useEffect(() => {
-      async function getAccessToken() {
-        if (accounts.length > 0) {
-          const request = {
-            scopes: ['user.read'],
-            account: accounts[0]
-          }
-          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+    //    console.log(data?.response,'ytjytjy')
+    // // console.log(data,'juyjukkkik')
+    // // setData1(data)
+    // useEffect(() => {
+    //   async function getAccessToken() {
+    //     if (accounts.length > 0) {
+    //       const request = {
+    //         scopes: ['user.read'],
+    //         account: accounts[0]
+    //       }
+    //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
            
-              // updateToken(response.accessToken);
-             setToken(response.accessToken)
-            // console.log(token,'uuuuuu')
-          }).catch(error => {
-            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-            console.log(error);
-            return null;
-          });
+    //         updateToken(response.accessToken);
+    //           // setToken(response.accessToken)
+    //         // console.log(token,'uuuuuu')
+    //       }).catch(error => {
+    //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+    //         console.log(error);
+    //         return null;
+    //       });
   
   
-        }
+    //     }
   
-        return null;
-      }
-      getAccessToken();
-      // async function aaaa(){
-      //   // console.log(token)
-      //   await updateToken(token)
-      // }
-      // aaaa();
-      // setDatas(data.Event)
-      // console.log(datas.Event)
-      // function send (){
-      //       if (token) {
+    //     return null;
+    //   }
+    //   getAccessToken();
+    //   // async function aaaa(){
+    //   //   // console.log(token)
+    //   //   await updateToken(token)
+    //   // }
+    //   // aaaa();
+    //   // setDatas(data.Event)
+    //   // console.log(datas.Event)
+    //   // function send (){
+    //   //       if (token) {
         
         
-      //         const requestOptions = {
-      //           method: 'POST',
-      //           headers: { 'Content-Type': 'application/json' },
-      //           body: JSON.stringify({ token })
-      //         };
-      //         // fetch('http://localhost:4000/user/post', requestOptions)
-      //         fetch(`http://localhost:4000/api/v1/token/folder`, requestOptions)
-      //         // .then(response => console.log(response))
-      //          .then(response => response.json())
-      //          .then(data =>setData1(data));
+    //   //         const requestOptions = {
+    //   //           method: 'POST',
+    //   //           headers: { 'Content-Type': 'application/json' },
+    //   //           body: JSON.stringify({ token })
+    //   //         };
+    //   //         // fetch('http://localhost:4000/user/post', requestOptions)
+    //   //         fetch(`http://localhost:4000/api/v1/token/folder`, requestOptions)
+    //   //         // .then(response => console.log(response))
+    //   //          .then(response => response.json())
+    //   //          .then(data =>setData1(data));
         
-      //       }
+    //   //       }
         
-      //     }
-      //     send();
+    //   //     }
+    //   //     send();
        
       
-    }, [])
-    useEffect(()=>{
-    function send (){
-      if (token) {
+    // }, [])
+  //   useEffect(()=>{
+  //   function send (){
+  //     if (token) {
   
   
-        const requestOptions = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token })
-        };
-        // fetch('http://localhost:4000/user/post', requestOptions)
-        fetch(`http://localhost:4000/api/v1/token/folder`, requestOptions)
-        // .then(response => console.log(response))
-         .then(response => response.json())
-         .then(data =>setData1(data));
+  //       const requestOptions = {
+  //         method: 'POST',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({ token })
+  //       };
+  //       // fetch('http://localhost:4000/user/post', requestOptions)
+  //       fetch(`http://localhost:4000/api/v1/token/folder`, requestOptions)
+  //       // .then(response => console.log(response))
+  //        .then(response => response.json())
+  //        .then(data =>setData1(data));
   
-      }
+  //     }
   
-    }
-    send();
-  },[token])
+  //   }
+  //   send();
+  // },[token])
   // const E =data.Event
   // console.log(E)
-    console.log(data1,'u7i7i87i')
-     console.log(data1.Event,'tyugdfgfdgdfgfdgccdvvdgfdg6tuu')
-     const eventdata = data1.Event;
-     const quicklinkdata = data1.QuickLinks;
-     const recentdata = data1.RecentFiles;
-     const accouncementdata = data1.Announcements;
-     const navigationdata =data1.Navigation;
-     const ceomsgdata = data1.CeoMsg;
-     const newsdata = data1.News;
-     const employeedata = data1.Employee;
-     const herodata = data1.Hero;
-     const gallerydata = data1.Gallery;
+    // console.log(data1,'u7i7i87i')
+    //  console.log(data1.Event,'tyugdfgfdgdfgfdgccdvvdgfdg6tuu')
+    //  const eventdata = data1.Event;
+    //  const quicklinkdata = data1.QuickLinks;
+    //  const recentdata = data1.RecentFiles;
+    //  const accouncementdata = data1.Announcements;
+    //  const navigationdata =data1.Navigation;
+    //  const ceomsgdata = data1.CeoMsg;
+    //  const newsdata = data1.News;
+    //  const employeedata = data1.Employee;
+    //  const herodata = data1.Hero;
+    //  const gallerydata = data1.Gallery;
   return (
     <div className={classes.root}>
       <Grid container spacing={2} className={classes.bannerTop}>
         <Grid item xs={8}>
           <Paper elevation={0}>
-             <HeroImages hero={herodata} />
+             <HeroImages />
            {/* fbfbfbfb */}
           </Paper>
         </Grid>
         <Grid item xs={4}>
-          <CeoMessage ceomsg={ceomsgdata} />
+          <CeoMessage  />
           {/* fefefefefefefe */}
         </Grid>
         <Grid item xs={12} style={{ marginBottom: "16px", paddingTop: "16px",position: "relative" }}>
-          <HomeTopNav navigation={navigationdata} />
+          <HomeTopNav  />
           {/* hghgjhgjhjhjhjhjhjhj */}
           
         </Grid>
@@ -160,7 +160,7 @@ const PortalHome = () => {
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <Grid item xs={12}>
-            <News news={newsdata} />
+            <News  />
             {/* jjhjhgjhgjhg */}
           </Grid>
           <Grid
@@ -176,11 +176,11 @@ const PortalHome = () => {
             spacing={2}
           >
             <Grid item xs={6} style={{ paddingLeft: 0 }}>
-              <Events event={eventdata} />
+              <Events  />
               {/* hhjfghg */}
             </Grid>
             <Grid item xs={6} style={{ paddingRight: 0 }}>
-              <Announcement announcement={accouncementdata} />
+              <Announcement  />
               {/* gththhdhdh */}
             </Grid>
           </Grid>
@@ -198,8 +198,8 @@ const PortalHome = () => {
           >
             <Grid item xs={6} style={{ paddingLeft: 0 }}>
               
-                <Gallery gallery={gallerydata} />
-              {/* bfbbbfbfbfb */}
+                {/* <Gallery gallery={gallerydata} /> */}
+              bfbbbfbfbfb
             </Grid>
             <Grid item xs={6} style={{ paddingRight: 0 }}>
               <SocialMedia />
@@ -207,18 +207,18 @@ const PortalHome = () => {
           </Grid>
         </Grid>
         <Grid item xs={4}>
-           <EmployeeHighlight employee={employeedata}/> 
+           <EmployeeHighlight /> 
            {/* gfgfghghghghg */}
           <Grid item xs={12} style={{ marginTop: 16 }}>
             <Weather />
           </Grid>
 
           <Grid item xs={12} style={{ marginTop: 16 }}>
-            <QuickLinks quicklink={quicklinkdata} />
+            <QuickLinks  />
             {/* hthhfhfhfgh */}
           </Grid>
           <Grid item xs={12} style={{ marginTop: 16 }}>
-            <RecentFiles recent = {recentdata}/>
+            <RecentFiles />
             {/* rgrgtrhgthgd */}
           </Grid>
         </Grid>

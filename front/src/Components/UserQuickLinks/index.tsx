@@ -1,8 +1,11 @@
 // import { Title } from '@mui/icons-material';
-import { Button, Card, CardActions, CardContent, Typography, TextField, createMuiTheme, ListItem, List, ListItemIcon, Link, ListItemText } from '@mui/material';
-import { useCreateListItemMutation, useGetQuickLinksQuery ,usePostGlobalListIdMutation,useCreateTokenwithDataMutation } from '../../services/APIs';
+import { Button, Card, CardActions, CardContent, Typography, TextField, createMuiTheme, ListItem, List, ListItemIcon, Link, ListItemText, Paper } from '@mui/material';
+import { useCreateListItemMutation, useGetQuickLinksQuery ,usePostGlobalListIdMutation,useCreateTokenwithDataMutation,useUpdateQuicklinkTokenMutation,useGetAllQuickLinkQuery,
+    useCreateTokenwithUserQuickDataMutation } from '../../services/APIs';
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { PublicClientApplication } from "@azure/msal-browser";
+import { configuration } from "../../index";
 interface IFolderProps {
   globalquicklinks: any;
   tokens:any
@@ -13,16 +16,53 @@ interface IFolderProps {
   // onShare?: (id: string) => void;
 }
 
-// const UserQuickLinks = () => {
-  const UserQuickLinks: React.FC<IFolderProps> = (props: IFolderProps) => {  
-  const [sendItem] = useCreateTokenwithDataMutation();
+const UserQuickLinks = () => {
+  // const UserQuickLinks: React.FC<IFolderProps> = (props: IFolderProps) => {  
+  const [sendItem] = useCreateTokenwithUserQuickDataMutation();
+  // const [updateToken,{data,isLoading} ] = useUpdateCeoMsgTokenMutation();
+  //   console.log(data?.response,'jyjtydggfgdhhtjytjytjytjty')
   //  const [sendId] = usePostGlobalListIdMutation();
   // const [sendEmail] = usePostEmailMutation();
   // const { data, error, isLoading } = useGetQuickLinksQuery('');
   // console.log(data)
-
-  const {globalquicklinks,tokens} = props;
+  
+  // const {globalquicklinks,tokens} = props;
   // console.log(tokens,'yyy');
+  const pca = new PublicClientApplication(configuration);
+  const [tokens, setTokens] = useState<string>();
+  // const [updateToken,{data,isLoading} ] = useUpdateQuicklinkTokenMutation();
+  // console.log(data?.response,'jhfhfhtyjytjuyjkukjuykuykuk')
+  const accounts = pca.getAllAccounts();
+   useEffect(() => {
+    async function getAccessToken() {
+      if (accounts.length > 0) {
+        const request = {
+          scopes: ['user.read'],
+          account: accounts[0]
+        }
+        const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+         
+          // updateToken(response.accessToken);
+             setTokens(response.accessToken)
+          // console.log(token,'uuuuuu')
+        }).catch(error => {
+          // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+          console.log(error);
+          return null;
+        });
+
+
+      }
+
+      return null;
+    }
+    getAccessToken();
+
+     
+    
+  }, [])
+
+  // console.log(tokens,'thtjyjyjyjyjyjy')
   const list = {
     fields: {
       Title: 'My post Request',
@@ -30,7 +70,8 @@ interface IFolderProps {
     }
   };
 
-
+  const { data, error, isLoading } = useGetAllQuickLinkQuery(tokens);
+  console.log(data,'thytjytjytjudddddddddddddd')
 
   // const [user, setUser] = useState<any>({fullname:"",email:""});
   const [user, setUser] = useState<any>({
@@ -42,6 +83,7 @@ interface IFolderProps {
   });
   // const [UserEmail,setUserEmail] = useState<any>('');
   const [vals,setValues ] = useState<any>('')
+ 
   // const [Title,setTitle] = useState<any>('')
   // const [Url,setUrl] = useState<any>('')
   // const [fetchedData, setFetchedData] = useState('')
@@ -203,8 +245,8 @@ interface IFolderProps {
         <button>SendData</button>
       </form>
       <List >
-        {globalquicklinks &&
-          globalquicklinks?.map((item: any, index: any) => {
+        {data?.response &&
+          data?.response.map((item: any, index: any) => {
             const { fields = {} } = item;
 
             let linkName = fields?.Title;
@@ -251,6 +293,7 @@ interface IFolderProps {
             );
           })}
       </List>
+       
     </div>
     // <h1>TTTT</h1>
   )

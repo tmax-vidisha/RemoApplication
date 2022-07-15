@@ -193,11 +193,11 @@ const createRequset = async (url, token) => {
 // console.log(AccessToken,'llllll'
 
 
-const getFolderData = asyncHandler(async(req, res) => {
+const getEventData = asyncHandler(async(req, res) => {
 
     // console.log(req.body)
-    // const {token} = req.params
-    const {token} = req.body
+    const {token} = req.params
+    //  const {token} = req.body
     console.log(token,'llll')
     // console.log(req.body,'gregrthtrht')
     if(!token ){
@@ -214,53 +214,281 @@ const getFolderData = asyncHandler(async(req, res) => {
     });
 
     }else {
-        const Event = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
-    //    console.log(Event,'dgdfgthtrhytjytjyt')
-       const  QuickLinks = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${External_Quick_Links}/items?$expand=fields`, token )
-    //    console.log(QuickLinks,'dgdfgthtrhytjcvxvdfbfdytjyt')
-       const RecentFiles = await createRequset('https://graph.microsoft.com/v1.0/me/drive/recent?$top=5&$orderby=lastModifiedDateTime desc',token)
-    //    console.log(RecentFiles,'ththyh')
-       const Announcements = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${AnnouncementId}/items?$expand=fields`,token)
-    //    console.log(Announcements,'y777k8k8k8k')
-       const Navigation = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Navigation_Id}/items?$expand=fields`,token)
-    //    console.log(Navigation,'y777k8k8k8k')
-       const CeoMsg = await ceomsg(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Ceo_Message}/items?$expand=fields`,token)
-    //    console.log(CeoMsg,'t56y65u76i76i87i87')
-       const News = await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${News_Id}/items?$expand=fields`,token)
-    //    console.log(News,'egreg565j76k87k87kll8lk')
-       const Employee = await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${EmpHighlights}/items?$expand=fields`,token)
-    //    console.log(Employee,'grt65uj76uj76j8kj87k8k98k')
-       const Hero = await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${HeroImage_Id}/items?$expand=fields`,token)
-       console.log(Hero,'6u776j7kjk8k')
-      const Gallery = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Photo_Gallery}/items?$expand=fields`,token)
-      console.log(Gallery,'thytjkklliliuluiliu')
+      //   const Event = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+      // console.log(Event,'dgdfgthtrhytjytjyt')
+    //    const  QuickLinks = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${External_Quick_Links}/items?$expand=fields`, token )
+    // //    console.log(QuickLinks,'dgdfgthtrhytjcvxvdfbfdytjyt')
+    //    const RecentFiles = await createRequset('https://graph.microsoft.com/v1.0/me/drive/recent?$top=5&$orderby=lastModifiedDateTime desc',token)
+    // //    console.log(RecentFiles,'ththyh')
+    //    const Announcements = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${AnnouncementId}/items?$expand=fields`,token)
+    // //    console.log(Announcements,'y777k8k8k8k')
+    //    const Navigation = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Navigation_Id}/items?$expand=fields`,token)
+    // //    console.log(Navigation,'y777k8k8k8k')
+    //    const CeoMsg = await ceomsg(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Ceo_Message}/items?$expand=fields`,token)
+    // //    console.log(CeoMsg,'t56y65u76i76i87i87')
+    //    const News = await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${News_Id}/items?$expand=fields`,token)
+    // //    console.log(News,'egreg565j76k87k87kll8lk')
+    //    const Employee = await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${EmpHighlights}/items?$expand=fields`,token)
+    // //    console.log(Employee,'grt65uj76uj76j8kj87k8k98k')
+    //    const Hero = await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${HeroImage_Id}/items?$expand=fields`,token)
+    //    console.log(Hero,'6u776j7kjk8k')
+    //   const Gallery = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Photo_Gallery}/items?$expand=fields`,token)
+    //   console.log(Gallery,'thytjkklliliuluiliu')
     //    req.body = dataFiles
     //    res.send(req.body)
     //    sendData(dataFiles)
     res.status(200).json({
-        // success: true,
-    Event,
-    QuickLinks,
-    RecentFiles,
-    Announcements,
-    Navigation,
-    CeoMsg,
-    News,
-    Employee,
-    Hero,
-    Gallery
+       success: true,
+       response :  await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+    // Event,
+    // QuickLinks,
+    // RecentFiles,
+    // Announcements,
+    // Navigation,
+    // CeoMsg,
+    // News,
+    // Employee,
+    // Hero,
+    // Gallery
     });
 
     }
 
 })
 
+
+
+
+const getQuicklinkData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  const {token} = req.params
+  //  const {token} = req.body
+  console.log(token,'llll')
+  // console.log(req.body,'gregrthtrht')
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+  res.status(200).json({
+     success: true,
+     response :  await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${External_Quick_Links}/items?$expand=fields`, token )
+ 
+  });
+
+  }
+
+})
+
+const getRecentFilesData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  const {token} = req.params
+  //  const {token} = req.body
+  console.log(token,'llll')
+  // console.log(req.body,'gregrthtrht')
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+  res.status(200).json({
+     success: true,
+     response : await createRequset('https://graph.microsoft.com/v1.0/me/drive/recent?$top=5&$orderby=lastModifiedDateTime desc',token)
+ 
+  });
+
+  }
+
+})
+
+
+const getAnnouncementData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  const {token} = req.params
+  //  const {token} = req.body
+  console.log(token,'llll')
+  // console.log(req.body,'gregrthtrht')
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+  res.status(200).json({
+     success: true,
+     response : await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${AnnouncementId}/items?$expand=fields`,token)
+ 
+  });
+
+  }
+
+})
+
+
+const getNavigationData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  const {token} = req.params
+  //  const {token} = req.body
+  console.log(token,'llll')
+  // console.log(req.body,'gregrthtrht')
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+  res.status(200).json({
+     success: true,
+     response :await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Navigation_Id}/items?$expand=fields`,token)
+ 
+  });
+
+  }
+
+})
+
+const getCeoMsgData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  const {token} = req.params
+  //  const {token} = req.body
+  console.log(token,'llll')
+  // console.log(req.body,'gregrthtrht')
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+  res.status(200).json({
+     success: true,
+     response :await ceomsg(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Ceo_Message}/items?$expand=fields`,token)
+ 
+  });
+
+  }
+
+})
+
+const getNewsData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  const {token} = req.params
+  //  const {token} = req.body
+  console.log(token,'llll')
+  // console.log(req.body,'gregrthtrht')
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+  res.status(200).json({
+     success: true,
+     response :await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${News_Id}/items?$expand=fields`,token)
+ 
+  });
+
+  }
+
+})
+
+
+const getEmpData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  const {token} = req.params
+  //  const {token} = req.body
+  console.log(token,'llll')
+  // console.log(req.body,'gregrthtrht')
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+  res.status(200).json({
+     success: true,
+     response :await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${EmpHighlights}/items?$expand=fields`,token)
+ 
+  });
+
+  }
+
+})
+
+
+const getHeroData = asyncHandler(async(req, res) => {
+
+  // console.log(req.body)
+  const {token} = req.params
+  //  const {token} = req.body
+  console.log(token,'llll')
+  // console.log(req.body,'gregrthtrht')
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+  res.status(200).json({
+     success: true,
+     response :await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${HeroImage_Id}/items?$expand=fields`,token)
+ 
+  });
+
+  }
+
+})
+
+
+
+
+
 module.exports = {
     getToken,
     createToken,
     // Datsa,
    
-    getFolderData,
+    getEventData,
+    getQuicklinkData,
+    getRecentFilesData,
+    getAnnouncementData,
+    getNavigationData,
+    getCeoMsgData,
+    getNewsData,
+    getEmpData,
+    getHeroData,
     createRequset
     
 

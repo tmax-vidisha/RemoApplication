@@ -1,5 +1,5 @@
-import React from 'react'
-import { useGetEmployeeHighLightQuery } from '../../services/APIs';
+import React, { useEffect,useState } from 'react'
+import { useGetEmployeeHighLightQuery,useUpdateEmpTokenMutation,useGetAllEmpQuery } from '../../services/APIs';
 import { AuthenticatedTemplate } from "@azure/msal-react";
 import { Card, CardContent, Paper, Typography,Avatar } from "@mui/material";
 import { useStyles } from "./Styles";
@@ -9,7 +9,8 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import Carousel from 'react-material-ui-carousel'
 import SkeletonAnimation from "../../Containers/Skeleton";
-
+import { PublicClientApplication } from "@azure/msal-browser";
+import { configuration } from "../../index";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 //@ts-ignore
 interface IFolderProps {
@@ -20,14 +21,14 @@ interface IFolderProps {
   // onRename?: (id: string, name: string) => void;
   // onShare?: (id: string) => void;
 }
-// const EmployeeHighlight = () => {
-  const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
+ const EmployeeHighlight = () => {
+  // const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
   const theme = useTheme();
 
   // const { data, error, isLoading } = useGetEmployeeHighLightQuery('');
   // console.log(data,'88888888')
-  const {employee} = props;
+  // const {employee} = props;
    const [activeStep, setActiveStep] = React.useState(0);
    
           const handleStepChange = (step: number) => {
@@ -35,6 +36,44 @@ interface IFolderProps {
   
 
 }
+
+const pca = new PublicClientApplication(configuration);
+    // const [updateToken,{data,isLoading} ] = useUpdateEmpTokenMutation();
+    // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
+    const [tokens, setTokens] = useState<string>();
+    const accounts = pca.getAllAccounts();
+     useEffect(() => {
+      async function getAccessToken() {
+        if (accounts.length > 0) {
+          const request = {
+            scopes: ['user.read'],
+            account: accounts[0]
+          }
+          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+           
+            // updateToken(response.accessToken);
+              setTokens(response.accessToken)
+            // console.log(token,'uuuuuu')
+          }).catch(error => {
+            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+            console.log(error);
+            return null;
+          });
+  
+  
+        }
+  
+        return null;
+      }
+      getAccessToken();
+  
+       
+      
+    }, [])
+
+    const { data, error, isLoading } =   useGetAllEmpQuery(tokens)
+    console.log(data,'980ccccccc9090')
+
   return (
     
 
@@ -54,9 +93,9 @@ interface IFolderProps {
     //           ggggg
     <AuthenticatedTemplate>
       
-      {/* {isLoading ?(
+      {isLoading ?(
         <SkeletonAnimation/>
-      )  :(     */}
+      )  :(    
               <Paper>
               
                <Card>
@@ -66,19 +105,19 @@ interface IFolderProps {
                   onChangeIndex={handleStepChange}
                   enableMouseEvents
             >
-                  {employee && <img  src ={employee.image}  height="120"/> 
+                  {data?.response && <img  src ={data?.response.image}  height="120"/> 
                   
                   
                   }
                   
-                  {employee && <img  src ={employee.image1}  height="120"/> }
-                  {employee && <img  src ={employee.image2}  height="120"/> }
+                  {data?.response && <img  src ={data?.response.image1}  height="120"/> }
+                  {data?.response && <img  src ={data?.response.image2}  height="120"/> }
                 </AutoPlaySwipeableViews>
                 
               </Card>
              
               </Paper>
-      {/* )}     */}
+       )}     
       
     </AuthenticatedTemplate> 
     // <div>tttt</div>

@@ -1,5 +1,5 @@
 const express = require("express");
- const { getPostData } = require("../controllers/postdata");
+ const { getPostData,postEventData,postHeroData,postCeoData,postNewsData,postEmpData,postUserQuicklinkData } = require("../controllers/postdata");
 // const { getData } = require("../controllers/graph");
 const createToken = require('../controllers/token')
 const router = express.Router();
@@ -26,5 +26,10 @@ const RemoToken = require('../controllers/token');
 //     })
 // router.route('/').get(getTokens)
 router.route('/data').post(getPostData)
-
+router.route('/eventdata').post(postEventData)
+router.route('/herodata').post(postHeroData)
+router.route('/ceodata').post(postCeoData)
+router.route('/newsdata').post(postNewsData)
+router.route('/empdata').post(postEmpData)
+router.route('/userquicklinkdata').post(postUserQuicklinkData)
 module.exports = router

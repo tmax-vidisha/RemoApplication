@@ -23,14 +23,17 @@ import {useGetIntranetQuery,
 import Welcome from "./Welcome";
 import Main from "./Main";
 
+type AppProps = {
+  pca: IPublicClientApplication;
+};
 
-
-function App() {
+ function App() {
+  // function App({ pca }: AppProps) {
   const { instance, inProgress } = useMsal();
   const [token, setToken] = useState<string>();
   const [data1, setData1] = useState<any>([]);
-  const pca = new PublicClientApplication(configuration);
-  const accounts = pca.getAllAccounts();
+  // const pca = new PublicClientApplication(configuration);
+  // const accounts = pca.getAllAccounts();
   // const [updateToken,{data} ] = useUpdateTokenMutation();
     //  const [postToken]  = useCreateResponseMutation();
   

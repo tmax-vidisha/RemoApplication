@@ -31,14 +31,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useGetHeroImageQuery,useCreateHeroMutation,useGetHeroImageInputQuery,useCreateTokenwithDataMutation  } from "../../services/APIs";
+import { useGetHeroImageQuery,useCreateHeroMutation,useGetHeroImageInputQuery,useCreateTokenwithDataMutation,useGetAllHeroQuery,
+            useCreateTokenwithHeroDataMutation  } from "../../services/APIs";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import moment from "moment";
 const HeroInput = () => {
     // const { data, error, isLoading } = useGetHeroImageInputQuery('');
     // console.log(data,'uuu')
     // const [sendItem] = useCreateHeroMutation();
-    const [sendItem] = useCreateTokenwithDataMutation();
+    const [sendItem] = useCreateTokenwithHeroDataMutation();
     const [heroItems, setHeroItems] = useState<any>([]);
   const [HeroTitle, setHeroTitle] = useState<any>([]);
   const [name,setName] = useState<string>('');
@@ -169,7 +170,8 @@ const HeroInput = () => {
     console.log('click')
   };
 
-
+  const { data, error, isLoading } =  useGetAllHeroQuery(tokens);
+  console.log(data?.response.value,'888ddd88txcccsssssssssssssscccccccccccctuytuytu888')
 
   return (
     <AuthenticatedTemplate>
@@ -228,7 +230,41 @@ const HeroInput = () => {
               </TableCell>
             </TableRow>
           </TableHead>
-          
+          <TableBody>
+          {data?.response &&
+                data?.response?.value.map((item: any, index: any) => {
+                const { fields = {} } = item;
+                var heroTitle = fields?.Title;
+                var heroIsActive = fields.IsActive;
+                var createdDate = moment(
+                  fields.Modified
+                ).fromNow();
+                var img = fields?.heroUrl
+                // var heroImg = JSON.parse(fields.HeroPic);
+                // var completePath;
+                // if (heroImg.serverUrl) {
+                //   completePath = heroImg.serverUrl + (heroImg.serverRelativeUrl).replace(heroImg.serverUrl, "");
+                // } else {
+                //   completePath = heroImg.serverRelativeUrl
+                // }
+                return (
+                  <TableRow
+                    className={classes.tableCell}
+                    sx={{
+                      verticalAlign: "top !important",
+                      "&:last-child td, &:last-child th": { border: 0 },
+                    }}
+                  >
+                    <TableCell>{heroTitle}</TableCell>
+                    <TableCell><img style={{ width: "92px", height: "82px" }} src={img} /></TableCell>
+                    <TableCell sx={{ minWidth: 80 }}>{createdDate}</TableCell>
+                    <TableCell sx={{ minWidth: 80, textAlign: "center" }}>
+                      <span className={classes.tableStatusNo}>{heroIsActive ? "Yes" : "No"}</span>
+                    </TableCell>
+                  </TableRow>
+                )
+              })}
+          </TableBody>
         </Table>
       </TableContainer>
 

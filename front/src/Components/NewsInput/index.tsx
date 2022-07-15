@@ -28,7 +28,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useStyles } from "./Styles";
-import { useGetNewsQuery,useCreateNewsInputMutation,useCreateTokenwithDataMutation } from '../../services/APIs';
+import { useGetNewsQuery,useCreateNewsInputMutation,useCreateTokenwithDataMutation,useUpdateNewsTokenMutation,useGetAllNewsQuery,useCreateTokenwithNewsDataMutation } from '../../services/APIs';
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import PublishSharpIcon from "@mui/icons-material/PublishSharp";
 import AddCircleOutlineIcon from "@mui/icons-material/Add";
@@ -41,9 +41,11 @@ import moment from "moment";
 
 const NewsInput = () => {
     const classes = useStyles();
-    const { data, error, isLoading } = useGetNewsQuery('')
+    // const { data, error, isLoading } = useGetNewsQuery('')
     // const [sendItem] = useCreateNewsInputMutation();
-    const [sendItem] = useCreateTokenwithDataMutation();
+    const [sendItem] = useCreateTokenwithNewsDataMutation();
+    // const [updateToken,{data,isLoading} ] = useUpdateNewsTokenMutation();
+    // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
   const [newsItems, setNewsItems] = useState<any>([]);
   const [newsTitle, setNewsTitle] = useState<any>([]);
   const [tokens, setTokens] = useState<string>();
@@ -186,7 +188,8 @@ const NewsInput = () => {
             sendItem(newData)
     console.log('click')
   };
-
+  const { data, error, isLoading } =  useGetAllNewsQuery(tokens);
+    console.log(data,'888ddd88ttuytuytu888')
   return (
     <AuthenticatedTemplate>
       <Container className={classes.contentEditorWidth}>
@@ -246,8 +249,8 @@ const NewsInput = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data &&
-                data.value.map((item: any, index: any) => {
+              {data?.response &&
+                data?.response?.value.map((item: any, index: any) => {
                   const { fields = {} } = item;
                   var newsTitle = fields?.Title;
                   var newsMessageAsText = fields.Description;

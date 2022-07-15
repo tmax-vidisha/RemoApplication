@@ -1,8 +1,10 @@
 const express = require("express");
 const { BlobServiceClient } = require('@azure/storage-blob');
 const token = require('./routes/token');
-const getPostData = require('./routes/graph');
-const getAllSites = require('./routes/workspace')
+// const getPostData = require('./routes/graph');
+const graph = require('./routes/graph')
+// const getAllSites = require('./routes/workspace')
+const workspace = require('./routes/workspace')
 // const RemoToken = require('./controllers/token')
 // const graph = require('./routes/graph')
 var azure = require('azure-storage');
@@ -1511,7 +1513,7 @@ app.get('/user', (req, res) => {
 console.log("Remo")
 
 app.use('/api/v1/token',token)
-app.use(`/api/v1/lists`,getPostData)
-app.use(`/api/v1/sites`,getAllSites)
+app.use(`/api/v1/lists`,graph)
+app.use(`/api/v1/sites`,workspace)
 
 app.listen(SERVER_PORT, () => console.log(`Msal Node Auth Code Sample app listening on port ${SERVER_PORT}!`))

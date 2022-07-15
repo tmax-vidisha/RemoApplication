@@ -47,87 +47,87 @@ const Main = () => {
     const [data1, setData1] = useState<any>([]);
     const accounts = pca.getAllAccounts();
 
-    useEffect(() => {
-        async function getAccessToken() {
-          if (accounts.length > 0) {
-            const request = {
-              scopes: ['user.read'],
-              account: accounts[0]
-            }
-            const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+    // useEffect(() => {
+    //     async function getAccessToken() {
+    //       if (accounts.length > 0) {
+    //         const request = {
+    //           scopes: ['user.read'],
+    //           account: accounts[0]
+    //         }
+    //         const accessToken = await pca.acquireTokenSilent(request).then((response) => {
              
-              // updateToken(response.accessToken);
-               setToken(response.accessToken)
-              // console.log(token,'uuuuuu')
-            }).catch(error => {
-              // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-              console.log(error);
-              return null;
-            });
+    //           // updateToken(response.accessToken);
+    //            setToken(response.accessToken)
+    //           // console.log(token,'uuuuuu')
+    //         }).catch(error => {
+    //           // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+    //           console.log(error);
+    //           return null;
+    //         });
     
     
-          }
+    //       }
     
-          return null;
-        }
-        getAccessToken();
-        // async function aaaa(){
-        //   // console.log(token)
-        //   await updateToken(token)
-        // }
-        // aaaa();
-        // setDatas(data.Event)
-        // console.log(datas.Event)
-        // function send (){
-        //       if (token) {
+    //       return null;
+    //     }
+    //     getAccessToken();
+    //     // async function aaaa(){
+    //     //   // console.log(token)
+    //     //   await updateToken(token)
+    //     // }
+    //     // aaaa();
+    //     // setDatas(data.Event)
+    //     // console.log(datas.Event)
+    //     // function send (){
+    //     //       if (token) {
           
           
-        //         const requestOptions = {
-        //           method: 'POST',
-        //           headers: { 'Content-Type': 'application/json' },
-        //           body: JSON.stringify({ token })
-        //         };
-        //         // fetch('http://localhost:4000/user/post', requestOptions)
-        //         fetch(`http://localhost:4000/api/v1/token/folder`, requestOptions)
-        //         // .then(response => console.log(response))
-        //          .then(response => response.json())
-        //          .then(data =>setData1(data));
+    //     //         const requestOptions = {
+    //     //           method: 'POST',
+    //     //           headers: { 'Content-Type': 'application/json' },
+    //     //           body: JSON.stringify({ token })
+    //     //         };
+    //     //         // fetch('http://localhost:4000/user/post', requestOptions)
+    //     //         fetch(`http://localhost:4000/api/v1/token/folder`, requestOptions)
+    //     //         // .then(response => console.log(response))
+    //     //          .then(response => response.json())
+    //     //          .then(data =>setData1(data));
           
-        //       }
+    //     //       }
           
-        //     }
-        //     send();
+    //     //     }
+    //     //     send();
          
         
-      }, [])
-      useEffect(()=>{
-      function send (){
-        if (token) {
+    //   }, [])
+    //   useEffect(()=>{
+    //   function send (){
+    //     if (token) {
     
     
-          const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token })
-          };
-          // fetch('http://localhost:4000/user/post', requestOptions)
-          fetch(`http://localhost:4000/api/v1/token/folder`, requestOptions)
-          // .then(response => console.log(response))
-           .then(response => response.json())
-           .then(data =>setData1(data));
+    //       const requestOptions = {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({ token })
+    //       };
+    //       // fetch('http://localhost:4000/user/post', requestOptions)
+    //       fetch(`http://localhost:4000/api/v1/token/folder`, requestOptions)
+    //       // .then(response => console.log(response))
+    //        .then(response => response.json())
+    //        .then(data =>setData1(data));
     
-        }
+    //     }
     
-      }
-      send();
-    },[token])
+    //   }
+    //   send();
+    // },[token])
     
     // // console.log(data1,'u7i7i87i')
-    const quicklinkdata = data1.QuickLinks;
-    const ceomsgdata = data1.CeoMsg;
-    const accouncementdata = data1.Announcements;
-    const eventdata = data1.Event;
-    const newsdata = data1.News;
+    // const quicklinkdata = data1.QuickLinks;
+    // const ceomsgdata = data1.CeoMsg;
+    // const accouncementdata = data1.Announcements;
+    // const eventdata = data1.Event;
+    // const newsdata = data1.News;
     return (
         <>
             <p style={{ display: "none" }}>collaboration driven</p>
@@ -147,7 +147,7 @@ const Main = () => {
                             />
                             <Route
                                 path="/userquicklink"
-                                element={<UserQuickLinks globalquicklinks={quicklinkdata} tokens={token}/>}
+                                element={<UserQuickLinks/>}
                             />
                             <Route
                                 path="/CEOInput"
@@ -175,19 +175,19 @@ const Main = () => {
                             />
                             <Route
                                 path="/NewsInfo"
-                                element={<NewsReadMore news={newsdata} />}
+                                element={<NewsReadMore  />}
                             />
                              <Route
                                 path="/EventReadMore"
-                                element={<EventsReadMore event= {eventdata} />}
+                                element={<EventsReadMore  />}
                             />
                              <Route
                                path="/AnnouncementReadMore"
-                               element={<AnnouncementReadMore announcement={accouncementdata} />}
+                               element={<AnnouncementReadMore  />}
                             />
                              <Route
                                path="/CeoInfo"
-                               element={<CeoMessageInformation ceomsg={ceomsgdata} />}
+                               element={<CeoMessageInformation  />}
                             />
                             <Route
                                path="/workspace/dropbox"

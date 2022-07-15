@@ -20,7 +20,7 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import { useGetCeoMessageQuery, useCreateCeoMessageMutation,useCreateTokenwithDataMutation } from "../../services/APIs";
+import { useGetCeoMessageQuery, useCreateCeoMessageMutation,useCreateTokenwithDataMutation,useUpdateCeoMsgTokenMutation,useGetAllCeoMsgQuery,useCreateTokenwithCeoDataMutation } from "../../services/APIs";
 import { useStyles } from "./Styles";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { EditorState } from "draft-js";
@@ -49,13 +49,15 @@ const CeoMessageInput = () => {
 
   // const { data, error, isLoading } = useGetCeoMessageQuery('')
   // const [sendItem] = useCreateCeoMessageMutation();
-  const [sendItem] = useCreateTokenwithDataMutation();
+  const [sendItem] = useCreateTokenwithCeoDataMutation();
   // const [sendData] = useCreatedataMutation();
   const [ceoMessage, setCEOMessage] = useState<any>([]);
   const [CeoTitle, setCeoTitle] = useState<any>([]);
   const [CeoPosition, setPosition] = useState<any>([]);
   const [open, setOpen] = useState(false);
   const [name,setName] = useState<string>('');
+  // const [updateToken,{data,isLoading} ] = useUpdateCeoMsgTokenMutation();
+  //   console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
   const pca = new PublicClientApplication(configuration);
   const [tokens, setTokens] = useState<string>();
   const accounts = pca.getAllAccounts();
@@ -207,6 +209,9 @@ const CeoMessageInput = () => {
     console.log('click')
   };
 
+  const { data, error, isLoading } =   useGetAllCeoMsgQuery(tokens)
+  console.log(data,'980ccccccc9090')
+
   return (
     
     <AuthenticatedTemplate>
@@ -267,9 +272,9 @@ const CeoMessageInput = () => {
                 </TableCell>
               </TableRow>
             </TableHead>
-            {/* <TableBody>
-              {data &&
-                data.value.map((item: any, index: any) => {
+            <TableBody>
+              {data?.response &&
+                data?.response?.value.map((item: any, index: any) => {
                   const { fields = {} } = item;
                   var ceoTitle = fields?.Title;
                   var ceoUserName = fields?.UserName;
@@ -318,7 +323,7 @@ const CeoMessageInput = () => {
                     </TableRow>
                   )
                 })}
-            </TableBody> */}
+            </TableBody>
             
           </Table>
         </TableContainer>

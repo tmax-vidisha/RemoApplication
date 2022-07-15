@@ -30,14 +30,16 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import AddCircleOutlineIcon from "@mui/icons-material/Add";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { useGetEmployeeHighLightQuery,useCreateEmployeeHighlightMutation,useCreateTokenwithDataMutation  } from '../../services/APIs';
+import { useGetEmployeeHighLightQuery,useCreateEmployeeHighlightMutation,useCreateTokenwithDataMutation,useUpdateEmpTokenMutation ,useGetAllEmpQuery,useCreateTokenwithEmpDataMutation } from '../../services/APIs';
 var moment = require("moment-timezone");
 
 const EmployeeHighlightInput = () => {
     const classes = useStyles();
     // const { data, error, isLoading } = useGetEmployeeHighLightQuery('');
     // const [sendItem] = useCreateEmployeeHighlightMutation();
-    const [sendItem] = useCreateTokenwithDataMutation();
+    const [sendItem] = useCreateTokenwithEmpDataMutation();
+    // const [updateToken,{data,isLoading} ] = useUpdateEmpTokenMutation();
+    // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
     const [empHight, setEmpHight] = useState<any>([]);
     const [empTitle, setEmpTitle] = useState<any>([]);
     const [dept, setDept] = useState<any>([]);
@@ -169,7 +171,9 @@ const EmployeeHighlightInput = () => {
         sendItem(Data);
         console.log('click')
       };
-    
+      const { data, error, isLoading } =   useGetAllEmpQuery(tokens)
+      console.log(data,'980ccccccc9090')
+  
   return (
     <AuthenticatedTemplate>
       <Container className={classes.contentEditorWidth}>
@@ -229,9 +233,9 @@ const EmployeeHighlightInput = () => {
                 </TableCell>
               </TableRow>
             </TableHead>
-            {/* <TableBody>
-              {data &&
-                data.value.map((item: any, index: any) => {
+            <TableBody>
+              {data?.response &&
+                data?.response?.value.map((item: any, index: any) => {
                   const { fields = {} } = item;
                   var empTitle = fields?.EmployeeTitle;
                   var name = fields?.Title;
@@ -269,7 +273,7 @@ const EmployeeHighlightInput = () => {
                     </TableRow>
                   )
                 })}
-            </TableBody> */}
+            </TableBody>
           </Table>
         </TableContainer>
         <Fragment>

@@ -1,8 +1,10 @@
 import { Fragment, useEffect, useState } from "react";
-import { useGetTopNavigationQuery } from '../../services/APIs';
+import { useGetTopNavigationQuery,useUpdateNavigationTokenMutation,useGetAllNavigationQuery } from '../../services/APIs';
 import { NavLink as RouterNavLink } from "react-router-dom";
 import { AuthenticatedTemplate } from "@azure/msal-react";
 import { topNavigationBar } from "./Nav";
+import { PublicClientApplication } from "@azure/msal-browser";
+import { configuration } from "../../index";
 import {
     CardContent,
     Link,
@@ -20,14 +22,45 @@ interface IFolderProps {
   // onRename?: (id: string, name: string) => void;
   // onShare?: (id: string) => void;
 }
-// const HomeTopNav = () => {
-  const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
+const HomeTopNav = () => {
+  // const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     const [SelValue, setSelValue] = useState("");
     const [topMenu, setTopMenu] = useState(true);
-    // const { data, error, isLoading } =   useGetTopNavigationQuery('');
-    // console.log(data,'tthththththt')
-    const {navigation} = props;
+    const pca = new PublicClientApplication(configuration);
+    const [token, setToken] = useState<string>();
+    // const [updateToken,{data,isLoading} ] = useUpdateNavigationTokenMutation();
+    // console.log(data?.response,'jyjtyjycvdvxvxvxvtjytjytjty')
+    const accounts = pca.getAllAccounts();
+     useEffect(() => {
+      async function getAccessToken() {
+        if (accounts.length > 0) {
+          const request = {
+            scopes: ['user.read'],
+            account: accounts[0]
+          }
+          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+           
+            // updateToken(response.accessToken);
+             setToken(response.accessToken)
+            // console.log(token,'uuuuuu')
+          }).catch(error => {
+            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+            console.log(error);
+            return null;
+          });
+  
+  
+        }
+  
+        return null;
+      }
+      getAccessToken();
+  
+       
+      
+    }, [])
+
     const selectedMenu = (selValue: any) => {
         setSelValue(selValue);
         setTopMenu(false);
@@ -44,15 +77,18 @@ interface IFolderProps {
           </Link>
         </ListItem>
       );
+
+      const { data, error, isLoading } =  useGetAllNavigationQuery(token);
+      console.log(data,'88888ttuytuytu888')
   return (
-    // <div>HomeTopNav</div>
+  // <div>HomeTopNav</div>
     <AuthenticatedTemplate>
     <Paper elevation={0}>
       <CardContent sx={{ pb: "16px!important" }}>
         {!topMenu && clearButton}
         <List className={classes.topItems}>
-          {topMenu && navigation &&
-            navigation.map((item: any, index: any) => {
+          {topMenu && data?.response &&
+            data?.response?.map((item: any, index: any) => {
               const { fields = {} } = item;
               var Title = fields?.Title;
               var itemId = fields?.id;
@@ -94,7 +130,7 @@ interface IFolderProps {
             })}
 
           {!topMenu &&
-            navigation
+            data?.response
               .filter((item: any) => item.fields.id == SelValue)
               .map((filteredItem: any, index: any) => {
                 const { fields = {} } = filteredItem;
@@ -128,7 +164,7 @@ interface IFolderProps {
               )}
 
           {!topMenu &&
-            navigation
+            data?.response
               .filter((item: any) => item.fields.ParentIdLookupId == SelValue)
               .map((filteredItem: any, index: any) => {
                 const { fields = {} } = filteredItem;

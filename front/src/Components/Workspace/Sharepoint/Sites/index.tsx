@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useReducer } from 'react'
 import { useStyles } from './Styles';
-import {  useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Sites from '../components/Sites';
 import { getRootDriveReducer } from '../../../../Store copy/Reducer/drivesReducer';
 import { ActionType } from '../../../../Store copy/Actions/actionTypes';
-import { useCreatesubSiteMutation, useGetDrivesQuery, useGetAllSubSitesQuery,useCreateTokenwithDataWorkspaceMutation } from '../../../../services/APIs';
+import { useCreatesubSiteMutation, useGetDrivesQuery, useGetAllSubSitesQuery, useCreateTokenwithDataWorkspaceMutation, useCreateTokenwithDrivesOfSubSitesMutation, useCreateTokenwithSubSitesOfItemsMutation } from '../../../../services/APIs';
 import Drives from '../components/Drives';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import { Box, Container, Grid, IconButton, Paper, Typography } from '@mui/material';
@@ -29,22 +29,29 @@ interface IFolderProps {
 }
 const SitesScreen = () => {
   // const SitesScreen: React.FC<IFolderProps> = (props: IFolderProps) => {
+    const [drive, setDrive] = useState<any>([]);
   const classes = useStyles();
   // const { data, error, isLoading } = useGetFoldersQuery('');
+  const [sendItem, { data, isLoading, error }] = useCreateTokenwithDrivesOfSubSitesMutation();
+    console.log(data?.response, 'uuuuuuuuuuuuuuuuuu')
   // console.log(data,'uuiui')
   // let location = useLocation();
   // console.log(location.state,'wfe5eyrthtfhfgh');
-  const [sendItem] = useCreateTokenwithDataWorkspaceMutation();
+  // const [sendItem] = useCreateTokenwithDataWorkspaceMutation();
+  // useEffect(()=>{
+  //   setDrive(data?.response)
+  //   console.log(drive,'hhhhhhhhhhhhhhhhhhhhhh') 
+  //  },[])
   const pca = new PublicClientApplication(configuration);
-    const [token, setToken] = useState<string>();
-    const [site, setSite] = useState<string>();
-    const [driveid, setDriveid] = useState<string>();
+  const [token, setToken] = useState<string>();
+  const [site, setSite] = useState<string>();
+  const [driveid, setDriveid] = useState<string>();
   const [sitesDrivesState, DrivesDispatch] = useReducer(getRootDriveReducer, initialStateDrives);
   const { loadingDrives, errorDrives, drives } = sitesDrivesState;
   const [visible, setVisible] = useState(true);
   const [show, setShow] = useState(false);
   const [data1, setData1] = useState<any>([]);
-  const [drive, setDrive] = useState<any>([]);
+  
   const [folder, setFolder] = useState<any>([]);
   const accounts = pca.getAllAccounts();
   // const {tokens } = props;
@@ -58,9 +65,9 @@ const SitesScreen = () => {
           account: accounts[0]
         }
         const accessToken = await pca.acquireTokenSilent(request).then((response) => {
-         
+
           // updateToken(response.accessToken);
-           setToken(response.accessToken)
+          setToken(response.accessToken)
           // console.log(token,'uuuuuu')
         }).catch(error => {
           // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
@@ -74,42 +81,42 @@ const SitesScreen = () => {
       return null;
     }
     getAccessToken();
-    
-     
-    
+
+
+
   }, [])
-   
-  useEffect(()=>{
-    function send (){
-      if (token) {
-  
-  
-        const requestOptions = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token })
-        };
-        // fetch('http://localhost:4000/user/post', requestOptions)
-        fetch(`http://localhost:4000/api/v1/sites/subSites`, requestOptions)
-        // .then(response => console.log(response))
-         .then(response => response.json())
-         .then(data =>setData1(data));
-  
-      }
-  
-    }
-    send();
-  },[token])
+
+  // useEffect(()=>{
+  //   function send (){
+  //     if (token) {
 
 
-  console.log(data1.subSites,'hytjyjytj')
-  const SubSite =data1.subSites
+  //       const requestOptions = {
+  //         method: 'POST',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({ token })
+  //       };
+  //       // fetch('http://localhost:4000/user/post', requestOptions)
+  //       fetch(`http://localhost:4000/api/v1/sites/subSites`, requestOptions)
+  //       // .then(response => console.log(response))
+  //        .then(response => response.json())
+  //        .then(data =>setData1(data));
+
+  //     }
+
+  //   }
+  //   send();
+  // },[token])
+
+
+  // console.log(data1.subSites,'hytjyjytj')
+  // const SubSite =data1.subSites
 
   // if (data1.Drives){
   //   setDrive(data1.Drive)
   // }
 
- 
+
   //   const getRootDrivesAction = async () => {
   //     DrivesDispatch({ type: ActionType.GET_ROOT_DRIVES_REQUEST });
   //     try {
@@ -128,7 +135,7 @@ const SitesScreen = () => {
   // };
 
 
-  const sitesClickHandler =  (
+  const sitesClickHandler = (
     sitesId: string,
   ) => {
     // const { value = [] } = await GetSubSitesofSites(app.authProvider!, sitesId);
@@ -136,199 +143,211 @@ const SitesScreen = () => {
     // await getRootFolderAction(id);
     setSite(sitesId)
     console.log('sitesClickHandler', sitesId);
-    
+
     const Data = {
-      token:token,
-      subSiteId:sitesId
+      token: token,
+      subSiteId: sitesId
     }
     // sendItem(Data)
 
-    function sendId(){
-        const requestOptions = {
-            method: 'POST',
-            // mode:'no-cors',
-            headers: { 
-                'Content-Type': 'application/json',
-
-            },
-            body: JSON.stringify(Data)
-           
-        };
-        fetch('http://localhost:4000/api/v1/sites/subSites', requestOptions)
-            .then(response => response.json())
-            .then(data =>setDrive(data.Drives));
-    }
-    sendId();
-    console.log(sitesId,'uuufffuu')
-    // function sendNavigationId() {
-    //   if (sitesId) {
-
-
+    // function sendId(){
     //     const requestOptions = {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify({ sitesId })
-    //     };
-    //     fetch('http://localhost:4000/subsite', requestOptions)
-    //       .then(response => response.json())
+    //         method: 'POST',
+    //         // mode:'no-cors',
+    //         headers: { 
+    //             'Content-Type': 'application/json',
 
-    //   }
+    //         },
+    //         body: JSON.stringify(Data)
+
+    //     };
+    //     fetch('http://localhost:4000/api/v1/sites/subSites', requestOptions)
+    //         .then(response => response.json())
+    //         .then(data =>setDrive(data.Drives));
     // }
-    // sendNavigationId();
+    // sendId();
+ 
+    
+    sendItem(Data);
+     
+
     setVisible(!visible)
     setShow(!show);
-  };
+  }
+  
+  // console.log(sitesId,'uuufffuu')
+  // function sendNavigationId() {
+  //   if (sitesId) {
 
 
-    console.log(drive,'thj76iji67dvdvdsvsik87k87k87l98l89l98l9l')
+  //     const requestOptions = {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ sitesId })
+  //     };
+  //     fetch('http://localhost:4000/subsite', requestOptions)
+  //       .then(response => response.json())
+
+  //   }
+  // }
+  // sendNavigationId();
+  
 
 
-  const driveClickHandler = (
-    driveId: string,
-  ) => {
-    // setDriveid(driveId)
-    console.log(driveId,'yhhh')
-    console.log(driveid,'thtrhthth')
-    const Data = {
-      token:token,
-      subSiteId:site,
-      subDriveId:driveId
-    }
-    console.log(Data,'hytjhyjyjyjyjyjytjtjyj')
 
-    function sendId(){
-      const requestOptions = {
-          method: 'POST',
-          // mode:'no-cors',
-          headers: { 
-              'Content-Type': 'application/json',
+// console.log(drive, 'thj76iji67dvdvdsvsik87k87k87l98l89l98l9l')
 
-          },
-          body: JSON.stringify(Data)
-         
-      };
-      fetch('http://localhost:4000/api/v1/sites/subSites', requestOptions)
-          .then(response => response.json())
-           .then(data =>
-            navigate('/Workspace/drives/folders', { state:  {tokens:token,sitesId:site,drivesId:driveId,folderData:data.DriveItems}  }))
-            // navigate('/Workspace/drives/folders', { state: data.DriveItems   }));
-          //  setFolder(data.DriveItems));
-          //  console.log(folder,'jyjyjyjyjyjyjyyyyyyyy')
-          //  if(folder){
-          //  navigate('/Workspace/drives/folders', { state: folder });
-          //  }
-         
-          //  navigate('/Workspace/drives/folders', { state:  {tokens:token,sitesId:site,drivesId:driveId}  })
+
+const driveClickHandler = (
+  driveId: string,
+) => {
+  // setDriveid(driveId)
+  console.log(driveId, 'yhhh')
+  console.log(driveid, 'thtrhthth')
+  const Data = {
+    token: token,
+    subSiteId: site,
+    subDriveId: driveId
+  }
+  console.log(Data, 'hytjhyjyjyjyjyjytjtjyj')
+ 
+  function sendId() {
+    // const [sendData ,{data,isLoading,error}] =  useCreateTokenwithSubSitesOfItemsMutation();
+    const requestOptions = {
+      method: 'POST',
+      // mode:'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+
+      },
+      body: JSON.stringify(Data)
+
+    };
+    fetch('http://localhost:4000/api/v1/sites/subSites/drives/root', requestOptions)
+      .then(response => response.json())
+      .then(data =>
+        navigate('/Workspace/drives/folders', { state: { tokens: token, sitesId: site, drivesId: driveId, folderData: data.response } }))
+
+    // navigate('/Workspace/drives/folders', { state: data.DriveItems   }));
+    //  setFolder(data.DriveItems));
+    //  console.log(folder,'jyjyjyjyjyjyjyyyyyyyy')
+    //  if(folder){
+    //  navigate('/Workspace/drives/folders', { state: folder });
+    //  }
+
+    //  navigate('/Workspace/drives/folders', { state:  {tokens:token,sitesId:site,drivesId:driveId}  })
   }
   sendId();
   // console.log(folder,'thththththththththt')
-    // await sendItem(sitesId)
-    // function sendId() {
-    //   if (driveId) {
+  // await sendItem(sitesId)
+  // function sendId() {
+  //   if (driveId) {
 
 
-    //     const requestOptions = {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify({ driveId })
-    //     };
-    //     fetch('http://localhost:4000/drive', requestOptions)
-    //       .then(response => response.json())
+  //     const requestOptions = {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ driveId })
+  //     };
+  //     fetch('http://localhost:4000/drive', requestOptions)
+  //       .then(response => response.json())
 
-    //   }
-    // }
-    // sendId();
-    // navigate('/Workspace/drives/folders');
-  }
-  
-  // console.log(folder,'ukukukuykuykydgrdgdu')
-  //  if(folder){
-  //   navigate('/Workspace/drives/folders', { state: folder });
-  //  }
-  
+  //   }
+  // }
+  // sendId();
+  // navigate('/Workspace/drives/folders');
+}
+
+// console.log(folder,'ukukukuykuykydgrdgdu')
+//  if(folder){
+//   navigate('/Workspace/drives/folders', { state: folder });
+//  }
 
 
-  
 
-  return (
-    // <div>
-    //     { visible ? (
-    //        <>
-    //        <Sites onClick={sitesClickHandler}/>
-    //        </>
-    //     ) :null
-    //     }
-    //     {
-    //       show ?(
-    //         <>
-    //          <Drives onClick={driveClickHandler}/>
-    //         </>
-    //       ):null
-    //     }
 
-    //     {/* <Sites /> */}
-    // </div>
-    <>
-      <AuthenticatedTemplate>
-        <Container className={classes.root}>
-          <Grid container className={classes.bannerTop}>
-            <Grid item xs={1}>
-              <WorkspaceNavigation />
-            </Grid>
-            <Grid item xs={11} sx={{ paddingLeft: "15px" }}>
-              <Paper elevation={0}>
-                <Grid container className={classes.workspaceHeader}>
-                  <Grid item xs={6}>
-                    <Typography
-                      variant="h3"
-                      className={classes.workspaceTopHeader}
-                      component="h3"
-                    >
-                      SharePoint
-                      <Typography variant="caption" component="span">
-                        (35 Items)
-                      </Typography>
+
+return (
+  // <div>
+  //     { visible ? (
+  //        <>
+  //        <Sites onClick={sitesClickHandler}/>
+  //        </>
+  //     ) :null
+  //     }
+  //     {
+  //       show ?(
+  //         <>
+  //          <Drives onClick={driveClickHandler}/>
+  //         </>
+  //       ):null
+  //     }
+
+  //     {/* <Sites /> */}
+  // </div>
+  <>
+    <AuthenticatedTemplate>
+      <Container className={classes.root}>
+        <Grid container className={classes.bannerTop}>
+          <Grid item xs={1}>
+            <WorkspaceNavigation />
+          </Grid>
+          <Grid item xs={11} sx={{ paddingLeft: "15px" }}>
+            <Paper elevation={0}>
+              <Grid container className={classes.workspaceHeader}>
+                <Grid item xs={6}>
+                  <Typography
+                    variant="h3"
+                    className={classes.workspaceTopHeader}
+                    component="h3"
+                  >
+                    SharePoint
+                    <Typography variant="caption" component="span">
+                      (35 Items)
                     </Typography>
-                  </Grid>
-                  <Box sx={{ flexGrow: 1 }}></Box>
-                  <Grid item xs={1}>
-                    {/* <IconButton color="primary" onClick={() => getRootDrivesAction}
+                  </Typography>
+                </Grid>
+                <Box sx={{ flexGrow: 1 }}></Box>
+                <Grid item xs={1}>
+                  {/* <IconButton color="primary" onClick={() => getRootDrivesAction}
                                             sx={{ padding: '0', float: 'right' }}>
                                             <CachedIcon sx={{ color: '#333333', opacity: 0.5 }} />
                                         </IconButton> */}
-                  </Grid>
                 </Grid>
-                <Box>
-                  <Grid container>
-                    <Grid item xs={12}>
-                      {/* <TableHeader /> */}
-                      {visible ? (
+              </Grid>
+              <Box>
+                <Grid container>
+                  <Grid item xs={12}>
+                    {/* <TableHeader /> */}
+                    {visible ? (
+                      <>
+                        <Sites
+                          // subSites={SubSite} 
+                          onClick={sitesClickHandler} />
+                      </>
+                    ) : null
+                    }
+                    {
+                      show ? (
                         <>
-                          <Sites subSites={SubSite} onClick={sitesClickHandler} />
+                          {/* <Drives /> */}
+                          {/* tyjytjyjyj */}
+                          <Drives drives={data?.response} onClick={driveClickHandler} />
+                          {/* uyukuykuk */}
                         </>
                       ) : null
-                      }
-                      {
-                         show ? ( 
-                           <>
-                            {/* <Drives /> */}
-                            {/* tyjytjyjyj */}
-                            <Drives drives={drive} onClick={driveClickHandler}/>
-                            {/* uyukuykuk */}
-                           </> 
-                        ) : null
-                       } 
-                    </Grid>
+                    }
                   </Grid>
-                </Box>
-              </Paper>
-            </Grid>
+                </Grid>
+              </Box>
+            </Paper>
           </Grid>
-        </Container>
-      </AuthenticatedTemplate>
-    </>
+        </Grid>
+      </Container>
+    </AuthenticatedTemplate>
+  </>
   //  <>fbfdbfgbgnnfn</> 
-  )
+)
 }
 
 export default SitesScreen

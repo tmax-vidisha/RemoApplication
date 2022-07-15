@@ -21,7 +21,9 @@ import {
     Typography,
 } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { useGetNewsQuery } from '../../services/APIs';
+import { PublicClientApplication } from "@azure/msal-browser";
+import { configuration } from "../../index";
+import { useGetNewsQuery,useUpdateNewsTokenMutation,useGetAllNewsQuery } from '../../services/APIs';
 import { useLocation } from 'react-router-dom'
 var moment = require("moment-timezone");
 interface IFolderProps {
@@ -33,14 +35,46 @@ interface IFolderProps {
     // onShare?: (id: string) => void;
   }
 
-// const NewsReadMore = () => {
-    const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
+const NewsReadMore = () => {
+    // const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
-    // const { data, error, isLoading } = useGetNewsQuery('')
-    // console.log(data, 'uuuuuc')
-    const locationProps: any = useLocation();
-    const {news} = props;
-    console.log(news, 'uuuuuc')
+    const pca = new PublicClientApplication(configuration);
+    const [tokens, setTokens] = useState<string>();
+    // const [updateToken,{data,isLoading} ] = useUpdateNewsTokenMutation();
+    // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
+    const accounts = pca.getAllAccounts();
+     useEffect(() => {
+      async function getAccessToken() {
+        if (accounts.length > 0) {
+          const request = {
+            scopes: ['user.read'],
+            account: accounts[0]
+          }
+          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+           
+            // updateToken(response.accessToken);
+              setTokens(response.accessToken)
+            // console.log(token,'uuuuuu')
+          }).catch(error => {
+            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+            console.log(error);
+            return null;
+          });
+  
+  
+        }
+  
+        return null;
+      }
+      getAccessToken();
+  
+       
+      
+    }, [])
+    // const {news} = props;
+    // console.log(news, 'uuuuuc')
+    const { data, error, isLoading } =  useGetAllNewsQuery(tokens);
+    console.log(data,'888ddd88ttuytuytu888')
     return (
         <AuthenticatedTemplate>
             <Container className={classes.contentEditorWidth}>
@@ -75,8 +109,8 @@ interface IFolderProps {
                                 sx={{ mb: 3 }}
                                 elevation={0}
                             >
-                                {news &&
-                                    news.value.map((item: any, index: any) => {
+                                {data?.response.value &&
+                                    data?.response?.value.map((item: any, index: any) => {
                                         const { fields = {} } = item;
                                         var Title = fields?.Title;
                                         //   console.log()
