@@ -36,7 +36,7 @@ interface IFolderProps {
           
           //  updateToken(response.accessToken);
              setToken(response.accessToken)
-           // console.log(token,'uuuuuu')
+           console.log(token,'uuuuuu')
          }).catch(error => {
            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
            console.log(error);
