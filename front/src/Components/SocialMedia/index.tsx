@@ -1,5 +1,5 @@
 import React from 'react'
-
+//import { FacebookProvider, Profile } from 'react-facebook';
 import { useStyles } from "./Styles";
 import { Timeline } from "react-twitter-widgets";
 import { AppBar, Box, Tabs, Tab, Typography, Card, Paper } from "@mui/material";
@@ -7,51 +7,57 @@ import FacebookIcon from "../../Assets/Images/s1.svg";
 import InstagramIcon from "../../Assets/Images/s2.svg";
 import TwitterIcon from "../../Assets/Images/s3.svg";
 import LinkedInIcon from "../../Assets/Images/s4.svg";
+// import InstagramEmbed from 'react-instagram-embed';
+import { FacebookEmbed, LinkedInEmbed, InstagramEmbed } from 'react-social-media-embed';
 
 
 interface TabPanelProps {
-    children?: React.ReactNode;
-    index: any;
-    value: any;
-  }
-  
-  function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`scrollable-prevent-tabpanel-${index}`}
-        aria-labelledby={`scrollable-prevent-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Box p={0}>
-            <Typography component="span" variant="body2">
-              {children}
-            </Typography>
-          </Box>
-        )}
-      </div>
-    );
-  }
-  
-  function a11yProps(index: any) {
-    return {
-      id: `scrollable-prevent-tab-${index}`,
-      "aria-controls": `scrollable-prevent-tabpanel-${index}`,
-    };
-  }
-  
+  children?: React.ReactNode;
+  index: any;
+  value: any;
+}
+
+interface type {
+  clientAccessToken: string;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-prevent-tabpanel-${index}`}
+      aria-labelledby={`scrollable-prevent-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={0}>
+          <Typography component="span" variant="body2">
+            {children}
+          </Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index: any) {
+  return {
+    id: `scrollable-prevent-tab-${index}`,
+    "aria-controls": `scrollable-prevent-tabpanel-${index}`,
+  };
+}
+
 
 const SocialMedia = () => {
-    const classes = useStyles();
-    const [value, setValue] = React.useState(0);
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-        setValue(newValue);
-      };
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
   return (
     // <div>SocialMedia</div>
     <>
@@ -133,13 +139,59 @@ const SocialMedia = () => {
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+         
+          {/* <InstagramEmbed
+            url='https://instagr.am/p/Zw9o4/'
+            clientAccessToken='123|456'
+            maxWidth={320}
+            hideCaption={false}
+            containerTagName='div'
+            protocol=''
+            injectScript
+            onLoading={() => { }}
+            onSuccess={() => { }}
+            onAfterRender={() => { }}
+            onFailure={() => { }}
+          /> */}
+
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center'
+            }}
+          >
+            <InstagramEmbed
+              //protocol=''
+              //injectScript
+              //onLoading={() => { }}
+              //onSuccess={() => { }}
+              //onAfterRender={() => { }}
+             // onFailure={() => { }}
+              url="https://www.instagram.com/p/CUbHfhpswxt/"
+            // clientAccessToken="123|456"
+            //maxWidth={320}
+            //hideCaption={false}
+            //containerTagName='div'
+
+            />
+          </div>
+
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+          
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <LinkedInEmbed
+              url="https://www.linkedin.com/embed/feed/update/urn:li:share:6898694772484112384"
+              postUrl="https://www.linkedin.com/posts/peterdiamandis_5-discoveries-the-james-webb-telescope-will-activity-6898694773406875648-z-D7"
+              width={325}
+              height={570}
+            />
+          </div>
         </TabPanel>
-        <TabPanel value={value} index={3}>
-          Item Four
+        <TabPanel value={value} index={3}>    
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <FacebookEmbed url="https://www.facebook.com/andrewismusic/posts/451971596293956" width={350} />
+          </div>
         </TabPanel>
       </Paper>
     </>
