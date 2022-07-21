@@ -90,10 +90,10 @@ interface IFolderProps {
                 item
                 xs={12}
                 spacing={0}
-                sx={{ justifyContent: "space-between" }}
+                
               >
               {data?.response && 
-               <Grid item xs={6}  sx={{ maxWidth: " 49%" }}  >
+               <Grid item xs={12}  sx={{ maxWidth: " 100%",display:"flex", justifyContent: "space-between", marginRight:"15px" }}  >
                      
                         <CardMedia
                           className={classes.newsImg}
@@ -111,7 +111,7 @@ interface IFolderProps {
                           title="Test"
                         />
                        
-                        <Typography
+                        {/* <Typography
                           variant="body2"
                           color="textSecondary"
                           component="span"
@@ -135,7 +135,7 @@ interface IFolderProps {
                               }}
                             />
                              </RouterNavLink>
-                        </Typography>
+                        </Typography> */}
                        
               </Grid>
               }
