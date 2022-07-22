@@ -7,9 +7,13 @@ import FacebookIcon from "../../Assets/Images/s1.svg";
 import InstagramIcon from "../../Assets/Images/s2.svg";
 import TwitterIcon from "../../Assets/Images/s3.svg";
 import LinkedInIcon from "../../Assets/Images/s4.svg";
-// import InstagramEmbed from 'react-instagram-embed';
+//import InstagramEmbed from 'react-instagram-embed';
 import { FacebookEmbed, LinkedInEmbed, InstagramEmbed } from 'react-social-media-embed';
-
+// import {
+//   LinkedinLogin,
+//   LinkedinProfile,
+//   LinkedinShare
+// } from 'react-linkedin-plugins';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -131,15 +135,21 @@ const SocialMedia = () => {
           <Timeline
             dataSource={{
               sourceType: "profile",
-              screenName: "DPWorldUAE",
+              screenName: "remo_digital",
+
             }}
             options={{
               height: "307",
             }}
           />
+          {/* <div id="twitter">
+
+            <a className="twitter-timeline" href="https://twitter.com/remo_digital">Tweets by Remo Digital</a>
+
+          </div> */}
         </TabPanel>
         <TabPanel value={value} index={1}>
-         
+
           {/* <InstagramEmbed
             url='https://instagr.am/p/Zw9o4/'
             clientAccessToken='123|456'
@@ -157,7 +167,7 @@ const SocialMedia = () => {
           <div
             style={{
               display: 'flex',
-              justifyContent: 'center'
+              justifyContent: 'center',
             }}
           >
             <InstagramEmbed
@@ -166,8 +176,9 @@ const SocialMedia = () => {
               //onLoading={() => { }}
               //onSuccess={() => { }}
               //onAfterRender={() => { }}
-             // onFailure={() => { }}
-              url="https://www.instagram.com/p/CUbHfhpswxt/"
+              // onFailure={() => { }}
+              //url="https://www.instagram.com/p/CUbHfhpswxt/"
+              url="https://www.instagram.com/p/CgL9BRHJ4ns/"
             // clientAccessToken="123|456"
             //maxWidth={320}
             //hideCaption={false}
@@ -178,19 +189,31 @@ const SocialMedia = () => {
 
         </TabPanel>
         <TabPanel value={value} index={2}>
-          
+
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <LinkedInEmbed
-              url="https://www.linkedin.com/embed/feed/update/urn:li:share:6898694772484112384"
-              postUrl="https://www.linkedin.com/posts/peterdiamandis_5-discoveries-the-james-webb-telescope-will-activity-6898694773406875648-z-D7"
+              //url="https://www.linkedin.com/embed/feed/update/urn:li:share:6898694772484112384"
+              url="https://www.linkedin.com/company/technomax-systems/"
+              //url="https://www.linkedin.com/company/google/?originalSubdomain=in"
+              //postUrl="https://www.linkedin.com/posts/google_interviewing-is-not-one-sided-as-an-aspiring-activity-6954114739874512897-N4OR?utm_source=linkedin_share&utm_medium=member_desktop_web"
+              postUrl="https://www.linkedin.com/posts/technomax-systems_techtuesday-microsoft-microsoftgoldpartner-activity-6955091373205192704-QN4E?utm_source=linkedin_share&utm_medium=member_desktop_web"
               width={325}
-              height={570}
+              height={370}
             />
+            {/* <LinkedinProfile
+              lang="en_US"
+              task="technomax-systems" // Or "SCHOOL_NAME"
+            /> */}
           </div>
         </TabPanel>
-        <TabPanel value={value} index={3}>    
+        <TabPanel value={value} index={3}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <FacebookEmbed url="https://www.facebook.com/andrewismusic/posts/451971596293956" width={350} />
+            <FacebookEmbed 
+            //url="https://www.facebook.com/andrewismusic/posts/451971596293956" 
+          // url="https://www.facebook.com/taqeefmiddleeast/posts/" 
+           // url="https://www.facebook.com/taqeefmiddleeast/community/?ref=page_internal" 
+            url="https://fb.watch/eqiJfx_kmH/" 
+            width={350} />
           </div>
         </TabPanel>
       </Paper>
