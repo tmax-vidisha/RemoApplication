@@ -153,7 +153,6 @@ const PortalHome = () => {
         <Grid item xs={12} style={{ marginBottom: "16px", paddingTop: "16px",position: "relative" }}>
           <HomeTopNav  />
           {/* hghgjhgjhjhjhjhjhjhj */}
-          
         </Grid>
       </Grid>
 
@@ -209,7 +208,7 @@ const PortalHome = () => {
         <Grid item xs={4}>
            <EmployeeHighlight /> 
            {/* gfgfghghghghg */}
-          <Grid item xs={12} style={{ marginTop: 16 }}>
+          <Grid item xs={12} style={{ marginTop: 0 }}>
             <Weather />
           </Grid>
 
