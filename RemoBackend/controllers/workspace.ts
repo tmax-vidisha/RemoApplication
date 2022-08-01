@@ -1,11 +1,11 @@
-const axios = require('axios')
-const express = require("express");
-const qs = require('qs');
-const fetch = require('node-fetch')
-const asyncHandler = require('../middleware/asyncHandler')
+import axios from 'axios'
+import express,{Request,Response} from "express";
+// const qs = require('qs');
+import fetch from'node-fetch'
+import asyncHandler from '../middleware/asyncHandler'
 const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`;
 const REMO_SITE_ID = "tmxin.sharepoint.com,1649e6fd-df59-4f03-8e4b-4d765864f406,d2634703-c0cd-42f6-bfb5-c60555dbcb7d"
-const createSubSites = async (url, token) => {
+const createSubSites = async (url:any, token:any) => {
     const res = await axios.get(url, {
         headers: {
             'Authorization': `Bearer ${token} `,
@@ -20,7 +20,7 @@ const createSubSites = async (url, token) => {
     
  }
 
- const createDrives = async (url, token) => {
+ const createDrives = async (url:any, token:any) => {
     const res = await axios.get(url, {
         headers: {
             'Authorization': `Bearer ${token} `,
@@ -36,11 +36,13 @@ const createSubSites = async (url, token) => {
  }
 
 
-const getAllSites = asyncHandler(async(req, res) => {
-  
-     const {token,
-        // subSiteId, subDriveId,itemId
-    } =  req.params
+const getAllSites = asyncHandler(async(req:Request, res:Response) => {
+    console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
+
+    const  token = req.headers.authorization
+    //  const {token,
+    //     // subSiteId, subDriveId,itemId
+    // } =  req.params
        
      console.log(token,'hytjyjytjtyjtyjtyj')
     //  console.log(subSiteId,'hytjyjytjfhghrthtrhrthtyjtyjtyj')
@@ -107,9 +109,11 @@ const getAllSites = asyncHandler(async(req, res) => {
     }
 })
 
-const getDrivesofSubSites = asyncHandler(async(req, res) => {
-  
-    const {token,
+const getDrivesofSubSites = asyncHandler(async(req:Request, res:Response) => {
+    console.log(req.headers.authorization,'tssccccttddddttttvvvvvtttttttyy')
+    const  token = req.headers.authorization
+    const {
+        // token,
         subSiteId, 
     //    subDriveId,itemId
    } =  req.body
@@ -152,7 +156,7 @@ const getDrivesofSubSites = asyncHandler(async(req, res) => {
    }
 })
 
-const getsubItemsroot = asyncHandler(async(req, res) => {
+const getsubItemsroot = asyncHandler(async(req:Request, res:Response) => {
   
     const {token,
        subSiteId, subDriveId,
@@ -197,9 +201,12 @@ const getsubItemsroot = asyncHandler(async(req, res) => {
    }
 })
 
-const getsubItemsId = asyncHandler(async(req, res) => {
-  
-    const {token, subSiteId, subDriveId,itemId
+const getsubItemsId = asyncHandler(async(req:Request, res:Response) => {
+    console.log(req.headers.authorization,'tssccccttddddttttvvvvvtttttttyy')
+    const  token = req.headers.authorization
+    const {
+        // token, 
+        subSiteId, subDriveId,itemId
    } =  req.body
       
     console.log(token,'hytjyjytjtyjtyjtyj')
@@ -241,7 +248,7 @@ const getsubItemsId = asyncHandler(async(req, res) => {
    }
 })
 
-module.exports = {
+export {
     getAllSites,
     getDrivesofSubSites,
     getsubItemsroot,

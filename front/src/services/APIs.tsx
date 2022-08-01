@@ -1,6 +1,90 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+// import { useState } from 'react';
 // import { cacher } from "../rtkQueryCacheUtils";
+// import useCustom from '../useCustom';
+import { AccessToken } from '../App';
+// import { Access } from '../useCustom';
+import { Configuration,  PublicClientApplication } from "@azure/msal-browser";
+import { Console } from 'console';
+// import { configuration } from "../index";
+// console.log(AccessToken,'uyiyui76i76i')
 
+const configuration: Configuration = {
+    auth: {
+        clientId: "892b55ac-991c-4cab-ac8f-453adc364567"
+    },
+    
+};
+
+//  const {token} = useCustom();
+// console.log(token,'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
+
+
+// const accounts = pca.getAllAccounts();
+// console.log(AccessToken,'tyttttttttttttttttttttttttttttttttttttttttttttt')
+//@ts-ignore
+// function s(){
+// const acquireAccessToken = async () => {
+   
+    // const activeAccount = msalInstance.getActiveAccount(); // This will only return a non-null value if you have logic somewhere else that calls the setActiveAccount API
+    
+
+    // if (!activeAccount && accounts.length === 0) {
+    //     /*
+    //     * User is not signed in. Throw error or wait for user to login.
+    //     * Do not attempt to log a user in outside of the context of MsalProvider
+    //     */   
+    // }
+    
+
+//    const  authResult =  msalInstance.acquireTokenSilent(request).then((res)=>{
+//     return res
+//    });
+    //  console.log(authResult,'kkkk')
+    // return authResult.accessToken
+// };
+// let myToken:string;
+// async function getIngress() {
+   
+//     const msalInstance = new PublicClientApplication(configuration);
+//     const activeAccount = msalInstance.getActiveAccount(); // This will only return a non-null value if you have logic somewhere else that calls the setActiveAccount API
+// const accounts = msalInstance.getAllAccounts();
+// const request = {
+//     scopes: ["User.Read"],
+//     account: activeAccount || accounts[0]
+// };
+
+// const authResult = await msalInstance.acquireTokenSilent(request);
+
+//    myToken = authResult.accessToken
+//    return myToken;
+// }
+// getIngress();
+
+// async function b(){
+// // const wrew:any;
+//     const msalInstance = new PublicClientApplication(configuration);
+//     const activeAccount = msalInstance.getActiveAccount(); // This will only return a non-null value if you have logic somewhere else that calls the setActiveAccount API
+// const accounts = msalInstance.getAllAccounts();
+// const request = {
+//     scopes: ["User.Read"],
+//     account: activeAccount || accounts[0]
+// };
+//     const q = await msalInstance.acquireTokenSilent(request)
+// //    console.log(q.accessToken)
+// // return q.accessToken
+//  const  wrew = q.accessToken
+// //    console.log(wrew)
+//  return wrew
+// }
+// b();
+// const {wrew} = b();
+// console.log(wrew)
+
+// let we = getIngress().then((res)=> {return res})
+// console.log(myToken,'kkkretreyt')
+// const ac = s();
+// console.log(ac,'kkk')
 // Define a service using a base URL and expected endpoints
 export const graphApi = createApi({
     reducerPath: 'pokemonApi',
@@ -9,7 +93,21 @@ export const graphApi = createApi({
       
 
 
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:4000/'}),
+    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:4000/',
+    prepareHeaders: (headers, { getState }) => {
+        // headers.set('Authorization', `Bearer ${access_token}`);
+        headers.set('Content-Type', 'application/json');
+        headers.set("authorization", `${AccessToken}`);
+        //@ts-ignore
+        //  console.log(Access,'lllldddlllllllllllll');
+       
+        // headers.set('Accept', 'application/json');
+    
+        return headers
+      },
+
+
+     }),
    
 
 
@@ -434,13 +532,22 @@ export const graphApi = createApi({
         getAllEvents: builder.query<any, any>({
             query: (id) => ({
                 url: `/api/v1/token/folder/${id}`,
-               
+                // method: 'GET',
+                headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
             // providesTags: cacher.providesList("User"),
             //  keepUnusedDataFor: 5,
              providesTags : [ 'Events'],
         }),
+        getAllEvt: builder.query<any, any>({
+            
+            query: () => ({
+                url: '/api/v1/token/folder/events',
+            //   headers:{ "authorization": `${Access}` },
+            }),
+            providesTags : [ 'Events']
+        }), 
         updateQuicklinkToken: builder.mutation<any, any>({
             query: (id) => ({
                 url: `/api/v1/token/quicklink/${id}`,
@@ -456,7 +563,8 @@ export const graphApi = createApi({
         }),
         getAllQuickLink: builder.query<any, any>({
             query: (id) => ({
-                url: `/api/v1/token/quicklink/${id}`
+                url: `/api/v1/token/quicklink/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
             // providesTags: cacher.providesList("User"),
@@ -478,7 +586,8 @@ export const graphApi = createApi({
         }),
         getAllRecentFiles: builder.query<any, any>({
             query: (id) => ({
-                url: `/api/v1/token/recentfiles/${id}`
+                url: `/api/v1/token/recentfiles/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
             // providesTags: cacher.providesList("User"),
@@ -501,7 +610,8 @@ export const graphApi = createApi({
         }),
         getAllAnnoncements: builder.query<any, any>({
             query: (id) => ({
-                url: `/api/v1/token/announcement/${id}`
+                url: `/api/v1/token/announcement/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
             // providesTags: cacher.providesList("User"),
@@ -524,7 +634,8 @@ export const graphApi = createApi({
         }),
         getAllNavigation: builder.query<any, any>({
             query: (id) => ({
-                url: `/api/v1/token/navigation/${id}`
+                url: `/api/v1/token/navigation/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
             // providesTags: cacher.providesList("User"),
@@ -546,7 +657,8 @@ export const graphApi = createApi({
         }),
         getAllCeoMsg: builder.query<any, any>({
             query: (id) => ({
-                url: `/api/v1/token/ceomsg/${id}`
+                url: `/api/v1/token/ceomsg/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
             // providesTags: cacher.providesList("User"),
@@ -568,7 +680,8 @@ export const graphApi = createApi({
         }),
         getAllNews: builder.query<any, any>({
             query: (id) => ({
-                url: `/api/v1/token/news/${id}`
+                url: `/api/v1/token/news/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
             // providesTags: cacher.providesList("User"),
@@ -590,7 +703,8 @@ export const graphApi = createApi({
         }),
         getAllEmp: builder.query<any, any>({
             query: (id) => ({
-                url: `/api/v1/token/emp/${id}`
+                url: `/api/v1/token/emp/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
             // providesTags: cacher.providesList("User"),
@@ -612,7 +726,8 @@ export const graphApi = createApi({
         }),
         getAllHero: builder.query<any, any>({
             query: (id) => ({
-                url: `/api/v1/token/hero/${id}`
+                url: `/api/v1/token/hero/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
             // providesTags: cacher.providesList("User"),
@@ -645,7 +760,7 @@ export const graphApi = createApi({
         createTokenwithData: builder.mutation<any, any>({
             query: (data) => ({
                 url: 'api/v1/lists/data',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
             }),
@@ -654,7 +769,7 @@ export const graphApi = createApi({
         createTokenwithEventData: builder.mutation<any, any>({
             query: (data) => ({
                 url: 'api/v1/lists/eventdata',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
             }),
@@ -663,7 +778,7 @@ export const graphApi = createApi({
         createTokenwithHeroData: builder.mutation<any, any>({
             query: (data) => ({
                 url: 'api/v1/lists/herodata',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
             }),
@@ -672,7 +787,7 @@ export const graphApi = createApi({
         createTokenwithCeoData: builder.mutation<any, any>({
             query: (data) => ({
                 url: 'api/v1/lists/ceodata',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
             }),
@@ -681,7 +796,7 @@ export const graphApi = createApi({
         createTokenwithNewsData: builder.mutation<any, any>({
             query: (data) => ({
                 url: 'api/v1/lists/newsdata',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
             }),
@@ -690,7 +805,7 @@ export const graphApi = createApi({
         createTokenwithEmpData: builder.mutation<any, any>({
             query: (data) => ({
                 url: 'api/v1/lists/empdata',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
             }),
@@ -699,7 +814,7 @@ export const graphApi = createApi({
         createTokenwithUserQuickData: builder.mutation<any, any>({
             query: (data) => ({
                 url: 'api/v1/lists/userquicklinkdata',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
             }),
@@ -707,7 +822,8 @@ export const graphApi = createApi({
         }),
         getAllsubSites: builder.query<any, any>({
             query: (id) => ({
-                url: `/api/v1/sites/subSites/${id}`
+                url: `/api/v1/sites/subSites/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
             // providesTags: cacher.providesList("User"),
@@ -717,7 +833,7 @@ export const graphApi = createApi({
         createTokenwithDrivesOfSubSites: builder.mutation<any, any>({
             query: (data) => ({
                 url: '/api/v1/sites/subSites/drives',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
             }),
@@ -731,7 +847,7 @@ export const graphApi = createApi({
         createTokenwithSubSitesOfItems: builder.mutation<any, any>({
             query: (data) => ({
                 url: '/api/v1/sites/subSites/drives/root',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
             }),
@@ -745,7 +861,7 @@ export const graphApi = createApi({
         createTokenwithSubSitesofItemsId: builder.mutation<any, any>({
             query: (data) => ({
                 url: '/api/v1/sites/subSites/drives/items/id',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
             }),
@@ -759,7 +875,7 @@ export const graphApi = createApi({
         createTokenwithDataWorkspace: builder.mutation<any, any>({
             query: (data) => ({
                 url: 'api/v1/sites/subSites',
-                headers:{ 'Content-Type': 'application/json' },
+                // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 mode:'no-cors',
                 body: data
@@ -837,6 +953,7 @@ export const {
     useUpdateEmpTokenMutation,
     useUpdateHeroTokenMutation,
     useGetAllEventsQuery,
+    useGetAllEvtQuery,
     useGetAllQuickLinkQuery,
     useGetAllRecentFilesQuery,
     useGetAllAnnoncementsQuery,

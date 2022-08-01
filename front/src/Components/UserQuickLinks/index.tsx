@@ -7,18 +7,15 @@ import axios from 'axios';
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 interface IFolderProps {
-  globalquicklinks: any;
-  tokens:any
-  // onClick: any;
-  // onDownload?: (id: string) => void;
-  // onDelete?: (id: string) => void;
-  // onRename?: (id: string, name: string) => void;
-  // onShare?: (id: string) => void;
+    data:any, 
+    error:any,
+    isLoading:any,
+    onSubmiting: (object: any) => void;
 }
 
-const UserQuickLinks = () => {
-  // const UserQuickLinks: React.FC<IFolderProps> = (props: IFolderProps) => {  
-  const [sendItem] = useCreateTokenwithUserQuickDataMutation();
+// const UserQuickLinks = () => {
+  const UserQuickLinks: React.FC<IFolderProps> = (props: IFolderProps) => {  
+  // const [sendItem] = useCreateTokenwithUserQuickDataMutation();
   // const [updateToken,{data,isLoading} ] = useUpdateCeoMsgTokenMutation();
   //   console.log(data?.response,'jyjtydggfgdhhtjytjytjytjty')
   //  const [sendId] = usePostGlobalListIdMutation();
@@ -30,6 +27,7 @@ const UserQuickLinks = () => {
   // console.log(tokens,'yyy');
   const pca = new PublicClientApplication(configuration);
   const [tokens, setTokens] = useState<string>();
+  const { data, error, isLoading,onSubmiting } = props
   // const [updateToken,{data,isLoading} ] = useUpdateQuicklinkTokenMutation();
   // console.log(data?.response,'jhfhfhtyjytjuyjkukjuykuykuk')
   const accounts = pca.getAllAccounts();
@@ -70,7 +68,7 @@ const UserQuickLinks = () => {
     }
   };
 
-  const { data, error, isLoading } = useGetAllQuickLinkQuery(tokens);
+  
   console.log(data,'thytjytjytjudddddddddddddd')
 
   // const [user, setUser] = useState<any>({fullname:"",email:""});
@@ -196,7 +194,7 @@ const UserQuickLinks = () => {
     event.preventDefault();
     console.log("user created", user)
     const Data = {
-      token:tokens,
+      // token:tokens,
       userquicklink:user,
       globalquicklink:vals
     }
@@ -213,7 +211,8 @@ const UserQuickLinks = () => {
     //     .then(response => console.log('Submitted successfully'))
     //     .catch(error => console.log('Form submit error', error))
 
-  await sendItem(Data)
+  // await sendItem(Data)
+  onSubmiting(Data)
   }
  
 

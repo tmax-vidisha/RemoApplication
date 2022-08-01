@@ -145,7 +145,7 @@ const SitesScreen = () => {
     console.log('sitesClickHandler', sitesId);
 
     const Data = {
-      token: token,
+      // token: token,
       subSiteId: sitesId
     }
     // sendItem(Data)

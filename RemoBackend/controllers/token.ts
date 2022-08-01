@@ -1,8 +1,8 @@
-const axios=require("axios");
-const express = require("express");
-const StatusCodes = require ("http-status-codes");
-const { BlobServiceClient } = require('@azure/storage-blob');
-var azure = require('azure-storage');
+import axios from 'axios'
+import express,{Request,Response} from "express";
+// const StatusCodes = require ("http-status-codes");
+// const { BlobServiceClient } = require('@azure/storage-blob');
+import azure from'azure-storage';
 require('dotenv').config();
 
 const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`;
@@ -16,10 +16,10 @@ const News_Id = "72988e1e-2ebf-48dc-96ce-2db3cbb7c3e3"
 const EmpHighlights = "14f67e9e-4581-4a06-8c29-f775b8770fe4"
 const HeroImage_Id = "7dfccbdf-0469-40e8-ab99-501d6314491f"
 const Photo_Gallery ="55cf720b-4646-49ed-bc64-c97ed72b75f0"
-const asyncHandler = require('../middleware/asyncHandler')
+import asyncHandler from '../middleware/asyncHandler'
 const app = express();
 // const getTokens = require('./graph')
-const getToken = (req,res )=>{
+const getToken = (req:any,res:any )=>{
     res.send('all items')
 }
 //  let variableToExport;
@@ -45,16 +45,16 @@ const getToken = (req,res )=>{
 //     console.log(y);
 //   }
 //   ffd();
-function  Recent  (data){
+function  Recent  (data:any){
 //    console.log(data,'gfdgfgfhgfh')
 //    res.send(files)
   const dfsdfdf = data
-  const Datsa = (req,res) =>{
+  const Datsa = (req:any,res:any) =>{
     res.send('dfdgrdttrhtr')
   }
 }
 
-const createRequset = async (url, token) => {
+const createRequset = async (url:any, token:any) => {
     const res = await axios.get(url, {
         headers: {
             'Authorization': `Bearer ${token} `,
@@ -69,7 +69,7 @@ const createRequset = async (url, token) => {
     
  }
 
- const ceomsg = async (url, token) => {
+ const ceomsg = async (url:any, token:any) => {
     const res = await axios.get(url, {
         headers: {
             'Authorization': `Bearer ${token} `,
@@ -100,11 +100,11 @@ const createRequset = async (url, token) => {
                     Expiry: expiryDate
                   }
                 };
-        
+                // @ts-ignore
                 var sasToken = blobService.generateSharedAccessSignature(containerName, blobName, sharedAccessPolicy);
         
                 var response = {};
-        
+                // @ts-ignore
                 response.image = blobService.getUrl(containerName, blobName, sasToken);
         
                 // console.log(response);
@@ -114,7 +114,7 @@ const createRequset = async (url, token) => {
     
  }
 
- const requestgraph = async (url, token) => {
+ const requestgraph = async (url:any, token:any) => {
     const res = await axios.get(url, {
         headers: {
             'Authorization': `Bearer ${token} `,
@@ -142,16 +142,21 @@ const createRequset = async (url, token) => {
                     Expiry: expiryDate
                   }
                 };
-        
+                 // @ts-ignore
                 var sasToken = blobService.generateSharedAccessSignature(containerName, blobName, sharedAccessPolicy);
+                // @ts-ignore
                 var sasToken1 = blobService.generateSharedAccessSignature(containerName, blobName1, sharedAccessPolicy);
+                // @ts-ignore
                 var sasToken2 = blobService.generateSharedAccessSignature(containerName, blobName2, sharedAccessPolicy);
         
                 var response = {};
                 var response1 = {};
                 var response2 = {};
+                // @ts-ignore
                 response.image = blobService.getUrl(containerName, blobName, sasToken);
+                // @ts-ignore
                 response1.image1 = blobService.getUrl(containerName, blobName1, sasToken1);
+                // @ts-ignore
                 response2.image2 = blobService.getUrl(containerName, blobName2, sasToken2);
                 // console.log(response);
                 // console.log(response1);
@@ -171,7 +176,7 @@ const createRequset = async (url, token) => {
 // const sendData = (data,req,res) =>{
 //     res.send(data);
 // }
- const  createToken = asyncHandler(async(req,res ) =>{
+ const  createToken = asyncHandler(async(req:any,res:any ) =>{
     
     // console.log(req.body)
     const {token} = req.body
@@ -193,12 +198,14 @@ const createRequset = async (url, token) => {
 // console.log(AccessToken,'llllll'
 
 
-const getEventData = asyncHandler(async(req, res) => {
+const getEventData = asyncHandler(async(req:Request, res:Response) => {
+   console.log(req.headers.authorization,'tsfff')
 
+  //  const  token = req.headers.authorization
     // console.log(req.body)
-    const {token} = req.params
+     const {token} = req.params
     //  const {token} = req.body
-    console.log(token,'llll')
+    console.log(token,'llssdsdssdsdsdsdsll')
     // console.log(req.body,'gregrthtrht')
     if(!token ){
     // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
@@ -259,10 +266,12 @@ const getEventData = asyncHandler(async(req, res) => {
 
 
 
-const getQuicklinkData = asyncHandler(async(req, res) => {
+const getQuicklinkData = asyncHandler(async(req:Request, res:Response) => {
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
+  //  const  token = req.headers.authorization
   // console.log(req.body)
-  const {token} = req.params
+   const {token} = req.params
   //  const {token} = req.body
   console.log(token,'llll')
   // console.log(req.body,'gregrthtrht')
@@ -285,8 +294,10 @@ const getQuicklinkData = asyncHandler(async(req, res) => {
 
 })
 
-const getRecentFilesData = asyncHandler(async(req, res) => {
+const getRecentFilesData = asyncHandler(async(req:Request, res:Response) => {
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
+  // const  token = req.headers.authorization
   // console.log(req.body)
   const {token} = req.params
   //  const {token} = req.body
@@ -312,9 +323,12 @@ const getRecentFilesData = asyncHandler(async(req, res) => {
 })
 
 
-const getAnnouncementData = asyncHandler(async(req, res) => {
-
+const getAnnouncementData = asyncHandler(async(req:Request, res:Response) => {
+  // console.log(req.headers,'lllllllllll')
   // console.log(req.body)
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
+
+  // const  token = req.headers.authorization
   const {token} = req.params
   //  const {token} = req.body
   console.log(token,'llll')
@@ -339,10 +353,13 @@ const getAnnouncementData = asyncHandler(async(req, res) => {
 })
 
 
-const getNavigationData = asyncHandler(async(req, res) => {
+const getNavigationData = asyncHandler(async(req:Request, res:Response) => {
 
   // console.log(req.body)
-  const {token} = req.params
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
+
+  // const  token = req.headers.authorization
+   const {token} = req.params
   //  const {token} = req.body
   console.log(token,'llll')
   // console.log(req.body,'gregrthtrht')
@@ -365,10 +382,12 @@ const getNavigationData = asyncHandler(async(req, res) => {
 
 })
 
-const getCeoMsgData = asyncHandler(async(req, res) => {
+const getCeoMsgData = asyncHandler(async(req:Request, res:Response) => {
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
+  // const  token = req.headers.authorization
   // console.log(req.body)
-  const {token} = req.params
+   const {token} = req.params
   //  const {token} = req.body
   console.log(token,'llll')
   // console.log(req.body,'gregrthtrht')
@@ -391,10 +410,12 @@ const getCeoMsgData = asyncHandler(async(req, res) => {
 
 })
 
-const getNewsData = asyncHandler(async(req, res) => {
+const getNewsData = asyncHandler(async(req:Request, res:Response) => {
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
+  // const  token = req.headers.authorization
   // console.log(req.body)
-  const {token} = req.params
+   const {token} = req.params
   //  const {token} = req.body
   console.log(token,'llll')
   // console.log(req.body,'gregrthtrht')
@@ -418,10 +439,12 @@ const getNewsData = asyncHandler(async(req, res) => {
 })
 
 
-const getEmpData = asyncHandler(async(req, res) => {
+const getEmpData = asyncHandler(async(req:Request, res:Response) => {
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
+  // const  token = req.headers.authorization
   // console.log(req.body)
-  const {token} = req.params
+   const {token} = req.params
   //  const {token} = req.body
   console.log(token,'llll')
   // console.log(req.body,'gregrthtrht')
@@ -445,8 +468,10 @@ const getEmpData = asyncHandler(async(req, res) => {
 })
 
 
-const getHeroData = asyncHandler(async(req, res) => {
+const getHeroData = asyncHandler(async(req:Request, res:Response) => {
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
+  // const  token = req.headers.authorization
   // console.log(req.body)
   const {token} = req.params
   //  const {token} = req.body
@@ -475,7 +500,7 @@ const getHeroData = asyncHandler(async(req, res) => {
 
 
 
-module.exports = {
+export {
     getToken,
     createToken,
     // Datsa,

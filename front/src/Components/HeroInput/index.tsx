@@ -35,45 +35,61 @@ import { useGetHeroImageQuery,useCreateHeroMutation,useGetHeroImageInputQuery,us
             useCreateTokenwithHeroDataMutation  } from "../../services/APIs";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import moment from "moment";
-const HeroInput = () => {
+interface IFolderProps {
+  // hero: any;
+  data:any, 
+  error:any,
+  isLoading:any,
+  onSubmit: (object: any) => void;
+  // onClick: any;
+  // onDownload?: (id: string) => void;
+  // onDelete?: (id: string) => void;
+  // onRename?: (id: string, name: string) => void;
+  // onShare?: (id: string) => void;
+}
+
+// const HeroInput = () => {
+  const HeroInput: React.FC<IFolderProps> = (props: IFolderProps) => {
     // const { data, error, isLoading } = useGetHeroImageInputQuery('');
     // console.log(data,'uuu')
     // const [sendItem] = useCreateHeroMutation();
-    const [sendItem] = useCreateTokenwithHeroDataMutation();
+   
+    // const [sendItem] = useCreateTokenwithHeroDataMutation();
+    const { data, error, isLoading, onSubmit } =  props
     const [heroItems, setHeroItems] = useState<any>([]);
   const [HeroTitle, setHeroTitle] = useState<any>([]);
   const [name,setName] = useState<string>('');
   const [tokens, setTokens] = useState<string>();
-  const pca = new PublicClientApplication(configuration);
+  // const pca = new PublicClientApplication(configuration);
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const accounts = pca.getAllAccounts();
-  useEffect(()=>{
-    async function getAccessToken() {
-      if (accounts.length > 0) {
-        const request = {
-          scopes: ['user.read'],
-          account: accounts[0]
-        }
-        const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+  // const accounts = pca.getAllAccounts();
+  // useEffect(()=>{
+  //   async function getAccessToken() {
+  //     if (accounts.length > 0) {
+  //       const request = {
+  //         scopes: ['user.read'],
+  //         account: accounts[0]
+  //       }
+  //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
          
-          // updateToken(response.accessToken);
-           setTokens(response.accessToken)
-          // console.log(token,'uuuuuu')
-        }).catch(error => {
-          // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-          console.log(error);
-          return null;
-        });
+  //         // updateToken(response.accessToken);
+  //          setTokens(response.accessToken)
+  //         // console.log(token,'uuuuuu')
+  //       }).catch(error => {
+  //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+  //         console.log(error);
+  //         return null;
+  //       });
 
 
-      }
+  //     }
 
-      return null;
-    }
-    getAccessToken();
+  //     return null;
+  //   }
+  //   getAccessToken();
 
-  },[])
+  // },[])
 
 
   const handleClickOpen = () => {
@@ -144,12 +160,12 @@ const HeroInput = () => {
           //   },
           // };
           const  heroData ={
-            token:tokens,
+            // token:tokens,
             herotitle:HeroTitle,
             heropic:fileSelected,
             picname:name
           }
-          sendItem( heroData);
+          // sendItem( heroData);
 
     //       var listId = app.listInfo?.HeroImages;
     //       if (listId != null) {
@@ -167,10 +183,11 @@ const HeroInput = () => {
     // } catch (err: any) {
     //   app.displayError!(err.message);
     // }
+    onSubmit(heroData)
     console.log('click')
   };
 
-  const { data, error, isLoading } =  useGetAllHeroQuery(tokens);
+  
   console.log(data?.response.value,'888ddd88txcccsssssssssssssscccccccccccctuytuytu888')
 
   return (

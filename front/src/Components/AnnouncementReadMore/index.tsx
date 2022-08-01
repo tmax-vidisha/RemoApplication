@@ -18,53 +18,50 @@ import { useGetAnnouncementInfoQuery,useUpdateAnnouncementTokenMutation,useGetAl
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 interface IFolderProps {
-  announcement: any;
-  // onClick: any;
-  // onDownload?: (id: string) => void;
-  // onDelete?: (id: string) => void;
-  // onRename?: (id: string, name: string) => void;
-  // onShare?: (id: string) => void;
+  data:any, 
+  error:any,
+  isLoading:any
 }
-// const AnnouncementReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
-const AnnouncementReadMore = () => {
+ const AnnouncementReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
+// const AnnouncementReadMore = () => {
 
     const classes = useStyles();
     // const { data, error, isLoading } =   useGetAnnouncementInfoQuery('')
     // const {announcement} = props;
-    const pca = new PublicClientApplication(configuration);
-    const [token, setToken] = useState<string>();
-    // const [updateToken,{data,isLoading} ] = useUpdateAnnouncementTokenMutation();
-    // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
-    const accounts = pca.getAllAccounts();
-     useEffect(() => {
-      async function getAccessToken() {
-        if (accounts.length > 0) {
-          const request = {
-            scopes: ['user.read'],
-            account: accounts[0]
-          }
-          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+    // const pca = new PublicClientApplication(configuration);
+    // const [token, setToken] = useState<string>();
+    // // const [updateToken,{data,isLoading} ] = useUpdateAnnouncementTokenMutation();
+    // // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
+    // const accounts = pca.getAllAccounts();
+    //  useEffect(() => {
+    //   async function getAccessToken() {
+    //     if (accounts.length > 0) {
+    //       const request = {
+    //         scopes: ['user.read'],
+    //         account: accounts[0]
+    //       }
+    //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
            
-            // updateToken(response.accessToken);
-             setToken(response.accessToken)
-            // console.log(token,'uuuuuu')
-          }).catch(error => {
-            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-            console.log(error);
-            return null;
-          });
+    //         // updateToken(response.accessToken);
+    //          setToken(response.accessToken)
+    //         // console.log(token,'uuuuuu')
+    //       }).catch(error => {
+    //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+    //         console.log(error);
+    //         return null;
+    //       });
   
   
-        }
+    //     }
   
-        return null;
-      }
-      getAccessToken();
+    //     return null;
+    //   }
+    //   getAccessToken();
   
        
       
-    }, [])
-    const { data, error, isLoading } =   useGetAllAnnoncementsQuery(token)
+    // }, [])
+    const { data, error, isLoading } =   props
       console.log(data,'980ccccccc9090')
   return (
     <AuthenticatedTemplate>

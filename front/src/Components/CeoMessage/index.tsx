@@ -16,54 +16,20 @@ import {
   import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
   interface IFolderProps {
-    ceomsg: any;
-    // onClick: any;
-    // onDownload?: (id: string) => void;
-    // onDelete?: (id: string) => void;
-    // onRename?: (id: string, name: string) => void;
-    // onShare?: (id: string) => void;
+    // ceomsg: any;
+    data:any, 
+    error:any,
+    isLoading:any
   }
 
- const CeoMessage = () => {
-  // const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
+//  const CeoMessage = () => {
+const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
-    const pca = new PublicClientApplication(configuration);
-    const [tokens, setTokens] = useState<string>();
-    // const [updateToken,{data,isLoading} ] = useUpdateCeoMsgTokenMutation();
-    // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
-    const accounts = pca.getAllAccounts();
-     useEffect(() => {
-      async function getAccessToken() {
-        if (accounts.length > 0) {
-          const request = {
-            scopes: ['user.read'],
-            account: accounts[0]
-          }
-          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
-           
-            // updateToken(response.accessToken);
-              setTokens(response.accessToken)
-            // console.log(token,'uuuuuu')
-          }).catch(error => {
-            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-            console.log(error);
-            return null;
-          });
-  
-  
-        }
-  
-        return null;
-      }
-      getAccessToken();
-  
-       
-      
-    }, [])
-    const { data, error, isLoading } =   useGetAllCeoMsgQuery(tokens)
-    console.log(data,'980ccccccc9090')
+   
+    const { data, error, isLoading } =   props
+    // console.log(data,'980ccccccc9090')
   return (
-    //  <div>CeoMessage</div>
+    // <div>CeoMessage</div>
     <AuthenticatedTemplate>
       <Paper elevation={0}>
         {isLoading ? (

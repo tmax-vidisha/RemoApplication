@@ -38,47 +38,61 @@ import { convertToHTML } from "draft-convert";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import moment from "moment";
+interface IFolderProps {
+  data:any, 
+  error:any,
+  isLoading:any,
+  onSubmit: (object: any) => void;
+  // onClick: any;
+  // onDownload?: (id: string) => void;
+  // onDelete?: (id: string) => void;
+  // onRename?: (id: string, name: string) => void;
+  // onShare?: (id: string) => void;
+}
 
-const NewsInput = () => {
+// const NewsInput = () => {
+const NewsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     // const { data, error, isLoading } = useGetNewsQuery('')
     // const [sendItem] = useCreateNewsInputMutation();
-    const [sendItem] = useCreateTokenwithNewsDataMutation();
+
+    // const [sendItem] = useCreateTokenwithNewsDataMutation();
     // const [updateToken,{data,isLoading} ] = useUpdateNewsTokenMutation();
     // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
+    const { data, error, isLoading, onSubmit } =  props
   const [newsItems, setNewsItems] = useState<any>([]);
   const [newsTitle, setNewsTitle] = useState<any>([]);
   const [tokens, setTokens] = useState<string>();
   const [name,setName] = useState<string>('');
-  const pca = new PublicClientApplication(configuration);
+  // const pca = new PublicClientApplication(configuration);
   const [open, setOpen] = useState(false);
-  const accounts = pca.getAllAccounts();
-  useEffect(()=>{
-    async function getAccessToken() {
-      if (accounts.length > 0) {
-        const request = {
-          scopes: ['user.read'],
-          account: accounts[0]
-        }
-        const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+  // const accounts = pca.getAllAccounts();
+  // useEffect(()=>{
+  //   async function getAccessToken() {
+  //     if (accounts.length > 0) {
+  //       const request = {
+  //         scopes: ['user.read'],
+  //         account: accounts[0]
+  //       }
+  //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
          
-          // updateToken(response.accessToken);
-           setTokens(response.accessToken)
-          // console.log(token,'uuuuuu')
-        }).catch(error => {
-          // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-          console.log(error);
-          return null;
-        });
+  //         // updateToken(response.accessToken);
+  //          setTokens(response.accessToken)
+  //         // console.log(token,'uuuuuu')
+  //       }).catch(error => {
+  //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+  //         console.log(error);
+  //         return null;
+  //       });
 
 
-      }
+  //     }
 
-      return null;
-    }
-    getAccessToken();
+  //     return null;
+  //   }
+  //   getAccessToken();
 
-  },[])
+  // },[])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -178,17 +192,18 @@ const NewsInput = () => {
                 },
               };
               const newData = {
-                  token:tokens,
+                  // token:tokens,
                   newstitle: newsTitle,
                   newsdesc: convertedContent,
                   newspic: fileSelected,
                   newspicname:name
                
               };
-            sendItem(newData)
+            // sendItem(newData)
+            onSubmit(newData)
     console.log('click')
   };
-  const { data, error, isLoading } =  useGetAllNewsQuery(tokens);
+  
     console.log(data,'888ddd88ttuytuytu888')
   return (
     <AuthenticatedTemplate>

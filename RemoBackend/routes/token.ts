@@ -1,6 +1,7 @@
-const express = require("express");
-const router = express.Router();
-const {getToken,
+// const express = require("express");
+import express from 'express';
+import {Router} from "express";
+import {getToken,
     createToken,
     getEventData,
     getQuicklinkData,
@@ -11,13 +12,15 @@ const {getToken,
     getNewsData,
     getEmpData,
     getHeroData
-} = require('../controllers/token')
+} from '../controllers/token'
 
+const router = Router()
 router.route('/').get(getToken).post(createToken)
 
 
-router.route('/folder').post(getEventData)
+// router.route('/events').get(getEventData)
 router.route('/folder/:token').get(getEventData)
+// router.route('/folder/events').get(getEventData)
 router.route('/quicklink/:token').get(getQuicklinkData)
 router.route('/recentfiles/:token').get(getRecentFilesData)
 router.route('/announcement/:token').get(getAnnouncementData)
@@ -32,4 +35,5 @@ router.route('/hero/:token').get(getHeroData)
 
 //  router.route('/folder').get(getFolderData)
 
-module.exports = router
+// module.exports = router
+export default router

@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import CeoMessage from '../../Components/CeoMessage'
+// import {CeoPage} from '../../Pages'
 import HeroImages from '../../Components/HeroImages'
 import News from '../../Components/News'
 import RecentFiles from '../../Components/RecentFiles';
@@ -8,7 +9,18 @@ import QuickLinks from '../../Components/Quicklinks';
 import axios from 'axios';
 import Gallery from '../../Components/Gallery';
 import EmployeeHighlight from '../../Components/EmployeeHighlight';
-import Events from '../../Components/Events';
+// import Events from '../../Components/Events';
+import { 
+        EventsPage,
+        EmpHighlightPage,
+        RecentFilePage,
+        CeoPage,
+        NewsPage,
+        HeroImagePage,
+        QuicklinkPage,
+        HomeNavigationPage,
+        AnnouncementPage
+      } from '../../Pages';
 import Announcement from '../../Components/Announcement';
 import HomeTopNav from '../HomeTopNav';
 import SocialMedia from '../../Components/SocialMedia';
@@ -142,16 +154,16 @@ const PortalHome = () => {
       <Grid container spacing={2} className={classes.bannerTop}>
         <Grid item xs={8}>
           <Paper elevation={0}>
-             <HeroImages />
-           {/* fbfbfbfb */}
+             <HeroImagePage />
+             {/* HeroImagePage */}
           </Paper>
         </Grid>
         <Grid item xs={4}>
-          <CeoMessage  />
+          <CeoPage  />
           {/* fefefefefefefe */}
         </Grid>
         <Grid item xs={12} style={{ marginBottom: "16px", paddingTop: "16px",position: "relative" }}>
-          <HomeTopNav  />
+          <HomeNavigationPage />
           {/* hghgjhgjhjhjhjhjhjhj */}
           
         </Grid>
@@ -160,7 +172,7 @@ const PortalHome = () => {
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <Grid item xs={12}>
-            <News  />
+            <NewsPage  />
             {/* jjhjhgjhgjhg */}
           </Grid>
           <Grid
@@ -176,11 +188,11 @@ const PortalHome = () => {
             spacing={2}
           >
             <Grid item xs={6} style={{ paddingLeft: 0 }}>
-              <Events  />
+              <EventsPage  />
               {/* hhjfghg */}
             </Grid>
             <Grid item xs={6} style={{ paddingRight: 0 }}>
-              <Announcement  />
+              <AnnouncementPage  />
               {/* gththhdhdh */}
             </Grid>
           </Grid>
@@ -207,18 +219,18 @@ const PortalHome = () => {
           </Grid>
         </Grid>
         <Grid item xs={4}>
-           <EmployeeHighlight /> 
+           <EmpHighlightPage /> 
            {/* gfgfghghghghg */}
           <Grid item xs={12} style={{ marginTop: 16 }}>
             <Weather />
           </Grid>
 
           <Grid item xs={12} style={{ marginTop: 16 }}>
-            <QuickLinks  />
+            <QuicklinkPage  />
             {/* hthhfhfhfgh */}
           </Grid>
           <Grid item xs={12} style={{ marginTop: 16 }}>
-            <RecentFiles />
+            <RecentFilePage />
             {/* rgrgtrhgthgd */}
           </Grid>
         </Grid>

@@ -7,6 +7,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 // import ImageIcon from "@mui/icons-material/Image";
 // import WorkIcon from "@mui/icons-material/Work";
+import useCustom from "../../useCustom";
 // import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import Divider from "@mui/material/Divider";
 import { Paper, Typography } from "@mui/material";
@@ -14,7 +15,8 @@ import { useStyles } from "./Styles";
 
 export default function Weather() {
   var classes = useStyles();
-
+//   const {token} = useCustom();
+//  console.log(token,'sdsfggs')
   return (
     <Paper elevation={0}>
       <List className={classes.root}>

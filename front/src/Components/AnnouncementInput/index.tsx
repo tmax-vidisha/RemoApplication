@@ -38,45 +38,52 @@ import { useGetAnnouncementInfoQuery,useCreateAnnouncementMutation,useCreateToke
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import moment from "moment-timezone";
 
-const AnnoncementInput = () => {
-  
+interface IFolderProps {
+  data:any, 
+  error:any,
+  isLoading:any,
+  onSubmit: (object: any) => void;
+}
+// const AnnoncementInput = () => {
+  const AnnoncementInput: React.FC<IFolderProps> = (props: IFolderProps) => { 
+    const { data, error, isLoading,onSubmit } =   props
     // const { data, error, isLoading } =   useGetAnnouncementInfoQuery('');
     // const [sendItem] = useCreateAnnouncementMutation();
-    const [sendItem] = useCreateTokenwithDataMutation();
+    // const [sendItem] = useCreateTokenwithDataMutation();
     const classes = useStyles();
     const [AnnouncementTitle, setAnnouncementTitle] = useState<any>([]);
     const [AnnouncementItems, setAnnouncementItems] = useState<any>([]);
     const [tokens, setTokens] = useState<string>();
-    const pca = new PublicClientApplication(configuration);
+    // const pca = new PublicClientApplication(configuration);
     const [open, setOpen] = useState(false);
-    const accounts = pca.getAllAccounts();
+    // const accounts = pca.getAllAccounts();
 
-    useEffect(()=>{
-      async function getAccessToken() {
-        if (accounts.length > 0) {
-          const request = {
-            scopes: ['user.read'],
-            account: accounts[0]
-          }
-          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+    // useEffect(()=>{
+    //   async function getAccessToken() {
+    //     if (accounts.length > 0) {
+    //       const request = {
+    //         scopes: ['user.read'],
+    //         account: accounts[0]
+    //       }
+    //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
            
-            // updateToken(response.accessToken);
-             setTokens(response.accessToken)
-            // console.log(token,'uuuuuu')
-          }).catch(error => {
-            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-            console.log(error);
-            return null;
-          });
+    //         // updateToken(response.accessToken);
+    //          setTokens(response.accessToken)
+    //         // console.log(token,'uuuuuu')
+    //       }).catch(error => {
+    //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+    //         console.log(error);
+    //         return null;
+    //       });
   
   
-        }
+    //     }
   
-        return null;
-      }
-      getAccessToken();
+    //     return null;
+    //   }
+    //   getAccessToken();
 
-    },[])
+    // },[])
     const handleClickOpen = () => {
       setOpen(true);
     };
@@ -119,36 +126,20 @@ const AnnoncementInput = () => {
     };
 
     const handleSubmitClick = async () => {
-        // try {
-          // const AnnouncementJSON = {
-          //   fields: {
-          //     Title: AnnouncementTitle,
-          //     Desc: convertedContent,
-          //   },
-          // };
+       
           const announcementData ={
-            token :tokens,
+            // token :tokens,
             title:AnnouncementTitle,
             desc:convertedContent
           }
-        //   var listId = app.listInfo?.Announcement;
-        //   if (listId != null) {
-        //     let response = await postAnnouncement(
-        //       app.authProvider!,
-        //       app.siteInfo?.siteId,
-        //       listId,
-        //       AnnouncementJSON
-        //     );
-        //   }
-        // } catch (err: any) {
-        //   app.displayError!(err.message);
-        // }
-        sendItem(announcementData)
+        
+        // sendItem(announcementData)
         // sendItem(AnnouncementJSON)
+        onSubmit(announcementData)
         console.log('click');
       };
 
-      const { data, error, isLoading } =   useGetAllAnnoncementsQuery(tokens)
+     
       console.log(data,'980ccccccc9090')
   return (
     <AuthenticatedTemplate>

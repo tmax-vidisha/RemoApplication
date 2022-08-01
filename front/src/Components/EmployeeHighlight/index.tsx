@@ -14,15 +14,18 @@ import { configuration } from "../../index";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 //@ts-ignore
 interface IFolderProps {
-  employee: any;
+  // employee: any;
   // onClick: any;
   // onDownload?: (id: string) => void;
   // onDelete?: (id: string) => void;
   // onRename?: (id: string, name: string) => void;
   // onShare?: (id: string) => void;
+  data:any, 
+  error:any,
+  isLoading:any
 }
- const EmployeeHighlight = () => {
-  // const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
+//  const EmployeeHighlight = () => {
+const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -37,42 +40,42 @@ interface IFolderProps {
 
 }
 
-const pca = new PublicClientApplication(configuration);
-    // const [updateToken,{data,isLoading} ] = useUpdateEmpTokenMutation();
-    // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
-    const [tokens, setTokens] = useState<string>();
-    const accounts = pca.getAllAccounts();
-     useEffect(() => {
-      async function getAccessToken() {
-        if (accounts.length > 0) {
-          const request = {
-            scopes: ['user.read'],
-            account: accounts[0]
-          }
-          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+// const pca = new PublicClientApplication(configuration);
+//     // const [updateToken,{data,isLoading} ] = useUpdateEmpTokenMutation();
+//     // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
+//     const [tokens, setTokens] = useState<string>();
+//     const accounts = pca.getAllAccounts();
+//      useEffect(() => {
+//       async function getAccessToken() {
+//         if (accounts.length > 0) {
+//           const request = {
+//             scopes: ['user.read'],
+//             account: accounts[0]
+//           }
+//           const accessToken = await pca.acquireTokenSilent(request).then((response) => {
            
-            // updateToken(response.accessToken);
-              setTokens(response.accessToken)
-            // console.log(token,'uuuuuu')
-          }).catch(error => {
-            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-            console.log(error);
-            return null;
-          });
+//             // updateToken(response.accessToken);
+//               setTokens(response.accessToken)
+//             // console.log(token,'uuuuuu')
+//           }).catch(error => {
+//             // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+//             console.log(error);
+//             return null;
+//           });
   
   
-        }
+//         }
   
-        return null;
-      }
-      getAccessToken();
+//         return null;
+//       }
+//       getAccessToken();
   
        
       
-    }, [])
+//     }, [])
 
-    const { data, error, isLoading } =   useGetAllEmpQuery(tokens)
-    console.log(data,'980ccccccc9090')
+    const { data, error, isLoading } =  props
+    // console.log(data,'980ccccccc9090')
 
   return (
     

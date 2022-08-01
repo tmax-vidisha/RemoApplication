@@ -42,15 +42,23 @@ import AddCircleOutlineIcon from "@mui/icons-material/Add";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { configuration } from "../../index";
 var moment = require("moment-timezone");
+interface IFolderProps {
+  // ceomsg: any;
+  data:any, 
+  error:any,
+  isLoading:any,
+  onSubmit: (object: any) => void;
+}
 
-
-const CeoMessageInput = () => {
+// const CeoMessageInput = () => {
+const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
 
   // const { data, error, isLoading } = useGetCeoMessageQuery('')
   // const [sendItem] = useCreateCeoMessageMutation();
-  const [sendItem] = useCreateTokenwithCeoDataMutation();
+  // const [sendItem] = useCreateTokenwithCeoDataMutation();
   // const [sendData] = useCreatedataMutation();
+  const { data, error, isLoading, onSubmit } =   props
   const [ceoMessage, setCEOMessage] = useState<any>([]);
   const [CeoTitle, setCeoTitle] = useState<any>([]);
   const [CeoPosition, setPosition] = useState<any>([]);
@@ -58,35 +66,35 @@ const CeoMessageInput = () => {
   const [name,setName] = useState<string>('');
   // const [updateToken,{data,isLoading} ] = useUpdateCeoMsgTokenMutation();
   //   console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
-  const pca = new PublicClientApplication(configuration);
-  const [tokens, setTokens] = useState<string>();
-  const accounts = pca.getAllAccounts();
-  useEffect(()=>{
-    async function getAccessToken() {
-      if (accounts.length > 0) {
-        const request = {
-          scopes: ['user.read'],
-          account: accounts[0]
-        }
-        const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+  // const pca = new PublicClientApplication(configuration);
+  const [token, setToken] = useState<string>();
+  // const accounts = pca.getAllAccounts();
+  // useEffect(()=>{
+  //   async function getAccessToken() {
+  //     if (accounts.length > 0) {
+  //       const request = {
+  //         scopes: ['user.read'],
+  //         account: accounts[0]
+  //       }
+  //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
          
-          // updateToken(response.accessToken);
-           setTokens(response.accessToken)
-          // console.log(token,'uuuuuu')
-        }).catch(error => {
-          // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-          console.log(error);
-          return null;
-        });
+  //         // updateToken(response.accessToken);
+  //          setToken(response.accessToken)
+  //         // console.log(token,'uuuuuu')
+  //       }).catch(error => {
+  //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+  //         console.log(error);
+  //         return null;
+  //       });
 
 
-      }
+  //     }
 
-      return null;
-    }
-    getAccessToken();
+  //     return null;
+  //   }
+  //   getAccessToken();
 
-  },[])
+  // },[])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -177,7 +185,7 @@ const CeoMessageInput = () => {
             },
           };
           const CeoData = {
-              token:tokens,
+              // token:tokens,
               ceotitle: "CEO Message",
               ceodesc: convertedContent,
               ceousername: CeoTitle,
@@ -186,7 +194,8 @@ const CeoMessageInput = () => {
               ceopicname:name
             
           };
-       await sendItem(CeoData);
+      //  await sendItem(CeoData);
+      onSubmit(CeoData)
       // var fff = fileSelected.name
       // console.log(fff,'rrr')
         // await sendData(fff)
@@ -209,7 +218,7 @@ const CeoMessageInput = () => {
     console.log('click')
   };
 
-  const { data, error, isLoading } =   useGetAllCeoMsgQuery(tokens)
+  
   console.log(data,'980ccccccc9090')
 
   return (

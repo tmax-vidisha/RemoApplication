@@ -32,12 +32,27 @@ import AddCircleOutlineIcon from "@mui/icons-material/Add";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { useGetEmployeeHighLightQuery,useCreateEmployeeHighlightMutation,useCreateTokenwithDataMutation,useUpdateEmpTokenMutation ,useGetAllEmpQuery,useCreateTokenwithEmpDataMutation } from '../../services/APIs';
 var moment = require("moment-timezone");
+interface IFolderProps {
+  // employee: any;
+  // onClick: any;
+  // onDownload?: (id: string) => void;
+  // onDelete?: (id: string) => void;
+  // onRename?: (id: string, name: string) => void;
+  // onShare?: (id: string) => void;
+  data:any;
+  error:any;
+  isLoading:any;
+  onSubmit: (object: any) => void;
+}
 
-const EmployeeHighlightInput = () => {
+// const EmployeeHighlightInput = () => {
+  const EmployeeHighlightInput: React.FC<IFolderProps> = (props: IFolderProps) => { 
     const classes = useStyles();
+    const { data, error, isLoading, onSubmit } =  props
     // const { data, error, isLoading } = useGetEmployeeHighLightQuery('');
     // const [sendItem] = useCreateEmployeeHighlightMutation();
-    const [sendItem] = useCreateTokenwithEmpDataMutation();
+
+    // const [sendItem] = useCreateTokenwithEmpDataMutation();
     // const [updateToken,{data,isLoading} ] = useUpdateEmpTokenMutation();
     // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
     const [empHight, setEmpHight] = useState<any>([]);
@@ -47,34 +62,34 @@ const EmployeeHighlightInput = () => {
     const [open, setOpen] = useState(false);
     const [photo,setPhoto] = useState<string>('');
     const [tokens, setTokens] = useState<string>();
-    const pca = new PublicClientApplication(configuration);
-    const accounts = pca.getAllAccounts();
-    useEffect(()=>{
-      async function getAccessToken() {
-        if (accounts.length > 0) {
-          const request = {
-            scopes: ['user.read'],
-            account: accounts[0]
-          }
-          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+    // const pca = new PublicClientApplication(configuration);
+    // const accounts = pca.getAllAccounts();
+    // useEffect(()=>{
+    //   async function getAccessToken() {
+    //     if (accounts.length > 0) {
+    //       const request = {
+    //         scopes: ['user.read'],
+    //         account: accounts[0]
+    //       }
+    //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
            
-            // updateToken(response.accessToken);
-             setTokens(response.accessToken)
-            // console.log(token,'uuuuuu')
-          }).catch(error => {
-            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-            console.log(error);
-            return null;
-          });
+    //         // updateToken(response.accessToken);
+    //          setTokens(response.accessToken)
+    //         // console.log(token,'uuuuuu')
+    //       }).catch(error => {
+    //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+    //         console.log(error);
+    //         return null;
+    //       });
   
   
-        }
+    //     }
   
-        return null;
-      }
-      getAccessToken();
+    //     return null;
+    //   }
+    //   getAccessToken();
   
-    },[])
+    // },[])
   
     const handleClickOpen = () => {
       setOpen(true);
@@ -161,17 +176,18 @@ const EmployeeHighlightInput = () => {
                     },
         };
         const Data = {
-          token:tokens,
+          // token:tokens,
           employyetitle: empTitle,
           empname: name,
           empdept: dept,
           emppic: fileSelected,
           emppicname:photo
         }
-        sendItem(Data);
+        // sendItem(Data);
+        onSubmit(Data)
         console.log('click')
       };
-      const { data, error, isLoading } =   useGetAllEmpQuery(tokens)
+      
       console.log(data,'980ccccccc9090')
   
   return (

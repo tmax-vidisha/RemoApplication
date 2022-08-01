@@ -1,19 +1,19 @@
-const express = require("express");
-const { BlobServiceClient } = require('@azure/storage-blob');
-const token = require('./routes/token');
+import express from "express";
+// const { BlobServiceClient } = require('@azure/storage-blob');
+import token  from './routes/token';
 // const getPostData = require('./routes/graph');
-const graph = require('./routes/graph')
+import graph from './routes/graph';
 // const getAllSites = require('./routes/workspace')
-const workspace = require('./routes/workspace')
+import workspace from './routes/workspace'
 // const RemoToken = require('./controllers/token')
 // const graph = require('./routes/graph')
-var azure = require('azure-storage');
-const logger = require('morgan');
-const axios = require('axios')
-const cors = require('cors');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const { json } = require("body-parser");
+// var azure = require('azure-storage');
+import logger from 'morgan';
+// const axios = require('axios')
+import cors from 'cors';
+import  mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import { json } from "body-parser";
 const SERVER_PORT = process.env.PORT || 4000;
 
 
@@ -71,7 +71,7 @@ const filterUserEmail = "https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint
 const users = [{
   t: ""
 }];
-app.get('/user', (req, res) => {
+app.get('/user', (req:any, res:any) => {
   res.send(users);
 });
 

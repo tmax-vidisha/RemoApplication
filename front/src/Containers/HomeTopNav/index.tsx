@@ -15,51 +15,48 @@ import {
 import ClearIcon from "@mui/icons-material/Clear";
 import { useStyles } from "./Styles";
 interface IFolderProps {
-  navigation: any;
-  // onClick: any;
-  // onDownload?: (id: string) => void;
-  // onDelete?: (id: string) => void;
-  // onRename?: (id: string, name: string) => void;
-  // onShare?: (id: string) => void;
+  data:any, 
+  error:any,
+  isLoading:any
 }
-const HomeTopNav = () => {
-  // const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
+// const HomeTopNav = () => {
+ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     const [SelValue, setSelValue] = useState("");
     const [topMenu, setTopMenu] = useState(true);
-    const pca = new PublicClientApplication(configuration);
-    const [token, setToken] = useState<string>();
-    // const [updateToken,{data,isLoading} ] = useUpdateNavigationTokenMutation();
-    // console.log(data?.response,'jyjtyjycvdvxvxvxvtjytjytjty')
-    const accounts = pca.getAllAccounts();
-     useEffect(() => {
-      async function getAccessToken() {
-        if (accounts.length > 0) {
-          const request = {
-            scopes: ['user.read'],
-            account: accounts[0]
-          }
-          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+    // const pca = new PublicClientApplication(configuration);
+    // const [token, setToken] = useState<string>();
+    // // const [updateToken,{data,isLoading} ] = useUpdateNavigationTokenMutation();
+    // // console.log(data?.response,'jyjtyjycvdvxvxvxvtjytjytjty')
+    // const accounts = pca.getAllAccounts();
+    //  useEffect(() => {
+    //   async function getAccessToken() {
+    //     if (accounts.length > 0) {
+    //       const request = {
+    //         scopes: ['user.read'],
+    //         account: accounts[0]
+    //       }
+    //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
            
-            // updateToken(response.accessToken);
-             setToken(response.accessToken)
-            // console.log(token,'uuuuuu')
-          }).catch(error => {
-            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-            console.log(error);
-            return null;
-          });
+    //         // updateToken(response.accessToken);
+    //          setToken(response.accessToken)
+    //         // console.log(token,'uuuuuu')
+    //       }).catch(error => {
+    //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+    //         console.log(error);
+    //         return null;
+    //       });
   
   
-        }
+    //     }
   
-        return null;
-      }
-      getAccessToken();
+    //     return null;
+    //   }
+    //   getAccessToken();
   
        
       
-    }, [])
+    // }, [])
 
     const selectedMenu = (selValue: any) => {
         setSelValue(selValue);
@@ -78,7 +75,7 @@ const HomeTopNav = () => {
         </ListItem>
       );
 
-      const { data, error, isLoading } =  useGetAllNavigationQuery(token);
+      const { data, error, isLoading } =  props;
       console.log(data,'88888ttuytuytu888')
   return (
   // <div>HomeTopNav</div>

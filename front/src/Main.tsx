@@ -12,7 +12,20 @@ import EventsInput from './Components/EventsInput';
 import HeroInput from './Components/HeroInput';
 import EmployeeHighlightInput from './Components/EmployeeHighlightInput';
 import NewsInput from './Components/NewsInput';
-import EventsReadMore from './Components/EventsReadMore';
+// import EventsReadMore from './Components/EventsReadMore';
+import { 
+    EventsPageMore,
+    CeoPageMore,
+    CeoInputPage,
+    NewsPageMore,
+    AnnouncementPageMore,
+    AnnouncementInputPage,
+    UserQuickLinkPage,
+    HeroInputPage,
+    NewsInputPage,
+    EventsInputPage,
+    EmpHighlightInputPage
+     } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';
 import NewsReadMore from './Components/NewsReadMore';
@@ -147,47 +160,47 @@ const Main = () => {
                             />
                             <Route
                                 path="/userquicklink"
-                                element={<UserQuickLinks/>}
+                                element={<UserQuickLinkPage/>}
                             />
                             <Route
                                 path="/CEOInput"
-                                element={<CeoMessageInput />}
+                                element={<CeoInputPage />}
                             />
                             <Route
                                 path="/AnnoncementInput"
-                                element={<AnnoncementInput />}
+                                element={<AnnouncementInputPage />}
                             />
                             <Route
                                 path="/EventsInput"
-                                element={<EventsInput />}
+                                element={<EventsInputPage />}
                             />
                             <Route
                                 path="/HeroInput"
-                                element={<HeroInput />}
+                                element={<HeroInputPage />}
                             />
                             <Route
                                 path="/EmpHighInput"
-                                element={<EmployeeHighlightInput />}
+                                element={<EmpHighlightInputPage />}
                             />
                              <Route
                                 path="/NewsInput"
-                                element={<NewsInput />}
+                                element={<NewsInputPage />}
                             />
                             <Route
                                 path="/NewsInfo"
-                                element={<NewsReadMore  />}
+                                element={<NewsPageMore  />}
                             />
                              <Route
                                 path="/EventReadMore"
-                                element={<EventsReadMore  />}
+                                element={<EventsPageMore  />}
                             />
                              <Route
                                path="/AnnouncementReadMore"
-                               element={<AnnouncementReadMore  />}
+                               element={<AnnouncementPageMore  />}
                             />
                              <Route
                                path="/CeoInfo"
-                               element={<CeoMessageInformation  />}
+                               element={<CeoPageMore   />}
                             />
                             <Route
                                path="/workspace/dropbox"

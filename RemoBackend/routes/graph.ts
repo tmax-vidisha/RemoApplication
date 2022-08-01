@@ -1,9 +1,11 @@
-const express = require("express");
- const { getPostData,postEventData,postHeroData,postCeoData,postNewsData,postEmpData,postUserQuicklinkData } = require("../controllers/postdata");
+import express from "express";
+import { getPostData,postEventData,postHeroData,postCeoData,postNewsData,postEmpData,postUserQuicklinkData } from  "../controllers/postdata";
 // const { getData } = require("../controllers/graph");
-const createToken = require('../controllers/token')
-const router = express.Router();
-const RemoToken = require('../controllers/token');
+// const createToken = require('../controllers/token')
+import {Router} from "express";
+
+const router = Router()
+// const RemoToken = require('../controllers/token');
 // const { getTokens } = require("../controllers/graph");
 // router.route('/lists').get(getData);
 // console.log(createToken,'uuuuu')
@@ -32,4 +34,4 @@ router.route('/ceodata').post(postCeoData)
 router.route('/newsdata').post(postNewsData)
 router.route('/empdata').post(postEmpData)
 router.route('/userquicklinkdata').post(postUserQuicklinkData)
-module.exports = router
+export default router;

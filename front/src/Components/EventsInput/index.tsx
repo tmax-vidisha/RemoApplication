@@ -39,52 +39,69 @@ import { LocalizationProvider } from "@mui/lab";
 import { useGetEventsQuery,useCreateEventMutation,useCreateTokenwithDataMutation, useUpdateTokenMutation,useGetAllEventsQuery,
               useCreateTokenwithEventDataMutation } from "../../services/APIs";
 import { PublicClientApplication } from "@azure/msal-browser";
-const EventsInput = () => {
+
+interface IFolderProps {
+  // event: any;
+  // onClick: any;
+  // onDownload?: (id: string) => void;
+  // onDelete?: (id: string) => void;
+  // onRename?: (id: string, name: string) => void;
+  // onShare?: (id: string) => void;
+  data:any;
+  error:any;
+  isLoading:any;
+  onSubmit: (object: any) => void;
+}
+
+// const EventsInput = () => {
+const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
+
     const classes = useStyles();
+    const { data, error, isLoading, onSubmit } =  props;
     // const { data, error, isLoading } = useGetEventsQuery('');
     // const [sendItem] = useCreateEventMutation();
     
-    const [sendItem] = useCreateTokenwithEventDataMutation();
+    // const [sendItem] = useCreateTokenwithEventDataMutation();
     // const [updateToken,{data,isLoading} ] = useUpdateTokenMutation();
     // console.log(data?.response,'thfhfhfhfhfhfh')
     const [eventTitle, setEventTitle] = useState<any>([]);
     const [tokens, setTokens] = useState<string>();
-    const pca = new PublicClientApplication(configuration);
+    // const pca = new PublicClientApplication(configuration);
     const [eventItems, setEventItems] = useState<any>([]);
   
     const [open, setOpen] = useState(false);
 
 
-    const accounts = pca.getAllAccounts();
+    // const accounts = pca.getAllAccounts();
 
-    useEffect(()=>{
-      async function getAccessToken() {
-        if (accounts.length > 0) {
-          const request = {
-            scopes: ['user.read'],
-            account: accounts[0]
-          }
-          const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+    // useEffect(()=>{
+    //   async function getAccessToken() {
+    //     if (accounts.length > 0) {
+    //       const request = {
+    //         scopes: ['user.read'],
+    //         account: accounts[0]
+    //       }
+    //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
            
-            // updateToken(response.accessToken);
-             setTokens(response.accessToken)
-            // console.log(token,'uuuuuu')
-          }).catch(error => {
-            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-            console.log(error);
-            return null;
-          });
+    //         // updateToken(response.accessToken);
+    //          setTokens(response.accessToken)
+    //         // console.log(token,'uuuuuu')
+    //       }).catch(error => {
+    //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+    //         console.log(error);
+    //         return null;
+    //       });
   
   
-        }
+    //     }
   
-        return null;
-      }
-      getAccessToken();
+    //     return null;
+    //   }
+    //   getAccessToken();
 
-    },[])
+    // },[])
 
-    const { data, error, isLoading } =  useGetAllEventsQuery(tokens);
+
      console.log(data,'888ddd88ttuytuytu888')
     const handleClickOpen = () => {
       setOpen(true);
@@ -135,7 +152,7 @@ const EventsInput = () => {
   };
   // console.log(tokens,'oiululul')
   const Data = {
-      token:tokens,
+      // token:tokens,
       eventtitle: eventTitle,
       eventdate: startDate?.toUTCString(),
       enddate: endDate?.toUTCString(),
@@ -156,8 +173,8 @@ const EventsInput = () => {
     //   window.location.reload();
     // }
     // sendItem(eventObj);
-   sendItem(Data);
-
+  //  sendItem(Data);
+      onSubmit(Data)
     console.log('click')
   };
 

@@ -26,14 +26,14 @@ import Main from "./Main";
 type AppProps = {
   pca: IPublicClientApplication;
 };
-
+export  let AccessToken:any;
  function App() {
   // function App({ pca }: AppProps) {
   const { instance, inProgress } = useMsal();
   const [token, setToken] = useState<string>();
   const [data1, setData1] = useState<any>([]);
-  // const pca = new PublicClientApplication(configuration);
-  // const accounts = pca.getAllAccounts();
+  const pca = new PublicClientApplication(configuration);
+  const accounts = pca.getAllAccounts();
   // const [updateToken,{data} ] = useUpdateTokenMutation();
     //  const [postToken]  = useCreateResponseMutation();
   
@@ -46,31 +46,32 @@ type AppProps = {
 // useEffect(()=>{
 // setData1(data)
 // },[])
-  // useEffect(() => {
-  //   async function getAccessToken() {
-  //     if (accounts.length > 0) {
-  //       const request = {
-  //         scopes: ['user.read'],
-  //         account: accounts[0]
-  //       }
-  //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+  useEffect(() => {
+    async function getAccessToken() {
+      if (accounts.length > 0) {
+        const request = {
+          scopes: ['user.read'],
+          account: accounts[0]
+        }
+        const accessToken = await pca.acquireTokenSilent(request).then((response) => {
          
-  //         setToken(response.accessToken);
-  //           console.log(token,'uuuuuu')
-  //       }).catch(error => {
-  //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-  //         console.log(error);
-  //         return null;
-  //       });
+          // setToken(response.accessToken);
+            // console.log(token,'uuuuuu')
+            AccessToken = response.accessToken
+        }).catch(error => {
+          // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+          console.log(error);
+          return null;
+        });
 
+          // AccessToken = token;
+      }
 
-  //     }
+      return null;
+    }
+    getAccessToken();
 
-  //     return null;
-  //   }
-  //   getAccessToken();
-
-  // }, [])
+  }, [])
 
   // console.log(token)
   
