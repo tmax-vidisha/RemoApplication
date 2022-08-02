@@ -95,7 +95,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                 sx={{ justifyContent: "space-between" }}
               >
               {data?.response && 
-               <Grid item xs={6}  sx={{ maxWidth: " 49%" }}  >
+               <Grid item xs={12}  sx={{ maxWidth: " 100%",display:"flex", justifyContent: "space-between", marginRight:"15px" }}  >
                      
                         <CardMedia
                           className={classes.newsImg}
@@ -113,7 +113,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                           title="Test"
                         />
                        
-                        <Typography
+                        {/* <Typography
                           variant="body2"
                           color="textSecondary"
                           component="span"
@@ -137,7 +137,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                               }}
                             />
                              </RouterNavLink>
-                        </Typography>
+                        </Typography> */}
                        
               </Grid>
               }

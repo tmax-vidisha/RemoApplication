@@ -12,6 +12,7 @@ export const useStyles = makeStyles({
   newsImg: {
     paddingTop: "56.25%",
     borderRadius: "8px",
+    width:"100%",
   },
   createdDate: {
     paddingTop: "7px",
