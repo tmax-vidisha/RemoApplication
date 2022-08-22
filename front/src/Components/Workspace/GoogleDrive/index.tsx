@@ -13,7 +13,7 @@ var moment = require('moment-timezone');
 
 
 initializeFileTypeIcons(undefined);
-//kjkxjakSJ
+
 
 
 const WPGoogleDrive = () => {
