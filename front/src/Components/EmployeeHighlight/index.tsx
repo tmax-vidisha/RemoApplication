@@ -75,7 +75,7 @@ const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
 //     }, [])
 
     const { data, error, isLoading } =  props
-    // console.log(data,'980ccccccc9090')
+   console.log(data,'980ccccccc9090')
 
   return (
     
@@ -94,36 +94,115 @@ const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
     //               </>
     //           ))} */}
     //           ggggg
-    <AuthenticatedTemplate>
+
+    // <AuthenticatedTemplate>
       
-      {isLoading ?(
-        <SkeletonAnimation/>
-      )  :(    
-              <Paper>
+    //   {isLoading ?(
+    //     <SkeletonAnimation/>
+    //   )  :(    
+    //           <Paper>
               
-               <Card>
-               <AutoPlaySwipeableViews
-                  axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-                  index={activeStep}
-                  onChangeIndex={handleStepChange}
-                  enableMouseEvents
-            >
-                  {data?.response && <img  src ={data?.response.image}  height="120"/> 
+    //            <Card>
+    //            <AutoPlaySwipeableViews
+    //               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+    //               index={activeStep}
+    //               onChangeIndex={handleStepChange}
+    //               enableMouseEvents
+    //         >
+    //               {data?.response && <img  src ={data?.response.image}  height="120"/> 
                   
                   
-                  }
+    //               }
                   
-                  {data?.response && <img  src ={data?.response.image1}  height="120"/> }
-                  {data?.response && <img  src ={data?.response.image2}  height="120"/> }
-                </AutoPlaySwipeableViews>
+    //               {data?.response && <img  src ={data?.response.image1}  height="120"/> }
+    //               {data?.response && <img  src ={data?.response.image2}  height="120"/> }
+    //             </AutoPlaySwipeableViews>
                 
-              </Card>
+    //           </Card>
              
-              </Paper>
-       )}     
+    //           </Paper>
+    //    )}     
       
-    </AuthenticatedTemplate> 
+    // </AuthenticatedTemplate> 
+
     // <div>tttt</div>
+    <AuthenticatedTemplate>
+      <Paper elevation={0}>
+        {isLoading ? (
+          <SkeletonAnimation />
+        ) : (
+          <CardContent sx={{ pb: "16px!important" }}>
+            <AutoPlaySwipeableViews
+              axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+              index={activeStep}
+              onChangeIndex={handleStepChange}
+              enableMouseEvents
+            >
+             {data?.response &&
+                data?.response?.value.map((item: any, index: any) => {
+                  const { fields = {} } = item;
+                var EmpTitle = fields?.EmployeeTitle;
+                var empTitle = fields?.Title;
+                var DeptVal = fields?.Dept;
+                var img =  fields?.empUrl
+                var completePath;
+
+                if (fields?.EmpImage != null) {
+                  var profilePic = JSON.parse(fields?.EmpImage);
+                  if (profilePic.serverUrl) {
+                    completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
+                  } else {
+                    completePath = profilePic.serverRelativeUrl
+                  }
+                }
+
+                return (
+                  <div className={classes.emp} key={index}>
+                    {Math.abs(activeStep - index) <= 1 ? (
+                      <>
+                        <Typography
+                          variant="h6"
+                          component="h6"
+                          className={classes.empTop}
+                          color="secondary"
+                        >
+                          {EmpTitle}
+                        </Typography>
+                        <Paper sx={{ display: "flex" }} elevation={0}>
+                          <Box
+                            className={classes.profile}
+                            component="img"
+                            // src={completePath}
+                            src ={img}
+                            alt={EmpTitle}
+                          />
+                          <Box className={classes.desc}>
+                            <Typography
+                              variant="subtitle2"
+                              component="div"
+                            >
+                              {empTitle}
+                            </Typography>
+                            <Typography
+                              variant="caption"
+                              gutterBottom
+                              component="div"
+                              sx={{ opacity: 0.6 }}
+                            >
+                              {DeptVal}
+                            </Typography>
+                          </Box>
+                        </Paper>
+                      </>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </AutoPlaySwipeableViews>
+          </CardContent>
+        )}
+      </Paper>
+    </AuthenticatedTemplate>
   )
 }
 

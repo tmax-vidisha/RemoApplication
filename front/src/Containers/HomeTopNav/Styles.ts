@@ -8,9 +8,22 @@ export const useStyles = makeStyles({
     
   },
   button: {
-    borderRadius: 14,
-    width: 80,
-    height: 50,
+    // borderRadius: 14,
+    // width: 280,
+    // height: 50,
+    border:"1px solid #c9c9c9",
+    boxShadow:"-0.5px 2px 5px 2px #cccccc",
+    textTransform:"none",
+    "& .MuiTabs-indicator": {
+      display: "none",
+      backgroundColor: "orange"
+    },
+  //   '&:hover': {
+  //     backgroundColor: '#004C9B',
+  //     color: 'white',
+  //     opacity: 1,
+  //  },
+     
   },
 
   topClear: {

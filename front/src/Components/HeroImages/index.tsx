@@ -89,14 +89,13 @@ interface IFolderProps {
 
   const { data, error, isLoading } =  props
   console.log(data,'888ddd88txccccccccccccccctuytuytu888')
+
+
   return (
     // <div>HeroImages</div>
 <AuthenticatedTemplate>
-  <Box sx={{ flexGrow: 1, position: "relative" }}>
-      {/* {isLoading ?(
-        <SkeletonAnimation/>
-      )  :(    
-               */}
+  {/* <Box sx={{ flexGrow: 1, position: "relative" }}>
+     
               
             <Box   sx={{
               height: 252,
@@ -121,8 +120,58 @@ interface IFolderProps {
                 
              
              
-      {/* )}     */}
-     </Box> 
+      
+     </Box>  */}
+      <Box sx={{ flexGrow: 1, position: "relative" }}>
+        {isLoading ? (
+          <SkeletonAnimation />
+        ) : (
+          <>
+            <AutoPlaySwipeableViews
+              axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+              index={activeStep}
+              
+              onChangeIndex={handleStepChange}
+              enableMouseEvents
+            >
+              {data?.response &&
+                data?.response?.value.map((item: any, index: any) => {
+                  const { fields = {} } = item;
+                var HeroTitle = fields?.Title;
+                var img = fields?.heroUrl
+                var profilePic = JSON.parse(fields.HeroPic);
+                var completePath;
+                if (profilePic.serverUrl) {
+                  completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
+                } else {
+                  completePath = profilePic.serverRelativeUrl
+                }
+                return (
+                  <div key={index}>
+                    {Math.abs(activeStep - index) <= 2 ? (
+                      <Box
+                        component="img"
+                        sx={{
+                          height: 252,
+                          display: "block",
+                          overflow: "hidden",
+                          width: "100%",
+                          borderRadius: "5px",
+                          position: "relative",
+                        }}
+                        src={img}
+                        alt={HeroTitle}
+                      />
+                    ) : null}
+                  </div>
+                );
+              })}
+            </AutoPlaySwipeableViews>
+           
+          </>
+        )}
+      </Box>
+
     </AuthenticatedTemplate>
   )
 }
