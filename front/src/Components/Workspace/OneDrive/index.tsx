@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import { CardContent, Container, Grid, IconButton, Link, List, ListItem, ListItemText, Paper, Typography, } from '@mui/material';
 import { useStyles } from './Styles';
 import Box from '@mui/material/Box';
@@ -8,13 +7,18 @@ import CachedIcon from '@mui/icons-material/Cached';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import { useGetRecentFilesQuery } from '../../../services/APIs'
 import WorkspaceNavigation from '../WorkspaceNavigation';
+import AllFiles from './AllFiles';
+
+
+
 var moment = require('moment-timezone');
-const WPOneDrive= () => {
-    const { data, error, isLoading } =   useGetRecentFilesQuery('')
-    console.log(data,'uuuuuu')
+const WPOneDrive = () => {
+    const { data, error, isLoading } = useGetRecentFilesQuery('')
+    console.log(data, 'uuuuuu')
     const classes = useStyles();
-  return (
-    <AuthenticatedTemplate>
+
+    return (
+        <AuthenticatedTemplate>
             <Container className={classes.root}>
                 <Paper elevation={0}>
                     <Grid container className={classes.bannerTop} >
@@ -43,12 +47,13 @@ const WPOneDrive= () => {
                                     </IconButton>
                                 </Grid>
                             </Grid>
-
+                  
                             <Box>
                                 <Grid container>
                                     <Grid item xs={12}>
                                         <CardContent sx={{ pb: '4px!important' }}>
                                             <Typography
+
                                                 variant="h6"
                                                 component="h6"
                                                 color="secondary"
@@ -56,6 +61,7 @@ const WPOneDrive= () => {
                                             >
                                                 OneDrive
                                             </Typography>
+                                            <AllFiles/>
                                             <List className={classes.topList}>
                                                 {data &&
                                                     data?.map((item: any, index: any) => {
@@ -201,7 +207,7 @@ const WPOneDrive= () => {
                 </Paper>
             </Container>
         </AuthenticatedTemplate>
-  )
+    )
 }
 
 export default WPOneDrive
