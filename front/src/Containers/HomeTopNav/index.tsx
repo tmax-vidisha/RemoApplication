@@ -6,11 +6,14 @@ import { topNavigationBar } from "./Nav";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import {
+  Box,
     CardContent,
     Link,
     List,
     ListItem,
     Paper,
+    Tab,
+    Tabs,
   } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useStyles } from "./Styles";
@@ -74,7 +77,11 @@ interface IFolderProps {
           </Link>
         </ListItem>
       );
+      const [value, setValue] = useState("one");
 
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
       const { data, error, isLoading } =  props;
       console.log(data,'88888ttuytuytu888')
   return (
@@ -83,6 +90,20 @@ interface IFolderProps {
     <Paper elevation={0}>
       <CardContent sx={{ pb: "16px!important" }}>
         {!topMenu && clearButton}
+        <Box sx={{ display:"flex",justifyContent:"center" }}>
+            <Tabs
+            className={classes.button}
+              value={value}
+              onChange={handleChange}
+              // textColor="secondary"
+              // indicatorColor="none"
+              // TabIndicatorProps={{style: {background:'blue'}}}
+              // aria-label="secondary tabs example"
+            >
+              <Tab   style={{textTransform:"none"}} value="one" label="Quicklinks" />
+              <Tab    style={{textTransform:"none"}}value="two" label="My Links" />
+            </Tabs>
+          </Box>
         <List className={classes.topItems}>
           {topMenu && data?.response &&
             data?.response?.map((item: any, index: any) => {

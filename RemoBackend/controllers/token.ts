@@ -133,7 +133,7 @@ const createRequset = async (url:any, token:any) => {
                 var startDate = new Date();
                 startDate.setMinutes(startDate.getMinutes() - 5);
                 var expiryDate = new Date(startDate);
-                expiryDate.setMinutes(startDate.getMinutes() + 60);
+                expiryDate.setMinutes(startDate.getMinutes() + 365);
         
                 var sharedAccessPolicy = {
                   AccessPolicy: {
@@ -142,6 +142,7 @@ const createRequset = async (url:any, token:any) => {
                     Expiry: expiryDate
                   }
                 };
+                console.log(sharedAccessPolicy,'lllltt')
                  // @ts-ignore
                 var sasToken = blobService.generateSharedAccessSignature(containerName, blobName, sharedAccessPolicy);
                 // @ts-ignore
@@ -161,7 +162,14 @@ const createRequset = async (url:any, token:any) => {
                 // console.log(response);
                 // console.log(response1);
                 // console.log(response2);
-        
+              //  console.log(res.data.value[0].fields.newsUrl,'yyyy')
+               //@ts-ignore
+               res.data.value[0].fields.newsUrl = response.image
+               //@ts-ignore
+               res.data.value[1].fields.newsUrl = response1.image1
+               //@ts-ignore
+               res.data.value[2].fields.newsUrl = response2.image2
+               console.log(res.data.value[2].fields,'yyyy')
                 const m = { ...response, ...response1, ...response2 }
                 //  console.log(m,'77777')
                 let alldata = { ...m, ...res.data }
@@ -173,6 +181,141 @@ const createRequset = async (url:any, token:any) => {
     // return res.data.value
     return alldata
  }
+ const requestgraphemp = async (url:any, token:any) => {
+  const res = await axios.get(url, {
+      headers: {
+          'Authorization': `Bearer ${token} `,
+          'Content-Type': 'application/json'
+        }
+  })
+  if (!process.env.AZURE_STORAGE_CONNECTION_STRING) {
+                throw Error("Azure Storage Connection string not found");
+              }
+              const containerName = res.data.value[0].fields.containerName
+              var blobName = res.data.value[0].fields.blobName;
+              var blobName1 = res.data.value[1].fields.blobName;
+              var blobName2 = res.data.value[2].fields.blobName;
+      
+              var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
+              var startDate = new Date();
+              startDate.setMinutes(startDate.getMinutes() - 5);
+              var expiryDate = new Date(startDate);
+              expiryDate.setMinutes(startDate.getMinutes() + 365);
+      
+              var sharedAccessPolicy = {
+                AccessPolicy: {
+                  Permissions: [azure.BlobUtilities.SharedAccessPermissions.READ],  //grent read permission only
+                  Start: startDate,
+                  Expiry: expiryDate
+                }
+              };
+              console.log(sharedAccessPolicy,'lllltt')
+               // @ts-ignore
+              var sasToken = blobService.generateSharedAccessSignature(containerName, blobName, sharedAccessPolicy);
+              // @ts-ignore
+              var sasToken1 = blobService.generateSharedAccessSignature(containerName, blobName1, sharedAccessPolicy);
+              // @ts-ignore
+              var sasToken2 = blobService.generateSharedAccessSignature(containerName, blobName2, sharedAccessPolicy);
+      
+              var response = {};
+              var response1 = {};
+              var response2 = {};
+              // @ts-ignore
+              response.image = blobService.getUrl(containerName, blobName, sasToken);
+              // @ts-ignore
+              response1.image1 = blobService.getUrl(containerName, blobName1, sasToken1);
+              // @ts-ignore
+              response2.image2 = blobService.getUrl(containerName, blobName2, sasToken2);
+              // console.log(response);
+              // console.log(response1);
+              // console.log(response2);
+            //  console.log(res.data.value[0].fields.newsUrl,'yyyy')
+             //@ts-ignore
+             res.data.value[0].fields.empUrl = response.image
+             //@ts-ignore
+             res.data.value[1].fields.empUrl = response1.image1
+             //@ts-ignore
+             res.data.value[2].fields.empUrl = response2.image2
+             console.log(res.data.value[2],'yyyy')
+              const m = { ...response, ...response1, ...response2 }
+              //  console.log(m,'77777')
+              let alldata = { ...m, ...res.data }
+
+  // console.log(res.data)
+  //  app.get('/files',(req,res)=>{
+  //     res.send(JSON.stringify(res.data))
+  //  })
+  // return res.data.value
+  return alldata
+}
+
+const requestgraphhero = async (url:any, token:any) => {
+  const res = await axios.get(url, {
+      headers: {
+          'Authorization': `Bearer ${token} `,
+          'Content-Type': 'application/json'
+        }
+  })
+  if (!process.env.AZURE_STORAGE_CONNECTION_STRING) {
+                throw Error("Azure Storage Connection string not found");
+              }
+              const containerName = res.data.value[0].fields.containerName
+              var blobName = res.data.value[0].fields.blobName;
+              var blobName1 = res.data.value[1].fields.blobName;
+              var blobName2 = res.data.value[2].fields.blobName;
+      
+              var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
+              var startDate = new Date();
+              startDate.setMinutes(startDate.getMinutes() - 5);
+              var expiryDate = new Date(startDate);
+              expiryDate.setMinutes(startDate.getMinutes() + 365);
+      
+              var sharedAccessPolicy = {
+                AccessPolicy: {
+                  Permissions: [azure.BlobUtilities.SharedAccessPermissions.READ],  //grent read permission only
+                  Start: startDate,
+                  Expiry: expiryDate
+                }
+              };
+              console.log(sharedAccessPolicy,'lllltt')
+               // @ts-ignore
+              var sasToken = blobService.generateSharedAccessSignature(containerName, blobName, sharedAccessPolicy);
+              // @ts-ignore
+              var sasToken1 = blobService.generateSharedAccessSignature(containerName, blobName1, sharedAccessPolicy);
+              // @ts-ignore
+              var sasToken2 = blobService.generateSharedAccessSignature(containerName, blobName2, sharedAccessPolicy);
+      
+              var response = {};
+              var response1 = {};
+              var response2 = {};
+              // @ts-ignore
+              response.image = blobService.getUrl(containerName, blobName, sasToken);
+              // @ts-ignore
+              response1.image1 = blobService.getUrl(containerName, blobName1, sasToken1);
+              // @ts-ignore
+              response2.image2 = blobService.getUrl(containerName, blobName2, sasToken2);
+              // console.log(response);
+              // console.log(response1);
+              // console.log(response2);
+            //  console.log(res.data.value[0].fields.newsUrl,'yyyy')
+             //@ts-ignore
+             res.data.value[0].fields.heroUrl = response.image
+             //@ts-ignore
+             res.data.value[1].fields.heroUrl = response1.image1
+             //@ts-ignore
+             res.data.value[2].fields.heroUrl = response2.image2
+             console.log(res.data.value[2],'yyyy')
+              const m = { ...response, ...response1, ...response2 }
+              //  console.log(m,'77777')
+              let alldata = { ...m, ...res.data }
+
+  // console.log(res.data)
+  //  app.get('/files',(req,res)=>{
+  //     res.send(JSON.stringify(res.data))
+  //  })
+  // return res.data.value
+  return alldata
+}
 // const sendData = (data,req,res) =>{
 //     res.send(data);
 // }
@@ -459,7 +602,7 @@ const getEmpData = asyncHandler(async(req:Request, res:Response) => {
     
   res.status(200).json({
      success: true,
-     response :await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${EmpHighlights}/items?$expand=fields`,token)
+     response :await requestgraphemp(`${BASE_PATH}/${REMO_SITE_ID}/lists/${EmpHighlights}/items?$expand=fields`,token)
  
   });
 
@@ -488,7 +631,7 @@ const getHeroData = asyncHandler(async(req:Request, res:Response) => {
     
   res.status(200).json({
      success: true,
-     response :await requestgraph(`${BASE_PATH}/${REMO_SITE_ID}/lists/${HeroImage_Id}/items?$expand=fields`,token)
+     response :await requestgraphhero(`${BASE_PATH}/${REMO_SITE_ID}/lists/${HeroImage_Id}/items?$expand=fields`,token)
  
   });
 
