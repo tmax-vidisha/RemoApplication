@@ -1,11 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import useCustom from '../../../useCustom';
+// import book from '../../../Assets/Files/Book.xlsx';
+//import excel from '../../../Assets/Files/Book.xlsx';
+
+// let fileName = "Book.xlsx";
+// let workbook = excel.readFile(fileName);
+// console.log(workbook);
 
 const AllFiles = () => {
 
 const {token} =useCustom();
-/*
+
     const launchSaveToOneDrive = (OneDrive: any) => {
         var odOptions = {
             clientId: "[the application id]",
@@ -74,7 +80,7 @@ const {token} =useCustom();
         upload(input.files[0])
 
     };
-    */
+   
     const [state, setState] = useState();
 /*
     // get file to OneDrive
@@ -93,19 +99,25 @@ FileStream fileStream = newFileStream(filePath, FileMode.Open);
         .PutAsync<DriveItem>(fileStream).Result;
 
         */
+
         const createEmptyExcel = async (): Promise<string> => {
-            const file = await fetch('../../front/src/Assets/Files/Book.xlsx').then(res => res.blob())
+            const file = await fetch('../../../Assets/Files/Book.xlsx').then(res => res.blob())
           
             const res = await fetch(
+            //   `https://graph.microsoft.com/v1.0/me/drive/root:/${file}.xlsx:/content`,
+            //https://graph.microsoft.com/v1.0/me/drive/root/children
+           // `https://graph.microsoft.com/v1.0/me/drive/items/{parent-id}:/${file}.xlsx:/content`,
               `https://graph.microsoft.com/v1.0/me/drive/root:/${file}.xlsx:/content`,
               {
                 method: 'PUT',
                 headers: {
                   Authorization: `Bearer ${token}`,
-                  //'Content-Type': 'application/json'
-                  'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                  //'Content-Type': 'application/vnd.ms-excel'
+                 //'Content-Type': 'application/json'
+                  'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                 // 'Content-Type': 'application/vnd.ms-excel'
                   //'Content-Type': 'application/vnd.ms-excel.sheet.macroEnabled.12'
+                //   'Content-Type': 'text/plain'
+            //    ' Content-Type':"application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8"
                 },
                 body: file
               })
@@ -135,12 +147,36 @@ FileStream fileStream = newFileStream(filePath, FileMode.Open);
         
             return await d.json();
         }
+
+
+function test() {
+    var Excel = new ActiveXObject("Excel.Application");
+    Excel.Visible = true;
+    Excel.Workbooks.Open("teste.xlsx");
+  }
 */
+ const ExportToExcel = ( apiData:any, fileName:any ) => {
+    const fileType =
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+    const fileExtension = ".xlsx";
+  
+    const exportToCSV = (apiData:any, fileName:any, XLSX:any, FileSaver:any) => {
+      const ws = XLSX.utils.json_to_sheet(apiData);
+      const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+      const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+      const data = new Blob([excelBuffer], { type: fileType });
+      FileSaver.saveAs(data, fileName + fileExtension);
+    };
+}
+
     return (
         <div>
             <input id="fileUploadControl" name="fileUploadControl" type="file" />
             <button onClick={createEmptyExcel}>Save to OneDrive</button>
             <button onClick={createEmptyExcel}>upload to OneDrive</button>
+            {/* <button  type='submit' onClick={(e) => exportToCSV(apiData, fileName)}>Create Excell</button> */}
+            <button  type='submit' onClick={ ()=>ExportToExcel}>Create Excel</button>
+           
             <div>
                 {/* <Uploader ref={uploader}
                     src={images}
