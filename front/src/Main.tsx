@@ -38,6 +38,7 @@ import FolderScreen from './Components/Workspace/Sharepoint/Folders';
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "./index";
 import SubFolder from './Components/Workspace/Sharepoint/components/SubFolder';
+// import {LeftMenu} from './Components/WorkSpaceOne/LeftMenu';
 const theme = createTheme({
     palette: {
         background: {
@@ -220,6 +221,9 @@ const Main = () => {
                              <Route
                               path="/workspace/drives/subfolders"
                               element={<SubFolder />} />
+                             {/* <Route
+                              path="/WorkSpaceOne/LeftMenu"
+                              element={<LeftMenu />} /> */}
                         </Routes>
                     </ThemeProvider>
                 </Router>
