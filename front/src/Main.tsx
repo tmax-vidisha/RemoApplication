@@ -38,8 +38,10 @@ import FolderScreen from './Components/Workspace/Sharepoint/Folders';
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "./index";
 import SubFolder from './Components/Workspace/Sharepoint/components/SubFolder';
+
 import { Grid, Paper, Typography } from '@mui/material';
 import Footer from './Components/Footer';
+
 const theme = createTheme({
     palette: {
         background: {
@@ -227,8 +229,19 @@ const Main = () => {
                                 path="/workspace/drives/sites"
                                 element={<SitesScreen />} />
                             <Route
+
+                              path="/workspace/drives/sites"
+                              element={<SitesScreen  />} />
+                             <Route
+                              path="/workspace/drives/subfolders"
+                              element={<SubFolder />} />
+                             {/* <Route
+                              path="/WorkSpaceOne/LeftMenu"
+                              element={<LeftMenu />} /> */}
+
                                 path="/workspace/drives/subfolders"
                                 element={<SubFolder />} />
+
                         </Routes>
                     </ThemeProvider>
                     <Footer />
