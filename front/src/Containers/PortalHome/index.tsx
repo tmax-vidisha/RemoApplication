@@ -26,9 +26,10 @@ import HomeTopNav from '../HomeTopNav';
 import SocialMedia from '../../Components/SocialMedia';
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
-import { Container, Grid, Paper, Theme } from "@mui/material";
+import { Container, Grid, Paper, Theme, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useUpdateTokenMutation,useCreateResponseMutation } from '../../services/APIs';
+import Mymeeting from '../../Components/Mymeeting';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -167,9 +168,18 @@ const PortalHome = () => {
           {/* hghgjhgjhjhjhjhjhjhj */}
           
         </Grid>
+        {/* <Grid item xs={8}>
+            <Mymeeting />
+          </Grid> */}
       </Grid>
 
       <Grid container spacing={2}>
+      <Grid item xs={8}>
+            <Mymeeting />
+          </Grid>
+          <Grid item xs={4}>
+            <EmpHighlightPage />
+            </Grid>
         <Grid item xs={8}>
           <Grid item xs={12}>
             <NewsPage  />
@@ -188,12 +198,13 @@ const PortalHome = () => {
             spacing={2}
           >
             <Grid item xs={6} style={{ paddingLeft: 0 }}>
-              <EventsPage  />
+            <Gallery  />
+              {/* <EventsPage  /> */}
               {/* hhjfghg */}
             </Grid>
             <Grid item xs={6} style={{ paddingRight: 0 }}>
-              <AnnouncementPage  />
-              {/* gththhdhdh */}
+              {/* <AnnouncementPage  /> */}
+              <SocialMedia />
             </Grid>
           </Grid>
           <Grid
@@ -210,23 +221,24 @@ const PortalHome = () => {
           >
             <Grid item xs={6} style={{ paddingLeft: 0 }}>
               
-                {/* <Gallery gallery={gallerydata} /> */}
-              bfbbbfbfbfb
+                {/* <Gallery  /> */}
+              {/* bfbbbfbfbfb */}
             </Grid>
             <Grid item xs={6} style={{ paddingRight: 0 }}>
-              <SocialMedia />
+              {/* <SocialMedia /> */}
             </Grid>
           </Grid>
         </Grid>
         <Grid item xs={4}>
-           <EmpHighlightPage /> 
+           {/* <EmpHighlightPage />  */}
            {/* gfgfghghghghg */}
           <Grid item xs={12} style={{ marginTop: 16 }}>
-            <Weather />
+            {/* <Weather /> */}
           </Grid>
 
           <Grid item xs={12} style={{ marginTop: 16 }}>
-            <QuicklinkPage  />
+          <EventsPage  />
+            {/* <QuicklinkPage  /> */}
             {/* hthhfhfhfgh */}
           </Grid>
           <Grid item xs={12} style={{ marginTop: 16 }}>
