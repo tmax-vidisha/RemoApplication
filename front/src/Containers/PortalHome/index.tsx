@@ -30,6 +30,9 @@ import { Container, Grid, Paper, Theme, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useUpdateTokenMutation,useCreateResponseMutation } from '../../services/APIs';
 import Mymeeting from '../../Components/Mymeeting';
+import LeftMenu from './../../Components/WorkSpaceOne/LeftMenu';
+import { Link } from 'react-router-dom';
+import WorkSpaceOne from './../../Components/WorkSpaceOne/index';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,6 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const PortalHome = () => {
+ 
     const classes = useStyles();
     const pca = new PublicClientApplication(configuration);
     const [token, setToken] = useState<string>();
@@ -164,13 +168,17 @@ const PortalHome = () => {
           {/* fefefefefefefe */}
         </Grid>
         <Grid item xs={12} style={{ marginBottom: "16px", paddingTop: "16px",position: "relative" }}>
-          <HomeNavigationPage />
+         {/* <Link to="/WorkSpaceOne/LeftMenu"><HomeNavigationPage /></Link>  */}
           {/* hghgjhgjhjhjhjhjhjhj */}
+          <HomeNavigationPage />
+         
           
         </Grid>
         {/* <Grid item xs={8}>
             <Mymeeting />
           </Grid> */}
+           {/* <LeftMenu/> */}
+           <WorkSpaceOne/>
       </Grid>
 
       <Grid container spacing={2}>
