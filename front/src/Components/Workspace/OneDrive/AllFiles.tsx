@@ -1,8 +1,10 @@
+/* eslint-disable */
 import React from 'react';
 import { useState, useEffect } from 'react';
+import Spreadsheet from 'react-spreadsheet';
 import useCustom from '../../../useCustom';
 // import book from '../../../Assets/Files/Book.xlsx';
-//import excel from '../../../Assets/Files/Book.xlsx';
+// import file from '../../../Assets/Files/Book.xlsx';
 
 // let fileName = "Book.xlsx";
 // let workbook = excel.readFile(fileName);
@@ -113,18 +115,18 @@ FileStream fileStream = newFileStream(filePath, FileMode.Open);
                 headers: {
                   Authorization: `Bearer ${token}`,
                  //'Content-Type': 'application/json'
-                  'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                 // 'Content-Type': 'application/vnd.ms-excel'
+                 // 'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                 'Content-Type': 'application/vnd.ms-excel'
                   //'Content-Type': 'application/vnd.ms-excel.sheet.macroEnabled.12'
                 //   'Content-Type': 'text/plain'
             //    ' Content-Type':"application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8"
-                },
+              
+        },
                 body: file
               })
-              console.log(file,"uploaddddddddddd");
+              console.log(file,"upload excel file");
 
-             if(res.ok == false) throw new Error(res.statusText)
-            
+             if(res.ok == false) throw new Error(res.statusText)            
             const json = await res.json()
           
             return json.id
@@ -169,6 +171,50 @@ function test() {
     };
 }
 
+function created(args:any,spreadsheet:any ) {
+    fetch("https://js.syncfusion.com/demos/ejservices/data/Spreadsheet/LargeData.xlsx") // fetch the remote url
+        .then((response) => {
+        response.blob().then((fileBlob) => {
+            var file = new File([fileBlob], "Sample.xlsx"); //convert the blob into file
+            spreadsheet.open({ file: file }); // open the file into Spreadsheet
+        });
+    });
+}
+/*
+function Upload() {
+    const fileUpload = (document.getElementById('fileUpload'));
+    const regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+    if (regex.test(fileUpload.value.toLowerCase())) {
+        let fileName = fileUpload.files[0].name;
+        if (typeof (FileReader) !== 'undefined') {
+            const reader = new FileReader();
+            if (reader.readAsBinaryString) {
+                reader.onload = (e) => {
+                    processExcel(reader.result);
+                };
+                reader.readAsBinaryString(fileUpload.files[0]);
+            }
+        } else {
+            console.log("This browser does not support HTML5.");
+        }
+    } else {
+        console.log("Please upload a valid Excel file.");
+    }
+}
+
+function processExcel(data:any) {
+    const workbook = XLSX.read(data, {type: 'binary'});
+    const firstSheet = workbook.SheetNames[0];
+    const excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+
+    console.log(excelRows);
+}
+*/
+
+// const [data, setData] = useState([
+//     [{ value: "GfG1" }, { value: "GfG3" }],
+//     [{ value: "GfG2" }, { value: "GfG4" }],
+//   ]);
     return (
         <div>
             <input id="fileUploadControl" name="fileUploadControl" type="file" />
@@ -176,19 +222,15 @@ function test() {
             <button onClick={createEmptyExcel}>upload to OneDrive</button>
             {/* <button  type='submit' onClick={(e) => exportToCSV(apiData, fileName)}>Create Excell</button> */}
             <button  type='submit' onClick={ ()=>ExportToExcel}>Create Excel</button>
-           
+            {/* <input class="upload-excel" type="file" id="fileUpload" onchange="Upload()"/> */}
             <div>
-                {/* <Uploader ref={uploader}
-                    src={images}
-                    theme="sky"
-                    label="Upload max 5 photos"
-                    buttonText={"Upload"}
-                    action={"http://localhost/ok/upload.php"}
-                    filetypes={["png", "jpg", "pdf"]}
-                    image={false}
-                    onResult={resultUpload.bind(this)}
-                    onRemoved={onRemoved.bind(this)}
-                    hideOnSuccess={true} /> */}
+                
+                    {/* <SpreadsheetComponent 
+                     openUrl='https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/open' 
+                     created={created.bind(this)}>
+                    </SpreadsheetComponent> */}
+                       {/* <Spreadsheet data={data} onChange={() =>setData} /> */}
+                       {/* <button><a href={file} download="your file name">Download</a></button> */}
             </div>
         </div>
     );

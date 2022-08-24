@@ -12,12 +12,18 @@ import { AuthenticatedTemplate } from '@azure/msal-react';
 import { useStyles } from './Styles';
 import ClearIcon  from '@mui/icons-material/Clear';
 import { NavLink as RouterNavLink } from "react-router-dom";
-
+import DocumentIcon from "../../Assets/Images/Document.svg";
+import filesIcon from "../../Assets/Images/files.svg";
+import recentIcon from "../../Assets/Images/recent.svg";
+import searchIcon from "../../Assets/Images/search.svg";
+import sharedIcon from "../../Assets/Images/shared.svg";
+import starredIcon from "../../Assets/Images/starred.svg";
+import trashIcon from "../../Assets/Images/trash.svg";
 
 interface IFolderProps {
-    data: any,
-    error: any,
-    isLoading: any
+    data?: any,
+    error?: any,
+    isLoading?: any
 }
 
 const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
@@ -45,7 +51,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     );
 
     const { data, error, isLoading } = props;
-    console.log(data, '88888ttuytuytu888')
+    console.log(data, 'Left menu data ')
     return (
         <div>
             <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
@@ -54,7 +60,8 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <TopicTwoToneIcon />
+                                    {/* <TopicTwoToneIcon /> */}
+                                    <img src={filesIcon} alt=" MyFiles"/>
                                 </ListItemIcon>
                                 <ListItemText primary="My Files" />
                             </ListItemButton>
@@ -62,7 +69,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <ShareTwoToneIcon />
+                                <img src={sharedIcon} alt="shared"/>
                                 </ListItemIcon>
                                 <ListItemText primary="Shared with me" />
                             </ListItemButton>
@@ -70,33 +77,33 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <ShareTwoToneIcon />
+                                <img src={DocumentIcon} alt="Document"/>
                                 </ListItemIcon>
-                                <ListItemText primary="Shared with me" />
+                                <ListItemText primary="Document Library" />
                             </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <ShareTwoToneIcon />
+                                <img src={recentIcon} alt="recent"/>
                                 </ListItemIcon>
-                                <ListItemText primary="Shared with me" />
+                                <ListItemText primary="Recent" />
                             </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <ShareTwoToneIcon />
+                                <img src={starredIcon} alt="starred"/>
                                 </ListItemIcon>
-                                <ListItemText primary="Shared with me" />
+                                <ListItemText primary="Starred" />
                             </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <ShareTwoToneIcon />
+                                <img src={trashIcon} alt="trash"/> 
                                 </ListItemIcon>
-                                <ListItemText primary="Shared with me" />
+                                <ListItemText primary="Trash" />
                             </ListItemButton>
                         </ListItem>
                     </List>
@@ -104,7 +111,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
 
 
             </Box>
-            <AuthenticatedTemplate>
+            {/* <AuthenticatedTemplate>
                 <Paper elevation={0}>
                     <CardContent sx={{ pb: "16px!important" }}>
                         {!topMenu && clearButton}
@@ -200,10 +207,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     >
                                                         {fields.Title}
                                                     </RouterNavLink>
-                                                    {/* <Link className={classes.topLink} href={fields.Path}>
-                        
-                      </Link> */}
-                                                </ListItem>
+                                         </ListItem>
                                             </>
                                         );
                                     }
@@ -211,7 +215,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                         </List>
                     </CardContent>
                 </Paper>
-            </AuthenticatedTemplate>
+            </AuthenticatedTemplate> */}
 
         </div>
     );
