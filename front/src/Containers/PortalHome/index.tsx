@@ -30,8 +30,8 @@ import { configuration } from "../../index";
 import { Container, Grid, Paper, Theme, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useUpdateTokenMutation,useCreateResponseMutation } from '../../services/APIs';
-import Mymeeting from '../../Components/Mymeeting';
-import LeftMenu from './../../Components/WorkSpaceOne/LeftMenu';
+// import Mymeeting from '../../Components/Mymeeting';
+// import LeftMenu from './../../Components/WorkSpaceOne/LeftMenu';
 import { Link } from 'react-router-dom';
 import WorkSpaceOne from './../../Components/WorkSpaceOne/index';
 
