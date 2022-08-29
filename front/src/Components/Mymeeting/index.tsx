@@ -97,7 +97,7 @@ const Mymeeting = () => {
                   June 12, 2022
                 </Typography>
               </Stack>
-              <Grid container item xs={12} spacing={0}>
+              <Grid container item xs={12} spacing={0} style={{overflowY:"scroll"}}>
                 <Grid item xs={0.8}>
                   <Typography className={classes.meetTime} >09 AM</Typography>
                   <Typography className={classes.meetTime} >10 AM</Typography>

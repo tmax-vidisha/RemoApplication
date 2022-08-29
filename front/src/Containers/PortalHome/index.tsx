@@ -178,7 +178,7 @@ const PortalHome = () => {
             <Mymeeting />
           </Grid> */}
            {/* <LeftMenu/> */}
-           <WorkSpaceOne/>
+           {/* <WorkSpaceOne/> */}
       </Grid>
 
       <Grid container spacing={2}>
