@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React,{useEffect,useState} from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Helmet } from "react-helmet";
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { AuthenticatedTemplate } from "@azure/msal-react";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { AuthenticatedTemplate} from "@azure/msal-react";
 import Welcome from './Welcome';
 import UserQuickLinks from './Components/UserQuickLinks';
 import CeoMessageInput from './Components/CeoMessageInput';
@@ -13,7 +13,7 @@ import HeroInput from './Components/HeroInput';
 import EmployeeHighlightInput from './Components/EmployeeHighlightInput';
 import NewsInput from './Components/NewsInput';
 // import EventsReadMore from './Components/EventsReadMore';
-import {
+import { 
     EventsPageMore,
     CeoPageMore,
     CeoInputPage,
@@ -25,7 +25,7 @@ import {
     NewsInputPage,
     EventsInputPage,
     EmpHighlightInputPage
-} from './Pages';
+     } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';
 import NewsReadMore from './Components/NewsReadMore';
@@ -38,9 +38,14 @@ import FolderScreen from './Components/Workspace/Sharepoint/Folders';
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "./index";
 import SubFolder from './Components/Workspace/Sharepoint/components/SubFolder';
+
 import { Grid, Paper, Typography } from '@mui/material';
 import Footer from './Components/Footer';
 import UploadFile from './UploadFile';
+
+import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
+
+
 const theme = createTheme({
     palette: {
         background: {
@@ -71,7 +76,7 @@ const Main = () => {
     //           account: accounts[0]
     //         }
     //         const accessToken = await pca.acquireTokenSilent(request).then((response) => {
-
+             
     //           // updateToken(response.accessToken);
     //            setToken(response.accessToken)
     //           // console.log(token,'uuuuuu')
@@ -80,10 +85,10 @@ const Main = () => {
     //           console.log(error);
     //           return null;
     //         });
-
-
+    
+    
     //       }
-
+    
     //       return null;
     //     }
     //     getAccessToken();
@@ -96,8 +101,8 @@ const Main = () => {
     //     // console.log(datas.Event)
     //     // function send (){
     //     //       if (token) {
-
-
+          
+          
     //     //         const requestOptions = {
     //     //           method: 'POST',
     //     //           headers: { 'Content-Type': 'application/json' },
@@ -108,19 +113,19 @@ const Main = () => {
     //     //         // .then(response => console.log(response))
     //     //          .then(response => response.json())
     //     //          .then(data =>setData1(data));
-
+          
     //     //       }
-
+          
     //     //     }
     //     //     send();
-
-
+         
+        
     //   }, [])
     //   useEffect(()=>{
     //   function send (){
     //     if (token) {
-
-
+    
+    
     //       const requestOptions = {
     //         method: 'POST',
     //         headers: { 'Content-Type': 'application/json' },
@@ -131,13 +136,13 @@ const Main = () => {
     //       // .then(response => console.log(response))
     //        .then(response => response.json())
     //        .then(data =>setData1(data));
-
+    
     //     }
-
+    
     //   }
     //   send();
     // },[token])
-
+    
     // // console.log(data1,'u7i7i87i')
     // const quicklinkdata = data1.QuickLinks;
     // const ceomsgdata = data1.CeoMsg;
@@ -153,7 +158,7 @@ const Main = () => {
                 </Helmet>
                 <Router>
                     <ThemeProvider theme={theme}>
-                        <AuthenticatedTemplate>
+                    <AuthenticatedTemplate>
                             <Header />
                             <Grid item xs={12}>
                                 <Paper style={{ height: "60px", display: "flex", justifyContent: "center", alignItems: "center" }} elevation={0}>
@@ -170,7 +175,7 @@ const Main = () => {
                             />
                             <Route
                                 path="/userquicklink"
-                                element={<UserQuickLinkPage />}
+                                element={<UserQuickLinkPage/>}
                             />
                             <Route
                                 path="/CEOInput"
@@ -192,33 +197,40 @@ const Main = () => {
                                 path="/EmpHighInput"
                                 element={<EmpHighlightInputPage />}
                             />
-                            <Route
+                             <Route
                                 path="/NewsInput"
                                 element={<NewsInputPage />}
                             />
                             <Route
                                 path="/NewsInfo"
-                                element={<NewsPageMore />}
+                                element={<NewsPageMore  />}
                             />
-                            <Route
+                             <Route
                                 path="/EventReadMore"
-                                element={<EventsPageMore />}
+                                element={<EventsPageMore  />}
+                            />
+                             <Route
+                               path="/AnnouncementReadMore"
+                               element={<AnnouncementPageMore  />}
+                            />
+                             <Route
+                               path="/CeoInfo"
+                               element={<CeoPageMore   />}
                             />
                             <Route
-                                path="/AnnouncementReadMore"
-                                element={<AnnouncementPageMore />}
-                            />
+                               path="/workspace/dropbox"
+                               element={<WPDropBox />} />
                             <Route
-                                path="/CeoInfo"
-                                element={<CeoPageMore />}
-                            />
+                              path="/workspace/google-drive"
+                              element={<WPGoogleDrive />} />
                             <Route
-                                path="/workspace/dropbox"
-                                element={<WPDropBox />} />
+                              path="/Myfiles/"
+                              element={<WPOneDrive />} />
                             <Route
-                                path="/workspace/google-drive"
-                                element={<WPGoogleDrive />} />
+                              path="/workspace/drives/folders"
+                              element={<FolderScreen />} />
                             <Route
+
                                 path="/Myfiles/"
                                 element={<WPOneDrive />} />
                             <Route
@@ -233,6 +245,15 @@ const Main = () => {
                             <Route
                                 path="/upload"
                                 element={<UploadFile />} />    
+
+                              
+                             <Route
+                              path="/workspace/drives/subfolders"
+                              element={<SubFolder />} />
+                             <Route
+                              path="/WorkSpaceOne/LeftMenu"
+                              element={<LeftMenu />} />
+
                         </Routes>
                     </ThemeProvider>
                     <Footer />
