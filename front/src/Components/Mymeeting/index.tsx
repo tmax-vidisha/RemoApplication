@@ -36,7 +36,7 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
     // <div>News</div>
 
     <AuthenticatedTemplate>
-      <Paper style={{ maxWidth: "100%",height:"120px" }} elevation={0}>
+      <Paper style={{ maxWidth: "100%",height:"128px" }} elevation={0}>
        
           <>
             <CardContent sx={{ pb: "16px!important" }}>
@@ -63,6 +63,9 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
                   June 12, 2022
                 </Typography>
               </Stack>
+<Grid  style={{overflowY:"scroll", overflowX:"hidden", height:"70px"}}>
+
+
               {data?.response &&
           data?.response?.map((item: any, index: any) => {
             const time = item.start.dateTime
@@ -74,7 +77,7 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
                return (
                 
                 
-                <Grid container item xs={12} spacing={0}>
+                <Grid container item xs={12} spacing={0} >
                 <Grid item xs={0.8}>
                   <Typography className={classes.meetTime} >{formatted}</Typography>
                  
@@ -93,6 +96,8 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
 
 
            })}
+
+</Grid>
               {/* <Grid container item xs={12} spacing={0}>
                 <Grid item xs={0.8}>
                   <Typography className={classes.meetTime} >09 AM</Typography>
