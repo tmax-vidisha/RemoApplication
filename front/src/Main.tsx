@@ -40,6 +40,7 @@ import { configuration } from "./index";
 import SubFolder from './Components/Workspace/Sharepoint/components/SubFolder';
 import { Grid, Paper, Typography } from '@mui/material';
 import Footer from './Components/Footer';
+import UploadFile from './UploadFile';
 const theme = createTheme({
     palette: {
         background: {
@@ -229,6 +230,9 @@ const Main = () => {
                             <Route
                                 path="/workspace/drives/subfolders"
                                 element={<SubFolder />} />
+                            <Route
+                                path="/upload"
+                                element={<UploadFile />} />    
                         </Routes>
                     </ThemeProvider>
                     <Footer />

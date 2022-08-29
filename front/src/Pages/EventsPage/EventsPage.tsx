@@ -8,7 +8,7 @@ import { AuthenticatedTemplate } from '@azure/msal-react';
 const EventsPage = () => {
     const {token} = useCustom();
     const { data, error, isLoading } = useGetAllEventsQuery(token)
-    //  console.log(data,'88888ttuytuytu888')
+     console.log(data,'events')
   return (
     
     <AuthenticatedTemplate>

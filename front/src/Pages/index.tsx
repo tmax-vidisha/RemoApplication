@@ -18,6 +18,7 @@ import UserQuickLinkPage from "./QuickLinkPage/UserQuickLinkPage";
 import NewsInputPage from "./NewsPage/NewsInputPage";
 import AnnouncementInputPage from "./AnnouncementPage/AnnouncementInputPage";
 import CeoInputPage from "./CeoPage/CeoInputPage";
+import MeetingsPage from "./MeetingsPage/MeetingsPage";
 export {
     
         EventsPage,
@@ -39,6 +40,7 @@ export {
         AnnouncementPageMore,
         UserQuickLinkPage,
         HeroInputPage,
-        NewsInputPage
+        NewsInputPage,
+        MeetingsPage
 
       };
