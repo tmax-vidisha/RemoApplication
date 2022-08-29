@@ -19,7 +19,8 @@ import {
         HeroImagePage,
         QuicklinkPage,
         HomeNavigationPage,
-        AnnouncementPage
+        AnnouncementPage,
+        MeetingsPage
       } from '../../Pages';
 import Announcement from '../../Components/Announcement';
 import HomeTopNav from '../HomeTopNav';
@@ -183,7 +184,9 @@ const PortalHome = () => {
 
       <Grid container spacing={2}>
       <Grid item xs={8}>
-            <Mymeeting />
+            {/* <Mymeeting /> */}
+            {/* hhhhhhhhhhhhhh */}
+            <MeetingsPage/>
           </Grid>
           <Grid item xs={4}>
             <EmpHighlightPage />

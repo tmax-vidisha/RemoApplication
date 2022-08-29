@@ -13,65 +13,31 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import AccessTimeIcon from "@mui/icons-material/Event";
 import {
-  useGetNewsQuery,
-  useUpdateNewsTokenMutation,
-  useGetAllNewsQuery,
+  useGetAllMeetingsQuery
 } from "../../services/APIs";
 import { useStyles } from "./Styles";
+import useCustom from "../../useCustom";
 import SkeletonAnimation from "../../Containers/Skeleton";
 var moment = require("moment-timezone");
 interface IFolderProps {
-  news: any;
-  // onClick: any;
-  // onDownload?: (id: string) => void;
-  // onDelete?: (id: string) => void;
-  // onRename?: (id: string, name: string) => void;
-  // onShare?: (id: string) => void;
+  data:any, 
+  error:any,
+  isLoading:any
 }
 
-const Mymeeting = () => {
-  // const News: React.FC<IFolderProps> = (props: IFolderProps) => {
+// const Mymeeting = () => {
+const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const pca = new PublicClientApplication(configuration);
-  const [token, setToken] = useState<string>();
-  // const [updateToken,{data,isLoading} ] = useUpdateNewsTokenMutation();
-  // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
-  const accounts = pca.getAllAccounts();
-  useEffect(() => {
-    async function getAccessToken() {
-      if (accounts.length > 0) {
-        const request = {
-          scopes: ["user.read"],
-          account: accounts[0],
-        };
-        const accessToken = await pca
-          .acquireTokenSilent(request)
-          .then((response) => {
-            // updateToken(response.accessToken);
-            setToken(response.accessToken);
-            // console.log(token,'uuuuuu')
-          })
-          .catch((error) => {
-            // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-            console.log(error);
-            return null;
-          });
-      }
-
-      return null;
-    }
-    getAccessToken();
-  }, []);
-  const { data, error, isLoading } = useGetAllNewsQuery(token);
-  console.log(data, "888ddd88ttuytuytu888");
+  // const {token} = useCustom();
+  // const { data, error, isLoading } = useGetAllMeetingsQuery(token)
+  const { data, error, isLoading } =  props
+  // console.log(data,'meetingsssssssssssss')
   return (
     // <div>News</div>
 
     <AuthenticatedTemplate>
       <Paper style={{ maxWidth: "100%",height:"120px" }} elevation={0}>
-        {isLoading ? (
-          <SkeletonAnimation />
-        ) : (
+       
           <>
             <CardContent sx={{ pb: "16px!important" }}>
               <Stack
@@ -97,7 +63,37 @@ const Mymeeting = () => {
                   June 12, 2022
                 </Typography>
               </Stack>
-              <Grid container item xs={12} spacing={0}>
+              {data?.response &&
+          data?.response?.map((item: any, index: any) => {
+            const time = item.start.dateTime
+            // moment(fields?.EventDate).format("MMM");
+            // let eventYear  = moment(fields?.EventDate).format("YYYY");
+            // var formatted = moment(time, "HH:mm").format("hh:mm A");
+            var formatted = moment(time).format("MMM");
+            console.log(formatted,'ffffffffffffffffff')
+               return (
+                
+                
+                <Grid container item xs={12} spacing={0}>
+                <Grid item xs={0.8}>
+                  <Typography className={classes.meetTime} >{formatted}</Typography>
+                 
+                </Grid>
+                <Grid className={classes.meetBorder} item xs={0.2}>
+
+                </Grid>
+                <Grid item xs={10}>
+                  <Typography className={classes.meetText}>{item.subject}</Typography>
+                  
+                </Grid>
+
+              </Grid>
+
+               )
+
+
+           })}
+              {/* <Grid container item xs={12} spacing={0}>
                 <Grid item xs={0.8}>
                   <Typography className={classes.meetTime} >09 AM</Typography>
                   <Typography className={classes.meetTime} >10 AM</Typography>
@@ -112,10 +108,10 @@ const Mymeeting = () => {
                   <Typography className={classes.meetText}>General Board Meeting</Typography>
                 </Grid>
 
-              </Grid>
+              </Grid> */}
             </CardContent>
           </>
-        )}
+        
       </Paper>
     </AuthenticatedTemplate>
   );

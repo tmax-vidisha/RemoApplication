@@ -116,7 +116,7 @@ export const graphApi = createApi({
      
 
 
-    tagTypes: ['CeoMsg','Hero','Emp','Announcement','News','Events','Navigation','Quicklink','Recent'],
+    tagTypes: ['CeoMsg','Hero','Emp','Announcement','News','Events','Navigation','Quicklink','Recent','Meetings'],
     // keepUnusedDataFor: 30,
     // tagTypes: [...cacher.defaultTags, "User"],
     endpoints: (builder) => ({
@@ -735,6 +735,16 @@ export const graphApi = createApi({
             //  keepUnusedDataFor: 5,
             providesTags : [ 'Hero'],
         }),
+        getAllMeetings: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/mymeetings/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+             providesTags : [ 'Meetings'],
+        }),
         getData: builder.query<any, any>({
             query: (id) => `/api/v1/token/folder`,
             transformResponse: (response: any) => {
@@ -962,7 +972,8 @@ export const {
     useGetAllCeoMsgQuery,
     useGetAllNewsQuery,
     useGetAllEmpQuery,
-    useGetAllHeroQuery
+    useGetAllHeroQuery,
+    useGetAllMeetingsQuery
 
     
     
