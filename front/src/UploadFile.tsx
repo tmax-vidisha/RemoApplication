@@ -1,13 +1,16 @@
 import { Button, Paper } from '@mui/material'
 import React,{useState} from 'react'
 // import fs from 'fs'
-import useCustom from './useCustom';
+import useCustom from './hooks/useCustom';
 
 import * as XLSX from 'xlsx';
 import { Document, Packer } from 'docx'
 import pptxgen from "pptxgenjs";
+import useFile from './hooks/useFile';
+import PptxGenJS from 'pptxgenjs';
 const UploadFile = () => {
     const {token}  = useCustom();
+    const {excelblob,docxblob,pptxblob}  = useFile();
     const [name,setName] = useState<string>('');
     const [fileSelected, setFileSelected] = useState<any>();
     const onChange = (e: any) => {
@@ -107,30 +110,30 @@ console.log(f);
 
      
     const createAndUpload = async (): Promise<string> => {
-      var data = [
-        [" ", " "],
-        // ["Job Doe", "job@doe.com"],
-        // ["Joe Doe", "joe@doe.com"],
-        // ["Jon Doe", "jon@doe.com"],
-        // ["Joy Doe", "joy@doe.com"]
-      ];
-      var workbook = XLSX.utils.book_new(),
-      worksheet = XLSX.utils.aoa_to_sheet(data);
-      workbook.SheetNames.push("First");
-      workbook.Sheets["First"] = worksheet;
+      // var data = [
+      //   [" ", " "],
+      //   // ["Job Doe", "job@doe.com"],
+      //   // ["Joe Doe", "joe@doe.com"],
+      //   // ["Jon Doe", "jon@doe.com"],
+      //   // ["Joy Doe", "joy@doe.com"]
+      // ];
+      // var workbook = XLSX.utils.book_new(),
+      // worksheet = XLSX.utils.aoa_to_sheet(data);
+      // workbook.SheetNames.push("First");
+      // workbook.Sheets["First"] = worksheet;
 
-      var xlsbin = XLSX.write(workbook, {
-        bookType: "xlsx",
-        type: "binary"
-      });
+      // var xlsbin = XLSX.write(workbook, {
+      //   bookType: "xlsx",
+      //   type: "binary"
+      // });
        
-      // (C4) TO BLOB OBJECT
-      var buffer = new ArrayBuffer(xlsbin.length),
-          array = new Uint8Array(buffer);
-      for (var i=0; i<xlsbin.length; i++) {
-        array[i] = xlsbin.charCodeAt(i) & 0XFF;
-      }
-      var xlsblob = new Blob([buffer], {type:"application/octet-stream"});
+      // // (C4) TO BLOB OBJECT
+      // var buffer = new ArrayBuffer(xlsbin.length),
+      //     array = new Uint8Array(buffer);
+      // for (var i=0; i<xlsbin.length; i++) {
+      //   array[i] = xlsbin.charCodeAt(i) & 0XFF;
+      // }
+      // var xlsblob = new Blob([buffer], {type:"application/octet-stream"});
       // delete array; delete buffer; delete xlsbin;
 
 
@@ -144,7 +147,7 @@ console.log(f);
 
        // `https://graph.microsoft.com/v1.0/me/drive/items/{parent-id}:/${file}.xlsx:/content`,
 
-          `https://graph.microsoft.com/v1.0/me/drive/root:/Antara1.xlsx:/content`,
+          `https://graph.microsoft.com/v1.0/me/drive/root:/Tara.xlsx:/content`,
 
           {
 
@@ -168,7 +171,7 @@ console.log(f);
 
             },
            //@ts-ignore
-            body:xlsblob
+            body:excelblob
 
           })
 
@@ -211,7 +214,7 @@ console.log(f);
   
          // `https://graph.microsoft.com/v1.0/me/drive/items/{parent-id}:/${file}.xlsx:/content`,
   
-            `https://graph.microsoft.com/v1.0/me/drive/root:/Vid.docx:/content`,
+            `https://graph.microsoft.com/v1.0/me/drive/root:/Vidrr.docx:/content`,
   
             {
   
@@ -235,7 +238,7 @@ console.log(f);
   
               },
              //@ts-ignore
-              body:blob
+              body:docxblob
   
             })
   
@@ -254,10 +257,39 @@ console.log(f);
          
   
         }
+        //@ts-ignore
         const createAndUploadPPt = async (): Promise<string> => {
        
-          let pres = new pptxgen();
-          let ppt = pres.writeFile();
+          let pres = new PptxGenJS();
+
+          // 2. Add a Slide
+          let slide = pres.addSlide();
+          // let debugSlide = pres.stream
+          // 3. Add one or more objects (Tables, Shapes, Images, Text and Media) to the Slide
+          // let textboxText = "Hello World from PptxGenJS!";
+          // let textboxOpts = { x: 1, y: 1, color: "363636" };
+          //  slide.addText(textboxText, textboxOpts);
+          
+          // 4. Save the Presentation
+        //  let pptx = await  pres.writeFile();
+          // console.log(pptx,'kkk')
+          //@ts-ignore
+          // let debugSlide = pres.stream(); 
+          //   console.log(debugSlide)
+          // console.log(pres.writeFile());
+        //  pres.write('PptxGenJS-blob-test', function(blob){ console.log(blob) }, 'blob');
+
+        // pres.write('blob')
+        // .then((data) => {
+        //     console.log("write as base64: Here are 0-100 chars of `data`:\n");
+        //     //@ts-ignore
+        //     console.log(data);
+        // })
+        // .catch((err) => {
+        //     console.error(err);
+        // });
+        const pptData = await pres.write('blob')
+        console.log(pptData)
             const res = await fetch(
     
             //   `https://graph.microsoft.com/v1.0/me/drive/root:/${file}.xlsx:/content`,
@@ -266,7 +298,7 @@ console.log(f);
     
            // `https://graph.microsoft.com/v1.0/me/drive/items/{parent-id}:/${file}.xlsx:/content`,
     
-              `https://graph.microsoft.com/v1.0/me/drive/root:/Vittt.pptx:/content`,
+              `https://graph.microsoft.com/v1.0/me/drive/root:/VAntara.pptx:/content`,
     
               {
     
@@ -290,7 +322,7 @@ console.log(f);
     
                 },
                //@ts-ignore
-                body:ppt
+                body:pptxblob
     
               })
     
@@ -323,9 +355,9 @@ console.log(f);
         {/* <Button onClick={createEmptyExcel}>upload</Button> */}
 
         <Button 
-        onClick={createAndUpload}
-        // onClick={createAndUploadDoc}
-        // onClick={createAndUploadPPt}
+        // onClick={createAndUpload}
+        //  onClick={createAndUploadDoc}
+        onClick={createAndUploadPPt}
         >Create New</Button>
         </Paper>
     </div>

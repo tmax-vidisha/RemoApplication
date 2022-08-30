@@ -1,5 +1,5 @@
 import React from 'react'
-import useCustom from '../../useCustom'
+import useCustom from '../../hooks/useCustom'
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import {useGetAllNavigationQuery} from '../../services/APIs';
 import HomeTopNav from '../../Containers/HomeTopNav';
