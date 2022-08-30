@@ -38,6 +38,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/react-swipeable-views": "^0.13.1",
     "@types/react-swipeable-views-utils": "^0.13.3",
+    "add-to-calendar-button": "^1.14.5",
     "axios": "^0.27.2",
     "azure-storage": "^2.10.7",
     "docx": "^7.4.1",
@@ -45,17 +46,15 @@
     "draft-js": "^0.11.7",
     "fs": "^0.0.1-security",
     "moment-timezone": "^0.5.34",
-
+    "office-ui-fabric-react": "^7.192.0",
     "pptxgenjs": "^3.11.0",
     "react": "^18.0.0",
-
-    "office-ui-fabric-react": "^7.192.0",
-
     "react-aad-msal": "^2.3.5",
     "react-calendar": "^3.7.0",
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.14.7",
     "react-dropbox-chooser": "^0.0.5",
+    "react-event-calendar": "^0.3.0",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^1.3.0",
     "react-material-ui-carousel": "^3.3.3",
@@ -70,10 +69,8 @@
     "scheduler": "^0.23.0",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0",
-
     "xlsx": "^0.18.5",
     "xlsx-import": "^2.4.4"
-
   },
   "scripts": {
     "start": "react-scripts start",
