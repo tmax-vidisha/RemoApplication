@@ -43,8 +43,8 @@ import { Grid, Paper, Typography } from '@mui/material';
 import Footer from './Components/Footer';
 import UploadFile from './UploadFile';
 
-import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
-
+// import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
+import WorkSpaceOne from './Components/WorkSpaceOne/index';
 
 const theme = createTheme({
     palette: {
@@ -250,9 +250,10 @@ const Main = () => {
                              <Route
                               path="/workspace/drives/subfolders"
                               element={<SubFolder />} />
-                             <Route
-                              path="/WorkSpaceOne/LeftMenu"
-                              element={<LeftMenu />} />
+                            <Route
+                              path="/WorkSpaceOne"
+                              element={<WorkSpaceOne/>} />
+
 
                         </Routes>
                     </ThemeProvider>

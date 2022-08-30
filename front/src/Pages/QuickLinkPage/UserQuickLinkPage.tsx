@@ -1,7 +1,7 @@
 import React from 'react'
 import {useGetAllQuickLinkQuery,useCreateTokenwithUserQuickDataMutation } from '../../services/APIs';
 import { AuthenticatedTemplate } from '@azure/msal-react';
-import useCustom from '../../useCustom'
+import useCustom from '../../hooks/useCustom'
 import UserQuickLinks from '../../Components/UserQuickLinks';
 const UserQuickLinkPage = () => {
     const {token} = useCustom();

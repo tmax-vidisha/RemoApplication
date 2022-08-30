@@ -6,6 +6,11 @@ import { alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { useStyles } from './Styles';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import LinkOffSharpIcon from '@mui/icons-material/LinkOffSharp';
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import StandUpCalendar from './StandUpCalendar';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -48,12 +53,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 const SearchPart = () => {
-
+const classes=useStyles();
 
     return (
-        <Grid container spacing={2} item xs={12} style={{ marginTop: "20px" }}>
+        <Grid container spacing={2} item xs={12} style={{ marginTop: "20px", position:"static" }}>
 
-            <Search>
+            <Grid style={{marginRight:"12%"}}>
+            <Search style={{padding:"0px 2px"}}>
                 <SearchIconWrapper>
                     <SearchIcon />
                 </SearchIconWrapper>
@@ -62,11 +68,20 @@ const SearchPart = () => {
                     inputProps={{ 'aria-label': 'search' }}
                 />
             </Search>
+            </Grid>
+ 
             <Stack>
                 <Grid>
-                    <Button variant="contained">Create New</Button>
-                    <Button variant="contained">Quick Links</Button>
-                    <Button variant="contained">Daily Standup Meeting</Button>
+                    <Button style={{backgroundColor:"rgb(50 168 189)", color:"white", textTransform:"capitalize", marginRight:"30px", padding:"2px 10px"}}>                    
+                       <span className={classes.plus}><LocalHospitalIcon/></span> Create New</Button>
+                    <Button  style={{backgroundColor:"rgb(50 168 189)", color:"white", textTransform:"capitalize", marginRight:"30px",padding:"2px 10px" }}>
+                        <span className={classes.quick} ><LinkOffSharpIcon/></span>Quick Links</Button>
+                    <Button style={{ color:"gray", textTransform:"capitalize", backgroundColor:" #e6ffe6", border:"5px solid white"}}>
+                        <span className={classes.quick}><CalendarMonthOutlinedIcon/></span>
+                        Daily Standup Meeting ...
+                        {/* <StandUpCalendar/> */}
+                        </Button>
+                        
                 </Grid>
             </Stack>
 

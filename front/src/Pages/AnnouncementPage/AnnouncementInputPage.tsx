@@ -1,5 +1,5 @@
 import React from 'react'
-import useCustom from '../../useCustom'
+import useCustom from '../../hooks/useCustom'
 import { useGetAllAnnoncementsQuery,useCreateTokenwithDataMutation } from '../../services/APIs';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import AnnoncementInput from '../../Components/AnnouncementInput';

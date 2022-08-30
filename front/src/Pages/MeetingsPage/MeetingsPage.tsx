@@ -1,6 +1,6 @@
 import React from 'react'
 import { useGetAllMeetingsQuery } from '../../services/APIs';
-import useCustom from '../../useCustom';
+import useCustom from '../../hooks/useCustom';
 import Mymeeting from '../../Components/Mymeeting';
 const MeetingsPage = () => {
     const {token} = useCustom();

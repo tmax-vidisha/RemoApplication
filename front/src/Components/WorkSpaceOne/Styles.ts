@@ -5,7 +5,7 @@ export const useStyles = makeStyles({
   topItems: {
     display: "flex",
     justifyContent: "space-around",
-    
+
   },
   button: {
     borderRadius: 14,
@@ -45,16 +45,16 @@ export const useStyles = makeStyles({
       display: "none",
     },
   },
-  topMenu:{
-    "&:hover a .topImg":{
-      display:"none !important",
+  topMenu: {
+    "&:hover a .topImg": {
+      display: "none !important",
     },
-    "&:hover a .topImgH":{
-      display:"block !important"
+    "&:hover a .topImgH": {
+      display: "block !important"
     },
 
-    "&:hover a p":{
-      color:"#009BAD"
+    "&:hover a p": {
+      color: "#009BAD"
     },
   },
   topText: {
@@ -63,4 +63,29 @@ export const useStyles = makeStyles({
     fontSize: "13px",
     color: "#acacac",
   },
+
+  linkPart: {
+    backgroundColor: "#33adff",
+    color: "white",
+    textTransform: "capitalize"
+  },
+  plus: {
+    textAlign: "center",
+    marginTop: "5px",
+    marginRight: "10px"
+  },
+
+  quick: {
+    marginTop: "5px",
+    marginRight: "10px"
+
+  },
+  myFile: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginRight: "25px",
+    backgroundColor: "white",
+    marginTop: "20px"
+  }
+
 });
