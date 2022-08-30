@@ -1,5 +1,5 @@
 import React from 'react'
-import useCustom from '../../useCustom'
+import useCustom from '../../hooks/useCustom'
 import {useGetAllNewsQuery } from '../../services/APIs';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import NewsReadMore from '../../Components/NewsReadMore';
