@@ -58,7 +58,8 @@ const classes=useStyles();
     return (
         <Grid container spacing={2} item xs={12} style={{ marginTop: "20px", position:"static" }}>
 
-            <Search>
+            <Grid style={{marginRight:"12%"}}>
+            <Search style={{padding:"0px 2px"}}>
                 <SearchIconWrapper>
                     <SearchIcon />
                 </SearchIconWrapper>
@@ -67,16 +68,18 @@ const classes=useStyles();
                     inputProps={{ 'aria-label': 'search' }}
                 />
             </Search>
+            </Grid>
+ 
             <Stack>
                 <Grid>
-                    <Button style={{backgroundColor:"rgb(50 168 189)", color:"white", textTransform:"capitalize", marginRight:"20px", padding:"0px 10px"}}>                    
+                    <Button style={{backgroundColor:"rgb(50 168 189)", color:"white", textTransform:"capitalize", marginRight:"30px", padding:"2px 10px"}}>                    
                        <span className={classes.plus}><LocalHospitalIcon/></span> Create New</Button>
-                    <Button  style={{backgroundColor:"rgb(50 168 189)", color:"white", textTransform:"capitalize", marginRight:"20px",padding:"0px 10px" }}>
+                    <Button  style={{backgroundColor:"rgb(50 168 189)", color:"white", textTransform:"capitalize", marginRight:"30px",padding:"2px 10px" }}>
                         <span className={classes.quick} ><LinkOffSharpIcon/></span>Quick Links</Button>
-                    <Button style={{ color:"gray", textTransform:"capitalize", backgroundColor:" #e6ffe6"}}>
+                    <Button style={{ color:"gray", textTransform:"capitalize", backgroundColor:" #e6ffe6", border:"5px solid white"}}>
                         <span className={classes.quick}><CalendarMonthOutlinedIcon/></span>
                         Daily Standup Meeting ...
-                        <StandUpCalendar/>
+                        {/* <StandUpCalendar/> */}
                         </Button>
                         
                 </Grid>

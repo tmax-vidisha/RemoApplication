@@ -65,19 +65,27 @@ export const useStyles = makeStyles({
   },
 
   linkPart: {
-    backgroundColor:"#33adff", 
-    color:"white",
-     textTransform:"capitalize"
+    backgroundColor: "#33adff",
+    color: "white",
+    textTransform: "capitalize"
   },
-  plus:{
-    textAlign:"center",
-    marginTop:"5px",
+  plus: {
+    textAlign: "center",
+    marginTop: "5px",
+    marginRight: "10px"
   },
 
-  quick:{
-    marginTop:"5px",
-    marginRight:"5px"
+  quick: {
+    marginTop: "5px",
+    marginRight: "10px"
 
+  },
+  myFile: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginRight: "25px",
+    backgroundColor: "white",
+    marginTop: "20px"
   }
 
 });
