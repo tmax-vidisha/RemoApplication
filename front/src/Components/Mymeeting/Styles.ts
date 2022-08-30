@@ -25,8 +25,10 @@ export const useStyles = makeStyles({
   },
   meetBorder:{
     borderLeft:"1px solid #DDDDDD  !important",
-    height:"63px",
-    opacity:"5"
+    // height:"63px",
+    opacity:"5",
+    marginBottom:"10px !important",
+    paddingBottom:"10px !important"
   },
   
 });

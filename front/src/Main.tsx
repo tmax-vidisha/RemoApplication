@@ -38,8 +38,14 @@ import FolderScreen from './Components/Workspace/Sharepoint/Folders';
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "./index";
 import SubFolder from './Components/Workspace/Sharepoint/components/SubFolder';
+
+import { Grid, Paper, Typography } from '@mui/material';
+import Footer from './Components/Footer';
+import UploadFile from './UploadFile';
+
 import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
 import WorkSpaceOne from './Components/WorkSpaceOne/index';
+
 
 const theme = createTheme({
     palette: {
@@ -153,9 +159,16 @@ const Main = () => {
                 </Helmet>
                 <Router>
                     <ThemeProvider theme={theme}>
-                    {/* <AuthenticatedTemplate>
-                        <Header />
-                   </AuthenticatedTemplate> */}
+                    <AuthenticatedTemplate>
+                            <Header />
+                            <Grid item xs={12}>
+                                <Paper style={{ height: "60px", display: "flex", justifyContent: "center", alignItems: "center" }} elevation={0}>
+
+                                    <Typography> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus in blanditiis dolorum Optio voluptatibus  </Typography>
+
+                                </Paper>
+                            </Grid>
+                        </AuthenticatedTemplate>
                         <Routes>
                             <Route
                                 path="/"
@@ -218,16 +231,34 @@ const Main = () => {
                               path="/workspace/drives/folders"
                               element={<FolderScreen />} />
                             <Route
-                              path="/workspace/drives/sites"
-                              element={<SitesScreen  />} />
+
+                                path="/Myfiles/"
+                                element={<WPOneDrive />} />
+                            <Route
+                                path="/workspace/drives/folders"
+                                element={<FolderScreen />} />
+                            <Route
+                                path="/workspace/drives/sites"
+                                element={<SitesScreen />} />
+                            <Route
+                                path="/workspace/drives/subfolders"
+                                element={<SubFolder />} />
+                            <Route
+                                path="/upload"
+                                element={<UploadFile />} />    
+
+                              
                              <Route
                               path="/workspace/drives/subfolders"
                               element={<SubFolder />} />
                              <Route
+
                               path="/WorkSpaceOne"
                               element={<WorkSpaceOne/>} />
+
                         </Routes>
                     </ThemeProvider>
+                    <Footer />
                 </Router>
             </HelmetProvider>
         </>

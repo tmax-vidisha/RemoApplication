@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Spreadsheet from 'react-spreadsheet';
+// import Spreadsheet from 'react-spreadsheet';
 import useCustom from '../../../useCustom';
 // import book from '../../../Assets/Files/Book.xlsx';
 // import file from '../../../Assets/Files/Book.xlsx';

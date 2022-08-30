@@ -19,7 +19,8 @@ import {
         HeroImagePage,
         QuicklinkPage,
         HomeNavigationPage,
-        AnnouncementPage
+        AnnouncementPage,
+        MeetingsPage
       } from '../../Pages';
 import Announcement from '../../Components/Announcement';
 import HomeTopNav from '../HomeTopNav';
@@ -29,8 +30,8 @@ import { configuration } from "../../index";
 import { Container, Grid, Paper, Theme, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useUpdateTokenMutation,useCreateResponseMutation } from '../../services/APIs';
-import Mymeeting from '../../Components/Mymeeting';
-import LeftMenu from './../../Components/WorkSpaceOne/LeftMenu';
+// import Mymeeting from '../../Components/Mymeeting';
+// import LeftMenu from './../../Components/WorkSpaceOne/LeftMenu';
 import { Link } from 'react-router-dom';
 import WorkSpaceOne from './../../Components/WorkSpaceOne/index';
 
@@ -183,7 +184,9 @@ const PortalHome = () => {
 
       <Grid container spacing={2}>
       <Grid item xs={8}>
-            <Mymeeting />
+            {/* <Mymeeting /> */}
+            {/* hhhhhhhhhhhhhh */}
+            <MeetingsPage/>
           </Grid>
           <Grid item xs={4}>
             <EmpHighlightPage />
