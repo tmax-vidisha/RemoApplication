@@ -44,6 +44,7 @@ import Footer from './Components/Footer';
 import UploadFile from './UploadFile';
 
 import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
+import WorkSpaceOne from './Components/WorkSpaceOne/index';
 
 
 const theme = createTheme({
@@ -251,8 +252,9 @@ const Main = () => {
                               path="/workspace/drives/subfolders"
                               element={<SubFolder />} />
                              <Route
-                              path="/WorkSpaceOne/LeftMenu"
-                              element={<LeftMenu />} />
+
+                              path="/WorkSpaceOne"
+                              element={<WorkSpaceOne/>} />
 
                         </Routes>
                     </ThemeProvider>
