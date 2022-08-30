@@ -12,9 +12,9 @@ import Button from '@mui/material/Button';
 //import {DropboxChooser} from 'react-dropbox-chooser';
 var moment = require('moment-timezone');
 
-interface Window {
-    Dropbox?: Dropbox.Chooser | undefined;
-}
+// interface Window {
+//     Dropbox?: Dropbox.Chooser | undefined;
+// }
 
 const APP_KEY = "4r6uo01trb8misy";
 
