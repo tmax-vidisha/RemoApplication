@@ -666,8 +666,11 @@ const getEventsMeetings = asyncHandler(async(req:Request, res:Response) => {
       headers: {
           'Authorization': `Bearer ${token} `,
           'Content-Type': 'application/json'
+        
         }
+      
   })
+  console.log(response.data.value,"meetingssssssssssssssssssssssss" )
   res.status(200).json({
     success: true,
     response :response.data.value
