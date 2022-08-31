@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21.804" height="19.624" viewBox="0 0 21.804 19.624">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.029" y1="0.029" x2="0.938" y2="0.938" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ca4e2a"/>
+      <stop offset="1" stop-color="#b63016"/>
+    </linearGradient>
+  </defs>
+  <g id="ppt" transform="translate(-4 -6)">
+    <path id="Path_2261" data-name="Path 2261" d="M8,24a9.812,9.812,0,0,0,19.624,0H8Z" transform="translate(-1.82 -8.188)" fill="#d35230"/>
+    <path id="Path_2262" data-name="Path 2262" d="M26,6v9.812h9.812A9.812,9.812,0,0,0,26,6Z" transform="translate(-10.008)" fill="#ff8f6b"/>
+    <path id="Path_2263" data-name="Path 2263" d="M17.812,6A9.812,9.812,0,0,0,8,15.812h9.812Z" transform="translate(-1.82)" fill="#ed6c47"/>
+    <path id="Path_2264" data-name="Path 2264" d="M17.812,15.007A2.007,2.007,0,0,0,15.805,13H10.057a9.778,9.778,0,0,0,.98,13.083H15.8a2.007,2.007,0,0,0,2.007-2.007Z" transform="translate(-1.82 -3.184)" opacity="0.05"/>
+    <path id="Path_2265" data-name="Path 2265" d="M15.748,13.333H9.921a9.764,9.764,0,0,0,.592,12.356h5.234a1.7,1.7,0,0,0,1.7-1.7V15.034A1.7,1.7,0,0,0,15.748,13.333Z" transform="translate(-1.82 -3.336)" opacity="0.07"/>
+    <path id="Path_2266" data-name="Path 2266" d="M15.689,13.667h-5.9A9.771,9.771,0,0,0,10.057,25.3h5.632a1.4,1.4,0,0,0,1.4-1.4V15.062A1.4,1.4,0,0,0,15.689,13.667Z" transform="translate(-1.82 -3.488)" opacity="0.09"/>
+    <path id="Path_2267" data-name="Path 2267" d="M13.812,24.9H5.09A1.09,1.09,0,0,1,4,23.812V15.09A1.09,1.09,0,0,1,5.09,14h8.722a1.09,1.09,0,0,1,1.09,1.09v8.722A1.09,1.09,0,0,1,13.812,24.9Z" transform="translate(0 -3.639)" fill="url(#linear-gradient)"/>
+    <path id="Path_2268" data-name="Path 2268" d="M12.547,19.012H10v5.451h1.1V22.544h1.241A1.852,1.852,0,0,0,14.2,20.692V20.66A1.648,1.648,0,0,0,12.547,19.012Zm.489,1.824a.848.848,0,0,1-.848.848H11.1V19.872h1.085a.848.848,0,0,1,.848.848Z" transform="translate(-2.729 -5.919)" fill="#fff"/>
+  </g>
+</svg>

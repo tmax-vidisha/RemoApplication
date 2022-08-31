@@ -1,0 +1,22 @@
+<svg id="menu_1_" data-name="menu (1)" xmlns="http://www.w3.org/2000/svg" width="14.594" height="14.594" viewBox="0 0 14.594 14.594">
+  <g id="Group_27" data-name="Group 27">
+    <g id="Group_26" data-name="Group 26">
+      <path id="Path_20" data-name="Path 20" d="M6.162,0H.541A.542.542,0,0,0,0,.541V6.162A.542.542,0,0,0,.541,6.7H6.162A.542.542,0,0,0,6.7,6.162V.541A.542.542,0,0,0,6.162,0ZM5.622,5.622H1.081V1.081h4.54Z" fill="#a0a0a0"/>
+    </g>
+  </g>
+  <g id="Group_29" data-name="Group 29" transform="translate(7.892)">
+    <g id="Group_28" data-name="Group 28">
+      <path id="Path_21" data-name="Path 21" d="M152.162,0h-5.622A.542.542,0,0,0,146,.541V6.162a.542.542,0,0,0,.541.541h5.622a.542.542,0,0,0,.541-.541V.541A.542.542,0,0,0,152.162,0Zm-.541,5.622h-4.54V1.081h4.54Z" transform="translate(-146)" fill="#a0a0a0"/>
+    </g>
+  </g>
+  <g id="Group_31" data-name="Group 31" transform="translate(0 7.892)">
+    <g id="Group_30" data-name="Group 30">
+      <path id="Path_22" data-name="Path 22" d="M6.162,146H.541a.542.542,0,0,0-.541.541v5.622a.542.542,0,0,0,.541.541H6.162a.542.542,0,0,0,.541-.541v-5.622A.542.542,0,0,0,6.162,146Zm-.541,5.622H1.081v-4.54h4.54Z" transform="translate(0 -146)" fill="#a0a0a0"/>
+    </g>
+  </g>
+  <g id="Group_33" data-name="Group 33" transform="translate(7.892 7.892)">
+    <g id="Group_32" data-name="Group 32">
+      <path id="Path_23" data-name="Path 23" d="M152.162,146h-5.622a.542.542,0,0,0-.541.541v5.622a.542.542,0,0,0,.541.541h5.622a.542.542,0,0,0,.541-.541v-5.622A.542.542,0,0,0,152.162,146Zm-.541,5.622h-4.54v-4.54h4.54Z" transform="translate(-146 -146)" fill="#a0a0a0"/>
+    </g>
+  </g>
+</svg>
