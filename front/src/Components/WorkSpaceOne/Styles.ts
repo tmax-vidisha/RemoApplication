@@ -72,7 +72,9 @@ export const useStyles = makeStyles({
   plus: {
     textAlign: "center",
     marginTop: "5px",
-    marginRight: "10px"
+    marginRight: "10px",
+    // backgroundColor:" white !important",
+    color:"white !important"
   },
 
   quick: {
@@ -83,11 +85,33 @@ export const useStyles = makeStyles({
   myFile: {
     display: "flex",
     justifyContent: "space-between",
+
+  },
+  create: {
+     backgroundColor: "rgb(50 168 189) !important",
+    color: "white",
+  //  marginRight: "30px !important",
+    padding: "3px 2px !important"
+  },
+  linkBtn: {
+    backgroundColor: "rgb(50 168 189) !important",
+    color: "white !important",
+   marginRight: "30px !important",
+    padding: "5px 10px !important"
+  },
+  bigPart: {
     marginRight: "25px",
     backgroundColor: "white",
-    marginTop: "20px"
+    marginTop: "20px",
+    borderRadius: "10px",
+  },
+  divFile: {
+    color: "#1b6189",
+    marginLeft: "20px",
+    marginTop:"20px",
+    textAlign:"left",
+   
   }
-
 
 });
 
