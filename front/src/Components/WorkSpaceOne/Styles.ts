@@ -74,7 +74,7 @@ export const useStyles = makeStyles({
     marginTop: "5px",
     marginRight: "10px",
     // backgroundColor:" white !important",
-    color:"white !important"
+    color: "white !important"
   },
 
   quick: {
@@ -88,15 +88,16 @@ export const useStyles = makeStyles({
 
   },
   create: {
-     backgroundColor: "rgb(50 168 189) !important",
-    color: "white",
-  //  marginRight: "30px !important",
-    padding: "3px 2px !important"
+    backgroundColor: "rgb(50 168 189) !important",
+    color: "white !important",
+     marginRight: "30px !important",
+    padding: "3px 8px !important",
+    
   },
   linkBtn: {
     backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
-   marginRight: "30px !important",
+    marginRight: "30px !important",
     padding: "5px 10px !important"
   },
   bigPart: {
@@ -108,9 +109,15 @@ export const useStyles = makeStyles({
   divFile: {
     color: "#1b6189",
     marginLeft: "20px",
-    marginTop:"20px",
-    textAlign:"left",
-   
+    marginTop: "20px",
+    textAlign: "left",
+
+  },
+  menuImage:{
+    marginRight:"20px"
+  },
+  menu:{
+    marginTop:"15px"
   }
 
 });
