@@ -1,6 +1,6 @@
 import React from 'react'
 import Events from '../../Components/Events'
-import useCustom from '../../useCustom'
+import useCustom from '../../hooks/useCustom'
 import { useGetAllEventsQuery } from '../../services/APIs';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 

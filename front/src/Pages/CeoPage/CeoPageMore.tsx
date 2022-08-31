@@ -1,5 +1,5 @@
 import React from 'react'
-import useCustom from '../../useCustom'
+import useCustom from '../../hooks/useCustom'
 import { useGetAllCeoMsgQuery } from '../../services/APIs';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import CeoMessageInformation from '../../Components/CeoMessageInformation';

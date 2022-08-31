@@ -7,7 +7,6 @@ import RecentFiles from '../../Components/RecentFiles';
 import Weather from '../../Components/Weather';
 import QuickLinks from '../../Components/Quicklinks';
 import axios from 'axios';
-import Gallery from '../../Components/Gallery';
 import EmployeeHighlight from '../../Components/EmployeeHighlight';
 // import Events from '../../Components/Events';
 import { 
@@ -34,6 +33,7 @@ import { useUpdateTokenMutation,useCreateResponseMutation } from '../../services
 // import LeftMenu from './../../Components/WorkSpaceOne/LeftMenu';
 import { Link } from 'react-router-dom';
 import WorkSpaceOne from './../../Components/WorkSpaceOne/index';
+import Gallery from './../../Components/Gallery/index';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

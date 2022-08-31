@@ -1,5 +1,5 @@
 import React from 'react'
-import useCustom from '../../useCustom'
+import useCustom from '../../hooks/useCustom'
 import { useGetAllEventsQuery,useCreateTokenwithEventDataMutation } from '../../services/APIs';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import EventsInput from '../../Components/EventsInput';

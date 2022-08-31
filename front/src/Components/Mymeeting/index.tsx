@@ -16,7 +16,7 @@ import {
   useGetAllMeetingsQuery
 } from "../../services/APIs";
 import { useStyles } from "./Styles";
-import useCustom from "../../useCustom";
+import useCustom from "../../hooks/useCustom";
 import SkeletonAnimation from "../../Containers/Skeleton";
 var moment = require("moment-timezone");
 interface IFolderProps {
