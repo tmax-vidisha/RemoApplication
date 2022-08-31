@@ -19,7 +19,9 @@ import word from "./../../Assets/Images/word.svg";
 import { Box } from '@mui/material';
 import ListItemButton from '@mui/material/ListItemButton';
 import { Paper } from '@mui/material';
-
+import MenuItem from '@mui/material/MenuItem';
+import Fade from '@mui/material/Fade';
+import Menu from '@mui/material/Menu';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -63,29 +65,37 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const data = [
-    { id:1, icon: <img src={folder} alt="folder" />, label: 'Folders' },
-    { id:2, icon: <img src={word} alt="folder" />, label: 'Word' },
-    { id:3, icon: <img src={excel} alt="folder" />, label: 'Excel' },
-    { id:4, icon: <img src={pdf} alt="folder" />, label: 'PDF' },
-    { id:5, icon: <img src={ppt} alt="folder" />, label: 'PPT' },
+    { id: 1, icon: <img src={folder} alt="folder" />, label: 'Folders' },
+    { id: 2, icon: <img src={word} alt="folder" />, label: 'Word' },
+    { id: 3, icon: <img src={excel} alt="folder" />, label: 'Excel' },
+    { id: 4, icon: <img src={pdf} alt="folder" />, label: 'PDF' },
+    { id: 5, icon: <img src={ppt} alt="folder" />, label: 'PPT' },
 
 ];
 
 
-const handleOnChange=(label:any)=>{
-console.log(label,"all label")
+const handleOnChange = (label: any) => {
+    console.log(label, "all label")
 }
 
 const SearchPart = () => {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
-    const [fileOpen, setFileOpen] = React.useState(false);
+    // const [open, setOpen] = React.useState(true);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
 
     return (
-        <Grid container spacing={2} item xs={12} style={{ marginTop: "20px", position: "static", display: "flex", justifyContent:"space-around" }}>
+        <Grid container spacing={2} item xs={12} style={{ marginTop: "20px", position: "static", display: "flex", justifyContent: "space-around" }}>
 
             <Grid>
-                <Search style={{ padding: "5px 5px", backgroundColor: "white", marginTop: "8px" }}>
+                <Search style={{ padding: "5px 5px", backgroundColor: "white", }}>
                     <SearchIconWrapper>
                         <SearchIcon />
                     </SearchIconWrapper>
@@ -95,9 +105,60 @@ const SearchPart = () => {
                     />
                 </Search>
             </Grid>
-            <Grid style={{display:"block"}}>
+
+            <Grid style={{ display: "flex", justifyContent: "space-between" }}>
+                <Grid>
+                    <Button
+                        id="fade-button"
+                        aria-controls={open ? 'fade-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
+                        className={classes.create}
+                        sx={{ textTransform: "capitalize", }}
+                    >
+                        <span className={classes.plus}><LocalHospitalIcon /></span>
+                        Create New
+                    </Button>
+                    <Menu
+                        id="fade-menu"
+                        MenuListProps={{
+                            'aria-labelledby': 'fade-button',
+                        }}
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        TransitionComponent={Fade}
+                        className={classes.menu}
+                    >
+                        <MenuItem onClick={handleClose}>
+                            <img src={folder} alt="folder" className={classes.menuImage} /> Folders</MenuItem>
+                            <MenuItem onClick={handleClose}><img src={word} alt="folder" className={classes.menuImage} />Word</MenuItem>
+                        <MenuItem onClick={handleClose}><img src={excel} alt="folder"  className={classes.menuImage} /> Excel</MenuItem>
+                        <MenuItem onClick={handleClose}><img src={pdf} alt="folder"  className={classes.menuImage} /> Pdf</MenuItem>
+                        <MenuItem onClick={handleClose}><img src={ppt} alt="folder" className={classes.menuImage} /> Ppt</MenuItem>
+                    </Menu>
+                </Grid>
+                <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }}>
+                    <span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links</Button>
+                <Button style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white" }}>
+                    <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
+                    Daily Standup Meeting ...
+                    {/* <StandUpCalendar/> */}
+                </Button>
+
+            </Grid>
+
+
+        </Grid>
+    );
+};
+
+export default SearchPart;
+
+/*
                 <Button style={{ textTransform: "capitalize", marginRight:"30px" }} className={classes.create}>
-                    {/*  <span className={classes.plus}><LocalHospitalIcon /></span> */}
+                    
                     <Box
                         sx={{
                             bgcolor: open ? 'white' : null,
@@ -137,14 +198,7 @@ const SearchPart = () => {
                                 // }}
                                 sx={{ my: 0, }}
                             />
-                            {/* <KeyboardArrowDown
-                                    sx={{
-                                        mr: -1,
-                                        opacity: 0,
-                                        transform: open ? 'rotate(-180deg)' : 'rotate(0)',
-                                        transition: '0.2s',
-                                    }}
-                                /> */}
+                            
                         </ListItemButton>
                         {open &&
                             data.map((item) => (
@@ -169,19 +223,5 @@ const SearchPart = () => {
                     </Box>
 
                 </Button>
-                <Button className={classes.linkBtn} style={{ textTransform: "capitalize", }}>
-                    <span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links</Button>
-                <Button style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white" }}>
-                    <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
-                    Daily Standup Meeting ...
-                    {/* <StandUpCalendar/> */}
-                </Button>
 
-            </Grid>
-
-
-        </Grid>
-    );
-};
-
-export default SearchPart;
+*/

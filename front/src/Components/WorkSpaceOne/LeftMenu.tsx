@@ -10,8 +10,9 @@ import { Paper } from '@mui/material';
 import { CardContent } from '@mui/material';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import { useStyles } from './Styles';
-import ClearIcon  from '@mui/icons-material/Clear';
+import ClearIcon from '@mui/icons-material/Clear';
 import { NavLink as RouterNavLink } from "react-router-dom";
+import { Grid } from '@mui/material';
 import DocumentIcon from "../../Assets/Images/Document.svg";
 import filesIcon from "../../Assets/Images/files.svg";
 import recentIcon from "../../Assets/Images/recent.svg";
@@ -19,6 +20,8 @@ import searchIcon from "../../Assets/Images/search.svg";
 import sharedIcon from "../../Assets/Images/shared.svg";
 import starredIcon from "../../Assets/Images/starred.svg";
 import trashIcon from "../../Assets/Images/trash.svg";
+import upload from "../../Assets/Images/upload.svg";
+
 
 interface IFolderProps {
     data?: any,
@@ -53,68 +56,71 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const { data, error, isLoading } = props;
     console.log(data, 'Left menu data ')
     return (
-        <div>
-            <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                <nav aria-label="main mailbox folders">
-                    <List>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    {/* <TopicTwoToneIcon /> */}
-                                    <img src={filesIcon} alt=" MyFiles"/>
-                                </ListItemIcon>
-                                <ListItemText primary="My Files" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                <img src={sharedIcon} alt="shared"/>
-                                </ListItemIcon>
-                                <ListItemText primary="Shared with me" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                <img src={DocumentIcon} alt="Document"/>
-                                </ListItemIcon>
-                                <ListItemText primary="Document Library" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                <img src={recentIcon} alt="recent"/>
-                                </ListItemIcon>
-                                <ListItemText primary="Recent" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                <img src={starredIcon} alt="starred"/>
-                                </ListItemIcon>
-                                <ListItemText primary="Starred" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                <img src={trashIcon} alt="trash"/> 
-                                </ListItemIcon>
-                                <ListItemText primary="Trash" />
-                            </ListItemButton>
-                        </ListItem>
-                    </List>
-                </nav>
+        <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', height:"500px" }}>
+            <Box style={{ display: "flex", flexDirection: "column", justifyContent:"space-between" }} >
+                <Box >
+                    <nav aria-label="main mailbox folders">
+                        <List>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        {/* <TopicTwoToneIcon /> */}
+                                        <img src={filesIcon} alt=" MyFiles" />
+                                    </ListItemIcon>
+                                    <ListItemText primary="My Files" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <img src={sharedIcon} alt="shared" />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Shared with me" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <img src={DocumentIcon} alt="Document" />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Document Library" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <img src={recentIcon} alt="recent" />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Recent" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <img src={starredIcon} alt="starred" />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Starred" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <img src={trashIcon} alt="trash" />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Trash" />
+                                </ListItemButton>
+                            </ListItem>
+                        </List>
+                    </nav>
 
 
-            </Box>
-            {/* <AuthenticatedTemplate>
+                </Box>
+                {/* <AuthenticatedTemplate>
                 <Paper elevation={0}>
                     <CardContent sx={{ pb: "16px!important" }}>
-                        {!topMenu && clearButton}
+                        {!topMenu && clearButton}import { Grid } from '@mui/material';
+import { Grid } from '@mui/material';
+
                         <List className={classes.topItems}>
                             {topMenu && data?.response &&
                                 data?.response?.map((item: any, index: any) => {
@@ -216,8 +222,13 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </CardContent>
                 </Paper>
             </AuthenticatedTemplate> */}
-
-        </div>
+                <Box sx={{marginTop:"10%", backgroundColor:"#e9fbfb"}}>
+                    <Grid style={{color:"black"}}> <img src={upload} alt="upload" /></Grid>
+                    <Grid></Grid>
+                    <Grid></Grid>
+                </Box>
+            </Box>
+        </Box>
     );
 };
 
