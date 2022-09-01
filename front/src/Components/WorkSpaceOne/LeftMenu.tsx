@@ -20,7 +20,9 @@ import searchIcon from "../../Assets/Images/search.svg";
 import sharedIcon from "../../Assets/Images/shared.svg";
 import starredIcon from "../../Assets/Images/starred.svg";
 import trashIcon from "../../Assets/Images/trash.svg";
-import upload from "../../Assets/Images/upload.svg";
+import upload from "../../Assets/Images/upload-blue.svg";
+import menuBlue from "../../Assets/Images/menu-blue.svg";
+import setting from "../../Assets/Images/setting-blue.svg";
 
 
 interface IFolderProps {
@@ -118,9 +120,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                 {/* <AuthenticatedTemplate>
                 <Paper elevation={0}>
                     <CardContent sx={{ pb: "16px!important" }}>
-                        {!topMenu && clearButton}import { Grid } from '@mui/material';
-import { Grid } from '@mui/material';
-
+                        {!topMenu && clearButton}
                         <List className={classes.topItems}>
                             {topMenu && data?.response &&
                                 data?.response?.map((item: any, index: any) => {
@@ -222,10 +222,10 @@ import { Grid } from '@mui/material';
                     </CardContent>
                 </Paper>
             </AuthenticatedTemplate> */}
-                <Box sx={{marginTop:"10%", backgroundColor:"#e9fbfb"}}>
-                    <Grid style={{color:"black"}}> <img src={upload} alt="upload" /></Grid>
-                    <Grid></Grid>
-                    <Grid></Grid>
+                <Box sx={{marginTop:"150px", backgroundColor:"#e9fbfb", display:"flex", justifyContent:"flex-end", paddingRight:"20px"}}>
+                    <Grid style={{marginRight:"15px"}}> <img src={upload} alt="upload" /></Grid>
+                    <Grid  style={{marginRight:"15px"}}><img src={setting} alt="upload" /></Grid>
+                    <Grid><img src={menuBlue} alt="upload" /></Grid>
                 </Box>
             </Box>
         </Box>

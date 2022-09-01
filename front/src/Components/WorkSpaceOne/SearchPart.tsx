@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, ListItemText, ListItemIcon } from '@mui/material';
+import { Grid, ListItemText, ListItemIcon, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import { alpha } from '@mui/material/styles';
@@ -22,6 +22,11 @@ import { Paper } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 import Menu from '@mui/material/Menu';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -78,17 +83,36 @@ const handleOnChange = (label: any) => {
     console.log(label, "all label")
 }
 
+
+
+
+
+
 const SearchPart = () => {
     const classes = useStyles();
-    // const [open, setOpen] = React.useState(true);
+
+    const [open, setOpen] = React.useState(false);
+    const [selectedValue, setSelectedValue] = React.useState();
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
+
+    const openOn = Boolean(anchorEl);
+
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const handleClickToOpen = () => {
+        setOpen(true);
+    };
+
+    const handleToClose = () => {
+        setOpen(false);
+    };
+
 
 
     return (
@@ -110,9 +134,9 @@ const SearchPart = () => {
                 <Grid>
                     <Button
                         id="fade-button"
-                        aria-controls={open ? 'fade-menu' : undefined}
+                        aria-controls={openOn ? 'fade-menu' : undefined}
                         aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
+                        aria-expanded={openOn ? 'true' : undefined}
                         onClick={handleClick}
                         className={classes.create}
                         sx={{ textTransform: "capitalize", }}
@@ -126,16 +150,134 @@ const SearchPart = () => {
                             'aria-labelledby': 'fade-button',
                         }}
                         anchorEl={anchorEl}
-                        open={open}
+                        open={openOn}
                         onClose={handleClose}
                         TransitionComponent={Fade}
                         className={classes.menu}
                     >
+
                         <MenuItem onClick={handleClose}>
-                            <img src={folder} alt="folder" className={classes.menuImage} /> Folders</MenuItem>
-                            <MenuItem onClick={handleClose}><img src={word} alt="folder" className={classes.menuImage} />Word</MenuItem>
-                        <MenuItem onClick={handleClose}><img src={excel} alt="folder"  className={classes.menuImage} /> Excel</MenuItem>
-                        <MenuItem onClick={handleClose}><img src={pdf} alt="folder"  className={classes.menuImage} /> Pdf</MenuItem>
+                            <div onClick={handleClickToOpen}>
+                                <img src={folder} alt="folder" className={classes.menuImage} /> Folders
+                            </div>
+                            <Dialog open={open} onClose={handleToClose}>
+                                <DialogTitle>{"Create New Folder"}</DialogTitle>
+                                <DialogContent>
+                                    {/* <DialogContentText>
+                                        I am Good, Hope the same for you!
+                                    </DialogContentText> */}
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& > :not(style)': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField id="outlined-basic" label="" variant="outlined" />
+                                       
+                                    </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleToClose}
+                                        color="primary" autoFocus>
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                            <div onClick={handleClickToOpen}>
+                            <img src={word} alt="folder" className={classes.menuImage} /> Word
+                            </div>
+                            <Dialog open={open} onClose={handleToClose}>
+                                <DialogTitle>{"Create New Folder"}</DialogTitle>
+                                <DialogContent>
+                                    {/* <DialogContentText>
+                                        I am Good, Hope the same for you!
+                                    </DialogContentText> */}
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& > :not(style)': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField id="outlined-basic" label="" variant="outlined" />
+                                       
+                                    </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleToClose}
+                                        color="primary" autoFocus>
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </MenuItem>
+
+                        <MenuItem onClick={handleClose}>
+                            <div onClick={handleClickToOpen}>
+                            <img src={excel} alt="folder" className={classes.menuImage} /> Excel
+                            </div>
+                            <Dialog open={open} onClose={handleToClose}>
+                                <DialogTitle>{"Create New Folder"}</DialogTitle>
+                                <DialogContent>
+                                    {/* <DialogContentText>
+                                        I am Good, Hope the same for you!
+                                    </DialogContentText> */}
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& > :not(style)': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField id="outlined-basic" label="" variant="outlined" />
+                                       
+                                    </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleToClose}
+                                        color="primary" autoFocus>
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                            <div onClick={handleClickToOpen}>
+                            <img src={pdf} alt="folder" className={classes.menuImage} /> Pdf
+                            </div>
+                            <Dialog open={open} onClose={handleToClose}>
+                                <DialogTitle>{"Create New Folder"}</DialogTitle>
+                                <DialogContent>
+                                    {/* <DialogContentText>
+                                        I am Good, Hope the same for you!
+                                    </DialogContentText> */}
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& > :not(style)': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField id="outlined-basic" label="" variant="outlined" />
+                                       
+                                    </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleToClose}
+                                        color="primary" autoFocus>
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}><img src={pdf} alt="folder" className={classes.menuImage} /> Pdf</MenuItem>
                         <MenuItem onClick={handleClose}><img src={ppt} alt="folder" className={classes.menuImage} /> Ppt</MenuItem>
                     </Menu>
                 </Grid>
@@ -205,7 +347,9 @@ export default SearchPart;
                                 <ListItemButton
                                     sx={{
                                         bgcolor: open ? 'white' : 'rgb(50 168 189) !important',
-                                        py: 0, minHeight: 32, color: 'rgba(255,255,255,.8)'
+                                        py: 0, minHeight: 32, color: 'rgba(255,255,2import { DialogContent } from '@mui/material/DialogContent';
+55,.8)'import { DialogActions } from '@mui/material/DialogActions';
+
                                     }}
                                     key={item.label}
                                     onClick={ () => handleOnChange(item.label)}
