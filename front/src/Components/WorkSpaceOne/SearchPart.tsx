@@ -1,10 +1,11 @@
 import React from 'react';
-import { Grid, ListItemText, ListItemIcon, TextField } from '@mui/material';
+import { Grid, ListItemText, ListItemIcon, TextField, IconButton, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import { alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Stack from '@mui/material/Stack';
+import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import { useStyles } from './Styles';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
@@ -27,6 +28,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
+import Swal from 'sweetalert2';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -68,7 +70,44 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+    '& .MuiDialogContent-root': {
+        padding: theme.spacing(2),
+    },
+    '& .MuiDialogActions-root': {
+        padding: theme.spacing(1),
+    },
+}));
 
+export interface DialogTitleProps {
+    id: string;
+    children?: React.ReactNode;
+    onClose: () => void;
+}
+
+const BootstrapDialogTitle = (props: DialogTitleProps) => {
+    const { children, onClose, ...other } = props;
+
+    return (
+        <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+            {children}
+            {onClose ? (
+                <IconButton
+                    aria-label="close"
+                    onClick={onClose}
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        color: (theme: any) => theme.palette.grey[500],
+                    }}
+                >
+                    <CloseIcon />
+                </IconButton>
+            ) : null}
+        </DialogTitle>
+    );
+};
 const data = [
     { id: 1, icon: <img src={folder} alt="folder" />, label: 'Folders' },
     { id: 2, icon: <img src={word} alt="folder" />, label: 'Word' },
@@ -78,14 +117,10 @@ const data = [
 
 ];
 
-
 const handleOnChange = (label: any) => {
     console.log(label, "all label")
+     
 }
-
-
-
-
 
 
 const SearchPart = () => {
@@ -105,14 +140,33 @@ const SearchPart = () => {
         setAnchorEl(null);
     };
 
-    const handleClickToOpen = () => {
-        setOpen(true);
-    };
+    // const handleClickToOpen = () => {
+    //     setOpen(true);
+    // };
 
     const handleToClose = () => {
         setOpen(false);
     };
+    const handleFormSubmit = (e: any) => {
+        e.preventDefault();
+        // const Toast = Swal.mixin({
+        //     toast: true,
+        //     position: 'top',
+        //     showConfirmButton: false,
+        //     timer: 1500,
+        //     timerProgressBar: true,
+        //     didOpen: (toast) => {
+        //         toast.addEventListener('mouseenter', Swal.stopTimer)
+        //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //     }
+        // });
 
+        // Toast.fire({
+        //     icon: 'success',
+        //     title: 'Folder Create Successfully'
+        // }),
+            handleToClose();
+    }
 
 
     return (
@@ -132,6 +186,78 @@ const SearchPart = () => {
 
             <Grid style={{ display: "flex", justifyContent: "space-between" }}>
                 <Grid>
+                <Grid style={{ textTransform: "capitalize", borderRadius:"10px"  }} className={classes.create}>
+                    
+                    
+                        <ListItemButton
+                            className={classes.createNew}
+                            // alignItems="flex-start"
+
+                            onClick={() => setOpen(!open)}
+                            sx={{
+                                px: 3,
+                                pt: 2.5,
+                                pb: open ? 0 : 2.5,
+                                '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
+                                backgroundColor:"rgb(50 168 189) !important"
+                            }}
+                        >
+                            <span className={classes.plus}><LocalHospitalIcon /></span>
+                            <ListItemText
+                                primary="Create New"
+                                primaryTypographyProps={{
+                                    fontSize: 15,
+                                    fontWeight: '500',
+                                    lineHeight: '20px',
+                                    mb: '2px',
+                                    color: open ? 'white' : 'white',
+                                }}
+        
+                                sx={{ my: 0, }}
+                            />
+                            
+                        </ListItemButton>
+                        {open &&
+                            data.map((item) => (
+                                <ListItemButton
+                                    sx={{
+                                        bgcolor: open ? 'white' : 'blue',
+                                        py: 0, minHeight: 32, color: 'rgba(255,255,255,.8)'}}
+                                    key={item.label}
+                                    onClick={ () => handleOnChange(item.label)}
+                                >
+                                    <ListItemIcon sx={{ color: 'inherit' }} >
+                                        {item.icon}
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary={item.label}
+                                        primaryTypographyProps={{ fontSize: 14, color: "#166694", fontWeight: "600" }}
+                                    />
+                                </ListItemButton>
+                            ))}
+
+
+                </Grid>
+
+                </Grid>
+                <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }}>
+                    <span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links</Button>
+                <Button style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight:"48px" }}>
+                    <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
+                    Daily Standup Meeting ...
+                    {/* <StandUpCalendar/> */}
+                </Button>
+
+            </Grid>
+
+
+        </Grid>
+    );
+};
+
+export default SearchPart;
+
+/*
                     <Button
                         id="fade-button"
                         aria-controls={openOn ? 'fade-menu' : undefined}
@@ -160,12 +286,10 @@ const SearchPart = () => {
                             <div onClick={handleClickToOpen}>
                                 <img src={folder} alt="folder" className={classes.menuImage} /> Folders
                             </div>
-                            <Dialog open={open} onClose={handleToClose}>
+                            <Dialog open={open} onClose={handleClose}>
                                 <DialogTitle>{"Create New Folder"}</DialogTitle>
                                 <DialogContent>
-                                    {/* <DialogContentText>
-                                        I am Good, Hope the same for you!
-                                    </DialogContentText> */}
+                                   
                                     <Box
                                         component="form"
                                         sx={{
@@ -175,37 +299,7 @@ const SearchPart = () => {
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-                                       
-                                    </Box>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleToClose}
-                                        color="primary" autoFocus>
-                                        Close
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                            <div onClick={handleClickToOpen}>
-                            <img src={word} alt="folder" className={classes.menuImage} /> Word
-                            </div>
-                            <Dialog open={open} onClose={handleToClose}>
-                                <DialogTitle>{"Create New Folder"}</DialogTitle>
-                                <DialogContent>
-                                    {/* <DialogContentText>
-                                        I am Good, Hope the same for you!
-                                    </DialogContentText> */}
-                                    <Box
-                                        component="form"
-                                        sx={{
-                                            '& > :not(style)': { m: 1, width: '25ch' },
-                                        }}
-                                        noValidate
-                                        autoComplete="off"
-                                    >
-                                        <TextField id="outlined-basic" label="" variant="outlined" />
-                                       
+
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -219,14 +313,12 @@ const SearchPart = () => {
 
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
-                            <img src={excel} alt="folder" className={classes.menuImage} /> Excel
+                                <img src={word} alt="folder" className={classes.menuImage} /> Word
                             </div>
                             <Dialog open={open} onClose={handleToClose}>
                                 <DialogTitle>{"Create New Folder"}</DialogTitle>
                                 <DialogContent>
-                                    {/* <DialogContentText>
-                                        I am Good, Hope the same for you!
-                                    </DialogContentText> */}
+                                    
                                     <Box
                                         component="form"
                                         sx={{
@@ -236,7 +328,36 @@ const SearchPart = () => {
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-                                       
+
+                                    </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleToClose}
+                                        color="primary" autoFocus>
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </MenuItem>
+
+                        <MenuItem onClick={handleClose}>
+                            <div onClick={handleClickToOpen}>
+                                <img src={excel} alt="folder" className={classes.menuImage} /> Excel
+                            </div>
+                            <Dialog open={open} onClose={handleToClose}>
+                                <DialogTitle>{"Create New Folder"}</DialogTitle>
+                                <DialogContent>
+                                  
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& > :not(style)': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField id="outlined-basic" label="" variant="outlined" />
+
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -249,14 +370,11 @@ const SearchPart = () => {
                         </MenuItem>
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
-                            <img src={pdf} alt="folder" className={classes.menuImage} /> Pdf
+                                <img src={pdf} alt="folder" className={classes.menuImage} /> Pdf
                             </div>
                             <Dialog open={open} onClose={handleToClose}>
                                 <DialogTitle>{"Create New Folder"}</DialogTitle>
-                                <DialogContent>
-                                    {/* <DialogContentText>
-                                        I am Good, Hope the same for you!
-                                    </DialogContentText> */}
+                                <DialogContent>                                
                                     <Box
                                         component="form"
                                         sx={{
@@ -266,7 +384,7 @@ const SearchPart = () => {
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-                                       
+
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -277,95 +395,40 @@ const SearchPart = () => {
                                 </DialogActions>
                             </Dialog>
                         </MenuItem>
-                        <MenuItem onClick={handleClose}><img src={pdf} alt="folder" className={classes.menuImage} /> Pdf</MenuItem>
-                        <MenuItem onClick={handleClose}><img src={ppt} alt="folder" className={classes.menuImage} /> Ppt</MenuItem>
+                       
+                            {/* <MenuItem onClick={handleClose}>
+                                <Button onClick={handleClickToOpen}>
+                                    <img src={ppt} alt="folder" className={classes.menuImage} /> Ppt
+                                </Button>
+                                <BootstrapDialog
+                                onClose={handleClose}
+                                aria-labelledby="customized-dialog-title"
+                                open={open}
+                                fullWidth
+                                maxWidth="sm"
+                            >
+                                <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} >
+                                    <Typography > Create New Folder</Typography>
+                                </BootstrapDialogTitle>
+                                <DialogContent dividers>
+                                        <form >
+                                            <Grid>
+                                                <div>
+                                                    <input type="text" placeholder='.' />
+                                                </div>
+                                                <input type="button" value="Submit" onClick={handleFormSubmit} />
+                                            </Grid>
+                                        </form>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button autoFocus onClick={handleClose} style={{ marginRight: "15px" }}>
+                                        Cancel
+                                    </Button>
+                                </DialogActions>
+                            </BootstrapDialog>
+                            </MenuItem> 
+
+                       
                     </Menu>
-                </Grid>
-                <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }}>
-                    <span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links</Button>
-                <Button style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white" }}>
-                    <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
-                    Daily Standup Meeting ...
-                    {/* <StandUpCalendar/> */}
-                </Button>
-
-            </Grid>
-
-
-        </Grid>
-    );
-};
-
-export default SearchPart;
-
-/*
-                <Button style={{ textTransform: "capitalize", marginRight:"30px" }} className={classes.create}>
-                    
-                    <Box
-                        sx={{
-                            bgcolor: open ? 'white' : null,
-                            pb: open ? 2 : 0,
-                            width: "160px"
-                        }}
-
-                    >
-
-                        <ListItemButton
-                            className={classes.create}
-                            // alignItems="flex-start"
-                            onClick={() => setOpen(!open)}
-                            sx={{
-                                px: 3,
-                                pt: 2.5,
-                                pb: open ? 0 : 2.5,
-                                '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
-                            }}
-                        >
-                            <span className={classes.plus}><LocalHospitalIcon /></span>
-                            <ListItemText
-                                primary="Create New"
-                                primaryTypographyProps={{
-                                    fontSize: 15,
-                                    fontWeight: '500',
-                                    lineHeight: '20px',
-                                    mb: '2px',
-                                    color: open ? 'white' : 'white',
-                                }}
-                                // secondary="Authentication, Firestore Database, Realtime Database, Storage, Hosting, Functions, and Machine Learning"
-                                // secondaryTypographyProps={{
-                                //     noWrap: true,
-                                //     fontSize: 12,
-                                //     lineHeight: '16px',
-                                //     color: open ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
-                                // }}
-                                sx={{ my: 0, }}
-                            />
-                            
-                        </ListItemButton>
-                        {open &&
-                            data.map((item) => (
-                                <ListItemButton
-                                    sx={{
-                                        bgcolor: open ? 'white' : 'rgb(50 168 189) !important',
-                                        py: 0, minHeight: 32, color: 'rgba(255,255,2import { DialogContent } from '@mui/material/DialogContent';
-55,.8)'import { DialogActions } from '@mui/material/DialogActions';
-
-                                    }}
-                                    key={item.label}
-                                    onClick={ () => handleOnChange(item.label)}
-                                >
-                                    <ListItemIcon sx={{ color: 'inherit' }} >
-                                        {item.icon}
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary={item.label}
-                                        primaryTypographyProps={{ fontSize: 14, color: "#166694", fontWeight: "600" }}
-                                    />
-                                </ListItemButton>
-                            ))}
-
-                    </Box>
-
-                </Button>
-
-*/
+                */
+                
