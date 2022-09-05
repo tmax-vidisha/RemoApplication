@@ -88,12 +88,23 @@ export const useStyles = makeStyles({
 
   },
   create: {
-    backgroundColor: "rgb(50 168 189) !important",
+    // backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
      marginRight: "30px !important",
     padding: "3px 8px !important",
+   
+
     
   },
+  createNew: {
+    // backgroundColor: "rgb(50 168 189) !important",
+    color: "white !important",
+    //  marginRight: "30px !important",
+    padding: "3px 8px !important",
+
+    
+  },
+
   linkBtn: {
     backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
