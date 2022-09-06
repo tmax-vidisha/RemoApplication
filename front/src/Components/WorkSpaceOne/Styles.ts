@@ -129,6 +129,11 @@ export const useStyles = makeStyles({
   },
   menu:{
     marginTop:"15px"
+  },
+
+  customMenuPopover: {
+    // take note of !important because default z-index is applied inline
+    zIndex: "1900 !important"
   }
 
 });

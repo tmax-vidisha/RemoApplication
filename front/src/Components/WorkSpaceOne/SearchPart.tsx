@@ -109,21 +109,33 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
     );
 };
 const data = [
-    { id: 1, icon: <img src={folder} alt="folder" />, label: 'Folders' },
-    { id: 2, icon: <img src={word} alt="folder" />, label: 'Word' },
-    { id: 3, icon: <img src={excel} alt="folder" />, label: 'Excel' },
-    { id: 4, icon: <img src={pdf} alt="folder" />, label: 'PDF' },
-    { id: 5, icon: <img src={ppt} alt="folder" />, label: 'PPT' },
+    { id: 1, icon: <img src={folder} alt="folder" />, label: 'Folders', popup: "Create New Folder" },
+    { id: 2, icon: <img src={word} alt="folder" />, label: 'Word', popup: "Create New Document" },
+    { id: 3, icon: <img src={excel} alt="folder" />, label: 'Excel', popup: "Create New Excel File" },
+    { id: 4, icon: <img src={pdf} alt="folder" />, label: 'PDF', popup: "Create New PDF" },
+    { id: 5, icon: <img src={ppt} alt="folder" />, label: 'PPT', popup: "Create New PPT" },
 
 ];
 
+
+
 const handleOnChange = (label: any) => {
     console.log(label, "all label")
-     
+
 }
 
+const dataPopup = [
+    { id: 1, popup: "Create New Folder" },
+    { id: 2, popup: "Create New Document" },
+    { id: 3, popup: "Create New Excel File" },
+    { id: 4, popup: "Create New PDF" },
+    { id: 5, popup: "Create New PPT" },
+]
 
-const SearchPart = () => {
+
+
+
+const SearchPart = (id: any) => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
@@ -140,12 +152,13 @@ const SearchPart = () => {
         setAnchorEl(null);
     };
 
-    // const handleClickToOpen = () => {
-    //     setOpen(true);
-    // };
+    const [openOne, setOpenOne] = React.useState(false);
+    const handleClickOne = (popup: any) => {
+        setOpenOne(true);
+    };
 
-    const handleToClose = () => {
-        setOpen(false);
+    const handleCloseOne = () => {
+        setOpenOne(false);
     };
     const handleFormSubmit = (e: any) => {
         e.preventDefault();
@@ -165,9 +178,79 @@ const SearchPart = () => {
         //     icon: 'success',
         //     title: 'Folder Create Successfully'
         // }),
-            handleToClose();
+        //handleToClose();
+    }
+    const [openDialog2, setDialog2Open] = React.useState(false);
+    const [id1, setId1] = React.useState(0);
+    const [openTwo, setOpenTwo] = React.useState(false);
+    const handleOpenTwo = () => {
+        // setDialog2Open(true);
+        setOpenTwo(true);
+    }
+    const handleCloseTwo = () => {
+        // setDialog2Open(true);
+        setOpenTwo(false);
     }
 
+    const [openThree, setOpenThree] = React.useState(false);
+    const handleOpenThree = () => {
+        // setDialog2Open(true);
+        setOpenThree(true);
+    }
+    const handleCloseThree = () => {
+        // setDialog2Open(true);
+        setOpenThree(false);
+    }
+
+    const [openFour, setOpenFour] = React.useState(false);
+
+    const handleOpenFour = () => {
+        // setDialog2Open(true);
+        setOpenFour(true);
+    }
+    const handleCloseFour = () => {
+        // setDialog2Open(true);
+        setOpenFour(false);
+    }
+
+    const Dialog2 = (open: any) => {
+
+        return (
+            <div>
+                {/* <Button variant="outlined" onClick={handleClickToOpen}>
+                    Open form dialog
+                </Button> */}
+                {
+                    open && data.map((item) => {
+
+                        <Dialog open={open} onClose={handleClose}>
+                            <DialogTitle>
+                                {item.popup}
+                            </DialogTitle>
+                            <DialogContent>
+
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="name"
+                                    label="folder"
+                                    type="text"
+                                    fullWidth
+                                    variant="standard"
+                                />
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose}>Create</Button>
+                                <Button onClick={handleClose}>Close</Button>
+                            </DialogActions>
+                        </Dialog>
+
+                    })
+                }
+
+            </div>
+        )
+    }
 
     return (
         <Grid container spacing={2} item xs={12} style={{ marginTop: "20px", position: "static", display: "flex", justifyContent: "space-around" }}>
@@ -186,9 +269,213 @@ const SearchPart = () => {
 
             <Grid style={{ display: "flex", justifyContent: "space-between" }}>
                 <Grid>
-                <Grid style={{ textTransform: "capitalize", borderRadius:"10px"  }} className={classes.create}>
-                    
-                    
+                    <Grid style={{ textTransform: "capitalize", borderRadius: "10px",  }} className={classes.create}> 
+                    <Button
+                        id="fade-button"
+                        aria-controls={openOn ? 'fade-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={openOn ? 'true' : undefined}
+                        onClick={handleClick}
+                        className={classes.create}
+                        sx={{ textTransform: "capitalize",backgroundColor:"rgb(50 168 189) !important" }}
+                    >
+                        <span className={classes.plus}><LocalHospitalIcon /></span>
+                        Create New
+                    </Button>
+                    <Menu
+                        id="fade-menu"
+                        MenuListProps={{
+                            'aria-labelledby': 'fade-button',
+                        }}
+                        anchorEl={anchorEl}
+                        open={openOn}
+                        onClose={handleClose}
+                       TransitionComponent={Fade}
+                        className={classes.menu}
+                    >
+
+                        <MenuItem >
+                            <Button onClick={handleClickOne}>
+                                <img src={folder} alt="folder" className={classes.menuImage} /> Folders
+                            </Button>
+                            <Dialog open={openOne} onClose={handleCloseOne}>
+                                <DialogTitle>{"Create New Folder"}</DialogTitle>
+                                <DialogContent>
+
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& > :not(style)': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField id="outlined-basic" label="" variant="outlined" />
+
+                                    </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                <Button onClick={handleCloseOne}
+                                        color="primary" autoFocus>
+                                       Create
+                                    </Button>
+                                    <Button onClick={handleCloseOne}
+                                        color="primary" autoFocus>
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </MenuItem>
+
+                        <MenuItem>
+                            <div onClick={handleOpenTwo}>
+                                <img src={word} alt="folder" className={classes.menuImage} /> Word
+                            </div>
+                            <Dialog open={openTwo} onClose={handleCloseTwo}>
+                                <DialogTitle>{"Create New Word"}</DialogTitle>
+                                <DialogContent>
+
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& > :not(style)': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField id="outlined-basic" label="" variant="outlined" />
+
+                                    </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleCloseTwo}
+                                        color="primary" autoFocus>
+                                        Create
+                                    </Button>
+                                    <Button onClick={handleCloseTwo}
+                                        color="primary" autoFocus>
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </MenuItem>
+                        <MenuItem>
+                            <div onClick={handleOpenThree }>
+                                <img src={excel} alt="folder" className={classes.menuImage} /> Excel
+                            </div>
+                            <Dialog open={openThree} onClose={handleCloseThree}>
+                                <DialogTitle>{"Create New Excel"}</DialogTitle>
+                                <DialogContent>
+
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& > :not(style)': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField id="outlined-basic" label="" variant="outlined" />
+
+                                    </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleCloseThree}
+                                        color="primary" autoFocus>
+                                        Create
+                                    </Button>
+                                    <Button onClick={handleCloseThree}
+                                        color="primary" autoFocus>
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </MenuItem>
+                        <MenuItem>
+                            <div onClick={handleOpenFour}>
+                                <img src={pdf} alt="folder" className={classes.menuImage} /> Pdf
+                            </div>
+                            <Dialog open={openFour} onClose={handleCloseFour}>
+                                <DialogTitle>{"Create New PDF"}</DialogTitle>
+                                <DialogContent>
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& > :not(style)': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField id="outlined-basic" label="" variant="outlined" />
+
+                                    </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleCloseFour}
+                                        color="primary" autoFocus>
+                                        Create
+                                    </Button>
+                                    <Button onClick={handleCloseFour}
+                                        color="primary" autoFocus>
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </MenuItem>
+                        <MenuItem>
+                            <div onClick={handleOpenFour}>
+                                <img src={ppt} alt="folder" className={classes.menuImage} /> Ppt
+                            </div>
+                            <Dialog open={openFour} onClose={handleCloseFour}>
+                                <DialogTitle>{"Create New PPT"}</DialogTitle>
+                                <DialogContent>
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& > :not(style)': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <TextField id="outlined-basic" label="" variant="outlined" />
+
+                                    </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleCloseFour}
+                                        color="primary" autoFocus>
+                                        Create
+                                    </Button>
+                                    <Button onClick={handleCloseFour}
+                                        color="primary" autoFocus>
+                                        Close
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </MenuItem>
+                    </Menu>
+                    </Grid>
+                </Grid>
+
+                <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }} >
+                    <span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links</Button>
+                {/* <Dialog2 open={openDialog2} close={() => setDialog2Open(false)} ></Dialog2> */}
+                <Button style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight: "48px" }}>
+                    <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
+                    Daily Standup Meeting ...
+                    {/* <StandUpCalendar/> */}
+                </Button>
+
+            </Grid>
+
+
+        </Grid >
+    );
+};
+
+export default SearchPart;
+
+/*
                         <ListItemButton
                             className={classes.createNew}
                             // alignItems="flex-start"
@@ -199,7 +486,7 @@ const SearchPart = () => {
                                 pt: 2.5,
                                 pb: open ? 0 : 2.5,
                                 '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
-                                backgroundColor:"rgb(50 168 189) !important"
+                                backgroundColor: "rgb(50 168 189) !important"
                             }}
                         >
                             <span className={classes.plus}><LocalHospitalIcon /></span>
@@ -212,52 +499,64 @@ const SearchPart = () => {
                                     mb: '2px',
                                     color: open ? 'white' : 'white',
                                 }}
-        
+
                                 sx={{ my: 0, }}
                             />
-                            
+
                         </ListItemButton>
                         {open &&
                             data.map((item) => (
                                 <ListItemButton
                                     sx={{
                                         bgcolor: open ? 'white' : 'blue',
-                                        py: 0, minHeight: 32, color: 'rgba(255,255,255,.8)'}}
-                                    key={item.label}
-                                    onClick={ () => handleOnChange(item.label)}
+                                        py: 0, minHeight: 32, color: 'rgba(255,255,255,.8)'
+                                    }}
+                                    key={item.id}
+                                    onClick={() => handleOnChange(item.id)
+                                    }
                                 >
-                                    <ListItemIcon sx={{ color: 'inherit' }} >
-                                        {item.icon}
-                                    </ListItemIcon>
-                                    <ListItemText
-                                        primary={item.label}
-                                        primaryTypographyProps={{ fontSize: 14, color: "#166694", fontWeight: "600" }}
-                                    />
+                                    <Button 
+                                   onClick={handleClickToOpen}
+                                    >
+                                        
+
+
+                                        <ListItemIcon sx={{ color: 'inherit' }} >
+
+                                            {item.icon}
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary={item.label}
+                                            primaryTypographyProps={{ fontSize: 14, color: "#166694", fontWeight: "600" }}
+                                        />
+
+                                    </Button>
+                                    <Dialog open={open} onClose={handleToClose}>
+                                        <DialogTitle>
+                                            {item.popup}
+                                        </DialogTitle>
+                                        <DialogContent>
+
+                                            <TextField
+                                                autoFocus
+                                                margin="dense"
+                                                id="name"
+                                                label="folder"
+                                                type="text"
+                                                fullWidth
+                                                variant="standard"
+                                            />
+                                        </DialogContent>
+                                        <DialogActions>
+                                            <Button onClick={handleToClose}>Create</Button>
+                                            <Button onClick={handleToClose}>Close</Button>
+                                        </DialogActions>
+                                    </Dialog>
+
                                 </ListItemButton>
+
+
                             ))}
-
-
-                </Grid>
-
-                </Grid>
-                <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }}>
-                    <span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links</Button>
-                <Button style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight:"48px" }}>
-                    <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
-                    Daily Standup Meeting ...
-                    {/* <StandUpCalendar/> */}
-                </Button>
-
-            </Grid>
-
-
-        </Grid>
-    );
-};
-
-export default SearchPart;
-
-/*
                     <Button
                         id="fade-button"
                         aria-controls={openOn ? 'fade-menu' : undefined}
@@ -431,4 +730,4 @@ export default SearchPart;
                        
                     </Menu>
                 */
-                
+
