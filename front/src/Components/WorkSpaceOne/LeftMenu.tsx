@@ -222,7 +222,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </CardContent>
                 </Paper>
             </AuthenticatedTemplate> */}
-                <Box sx={{marginTop:"150px", backgroundColor:"#e9fbfb", display:"flex", justifyContent:"flex-end", paddingRight:"20px"}}>
+                <Box className={classes.lastMenu}>
                     <Grid style={{marginRight:"15px"}}> <img src={upload} alt="upload" /></Grid>
                     <Grid  style={{marginRight:"15px"}}><img src={setting} alt="upload" /></Grid>
                     <Grid><img src={menuBlue} alt="upload" /></Grid>

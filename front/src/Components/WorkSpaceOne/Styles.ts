@@ -90,19 +90,19 @@ export const useStyles = makeStyles({
   create: {
     // backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
-     marginRight: "30px !important",
+    marginRight: "15px !important",
     padding: "3px 8px !important",
-   
 
-    
+
+
   },
   createNew: {
     // backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
-    //  marginRight: "30px !important",
+    // marginRight: "15px !important",
     padding: "3px 8px !important",
 
-    
+
   },
 
   linkBtn: {
@@ -124,16 +124,26 @@ export const useStyles = makeStyles({
     textAlign: "left",
 
   },
-  menuImage:{
-    marginRight:"20px"
+  menuImage: {
+    marginRight: "20px"
   },
-  menu:{
-    marginTop:"15px"
+  menu: {
+    marginTop: "15px"
   },
 
   customMenuPopover: {
     // take note of !important because default z-index is applied inline
     zIndex: "1900 !important"
+  },
+
+  lastMenu: {
+    marginTop: "150px",
+    backgroundColor: "#e9fbfb",
+    display: "flex",
+    justifyContent:"center",
+    padding: "10px",
+    width: "100px",
+    marginLeft:"80px"
   }
 
 });
