@@ -41,9 +41,37 @@ const uploadItemInOneDrive = asyncHandler(async(req:Request, res:Response) => {
   
     }else {
         console.log('ooo')
-   
+        const valid = await fetch(
+  
+            //   `https://graph.microsoft.com/v1.0/me/drive/root:/${file}.xlsx:/content`,
+    
+            //https://graph.microsoft.com/v1.0/me/drive/root/children
+    
+           // `https://graph.microsoft.com/v1.0/me/drive/items/{parent-id}:/${file}.xlsx:/content`,
+    
+              `https://graph.microsoft.com/v1.0/me/drive/root/children?$filter=startswith(name,'${name}')`,
+    
+              {
+    
+                method: 'GET',
+    
+                headers: {
+                  'Authorization': `Bearer ${token} `,
+                  'Content-Type': 'application/json'
+                
+                }
+    
+              })
+        const output = await valid.json();
+        console.log(output.value,'lll')
+       if (output.value.length !== 0){
+        console.log('full')
+        res.status(409).json({
+              success: true,
+               response:`${name} file already exists`
         
-
+           });
+       }
     //xlsx file
     const data = [
       [" ", " "],
@@ -76,7 +104,7 @@ const eeee = await pres.stream()
 const www = Buffer.from(eeee, "binary")
 
 //Uploading docx to onedrive
-    if (name.includes('.docx')){
+    if (name.includes('.docx') && output.value.length == 0){
       const result = await fetch(
           `https://graph.microsoft.com/v1.0/me/drive/root:/${name}:/content`,
 
@@ -103,16 +131,20 @@ const www = Buffer.from(eeee, "binary")
 
         //   console.log(name,"upload excel file");
 
-       console.log(result)
-       
+      //  console.log(result)
+       const data = await result.json()
+       console.log(data)
+       if(data !== 0){
+        // console.log(`${name} file is created`)
+        res.status(200).json({
+          success: true,
+           response:`${name} file is created`
     
+       });
 
+       }
       // return result
-      res.status(200).json({
-            success: true,
-             response:result
       
-         });
 
 
 
@@ -126,7 +158,7 @@ const www = Buffer.from(eeee, "binary")
   //   }
 
 //uploading pptx to oneDrive
-    if (name.includes('.pptx')){
+    if (name.includes('.pptx') && output.value.length == 0){
       const result = await fetch(
 
         
@@ -153,16 +185,19 @@ const www = Buffer.from(eeee, "binary")
 
         //   console.log(name,"upload excel file");
 
-       console.log(result)
-       
+      //  console.log(result)
+       const data = await result.json();
+      console.log(data)
+      if(data !== 0){
+        console.log(`${name} file is created`)
+        res.status(201).json({
+          success: true,
+           response:`${name}  is created` 
     
-
+       });
+      }
       // return result
-      res.status(200).json({
-            success: true,
-             response:result
       
-         });
 
 
 
@@ -177,7 +212,7 @@ const www = Buffer.from(eeee, "binary")
     // }
 
 //uploading xlsx file to one drive   
-    if (name.includes('.xlsx')){
+    if (name.includes('.xlsx') && output.value.length == 0){
       const result = await fetch(
 
       
@@ -205,16 +240,18 @@ const www = Buffer.from(eeee, "binary")
 
         //   console.log(name,"upload excel file");
 
-       console.log(result)
-       
+      //  console.log(result)
+       const data =await result.json()
+       if(data !== 0 ){
+        res.status(200).json({
+          success: true,
+           response:`${name}  is created` 
     
+       });
+       }
 
       // return result
-      res.status(200).json({
-            success: true,
-             response:result
       
-         });
 
 
 

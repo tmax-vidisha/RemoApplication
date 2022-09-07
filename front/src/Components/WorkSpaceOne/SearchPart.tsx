@@ -160,25 +160,34 @@ const SearchPart = (id: any) => {
     const handleCloseOne = () => {
         setOpenOne(false);
     };
+
+    const [text, setText] = React.useState('');
+
+    const handleOnChange = (e: any) => {
+        setText(e.target.value);
+        console.log(e.target.value);
+    }
+
+
     const handleFormSubmit = (e: any) => {
         e.preventDefault();
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        });
+        // const Toast = Swal.mixin({
+        //     toast: true,
+        //     position: 'top',
+        //     showConfirmButton: false,
+        //     timer: 1500,
+        //     timerProgressBar: true,
+        //     didOpen: (toast) => {
+        //         toast.addEventListener('mouseenter', Swal.stopTimer)
+        //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //     }
+        // });
 
-        Toast.fire({
-            icon: 'success',
-            title: 'Create Successfully'
-        });
-       
+        // Toast.fire({
+        //     icon: 'success',
+        //     title: 'Create Successfully'
+        // });
+
         handleCloseOne();
     }
     const [openDialog2, setDialog2Open] = React.useState(false);
@@ -280,191 +289,191 @@ const SearchPart = (id: any) => {
 
             <Grid style={{ display: "flex", justifyContent: "space-between" }}>
                 <Grid>
-                    <Grid style={{ textTransform: "capitalize", borderRadius: "10px",  }} className={classes.create}> 
-                    <Button
-                        id="fade-button"
-                        aria-controls={openOn ? 'fade-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openOn ? 'true' : undefined}
-                        onClick={handleClick}
-                        className={classes.create}
-                        sx={{ textTransform: "capitalize",backgroundColor:"rgb(50 168 189) !important" }}
-                    >
-                        <span className={classes.plus}><LocalHospitalIcon /></span>
-                        Create New
-                    </Button>
-                    <Menu
-                        id="fade-menu"
-                        MenuListProps={{
-                            'aria-labelledby': 'fade-button',
-                        }}
-                        anchorEl={anchorEl}
-                        open={openOn}
-                        onClose={handleClose}
-                       TransitionComponent={Fade}
-                        className={classes.menu}
-                    >
+                    <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
+                        <Button
+                            id="fade-button"
+                            aria-controls={openOn ? 'fade-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={openOn ? 'true' : undefined}
+                            onClick={handleClick}
+                            className={classes.create}
+                            sx={{ textTransform: "capitalize", backgroundColor: "rgb(50 168 189) !important" }}
+                        >
+                            <span className={classes.plus}><LocalHospitalIcon /></span>
+                            Create New
+                        </Button>
+                        <Menu
+                            id="fade-menu"
+                            MenuListProps={{
+                                'aria-labelledby': 'fade-button',
+                            }}
+                            anchorEl={anchorEl}
+                            open={openOn}
+                            onClose={handleClose}
+                            TransitionComponent={Fade}
+                            className={classes.menu}
+                        >
 
-                        <MenuItem >
-                            <div onClick={handleClickOne}>
-                                <img src={folder} alt="folder" className={classes.menuImage} /> Folders
-                            </div>
-                            <Dialog open={openOne} onClose={handleCloseOne}>
-                                <DialogTitle>{"Create New Folder"}</DialogTitle>
-                                <DialogContent>
+                            <MenuItem >
+                                <div onClick={handleClickOne}>
+                                    <img src={folder} alt="folder" className={classes.menuImage} /> Folders
+                                </div>
+                                <Dialog open={openOne} onClose={handleCloseOne}>
+                                    <DialogTitle>{"Create New Folder"}</DialogTitle>
+                                    <DialogContent>
 
-                                    <Box
-                                        component="form"
-                                        sx={{
-                                            '& > :not(style)': { m: 1, width: '25ch' },
-                                        }}
-                                        noValidate
-                                        autoComplete="off"
-                                    >
-                                        <TextField id="outlined-basic" label="" variant="outlined" />
+                                        <Box
+                                            component="form"
+                                            sx={{
+                                                '& > :not(style)': { m: 1, width: '25ch' },
+                                            }}
+                                            noValidate
+                                            autoComplete="off"
+                                        >
+                                            <TextField id="outlined-basic" onChange={handleOnChange} variant="outlined" />
 
-                                    </Box>
-                                </DialogContent>
-                                <DialogActions>
-                                <Button onClick={handleFormSubmit}
-                                        color="primary" autoFocus>
-                                       Create
-                                    </Button>
-                                    <Button onClick={handleCloseOne}
-                                        color="primary" autoFocus>
-                                        Close
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </MenuItem>
+                                        </Box>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleFormSubmit}
+                                            color="primary" autoFocus>
+                                            Create
+                                        </Button>
+                                        <Button onClick={handleCloseOne}
+                                            color="primary" autoFocus>
+                                            Close
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </MenuItem>
 
-                        <MenuItem>
-                            <div onClick={handleOpenTwo}>
-                                <img src={word} alt="folder" className={classes.menuImage} /> Word
-                            </div>
-                            <Dialog open={openTwo} onClose={handleCloseTwo}>
-                                <DialogTitle>{"Create New Word"}</DialogTitle>
-                                <DialogContent>
+                            <MenuItem>
+                                <div onClick={handleOpenTwo}>
+                                    <img src={word} alt="folder" className={classes.menuImage} /> Word
+                                </div>
+                                <Dialog open={openTwo} onClose={handleCloseTwo}>
+                                    <DialogTitle>{"Create New Word"}</DialogTitle>
+                                    <DialogContent>
 
-                                    <Box
-                                        component="form"
-                                        sx={{
-                                            '& > :not(style)': { m: 1, width: '25ch' },
-                                        }}
-                                        noValidate
-                                        autoComplete="off"
-                                    >
-                                        <TextField id="outlined-basic" label="" variant="outlined" />
+                                        <Box
+                                            component="form"
+                                            sx={{
+                                                '& > :not(style)': { m: 1, width: '25ch' },
+                                            }}
+                                            noValidate
+                                            autoComplete="off"
+                                        >
+                                            <TextField id="outlined-basic" onChange={handleOnChange} variant="outlined" />
 
-                                    </Box>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleFormSubmit}
-                                        color="primary" autoFocus>
-                                        Create
-                                    </Button>
-                                    <Button onClick={handleCloseTwo}
-                                        color="primary" autoFocus>
-                                        Close
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </MenuItem>
-                        <MenuItem>
-                            <div onClick={handleOpenThree }>
-                                <img src={excel} alt="folder" className={classes.menuImage} /> Excel
-                            </div>
-                            <Dialog open={openThree} onClose={handleCloseThree}>
-                                <DialogTitle>{"Create New Excel"}</DialogTitle>
-                                <DialogContent>
+                                        </Box>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleFormSubmit}
+                                            color="primary" autoFocus>
+                                            Create
+                                        </Button>
+                                        <Button onClick={handleCloseTwo}
+                                            color="primary" autoFocus>
+                                            Close
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </MenuItem>
+                            <MenuItem>
+                                <div onClick={handleOpenThree}>
+                                    <img src={excel} alt="folder" className={classes.menuImage} /> Excel
+                                </div>
+                                <Dialog open={openThree} onClose={handleCloseThree}>
+                                    <DialogTitle>{"Create New Excel"}</DialogTitle>
+                                    <DialogContent>
 
-                                    <Box
-                                        component="form"
-                                        sx={{
-                                            '& > :not(style)': { m: 1, width: '25ch' },
-                                        }}
-                                        noValidate
-                                        autoComplete="off"
-                                    >
-                                        <TextField id="outlined-basic" label="" variant="outlined" />
+                                        <Box
+                                            component="form"
+                                            sx={{
+                                                '& > :not(style)': { m: 1, width: '25ch' },
+                                            }}
+                                            noValidate
+                                            autoComplete="off"
+                                        >
+                                            <TextField id="outlined-basic" onChange={handleOnChange} variant="outlined" />
 
-                                    </Box>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleFormSubmit}
-                                        color="primary" autoFocus>
-                                        Create
-                                    </Button>
-                                    <Button onClick={handleCloseThree}
-                                        color="primary" autoFocus>
-                                        Close
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </MenuItem>
-                        <MenuItem>
-                            <div onClick={handleOpenFour}>
-                                <img src={pdf} alt="folder" className={classes.menuImage} /> Pdf
-                            </div>
-                            <Dialog open={openFour} onClose={handleCloseFour}>
-                                <DialogTitle>{"Create New PDF"}</DialogTitle>
-                                <DialogContent>
-                                    <Box
-                                        component="form"
-                                        sx={{
-                                            '& > :not(style)': { m: 1, width: '25ch' },
-                                        }}
-                                        noValidate
-                                        autoComplete="off"
-                                    >
-                                        <TextField id="outlined-basic" label="" variant="outlined" />
+                                        </Box>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleFormSubmit}
+                                            color="primary" autoFocus>
+                                            Create
+                                        </Button>
+                                        <Button onClick={handleCloseThree}
+                                            color="primary" autoFocus>
+                                            Close
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </MenuItem>
+                            <MenuItem>
+                                <div onClick={handleOpenFour}>
+                                    <img src={pdf} alt="folder" className={classes.menuImage} /> Pdf
+                                </div>
+                                <Dialog open={openFour} onClose={handleCloseFour}>
+                                    <DialogTitle>{"Create New PDF"}</DialogTitle>
+                                    <DialogContent>
+                                        <Box
+                                            component="form"
+                                            sx={{
+                                                '& > :not(style)': { m: 1, width: '25ch' },
+                                            }}
+                                            noValidate
+                                            autoComplete="off"
+                                        >
+                                            <TextField id="outlined-basic" onChange={handleOnChange} variant="outlined" />
 
-                                    </Box>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleFormSubmit}
-                                        color="primary" autoFocus>
-                                        Create
-                                    </Button>
-                                    <Button onClick={handleCloseFour}
-                                        color="primary" autoFocus>
-                                        Close
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </MenuItem>
-                        <MenuItem>
-                            <div onClick={handleOpenFive}>
-                                <img src={ppt} alt="folder" className={classes.menuImage} /> Ppt
-                            </div>
-                            <Dialog open={openFive} onClose={handleCloseFive}>
-                                <DialogTitle>{"Create New PPT"}</DialogTitle>
-                                <DialogContent>
-                                    <Box
-                                        component="form"
-                                        sx={{
-                                            '& > :not(style)': { m: 1, width: '25ch' },
-                                        }}
-                                        noValidate
-                                        autoComplete="off"
-                                    >
-                                        <TextField id="outlined-basic" label="" variant="outlined" />
+                                        </Box>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleFormSubmit}
+                                            color="primary" autoFocus>
+                                            Create
+                                        </Button>
+                                        <Button onClick={handleCloseFour}
+                                            color="primary" autoFocus>
+                                            Close
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </MenuItem>
+                            <MenuItem>
+                                <div onClick={handleOpenFive}>
+                                    <img src={ppt} alt="folder" className={classes.menuImage} /> Ppt
+                                </div>
+                                <Dialog open={openFive} onClose={handleCloseFive}>
+                                    <DialogTitle>{"Create New PPT"}</DialogTitle>
+                                    <DialogContent>
+                                        <Box
+                                            component="form"
+                                            sx={{
+                                                '& > :not(style)': { m: 1, width: '25ch' },
+                                            }}
+                                            noValidate
+                                            autoComplete="off"
+                                        >
+                                            <TextField id="outlined-basic" onChange={handleOnChange} variant="outlined" />
 
-                                    </Box>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleFormSubmit}
-                                        color="primary" autoFocus>
-                                        Create
-                                    </Button>
-                                    <Button onClick={handleCloseFive}
-                                        color="primary" autoFocus>
-                                        Close
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </MenuItem>
-                    </Menu>
+                                        </Box>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleFormSubmit}
+                                            color="primary" autoFocus>
+                                            Create
+                                        </Button>
+                                        <Button onClick={handleCloseFive}
+                                            color="primary" autoFocus>
+                                            Close
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </MenuItem>
+                        </Menu>
                     </Grid>
                 </Grid>
 
@@ -490,7 +499,6 @@ export default SearchPart;
                         <ListItemButton
                             className={classes.createNew}
                             // alignItems="flex-start"
-
                             onClick={() => setOpen(!open)}
                             sx={{
                                 px: 3,
@@ -510,10 +518,8 @@ export default SearchPart;
                                     mb: '2px',
                                     color: open ? 'white' : 'white',
                                 }}
-
                                 sx={{ my: 0, }}
                             />
-
                         </ListItemButton>
                         {open &&
                             data.map((item) => (
@@ -530,24 +536,19 @@ export default SearchPart;
                                    onClick={handleClickToOpen}
                                     >
                                         
-
-
                                         <ListItemIcon sx={{ color: 'inherit' }} >
-
                                             {item.icon}
                                         </ListItemIcon>
                                         <ListItemText
                                             primary={item.label}
                                             primaryTypographyProps={{ fontSize: 14, color: "#166694", fontWeight: "600" }}
                                         />
-
                                     </Button>
                                     <Dialog open={open} onClose={handleToClose}>
                                         <DialogTitle>
                                             {item.popup}
                                         </DialogTitle>
                                         <DialogContent>
-
                                             <TextField
                                                 autoFocus
                                                 margin="dense"
@@ -563,10 +564,7 @@ export default SearchPart;
                                             <Button onClick={handleToClose}>Close</Button>
                                         </DialogActions>
                                     </Dialog>
-
                                 </ListItemButton>
-
-
                             ))}
                     <Button
                         id="fade-button"
@@ -591,7 +589,6 @@ export default SearchPart;
                         TransitionComponent={Fade}
                         className={classes.menu}
                     >
-
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
                                 <img src={folder} alt="folder" className={classes.menuImage} /> Folders
@@ -609,7 +606,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -620,7 +616,6 @@ export default SearchPart;
                                 </DialogActions>
                             </Dialog>
                         </MenuItem>
-
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
                                 <img src={word} alt="folder" className={classes.menuImage} /> Word
@@ -638,7 +633,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -649,7 +643,6 @@ export default SearchPart;
                                 </DialogActions>
                             </Dialog>
                         </MenuItem>
-
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
                                 <img src={excel} alt="folder" className={classes.menuImage} /> Excel
@@ -667,7 +660,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -694,7 +686,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -737,8 +728,6 @@ export default SearchPart;
                                 </DialogActions>
                             </BootstrapDialog>
                             </MenuItem> 
-
                        
                     </Menu>
                 */
-

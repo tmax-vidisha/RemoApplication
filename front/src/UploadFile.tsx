@@ -165,7 +165,7 @@ const formData = new FormData();
 formData.append("fileName", excelblob);
 // formData.append("fileName", fileName);
       const Data = {
-       name:'qwret.xlsx',
+       name:'faeer.xlsx',
       //  blobw:fileSelected
      }
     //  console.log(fd)
@@ -241,7 +241,7 @@ formData.append("fileName", excelblob);
      console.log(blob,'kkkk')
      setFileSelected(docxblob)
      const Data = {
-      name:'eretr.docx',
+      name:'zczxs.docx',
       // blobw:fileSelected
     }
     await sendItem(Data)
@@ -336,7 +336,7 @@ formData.append("fileName", excelblob);
          setFileSelected(pptxblob)
        
         const Data = {
-          name:'y5y6u6u.pptx',
+          name:'yuiop.pptx',
           // blobw:fileSelected
         }
         await sendItem(Data)
@@ -405,9 +405,9 @@ formData.append("fileName", excelblob);
         {/* <Button onClick={createEmptyExcel}>upload</Button> */}
 
         <Button 
-          //  onClick={createAndUpload}
+          onClick={createAndUpload}
         //  onClick={createAndUploadDoc}
-         onClick={createAndUploadPPt}
+        //  onClick={createAndUploadPPt}
         >Create New</Button>
         </Paper>
     </div>
