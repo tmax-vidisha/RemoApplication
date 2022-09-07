@@ -171,6 +171,7 @@ const SearchPart = (id: any) => {
 
     const handleFormSubmit = (e: any) => {
         e.preventDefault();
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top',
@@ -187,6 +188,7 @@ const SearchPart = (id: any) => {
             icon: 'success',
             title: 'Create Successfully'
         });
+
 
         handleCloseOne();
     }
@@ -499,7 +501,6 @@ export default SearchPart;
                         <ListItemButton
                             className={classes.createNew}
                             // alignItems="flex-start"
-
                             onClick={() => setOpen(!open)}
                             sx={{
                                 px: 3,
@@ -519,10 +520,8 @@ export default SearchPart;
                                     mb: '2px',
                                     color: open ? 'white' : 'white',
                                 }}
-
                                 sx={{ my: 0, }}
                             />
-
                         </ListItemButton>
                         {open &&
                             data.map((item) => (
@@ -539,24 +538,19 @@ export default SearchPart;
                                    onClick={handleClickToOpen}
                                     >
                                         
-
-
                                         <ListItemIcon sx={{ color: 'inherit' }} >
-
                                             {item.icon}
                                         </ListItemIcon>
                                         <ListItemText
                                             primary={item.label}
                                             primaryTypographyProps={{ fontSize: 14, color: "#166694", fontWeight: "600" }}
                                         />
-
                                     </Button>
                                     <Dialog open={open} onClose={handleToClose}>
                                         <DialogTitle>
                                             {item.popup}
                                         </DialogTitle>
                                         <DialogContent>
-
                                             <TextField
                                                 autoFocus
                                                 margin="dense"
@@ -572,10 +566,7 @@ export default SearchPart;
                                             <Button onClick={handleToClose}>Close</Button>
                                         </DialogActions>
                                     </Dialog>
-
                                 </ListItemButton>
-
-
                             ))}
                     <Button
                         id="fade-button"
@@ -600,7 +591,6 @@ export default SearchPart;
                         TransitionComponent={Fade}
                         className={classes.menu}
                     >
-
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
                                 <img src={folder} alt="folder" className={classes.menuImage} /> Folders
@@ -618,7 +608,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -629,7 +618,6 @@ export default SearchPart;
                                 </DialogActions>
                             </Dialog>
                         </MenuItem>
-
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
                                 <img src={word} alt="folder" className={classes.menuImage} /> Word
@@ -647,7 +635,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -658,7 +645,6 @@ export default SearchPart;
                                 </DialogActions>
                             </Dialog>
                         </MenuItem>
-
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
                                 <img src={excel} alt="folder" className={classes.menuImage} /> Excel
@@ -676,7 +662,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -703,7 +688,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -746,8 +730,6 @@ export default SearchPart;
                                 </DialogActions>
                             </BootstrapDialog>
                             </MenuItem> 
-
                        
                     </Menu>
                 */
-
