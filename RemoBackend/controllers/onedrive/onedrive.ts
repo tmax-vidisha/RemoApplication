@@ -10,6 +10,7 @@ import xlsx from 'node-xlsx';
 import { Document, Packer, Paragraph, TextRun } from "docx";
 import PptxGenJS from 'pptxgenjs';
 import asyncHandler from '../../middleware/asyncHandler'
+import { Console } from 'console';
 // import docx from 'docx';
 const check ="https://graph.microsoft.com/v1.0/me/drive/root/children?$filter=startswith(name,'Agr.docx')"
 // const { Document, Packer, Paragraph, TextRun } = docx;
@@ -40,54 +41,8 @@ const uploadItemInOneDrive = asyncHandler(async(req:Request, res:Response) => {
   
     }else {
         console.log('ooo')
-    //     const response = 
-    //     // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
-    //       await axios.put(`https://graph.microsoft.com/v1.0/me/drive/root:/${name}:/content`, {
-    //       headers: {
-    //           'Authorization': `Bearer ${token} `,
-    //           'Content-Type': 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
-            
-    //         },
-    //         body:blobw
-          
-    //   })
-    //  console.log(response,'ll')
-    // const res = await fetch(
-    
-    //       //   `https://graph.microsoft.com/v1.0/me/drive/root:/${file}.xlsx:/content`,
-  
-    //       //https://graph.microsoft.com/v1.0/me/drive/root/children
-  
-    //      // `https://graph.microsoft.com/v1.0/me/drive/items/{parent-id}:/${file}.xlsx:/content`,
-  
-    //         `https://graph.microsoft.com/v1.0/me/drive/root:/${name}:/content`,
-  
-    //         {
-  
-    //           method: 'PUT',
-  
-    //           headers: {
-  
-    //             Authorization: `Bearer ${token}`,
-  
-    //            //'Content-Type': 'application/json'
-  
-    //             // 'Content-Type': "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-    //             'Content-Type': "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    //           //  'Content-Type': 'application/vnd.ms-excel'
-  
-    //             //'Content-Type': 'application/vnd.ms-excel.sheet.macroEnabled.12'
-  
-    //           //   'Content-Type': 'text/plain'
-  
-    //       //    ' Content-Type':"application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8"
-  
-    //           },
-    //          //@ts-ignore
-    //           body:blobw
-  
-    //         })
-    //         console.log(res,'kks')
+   
+        
 
     //xlsx file
     const data = [
@@ -120,15 +75,9 @@ const eeee = await pres.stream()
 //@ts-ignore
 const www = Buffer.from(eeee, "binary")
 
-
-     const result = await fetch(
-
-        //   `https://graph.microsoft.com/v1.0/me/drive/root:/${file}.xlsx:/content`,
-
-        //https://graph.microsoft.com/v1.0/me/drive/root/children
-
-       // `https://graph.microsoft.com/v1.0/me/drive/items/{parent-id}:/${file}.xlsx:/content`,
-
+//Uploading docx to onedrive
+    if (name.includes('.docx')){
+      const result = await fetch(
           `https://graph.microsoft.com/v1.0/me/drive/root:/${name}:/content`,
 
           {
@@ -139,20 +88,12 @@ const www = Buffer.from(eeee, "binary")
 
               Authorization: `Bearer ${token}`,
 
-             //'Content-Type': 'application/json'
-
-            //  'Content-Type': "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+           
 
             'Content-Type': "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             // 'Content-Type': "application/vnd.openxmlformats-officedocument.presentationml.presentation",
 
-            //  'Content-Type': 'application/vnd.ms-excel'
-
-              //'Content-Type': 'application/vnd.ms-excel.sheet.macroEnabled.12'
-
-            //   'Content-Type': 'text/plain'
-
-        //    ' Content-Type':"application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8"
+           
 
             },
            //@ts-ignore
@@ -162,22 +103,185 @@ const www = Buffer.from(eeee, "binary")
 
         //   console.log(name,"upload excel file");
 
-      console.log(result)
+       console.log(result)
+       
+    
+
+      // return result
+      res.status(200).json({
+            success: true,
+             response:result
+      
+         });
 
 
 
-
-
-
-
-
-
-
-    res.status(200).json({
-        success: true,
-         response:result
+    }
+  //   else  if(!name.includes('.docx')) {
+  //     // console.log('Enter proper name')
+  //  return   res.status(400).json({
+  //       response:'Enter proper name'
   
-     });
+  //    });
+  //   }
+
+//uploading pptx to oneDrive
+    if (name.includes('.pptx')){
+      const result = await fetch(
+
+        
+          `https://graph.microsoft.com/v1.0/me/drive/root:/${name}:/content`,
+
+          {
+
+            method: 'PUT',
+
+            headers: {
+
+              Authorization: `Bearer ${token}`,
+
+            
+             'Content-Type': "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+
+            
+
+            },
+           //@ts-ignore
+            body:www
+
+          })
+
+        //   console.log(name,"upload excel file");
+
+       console.log(result)
+       
+    
+
+      // return result
+      res.status(200).json({
+            success: true,
+             response:result
+      
+         });
+
+
+
+    }
+    // else if(!name.includes('.pptx')){
+    //   // console.log('Enter proper name')
+    //   res.status(404).json({
+    //     success: false,
+    //      response:'Enter proper name'
+  
+    //  });
+    // }
+
+//uploading xlsx file to one drive   
+    if (name.includes('.xlsx')){
+      const result = await fetch(
+
+      
+          `https://graph.microsoft.com/v1.0/me/drive/root:/${name}:/content`,
+
+          {
+
+            method: 'PUT',
+
+            headers: {
+
+              Authorization: `Bearer ${token}`,
+
+             
+
+             'Content-Type': "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+
+           
+
+            },
+           //@ts-ignore
+            body:buffer
+
+          })
+
+        //   console.log(name,"upload excel file");
+
+       console.log(result)
+       
+    
+
+      // return result
+      res.status(200).json({
+            success: true,
+             response:result
+      
+         });
+
+
+
+    }
+
+
+
+
+    
+
+    //  const result = await fetch(
+
+    //     //   `https://graph.microsoft.com/v1.0/me/drive/root:/${file}.xlsx:/content`,
+
+    //     //https://graph.microsoft.com/v1.0/me/drive/root/children
+
+    //    // `https://graph.microsoft.com/v1.0/me/drive/items/{parent-id}:/${file}.xlsx:/content`,
+
+    //       `https://graph.microsoft.com/v1.0/me/drive/root:/${name}:/content`,
+
+    //       {
+
+    //         method: 'PUT',
+
+    //         headers: {
+
+    //           Authorization: `Bearer ${token}`,
+
+    //          //'Content-Type': 'application/json'
+
+    //         //  'Content-Type': "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+
+    //         'Content-Type': "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    //         // 'Content-Type': "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+
+    //         //  'Content-Type': 'application/vnd.ms-excel'
+
+    //           //'Content-Type': 'application/vnd.ms-excel.sheet.macroEnabled.12'
+
+    //         //   'Content-Type': 'text/plain'
+
+    //     //    ' Content-Type':"application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8"
+
+    //         },
+    //        //@ts-ignore
+    //         body:rrrr
+
+    //       })
+
+    //     //   console.log(name,"upload excel file");
+
+    //   console.log(result)
+
+    
+
+
+
+
+
+
+
+
+    // res.status(200).json({
+    //     success: true,
+    //      response:answer
+  
+    //  });
   
     
    }
