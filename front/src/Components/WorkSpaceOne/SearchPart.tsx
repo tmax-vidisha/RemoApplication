@@ -162,23 +162,24 @@ const SearchPart = (id: any) => {
     };
     const handleFormSubmit = (e: any) => {
         e.preventDefault();
-        // const Toast = Swal.mixin({
-        //     toast: true,
-        //     position: 'top',
-        //     showConfirmButton: false,
-        //     timer: 1500,
-        //     timerProgressBar: true,
-        //     didOpen: (toast) => {
-        //         toast.addEventListener('mouseenter', Swal.stopTimer)
-        //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-        //     }
-        // });
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
 
-        // Toast.fire({
-        //     icon: 'success',
-        //     title: 'Folder Create Successfully'
-        // }),
-        //handleToClose();
+        Toast.fire({
+            icon: 'success',
+            title: 'Create Successfully'
+        });
+       
+        handleCloseOne();
     }
     const [openDialog2, setDialog2Open] = React.useState(false);
     const [id1, setId1] = React.useState(0);
@@ -211,6 +212,16 @@ const SearchPart = (id: any) => {
     const handleCloseFour = () => {
         // setDialog2Open(true);
         setOpenFour(false);
+    }
+    const [openFive, setOpenFive] = React.useState(false);
+    const handleOpenFive = () => {
+        // setDialog2Open(true);
+        setOpenFive(true);
+    }
+
+    const handleCloseFive = () => {
+        // setDialog2Open(true);
+        setOpenFive(false);
     }
 
     const Dialog2 = (open: any) => {
@@ -295,9 +306,9 @@ const SearchPart = (id: any) => {
                     >
 
                         <MenuItem >
-                            <Button onClick={handleClickOne}>
+                            <div onClick={handleClickOne}>
                                 <img src={folder} alt="folder" className={classes.menuImage} /> Folders
-                            </Button>
+                            </div>
                             <Dialog open={openOne} onClose={handleCloseOne}>
                                 <DialogTitle>{"Create New Folder"}</DialogTitle>
                                 <DialogContent>
@@ -315,7 +326,7 @@ const SearchPart = (id: any) => {
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
-                                <Button onClick={handleCloseOne}
+                                <Button onClick={handleFormSubmit}
                                         color="primary" autoFocus>
                                        Create
                                     </Button>
@@ -348,7 +359,7 @@ const SearchPart = (id: any) => {
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button onClick={handleCloseTwo}
+                                    <Button onClick={handleFormSubmit}
                                         color="primary" autoFocus>
                                         Create
                                     </Button>
@@ -380,7 +391,7 @@ const SearchPart = (id: any) => {
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button onClick={handleCloseThree}
+                                    <Button onClick={handleFormSubmit}
                                         color="primary" autoFocus>
                                         Create
                                     </Button>
@@ -411,7 +422,7 @@ const SearchPart = (id: any) => {
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button onClick={handleCloseFour}
+                                    <Button onClick={handleFormSubmit}
                                         color="primary" autoFocus>
                                         Create
                                     </Button>
@@ -423,10 +434,10 @@ const SearchPart = (id: any) => {
                             </Dialog>
                         </MenuItem>
                         <MenuItem>
-                            <div onClick={handleOpenFour}>
+                            <div onClick={handleOpenFive}>
                                 <img src={ppt} alt="folder" className={classes.menuImage} /> Ppt
                             </div>
-                            <Dialog open={openFour} onClose={handleCloseFour}>
+                            <Dialog open={openFive} onClose={handleCloseFive}>
                                 <DialogTitle>{"Create New PPT"}</DialogTitle>
                                 <DialogContent>
                                     <Box
@@ -442,11 +453,11 @@ const SearchPart = (id: any) => {
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button onClick={handleCloseFour}
+                                    <Button onClick={handleFormSubmit}
                                         color="primary" autoFocus>
                                         Create
                                     </Button>
-                                    <Button onClick={handleCloseFour}
+                                    <Button onClick={handleCloseFive}
                                         color="primary" autoFocus>
                                         Close
                                     </Button>
