@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Grid, ListItemText, ListItemIcon, TextField, IconButton, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
@@ -29,6 +29,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 // import Swal from 'sweetalert2';
+import { useUploadFileOneDriveMutation } from '../../services/graph'
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -137,6 +138,7 @@ const dataPopup = [
 
 const SearchPart = (id: any) => {
     const classes = useStyles();
+    const [sendItem] = useUploadFileOneDriveMutation();
 
     const [open, setOpen] = React.useState(false);
     const [selectedValue, setSelectedValue] = React.useState();
@@ -161,7 +163,7 @@ const SearchPart = (id: any) => {
         setOpenOne(false);
     };
 
-    const [text, setText] = React.useState('');
+    const [text, setText] =  useState<string>('');
 
     const handleOnChange = (e: any) => {
         setText(e.target.value);
@@ -169,25 +171,30 @@ const SearchPart = (id: any) => {
     }
 
 
-    const handleFormSubmit = (e: any) => {
+    const handleFormSubmit = async(e: any) => {
         e.preventDefault();
+        const Data = {
+            name:text,
+           
+          }
+         //  console.log(fd)
+            await sendItem(Data)
+        // const Toast = Swal.mixin({
+        //     toast: true,
+        //     position: 'top',
+        //     showConfirmButton: false,
+        //     timer: 1500,
+        //     timerProgressBar: true,
+        //     didOpen: (toast) => {
+        //         toast.addEventListener('mouseenter', Swal.stopTimer)
+        //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //     }
+        // });
 
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        });
-
-        Toast.fire({
-            icon: 'success',
-            title: 'Create Successfully'
-        });
+        // Toast.fire({
+        //     icon: 'success',
+        //     title: 'Create Successfully'
+        // });
 
 
         handleCloseOne();

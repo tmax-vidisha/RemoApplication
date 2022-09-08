@@ -28,7 +28,7 @@ const uploadItemInOneDrive = asyncHandler(async(req:Request, res:Response) => {
     console.log(req.headers.authorization,'tssccccttddddttttvvvvvtttttttyy')
     const  token = req.headers.authorization
     const {  name } = req.body
-  
+    console.log(name,'gfhtht')
    
 
 
@@ -64,7 +64,8 @@ const uploadItemInOneDrive = asyncHandler(async(req:Request, res:Response) => {
               })
         const output = await valid.json();
         console.log(output.value,'lll')
-       if (output.value.length !== 0){
+        //@ts-ignore
+       if (output.value?.length !== 0){
         console.log('full')
         res.status(409).json({
               success: true,
@@ -104,7 +105,7 @@ const eeee = await pres.stream()
 const www = Buffer.from(eeee, "binary")
 
 //Uploading docx to onedrive
-    if (name.includes('.docx') && output.value.length == 0){
+    if (name.includes('.docx') && output.value?.length == 0){
       const result = await fetch(
           `https://graph.microsoft.com/v1.0/me/drive/root:/${name}:/content`,
 
@@ -158,7 +159,7 @@ const www = Buffer.from(eeee, "binary")
   //   }
 
 //uploading pptx to oneDrive
-    if (name.includes('.pptx') && output.value.length == 0){
+    if (name.includes('.pptx') && output.value?.length == 0){
       const result = await fetch(
 
         
@@ -212,7 +213,7 @@ const www = Buffer.from(eeee, "binary")
     // }
 
 //uploading xlsx file to one drive   
-    if (name.includes('.xlsx') && output.value.length == 0){
+    if (name.includes('.xlsx') && output.value?.length == 0){
       const result = await fetch(
 
       
