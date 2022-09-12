@@ -106,6 +106,7 @@ const www = Buffer.from(eeee, "binary")
 
 //Uploading docx to onedrive
     if (name.includes('.docx') && output.value?.length == 0){
+      try {
       const result = await fetch(
           `https://graph.microsoft.com/v1.0/me/drive/root:/${name}:/content`,
 
@@ -137,13 +138,20 @@ const www = Buffer.from(eeee, "binary")
        console.log(data)
        if(data !== 0){
         // console.log(`${name} file is created`)
-        res.status(200).json({
+        res.status(201).json({
           success: true,
            response:`${name} file is created`
     
        });
 
        }
+      }catch{
+        res.status(404).json({
+          success: false,
+           response:`file not created`
+    
+       });
+      }
       // return result
       
 
@@ -160,6 +168,7 @@ const www = Buffer.from(eeee, "binary")
 
 //uploading pptx to oneDrive
     if (name.includes('.pptx') && output.value?.length == 0){
+      try {
       const result = await fetch(
 
         
@@ -197,6 +206,13 @@ const www = Buffer.from(eeee, "binary")
     
        });
       }
+     }catch{
+      res.status(404).json({
+        success: false,
+         response:`file not created`
+  
+     });
+     }
       // return result
       
 
@@ -214,6 +230,7 @@ const www = Buffer.from(eeee, "binary")
 
 //uploading xlsx file to one drive   
     if (name.includes('.xlsx') && output.value?.length == 0){
+      try {
       const result = await fetch(
 
       
@@ -244,13 +261,20 @@ const www = Buffer.from(eeee, "binary")
       //  console.log(result)
        const data =await result.json()
        if(data !== 0 ){
-        res.status(200).json({
+        res.status(201).json({
           success: true,
            response:`${name}  is created` 
     
        });
        }
+      }catch{
+        res.status(404).json({
+          success: false,
+           response:`file not created`
+    
+       });
 
+      }
       // return result
       
 
