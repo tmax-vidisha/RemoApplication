@@ -6,6 +6,7 @@ import graph from './routes/graph';
 // const getAllSites = require('./routes/workspace')
 import workspace from './routes/workspace'
 import onedrive  from  './routes/onedrive/onedrive'
+import header from './routes/header'
 // const RemoToken = require('./controllers/token')
 // const graph = require('./routes/graph')
 // var azure = require('azure-storage');
@@ -1527,5 +1528,6 @@ app.use('/api/v1/token',token)
 app.use(`/api/v1/lists`,graph)
 app.use(`/api/v1/sites`,workspace)
 app.use(`/api/v1/onedrive`,onedrive)
+app.use(`/api/v1/header`,header)
 
 app.listen(SERVER_PORT, () => console.log(`Msal Node Auth Code Sample app listening on port ${SERVER_PORT}!`))
