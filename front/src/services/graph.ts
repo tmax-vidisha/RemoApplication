@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { AccessToken } from '../App';
+
 export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: fetchBaseQuery({
@@ -28,6 +29,7 @@ export const oneDriveApi = createApi({
       return headers
     },
   }),
+  tagTypes: ['OneDriveRootItems'],
   endpoints: (builder) => ({
     uploadFileOneDrive: builder.mutation<any, any>({
       query: (data) => ({
@@ -38,10 +40,24 @@ export const oneDriveApi = createApi({
       }),
       
   }),
+  getAllRootItemsOneDrive: builder.query<any, any>({
+    // query: () => '/api/v1/onedrive/getAllRootItems',
+    query: (id) => ({
+      url: `/api/v1/onedrive/getAllRootItems/${id}`,
+      // headers:{ "authorization": `${AccessToken}` },
+  }),
+  providesTags : [ 'OneDriveRootItems'],
+  }),
   }),
 })
 export const { useGetAllUsersQuery } = usersApi
-export const { useUploadFileOneDriveMutation } = oneDriveApi
+export const { 
+                useUploadFileOneDriveMutation,
+                useGetAllRootItemsOneDriveQuery 
+              
+              
+              
+              } = oneDriveApi
 
 
 

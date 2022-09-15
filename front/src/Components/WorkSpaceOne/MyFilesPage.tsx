@@ -17,12 +17,16 @@ import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
 import Table from '@mui/material/Table';
 import { Paper } from '@mui/material';
-
-
+import useCustom from '../../hooks/useCustom';
+import { useGetAllRootItemsOneDriveQuery } from '../../services/graph';
+import moment from "moment";
 const MyFilesPage = () => {
     const classes = useStyles();
     const [age, setAge] = React.useState('');
-
+    const {token} = useCustom();
+    //@ts-ignore
+    const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token);
+    console.log(data?.response)
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
     };
@@ -92,7 +96,7 @@ const MyFilesPage = () => {
                                     <TableCell align="right">Actions</TableCell>
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
+                            {/* <TableBody>
                                 {rows.map((row) => (
                                     <TableRow
                                         key={row.name}
@@ -107,6 +111,46 @@ const MyFilesPage = () => {
                                         <TableCell align="right">{row.Actions}</TableCell>
                                     </TableRow>
                                 ))}
+                            </TableBody> */}
+                            <TableBody>
+                                {data?.response &&
+                                    data?.response.map((item: any, index: any) => {
+                                        //   const { fields = {} } = item;
+                                        //   // console.log(fields,'yjyjyjyjyj')
+                                        //   var eventTitle = fields?.Title;
+                                        //   console.log(eventTitle,'yjyjyjyjyj')
+                                        //   var eventStart = moment(fields?.EventDate).format("llll");
+                                        //   var eventDate = moment(fields?.EndDate).format("llll");
+
+                                        //   var eventIsActive = fields.IsActive;
+                                        // let createdMonth = moment(item.lastModifiedDateTime).format("MMM");
+                                        // let createdYear = moment(item.lastModifiedDateTime).format("YYYY");
+                                        let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
+                                        //   var createdDate = moment(
+                                        //     item.lastModifiedDateTime
+                                        //   ).fromNow();
+
+                                        return (
+                                            <TableRow
+                                                key={item.name}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    {item.name}
+                                                </TableCell>
+                                                <TableCell align="right">
+                                                    {item.lastModifiedBy.user.displayName}
+                                                </TableCell>
+                                                <TableCell align="right">
+                                                    {createdDate} 
+                                                </TableCell>
+                                                <TableCell align="right">
+                                                    {item.size}
+                                                </TableCell>
+                                            </TableRow>
+                                        )
+                                    })}
+
                             </TableBody>
                         </Table>
                     </TableContainer>
