@@ -48,12 +48,24 @@ export const oneDriveApi = createApi({
   }),
   providesTags : [ 'OneDriveRootItems'],
   }),
+  getItemChildrenOneDrive: builder.mutation<any, any>({
+    query: (data) => ({
+        url: '/api/v1/onedrive/getItemChildren',
+        // headers:{ 'Content-Type': 'application/json' },
+        method: "POST",
+        body: data
+    }),
+    
+  }),
+  
   }),
 })
 export const { useGetAllUsersQuery } = usersApi
 export const { 
                 useUploadFileOneDriveMutation,
-                useGetAllRootItemsOneDriveQuery 
+                useGetItemChildrenOneDriveMutation,
+                useGetAllRootItemsOneDriveQuery,
+           
               
               
               
