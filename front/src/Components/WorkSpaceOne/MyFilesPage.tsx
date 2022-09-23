@@ -17,6 +17,7 @@ import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
 import Table from '@mui/material/Table';
 import { Paper } from '@mui/material';
+import { useState } from 'react';
 
 
 const MyFilesPage = () => {
@@ -44,6 +45,10 @@ const MyFilesPage = () => {
         createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
 
     ];
+
+    const [listView, setListView] = useState('');
+
+
 
 
     return (
@@ -75,40 +80,86 @@ const MyFilesPage = () => {
                     </Grid>
 
                     <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
-                        <GridViewOutlinedIcon />
-                        <span style={{ marginLeft: "15px" }}><FormatListBulletedOutlinedIcon /> </span>
+                        <button >
+                            <GridViewOutlinedIcon />
+                        </button>
+
+                        <button style={{ marginLeft: "15px" }} >
+                            <FormatListBulletedOutlinedIcon />
+                        </button>
                     </Grid>
 
                 </Grid>
                 <Stack>
                     <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Name</TableCell>
-                                    <TableCell align="right">Last Modified By</TableCell>
-                                    <TableCell align="right">Last Modified Date</TableCell>
-                                    <TableCell align="right">File Size</TableCell>
-                                    <TableCell align="right">Actions</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {rows.map((row) => (
-                                    <TableRow
-                                        key={row.name}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell component="th" scope="row">
-                                            {row.name}
-                                        </TableCell>
-                                        <TableCell align="right">{row.lastModifiedBy}</TableCell>
-                                        <TableCell align="right">{row.ModifiedDate}</TableCell>
-                                        <TableCell align="right">{row.fileSize}</TableCell>
-                                        <TableCell align="right">{row.Actions}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                        {listView ?
+                            <Grid container
+                                direction="column"
+                                justifyContent="center"
+                                alignItems="center">
+                                <Table sx={{ minWidth: 650 }} aria-label="simple table"  >
+
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Name</TableCell>
+                                            <TableCell align="right">Last Modified By</TableCell>
+                                            <TableCell align="right">Last Modified Date</TableCell>
+                                            <TableCell align="right">File Size</TableCell>
+                                            <TableCell align="right">Actions</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {rows.map((row) => (
+                                            <TableRow
+                                                key={row.name}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    {row.name}
+                                                </TableCell>
+                                                <TableCell align="right">{row.lastModifiedBy}</TableCell>
+                                                <TableCell align="right">{row.ModifiedDate}</TableCell>
+                                                <TableCell align="right">{row.fileSize}</TableCell>
+                                                <TableCell align="right">{row.Actions}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </Grid>
+
+                            :
+                            <Grid direction="column">
+                                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Name</TableCell>
+                                            <TableCell align="right">Last Modified By</TableCell>
+                                            <TableCell align="right">Last Modified Date</TableCell>
+                                            <TableCell align="right">File Size</TableCell>
+                                            <TableCell align="right">Actions</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {rows.map((row) => (
+                                            <TableRow
+                                                key={row.name}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    {row.name}
+                                                </TableCell>
+                                                <TableCell align="right">{row.lastModifiedBy}</TableCell>
+                                                <TableCell align="right">{row.ModifiedDate}</TableCell>
+                                                <TableCell align="right">{row.fileSize}</TableCell>
+                                                <TableCell align="right">{row.Actions}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </Grid>
+
+                        }
                     </TableContainer>
                 </Stack>
             </Grid>
