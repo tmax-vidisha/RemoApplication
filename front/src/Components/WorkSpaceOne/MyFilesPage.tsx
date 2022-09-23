@@ -23,6 +23,7 @@ import useCustom from '../../hooks/useCustom';
 import Breadcrumb from '../../hooks/Breadcrumb';
 import { useGetAllRootItemsOneDriveQuery,useGetItemChildrenOneDriveMutation } from '../../services/graph';
 import moment from "moment";
+
 const MyFilesPage = () => {
     const classes = useStyles();
     const [age, setAge] = React.useState('');
@@ -110,6 +111,7 @@ const MyFilesPage = () => {
             await sendItem(Data)
     };
 
+
     return (
         <Grid>
             <Grid className={classes.divFile}>
@@ -140,13 +142,88 @@ const MyFilesPage = () => {
                     </Grid>
 
                     <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
-                        <GridViewOutlinedIcon />
-                        <span style={{ marginLeft: "15px" }}><FormatListBulletedOutlinedIcon /> </span>
+                        <button >
+                            <GridViewOutlinedIcon />
+                        </button>
+
+                        <button style={{ marginLeft: "15px" }} >
+                            <FormatListBulletedOutlinedIcon />
+                        </button>
                     </Grid>
 
                 </Grid>
                 <Stack>
                     <TableContainer component={Paper}>
+
+                        {listView ?
+                            <Grid container
+                                direction="column"
+                                justifyContent="center"
+                                alignItems="center">
+                                <Table sx={{ minWidth: 650 }} aria-label="simple table"  >
+
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Name</TableCell>
+                                            <TableCell align="right">Last Modified By</TableCell>
+                                            <TableCell align="right">Last Modified Date</TableCell>
+                                            <TableCell align="right">File Size</TableCell>
+                                            <TableCell align="right">Actions</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {rows.map((row) => (
+                                            <TableRow
+                                                key={row.name}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    {row.name}
+                                                </TableCell>
+                                                <TableCell align="right">{row.lastModifiedBy}</TableCell>
+                                                <TableCell align="right">{row.ModifiedDate}</TableCell>
+                                                <TableCell align="right">{row.fileSize}</TableCell>
+                                                <TableCell align="right">{row.Actions}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </Grid>
+
+                            :
+                            <Grid direction="column">
+                                <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Name</TableCell>
+                                            <TableCell align="right">Last Modified By</TableCell>
+                                            <TableCell align="right">Last Modified Date</TableCell>
+                                            <TableCell align="right">File Size</TableCell>
+                                            <TableCell align="right">Actions</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {rows.map((row) => (
+                                            <TableRow
+                                                key={row.name}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    {row.name}
+                                                </TableCell>
+                                                <TableCell align="right">{row.lastModifiedBy}</TableCell>
+                                                <TableCell align="right">{row.ModifiedDate}</TableCell>
+                                                <TableCell align="right">{row.fileSize}</TableCell>
+                                                <TableCell align="right">{row.Actions}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </Grid>
+
+                        }
+
                    
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
@@ -326,6 +403,7 @@ const MyFilesPage = () => {
                             }
                             
                         </Table>
+
                     </TableContainer>
                 </Stack>
             </Grid>
