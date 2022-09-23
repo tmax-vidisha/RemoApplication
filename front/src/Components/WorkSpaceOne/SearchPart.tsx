@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Grid, ListItemText, ListItemIcon, TextField, IconButton, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
@@ -28,7 +28,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
+import { useUploadFileOneDriveMutation } from '../../services/graph'
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -137,6 +138,7 @@ const dataPopup = [
 
 const SearchPart = (id: any) => {
     const classes = useStyles();
+    const [sendItem] = useUploadFileOneDriveMutation();
 
     const [open, setOpen] = React.useState(false);
     const [selectedValue, setSelectedValue] = React.useState();
@@ -161,7 +163,7 @@ const SearchPart = (id: any) => {
         setOpenOne(false);
     };
 
-    const [text, setText] = React.useState('');
+    const [text, setText] =  useState<string>('');
 
     const handleOnChange = (e: any) => {
         setText(e.target.value);
@@ -169,24 +171,31 @@ const SearchPart = (id: any) => {
     }
 
 
-    const handleFormSubmit = (e: any) => {
+    const handleFormSubmit = async(e: any) => {
         e.preventDefault();
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        });
+        const Data = {
+            name:text,
+           
+          }
+         //  console.log(fd)
+            await sendItem(Data)
+        // const Toast = Swal.mixin({
+        //     toast: true,
+        //     position: 'top',
+        //     showConfirmButton: false,
+        //     timer: 1500,
+        //     timerProgressBar: true,
+        //     didOpen: (toast) => {
+        //         toast.addEventListener('mouseenter', Swal.stopTimer)
+        //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+        //     }
+        // });
 
-        Toast.fire({
-            icon: 'success',
-            title: 'Create Successfully'
-        });
+        // Toast.fire({
+        //     icon: 'success',
+        //     title: 'Create Successfully'
+        // });
+
 
         handleCloseOne();
     }
@@ -500,7 +509,6 @@ export default SearchPart;
                         <ListItemButton
                             className={classes.createNew}
                             // alignItems="flex-start"
-
                             onClick={() => setOpen(!open)}
                             sx={{
                                 px: 3,
@@ -520,10 +528,8 @@ export default SearchPart;
                                     mb: '2px',
                                     color: open ? 'white' : 'white',
                                 }}
-
                                 sx={{ my: 0, }}
                             />
-
                         </ListItemButton>
                         {open &&
                             data.map((item) => (
@@ -540,24 +546,19 @@ export default SearchPart;
                                    onClick={handleClickToOpen}
                                     >
                                         
-
-
                                         <ListItemIcon sx={{ color: 'inherit' }} >
-
                                             {item.icon}
                                         </ListItemIcon>
                                         <ListItemText
                                             primary={item.label}
                                             primaryTypographyProps={{ fontSize: 14, color: "#166694", fontWeight: "600" }}
                                         />
-
                                     </Button>
                                     <Dialog open={open} onClose={handleToClose}>
                                         <DialogTitle>
                                             {item.popup}
                                         </DialogTitle>
                                         <DialogContent>
-
                                             <TextField
                                                 autoFocus
                                                 margin="dense"
@@ -573,10 +574,7 @@ export default SearchPart;
                                             <Button onClick={handleToClose}>Close</Button>
                                         </DialogActions>
                                     </Dialog>
-
                                 </ListItemButton>
-
-
                             ))}
                     <Button
                         id="fade-button"
@@ -601,7 +599,6 @@ export default SearchPart;
                         TransitionComponent={Fade}
                         className={classes.menu}
                     >
-
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
                                 <img src={folder} alt="folder" className={classes.menuImage} /> Folders
@@ -619,7 +616,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -630,7 +626,6 @@ export default SearchPart;
                                 </DialogActions>
                             </Dialog>
                         </MenuItem>
-
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
                                 <img src={word} alt="folder" className={classes.menuImage} /> Word
@@ -648,7 +643,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -659,7 +653,6 @@ export default SearchPart;
                                 </DialogActions>
                             </Dialog>
                         </MenuItem>
-
                         <MenuItem onClick={handleClose}>
                             <div onClick={handleClickToOpen}>
                                 <img src={excel} alt="folder" className={classes.menuImage} /> Excel
@@ -677,7 +670,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -704,7 +696,6 @@ export default SearchPart;
                                         autoComplete="off"
                                     >
                                         <TextField id="outlined-basic" label="" variant="outlined" />
-
                                     </Box>
                                 </DialogContent>
                                 <DialogActions>
@@ -747,8 +738,6 @@ export default SearchPart;
                                 </DialogActions>
                             </BootstrapDialog>
                             </MenuItem> 
-
                        
                     </Menu>
                 */
-
