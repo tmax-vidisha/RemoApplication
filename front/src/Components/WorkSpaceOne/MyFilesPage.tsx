@@ -39,7 +39,7 @@ const MyFilesPage = () => {
     const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
         breadcrumbs: [{
             id: '',
-            name: 'Home'
+            name: 'My Files'
         }]
     });
     console.log('breadcrumbsState', breadcrumbsState)
