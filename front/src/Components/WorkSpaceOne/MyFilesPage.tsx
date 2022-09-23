@@ -111,7 +111,7 @@ const MyFilesPage = () => {
             await sendItem(Data)
     };
 
-
+const [ listView, setListView]=useState('')
     return (
         <Grid>
             <Grid className={classes.divFile}>
