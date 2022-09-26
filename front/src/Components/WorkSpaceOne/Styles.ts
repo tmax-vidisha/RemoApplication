@@ -137,13 +137,26 @@ export const useStyles = makeStyles({
   },
 
   lastMenu: {
-    marginTop: "150px",
+    marginTop: "107px",
     backgroundColor: "#e9fbfb",
     display: "flex",
     justifyContent:"center",
     padding: "10px",
     width: "100px",
-    marginLeft:"80px"
+    marginLeft:"77px"
+  },
+  items: {
+
+    fontSize: "12px",
+
+    "& img": {
+
+      width: "10px",
+
+      marginRight:"10px",
+
+    }
+
   }
 
 });
