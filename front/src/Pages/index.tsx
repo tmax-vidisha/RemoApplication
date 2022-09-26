@@ -19,6 +19,7 @@ import NewsInputPage from "./NewsPage/NewsInputPage";
 import AnnouncementInputPage from "./AnnouncementPage/AnnouncementInputPage";
 import CeoInputPage from "./CeoPage/CeoInputPage";
 import MeetingsPage from "./MeetingsPage/MeetingsPage";
+import MyFilePage from "./WorkSpace/OneDrive/MyFilePage";
 export {
     
         EventsPage,
@@ -41,6 +42,7 @@ export {
         UserQuickLinkPage,
         HeroInputPage,
         NewsInputPage,
-        MeetingsPage
+        MeetingsPage,
+        MyFilePage
 
       };

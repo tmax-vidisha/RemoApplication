@@ -31,10 +31,25 @@ import openIcon from '../../Assets/Images/open.svg';
 import downloadIcon from '../../Assets/Images/DOWLOAD.svg';
 import deleteIcon from '../../Assets/Images/delete.svg';
 import Fade from '@mui/material/Fade';
+interface IFolderProps {
+    data:any, 
+    error:any,
+    isLoading:any,
+    ItemChildren:any,
+    itemChildrenError:any,
+    itemChildrenIsLoading:any,
+    onClick:(id:string,name:string,folder:any,webUrl:any)=>void
+    // onSubmit: (object: any) => void;
+    // onClick: any;
+    // onDownload?: (id: string) => void;
+    // onDelete?: (id: string) => void;
+    // onRename?: (id: string, name: string) => void;
+    // onShare?: (id: string) => void;
+  }
 
 
-
-const MyFilesPage = () => {
+// const MyFilesPage = () => {
+const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     const [age, setAge] = React.useState('');
     const [url, setUrl] = useState<string>('');
@@ -42,17 +57,18 @@ const MyFilesPage = () => {
     const [s, setS] = useState<boolean>(false)
     const { token } = useCustom();
     //@ts-ignore
-    const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token);
-    console.log(data?.response)
-    const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
-    console.log(ItemChildren?.response, 'yujujujuys')
-    const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
-        breadcrumbs: [{
-            id: '',
-            name: 'Home'
-        }]
-    });
-    console.log('breadcrumbsState', breadcrumbsState)
+    // const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token);
+    // console.log(data?.response)
+    const {data,error,isLoading,ItemChildren,itemChildrenError,itemChildrenIsLoading,onClick}  = props;
+    // const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
+    // console.log(ItemChildren?.response, 'yujujujuys')
+    // const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
+    //     breadcrumbs: [{
+    //         id: '',
+    //         name: 'Home'
+    //     }]
+    // });
+    // console.log('breadcrumbsState', breadcrumbsState)
     // sendItem(token)
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
@@ -75,51 +91,59 @@ const MyFilesPage = () => {
         createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
 
     ];
-    const setBreadCrumbAction = async (id: string, name: string) => {
-        return breadcrumbsDispatch({ type: ActionType.SET_BREADCRUMBS, payload: { id, name } });
-    };
+    // const setBreadCrumbAction = async (id: string, name: string) => {
+    //     return breadcrumbsDispatch({ type: ActionType.SET_BREADCRUMBS, payload: { id, name } });
+    // };
 
-    const updateBreadCrumbAction = async (id: string) => {
-        return breadcrumbsDispatch({ type: ActionType.UPDATE_BREADCRUMBS, payload: { id } });
-    };
+    // const updateBreadCrumbAction = async (id: string) => {
+    //     return breadcrumbsDispatch({ type: ActionType.UPDATE_BREADCRUMBS, payload: { id } });
+    // };
     const folderClickHandler = async (id: string, name: string,
         folder: any, webUrl: any
     ): Promise<void> => {
 
         // await getFolderChildrenAction(id);
         // await setBreadCrumbAction(id, name);
-        console.log(id, name)
-        console.log(folder)
-        console.log(webUrl)
-        if (folder === undefined) {
-            setUrl(webUrl)
-        } else {
-            console.log('Its  folder')
-            // setShow(!show)
-            const Data = {
-                // name:id,
-                ItemId: id,
-                Name: name
-            }
-            //  console.log(fd)
-            await sendItem(Data)
-            await setBreadCrumbAction(id, name);
-        }
-
+        // console.log(id, name)
+        // console.log(folder)
+        // console.log(webUrl)
+        // if (folder === undefined) {
+        //     setUrl(webUrl)
+        // } else {
+        //     console.log('Its  folder')
+        //     // setShow(!show)
+        //     const Data = {
+        //         // name:id,
+        //         ItemId: id,
+        //         Name: name
+        //     }
+        //     //  console.log(fd)
+        //     // await sendItem(Data)
+        // const Data ={
+        //     id:id,
+        //     name:name,
+        //     folder:folder,
+        //     webUrl:webUrl
+        // }
+        //  await setBreadCrumbAction(id, name);
+        // }
+    //   onClick(id,name,folder,webUrl)
 
         // setShow(!show)
     };
-    const breadcrumbClickHandler = async (id: string) => {
-        await updateBreadCrumbAction(id);
-        // await getFolderChildrenAction(id);
-        const Data = {
-            // name:id,
-            ItemId: id,
-            //    Name:name
-        }
-        //  console.log(fd)
-        await sendItem(Data)
-    };
+    // const breadcrumbClickHandler = async (id: string) => {
+    //     // await updateBreadCrumbAction(id);
+    //     // await getFolderChildrenAction(id);
+    //     const Data = {
+    //         // name:id,
+    //         // ItemId: id,
+    //         id:id,
+    //         //    Name:name
+    //     }
+    //     //  console.log(fd)
+    //     // await sendItem(Data)
+    //      onClick(Data)
+    // };
     // const [listView, setListView]=useState('');
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -133,15 +157,16 @@ const MyFilesPage = () => {
     };
 
     return (
-        <Grid>
-            <Grid className={classes.divFile}>
+        <>
+        
+            {/* <Grid className={classes.divFile}>
                 My Files
-            </Grid>
-            <Grid className={classes.bigPart}>
+            </Grid> */}
+            {/* <Grid className={classes.bigPart}> */}
                 <Grid className={classes.myFile}>
                     <Grid>
-                        <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
-                            getChildHandler={breadcrumbClickHandler} />
+                        {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
+                            getChildHandler={breadcrumbClickHandler} /> */}
                         <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
                             <InputLabel id="demo-simple-select-standard-label"><span>Sort by</span> Newest</InputLabel>
                             <Select
@@ -252,7 +277,8 @@ const MyFilesPage = () => {
                                                     > */}
                                                         <Link onClick={() => {
                                                             setShow(!show)
-                                                            folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+                                                            onClick(item.id, item.name, item.folder, item?.webUrl)    
+                                                            //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
 
 
                                                         }}
@@ -382,7 +408,8 @@ const MyFilesPage = () => {
                                                 //   href={`${result}`}
                                                 > */}
                                                         <Link onClick={() => {
-                                                            folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+                                                             onClick(item.id, item.name, item.folder, item?.webUrl)
+                                                            // folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
 
                                                         }}>
                                                             {item.name}
@@ -466,8 +493,9 @@ const MyFilesPage = () => {
 
                     </TableContainer>
                 </Stack>
-            </Grid>
-        </Grid>
+            {/* </Grid> */}
+        
+        </>
     );
 };
 
