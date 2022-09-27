@@ -4,7 +4,7 @@ import LeftMenu from './LeftMenu';
 import SearchPart from './SearchPart';
 import MyFilesPage from './MyFilesPage';
 import SideBar from './SideBar';
-
+import { MyFilePage } from '../../Pages';
 const WorkSpaceOne = () => {
     return (
         <>
@@ -17,7 +17,8 @@ const WorkSpaceOne = () => {
                 </Grid>
                 <Grid item xs={9}>
                     <SearchPart />
-                    <MyFilesPage/>
+                    {/* <MyFilesPage/> */}
+                    <MyFilePage/>
                 </Grid>
             </Grid>
             <Grid container spacing={2} item xs={12} >
