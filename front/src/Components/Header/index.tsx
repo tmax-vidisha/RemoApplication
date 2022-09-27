@@ -29,6 +29,9 @@ import temp from "../../Assets/Images/temp.svg";
 import teamm from "../../Assets/Images/teamm.svg";
 import calendar from "../../Assets/Images/calendar.svg";
 import onenote from "../../Assets/Images/onenote.svg";
+import WeatherMap from './WeatherMap';
+
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -345,6 +348,7 @@ const Header = () => {
                 <Badge color="error" sx={{ top: "3px" }}>
                   <img src={temp} alt="" />
                 </Badge>
+                {/* <WeatherMap/> */}
               </IconButton>
 
               <IconButton
