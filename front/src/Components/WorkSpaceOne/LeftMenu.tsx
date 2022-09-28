@@ -35,7 +35,9 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     const [SelValue, setSelValue] = useState("");
     const [topMenu, setTopMenu] = useState(true);
-
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
 
     const selectedMenu = (selValue: any) => {
@@ -58,58 +60,58 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const { data, error, isLoading } = props;
     console.log(data, 'Left menu data ')
     return (
-        <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', height:"500px" }}>
+        <Box sx={{  width:"190px", bgcolor: 'background.paper',height:"100%"  }}>
             <Box style={{ display: "flex", flexDirection: "column", justifyContent:"space-between" }} >
                 <Box >
-                    <nav aria-label="main mailbox folders">
+                    <nav>
                         <List>
                             <ListItem disablePadding>
                                 <ListItemButton>
-                                    <ListItemIcon>
+                                    <ListItemIcon className={classes.MuiListItemIcon}>
                                         {/* <TopicTwoToneIcon /> */}
                                         <img src={filesIcon} alt=" MyFiles" />
                                     </ListItemIcon>
-                                    <ListItemText primary="My Files" />
+                                    <ListItemText primary="My Files"  className={classes.textListItem}/>
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        <img src={sharedIcon} alt="shared" />
+                                        <img src={sharedIcon} alt="shared" className={classes.textListItem}/>
                                     </ListItemIcon>
-                                    <ListItemText primary="Shared with me" />
+                                    <ListItemText primary="Shared with me" className={classes.textListItem} />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        <img src={DocumentIcon} alt="Document" />
+                                        <img src={DocumentIcon} alt="Document" className={classes.textListItem}/>
                                     </ListItemIcon>
-                                    <ListItemText primary="Document Library" />
+                                    <ListItemText primary="Document Library" className={classes.textListItem}/>
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        <img src={recentIcon} alt="recent" />
+                                        <img src={recentIcon} alt="recent" className={classes.textListItem}/>
                                     </ListItemIcon>
-                                    <ListItemText primary="Recent" />
+                                    <ListItemText primary="Recent"  className={classes.textListItem}/>
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        <img src={starredIcon} alt="starred" />
+                                        <img src={starredIcon} alt="starred" className={classes.textListItem}/>
                                     </ListItemIcon>
-                                    <ListItemText primary="Starred" />
+                                    <ListItemText primary="Starred" className={classes.textListItem}/>
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        <img src={trashIcon} alt="trash" />
+                                        <img src={trashIcon} alt="trash" className={classes.textListItem}/>
                                     </ListItemIcon>
-                                    <ListItemText primary="Trash" />
+                                    <ListItemText primary="Trash" className={classes.textListItem}/>
                                 </ListItemButton>
                             </ListItem>
                         </List>
@@ -222,11 +224,11 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </CardContent>
                 </Paper>
             </AuthenticatedTemplate> */}
-                <Box className={classes.lastMenu}>
+                {/* <Box className={classes.lastMenu}>
                     <Grid style={{marginRight:"15px"}}> <img src={upload} alt="upload" /></Grid>
                     <Grid  style={{marginRight:"15px"}}><img src={setting} alt="upload" /></Grid>
                     <Grid><img src={menuBlue} alt="upload" /></Grid>
-                </Box>
+                </Box> */}
             </Box>
         </Box>
     );

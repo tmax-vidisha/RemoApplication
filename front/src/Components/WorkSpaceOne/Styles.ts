@@ -137,13 +137,13 @@ export const useStyles = makeStyles({
   },
 
   lastMenu: {
-    marginTop: "107px",
+    // marginTop: "107px",
     backgroundColor: "#e9fbfb",
     display: "flex",
-    justifyContent:"center",
+    justifyContent: "center",
     padding: "10px",
     width: "100px",
-    marginLeft:"77px"
+    // marginLeft: "77px"
   },
   items: {
 
@@ -153,10 +153,92 @@ export const useStyles = makeStyles({
 
       width: "10px",
 
-      marginRight:"10px",
+      marginRight: "10px",
 
     }
 
+  },
+  dialogTitle: {
+    position: "relative",
+    fontFamily: "DM Sans , sans-serif !important",
+    color: "#222222",
+    fontSize: "20px !important",
+    textAlign: "center",
+    width: "80px",
+    // verticalAlign: "center",
+    // horizontalAlign: "center",
+    alignItems: "center",
+
+    "& img": {
+      width: "80px",
+    }
+
+
+  },
+  menuImageDelete: {
+    marginRight: "20px",
+    // position:"absolute",
+    textTransform: "capitalize",
+  },
+  dialogFull: {
+    position: "relative",
+    width: "570px",
+    borderRadius: "20px"
+  },
+
+  textListItem: {
+    fontSize: "12px",
+
+    "& span": {
+      fontSize: "12px",
+    },
+
+    " & img": {
+
+    }
+
+  },
+  MuiListItemIcon: {
+    minWidth: "35px",
+    "& img": {
+      width: "12px",
+    }
+  },
+  LeftMenu: {
+    // background: "#f8f8f8",
+    // borderTop: "1px solid #d8d8dd",
+    marginTop: "10px",
+    paddingTop: "15px",
+    marginBottom: "15px",
+    margin: "0 -15px",
+    AlignItems: "center",
+    marginLeft: "5px",
+    "& li": {
+      padding: "15px 0px",
+      textAlign: "center",
+      // display: "flex !important",
+      // borderBottom: "1px solid #f0ebeb",
+      color: "#606C74",
+      "&:hover": {
+        color: "#1BAAB5",
+      },
+
+      // "&:hover": {
+      //   color: "#1BAAB5",
+      // },
+    },
+  },
+
+  sideIcon: {
+    marginBottom: "20px !important",
+  },
+
+  bigPaper: {
+    border: "1px solid #f1f1f1",
+    boxShadow:"10px 10px 10px 10px  #f1f1f1",
+    paddingTop:"40px",
+    borderRadius:"20px",
+    paddingBottom:"20px",
   }
 
 });

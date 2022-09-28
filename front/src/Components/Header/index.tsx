@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, NavLink as RouterNavLink } from "react-router-dom";
 import { styled, alpha } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -30,7 +29,24 @@ import teamm from "../../Assets/Images/teamm.svg";
 import calendar from "../../Assets/Images/calendar.svg";
 import onenote from "../../Assets/Images/onenote.svg";
 import WeatherMap from './WeatherMap';
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Button from '@mui/material/Button';
 
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -92,6 +108,14 @@ const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
+
+  const setModalIsOpenToTrue = () => {
+    setModalIsOpen(true)
+  }
+  const setModalIsOpenToFalse = () => {
+    setModalIsOpen(false)
+  }
   // const handleMobileMenuClose = () => {
   //   setMobileMoreAnchorEl(null);
   // };
@@ -282,160 +306,178 @@ const Header = () => {
     //   </Box>
     // </AuthenticatedTemplate>
     <AuthenticatedTemplate>
-    <Box sx={{ flexGrow: 1 }}>
-      <StyledAppBar position="static">
-        <Container>
-          <Toolbar
-            variant="dense"
-            sx={{
-              paddingLeft: "0px !important",
-              paddingRight: "0px !important",
-            }}
-          >
-            <RouterNavLink to="/Home">
-              <img src={logo} alt="Remo Digital" />
-            </RouterNavLink>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
-            ></Typography>
-            <Box sx={{ flexGrow: 1 }} />
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon sx={{ color: "rgb(255 255 255 / 42%)" }} />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search Here"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
+      <Box sx={{ flexGrow: 1 }}>
+        <StyledAppBar position="static">
+          <Container>
+            <Toolbar
+              variant="dense"
+              sx={{
+                paddingLeft: "0px !important",
+                paddingRight: "0px !important",
+              }}
+            >
+              <RouterNavLink to="/Home">
+                <img src={logo} alt="Remo Digital" />
+              </RouterNavLink>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ display: { xs: "none", sm: "block" } }}
+              ></Typography>
+              <Box sx={{ flexGrow: 1 }} />
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon sx={{ color: "rgb(255 255 255 / 42%)" }} />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search Here"
+                  inputProps={{ "aria-label": "search" }}
+                />
+              </Search>
 
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <div>
-              <IconButton
-                size="large"
-                aria-label="unread mail count"
-                color="inherit"
-                onClick={handleClick}
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-              >
-                <Badge color="error" sx={{ top: "9px" }}>
-                  <img src={birthday} alt="" />
-                </Badge>
-                </IconButton>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <div>
+                  <IconButton
+                    size="large"
+                    aria-label="unread mail count"
+                    color="inherit"
+                    onClick={handleClick}
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                  >
+                    <Badge color="error" sx={{ top: "9px" }}>
+                      <img src={birthday} alt="" />
+                    </Badge>
+                  </IconButton>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
+                    }}
+                  >
+                    <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem>
+                  </Menu>
+                </div>
+
+                <IconButton
+                  size="large"
+                  aria-label="unread mail count"
+                  color="inherit"
+                  onClick={setModalIsOpenToTrue}
                 >
-                  <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem>
-                </Menu>
-                </div>  
+                  <Badge color="error" sx={{ top: "3px" }}>
+                    <img src={temp} alt="" />
+                  </Badge>
+                  {/* <WeatherMap/> */}
+                </IconButton>
+                {/* <Modal isOpen={modalIsOpen}>
+                  <button onClick={setModalIsOpenToFalse}>x</button>
+                  
+                </Modal> */}
+                {/* <Modal isOpen={modalIsOpen}
+                >
+                  <Fade in={open}>
+                    <Box sx={style}>
+                      <Typography id="transition-modal-title" variant="h6" component="h2">
+                        Text in a modal
+                      </Typography>
+                      <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                      </Typography>
+                    </Box>
+                  </Fade>
+                </Modal> */}
 
-              <IconButton
-                size="large"
-                aria-label="unread mail count"
-                color="inherit"
-              >
-                <Badge color="error" sx={{ top: "3px" }}>
-                  <img src={temp} alt="" />
-                </Badge>
-                {/* <WeatherMap/> */}
-              </IconButton>
+                <IconButton
+                  size="large"
+                  aria-label="unread mail count"
+                  color="inherit"
+                >
+                  <Badge color="error" sx={{ top: "3px" }}>
+                    <img src={calendar} alt="calendar" />
+                  </Badge>
+                </IconButton>
 
-              <IconButton
-                size="large"
-                aria-label="unread mail count"
-                color="inherit"
-              >
-                <Badge color="error" sx={{ top: "3px" }}>
-                  <img src={calendar} alt="calendar" />
-                </Badge>
-              </IconButton>
-
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent="1" color="error" sx={{ top: "3px" }}>
-                  {/* badgeContent={17}  */}
-                  <img src={teamm} alt="teams" />
-                </Badge>
-              </IconButton>
-              {/* <a
+                <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge badgeContent="1" color="error" sx={{ top: "3px" }}>
+                    {/* badgeContent={17}  */}
+                    <img src={teamm} alt="teams" />
+                  </Badge>
+                </IconButton>
+                {/* <a
                 target={"_blank"}
                 href="https://outlook.office.com/mail/inbox"
               > */}
-              <IconButton
-                size="large"
-                aria-label="unread mail count"
-                color="inherit"
-              >
-                <Badge badgeContent="0" color="error" sx={{ top: "3px" }}>
-                  {/* <MailIcon /> */}
-                  <img src={outlookIcon} alt="Outlook" />
-                </Badge>
-              </IconButton>
-              {/* </a> */}
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge color="error" sx={{ top: "3px" }}>
-                  <img src={onenote} alt="teams" />
-                </Badge>
-              </IconButton>
+                <IconButton
+                  size="large"
+                  aria-label="unread mail count"
+                  color="inherit"
+                >
+                  <Badge badgeContent="0" color="error" sx={{ top: "3px" }}>
+                    {/* <MailIcon /> */}
+                    <img src={outlookIcon} alt="Outlook" />
+                  </Badge>
+                </IconButton>
+                {/* </a> */}
+                <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge color="error" sx={{ top: "3px" }}>
+                    <img src={onenote} alt="teams" />
+                  </Badge>
+                </IconButton>
 
-              <IconButton
-                sx={{ top: "3px" }}
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                // aria-controls={menuId}
-                aria-haspopup="true"
-                // onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <img
-                  src={userimg}
-                  alt="pic"
-                  style={{
-                    width: "35px",
-                    height: "35px",
-                    borderRadius: "30px",
-                  }}
-                />
-              </IconButton>
-            </Box>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                //   aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                //   onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </Container>
-      </StyledAppBar>
-      {/* {renderMobileMenu}
+                <IconButton
+                  sx={{ top: "3px" }}
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  // aria-controls={menuId}
+                  aria-haspopup="true"
+                  // onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <img
+                    src={userimg}
+                    alt="pic"
+                    style={{
+                      width: "35px",
+                      height: "35px",
+                      borderRadius: "30px",
+                    }}
+                  />
+                </IconButton>
+              </Box>
+              <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="show more"
+                  //   aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  //   onClick={handleMobileMenuOpen}
+                  color="inherit"
+                >
+                  <MoreIcon />
+                </IconButton>
+              </Box>
+            </Toolbar>
+          </Container>
+        </StyledAppBar>
+        {/* {renderMobileMenu}
       {renderMenu} */}
-    </Box>
-  </AuthenticatedTemplate>
+      </Box>
+    </AuthenticatedTemplate>
   )
 }
 
