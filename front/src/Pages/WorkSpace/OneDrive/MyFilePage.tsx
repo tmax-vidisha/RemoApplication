@@ -2,8 +2,8 @@ import React, { useReducer } from 'react'
 import useCustom from '../../../hooks/useCustom'
 import { breadcrumbsReducer, foldersReducer } from '../../../Store copy/Reducer/foldersReducer';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
-import { useGetAllRootItemsOneDriveQuery, useGetItemChildrenOneDriveMutation } from '../../../services/graph'
-
+import { useGetAllRootItemsOneDriveQuery, useGetItemChildrenOneDriveMutation,useDeleteItemOneDriveMutation } from '../../../services/graph'
+import {MyFilesPage} from '../../../Components/WorkSpaceOne/MyFilesPage'
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import Breadcrumb from '../../../hooks/Breadcrumb';
 import { Grid } from '@mui/material';
@@ -21,6 +21,7 @@ const MyFilePage = () => {
     const classes = useStyles();
     const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token)
     const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
+    const [sendDeleteItem] =  useDeleteItemOneDriveMutation();
     console.log(data?.response)
     const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
         breadcrumbs: [{
@@ -80,29 +81,41 @@ const MyFilePage = () => {
         //  console.log(fd)
         await sendItem(Data)
     };
-    return (
-        <AuthenticatedTemplate>
-            <Grid>
-                <Grid className={classes.divFile}>
-                    My Files
-                </Grid>
-                <Grid className={classes.bigPart}>
-                    <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
-                        getChildHandler={breadcrumbClickHandler} />
-                    <MyFilesPage
-                        data={data}
-                        error={error}
-                        isLoading={isLoading}
-                        ItemChildren={ItemChildren}
-                        itemChildrenError={itemChildrenError}
-                        itemChildrenIsLoading={itemChildrenIsLoading}
-                        onClick={folderClickHandler}
 
-                    />
-                </Grid>
+
+    const  deleteDriveItem = async(id:string,name:string) =>{
+         console.log(id,name)
+         const Data = {
+            // name:id,
+            ItemId: id,
+            Name:name
+        }
+        await sendDeleteItem(Data)
+    }
+  return (
+    <AuthenticatedTemplate>
+        <Grid>
+            <Grid className={classes.divFile}>
+                My Files
             </Grid>
-        </AuthenticatedTemplate>
-    )
+            <Grid className={classes.bigPart}>
+         <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
+                            getChildHandler={breadcrumbClickHandler} />
+       <MyFilesPage
+         data={data}
+         error={error}
+         isLoading={isLoading}
+         ItemChildren={ItemChildren}
+         itemChildrenError={itemChildrenError}
+         itemChildrenIsLoading={itemChildrenIsLoading}
+         onClick={folderClickHandler}
+         onDelete={deleteDriveItem}
+       />
+       </Grid>
+       </Grid>
+    </AuthenticatedTemplate>
+  )
+
 }
 
 export default MyFilePage

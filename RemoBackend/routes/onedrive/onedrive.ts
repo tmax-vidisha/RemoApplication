@@ -1,6 +1,10 @@
 import express from "express";
 import {Router} from "express";
-import { uploadItemInOneDrive,getAllOneDriveItemsRoot,getOneDriveItemChildren } from "../../controllers/onedrive/onedrive";
+import { uploadItemInOneDrive,
+        getAllOneDriveItemsRoot,
+        getOneDriveItemChildren,
+        deleteOneDriveItem
+    } from "../../controllers/onedrive/onedrive";
 // import multer from 'multer'
 const router = Router();
 ;
@@ -9,4 +13,5 @@ const router = Router();
 router.route('/uploadItem').post(uploadItemInOneDrive);
 router.route('/getAllRootItems/:token').get(getAllOneDriveItemsRoot)
 router.route('/getItemChildren').post(getOneDriveItemChildren);
+router.route('/deleteOneDriveItem').post(deleteOneDriveItem);
 export default router;
