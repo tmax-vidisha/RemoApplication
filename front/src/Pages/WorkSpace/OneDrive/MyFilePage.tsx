@@ -1,4 +1,4 @@
-import React,{useReducer} from 'react'
+import React, { useReducer } from 'react'
 import useCustom from '../../../hooks/useCustom'
 import { breadcrumbsReducer, foldersReducer } from '../../../Store copy/Reducer/foldersReducer';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
@@ -8,32 +8,40 @@ import { AuthenticatedTemplate } from '@azure/msal-react';
 import Breadcrumb from '../../../hooks/Breadcrumb';
 import { Grid } from '@mui/material';
 import { useStyles } from './Styles';
+import MyFilesPage from '../../../Components/WorkSpaceOne/MyFilesPage';
+import { styled } from '@mui/material/styles';
+
+
+// interface types{
+//     styled:any;
+// }
+
 const MyFilePage = () => {
-    const {token} = useCustom();
+    const { token } = useCustom();
     const classes = useStyles();
     const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token)
     const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
     const [sendDeleteItem] =  useDeleteItemOneDriveMutation();
     console.log(data?.response)
     const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
-            breadcrumbs: [{
-                id: '',
-                name: 'My Files'
-            }]
-        });
-        console.log('breadcrumbsState', breadcrumbsState)
-        const setBreadCrumbAction = async (id: string, name: string) => {
-            return breadcrumbsDispatch({ type: ActionType.SET_BREADCRUMBS, payload: { id, name } });
-        };
-    
-        const updateBreadCrumbAction = async (id: string) => {
-            return breadcrumbsDispatch({ type: ActionType.UPDATE_BREADCRUMBS, payload: { id } });
-        };
+        breadcrumbs: [{
+            id: '',
+            name: 'My Files'
+        }]
+    });
+    console.log('breadcrumbsState', breadcrumbsState)
+    const setBreadCrumbAction = async (id: string, name: string) => {
+        return breadcrumbsDispatch({ type: ActionType.SET_BREADCRUMBS, payload: { id, name } });
+    };
+
+    const updateBreadCrumbAction = async (id: string) => {
+        return breadcrumbsDispatch({ type: ActionType.UPDATE_BREADCRUMBS, payload: { id } });
+    };
     const folderClickHandler = async (
         // obj:any
-        id:string,
-        name:string,
-        folder:any,
+        id: string,
+        name: string,
+        folder: any,
         webUrl: any
     ): Promise<void> => {
 
@@ -71,8 +79,9 @@ const MyFilePage = () => {
             //    Name:name
         }
         //  console.log(fd)
-         await sendItem(Data)
+        await sendItem(Data)
     };
+
 
     const  deleteDriveItem = async(id:string,name:string) =>{
          console.log(id,name)
@@ -106,6 +115,7 @@ const MyFilePage = () => {
        </Grid>
     </AuthenticatedTemplate>
   )
+
 }
 
 export default MyFilePage
