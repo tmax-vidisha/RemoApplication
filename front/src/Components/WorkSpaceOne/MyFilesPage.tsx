@@ -594,6 +594,77 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     {item.size}
                                                 </TableCell>
                                                 <TableCell align="right">
+
+                                                    <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
+                                                        <Button
+                                                            id="fade-button"
+                                                            aria-controls={openOn ? 'fade-menu' : undefined}
+                                                            aria-haspopup="true"
+                                                            aria-expanded={openOn ? 'true' : undefined}
+                                                            onClick={handleClick} >
+
+                                                            <img src={actions} alt="actions" />
+                                                        </Button>
+                                                        <Menu
+                                                            id="fade-menu"
+                                                            MenuListProps={{
+                                                                'aria-labelledby': 'fade-button',
+                                                            }}
+                                                            anchorEl={anchorEl}
+                                                            open={openOn}
+                                                            onClose={handleClose}
+                                                            TransitionComponent={Fade}
+                                                            className={classes.menu}
+
+                                                        >
+
+                                                            <MenuItem >
+                                                                <div className={classes.items}>
+                                                                    <img src={openIcon} alt="folder" className={classes.menuImage} /> Open
+                                                                </div>
+
+                                                            </MenuItem>
+
+                                                            <MenuItem>
+                                                                <div className={classes.items}>
+                                                                    <img src={linkIcon} alt="linkIcon" className={classes.menuImage} /> Copy Link
+                                                                </div>
+
+                                                            </MenuItem>
+                                                            <MenuItem>
+                                                                <div className={classes.items}>
+                                                                    <img src={downloadIcon} alt="downloadIcon" className={classes.menuImage} /> Download
+                                                                </div>
+
+                                                            </MenuItem>
+                                                            <MenuItem>
+                                                                {/* <div className={classes.items}>
+                                                                    <Button onClick={handleOpen}><img src={deleteIcon} alt="deleteIcon" className={classes.menuImage} /> Delete </Button>
+                                                                    <Dialog
+                                                                        open={open}
+                                                                        onClose={handleOnClose}
+                                                                        aria-labelledby="modal-modal-title"
+                                                                        aria-describedby="modal-modal-description"
+                                                                    >
+                                                                        <DialogContent>
+                                                                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                                                Text in a modal
+                                                                            </Typography>
+                                                                            <DialogContentText id="modal-modal-description" sx={{ mt: 2 }}>
+                                                                                This item contains some information. Are you sure to delete it ?
+                                                                            </DialogContentText>
+                                                                        </DialogContent>
+                                                                        <DialogActions>
+                                                                            <Button onClick={handleOnClose}>Cancel</Button>
+                                                                            <Button onClick={handleOnClose}>Subscribe</Button>
+                                                                        </DialogActions>
+                                                                    </Dialog>
+                                                                </div> */}
+
+                                                            </MenuItem>
+
+                                                        </Menu>
+
                                                     <Grid
                                                         onClick={() => de(item.id, item.name)}>
                                                         {/* <Button  onClick={()=>de(item.id,item.name)}> */}
@@ -606,7 +677,6 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                         //  anchorEl={anchorEl}
                                                         />
 
-                                                        {/* </Button> */}
                                                     </Grid>
                                                     {/* <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
                                                             <Button

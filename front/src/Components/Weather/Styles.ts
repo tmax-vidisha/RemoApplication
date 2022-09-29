@@ -9,6 +9,7 @@ export const useStyles = makeStyles({
     bgcolor: "background.paper",
     paddingTop: "16px!important",
     paddingBottom: "16px!important",
+    top:"-6px",
     "& > li": {
       width: "33.3%",
       float: "left",
@@ -24,7 +25,7 @@ export const useStyles = makeStyles({
       marginBottom: "10px",
     },
     "& > h1": {
-      fontSize: "26px",
+      fontSize: "15px",
       color: "#009BAD",
       marginBottom: "5px",
       lineHeight: "26px",
@@ -44,7 +45,7 @@ export const useStyles = makeStyles({
       marginBottom: "10px",
     },
     "& > h1": {
-      fontSize: "26px",
+      fontSize: "15px",
       color: "#009BAD",
       marginBottom: "5px",
       lineHeight: "26px",
