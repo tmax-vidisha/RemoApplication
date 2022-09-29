@@ -12,11 +12,23 @@ import useCustom from "../../hooks/useCustom";
 import Divider from "@mui/material/Divider";
 import { Paper, Typography } from "@mui/material";
 import { useStyles } from "./Styles";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 
 export default function Weather() {
   var classes = useStyles();
-//   const {token} = useCustom();
-//  console.log(token,'sdsfggs')
+  //   const {token} = useCustom();
+  //  console.log(token,'sdsfggs')
+
+  const [USD, setUSD] = React.useState('');
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setUSD(event.target.value);
+  };
+
   return (
     <Paper elevation={0}>
       <List className={classes.root}>
@@ -26,7 +38,7 @@ export default function Weather() {
 
           <Typography
             variant="caption"
-           
+
             component="div"
             sx={{ opacity: 0.6 }}
           >
@@ -40,7 +52,7 @@ export default function Weather() {
 
           <Typography
             variant="caption"
-         
+
             component="div"
             sx={{ opacity: 0.6 }}
           >
@@ -55,11 +67,28 @@ export default function Weather() {
 
           <Typography
             variant="caption"
-          
+
             component="div"
             sx={{ opacity: 0.6 }}
           >
-            USD
+            <FormControl sx={{ m: 1, minWidth: 80 }}>
+              <InputLabel id="demo-simple-select-autowidth-label">Age</InputLabel>
+              <Select
+               labelId="demo-simple-select-standard-label"
+               id="demo-simple-select-standard"
+                value={USD}
+                onChange={handleChange}
+                autoWidth
+                label="USD"
+              >
+
+                <MenuItem value={10}>USD </MenuItem>
+                <MenuItem value={21}>EURO</MenuItem>
+                <MenuItem value={22}>YARN</MenuItem>
+                <MenuItem value={22}>YEN</MenuItem>
+                <MenuItem value={22}>AED</MenuItem>
+              </Select>
+            </FormControl>
           </Typography>
         </ListItem>
       </List>

@@ -12,11 +12,11 @@ import {
   List
 } from "@mui/material";
 import { useStyles } from "./Styles";
-
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+
 interface IFolderProps {
   // event: any;
   // onClick: any;
@@ -26,10 +26,8 @@ interface IFolderProps {
   // onShare?: (id: string) => void;
   data: any,
   error: any,
-  isLoading: any
+  isLoading: any,
 }
-
-
 
 
 var moment = require("moment-timezone");
@@ -109,12 +107,12 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
   // useEffect(()=>{
   //       setData(event.Event)
   // },[])
-  // console.log(data)
+  // console.log(data);
+
   return (
     <AuthenticatedTemplate>
       <Paper elevation={0}>
         <List className={classes.root}>
-
           <div className={classes.Calendar}>
             <Stack
               direction="row"

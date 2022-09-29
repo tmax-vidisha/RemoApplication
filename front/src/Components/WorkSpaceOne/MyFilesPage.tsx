@@ -594,7 +594,7 @@ const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                                                             </MenuItem>
                                                             <MenuItem>
-                                                                <div className={classes.items}>
+                                                                {/* <div className={classes.items}>
                                                                     <Button onClick={handleOpen}><img src={deleteIcon} alt="deleteIcon" className={classes.menuImage} /> Delete </Button>
                                                                     <Dialog
                                                                         open={open}
@@ -615,7 +615,7 @@ const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                             <Button onClick={handleOnClose}>Subscribe</Button>
                                                                         </DialogActions>
                                                                     </Dialog>
-                                                                </div>
+                                                                </div> */}
 
                                                             </MenuItem>
 

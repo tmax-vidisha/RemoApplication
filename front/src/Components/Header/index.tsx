@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { Link, NavLink as RouterNavLink } from "react-router-dom";
 import { styled, alpha } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,7 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from '@mui/icons-material/AccountCircleOutlined';
 //import AccountCircle from "@mui/icons-material/AccountCircle";
 //import MailIcon from "@mui/icons-material/Mail";
-import { Container } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import MailIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
@@ -26,7 +26,7 @@ import userimg from "../../Assets/Images/userimg.svg";
 import birthday from "../../Assets/Images/birthday.svg";
 import temp from "../../Assets/Images/temp.svg";
 import teamm from "../../Assets/Images/teamm.svg";
-import calendar from "../../Assets/Images/calendar.svg";
+import calendarWhite from "../../Assets/Images/calendarWhite.svg";
 import onenote from "../../Assets/Images/onenote.svg";
 import WeatherMap from './WeatherMap';
 import Backdrop from '@mui/material/Backdrop';
@@ -34,6 +34,14 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Weather from '../Weather';
+import Calendar from 'react-calendar';
+import ToggleButton from './ToggleButton';
 
 
 const style = {
@@ -87,9 +95,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+interface type {
+  onClose: () => void;
+}
+
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -108,14 +122,37 @@ const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
-  const setModalIsOpenToTrue = () => {
-    setModalIsOpen(true)
-  }
-  const setModalIsOpenToFalse = () => {
-    setModalIsOpen(false)
-  }
+  const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
+
+  const openFirst = Boolean(anchorE2);
+
+  const handleClickOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorE2(event.currentTarget);
+  };
+  const handleOnClose = () => {
+    setAnchorE2(null);
+  };
+
+  const [anchorE3, setAnchorE3] = React.useState<null | HTMLElement>(null);
+  const openSecond = Boolean(anchorE3);
+
+  const handleClickSecOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorE3(event.currentTarget);
+  };
+
+  const handleSecOnClose = () => {
+    setAnchorE3(null);
+  };
+  const [value, setValue] = useState();
+
+  const onChange = useCallback(
+    (value: any) => {
+      setValue(value);
+    },
+    [setValue],
+  );
+
   // const handleMobileMenuClose = () => {
   //   setMobileMoreAnchorEl(null);
   // };
@@ -314,8 +351,8 @@ const Header = () => {
               sx={{
                 paddingLeft: "0px !important",
                 paddingRight: "0px !important",
-              }}
-            >
+              }}>
+
               <RouterNavLink to="/Home">
                 <img src={logo} alt="Remo Digital" />
               </RouterNavLink>
@@ -337,6 +374,9 @@ const Header = () => {
               </Search>
 
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <div>
+                  <ToggleButton/>
+                </div>
                 <div>
                   <IconButton
                     size="large"
@@ -363,79 +403,156 @@ const Header = () => {
                     <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem>
                   </Menu>
                 </div>
+                <div>
+                  <IconButton
+                    size="large"
+                    aria-label="unread mail count"
+                    color="inherit"
+                    onClick={handleClickOpen}
+                    aria-controls={openFirst ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={openFirst ? "true" : undefined}
+                  >
+                    <Badge color="error" sx={{ top: "9px" }}>
+                      <img src={temp} alt="" />
+                    </Badge>
+                  </IconButton>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorE2}
+                    open={openFirst}
+                    onClose={handleOnClose}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
+                    }}
 
-                <IconButton
-                  size="large"
-                  aria-label="unread mail count"
-                  color="inherit"
-                  onClick={setModalIsOpenToTrue}
-                >
-                  <Badge color="error" sx={{ top: "3px" }}>
-                    <img src={temp} alt="" />
-                  </Badge>
-                  {/* <WeatherMap/> */}
-                </IconButton>
-                {/* <Modal isOpen={modalIsOpen}>
-                  <button onClick={setModalIsOpenToFalse}>x</button>
+                  >
+                    <MenuItem onClick={handleOnClose}>
+                      {/* <Grid style={{display:"flex" , justifyContent:"space-between", fontSize:"8px"}}>
+                      <Grid> Dubai, UAE</Grid>
+                      <Grid> Next Prayer</Grid>
+                      <Grid>1.00 AED is</Grid>
+                    </Grid> */}
+                      <Weather />
+
+                    </MenuItem>
+
+                  </Menu>
+                </div>
+
+                {/* <div>
+                  <IconButton
+                    size="small"
+                    aria-label="unread mail count"
+                    color="inherit"
+                    onClick={handleClickOpen}
+                  >
+                    <Badge color="error" sx={{ top: "3px" }}>
+                      <img src={temp} alt=""  />
+                    </Badge>
+                     <WeatherMap/>
+                  </IconButton>
                   
-                </Modal> */}
-                {/* <Modal isOpen={modalIsOpen}
-                >
-                  <Fade in={open}>
-                    <Box sx={style}>
-                      <Typography id="transition-modal-title" variant="h6" component="h2">
-                        Text in a modal
-                      </Typography>
-                      <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                      </Typography>
-                    </Box>
-                  </Fade>
-                </Modal> */}
+                  <Dialog
+                    open={openFirst}
+                    onClose={handleOnClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">
+                      asjsadjkd
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        Let Google help apps determine location. This means sending anonymous
+                        location data to Google, even when no apps are running.
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleOnClose}>Disagree</Button>
+                      <Button onClick={handleOnClose} autoFocus>
+                        Agree
+                      </Button>
+                    </DialogActions>
+                  </Dialog> 
 
-                <IconButton
-                  size="large"
-                  aria-label="unread mail count"
-                  color="inherit"
-                >
-                  <Badge color="error" sx={{ top: "3px" }}>
-                    <img src={calendar} alt="calendar" />
-                  </Badge>
-                </IconButton>
+                </div>  */}
+
+                <div style={{ marginTop: "7px" }}>
+                  <IconButton
+                    size="large"
+                    aria-label="unread mail count"
+                    color="inherit"
+                    onClick={handleClickSecOpen}
+                    aria-controls={openSecond ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={openSecond ? "true" : undefined}
+                  >
+                    <Badge color="error" sx={{ top: "3px" }}>
+                      <img src={calendarWhite} alt="calendar" />
+                    </Badge>
+                  </IconButton>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorE3}
+                    open={openSecond}
+                    onClose={handleSecOnClose}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
+                    }}>
+                    <MenuItem onClick={handleSecOnClose}>
+                      <Calendar
+                        onChange={onChange}
+                        value={value}
+                      />
+                    </MenuItem>
+
+                  </Menu>
+                </div>
 
                 <IconButton
                   size="large"
                   aria-label="show 17 new notifications"
                   color="inherit"
-                >
-                  <Badge badgeContent="1" color="error" sx={{ top: "3px" }}>
-                    {/* badgeContent={17}  */}
-                    <img src={teamm} alt="teams" />
-                  </Badge>
+                ><a
+                  target={"_blank"}
+                  href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+                ><Badge badgeContent="1" color="error" sx={{ top: "3px" }}>
+                      {/* badgeContent={17}  */}
+                      <img src={teamm} alt="teams" />
+                    </Badge>
+                  </a>
                 </IconButton>
-                {/* <a
-                target={"_blank"}
-                href="https://outlook.office.com/mail/inbox"
-              > */}
                 <IconButton
                   size="large"
                   aria-label="unread mail count"
                   color="inherit"
                 >
+                  <a
+                    target={"_blank"}
+                     href="https://outlook.office.com/mail/inbox"
+                  >
                   <Badge badgeContent="0" color="error" sx={{ top: "3px" }}>
                     {/* <MailIcon /> */}
                     <img src={outlookIcon} alt="Outlook" />
                   </Badge>
+                  </a>
                 </IconButton>
-                {/* </a> */}
+
                 <IconButton
                   size="large"
                   aria-label="show 17 new notifications"
                   color="inherit"
                 >
-                  <Badge color="error" sx={{ top: "3px" }}>
-                    <img src={onenote} alt="teams" />
-                  </Badge>
+                  <a
+                    target={"_blank"}
+                    // href="https://outlook.office.com/mail/inbox"
+                    href="https://login.microsoftonline.com/common/oauth2/authorize?client_id=00000002-0000-0ff1-ce00-000000000000&redirect_uri=https%3a%2f%2foutlook.office.com%2fowa%2f&resource=00000002-0000-0ff1-ce00-000000000000&response_mode=form_post&response_type=code+id_token&scope=openid&msafed=1&msaredir=1&client-request-id=9199217e-2710-702d-8273-3869284ea20c&protectedtoken=true&claims=%7b%22id_token%22%3a%7b%22xms_cc%22%3a%7b%22values%22%3a%5b%22CP1%22%5d%7d%7d%7d&nonce=638000473460699608.5e4b27b8-11e3-4083-a0cc-f12e7b6603f2&state=Dcu7DoIwFIDhou_iVjm92MtAHEgMMbigiYatp5REYgMBgvHt7fD9258RQvbJLskghWglDABILaQCZa0CczwFiVyjoYwFQSUYQR14T3vGg0alQPQ8S2-dj1-Xn5fVraFghzl07zn49TEWrmrAVzdV_-zWvZoFuZ3raGMbP0N7Pw3IYcPnZcLSThivWyjNHw"
+                  >
+                    <Badge color="error" sx={{ top: "3px" }}>
+                      <img src={onenote} alt="teams" />
+                    </Badge>
+                  </a>
                 </IconButton>
 
                 <IconButton
@@ -467,6 +584,7 @@ const Header = () => {
                   aria-haspopup="true"
                   //   onClick={handleMobileMenuOpen}
                   color="inherit"
+                  sx={{ top: "9px" }}
                 >
                   <MoreIcon />
                 </IconButton>
