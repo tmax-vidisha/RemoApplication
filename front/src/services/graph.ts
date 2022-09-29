@@ -57,7 +57,15 @@ export const oneDriveApi = createApi({
     }),
     
   }),
-  
+  deleteItemOneDrive: builder.mutation<any, any>({
+    query: (data) => ({
+        url: '/api/v1/onedrive/deleteOneDriveItem',
+        // headers:{ 'Content-Type': 'application/json' },
+        method: "POST",
+        body: data
+    }),
+    
+  }),
   }),
 })
 export const { useGetAllUsersQuery } = usersApi
@@ -65,7 +73,7 @@ export const {
                 useUploadFileOneDriveMutation,
                 useGetItemChildrenOneDriveMutation,
                 useGetAllRootItemsOneDriveQuery,
-           
+                useDeleteItemOneDriveMutation
               
               
               

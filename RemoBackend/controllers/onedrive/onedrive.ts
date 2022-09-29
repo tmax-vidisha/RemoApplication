@@ -495,9 +495,60 @@ const getOneDriveItemChildren = asyncHandler(async(req:Request, res:Response) =>
 })
 
 
+const deleteOneDriveItem = asyncHandler(async(req:Request, res:Response) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  
+  console.log(req.headers.authorization,'tssccccttddddttttvvvvvtttttttyy')
+  const  token = req.headers.authorization
+  const {  ItemId,Name } = req.body
+  console.log(ItemId,Name,'treytrutusc')
+ 
+
+
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+     console.log('deklee')
+     if(ItemId ) {
+      const response = 
+    // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+      await axios.delete(`https://graph.microsoft.com/v1.0/me/drive/items/${ItemId}`, {
+      headers: {
+          'Authorization': `Bearer ${token} `,
+          'Content-Type': 'application/json'
+        
+        }
+      
+  })
+  const data = await response.data
+  console.log(data,'kky')
+  res.status(200).json({
+    success: true,
+    response :data
+
+ });
+
+ }
+ 
+ }
+
+})
+
+
+
+
+
 export {
     uploadItemInOneDrive,
     getAllOneDriveItemsRoot,
-    getOneDriveItemChildren
+    getOneDriveItemChildren,
+    deleteOneDriveItem
    
 }

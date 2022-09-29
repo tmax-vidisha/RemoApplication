@@ -1,8 +1,8 @@
 import React, { useState, useReducer } from 'react';
 import { breadcrumbsReducer, foldersReducer } from '../../Store copy/Reducer/foldersReducer';
 import { ActionType } from '../../Store copy/Actions/actionTypes';
-import WPOneDrive from '../Workspace/OneDrive/index';
-import { Grid, Link, Button, Modal, Box, DialogContentText } from '@mui/material';
+import WPOneDrive from './../Workspace/OneDrive/index';
+import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions } from '@mui/material';
 import { Typography } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -32,13 +32,143 @@ import downloadIcon from '../../Assets/Images/DOWLOAD.svg';
 import deleteIcon from '../../Assets/Images/delete.svg';
 import deleteBlue from '../../Assets/Images/delete-blue.svg';
 import Fade from '@mui/material/Fade';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import { styled } from "@mui/material/styles";
-import DialogTitle from '@mui/material/DialogTitle';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+
+
+interface SimpleDialogProps {
+    id: any,
+    name: any,
+    onDelete?: (id: string,name:string) => void;
+    // open: boolean;
+    // // selectedValue: string;
+    //  onClose: () => void;
+    //  anchorEl:any
+}
+
+function SimpleDialog(props: SimpleDialogProps) {
+    const classes = useStyles();
+    // const { onClose, selectedValue, open } = props;
+    const { id, name,onDelete } = props
+    console.log(id, name)
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const openOn = Boolean(anchorEl);
+
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    // const handleClose = () => {
+    //   onClose(selectedValue);
+    // };
+
+    // const handleListItemClick = (value: string) => {
+    //   onClose(value);
+    // };
+    const [openOne, setOpenOne] = React.useState(false);
+    const handleClickOne = (popup: any) => {
+        setOpenOne(true);
+    };
+
+    const handleCloseOne = () => {
+        setOpenOne(false);
+    };
+
+    const handledelete = () =>{
+        onDelete?.(id,name)
+    }
+
+    return (
+        <Grid style={{ borderRadius: "10px", }} >
+            <Button
+                id="fade-button"
+                aria-controls={openOn ? 'fade-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={openOn ? 'true' : undefined}
+                onClick={handleClick}
+
+            >
+
+                <img src={actions} alt="actions" />
+            </Button>
+            <Menu
+                id="fade-menu"
+                MenuListProps={{
+                    'aria-labelledby': 'fade-button',
+                }}
+                anchorEl={anchorEl}
+                open={openOn}
+                onClose={handleClose}
+                TransitionComponent={Fade}
+                className={classes.menu}
+
+            >
+
+                <MenuItem >
+                    <div className={classes.items}>
+                        <img src={openIcon} alt="folder" /> Open
+                    </div>
+
+                </MenuItem>
+
+                <MenuItem>
+                    <div className={classes.items}>
+                        <img src={linkIcon} alt="linkIcon" /> Copy Link
+                    </div>
+
+                </MenuItem>
+                <MenuItem>
+                    <div className={classes.items}>
+                        <img src={downloadIcon} alt="downloadIcon" /> Download
+                    </div>
+
+                </MenuItem>
+                <MenuItem>
+                    <div onClick={handleClickOne} className={classes.items}>
+
+                        <img src={deleteIcon} alt="deleteIcon" /> Delete
+
+                    </div>
+                    <Dialog open={openOne} onClose={handleCloseOne}>
+
+                        <DialogContent>
+                            <Typography>
+                                <Box style={{ textAlign: "center", color: "#1baab5", }}>
+                                    <img src={deleteBlue} alt="delete" style={{ width: "80px", color: "#1baab5", }} />
+
+                                </Box>
+                                <Box style={{ margin: "20px", fontSize: "25px", textAlign: "center" }}>
+                                    Delete
+                                </Box>
+                            </Typography>
+                            <Grid>
+
+                                <Box>
+                                    <Typography style={{ textAlign: "center" }}>This Items contains some information. are you sure to delete it ?</Typography>
+                                </Box>
+                            </Grid>
+
+                        </DialogContent>
+
+                        <DialogActions style={{ display: "flex", justifyContent: "space-between", margin: "auto" }}>
+                            <Button autoFocus onClick={handledelete} style={{ backgroundColor: "#1baab5", color: "white" }}>
+                                OK
+                            </Button>
+                            <Button autoFocus onClick={handleCloseOne} >
+                                Cancel
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </MenuItem>
+
+            </Menu>
+        </Grid>
+    );
+}
+
+
+
 
 interface IFolderProps {
     data: any,
@@ -51,89 +181,14 @@ interface IFolderProps {
     // onSubmit: (object: any) => void;
     // onClick: any;
     // onDownload?: (id: string) => void;
-    // onDelete?: (id: string) => void;
+     onDelete?: (id: string,name:string) => void;
     // onRename?: (id: string, name: string) => void;
     // onShare?: (id: string) => void;
 }
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-    '& .MuiDialogContent-root': {
-        padding: theme.spacing(2),
-    },
-    '& .MuiDialogActions-root': {
-        padding: theme.spacing(1),
-    },
-}));
 
-export interface DialogTitleProps {
-    id: string;
-    children?: React.ReactNode;
-    onClose: () => void;
-}
-
-const BootstrapDialogTitle = (props: DialogTitleProps) => {
-    const { children, onClose, ...other } = props;
-
-    return (
-        <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-            {children}
-            {onClose ? (
-                <IconButton
-                    aria-label="close"
-                    onClick={onClose}
-                    sx={{
-                        position: 'absolute',
-                        right: 8,
-                        top: 8,
-                        color: (theme: any) => theme.palette.grey[500],
-                    }}
-                >
-                    <CloseIcon />
-                </IconButton>
-            ) : null}
-        </DialogTitle>
-    );
-};
-/*
- interface SimpleDialogProps {
-    open: boolean;
-    selectedValue: string;
-    onClose: (value: string) => void;
-  }
-
-export default function SimpleDialog(props: SimpleDialogProps){
-    const [open, setOpen] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState();
-  
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = (value: string) => {
-      setOpen(false);
-      setSelectedValue(value);
-    };
-  
-    return (
-      <div>
-        <Typography variant="subtitle1" component="div">
-          Selected: {selectedValue}
-        </Typography>
-        <br />
-        <Button variant="outlined" onClick={handleClickOpen}>
-          Open simple dialog
-        </Button>
-        <SimpleDialog
-          selectedValue={selectedValue}
-          open={open}
-          onClose={handleClose}
-        />
-      </div>
-    );
-  }
-*/
-
-const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
+// const MyFilesPage = () => {
+export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     const [age, setAge] = React.useState('');
     const [url, setUrl] = useState<string>('');
@@ -143,7 +198,7 @@ const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     //@ts-ignore
     // const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token);
     // console.log(data?.response)
-    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick } = props;
+    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick,onDelete } = props;
     // const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
     // console.log(ItemChildren?.response, 'yujujujuys')
     // const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
@@ -231,7 +286,6 @@ const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     // const [listView, setListView]=useState('');
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-
     const openOn = Boolean(anchorEl);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -240,23 +294,28 @@ const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+    const [itemId, setItemId] = useState<string>('');
+    const [itemName, setItemName] = useState<string>('');
+    const de = (id: any, name: any) => {
+        //    console.log(id,name)
+        setItemId(id)
+        setItemName(name)
+    }
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleOnClose = () => setOpen(false);
-
-    const [openOne, setOpenOne] = React.useState(false);
-    const handleClickOne = (popup: any) => {
-        setOpenOne(true);
+    const handleClickOpen = () => {
+        setOpen(true);
     };
+    const handleClosee = () => {
+        setOpen(false);
 
-    const handleCloseOne = () => {
-        setOpenOne(false);
     };
-
     return (
         <>
 
+            {/* <Grid className={classes.divFile}>
+                My Files
+            </Grid> */}
+            {/* <Grid className={classes.bigPart}> */}
             <Grid className={classes.myFile}>
                 <Grid>
                     {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
@@ -392,91 +451,75 @@ const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     {item.size}
                                                 </TableCell>
                                                 <TableCell align="right">
+                                                    <Grid
+                                                        onClick={() => de(item.id, item.name)}>
+                                                        {/* <Button  onClick={()=>de(item.id,item.name)}> */}
+                                                        <SimpleDialog
+                                                            id={itemId}
+                                                            name={itemName}
+                                                            onDelete={onDelete}
+                                                        //  open={openOn}
+                                                        //  onClose={handleClose}
+                                                        //  anchorEl={anchorEl}
+                                                        />
 
-                                                    <Grid style={{ borderRadius: "10px" }} >
-                                                        <Button
-                                                            id="fade-button"
-                                                            aria-controls={openOn ? 'fade-menu' : undefined}
-                                                            aria-haspopup="true"
-                                                            aria-expanded={openOn ? 'true' : undefined}
-                                                            onClick={handleClick}>
-
-                                                            <img src={actions} alt="actions" />
-                                                        </Button>
-                                                        <Stack direction="row" spacing={2}>
-                                                        <Menu
-
-                                                            id="fade-menu"
-                                                            MenuListProps={{
-                                                                'aria-labelledby': 'fade-button',
-                                                            }}
-                                                            anchorEl={anchorEl}
-                                                            open={openOn}
-                                                            onClose={handleClose}
-                                                            TransitionComponent={Fade}
-                                                            className={classes.menu}
-                                                            style={{boxShadow:"10px 10px 10px 10px gray" }}
+                                                        {/* </Button> */}
+                                                    </Grid>
+                                                    {/* <Grid style={{ borderRadius: "10px", }} >
+                                                            <Button
+                                                                id="fade-button"
+                                                                aria-controls={openOn ? 'fade-menu' : undefined}
+                                                                aria-haspopup="true"
+                                                                aria-expanded={openOn ? 'true' : undefined}
+                                                                onClick={handleClick}
+                                                               
                                                             >
 
-                                                            <MenuItem >
-                                                                <div className={classes.items}>
-                                                                    <img src={openIcon} alt="folder" /> Open
-                                                                </div>
+                                                                <img src={actions} alt="actions" />
+                                                            </Button>
+                                                            <Menu
+                                                                 id="fade-menu"
+                                                                 MenuListProps={{
+                                                                     'aria-labelledby': 'fade-button',
+                                                                 }}
+                                                                 anchorEl={anchorEl}
+                                                                 open={openOn}
+                                                                 onClose={handleClose}
+                                                                 TransitionComponent={Fade}
+                                                                 className={classes.menu}
+                                                                 
+                                                            >
 
-                                                            </MenuItem>
+                                                                <MenuItem >
+                                                                    <div className={classes.items}>
+                                                                        <img src={openIcon} alt="folder" /> Open
+                                                                    </div>
+                                                                   
+                                                                </MenuItem>
 
-                                                            <MenuItem>
-                                                                <div className={classes.items}>
-                                                                    <img src={linkIcon} alt="linkIcon" /> Copy Link
-                                                                </div>
+                                                                <MenuItem>
+                                                                    <div className={classes.items}>
+                                                                        <img src={linkIcon} alt="linkIcon" /> Copy Link
+                                                                    </div>
 
-                                                            </MenuItem>
-                                                            <MenuItem>
-                                                                <div className={classes.items}>
-                                                                    <img src={downloadIcon} alt="downloadIcon" /> Download
-                                                                </div>
-
-                                                            </MenuItem>
-
-                                                            <MenuItem >
-                                                                <div onClick={handleClickOne} className={classes.items}>
-                                                                   <img src={deleteIcon} alt="deleteIcon" /> Delete 
-                                                                </div>
-                                                                <Dialog open={openOne} onClose={handleCloseOne}>
-
-                                                                    <DialogContent>
-                                                                        <Typography>
-                                                                            <Box style={{ textAlign: "center", color: "#1baab5", }}>
-                                                                                <img src={deleteBlue} alt="delete" style={{ width: "80px", color: "#1baab5", }} />
-
-                                                                            </Box>
-                                                                            <Box style={{ margin: "20px", fontSize: "25px", textAlign: "center" }}>
-                                                                                Delete
-                                                                            </Box>
-                                                                        </Typography>
-                                                                        <Grid>
-
-                                                                            <Box>
-                                                                                <Typography style={{ textAlign: "center" }}>This Items contains some information. are you sure to delete it ?</Typography>
-                                                                            </Box>
-                                                                        </Grid>
-
-                                                                    </DialogContent>
-
-                                                                    <DialogActions style={{ display: "flex", justifyContent: "space-between", margin: "auto" }}>
-                                                                        <Button autoFocus onClick={handleCloseOne} style={{ backgroundColor: "#1baab5", color: "white" }}>
-                                                                            OK
-                                                                        </Button>
-                                                                        <Button autoFocus onClick={handleCloseOne} >
-                                                                            Cancel
-                                                                        </Button>
-                                                                    </DialogActions>
-                                                                </Dialog>
-                                                            </MenuItem>
-
-                                                        </Menu>
-                                                        </Stack>
-                                                    </Grid>
+                                                                </MenuItem>
+                                                                <MenuItem>
+                                                                    <div className={classes.items}>
+                                                                        <img src={downloadIcon} alt="downloadIcon"  /> Download
+                                                                    </div>
+                                                                    
+                                                                </MenuItem>
+                                                                <MenuItem>
+                                                                    <div className={classes.items}>
+                                                                        
+                                                                        <img src={deleteIcon} alt="deleteIcon"  /> Delete
+                                                                        
+                                                                    </div>
+                                                                   
+                                                                </MenuItem>
+                                                                
+                                                            </Menu>
+                                                        </Grid> */}
                                                 </TableCell>
                                             </TableRow>
                                         )
@@ -551,76 +594,73 @@ const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     {item.size}
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
-                                                        <Button
-                                                            id="fade-button"
-                                                            aria-controls={openOn ? 'fade-menu' : undefined}
-                                                            aria-haspopup="true"
-                                                            aria-expanded={openOn ? 'true' : undefined}
-                                                            onClick={handleClick} >
+                                                    <Grid
+                                                        onClick={() => de(item.id, item.name)}>
+                                                        {/* <Button  onClick={()=>de(item.id,item.name)}> */}
+                                                        <SimpleDialog
+                                                            id={itemId}
+                                                            name={itemName}
+                                                            onDelete={onDelete}
+                                                        //  open={openOn}
+                                                        //  onClose={handleClose}
+                                                        //  anchorEl={anchorEl}
+                                                        />
 
-                                                            <img src={actions} alt="actions" />
-                                                        </Button>
-                                                        <Menu
-                                                            id="fade-menu"
-                                                            MenuListProps={{
-                                                                'aria-labelledby': 'fade-button',
-                                                            }}
-                                                            anchorEl={anchorEl}
-                                                            open={openOn}
-                                                            onClose={handleClose}
-                                                            TransitionComponent={Fade}
-                                                            className={classes.menu}
-
-                                                        >
-
-                                                            <MenuItem >
-                                                                <div className={classes.items}>
-                                                                    <img src={openIcon} alt="folder" className={classes.menuImage} /> Open
-                                                                </div>
-
-                                                            </MenuItem>
-
-                                                            <MenuItem>
-                                                                <div className={classes.items}>
-                                                                    <img src={linkIcon} alt="linkIcon" className={classes.menuImage} /> Copy Link
-                                                                </div>
-
-                                                            </MenuItem>
-                                                            <MenuItem>
-                                                                <div className={classes.items}>
-                                                                    <img src={downloadIcon} alt="downloadIcon" className={classes.menuImage} /> Download
-                                                                </div>
-
-                                                            </MenuItem>
-                                                            <MenuItem>
-                                                                <div className={classes.items}>
-                                                                    <Button onClick={handleOpen}><img src={deleteIcon} alt="deleteIcon" className={classes.menuImage} /> Delete </Button>
-                                                                    <Dialog
-                                                                        open={open}
-                                                                        onClose={handleOnClose}
-                                                                        aria-labelledby="modal-modal-title"
-                                                                        aria-describedby="modal-modal-description"
-                                                                    >
-                                                                        <DialogContent>
-                                                                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                                                                Text in a modal
-                                                                            </Typography>
-                                                                            <DialogContentText id="modal-modal-description" sx={{ mt: 2 }}>
-                                                                                This item contains some information. Are you sure to delete it ?
-                                                                            </DialogContentText>
-                                                                        </DialogContent>
-                                                                        <DialogActions>
-                                                                            <Button onClick={handleOnClose}>Cancel</Button>
-                                                                            <Button onClick={handleOnClose}>Subscribe</Button>
-                                                                        </DialogActions>
-                                                                    </Dialog>
-                                                                </div>
-
-                                                            </MenuItem>
-
-                                                        </Menu>
+                                                        {/* </Button> */}
                                                     </Grid>
+                                                    {/* <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
+                                                            <Button
+                                                                id="fade-button"
+                                                                aria-controls={openOn ? 'fade-menu' : undefined}
+                                                                aria-haspopup="true"
+                                                                aria-expanded={openOn ? 'true' : undefined}
+                                                                onClick={handleClick}
+                                                               
+                                                            >
+
+                                                                <img src={actions} alt="actions" />
+                                                            </Button>
+                                                            <Menu
+                                                                 id="fade-menu"
+                                                                 MenuListProps={{
+                                                                     'aria-labelledby': 'fade-button',
+                                                                 }}
+                                                                 anchorEl={anchorEl}
+                                                                 open={openOn}
+                                                                 onClose={handleClose}
+                                                                 TransitionComponent={Fade}
+                                                                 className={classes.menu}
+                                                                 
+                                                            >
+
+                                                                <MenuItem >
+                                                                    <div className={classes.items}>
+                                                                        <img src={openIcon} alt="folder" className={classes.menuImage} /> Open
+                                                                    </div>
+                                                                   
+                                                                </MenuItem>
+
+                                                                <MenuItem>
+                                                                    <div className={classes.items}>
+                                                                        <img src={linkIcon} alt="linkIcon" className={classes.menuImage} /> Copy Link
+                                                                    </div>
+
+                                                                </MenuItem>
+                                                                <MenuItem >
+                                                                    <div className={classes.items}>
+                                                                        <img src={downloadIcon} alt="downloadIcon" className={classes.menuImage} /> Download
+                                                                    </div>
+                                                                    
+                                                                </MenuItem>
+                                                                <MenuItem onClick={()=>de(item.id,item.name)}>
+                                                                    <div className={classes.items}>
+                                                                        <img src={deleteIcon} alt="deleteIcon" className={classes.menuImage} /> Delete
+                                                                    </div>
+                                                                   
+                                                                </MenuItem>
+                                                                
+                                                            </Menu>
+                                                        </Grid> */}
                                                 </TableCell>
                                             </TableRow>
                                         )
@@ -641,4 +681,4 @@ const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     );
 };
 
-export default MyFilesPage;
+// export default MyFilesPage;
