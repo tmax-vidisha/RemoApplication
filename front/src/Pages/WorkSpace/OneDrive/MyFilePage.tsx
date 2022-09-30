@@ -8,7 +8,7 @@ import { AuthenticatedTemplate } from '@azure/msal-react';
 import Breadcrumb from '../../../hooks/Breadcrumb';
 import { Grid } from '@mui/material';
 import { useStyles } from './Styles';
-import MyFilesPage from '../../../Components/WorkSpaceOne/MyFilesPage';
+// import MyFilesPage from '../../../Components/WorkSpaceOne/MyFilesPage';
 import { styled } from '@mui/material/styles';
 
 
@@ -42,7 +42,7 @@ const MyFilePage = () => {
         id: string,
         name: string,
         folder: any,
-        webUrl: any
+        // webUrl: any
     ): Promise<void> => {
 
         // await getFolderChildrenAction(id);

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import LeftMenu from './LeftMenu';
-import SearchPart f
-import {MyFilesPage} from './MyFilesPage';
+import SearchPart from './SearchPart'
+// import {MyFilesPage} from './MyFilesPage';
 
 import SideBar from './SideBar';
 import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
