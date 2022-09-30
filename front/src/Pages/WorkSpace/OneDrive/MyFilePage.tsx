@@ -8,7 +8,6 @@ import { AuthenticatedTemplate } from '@azure/msal-react';
 import Breadcrumb from '../../../hooks/Breadcrumb';
 import { Grid } from '@mui/material';
 import { useStyles } from './Styles';
-// import MyFilesPage from '../../../Components/WorkSpaceOne/MyFilesPage';
 import { styled } from '@mui/material/styles';
 
 

@@ -46,6 +46,7 @@ import UploadFile from './UploadFile';
 
 // import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
 import WorkSpaceOne from './Components/WorkSpaceOne/index';
+import SecondWorkSpace from './Layout/SecondWorkSpace';
 
 
 const theme = createTheme({
@@ -256,8 +257,9 @@ const Main = () => {
                             <Route
                               path="/WorkSpaceOne"
                               element={<WorkSpaceOne/>} />
-
-
+                            <Route
+                              path="/SecondWorkSpace"
+                              element={<SecondWorkSpace/>} />
 
                         </Routes>
                     </ThemeProvider>
@@ -268,4 +270,5 @@ const Main = () => {
     )
 }
 
-export default Main
+export default Main;
+

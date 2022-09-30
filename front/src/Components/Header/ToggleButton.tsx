@@ -7,8 +7,11 @@ import { useStyles } from './Styles';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
+import SecondWorkSpace from './../../Layout/SecondWorkSpace';
+import WorkSpaceOne from './../WorkSpaceOne/index';
+import { Link, NavLink } from 'react-router-dom';
 
-  
+
 const ToggleButton = () => {
     const classes = useStyles();
     const [state, setState] = React.useState({
@@ -18,11 +21,14 @@ const ToggleButton = () => {
     const handleChange = (event: any) => {
         setState({ ...state, [event.target.name]: event.target.checked });
     };
+
+    const [toggle, setToggle] = React.useState(true);
+    const toggleChecked = () => setToggle(toggle => !toggle);
     return (
-        <>
-            <Switch
+        <div>
+            {/* <Switch
                 classes={{
-                    root: classes.root,
+                    root: classes.MuiSwitch,
                     switchBase: classes.switchBase,
                     thumb: classes.thumb,
                     track: classes.track,
@@ -32,8 +38,32 @@ const ToggleButton = () => {
                 onChange={handleChange}
                 name="checkedA"
                 inputProps={{ "aria-label": "secondary checkbox" }}
-            />
-        </>
+            /> */}
+
+            <div style={{ marginTop: 10, marginLeft: 10 }}>
+                <Switch onClick={toggleChecked} />
+            </div>
+            {toggle &&
+                <div>
+                    <Link to="/WorkSpaceOne" ></Link>
+                </div>
+
+            }
+            {!toggle &&
+                <div>
+                    
+                    {/* <NavLink end to="/NewsInput" ></NavLink> */}
+                </div>
+
+            }
+            {/* <label className={classes.switch}>
+                <input type="checkbox" id="togBtn" />
+                    <div className={classes.sliderRound}>
+                        <span className={classes.EMEA}>EMEA</span>
+                        <span className={classes.AMERICAS}>AMERICAS</span>
+                    </div>
+            </label> */}
+        </div>
     );
 }
 

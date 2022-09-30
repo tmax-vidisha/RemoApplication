@@ -31,15 +31,20 @@ import openIcon from '../../Assets/Images/open.svg';
 import downloadIcon from '../../Assets/Images/DOWLOAD.svg';
 import deleteIcon from '../../Assets/Images/delete.svg';
 import deleteBlue from '../../Assets/Images/delete-blue.svg';
+import success from '../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
 
 
 interface SimpleDialogProps {
     id: any,
     name: any,
+
+    onDelete?: (id: string, name: string) => void;
+
     folder:any,
     onDelete?: (id: string,name:string) => void;
     onOpenFolder : (id: string, name: string, folder: any) => void
+
     // open: boolean;
     // // selectedValue: string;
     //  onClose: () => void;
@@ -49,8 +54,13 @@ interface SimpleDialogProps {
 function SimpleDialog(props: SimpleDialogProps) {
     const classes = useStyles();
     // const { onClose, selectedValue, open } = props;
+
+    const { id, name, onDelete } = props
+    console.log(id, name)
+
     const { id, name,folder,onDelete,onOpenFolder } = props
     console.log(id, name,folder)
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const openOn = Boolean(anchorEl);
@@ -77,12 +87,22 @@ function SimpleDialog(props: SimpleDialogProps) {
         setOpenOne(false);
     };
 
-    const handledelete = () =>{
-        onDelete?.(id,name)
+    const handledelete = () => {
+        onDelete?.(id, name)
     }
     const handleFolderOpen = () =>{
         onOpenFolder(id,name,folder)
     }
+
+    const [openTwo, setOpenTwo] = React.useState(false);
+    const handleClickTwo = (popup: any) => {
+        setOpenTwo(true);
+    };
+
+    const handleCloseTwo = () => {
+        setOpenTwo(false);
+    };
+
 
     return (
         <Grid style={{ borderRadius: "10px", }} >
@@ -158,7 +178,35 @@ function SimpleDialog(props: SimpleDialogProps) {
 
                         <DialogActions style={{ display: "flex", justifyContent: "space-between", margin: "auto" }}>
                             <Button autoFocus onClick={handledelete} style={{ backgroundColor: "#1baab5", color: "white" }}>
-                                OK
+                                <p onClick={handleClickTwo}> OK</p>
+                                <Dialog open={openTwo} onClose={handleCloseTwo}>
+
+                                    <DialogContent>
+                                        <Typography>
+                                            <Box style={{ textAlign: "center", color: "#1baab5", }}>
+                                                <img src={success} alt="delete" style={{ width: "80px", color: "#1baab5", }} />
+
+                                            </Box>
+                                            
+                                        </Typography>
+                                        <Grid>
+
+                                            <Box>
+                                                <Typography style={{ textAlign: "center" }}>deleted Items move to trash successfully</Typography>
+                                            </Box>
+                                        </Grid>
+
+                                    </DialogContent>
+
+                                    <DialogActions style={{ display: "flex", justifyContent: "space-between", margin: "auto" }}>
+                                        <Button autoFocus onClick={handleClickTwo} style={{ backgroundColor: "#1baab5", color: "white" }}>
+                                            <p onClick={handleCloseTwo}> OK</p>
+                                        </Button>
+                                        <Button autoFocus onClick={handleCloseTwo} >
+                                            Cancel
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
                             </Button>
                             <Button autoFocus onClick={handleCloseOne} >
                                 Cancel
@@ -186,7 +234,7 @@ interface IFolderProps {
     // onSubmit: (object: any) => void;
     // onClick: any;
     // onDownload?: (id: string) => void;
-     onDelete?: (id: string,name:string) => void;
+    onDelete?: (id: string, name: string) => void;
     // onRename?: (id: string, name: string) => void;
     // onShare?: (id: string) => void;
 }
@@ -203,7 +251,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     //@ts-ignore
     // const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token);
     // console.log(data?.response)
-    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick,onDelete } = props;
+    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick, onDelete } = props;
     // const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
     // console.log(ItemChildren?.response, 'yujujujuys')
     // const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
@@ -610,6 +658,80 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     {item.size}
                                                 </TableCell>
                                                 <TableCell align="right">
+
+
+                                                    <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
+                                                        <Button
+                                                            id="fade-button"
+                                                            aria-controls={openOn ? 'fade-menu' : undefined}
+                                                            aria-haspopup="true"
+                                                            aria-expanded={openOn ? 'true' : undefined}
+                                                            onClick={handleClick} >
+
+                                                            <img src={actions} alt="actions" />
+                                                        </Button>
+
+                                                        <Menu
+                                                            id="fade-menu"
+                                                            MenuListProps={{
+                                                                'aria-labelledby': 'fade-button',
+                                                            }}
+                                                            anchorEl={anchorEl}
+                                                            open={openOn}
+                                                            onClose={handleClose}
+                                                            TransitionComponent={Fade}
+                                                            className={classes.menu}
+
+                                                        >
+
+                                                            <MenuItem >
+                                                                <div className={classes.items}>
+                                                                    <img src={openIcon} alt="folder" className={classes.menuImage} /> Open
+                                                                </div>
+
+                                                            </MenuItem>
+
+                                                            <MenuItem>
+                                                                <div className={classes.items}>
+                                                                    <img src={linkIcon} alt="linkIcon" className={classes.menuImage} /> Copy Link
+                                                                </div>
+
+                                                            </MenuItem>
+                                                            <MenuItem>
+                                                                <div className={classes.items}>
+                                                                    <img src={downloadIcon} alt="downloadIcon" className={classes.menuImage} /> Download
+                                                                </div>
+
+                                                            </MenuItem>
+                                                            <MenuItem>
+                                                                {/* <div className={classes.items}>
+                                                                    <Button onClick={handleOpen}><img src={deleteIcon} alt="deleteIcon" className={classes.menuImage} /> Delete </Button>
+                                                                    <Dialog
+                                                                        open={open}
+                                                                        onClose={handleOnClose}
+                                                                        aria-labelledby="modal-modal-title"
+                                                                        aria-describedby="modal-modal-description"
+                                                                    >
+                                                                        <DialogContent>
+                                                                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                                                Text in a modal
+                                                                            </Typography>
+                                                                            <DialogContentText id="modal-modal-description" sx={{ mt: 2 }}>
+                                                                                This item contains some information. Are you sure to delete it ?
+                                                                            </DialogContentText>
+                                                                        </DialogContent>
+                                                                        <DialogActions>
+                                                                            <Button onClick={handleOnClose}>Cancel</Button>
+                                                                            <Button onClick={handleOnClose}>Subscribe</Button>
+                                                                        </DialogActions>
+                                                                    </Dialog>
+                                                                </div> */}
+
+                                                            </MenuItem>
+
+                                                        </Menu>
+                                                    </Grid>
+
                                                     <Grid
                                                         onClick={() => de(item.id, item.name,item.folder)}>
                                                         {/* <Button  onClick={()=>de(item.id,item.name)}> */}
@@ -679,6 +801,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                 
                                                             </Menu>
                                                         </Grid> */}
+                                                    <Grid />
                                                 </TableCell>
                                             </TableRow>
                                         )
