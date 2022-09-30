@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import LeftMenu from './LeftMenu';
-import SearchPart f
+import SearchPart  from './SearchPart';
 import {MyFilesPage} from './MyFilesPage';
 
 import SideBar from './SideBar';

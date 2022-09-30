@@ -349,10 +349,9 @@ const Header = () => {
             <Toolbar
               variant="dense"
               sx={{
-                paddingLeft: "0px !important",
+                paddingLeft: "0px !important",  
                 paddingRight: "0px !important",
               }}>
-
               <RouterNavLink to="/Home">
                 <img src={logo} alt="Remo Digital" />
               </RouterNavLink>
@@ -377,7 +376,7 @@ const Header = () => {
                 <div>
                   <ToggleButton/>
                 </div>
-                <div>
+                <div style={{marginLeft:"80px"}}>
                   <IconButton
                     size="large"
                     aria-label="unread mail count"
