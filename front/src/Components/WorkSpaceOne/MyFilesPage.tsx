@@ -38,7 +38,13 @@ import Fade from '@mui/material/Fade';
 interface SimpleDialogProps {
     id: any,
     name: any,
+
     onDelete?: (id: string, name: string) => void;
+
+    folder:any,
+    onDelete?: (id: string,name:string) => void;
+    onOpenFolder : (id: string, name: string, folder: any) => void
+
     // open: boolean;
     // // selectedValue: string;
     //  onClose: () => void;
@@ -48,8 +54,13 @@ interface SimpleDialogProps {
 function SimpleDialog(props: SimpleDialogProps) {
     const classes = useStyles();
     // const { onClose, selectedValue, open } = props;
+
     const { id, name, onDelete } = props
     console.log(id, name)
+
+    const { id, name,folder,onDelete,onOpenFolder } = props
+    console.log(id, name,folder)
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const openOn = Boolean(anchorEl);
@@ -78,6 +89,9 @@ function SimpleDialog(props: SimpleDialogProps) {
 
     const handledelete = () => {
         onDelete?.(id, name)
+    }
+    const handleFolderOpen = () =>{
+        onOpenFolder(id,name,folder)
     }
 
     const [openTwo, setOpenTwo] = React.useState(false);
@@ -117,7 +131,7 @@ function SimpleDialog(props: SimpleDialogProps) {
             >
 
                 <MenuItem >
-                    <div className={classes.items}>
+                    <div className={classes.items} onClick={handleFolderOpen}>
                         <img src={openIcon} alt="folder" /> Open
                     </div>
 
@@ -216,7 +230,7 @@ interface IFolderProps {
     ItemChildren: any,
     itemChildrenError: any,
     itemChildrenIsLoading: any,
-    onClick: (id: string, name: string, folder: any, webUrl: any) => void
+    onClick: (id: string, name: string, folder: any) => void
     // onSubmit: (object: any) => void;
     // onClick: any;
     // onDownload?: (id: string) => void;
@@ -335,10 +349,13 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     };
     const [itemId, setItemId] = useState<string>('');
     const [itemName, setItemName] = useState<string>('');
-    const de = (id: any, name: any) => {
+    const [itemfolder,setItemFolder]  = useState<any>();
+    const de = (id: any, name: any,folder:any) => {
         //    console.log(id,name)
+        // console.log(folder)
         setItemId(id)
         setItemName(name)
+        setItemFolder(folder)
     }
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
@@ -348,6 +365,11 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         setOpen(false);
 
     };
+    const handleOpenFolder = (id:any,name:any,folder:any) =>{
+         setShow(!show)
+        // console.log(id,name,folder)
+         onClick(id,name,folder)
+    }
     return (
         <>
 
@@ -469,7 +491,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     > */}
                                                     <Link onClick={() => {
                                                         setShow(!show)
-                                                        onClick(item.id, item.name, item.folder, item?.webUrl)
+                                                        onClick(item.id, item.name, item.folder)
                                                         //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
 
 
@@ -491,12 +513,15 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 </TableCell>
                                                 <TableCell align="right">
                                                     <Grid
-                                                        onClick={() => de(item.id, item.name)}>
+                                                        onClick={() => de(item.id, item.name,item.folder)}>
                                                         {/* <Button  onClick={()=>de(item.id,item.name)}> */}
                                                         <SimpleDialog
                                                             id={itemId}
                                                             name={itemName}
                                                             onDelete={onDelete}
+                                                            folder={itemfolder}
+                                                            onOpenFolder={ handleOpenFolder}
+                                                            // onOpenFolder={onClick}
                                                         //  open={openOn}
                                                         //  onClose={handleClose}
                                                         //  anchorEl={anchorEl}
@@ -615,7 +640,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 //   href={`${result}`}
                                                 > */}
                                                     <Link onClick={() => {
-                                                        onClick(item.id, item.name, item.folder, item?.webUrl)
+                                                        onClick(item.id, item.name, item.folder)
                                                         // folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
 
                                                     }}>
@@ -633,6 +658,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     {item.size}
                                                 </TableCell>
                                                 <TableCell align="right">
+
 
                                                     <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
                                                         <Button
@@ -707,17 +733,20 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     </Grid>
 
                                                     <Grid
-                                                        onClick={() => de(item.id, item.name)}>
+                                                        onClick={() => de(item.id, item.name,item.folder)}>
                                                         {/* <Button  onClick={()=>de(item.id,item.name)}> */}
                                                         <SimpleDialog
                                                             id={itemId}
                                                             name={itemName}
                                                             onDelete={onDelete}
+                                                            folder={itemfolder}
+                                                            onOpenFolder={onClick}
                                                         //  open={openOn}
                                                         //  onClose={handleClose}
                                                         //  anchorEl={anchorEl}
                                                         />
 
+                                                        {/* </Button> */}
                                                     </Grid>
                                                     {/* <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
                                                             <Button
