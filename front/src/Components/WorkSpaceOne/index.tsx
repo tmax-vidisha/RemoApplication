@@ -5,7 +5,7 @@ import LeftMenu from './LeftMenu';
 import SearchPart  from './SearchPart';
 import {MyFilesPage} from './MyFilesPage';
 
-import SearchPart from './SearchPart'
+// import SearchPart from './SearchPart'
 // import {MyFilesPage} from './MyFilesPage';
 
 
