@@ -31,15 +31,17 @@ import openIcon from '../../Assets/Images/open.svg';
 import downloadIcon from '../../Assets/Images/DOWLOAD.svg';
 import deleteIcon from '../../Assets/Images/delete.svg';
 import deleteBlue from '../../Assets/Images/delete-blue.svg';
+import success from '../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
 
 
 interface SimpleDialogProps {
     id: any,
     name: any,
-    folder:any,
-    onDelete?: (id: string,name:string) => void;
-    onOpenFolder : (id: string, name: string, folder: any) => void
+    folder: any,
+    onDelete?: (id: string, name: string) => void;
+    onOpenFolder: (id: string, name: string, folder: any) => void;
+    deleteResponse: any
     // open: boolean;
     // // selectedValue: string;
     //  onClose: () => void;
@@ -49,8 +51,8 @@ interface SimpleDialogProps {
 function SimpleDialog(props: SimpleDialogProps) {
     const classes = useStyles();
     // const { onClose, selectedValue, open } = props;
-    const { id, name,folder,onDelete,onOpenFolder } = props
-    console.log(id, name,folder)
+    const { id, name, folder, onDelete, onOpenFolder, deleteResponse } = props
+    console.log(id, name, folder)
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const openOn = Boolean(anchorEl);
@@ -68,7 +70,11 @@ function SimpleDialog(props: SimpleDialogProps) {
     // const handleListItemClick = (value: string) => {
     //   onClose(value);
     // };
+    console.log(deleteResponse?.success)
     const [openOne, setOpenOne] = React.useState(false);
+    const [openTwo, setOpenTwo] = React.useState(false);
+     
+
     const handleClickOne = (popup: any) => {
         setOpenOne(true);
     };
@@ -77,12 +83,21 @@ function SimpleDialog(props: SimpleDialogProps) {
         setOpenOne(false);
     };
 
-    const handledelete = () =>{
-        onDelete?.(id,name)
+    const handledelete = () => {
+        onDelete?.(id, name)
+        setOpenOne(false);
+        setOpenTwo(true)
+        // if (deleteResponse?.success === true) {
+        //     setOpenTwo(true)
+        // }
     }
-    const handleFolderOpen = () =>{
-        onOpenFolder(id,name,folder)
+    const handleFolderOpen = () => {
+        onOpenFolder(id, name, folder)
     }
+    const handleCloseTwo = () => {
+        setOpenTwo(false);
+
+    };
 
     return (
         <Grid style={{ borderRadius: "10px", }} >
@@ -164,9 +179,39 @@ function SimpleDialog(props: SimpleDialogProps) {
                                 Cancel
                             </Button>
                         </DialogActions>
+
                     </Dialog>
                 </MenuItem>
+                <MenuItem>
+                    <Dialog open={openTwo} onClose={handleCloseTwo}>
 
+                        <DialogContent>
+                            <Typography>
+                                <Box style={{ textAlign: "center", color: "#1baab5", }}>
+                                    <img src={success} alt="delete" style={{ width: "80px", color: "#1baab5", }} />
+
+                                </Box>
+
+                            </Typography>
+                            <Grid>
+
+                                <Box>
+                                    <Typography style={{ textAlign: "center" }}>deleted Items move to trash successfully</Typography>
+                                </Box>
+                            </Grid>
+
+                        </DialogContent>
+
+                        <DialogActions style={{ display: "flex", justifyContent: "space-between", margin: "auto" }}>
+                            <Button autoFocus  style={{ backgroundColor: "#1baab5", color: "white" }}>
+                                <p onClick={handleCloseTwo}> OK</p>
+                            </Button>
+                            <Button autoFocus onClick={handleCloseTwo} >
+                                Cancel
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </MenuItem>
             </Menu>
         </Grid>
     );
@@ -186,7 +231,8 @@ interface IFolderProps {
     // onSubmit: (object: any) => void;
     // onClick: any;
     // onDownload?: (id: string) => void;
-     onDelete?: (id: string,name:string) => void;
+    onDelete?: (id: string, name: string) => void;
+    deleteResponse: any,
     // onRename?: (id: string, name: string) => void;
     // onShare?: (id: string) => void;
 }
@@ -203,7 +249,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     //@ts-ignore
     // const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token);
     // console.log(data?.response)
-    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick,onDelete } = props;
+    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick, onDelete, deleteResponse } = props;
     // const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
     // console.log(ItemChildren?.response, 'yujujujuys')
     // const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
@@ -214,6 +260,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     // });
     // console.log('breadcrumbsState', breadcrumbsState)
     // sendItem(token)
+    // console.log(deleteResponse?.success,'lllll7')
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
     };
@@ -301,8 +348,8 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     };
     const [itemId, setItemId] = useState<string>('');
     const [itemName, setItemName] = useState<string>('');
-    const [itemfolder,setItemFolder]  = useState<any>();
-    const de = (id: any, name: any,folder:any) => {
+    const [itemfolder, setItemFolder] = useState<any>();
+    const de = (id: any, name: any, folder: any) => {
         //    console.log(id,name)
         // console.log(folder)
         setItemId(id)
@@ -317,10 +364,10 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         setOpen(false);
 
     };
-    const handleOpenFolder = (id:any,name:any,folder:any) =>{
-         setShow(!show)
+    const handleOpenFolder = (id: any, name: any, folder: any) => {
+        setShow(!show)
         // console.log(id,name,folder)
-         onClick(id,name,folder)
+        onClick(id, name, folder)
     }
     return (
         <>
@@ -465,15 +512,16 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 </TableCell>
                                                 <TableCell align="right">
                                                     <Grid
-                                                        onClick={() => de(item.id, item.name,item.folder)}>
+                                                        onClick={() => de(item.id, item.name, item.folder)}>
                                                         {/* <Button  onClick={()=>de(item.id,item.name)}> */}
                                                         <SimpleDialog
                                                             id={itemId}
                                                             name={itemName}
                                                             onDelete={onDelete}
                                                             folder={itemfolder}
-                                                            onOpenFolder={ handleOpenFolder}
-                                                            // onOpenFolder={onClick}
+                                                            onOpenFolder={handleOpenFolder}
+                                                            deleteResponse={deleteResponse}
+                                                        // onOpenFolder={onClick}
                                                         //  open={openOn}
                                                         //  onClose={handleClose}
                                                         //  anchorEl={anchorEl}
@@ -611,7 +659,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 </TableCell>
                                                 <TableCell align="right">
                                                     <Grid
-                                                        onClick={() => de(item.id, item.name,item.folder)}>
+                                                        onClick={() => de(item.id, item.name, item.folder)}>
                                                         {/* <Button  onClick={()=>de(item.id,item.name)}> */}
                                                         <SimpleDialog
                                                             id={itemId}
@@ -619,6 +667,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                             onDelete={onDelete}
                                                             folder={itemfolder}
                                                             onOpenFolder={onClick}
+                                                            deleteResponse={deleteResponse}
                                                         //  open={openOn}
                                                         //  onClose={handleClose}
                                                         //  anchorEl={anchorEl}
