@@ -49,16 +49,23 @@ footerLeft:{
 
 },
 
-  root: {
-     width: "150px",
+MuiSwitch: {
+     width: "0px",
     height: "30px",
     padding: "0px",
-    marginRight:"50px",
-    marginTop:"15px",
-    // border:"1px solid red"
+   margin:"auto",
+     border:"1px solid red",
+     "& css-julti5-MuiSwitch-root":{
+      width:"150px",
+      height:"45px",
+      display: "inline-flex",
+      overflow: "hidden",
+      padding: "11px",
+     }
   },
   switchBase: {
     color: "#818181",
+    width:"100px",
     padding: "1px",
     "&$checked": {
       "& + $track": {
@@ -86,17 +93,107 @@ footerLeft:{
     },
     "&:after": {
       content: "'On'",
-      left: "8px"
+      left: "18px"
     },
     "&:before": {
       content: "'Off'",
-      right: "7px"
+      right: "17px"
     }
   },
   checked: {
     color: "#23bf58 !important",
     transform: "translateX(26px) !important"
-  }
+  },
+
+  //aSFJHDFJHFDJ
+
+//   switch :{
+//     position: "relative",
+//     display: "inline-block",
+//     width:" 120px",
+//     height: "34px",
+//   },
+  
+//   "switch input ":{ 
+//     display:"none"
+//    },
+  
+//   slider2: {
+//     position: "absolute",
+//     cursor: "pointer",
+//     top:" 0",
+//     left: "0",
+//     right: "0",
+//     bottom: "0",
+//     backgroundColor: "#ca2222",
+//     // -webkit-transition: ".4s",
+//     transition: ".4s",
+//   },
+  
+//   "& slider:before": {
+//     position: "absolute",
+//     content: "fhfh",
+//     height: "26px",
+//     width: "26px",
+//     left: "4px",
+//     bottom: "4px",
+//     backgroundColor: "white",
+//     // -webkit-transition: .4s,
+//     transition: ".4s",
+//   },
+  
+//  "& input:checked + .slider" :{
+//     position: "absolute",
+//     backgroundColor: "#2ab934",
+//   },
+  
+//  " & input:focus + .slider" :{
+//     boxShadow: "0 0 1px #2196F3",
+//   },
+  
+//  " & input:checked + .slider:before": {
+//     transform: "translate X (86px)",
+//   },
+//   /*------ ADDED CSS ---------*/
+//   EMEA:{
+//     display: "none",
+//     color: "white",
+//     position: "absolute",
+//     transform: "translate(-50%,-50%)",
+//     top: "50%",
+//     left: "50%",
+//     fontSize: "10px",
+//     fontFamily: "Verdana, sans-serif",
+//   },
+  
+//    AMERICAS: {
+//     color: "white",
+//     position: "absolute",
+//     transform: "translate(-50%,-50%)",
+//     top: "50%",
+//     left: "50%",
+//     fontSize: "10px",
+//     fontFamily: "Verdana, sans-serif",
+//   },
+  
+//   "& input:checked + .slider .EMEA":{ 
+//     display:" block",
+//   },
+  
+//   "& input:checked + .slider .AMERICAS":{
+//      display: "none" ,
+//     },
+  
+//   /*--------- END --------*/
+  
+//   /* Rounded sliders */
+//   sliderRound :{
+//     borderRadius: "34px",
+//   },
+
+//   "sliderRound:before" :{
+//     borderRadius: "50%",
+//   }
 
 
  
