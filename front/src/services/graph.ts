@@ -4,12 +4,27 @@ import { AccessToken } from '../App';
 export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000/me',
+    baseUrl: 'http://localhost:4000/',
   }),
   endpoints: (builder) => ({
-    getAllUsers: builder.query<any, unknown>({
-      query: () => '',
+    getAllPrayers: builder.query<any, any>({
+      // query: () => '/api/v1/onedrive/getAllRootItems',
+      query: () => ({
+        url: `/api/v1/header/prayerTime`,
+        // headers:{ "authorization": `${AccessToken}` },
     }),
+   
+    }),
+    getAllCountryCodes: builder.query<any, any>({
+      // query: () => '/api/v1/onedrive/getAllRootItems',
+      query: (id) => ({
+        url: `/api/v1/header/countryCodes/${id}`,
+        // headers:{ "authorization": `${AccessToken}` },
+    }),
+    
+    }),
+     
+
   }),
 })
 
@@ -68,7 +83,7 @@ export const oneDriveApi = createApi({
   }),
   }),
 })
-export const { useGetAllUsersQuery } = usersApi
+export const { useGetAllPrayersQuery,useGetAllCountryCodesQuery } = usersApi
 export const { 
                 useUploadFileOneDriveMutation,
                 useGetItemChildrenOneDriveMutation,
