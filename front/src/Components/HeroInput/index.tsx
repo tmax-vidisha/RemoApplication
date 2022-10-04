@@ -11,7 +11,6 @@ import {
   Dialog,
   DialogActions,
   Grid,
-  Link,
   Paper,
   TextField,
   Typography,
@@ -35,6 +34,9 @@ import { useGetHeroImageQuery,useCreateHeroMutation,useGetHeroImageInputQuery,us
             useCreateTokenwithHeroDataMutation  } from "../../services/APIs";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import moment from "moment";
+import { Link } from 'react-router-dom';
+
+
 interface IFolderProps {
   // hero: any;
   data:any, 
@@ -198,7 +200,10 @@ interface IFolderProps {
           <div className={classes.innerBannerOverlay}></div>
           <Paper className={classes.contentHeader} elevation={0}>
             <Typography className={classes.breadcrumbs} variant="h6">
-              Content Editor
+            
+              <Link to="/ContentEditor" color="inherit" >
+                  Content Editor
+                </Link>
             </Typography>
             <Typography variant="caption" display="block" gutterBottom>
               <Breadcrumbs
@@ -206,7 +211,7 @@ interface IFolderProps {
                 separator={<NavigateNextIcon fontSize="small" />}
                 aria-label="breadcrumb"
               >
-                <Link className={classes.breadLinks} color="inherit" href="/">
+                <Link to="/" className={classes.breadLinks} color="inherit" >
                   Home
                 </Link>
                 <Typography>Hero Images</Typography>

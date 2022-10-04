@@ -343,7 +343,7 @@ const Header = () => {
     //   </Box>
     // </AuthenticatedTemplate>
     <AuthenticatedTemplate>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, marginBottom:"20px" }}>
         <StyledAppBar position="static">
           <Container>
             <Toolbar

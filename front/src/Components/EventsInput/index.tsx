@@ -11,13 +11,13 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
-  Link,
+  
   Paper,
   TextField,
   Typography,
 } from "@mui/material";
 import { useStyles } from "./Styles";
-
+import { Link } from 'react-router-dom';
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import PublishSharpIcon from "@mui/icons-material/PublishSharp";
 import AddCircleOutlineIcon from "@mui/icons-material/Add";
@@ -186,7 +186,7 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
             <div className={classes.innerBannerOverlay}></div>
             <Paper className={classes.contentHeader} elevation={0}>
               <Typography className={classes.breadcrumbs} variant="h6">
-                Content Editor
+               <Link to="/ContentEditor">Content Editor</Link>
               </Typography>
               <Typography variant="caption" display="block" gutterBottom>
                 <Breadcrumbs
@@ -194,7 +194,7 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                   separator={<NavigateNextIcon fontSize="small" />}
                   aria-label="breadcrumb"
                 >
-                  <Link className={classes.breadLinks} color="inherit" href="/">
+                  <Link to="/"  className={classes.breadLinks} color="inherit" >
                     Home
                   </Link>
                   <Typography>Events</Typography>
@@ -210,7 +210,10 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
             component="h5"
             className={classes.breadcrumbsHeader}
           >
-            Content Editor
+            <Link to="/ContentEditor" color="inherit" >
+                  Content Editor
+                </Link>
+         
           </Typography>
           <Button
             variant="contained"

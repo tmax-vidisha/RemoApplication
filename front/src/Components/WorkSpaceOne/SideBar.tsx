@@ -2,10 +2,11 @@ import React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import content from "./../../Assets/Images/content_editor.svg";
 import department from "./../../Assets/Images/department.svg";
+import departmentTwo from "./../../Assets/Images/departmentLeft-nav.svg";
 import home from "./../../Assets/Images/home-remo.svg";
 import orgChart from "./../../Assets/Images/orgchart.svg";
 import policy from "./../../Assets/Images/polices.svg";
-import quickLinks from "./../../Assets/Images/Quicklinks.svg";
+import quickLinks from "./../../Assets/Images/quicklinks.svg";
 import workspace from "./../../Assets/Images/workspace.svg";
 import Menu from '@mui/material/Menu';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -20,9 +21,10 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import upload from "../../Assets/Images/upload-blue.svg";
+import upload from "../../Assets/Images/uploadWhite.svg";
 import menuBlue from "../../Assets/Images/menu-blue.svg";
-import setting from "../../Assets/Images/setting-blue.svg";
+import setting from "../../Assets/Images/settingWhite.svg";
+import { Link } from 'react-router-dom';
 
 
 const SideBar = (props: any) => {
@@ -97,18 +99,21 @@ const SideBar = (props: any) => {
   const [id1, setId1] = useState(0);
 
   return (
-    <Grid>
-      <Box style={{ marginLeft: "25px", height: "100%",backgroundColor: "#02354d", }}>
-        <nav aria-label="secondary mailbox folders">
+    <Grid style={{width:"95px"}} className={classes.sideBar}>
+      <Box>
+        <Grid aria-label="secondary mailbox folders">
           <List>
             <ListItem disablePadding className={classes.sideIcon}>
               <ListItemButton>
+                <Link to="/">
                 <img src={home} alt="home" />
+                </Link>
+              
                 {/* <ListItemText primary="Trash" /> */}
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
-              <ListItemButton component="a" href="#simple-list">
+              <ListItemButton component="a" href="#home">
                 <img src={workspace} alt="workspace" />
               </ListItemButton>
             </ListItem>
@@ -124,7 +129,7 @@ const SideBar = (props: any) => {
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
               <ListItemButton component="a" href="#simple-list">
-                <img src={department} alt="department" />
+                <img src={departmentTwo} alt="department" />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
@@ -138,7 +143,7 @@ const SideBar = (props: any) => {
               </ListItemButton>
             </ListItem>
           </List>
-        </nav>
+        </Grid>
         {/* <List className={classes.LeftMenu}>
           {itemsList.map((item: any, id: any, index: any) => {
             const { icon, iconHover, onClick, path } = item;
@@ -178,7 +183,7 @@ const SideBar = (props: any) => {
 
           })}
         </List> */}
-        <nav>
+        <Grid style={{marginTop:"210px"}}>
           <List>
             <ListItem>
               <ListItemButton>
@@ -188,18 +193,18 @@ const SideBar = (props: any) => {
             </ListItem>
             <ListItem>
               <ListItemButton>
-              <img src={upload} alt="upload"  style={{color:"white"}}/>
+              <img src={upload} alt="upload"  />
                 
               </ListItemButton>
             </ListItem>
             <ListItem>
               <ListItemButton>
-              <img src={setting} alt="setting" style={{color:"white"}}/>
+              <img src={setting} alt="setting"/>
                 
               </ListItemButton>
             </ListItem>
           </List>
-        </nav>
+        </Grid>
       </Box>
 
     </Grid>

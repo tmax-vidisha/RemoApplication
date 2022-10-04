@@ -10,6 +10,9 @@ import { makeStyles } from '@mui/styles';
 import SecondWorkSpace from './../../Layout/SecondWorkSpace';
 import WorkSpaceOne from './../WorkSpaceOne/index';
 import { Link, NavLink } from 'react-router-dom';
+import { NewsPageMore } from '../../Pages';
+
+
 
 
 const ToggleButton = () => {
@@ -24,6 +27,11 @@ const ToggleButton = () => {
 
     const [toggle, setToggle] = React.useState(true);
     const toggleChecked = () => setToggle(toggle => !toggle);
+
+    const [show, setShow] = React.useState(false);
+
+
+
     return (
         <div>
             {/* <Switch
@@ -41,7 +49,9 @@ const ToggleButton = () => {
             /> */}
 
             <div style={{ marginTop: 10, marginLeft: 10 }}>
-                <Switch onClick={toggleChecked} />
+                <Switch />
+               {/*<Switch onClick={toggleChecked} />
+                 <Switch onClick={() => setShow(!show)} /> */}
             </div>
             {toggle &&
                 <div>
@@ -51,8 +61,8 @@ const ToggleButton = () => {
             }
             {!toggle &&
                 <div>
-                    
-                    {/* <NavLink end to="/NewsInput" ></NavLink> */}
+
+                    <NewsPageMore/>
                 </div>
 
             }
@@ -63,6 +73,14 @@ const ToggleButton = () => {
                         <span className={classes.AMERICAS}>AMERICAS</span>
                     </div>
             </label> */}
+
+            {/* <div>
+                <p>Show state: {show}</p>
+                {show ? (
+                   <Link to="/WorkSpaceOne" ></Link>
+                ) : null}
+                <button onClick={() => setShow(!show)}>toggle</button>
+            </div> */}
         </div>
     );
 }
