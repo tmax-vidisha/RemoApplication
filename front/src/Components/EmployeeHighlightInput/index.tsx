@@ -9,7 +9,6 @@ import {
   CardContent,
   Container,
   Grid,
-  Link,
   TextField,
   Typography,
 } from "@mui/material";
@@ -30,8 +29,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import AddCircleOutlineIcon from "@mui/icons-material/Add";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { useGetEmployeeHighLightQuery,useCreateEmployeeHighlightMutation,useCreateTokenwithDataMutation,useUpdateEmpTokenMutation ,useGetAllEmpQuery,useCreateTokenwithEmpDataMutation } from '../../services/APIs';
+import { useGetEmployeeHighLightQuery, useCreateEmployeeHighlightMutation, useCreateTokenwithDataMutation, useUpdateEmpTokenMutation, useGetAllEmpQuery, useCreateTokenwithEmpDataMutation } from '../../services/APIs';
+import { Link } from 'react-router-dom';
+
 var moment = require("moment-timezone");
+
+
 interface IFolderProps {
   // employee: any;
   // onClick: any;
@@ -39,157 +42,157 @@ interface IFolderProps {
   // onDelete?: (id: string) => void;
   // onRename?: (id: string, name: string) => void;
   // onShare?: (id: string) => void;
-  data:any;
-  error:any;
-  isLoading:any;
+  data: any;
+  error: any;
+  isLoading: any;
   onSubmit: (object: any) => void;
 }
 
 // const EmployeeHighlightInput = () => {
-  const EmployeeHighlightInput: React.FC<IFolderProps> = (props: IFolderProps) => { 
-    const classes = useStyles();
-    const { data, error, isLoading, onSubmit } =  props
-    // const { data, error, isLoading } = useGetEmployeeHighLightQuery('');
-    // const [sendItem] = useCreateEmployeeHighlightMutation();
+const EmployeeHighlightInput: React.FC<IFolderProps> = (props: IFolderProps) => {
+  const classes = useStyles();
+  const { data, error, isLoading, onSubmit } = props
+  // const { data, error, isLoading } = useGetEmployeeHighLightQuery('');
+  // const [sendItem] = useCreateEmployeeHighlightMutation();
 
-    // const [sendItem] = useCreateTokenwithEmpDataMutation();
-    // const [updateToken,{data,isLoading} ] = useUpdateEmpTokenMutation();
-    // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
-    const [empHight, setEmpHight] = useState<any>([]);
-    const [empTitle, setEmpTitle] = useState<any>([]);
-    const [dept, setDept] = useState<any>([]);
-    const [name, setName] = useState<any>([]);
-    const [open, setOpen] = useState(false);
-    const [photo,setPhoto] = useState<string>('');
-    const [tokens, setTokens] = useState<string>();
-    // const pca = new PublicClientApplication(configuration);
-    // const accounts = pca.getAllAccounts();
-    // useEffect(()=>{
-    //   async function getAccessToken() {
-    //     if (accounts.length > 0) {
-    //       const request = {
-    //         scopes: ['user.read'],
-    //         account: accounts[0]
-    //       }
-    //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
-           
-    //         // updateToken(response.accessToken);
-    //          setTokens(response.accessToken)
-    //         // console.log(token,'uuuuuu')
-    //       }).catch(error => {
-    //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-    //         console.log(error);
-    //         return null;
-    //       });
-  
-  
-    //     }
-  
-    //     return null;
-    //   }
-    //   getAccessToken();
-  
-    // },[])
-  
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
-  
-    const [fileSelected, setFileSelected] = useState<any>('');
-    const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {
-      const fileList = e.target.files;
-      //@ts-ignore
-      setPhoto(fileList[0].name)
+  // const [sendItem] = useCreateTokenwithEmpDataMutation();
+  // const [updateToken,{data,isLoading} ] = useUpdateEmpTokenMutation();
+  // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
+  const [empHight, setEmpHight] = useState<any>([]);
+  const [empTitle, setEmpTitle] = useState<any>([]);
+  const [dept, setDept] = useState<any>([]);
+  const [name, setName] = useState<any>([]);
+  const [open, setOpen] = useState(false);
+  const [photo, setPhoto] = useState<string>('');
+  const [tokens, setTokens] = useState<string>();
+  // const pca = new PublicClientApplication(configuration);
+  // const accounts = pca.getAllAccounts();
+  // useEffect(()=>{
+  //   async function getAccessToken() {
+  //     if (accounts.length > 0) {
+  //       const request = {
+  //         scopes: ['user.read'],
+  //         account: accounts[0]
+  //       }
+  //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+
+  //         // updateToken(response.accessToken);
+  //          setTokens(response.accessToken)
+  //         // console.log(token,'uuuuuu')
+  //       }).catch(error => {
+  //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+  //         console.log(error);
+  //         return null;
+  //       });
+
+
+  //     }
+
+  //     return null;
+  //   }
+  //   getAccessToken();
+
+  // },[])
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [fileSelected, setFileSelected] = useState<any>('');
+  const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {
+    const fileList = e.target.files;
+    //@ts-ignore
+    setPhoto(fileList[0].name)
     //   if (!fileList) return;
     //   setFileSelected(fileList[0]);
     let reader = new FileReader();
     //@ts-ignore
     reader.readAsDataURL(fileList[0])
-    reader.onload= (e) =>{
+    reader.onload = (e) => {
       setFileSelected(e.target?.result)
-      
+
     }
+  };
+
+  const handleChangeEmpTitle = (event: any) => {
+    setEmpTitle(event.target.value);
+  };
+  const handleChangeName = (event: any) => {
+    setName(event.target.value);
+  };
+  const handleChangeDept = (event: any) => {
+    setDept(event.target.value);
+  };
+  const handleSubmitClick = async () => {
+    // try {
+    //   var AssetListId = app.driveInfo?.AssetLib;
+    //   if (AssetListId != null) {
+    //     const response = await uploadItem(
+    //       app.authProvider!,
+    //       app.siteInfo?.siteId,
+    //       AssetListId,
+    //       fileSelected
+    //     );
+
+    //     if (response != null) {
+    //       var json = {
+    //         fileName: response.name,
+    //         serverRelativeUrl: response.webUrl,
+    //       };
+
+    //       const empItems = {
+    //         fields: {
+    //           EmployeeTitle: empTitle,
+    //           Title: name,
+    //           Dept: dept,
+    //           EmpImage: JSON.stringify(json)
+    //         },
+    //       };
+
+    //       var listId = app.listInfo?.EmployeeHighlights;
+    //       if (listId != null) {
+    //         let response = await postEmployeeHight(
+    //           app.authProvider!,
+    //           app.siteInfo?.siteId,
+    //           listId,
+    //           empItems
+    //         );
+    //         handleClose();
+    //         window.location.reload();
+    //       }
+    //     }
+    //   }
+    // } catch (err: any) {
+    //   app.displayError!(err.message);
+    // }
+    const empItems = {
+      fields: {
+        EmployeeTitle: empTitle,
+        Title: name,
+        Dept: dept,
+        EmpImage: fileSelected,
+        PhotoName: photo
+      },
     };
-  
-    const handleChangeEmpTitle = (event: any) => {
-      setEmpTitle(event.target.value);
-    };
-    const handleChangeName = (event: any) => {
-      setName(event.target.value);
-    };
-    const handleChangeDept = (event: any) => {
-      setDept(event.target.value);
-    };
-    const handleSubmitClick = async () => {
-        // try {
-        //   var AssetListId = app.driveInfo?.AssetLib;
-        //   if (AssetListId != null) {
-        //     const response = await uploadItem(
-        //       app.authProvider!,
-        //       app.siteInfo?.siteId,
-        //       AssetListId,
-        //       fileSelected
-        //     );
-    
-        //     if (response != null) {
-        //       var json = {
-        //         fileName: response.name,
-        //         serverRelativeUrl: response.webUrl,
-        //       };
-    
-        //       const empItems = {
-        //         fields: {
-        //           EmployeeTitle: empTitle,
-        //           Title: name,
-        //           Dept: dept,
-        //           EmpImage: JSON.stringify(json)
-        //         },
-        //       };
-    
-        //       var listId = app.listInfo?.EmployeeHighlights;
-        //       if (listId != null) {
-        //         let response = await postEmployeeHight(
-        //           app.authProvider!,
-        //           app.siteInfo?.siteId,
-        //           listId,
-        //           empItems
-        //         );
-        //         handleClose();
-        //         window.location.reload();
-        //       }
-        //     }
-        //   }
-        // } catch (err: any) {
-        //   app.displayError!(err.message);
-        // }
-        const empItems = {
-                    fields: {
-                      EmployeeTitle: empTitle,
-                      Title: name,
-                      Dept: dept,
-                      EmpImage: fileSelected,
-                      PhotoName:photo
-                    },
-        };
-        const Data = {
-          // token:tokens,
-          employyetitle: empTitle,
-          empname: name,
-          empdept: dept,
-          emppic: fileSelected,
-          emppicname:photo
-        }
-        // sendItem(Data);
-        onSubmit(Data)
-        console.log('click')
-      };
-      
-      console.log(data,'980ccccccc9090')
-  
+    const Data = {
+      // token:tokens,
+      employyetitle: empTitle,
+      empname: name,
+      empdept: dept,
+      emppic: fileSelected,
+      emppicname: photo
+    }
+    // sendItem(Data);
+    onSubmit(Data)
+    console.log('click')
+  };
+
+  console.log(data, '980ccccccc9090')
+
   return (
     <AuthenticatedTemplate>
       <Container className={classes.contentEditorWidth}>
@@ -198,7 +201,10 @@ interface IFolderProps {
             <div className={classes.innerBannerOverlay}></div>
             <Paper className={classes.contentHeader} elevation={0}>
               <Typography className={classes.breadcrumbs} variant="h6">
-                Content Editor
+                <Link to="/ContentEditor" color="inherit" >
+                  Content Editor
+                </Link>
+
               </Typography>
               <Typography variant="caption" display="block" gutterBottom>
                 <Breadcrumbs
@@ -206,7 +212,7 @@ interface IFolderProps {
                   separator={<NavigateNextIcon fontSize="small" />}
                   aria-label="breadcrumb"
                 >
-                  <Link className={classes.breadLinks} color="inherit" href="/">
+                  <Link to="/" className={classes.breadLinks} color="inherit" >
                     Home
                   </Link>
                   <Typography>Employee Highlights </Typography>
@@ -235,7 +241,7 @@ interface IFolderProps {
           </Button>
         </CardContent>
 
-        <TableContainer component={Paper} elevation={0} sx={{marginBottom:"15px"}}>
+        <TableContainer component={Paper} elevation={0} sx={{ marginBottom: "15px" }}>
           <Table>
             <TableHead>
               <TableRow className={classes.tableHeader}>
@@ -256,12 +262,12 @@ interface IFolderProps {
                   var empTitle = fields?.EmployeeTitle;
                   var name = fields?.Title;
                   var dept = fields.Dept;
-                  var img  = fields?.empUrl;
+                  var img = fields?.empUrl;
                   var isActive = fields.IsActive;
                   var createdDate = moment(
                     fields.Modified
                   ).fromNow();
-               
+
                   // var profilePic = JSON.parse(fields.EmpImage);
                   // var completePath;
                   // if (profilePic.serverUrl) {
@@ -333,7 +339,7 @@ interface IFolderProps {
                       size="small"
                     />
                   </Typography>
-                  <Typography component="div" sx={{ pb: 1}}>
+                  <Typography component="div" sx={{ pb: 1 }}>
                     <TextField
                       InputLabelProps={{ style: { color: '#333333' } }}
                       autoComplete="off"

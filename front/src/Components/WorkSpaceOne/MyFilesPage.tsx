@@ -33,15 +33,18 @@ import deleteIcon from '../../Assets/Images/delete.svg';
 import deleteBlue from '../../Assets/Images/delete-blue.svg';
 import success from '../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
+import DialogContentText from '@mui/material/DialogContentText/DialogContentText';
 
 
 interface SimpleDialogProps {
     id: any,
     name: any,
+
     folder: any,
     onDelete?: (id: string, name: string) => void;
     onOpenFolder: (id: string, name: string, folder: any) => void;
     deleteResponse: any
+
     // open: boolean;
     // // selectedValue: string;
     //  onClose: () => void;
@@ -51,8 +54,10 @@ interface SimpleDialogProps {
 function SimpleDialog(props: SimpleDialogProps) {
     const classes = useStyles();
     // const { onClose, selectedValue, open } = props;
+
     const { id, name, folder, onDelete, onOpenFolder, deleteResponse } = props
     console.log(id, name, folder)
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const openOn = Boolean(anchorEl);

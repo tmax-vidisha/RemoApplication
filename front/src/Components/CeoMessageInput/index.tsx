@@ -16,7 +16,7 @@ import {
   CardContent,
   CardMedia,
   Container,
-  Link,
+  
   Paper,
   Typography,
 } from "@mui/material";
@@ -41,6 +41,9 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import AddCircleOutlineIcon from "@mui/icons-material/Add";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { configuration } from "../../index";
+import { Link } from 'react-router-dom';
+
+
 var moment = require("moment-timezone");
 interface IFolderProps {
   // ceomsg: any;
@@ -230,7 +233,7 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
             <div className={classes.innerBannerOverlay}></div>
             <Paper className={classes.contentHeader} elevation={0}>
               <Typography className={classes.breadcrumbs} variant="h6">
-                Content Editor
+               <Link to="/ContentEditor">Content Editor</Link> 
               </Typography>
               <Typography variant="caption" display="block" gutterBottom>
                 <Breadcrumbs
@@ -238,7 +241,7 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                   separator={<NavigateNextIcon fontSize="small" />}
                   aria-label="breadcrumb"
                 >
-                  <Link className={classes.breadLinks} color="inherit" href="/">
+                  <Link className={classes.breadLinks} color="inherit" to="/">
                     Home
                   </Link>
                   <Typography>CEO Message</Typography>

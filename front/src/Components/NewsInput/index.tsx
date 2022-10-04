@@ -14,7 +14,6 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
-  Link,
   Paper,
   TextField,
   Typography,
@@ -37,7 +36,11 @@ import { Editor } from "react-draft-wysiwyg";
 import { convertToHTML } from "draft-convert";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { Link } from 'react-router-dom';
 import moment from "moment";
+
+
+
 interface IFolderProps {
   data:any, 
   error:any,
@@ -213,7 +216,10 @@ const NewsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
             <div className={classes.innerBannerOverlay}></div>
             <Paper className={classes.contentHeader} elevation={0}>
               <Typography className={classes.breadcrumbs} variant="h6">
-                Content Editor
+               
+                <Link to="/ContentEditor" color="inherit" >
+                  Content Editor
+                </Link>
               </Typography>
               <Typography variant="caption" display="block" gutterBottom>
                 <Breadcrumbs sx={{ color: "white", opacity: 0.8 }}
@@ -221,7 +227,7 @@ const NewsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                   separator={<NavigateNextIcon fontSize="small" />}
                   aria-label="breadcrumb"
                 >
-                  <Link className={classes.breadLinks} color="inherit" href="/">
+                  <Link to="/" className={classes.breadLinks} color="inherit" >
                     Home
                   </Link>
                   <Typography>News</Typography>
@@ -237,7 +243,9 @@ const NewsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
             component="h5"
             className={classes.breadcrumbsHeader}
           >
-            Content Editor
+            <Link to="/ContentEditor" color="inherit" >
+                  Content Editor
+                </Link>
           </Typography>
           <Button
             variant="contained"

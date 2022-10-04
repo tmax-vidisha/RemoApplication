@@ -2,11 +2,12 @@
 import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles({
+
   topItems: {
     display: "flex",
     justifyContent: "space-around",
-
   },
+
   button: {
     borderRadius: 14,
     width: 80,
@@ -145,6 +146,7 @@ export const useStyles = makeStyles({
     width: "100px",
     // marginLeft: "77px"
   },
+
   items: {
 
     fontSize: "12px",
@@ -198,6 +200,7 @@ export const useStyles = makeStyles({
     }
 
   },
+
   MuiListItemIcon: {
     minWidth: "35px",
     "& img": {
@@ -234,11 +237,23 @@ export const useStyles = makeStyles({
   },
 
   bigPaper: {
-    border: "1px solid #f1f1f1",
-    boxShadow:"10px 10px 10px 10px  #f1f1f1",
-    paddingTop:"40px",
-    borderRadius:"20px",
-    paddingBottom:"20px",
+    //border: "1px solid #f1f1f1",
+    boxShadow: "10px 1px 30px -10px #c2bcbc",
+    //paddingTop:"40px",
+    borderRadius: "20px",
+    //paddingBottom: "20px",
+    //marginTop: "20px",
+    padding:"0px",
+    margin:"50px"
+  },
+  sideBar: {
+    // marginLeft: "25px",
+    height: "100%",
+    backgroundColor: "#02354d",
+    textAlign: "center",
+    //width:"50px",
+    borderRadius:" 20px 1px 1px 20px",
+
   }
 
 });
