@@ -47,6 +47,7 @@ import UploadFile from './UploadFile';
 // import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
 import WorkSpaceOne from './Components/WorkSpaceOne/index';
 import SecondWorkSpace from './Layout/SecondWorkSpace';
+import ContentEditor from './Components/ContentEditor';
 
 
 const theme = createTheme({
@@ -163,13 +164,13 @@ const Main = () => {
                     <ThemeProvider theme={theme}>
                     <AuthenticatedTemplate>
                             <Header />
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <Paper style={{ height: "60px", display: "flex", justifyContent: "center", alignItems: "center" }} elevation={0}>
 
                                     <Typography> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus in blanditiis dolorum Optio voluptatibus  </Typography>
 
                                 </Paper>
-                            </Grid>
+                            </Grid> */}
                         </AuthenticatedTemplate>
                         <Routes>
                             <Route
@@ -260,6 +261,12 @@ const Main = () => {
                             <Route
                               path="/SecondWorkSpace"
                               element={<SecondWorkSpace/>} />
+                            <Route
+                              path="/Policy"
+                              element={<SecondWorkSpace/>} />
+                            <Route
+                              path="/ContentEditor"
+                              element={<ContentEditor/>} />
 
                         </Routes>
                     </ThemeProvider>
