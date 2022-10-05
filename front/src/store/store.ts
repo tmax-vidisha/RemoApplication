@@ -6,18 +6,21 @@ import {
   oneDriveApi 
 } from '../services/graph'
 import { graphApi } from '../services/APIs';
+
 export const store = configureStore({
   reducer: {
-    // [usersApi.reducerPath]: usersApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
      [oneDriveApi .reducerPath]: oneDriveApi.reducer,
     // counter: counterReducer,
     [graphApi.reducerPath]:graphApi.reducer,
+   
   },
   middleware: (getDefaultMiddleware) => [
   ...getDefaultMiddleware(),
-    // usersApi.middleware,
+    usersApi.middleware,
     oneDriveApi.middleware,
-    graphApi.middleware
+    graphApi.middleware,
+   
   ],
   // middleware: (getDefaultMiddleware) =>
   //     getDefaultMiddleware().concat(graphApi.middleware),
