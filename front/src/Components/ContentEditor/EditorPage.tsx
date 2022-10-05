@@ -17,6 +17,8 @@ import department from "./../../Assets/Images/departmentNew.svg";
 import { Typography } from '@mui/material';
 import { useStyles } from './Styles';
 import QuickLinks from './../Quicklinks/index';
+import AppVideo from './../CeoMessage/AppVideo';
+import { Link } from 'react-router-dom';
 
 
 const EditorPage = () => {
@@ -26,55 +28,105 @@ const EditorPage = () => {
             <Grid className={classes.mainPart}>
                 <Box className={classes.boxContent}>
                     <img src={announcement} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Announcement </Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/AnnoncementInput">Announcement
+                        </Link></Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={CEO} alt="announce" />
-                    <Grid component="p" className={classes.texts}>CEO Message </Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/CEOInput">
+                            CEO Message
+                        </Link></Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={contentEditor} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Content Editor </Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/ContentEditor">
+                            Content Editor
+                        </Link>
+                    </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={department} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Department </Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/AnnouncementReadMore">
+                            Department
+                        </Link>
+
+                    </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={gallery} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Events </Grid>
+                    <Grid component="p" className={classes.texts}>
+
+                        <Link to="/EventsInput">
+                            Events
+                        </Link>
+                    </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={events} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Gallery</Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/ContentEditor">
+                            Gallery
+                        </Link>
+                    </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={Groups} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Hero Banner</Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/HeroInput">
+                            Hero Banner
+                        </Link>
+                    </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={highlights} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Highlights </Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/EmpHighInput">
+                            Highlights
+                        </Link> </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={logomaster} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Logo Master</Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/EmpHighInput">
+                            Logo Master
+                        </Link> </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={navigation} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Navigation </Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/ContentEditor">
+                            Navigation
+                        </Link> </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={news} alt="announce" />
-                    <Grid component="p" className={classes.texts}>News</Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/NewsInfo">
+                            News
+                        </Link>
+                    </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={policies} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Policies & Procedure </Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/Policy">
+                            Policies & Procedure
+                        </Link>
+                    </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={quickLinks} alt="announce" />
-                    <Grid component="p" className={classes.texts}>Quick Links</Grid>
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/userquicklink">
+                            Quick Links
+                        </Link></Grid>
+                </Box>
+                <Box className={classes.boxContent}>
+                    <AppVideo />
                 </Box>
 
             </Grid>

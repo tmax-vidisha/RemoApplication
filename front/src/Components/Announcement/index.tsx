@@ -11,7 +11,7 @@ interface IFolderProps {
   data:any, 
   error:any,
   isLoading:any
-}
+} 
 
 //  const Announcement = () => {
  const Announcement: React.FC<IFolderProps> = (props: IFolderProps) => {

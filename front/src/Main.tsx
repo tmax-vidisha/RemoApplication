@@ -48,6 +48,7 @@ import UploadFile from './UploadFile';
 import WorkSpaceOne from './Components/WorkSpaceOne/index';
 import SecondWorkSpace from './Layout/SecondWorkSpace';
 import ContentEditor from './Components/ContentEditor';
+import TableAnnouncementPage from './Pages/TableAnnouncementPage/index';
 
 
 const theme = createTheme({
@@ -248,9 +249,7 @@ const Main = () => {
                                 element={<SubFolder />} />
                             <Route
                                 path="/upload"
-                                element={<UploadFile />} />    
-
-                              
+                                element={<UploadFile />} />   
                              <Route
                               path="/workspace/drives/subfolders"
                               element={<SubFolder />} />
@@ -267,6 +266,9 @@ const Main = () => {
                             <Route
                               path="/ContentEditor"
                               element={<ContentEditor/>} />
+                            <Route
+                              path="/tableAnnouncementPage"
+                              element={<TableAnnouncementPage/>} />
 
                         </Routes>
                     </ThemeProvider>

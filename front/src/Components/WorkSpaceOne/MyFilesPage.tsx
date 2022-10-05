@@ -80,8 +80,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     // };
     console.log(deleteResponse?.success)
     const [openOne, setOpenOne] = React.useState(false);
-    const [openTwo, setOpenTwo] = React.useState(false);
-     
+   
 
     const handleClickOne = (popup: any) => {
         setOpenOne(true);
@@ -104,12 +103,10 @@ function SimpleDialog(props: SimpleDialogProps) {
     const handleFolderOpen = () => {
         onOpenFolder(id, name, folder)
     }
-    const handleCloseTwo = () => {
-        setOpenTwo(false);
-
-    };
+    
 
     const [openTwo, setOpenTwo] = React.useState(false);
+    
     const handleClickTwo = (popup: any) => {
         setOpenTwo(true);
     };

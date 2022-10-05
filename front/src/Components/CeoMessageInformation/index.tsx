@@ -2,22 +2,11 @@ import React from 'react'
 import { Fragment, useEffect, useState } from "react";
 import {
   NavLink as RouterNavLink,
- 
 } from "react-router-dom";
 import { AuthenticatedTemplate } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
-import {
-  Breadcrumbs,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Container,
-  Link,
-  Paper,
-  Typography,
-} from "@mui/material";
+import {Breadcrumbs,Button,Card, CardContent, CardMedia, Container, Link, Paper,Typography,} from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useStyles } from "./Styles";
 import { useGetCeoMessageQuery,useUpdateCeoMsgTokenMutation,useGetAllCeoMsgQuery } from '../../services/APIs'
@@ -87,8 +76,7 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
               <Breadcrumbs
                 className={classes.breadcrumbs}
                 separator={<NavigateNextIcon fontSize="small" />}
-                aria-label="breadcrumb"
-              >
+                aria-label="breadcrumb">
                 <Link className={classes.breadLinks} color="inherit" href="/">
                   Home
                 </Link>
