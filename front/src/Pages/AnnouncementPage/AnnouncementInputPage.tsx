@@ -26,4 +26,4 @@ const AnnouncementInputPage = () => {
   )
 }
 
-export default AnnouncementInputPage
+export default AnnouncementInputPage;

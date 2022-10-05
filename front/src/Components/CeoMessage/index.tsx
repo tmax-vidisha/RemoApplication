@@ -15,6 +15,8 @@ import {
   import { AuthenticatedTemplate } from "@azure/msal-react";
   import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
+
+
   interface IFolderProps {
     // ceomsg: any;
     data:any, 
@@ -90,12 +92,15 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
                         
                     </div>
                   </Card>
+
                 </>
               }
             </CardContent>
+            
           </>
          )} 
       </Paper>
+      
     </AuthenticatedTemplate>
   )
 }
