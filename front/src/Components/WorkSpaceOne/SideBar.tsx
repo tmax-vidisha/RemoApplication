@@ -6,7 +6,7 @@ import departmentTwo from "./../../Assets/Images/departmentLeft-nav.svg";
 import home from "./../../Assets/Images/home-remo.svg";
 import orgChart from "./../../Assets/Images/orgchart.svg";
 import policy from "./../../Assets/Images/polices.svg";
-import quickLinks from "./../../Assets/Images/quicklinks.svg";
+import quickLinks from "./../../Assets/Images/Quicklinks.svg";
 import workspace from "./../../Assets/Images/workspace.svg";
 import Menu from '@mui/material/Menu';
 import ListItemButton from '@mui/material/ListItemButton';
