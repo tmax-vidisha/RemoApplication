@@ -81,6 +81,16 @@ export const oneDriveApi = createApi({
     }),
     
   }),
+  copylinkOneDrive: builder.mutation<any, any>({
+    query: (data) => ({
+        url: '/api/v1/onedrive/copylinkOneDriveItem',
+        // headers:{ 'Content-Type': 'application/json' },
+        method: "POST",
+        body: data
+    }),
+    
+  }),
+
   }),
 })
 export const { useGetAllPrayersQuery,useGetAllCountryCodesQuery } = usersApi
@@ -88,7 +98,8 @@ export const {
                 useUploadFileOneDriveMutation,
                 useGetItemChildrenOneDriveMutation,
                 useGetAllRootItemsOneDriveQuery,
-                useDeleteItemOneDriveMutation
+                useDeleteItemOneDriveMutation,
+                useCopylinkOneDriveMutation
               
               
               
