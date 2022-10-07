@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { Box, List, ListItemIcon, ListItemText, Link } from '@mui/material';
+import { Box, List, ListItemIcon, ListItemText } from '@mui/material';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItem from '@mui/material/ListItem';
 import TopicTwoToneIcon from '@mui/icons-material/TopicTwoTone';
@@ -11,7 +11,7 @@ import { CardContent } from '@mui/material';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import { useStyles } from './Styles';
 import ClearIcon from '@mui/icons-material/Clear';
-import { NavLink as RouterNavLink } from "react-router-dom";
+ import { NavLink as RouterNavLink ,Link } from "react-router-dom";
 import { Grid } from '@mui/material';
 import DocumentIcon from "../../Assets/Images/Document.svg";
 import filesIcon from "../../Assets/Images/files.svg";
@@ -51,7 +51,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     const clearButton = (
         <ListItem className={classes.topClear} sx={{ position: "absolute", zIndex: 99 }}>
-            <Link className={classes.topClearLink} onClick={clearMenu} href="#">
+            <Link  className={classes.topClearLink} onClick={clearMenu} to="/">
                 clear <ClearIcon />
             </Link>
         </ListItem>
@@ -60,58 +60,63 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const { data, error, isLoading } = props;
     console.log(data, 'Left menu data ')
     return (
-        <Box sx={{  width:"190px", bgcolor: 'background.paper',height:"100%"  }}>
-            <Box style={{ display: "flex", flexDirection: "column", justifyContent:"space-between" }} >
+        <Box sx={{ width: "190px", bgcolor: 'background.paper', height: "100%" }}>
+            <Box style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }} >
                 <Box >
                     <nav>
                         <List>
                             <ListItem disablePadding>
+                                <Link to="/WorkSpaceOne">
                                 <ListItemButton>
                                     <ListItemIcon className={classes.MuiListItemIcon}>
                                         {/* <TopicTwoToneIcon /> */}
                                         <img src={filesIcon} alt=" MyFiles" />
                                     </ListItemIcon>
-                                    <ListItemText primary="My Files"  className={classes.textListItem}/>
+                                    <ListItemText primary="My Files" className={classes.textListItem} />
+                                </ListItemButton>
+                                </Link>
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <Link to="/sharedWithMe">
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <img src={sharedIcon} alt="shared" className={classes.textListItem} />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Shared with me" className={classes.textListItem} />
+                                    </ListItemButton>
+                                </Link>
+
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <img src={DocumentIcon} alt="Document" className={classes.textListItem} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Document Library" className={classes.textListItem} />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        <img src={sharedIcon} alt="shared" className={classes.textListItem}/>
+                                        <img src={recentIcon} alt="recent" className={classes.textListItem} />
                                     </ListItemIcon>
-                                    <ListItemText primary="Shared with me" className={classes.textListItem} />
+                                    <ListItemText primary="Recent" className={classes.textListItem} />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        <img src={DocumentIcon} alt="Document" className={classes.textListItem}/>
+                                        <img src={starredIcon} alt="starred" className={classes.textListItem} />
                                     </ListItemIcon>
-                                    <ListItemText primary="Document Library" className={classes.textListItem}/>
+                                    <ListItemText primary="Starred" className={classes.textListItem} />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        <img src={recentIcon} alt="recent" className={classes.textListItem}/>
+                                        <img src={trashIcon} alt="trash" className={classes.textListItem} />
                                     </ListItemIcon>
-                                    <ListItemText primary="Recent"  className={classes.textListItem}/>
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <img src={starredIcon} alt="starred" className={classes.textListItem}/>
-                                    </ListItemIcon>
-                                    <ListItemText primary="Starred" className={classes.textListItem}/>
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <img src={trashIcon} alt="trash" className={classes.textListItem}/>
-                                    </ListItemIcon>
-                                    <ListItemText primary="Trash" className={classes.textListItem}/>
+                                    <ListItemText primary="Trash" className={classes.textListItem} />
                                 </ListItemButton>
                             </ListItem>
                         </List>
@@ -122,7 +127,8 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                 {/* <AuthenticatedTemplate>
                 <Paper elevation={0}>
                     <CardContent sx={{ pb: "16px!important" }}>
-                        {!topMenu && clearButton}
+                        {!topMenu && clearButton}import { Link } from 'react-router-dom';
+
                         <List className={classes.topItems}>
                             {topMenu && data?.response &&
                                 data?.response?.map((item: any, index: any) => {
