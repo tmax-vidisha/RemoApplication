@@ -2,6 +2,9 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import SideBar from './../../Components/WorkSpaceOne/SideBar';
 import TableAnnouncement from './../../Components/Announcement/TableAnnouncement';
+import AnnouncementInputPage from './../AnnouncementPage/AnnouncementInputPage';
+import AnnouncementPage from './../AnnouncementPage/AnnouncementPage';
+import AnnouncementReadMore from '../../Components/AnnouncementReadMore';
 
 
 const TableAnnouncementPage = () => {
@@ -11,8 +14,11 @@ const TableAnnouncementPage = () => {
                 <Grid item xs={1}>
                     <SideBar />
                 </Grid>
-                <Grid item xs={8} style={{marginRight:"30px"}}>
+                <Grid item xs={10} style={{marginRight:"30px"}}>
                     <TableAnnouncement/>
+                    {/* <AnnouncementInputPage/>
+                    <AnnouncementPage/> */}
+                    {/* <AnnouncementReadMore/> */}
                 </Grid>
             </Grid>
         </>
