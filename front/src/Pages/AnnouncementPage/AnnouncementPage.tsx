@@ -18,4 +18,4 @@ const AnnouncementPage = () => {
   )
 }
 
-export default AnnouncementPage
+export default AnnouncementPage;
