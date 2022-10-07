@@ -116,7 +116,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     const handleDownload = ()=>{
         window.open(downloadUrl)
     }
-    const [CopySuccess,setCopySuccess] =useState<string>('')
+    const [CopySuccess,setCopySuccess] =useState<any>('')
    
     const handleCopy = async() =>{
        onCopy?.(id,name)
