@@ -5,11 +5,10 @@ import { Paper } from '@mui/material';
 import { Typography } from '@mui/material';
 import SideBar from './../WorkSpaceOne/SideBar';
 import LeftMenu from '../WorkSpaceOne/LeftMenu';
-import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
 import SearchPart from '../WorkSpaceOne/SearchPart';
 import { useStyles } from './Styles';
 import announcementIcon from "./../../Assets/Images/announcement.svg";
-import SharedFiles from './SharedFiles';
+import  FileSharedPage from './FileSharedPage';
 
 
 const SharedWithMe = () => {
@@ -38,7 +37,8 @@ const SharedWithMe = () => {
                     <Grid item xs={9} style={{ paddingLeft: "8px" }}>
                         <SearchPart/>
 
-                        <SharedFiles />
+                        {/* <SharedFiles /> */}
+                        <FileSharedPage/>
                     </Grid>
                 </Grid>
             </Box>
