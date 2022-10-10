@@ -11,7 +11,6 @@ import { ActionType } from '../../Store copy/Actions/actionTypes';
 import { useDeleteItemOneDriveMutation, useGetAllRootItemsOneDriveQuery, useGetItemChildrenOneDriveMutation } from '../../services/graph';
 
 
-
 // interface types{
 //     styled:any;
 // }
@@ -95,7 +94,7 @@ const SharedFiles = () => {
   return (
     <AuthenticatedTemplate>
         <Grid>
-            <Grid className={classes.divFile}>
+            <Grid className={classes.divFile} >
                 Shared Files
             </Grid>
             <Grid className={classes.bigPart}>
