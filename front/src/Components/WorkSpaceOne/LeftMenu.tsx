@@ -66,7 +66,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                     <nav>
                         <List>
                             <ListItem disablePadding>
-                                <Link to="/WorkSpaceOne">
+                                <Link to="/WorkspaceOne">
                                 <ListItemButton>
                                     <ListItemIcon className={classes.MuiListItemIcon}>
                                         {/* <TopicTwoToneIcon /> */}

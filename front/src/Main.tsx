@@ -49,7 +49,7 @@ import WorkSpaceOne from './Components/WorkSpaceOne/index';
 import SecondWorkSpace from './Layout/SecondWorkSpace';
 import ContentEditor from './Components/ContentEditor';
 import TableAnnouncementPage from './Pages/TableAnnouncementPage/index';
-import SharedWithMe from './Components/SharedwithMe/index';
+ import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
 
 
 const theme = createTheme({

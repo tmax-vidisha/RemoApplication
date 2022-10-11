@@ -1,4 +1,5 @@
 import React from 'react';
+import { Routes, Route } from "react-router-dom";
 import { Grid, Paper, Typography } from '@mui/material';
 import LeftMenu from './LeftMenu';
 import SearchPart  from './SearchPart';
@@ -10,6 +11,7 @@ import IconText from './../Header/IconText';
 import { Box } from '@mui/material';
 import announcementIcon from "./../../Assets/Images/announcement.svg";
 
+// import FileSharedPage from './FileSharedPage';
 
 
 const WorkSpaceOne = () => {
@@ -39,6 +41,12 @@ const WorkSpaceOne = () => {
                         <SearchPart />
 
                         <MyFilePage />
+                        {/* <NavPage/> */}
+                        {/* <Routes>
+        <Route path="/myOneDriveAllFiles" element={<MyFilePage />} />
+        <Route path="/sharedWithMe" element={<FileSharedPage />} />
+       
+        </Routes> */}
                     </Grid>
                 </Grid>
             </Box>
