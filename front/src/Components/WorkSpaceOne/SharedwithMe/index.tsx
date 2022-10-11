@@ -1,14 +1,15 @@
 import React from 'react';
 import { Grid, Box } from '@mui/material';
-import IconText from './../Header/IconText';
+import IconText from '../../Header/IconText';
 import { Paper } from '@mui/material';
 import { Typography } from '@mui/material';
-import SideBar from './../WorkSpaceOne/SideBar';
-import LeftMenu from '../WorkSpaceOne/LeftMenu';
-import SearchPart from '../WorkSpaceOne/SearchPart';
+import SideBar from '../SideBar';
+import LeftMenu from '../LeftMenu';
+import SearchPart from '../SearchPart';
 import { useStyles } from './Styles';
-import announcementIcon from "./../../Assets/Images/announcement.svg";
-import  FileSharedPage from './FileSharedPage';
+import announcementIcon from "../../../Assets/Images/announcement.svg";
+// import  FileSharedPage from './FileSharedPage';
+import  SharedFilePage  from '../../../Pages/WorkSpace/OneDrive/SharedFilePage';
 
 
 const SharedWithMe = () => {
@@ -38,7 +39,8 @@ const SharedWithMe = () => {
                         <SearchPart/>
 
                         {/* <SharedFiles /> */}
-                        <FileSharedPage/>
+                        {/* <FileSharedPage/> */}
+                        <SharedFilePage/>
                     </Grid>
                 </Grid>
             </Box>

@@ -90,6 +90,14 @@ export const oneDriveApi = createApi({
     }),
     
   }),
+  getAllSharedItems: builder.query<any, any>({
+    // query: () => '/api/v1/onedrive/getAllRootItems',
+    query: (id) => ({
+      url: `/api/v1/onedrive/getSharedItems/${id}`,
+      // headers:{ "authorization": `${AccessToken}` },
+  }),
+  // providesTags : [ 'OneDriveRootItems'],
+  }),
 
   }),
 })
@@ -99,8 +107,9 @@ export const {
                 useGetItemChildrenOneDriveMutation,
                 useGetAllRootItemsOneDriveQuery,
                 useDeleteItemOneDriveMutation,
-                useCopylinkOneDriveMutation
-              
+                useCopylinkOneDriveMutation,
+                useGetAllSharedItemsQuery
+                
               
               
               } = oneDriveApi
