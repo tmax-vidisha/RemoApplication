@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { Box, List, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, CssBaseline, List, ListItemIcon, ListItemText } from '@mui/material';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItem from '@mui/material/ListItem';
 import TopicTwoToneIcon from '@mui/icons-material/TopicTwoTone';
@@ -11,7 +11,7 @@ import { CardContent } from '@mui/material';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import { useStyles } from './Styles';
 import ClearIcon from '@mui/icons-material/Clear';
- import { NavLink as RouterNavLink ,Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { Grid } from '@mui/material';
 import DocumentIcon from "../../Assets/Images/Document.svg";
 import filesIcon from "../../Assets/Images/files.svg";
@@ -23,13 +23,57 @@ import trashIcon from "../../Assets/Images/trash.svg";
 import upload from "../../Assets/Images/upload-blue.svg";
 import menuBlue from "../../Assets/Images/menu-blue.svg";
 import setting from "../../Assets/Images/setting-blue.svg";
+import { MyFilePage } from '../../Pages';
 
 
 interface IFolderProps {
     data?: any,
     error?: any,
-    isLoading?: any
+    isLoading?: any,
+  
 }
+export const SidebarData = [
+    {
+        id:1,
+        title: "My Files",
+        // onClick: () => history.push("/Deliveries"),
+        path: "/myFilePage",
+        icon: filesIcon,
+    },
+    {
+        id:2,
+        title: "Shared with Me",
+        path: "/sharedWithMe",
+        icon: starredIcon,
+    },
+    {
+        id:3,
+        title: "Document Library",
+        path: "/css",
+        icon: DocumentIcon,
+    },
+    {
+        id:4,
+        title: "Recent",
+        path: "/php",
+        icon: recentIcon,
+    },
+    {
+        id:5,
+        title: "Starred",
+        path: "/java",
+        icon: starredIcon,
+    },
+
+    {
+        id:6,
+        title: "Trash",
+        path: "/node",
+        icon: trashIcon,
+    },
+
+]
+
 
 const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
@@ -38,6 +82,9 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+   
+    const location = useLocation();
 
 
     const selectedMenu = (selValue: any) => {
@@ -51,7 +98,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     const clearButton = (
         <ListItem className={classes.topClear} sx={{ position: "absolute", zIndex: 99 }}>
-            <Link  className={classes.topClearLink} onClick={clearMenu} to="/">
+            <Link className={classes.topClearLink} onClick={clearMenu} to="/">
                 clear <ClearIcon />
             </Link>
         </ListItem>
@@ -62,14 +109,15 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     return (
         <Box sx={{ width: "190px", bgcolor: 'background.paper', height: "100%" }}>
             <Box style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }} >
+            <CssBaseline />
                 <Box >
                     <nav>
-                        <List>
+                        {/* <List>
                             <ListItem disablePadding>
                                 <Link to="/WorkSpaceOne">
                                 <ListItemButton>
                                     <ListItemIcon className={classes.MuiListItemIcon}>
-                                        {/* <TopicTwoToneIcon /> */}
+                                        
                                         <img src={filesIcon} alt=" MyFiles" />
                                     </ListItemIcon>
                                     <ListItemText primary="My Files" className={classes.textListItem} />
@@ -119,7 +167,40 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     <ListItemText primary="Trash" className={classes.textListItem} />
                                 </ListItemButton>
                             </ListItem>
-                        </List>
+                        </List> */}
+                        <div>
+                            {
+                                SidebarData.map((item: any, id: any, index: any) => {
+                                    const { icon, path, title } = item;
+                                    console.log(SidebarData, "itemsList");
+
+                                    return (
+                                        <List key={index}>
+                                            <ListItem disablePadding>
+                                                <NavLink end to={item.path}
+                                                // className={({ isActive }) =>
+                                                // isActive ? activeLink: normalLink}
+
+                                                >
+                                                    <ListItemButton>
+                                                        {/* <ListItemIcon className={classes.MuiListItemIcon}>
+
+                                                            {item.icon}
+                                                        </ListItemIcon> */}
+                                                        <ListItemText className={classes.textListItem} >{item.title} </ListItemText>
+                                                    </ListItemButton>
+
+                                                </NavLink>
+                                            </ListItem>
+
+
+                                        </List>
+                                    )
+                                })
+                            }
+
+                        </div>
+
                     </nav>
 
 
@@ -128,6 +209,9 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                 <Paper elevation={0}>
                     <CardContent sx={{ pb: "16px!important" }}>
                         {!topMenu && clearButton}import { Link } from 'react-router-dom';
+import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
+import { NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
                         <List className={classes.topItems}>
                             {topMenu && data?.response &&

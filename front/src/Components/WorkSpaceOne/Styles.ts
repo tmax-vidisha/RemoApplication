@@ -255,7 +255,42 @@ export const useStyles = makeStyles({
     //width:"50px",
     borderRadius:" 20px 1px 1px 20px",
 
-  }
+  },
+
+  boxContent:{
+    width:"60px",
+    height:"70px",
+    border:"1px solid #eee7e7",
+    boxShadow:"5px 3px 10px 4px #eee7e7",
+    margin:"15px",
+    padding:"10px",
+    backgroundColor:"#e6ffff",
+    borderRadius:"10px",
+  },
+  mainPart:{
+    display:"grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    padding:"20px",
+    backgroundColor:"white",
+    width:"300px"
+  },
+  texts:{
+    fontSize:"12px",
+    marginTop:"10px",
+    color: "#1BAAB5",
+    // color: "#606C74",
+    // "&:hover": {
+    //   color: "#1BAAB5",
+    // },
+
+    "& div":{
+        fontSize:"12px",
+        "& p":{
+            fontSize:"12px",
+
+        }
+    }
+  },
 
 });
 

@@ -31,23 +31,17 @@ import Fade from '@mui/material/Fade';
 
 
 
-interface SimpleDialogProps {
-    id: any,
-    name: any,
-    folder: any,
-    // onDelete?: (id: string, name: string) => void;
-    // onOpenFolder: (id: string, name: string, folder: any) => void;
-    // deleteResponse: any
-
+export interface SimpleDialogProps {
     open: boolean;
-    // selectedValue: string;
-    onClose: () => void;
-    anchorEl: any
-}
+    //selectedValue: string;
+    selectedValue: any;
+    onClose: (value: string) => void;
+    anchorEl: HTMLElement | null; 
+  }
 
 function SimpleDialog(props: SimpleDialogProps) {
     const classes = useStyles();
-    // const { onClose, selectedValue, open } = props;
+     const { onClose, selectedValue, open } = props;
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const openOn = Boolean(anchorEl);
@@ -55,12 +49,12 @@ function SimpleDialog(props: SimpleDialogProps) {
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
     // const handleClose = () => {
-    //   onClose(selectedValue);
+    //     setAnchorEl(null);
     // };
+    const handleClose = (selectedValue:any) => {
+      onClose(selectedValue);
+    };
 
     // const handleListItemClick = (value: string) => {
     //   onClose(value);
@@ -221,14 +215,35 @@ function SimpleDialog(props: SimpleDialogProps) {
     );
 }
 
- //const FileShared: React.FC<IFolderProps> = (props: IFolderProps) =>{
-const FileSharedPage =() =>{
+//const FileShared: React.FC<IFolderProps> = (props: IFolderProps) =>{
+const FileSharedPage = (selectedValue: any) => {
     const [age, setAge] = React.useState('');
     const [show, setShow] = useState<boolean>(true);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
+    const openOn = Boolean(anchorEl);
+
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const [itemId, setItemId] = useState<string>('');
+    const [itemName, setItemName] = useState<string>('');
+    const [itemfolder, setItemFolder] = useState<any>();
+    const de = (id: any, name: any, folder: any) => {
+        //    console.log(id,name)
+        // console.log(folder)
+        setItemId(id)
+        setItemName(name)
+        setItemFolder(folder)
+    }
+    const [open, setOpen] = React.useState(false);
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
-       //setAge('');
+        //setAge('');
     };
 
     function createData(
@@ -242,14 +257,14 @@ const FileSharedPage =() =>{
     }
 
     const rows = [
-        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
-        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
-        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
-        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", ""),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", ""),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", ""),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", ""),
 
     ];
     return (
-        <Grid style={{marginTop:"30px", marginRight:"15px"}}>
+        <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 600 }} aria-label="simple table">
                     <TableHead>
@@ -262,21 +277,41 @@ const FileSharedPage =() =>{
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                                {rows.map((row) => (
-                                    <TableRow
-                                        key={row.name}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell component="th" scope="row">
-                                            {row.name}
-                                        </TableCell>
-                                        <TableCell align="right">{row.lastModifiedBy}</TableCell>
-                                        <TableCell align="right">{row.ModifiedDate}</TableCell>
-                                        <TableCell align="right">{row.fileSize}</TableCell>
-                                        <TableCell align="right">{row.Actions}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>                  
+                        {rows.map((row) => (
+                            <TableRow
+                                key={row.name}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="right">{row.lastModifiedBy}</TableCell>
+                                <TableCell align="right">{row.ModifiedDate}</TableCell>
+                                <TableCell align="right">{row.fileSize}</TableCell>
+                                <TableCell align="right">{row.Actions}
+                                    <Grid>
+                                         {/* onClick={() => de(item.id, item.name, item.folder)} */}
+                                        <Button  onClick={handleClick}>
+                                        <SimpleDialog
+                                            // id={itemId}
+                                            // name={itemName}
+                                            // onDelete={onDelete}
+                                            // folder={itemfolder}
+                                            // onOpenFolder={handleOpenFolder}
+                                            // deleteResponse={deleteResponse}
+                                       // onOpenFolder={onClick}
+                                       selectedValue={selectedValue}
+                                         open={openOn}
+                                         onClose={handleClose}
+                                         anchorEl={anchorEl}
+                                        />
+
+                                        </Button>
+                                    </Grid>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
 
                 </Table>
 
