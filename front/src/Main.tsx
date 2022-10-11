@@ -47,11 +47,14 @@ import UploadFile from './UploadFile';
 
 // import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
 import WorkSpaceOne from './Components/WorkSpaceOne/index';
-import SecondWorkSpace from './Layout/SecondWorkSpace';
-import ContentEditor from './Components/ContentEditor';
-import TableAnnouncementPage from './Pages/TableAnnouncementPage/index';
+// import SecondWorkSpace from './Layout/SecondWorkSpace';
+// import ContentEditor from './Components/ContentEditor';
+// import TableAnnouncementPage from './Pages/TableAnnouncementPage/index';
 import SharedWithMe from './Components/SharedwithMe/index';
 import AllLinks from './Components/Quicklinks/AllLinks';
+import SecondWorkSpace from './Layout/SecondWorkSpace';
+import TableAnnouncementPage from './Pages/TableAnnouncementPage';
+import ContentEditor from './Components/ContentEditor';
 
 
 const theme = createTheme({

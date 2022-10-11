@@ -37,40 +37,40 @@ export const SidebarData = [
         id:1,
         title: "My Files",
         // onClick: () => history.push("/Deliveries"),
-        path: "/myFilePage",
-        icon: filesIcon,
+        path: "/WorkspaceOne",
+        icon: <img src={filesIcon} alt=""/>,
     },
     {
         id:2,
         title: "Shared with Me",
         path: "/sharedWithMe",
-        icon: starredIcon,
+        icon: <img src={starredIcon} alt=""/>,
     },
     {
         id:3,
         title: "Document Library",
         path: "/css",
-        icon: DocumentIcon,
+        icon: <img src={DocumentIcon} alt=""/>,
     },
     {
         id:4,
         title: "Recent",
         path: "/php",
-        icon: recentIcon,
+        icon:<img src={ recentIcon} alt=""/>,
     },
     {
         id:5,
         title: "Starred",
         path: "/java",
-        icon: starredIcon,
+        icon: <img src={ starredIcon} alt=""/>,
     },
 
     {
         id:6,
         title: "Trash",
         path: "/node",
-        icon: trashIcon,
-    },
+        icon: <img src={ trashIcon} alt=""/>,
+    }
 
 ]
 
@@ -183,10 +183,10 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                                                 >
                                                     <ListItemButton>
-                                                        {/* <ListItemIcon className={classes.MuiListItemIcon}>
+                                                        <ListItemIcon className={classes.MuiListItemIcon}>
 
                                                             {item.icon}
-                                                        </ListItemIcon> */}
+                                                        </ListItemIcon>
                                                         <ListItemText className={classes.textListItem} >{item.title} </ListItemText>
                                                     </ListItemButton>
 

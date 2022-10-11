@@ -542,6 +542,116 @@ const deleteOneDriveItem = asyncHandler(async(req:Request, res:Response) => {
 })
 
 
+const  copylinkDriveItem = asyncHandler(async(req:Request, res:Response) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  
+  console.log(req.headers.authorization,'tssccccttddddttttvvvvvtttttttyy')
+  const  token = req.headers.authorization
+  const {  ItemId,Name } = req.body
+  console.log(ItemId,Name,'ewfeu87uedsfdfbfbc')
+ 
+
+
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+     console.log('dekleeewwrw465776uhfdbfngngn')
+     if(ItemId ) {
+      const permission = {
+
+        type: "view",
+
+        scope: "anonymous"
+
+    };
+      // const response = 
+    // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+  //     await axios.post(`https://graph.microsoft.com/v1.0//me/drive/items/${ItemId}/createLink`, {
+  //     headers: {
+  //         'Authorization': `Bearer ${token} `,
+  //         'Content-Type': 'application/json'
+        
+  //       },
+  //       body:permission
+      
+  // })
+  // const data = await response.data
+  // console.log(data,'kky')
+  const response = await fetch(`https://graph.microsoft.com/v1.0//me/drive/items/${ItemId}/createLink`, {
+    method: 'POST',
+    headers: {
+     'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+      },
+      body:JSON.stringify(permission) 
+    });
+    const data = await response.json();
+    console.log(data,'rty')
+   const mydata = data.link.webUrl
+
+
+
+
+  res.status(200).json({
+    success: true,
+    response :mydata
+
+ });
+
+ }
+ 
+ }
+
+})
+
+const getAllOneDriveSharedItems = asyncHandler(async(req:Request, res:Response) => {
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
+ 
+   // const  token = req.headers.authorization
+  console.log(req.body)
+    const {token} = req.params
+   // //  const {token} = req.body
+    console.log(token,'llll')
+   // console.log(req.body,'gregrthtrht')
+   if(!token ){
+  
+   return res.status(404).json({
+       success: false,
+       error: "No Token found"
+   });
+ 
+   }else {
+     
+     const response = 
+     // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+       await axios.get(`https://graph.microsoft.com/v1.0/me/drive/sharedWithMe`, {
+       headers: {
+           'Authorization': `Bearer ${token} `,
+           'Content-Type': 'application/json'
+         
+         }
+       
+   })
+   console.log(response.data.value,"root" )
+   res.status(200).json({
+     success: true,
+     response :response.data.value
+ 
+  });
+ 
+   }
+   
+ 
+ })
+
+
 
 
 
@@ -549,6 +659,8 @@ export {
     uploadItemInOneDrive,
     getAllOneDriveItemsRoot,
     getOneDriveItemChildren,
-    deleteOneDriveItem
+    deleteOneDriveItem,
+    copylinkDriveItem,
+    getAllOneDriveSharedItems
    
 }

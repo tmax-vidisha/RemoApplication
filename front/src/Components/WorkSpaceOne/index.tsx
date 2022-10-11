@@ -4,12 +4,12 @@ import LeftMenu from './LeftMenu';
 import SearchPart from './SearchPart';
 // import {MyFilesPage} from './MyFilesPage';
 import SideBar from './SideBar';
-import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
 import { useStyles } from './Styles';
-import IconText from './../Header/IconText';
 import { Box } from '@mui/material';
 import announcementIcon from "./../../Assets/Images/announcement.svg";
 import { NavLink } from "react-router-dom";
+import IconText from '../Header/IconText';
+import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
 
 
 
@@ -21,7 +21,7 @@ const WorkSpaceOne = () => {
     return (
         <Grid>
             <Grid container item xs={10}>
-                <IconText />
+                <IconText/>
             </Grid>
             <Grid item xs={12}>
                 <Paper style={{ height: "50px", display: "flex", justifyContent: "flex-start", alignItems: "center", marginBottom: "20px" }} elevation={0}>
@@ -42,7 +42,7 @@ const WorkSpaceOne = () => {
                     <Grid item xs={9} style={{ paddingLeft: "8px" }}>
                         <SearchPart />
 
-                        <MyFilePage />
+                        <MyFilePage/>
                         {/* <div>
                             {
                                 SidebarData.map((item, index) => {
