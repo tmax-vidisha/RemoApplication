@@ -509,7 +509,8 @@ const SearchPart = (id: any) => {
                         </Menu>
                     </Grid>
                 </Grid>
-                {show ?
+
+                {/* {show ?
                     <div>
                         <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }} onClick={() => setShow(!show)}>
                             <div onClick={handleClickOn}><span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links </div>
@@ -521,10 +522,10 @@ const SearchPart = (id: any) => {
                         <Button onClick={() => setShow(!show)} style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight: "48px" }}>
                             <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
                             Daily Standup Meeting ...
-                            {/* <StandUpCalendar/> */}
+                           
                         </Button>
                     </div>
-                }
+                } */}
 
 
 

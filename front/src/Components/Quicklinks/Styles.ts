@@ -58,7 +58,8 @@ export const useStyles = makeStyles({
     gridTemplateColumns: "repeat(2, 1fr)",
     padding:"20px",
     backgroundColor:"white",
-    width:"250px"
+    width:"250px",
+    paddingTop:"5px"
   },
   texts:{
     fontSize:"12px",
@@ -76,5 +77,30 @@ export const useStyles = makeStyles({
 
         }
     }
+  },
+
+  linkPart: {
+    backgroundColor: "#33adff",
+    color: "white",
+    textTransform: "capitalize"
+  },
+  plus: {
+    textAlign: "center",
+    marginTop: "5px",
+    marginRight: "10px",
+    // backgroundColor:" white !important",
+    color: "white !important"
+  },
+
+  quick: {
+    marginTop: "5px",
+    marginRight: "10px"
+
+  },
+  linkBtn: {
+    backgroundColor: "rgb(50 168 189) !important",
+    color: "white !important",
+    marginRight: "30px !important",
+    padding: "5px 10px !important"
   },
 });

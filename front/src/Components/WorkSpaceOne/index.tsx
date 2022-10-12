@@ -40,7 +40,7 @@ const WorkSpaceOne = () => {
                     <Grid item xs={1} style={{ marginRight: "20px" }}>
                         <LeftMenu />
                     </Grid>
-                    <Grid item xs={9} style={{ paddingLeft: "8px" }}>
+                    <Grid item xs={7} style={{ paddingLeft: "8px" }}>
                        
                         <SearchPart />
   
@@ -66,9 +66,9 @@ const WorkSpaceOne = () => {
 
                         </div> */}
                     </Grid>
-                    {/* <Grid item xs={2}>
+                    <Grid item xs={2}>
                        <AllLinks/>
-                    </Grid> */}
+                    </Grid>
                 </Grid>
             </Box>
 
