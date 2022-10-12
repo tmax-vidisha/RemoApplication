@@ -116,7 +116,8 @@ export const useStyles = makeStyles({
     backgroundColor: "white",
     marginTop: "20px",
     borderRadius: "10px",
-    padding:"10px"
+    padding:"10px",
+    boxShadow: "10px 1px 30px -10px #c2bcbc",
   },
   divFile: {
     color: "#1b6189",

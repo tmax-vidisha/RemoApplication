@@ -35,6 +35,7 @@ import admin from "./../../Assets/Images/admin.svg";
 import ITService from "./../../Assets/Images/IT-ervice.svg";
 import sales from "./../../Assets/Images/sales.svg";
 import vehicle from "./../../Assets/Images/vechicle-req.svg";
+import AllLinks from '../Quicklinks/AllLinks';
 
 
 
@@ -296,9 +297,16 @@ const SearchPart = (id: any) => {
     const handleCloseSix = () => {
         setOpenSix(false);
     };
+    const [show, setShow] = useState(true);
+    const [isShown, setIsShown] = useState(false);
+
+    const handleClickOn = (event: any) => {
+        // setIsShown(current => !current)
+        setIsShown(true)
+    }
 
     return (
-        <Grid container spacing={2} item xs={12} style={{ marginTop: "20px", position: "static", display: "flex", justifyContent: "space-around" }}>
+        <Grid  item xs={12} className={classes.upperSearch} > 
 
             <Grid>
                 <Search style={{ padding: "5px 5px", backgroundColor: "white", }}>
@@ -312,7 +320,7 @@ const SearchPart = (id: any) => {
                 </Search>
             </Grid>
 
-            <Grid style={{ display: "flex", justifyContent: "space-between" }}>
+            <Grid style={{ display: "flex", justifyContent: "flex-end" }}>
                 <Grid>
                     <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
                         <Button
@@ -501,10 +509,37 @@ const SearchPart = (id: any) => {
                         </Menu>
                     </Grid>
                 </Grid>
+                {show ?
+                    <div>
+                        <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }} onClick={() => setShow(!show)}>
+                            <div onClick={handleClickOn}><span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links </div>
+                        </Button>
+                        {isShown && <AllLinks />}
+                    </div>
+                    :
+                    <div>
+                        <Button onClick={() => setShow(!show)} style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight: "48px" }}>
+                            <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
+                            Daily Standup Meeting ...
+                            {/* <StandUpCalendar/> */}
+                        </Button>
+                    </div>
+                }
 
-                <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }} onClick={handleClickOpenSix}>
-                    <span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links</Button>
-                <Dialog
+
+
+            </Grid>
+
+
+        </Grid >
+    );
+};
+
+export default SearchPart;
+
+/*
+ <Dialog2 open={openDialog2} close={() => setDialog2Open(false)} ></Dialog2> 
+<Dialog
                     open={openSix}
                     onClose={handleCloseSix}
                     aria-labelledby="alert-dialog-title"
@@ -594,23 +629,6 @@ const SearchPart = (id: any) => {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                {/* <Dialog2 open={openDialog2} close={() => setDialog2Open(false)} ></Dialog2> */}
-                <Button style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight: "48px" }}>
-                    <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
-                    Daily Standup Meeting ...
-                    {/* <StandUpCalendar/> */}
-                </Button>
-
-            </Grid>
-
-
-        </Grid >
-    );
-};
-
-export default SearchPart;
-
-/*
                         <ListItemButton
                             className={classes.createNew}
                             // alignItems="flex-start"
@@ -623,6 +641,7 @@ export default SearchPart;
                                 backgroundColor: "rgb(50 168 189) !important"
                             }}import { Link } from '@mui/material';
 import { Link } from 'react-router-dom';
+import AllLinks from './../Quicklinks/AllLinks';
 
                         >
                             <span className={classes.plus}><LocalHospitalIcon /></span>

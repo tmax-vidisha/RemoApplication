@@ -93,7 +93,7 @@ const MyFilePage = () => {
     }
   return (
     <AuthenticatedTemplate>
-        <Grid>
+        <Grid style={{marginLeft:"75px"}}>
             <Grid className={classes.divFile}>
                 My Files
             </Grid>

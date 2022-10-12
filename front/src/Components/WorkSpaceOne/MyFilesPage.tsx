@@ -389,7 +389,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
             {/* <Grid className={classes.divFile}>
                 My Files
             </Grid> */}
-            {/* <Grid className={classes.bigPart}> */}
+             <Grid className={classes.bigPart}> 
             <Grid className={classes.myFile}>
                 <Grid>
                     {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
@@ -426,7 +426,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
             </Grid>
             <Stack>
                 <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <Table sx={{ minWidth: 300 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Name</TableCell>
@@ -756,7 +756,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                 </TableContainer>
             </Stack>
-            {/* </Grid> */}
+             </Grid> 
 
         </>
     );
