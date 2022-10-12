@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { Box, List, ListItemIcon, ListItemText } from '@mui/material';
+import { Box,CssBaseline, List, ListItemIcon, ListItemText } from '@mui/material';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItem from '@mui/material/ListItem';
 import TopicTwoToneIcon from '@mui/icons-material/TopicTwoTone';
@@ -11,7 +11,7 @@ import { CardContent } from '@mui/material';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import { useStyles } from './Styles';
 import ClearIcon from '@mui/icons-material/Clear';
- import { NavLink as RouterNavLink ,Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { Grid } from '@mui/material';
 import DocumentIcon from "../../Assets/Images/Document.svg";
 import filesIcon from "../../Assets/Images/files.svg";
@@ -31,6 +31,48 @@ interface IFolderProps {
     isLoading?: any
 }
 
+export const SidebarData = [
+    {
+        id:1,
+        title: "My Files",
+        // onClick: () => history.push("/Deliveries"),
+        path: "/WorkspaceOne",
+        icon: <img src={filesIcon} alt=""/>,
+    },
+    {
+        id:2,
+        title: "Shared with Me",
+        path: "/sharedWithMe",
+        icon: <img src={starredIcon} alt=""/>,
+    },
+    {
+        id:3,
+        title: "Document Library",
+        path: "/css",
+        icon: <img src={DocumentIcon} alt=""/>,
+    },
+    {
+        id:4,
+        title: "Recent",
+        path: "/php",
+        icon:<img src={ recentIcon} alt=""/>,
+    },
+    {
+        id:5,
+        title: "Starred",
+        path: "/java",
+        icon: <img src={ starredIcon} alt=""/>,
+    },
+
+    {
+        id:6,
+        title: "Trash",
+        path: "/node",
+        icon: <img src={ trashIcon} alt=""/>,
+    }
+
+]
+
 const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     const [SelValue, setSelValue] = useState("");
@@ -39,7 +81,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-
+    const location = useLocation();
     const selectedMenu = (selValue: any) => {
         setSelValue(selValue);
         setTopMenu(false);
@@ -62,14 +104,15 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     return (
         <Box sx={{ width: "190px", bgcolor: 'background.paper', height: "100%" }}>
             <Box style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }} >
+            <CssBaseline />
                 <Box >
                     <nav>
-                        <List>
+                        {/* <List>
                             <ListItem disablePadding>
                                 <Link to="/WorkspaceOne">
                                 <ListItemButton>
                                     <ListItemIcon className={classes.MuiListItemIcon}>
-                                        {/* <TopicTwoToneIcon /> */}
+                                        
                                         <img src={filesIcon} alt=" MyFiles" />
                                     </ListItemIcon>
                                     <ListItemText primary="My Files" className={classes.textListItem} />
@@ -119,7 +162,40 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     <ListItemText primary="Trash" className={classes.textListItem} />
                                 </ListItemButton>
                             </ListItem>
-                        </List>
+                        </List> */}
+                        <div>
+                            {
+                                SidebarData.map((item: any, id: any, index: any) => {
+                                    const { icon, path, title } = item;
+                                    console.log(SidebarData, "itemsList");
+
+                                    return (
+                                        <List key={index}>
+                                            <ListItem disablePadding>
+                                                <NavLink end to={item.path}
+                                                // className={({ isActive }) =>
+                                                // isActive ? activeLink: normalLink}
+
+                                                >
+                                                    <ListItemButton>
+                                                        <ListItemIcon className={classes.MuiListItemIcon}>
+
+                                                            {item.icon}
+                                                        </ListItemIcon>
+                                                        <ListItemText className={classes.textListItem} >{item.title} </ListItemText>
+                                                    </ListItemButton>
+
+                                                </NavLink>
+                                            </ListItem>
+
+
+                                        </List>
+                                    )
+                                })
+                            }
+
+                        </div>
+
                     </nav>
 
 

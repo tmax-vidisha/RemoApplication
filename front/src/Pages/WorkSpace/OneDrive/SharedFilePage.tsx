@@ -6,7 +6,7 @@ import { useGetAllSharedItemsQuery } from '../../../services/graph'
 const SharedFilePage = () => {
     const { token } = useCustom();
     const { data, error, isLoading } = useGetAllSharedItemsQuery(token);
-    // console.log(data,'Shared ')
+    console.log(data,'Shared ')
 
   return (
     <AuthenticatedTemplate>
