@@ -43,8 +43,13 @@ import { Grid, Paper, Typography } from '@mui/material';
 import Footer from './Components/Footer';
 import UploadFile from './UploadFile';
 
-import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
+
+// import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
 import WorkSpaceOne from './Components/WorkSpaceOne/index';
+import SecondWorkSpace from './Layout/SecondWorkSpace';
+import ContentEditor from './Components/ContentEditor';
+import TableAnnouncementPage from './Pages/TableAnnouncementPage/index';
+ import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
 
 
 const theme = createTheme({
@@ -161,13 +166,13 @@ const Main = () => {
                     <ThemeProvider theme={theme}>
                     <AuthenticatedTemplate>
                             <Header />
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <Paper style={{ height: "60px", display: "flex", justifyContent: "center", alignItems: "center" }} elevation={0}>
 
                                     <Typography> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus in blanditiis dolorum Optio voluptatibus  </Typography>
 
                                 </Paper>
-                            </Grid>
+                            </Grid> */}
                         </AuthenticatedTemplate>
                         <Routes>
                             <Route
@@ -245,16 +250,29 @@ const Main = () => {
                                 element={<SubFolder />} />
                             <Route
                                 path="/upload"
-                                element={<UploadFile />} />    
-
-                              
+                                element={<UploadFile />} />   
                              <Route
                               path="/workspace/drives/subfolders"
                               element={<SubFolder />} />
-                             <Route
 
+                            <Route
                               path="/WorkSpaceOne"
                               element={<WorkSpaceOne/>} />
+                            <Route
+                              path="/SecondWorkSpace"
+                              element={<SecondWorkSpace/>} />
+                            <Route
+                              path="/Policy"
+                              element={<SecondWorkSpace/>} />
+                            <Route
+                              path="/ContentEditor"
+                              element={<ContentEditor/>} />
+                            <Route
+                              path="/tableAnnouncementPage"
+                              element={<TableAnnouncementPage/>} />
+                            <Route
+                              path="/sharedWithMe"
+                              element={<SharedWithMe/>} />
 
                         </Routes>
                     </ThemeProvider>
@@ -265,4 +283,5 @@ const Main = () => {
     )
 }
 
-export default Main
+export default Main;
+

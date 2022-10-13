@@ -1,20 +1,19 @@
 import { Fragment, useEffect, useState } from "react";
 import {
-    Box,
-    Breadcrumbs,
-    Button,
-    Card,
-    CardContent,
-    Container,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    Grid,
-    Link,
-    Paper,
-    TextField,
-    Typography,
+  Box,
+  Breadcrumbs,
+  Button,
+  Card,
+  CardContent,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
 } from "@mui/material";
 import { AuthenticatedTemplate } from "@azure/msal-react";
 import { useStyles } from "./Styles";
@@ -22,7 +21,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import PublishSharpIcon from "@mui/icons-material/PublishSharp";
 import AddCircleOutlineIcon from "@mui/icons-material/Add";
 import Table from "@mui/material/Table";
-
+import { Link } from 'react-router-dom';
 import { PublicClientApplication } from "@azure/msal-browser";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -34,113 +33,113 @@ import { Editor } from "react-draft-wysiwyg";
 import { configuration } from "../../index";
 import { convertToHTML } from "draft-convert";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useGetAnnouncementInfoQuery,useCreateAnnouncementMutation,useCreateTokenwithDataMutation,useGetAllAnnoncementsQuery } from '../../services/APIs';
+import { useGetAnnouncementInfoQuery, useCreateAnnouncementMutation, useCreateTokenwithDataMutation, useGetAllAnnoncementsQuery } from '../../services/APIs';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import moment from "moment-timezone";
 
 interface IFolderProps {
-  data:any, 
-  error:any,
-  isLoading:any,
+  data: any,
+  error: any,
+  isLoading: any,
   onSubmit: (object: any) => void;
 }
 // const AnnoncementInput = () => {
-  const AnnoncementInput: React.FC<IFolderProps> = (props: IFolderProps) => { 
-    const { data, error, isLoading,onSubmit } =   props
-    // const { data, error, isLoading } =   useGetAnnouncementInfoQuery('');
-    // const [sendItem] = useCreateAnnouncementMutation();
-    // const [sendItem] = useCreateTokenwithDataMutation();
-    const classes = useStyles();
-    const [AnnouncementTitle, setAnnouncementTitle] = useState<any>([]);
-    const [AnnouncementItems, setAnnouncementItems] = useState<any>([]);
-    const [tokens, setTokens] = useState<string>();
-    // const pca = new PublicClientApplication(configuration);
-    const [open, setOpen] = useState(false);
-    // const accounts = pca.getAllAccounts();
+const AnnoncementInput: React.FC<IFolderProps> = (props: IFolderProps) => {
+  const { data, error, isLoading, onSubmit } = props
+  // const { data, error, isLoading } =   useGetAnnouncementInfoQuery('');
+  // const [sendItem] = useCreateAnnouncementMutation();
+  // const [sendItem] = useCreateTokenwithDataMutation();
+  const classes = useStyles();
+  const [AnnouncementTitle, setAnnouncementTitle] = useState<any>([]);
+  const [AnnouncementItems, setAnnouncementItems] = useState<any>([]);
+  const [tokens, setTokens] = useState<string>();
+  // const pca = new PublicClientApplication(configuration);
+  const [open, setOpen] = useState(false);
+  // const accounts = pca.getAllAccounts();
 
-    // useEffect(()=>{
-    //   async function getAccessToken() {
-    //     if (accounts.length > 0) {
-    //       const request = {
-    //         scopes: ['user.read'],
-    //         account: accounts[0]
-    //       }
-    //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
-           
-    //         // updateToken(response.accessToken);
-    //          setTokens(response.accessToken)
-    //         // console.log(token,'uuuuuu')
-    //       }).catch(error => {
-    //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-    //         console.log(error);
-    //         return null;
-    //       });
-  
-  
-    //     }
-  
-    //     return null;
-    //   }
-    //   getAccessToken();
+  // useEffect(()=>{
+  //   async function getAccessToken() {
+  //     if (accounts.length > 0) {
+  //       const request = {
+  //         scopes: ['user.read'],
+  //         account: accounts[0]
+  //       }
+  //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
 
-    // },[])
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-    const handleClose = () => {
-      setOpen(false);
-    };
-  
-    function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-      event.preventDefault();
-      console.info("You clicked a breadcrumb.");
+  //         // updateToken(response.accessToken);
+  //          setTokens(response.accessToken)
+  //         // console.log(token,'uuuuuu')
+  //       }).catch(error => {
+  //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+  //         console.log(error);
+  //         return null;
+  //       });
+
+
+  //     }
+
+  //     return null;
+  //   }
+  //   getAccessToken();
+
+  // },[])
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    event.preventDefault();
+    console.info("You clicked a breadcrumb.");
+  }
+
+  const [fileSelected, setFileSelected] = useState<File>();
+
+  const uploadFile = function (
+    e: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) {
+    if (fileSelected) {
+      const formData = new FormData();
+      formData.append("image", fileSelected, fileSelected.name);
     }
-  
-    const [fileSelected, setFileSelected] = useState<File>();
-  
-    const uploadFile = function (
-      e: React.MouseEvent<HTMLSpanElement, MouseEvent>
-    ) {
-      if (fileSelected) {
-        const formData = new FormData();
-        formData.append("image", fileSelected, fileSelected.name);
-      }
-    };
-    const [editorState, setEditorState] = useState(() =>
-      EditorState.createEmpty()
-    );
-  
-    const [convertedContent, setConvertedContent] = useState<any>(null);
-    const handleEditorChange = (state: any) => {
-      setEditorState(state);
-      convertContentToHTML();
-    };
-    const convertContentToHTML = () => {
-      let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
-      // console.log(currentContentAsHTML);
-      setConvertedContent(currentContentAsHTML);
-    };
-  
-    const handleChangeTitleField = (event: any) => {
-      setAnnouncementTitle(event.target.value);
-    };
+  };
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
 
-    const handleSubmitClick = async () => {
-       
-          const announcementData ={
-            // token :tokens,
-            title:AnnouncementTitle,
-            desc:convertedContent
-          }
-        
-        // sendItem(announcementData)
-        // sendItem(AnnouncementJSON)
-        onSubmit(announcementData)
-        console.log('click');
-      };
+  const [convertedContent, setConvertedContent] = useState<any>(null);
+  const handleEditorChange = (state: any) => {
+    setEditorState(state);
+    convertContentToHTML();
+  };
+  const convertContentToHTML = () => {
+    let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
+    // console.log(currentContentAsHTML);
+    setConvertedContent(currentContentAsHTML);
+  };
 
-     
-      console.log(data,'980ccccccc9090')
+  const handleChangeTitleField = (event: any) => {
+    setAnnouncementTitle(event.target.value);
+  };
+
+  const handleSubmitClick = async () => {
+
+    const announcementData = {
+      // token :tokens,
+      title: AnnouncementTitle,
+      desc: convertedContent
+    }
+
+    // sendItem(announcementData)
+    // sendItem(AnnouncementJSON)
+    onSubmit(announcementData)
+    console.log('click');
+  };
+
+
+  console.log(data, '980ccccccc9090')
   return (
     <AuthenticatedTemplate>
       <Container className={classes.contentEditorWidth}>
@@ -157,7 +156,7 @@ interface IFolderProps {
                   separator={<NavigateNextIcon fontSize="small" className={classes.breadLinks} />}
                   aria-label="breadcrumb"
                 >
-                  <Link className={classes.breadLinks} color="inherit" href="/">
+                  <Link className={classes.breadLinks} color="inherit" to="/">
                     Home
                   </Link>
                   <Typography className={classes.breadLinks}>Announcements</Typography>
@@ -168,13 +167,14 @@ interface IFolderProps {
         </Card>
 
         <CardContent className={classes.contentArea}>
+        <Link to="/ContentEditor">
           <Typography
             variant="h5"
             component="h5"
-            className={classes.breadcrumbsHeader}
-          >
-            Content Editor
+            className={classes.breadcrumbsHeader}>
+              Content Editor
           </Typography>
+          </Link>
           <Button
             variant="contained"
             className={classes.breadcrumbsLinks}
@@ -215,8 +215,7 @@ interface IFolderProps {
                       sx={{
                         verticalAlign: "top !important",
                         "&:last-child td, &:last-child th": { border: 0 },
-                      }}
-                    >
+                      }}>
                       <TableCell>{annTitle}</TableCell>
                       <TableCell>
                         <div className={classes.tableDesc}>

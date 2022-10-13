@@ -3,24 +3,27 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 
 import { 
   usersApi,
-  intranetApi 
+  oneDriveApi 
 } from '../services/graph'
 import { graphApi } from '../services/APIs';
+
 export const store = configureStore({
   reducer: {
-    // [usersApi.reducerPath]: usersApi.reducer,
-    // [intranetApi .reducerPath]: intranetApi .reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
+     [oneDriveApi .reducerPath]: oneDriveApi.reducer,
     // counter: counterReducer,
     [graphApi.reducerPath]:graphApi.reducer,
+   
   },
-  // middleware: (getDefaultMiddleware) => [
-  //   // ...getDefaultMiddleware(),
-  //   // usersApi.middleware,
-  //   // intranetApi.middleware,
-  //   graphApi.middleware
-  // ],
-  middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(graphApi.middleware),
+  middleware: (getDefaultMiddleware) => [
+  ...getDefaultMiddleware(),
+    usersApi.middleware,
+    oneDriveApi.middleware,
+    graphApi.middleware,
+   
+  ],
+  // middleware: (getDefaultMiddleware) =>
+  //     getDefaultMiddleware().concat(graphApi.middleware),
 })
 
 setupListeners(store.dispatch)

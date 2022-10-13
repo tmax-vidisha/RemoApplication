@@ -5,6 +5,8 @@ import token  from './routes/token';
 import graph from './routes/graph';
 // const getAllSites = require('./routes/workspace')
 import workspace from './routes/workspace'
+import onedrive  from  './routes/onedrive/onedrive'
+import header from './routes/header'
 // const RemoToken = require('./controllers/token')
 // const graph = require('./routes/graph')
 // var azure = require('azure-storage');
@@ -15,6 +17,7 @@ import  mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import { json } from "body-parser";
 const SERVER_PORT = process.env.PORT || 4000;
+import multer from "multer";
 
 
 
@@ -1510,10 +1513,21 @@ app.get('/user', (req:any, res:any) => {
 
 // })
 
+const upload = multer({ dest: "../../uploads" });
+app.use(upload.any());
+app.post("/upload_files", upload.array("fileName"), uploadFiles);
+function uploadFiles(req:any, res:any) {
+  console.log(req.body);
+  console.log(req.files);
+  res.json({ message: "Successfully uploaded files" });
+}
+
 console.log("Remo")
 
 app.use('/api/v1/token',token)
 app.use(`/api/v1/lists`,graph)
 app.use(`/api/v1/sites`,workspace)
+app.use(`/api/v1/onedrive`,onedrive)
+app.use(`/api/v1/header`,header)
 
 app.listen(SERVER_PORT, () => console.log(`Msal Node Auth Code Sample app listening on port ${SERVER_PORT}!`))
