@@ -32,6 +32,8 @@ interface IFolderProps {
     isLoading?: any,
   
 }
+
+
 export const SidebarData = [
     {
         id:1,
@@ -74,7 +76,6 @@ export const SidebarData = [
 
 ]
 
-
 const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     const [SelValue, setSelValue] = useState("");
@@ -114,7 +115,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                     <nav>
                         {/* <List>
                             <ListItem disablePadding>
-                                <Link to="/WorkSpaceOne">
+                                <Link to="/WorkspaceOne">
                                 <ListItemButton>
                                     <ListItemIcon className={classes.MuiListItemIcon}>
                                         

@@ -44,18 +44,15 @@ import SubFolder from './Components/Workspace/Sharepoint/components/SubFolder';
 import { Grid, Paper, Typography } from '@mui/material';
 import Footer from './Components/Footer';
 import UploadFile from './UploadFile';
-
-
 // import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
 import WorkSpaceOne from './Components/WorkSpaceOne/index';
 // import SecondWorkSpace from './Layout/SecondWorkSpace';
 // import ContentEditor from './Components/ContentEditor';
-// import TableAnnouncementPage from './Pages/TableAnnouncementPage/index';
-import SharedWithMe from './Components/SharedwithMe/index';
 import AllLinks from './Components/Quicklinks/AllLinks';
 import SecondWorkSpace from './Layout/SecondWorkSpace';
 import TableAnnouncementPage from './Pages/TableAnnouncementPage';
 import ContentEditor from './Components/ContentEditor';
+import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
 
 
 const theme = createTheme({

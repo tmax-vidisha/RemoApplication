@@ -43,8 +43,10 @@ interface SimpleDialogProps {
     folder: any,
     onDelete?: (id: string, name: string) => void;
     onOpenFolder: (id: string, name: string, folder: any) => void;
-    deleteResponse: any
-
+    deleteResponse: any;
+    downloadUrl:any,
+    onCopy?: (id: string, name: string) => void;
+    copyResponse:any;
     // open: boolean;
     // // selectedValue: string;
     //  onClose: () => void;
@@ -55,13 +57,13 @@ function SimpleDialog(props: SimpleDialogProps) {
     const classes = useStyles();
     // const { onClose, selectedValue, open } = props;
 
-    const { id, name, folder, onDelete, onOpenFolder, deleteResponse } = props
+    const { id, name, folder, onDelete, onOpenFolder, deleteResponse,downloadUrl,onCopy,copyResponse } = props
     console.log(id, name, folder)
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const openOn = Boolean(anchorEl);
-
+     console.log(downloadUrl)
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -76,6 +78,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     //   onClose(value);
     // };
     console.log(deleteResponse?.success)
+    console.log(copyResponse?.response,'CopyLink')
     const [openOne, setOpenOne] = React.useState(false);
    
 
@@ -110,7 +113,24 @@ function SimpleDialog(props: SimpleDialogProps) {
     const handleCloseTwo = () => {
         setOpenTwo(false);
     };
+    const handleDownload = ()=>{
+        window.open(downloadUrl)
+    }
+    const [CopySuccess,setCopySuccess] =useState<any>('')
+   
+    const handleCopy = async() =>{
+       onCopy?.(id,name)
+    //    navigator.clipboard.writeText(copyResponse?.response)
+    try {
+        await navigator.clipboard.writeText(copyResponse?.response);
+         setCopySuccess('Copied!');
+        // console.log('Copied')
+      } catch (err) {
+        setCopySuccess('Failed to copy!');
+        // console.log('Failed to copy!')
+      }
 
+    }
 
 
     return (
@@ -146,14 +166,14 @@ function SimpleDialog(props: SimpleDialogProps) {
 
                 </MenuItem>
 
-                <MenuItem>
+                <MenuItem onClick={handleCopy}>
                     <div className={classes.items}>
                         <img src={linkIcon} alt="linkIcon" /> Copy Link
                     </div>
-
+                  
                 </MenuItem>
                 <MenuItem>
-                    <div className={classes.items}>
+                    <div onClick ={handleDownload}className={classes.items}>
                         <img src={downloadIcon} alt="downloadIcon" /> Download
                     </div>
 
@@ -247,6 +267,8 @@ interface IFolderProps {
     // onDownload?: (id: string) => void;
     onDelete?: (id: string, name: string) => void;
     deleteResponse: any,
+    onCopy?:(id: string, name: string) => void;
+    copyResponse:any
     // onRename?: (id: string, name: string) => void;
     // onShare?: (id: string) => void;
 }
@@ -263,7 +285,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     //@ts-ignore
     // const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token);
     // console.log(data?.response)
-    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick, onDelete, deleteResponse } = props;
+    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick, onDelete, deleteResponse,onCopy,copyResponse } = props;
     // const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
     // console.log(ItemChildren?.response, 'yujujujuys')
     // const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
@@ -363,12 +385,17 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const [itemId, setItemId] = useState<string>('');
     const [itemName, setItemName] = useState<string>('');
     const [itemfolder, setItemFolder] = useState<any>();
-    const de = (id: any, name: any, folder: any) => {
-        //    console.log(id,name)
-        // console.log(folder)
+    const [downUrl,setDownUrl] =  useState<string>('');
+    const de = (id: any, name: any, folder: any,download:any) => {
+         console.log(download,'ygrerthtrhy')
+           console.log(id,name)
+        console.log(folder)
         setItemId(id)
         setItemName(name)
         setItemFolder(folder)
+        if (folder === undefined) {
+            setDownUrl(download)
+        }
     }
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
@@ -458,6 +485,9 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 {data?.response &&
                                     data?.response.map((item: any, index: any) => {
                                         //   const { fields = {} } = item;
+                                        
+                                        // const  Url= item["@microsoft.graph.downloadUrl"];
+                                        // console.log(Url,'llll')
                                         //   // console.log(fields,'yjyjyjyjyj')
                                         //   var eventTitle = fields?.Title;
                                         //   console.log(eventTitle,'yjyjyjyjyj')
@@ -527,7 +557,8 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 </TableCell>
                                                 <TableCell align="right">
                                                     <Grid
-                                                        onClick={() => de(item.id, item.name, item.folder)}>
+                                                        onClick={() => de(item.id, item.name, item.folder,item["@microsoft.graph.downloadUrl"]
+                                                            )}>
                                                         {/* <Button  onClick={()=>de(item.id,item.name)}> */}
                                                         <SimpleDialog
                                                             id={itemId}
@@ -536,6 +567,9 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                             folder={itemfolder}
                                                             onOpenFolder={handleOpenFolder}
                                                             deleteResponse={deleteResponse}
+                                                            downloadUrl={downUrl}
+                                                            onCopy={onCopy}
+                                                            copyResponse={copyResponse}
                                                         // onOpenFolder={onClick}
                                                         //  open={openOn}
                                                         //  onClose={handleClose}
@@ -674,7 +708,8 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 </TableCell>
                                                 <TableCell align="right">
                                                     <Grid
-                                                        onClick={() => de(item.id, item.name, item.folder)}>
+                                                        onClick={() => de(item.id, item.name, item.folder,item["@microsoft.graph.downloadUrl"]
+                                                            )}>
                                                         {/* <Button  onClick={()=>de(item.id,item.name)}> */}
                                                         <SimpleDialog
                                                             id={itemId}
@@ -683,6 +718,9 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                             folder={itemfolder}
                                                             onOpenFolder={onClick}
                                                             deleteResponse={deleteResponse}
+                                                            downloadUrl={downUrl}
+                                                            onCopy={onCopy}
+                                                            copyResponse={copyResponse}
                                                         //  open={openOn}
                                                         //  onClose={handleClose}
                                                         //  anchorEl={anchorEl}

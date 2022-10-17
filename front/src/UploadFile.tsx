@@ -415,7 +415,3 @@ formData.append("fileName", excelblob);
 }
 
 export default UploadFile
-
-// function useEffect(arg0: () => void) {
-//     throw new Error('Function not implemented.');
-// }

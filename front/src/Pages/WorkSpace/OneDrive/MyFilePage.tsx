@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import useCustom from '../../../hooks/useCustom'
 import { breadcrumbsReducer, foldersReducer } from '../../../Store copy/Reducer/foldersReducer';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
-import { useGetAllRootItemsOneDriveQuery, useGetItemChildrenOneDriveMutation,useDeleteItemOneDriveMutation } from '../../../services/graph'
+import { useGetAllRootItemsOneDriveQuery, useGetItemChildrenOneDriveMutation,useDeleteItemOneDriveMutation,useCopylinkOneDriveMutation } from '../../../services/graph'
 import {MyFilesPage} from '../../../Components/WorkSpaceOne/MyFilesPage'
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import Breadcrumb from '../../../hooks/Breadcrumb';
@@ -21,6 +21,7 @@ const MyFilePage = () => {
     const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token)
     const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
     const [sendDeleteItem,{data:deleteResponse}] =  useDeleteItemOneDriveMutation();
+    const [sendCopyItem,{data:copyResponse}] = useCopylinkOneDriveMutation();
     console.log(data?.response)
     const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
         breadcrumbs: [{
@@ -91,6 +92,18 @@ const MyFilePage = () => {
         }
         await sendDeleteItem(Data)
     }
+    const  copylinkDriveItem = async(id:string,name:string) =>{
+        console.log(id,name)
+        const Data = {
+           // name:id,
+           ItemId: id,
+           Name:name
+       }
+       await sendCopyItem(Data)
+   }
+   
+  
+
   return (
     <AuthenticatedTemplate>
         <Grid style={{marginLeft:"75px"}}>
@@ -110,6 +123,8 @@ const MyFilePage = () => {
          onClick={folderClickHandler}
          onDelete={deleteDriveItem}
          deleteResponse={deleteResponse}
+         onCopy={copylinkDriveItem}
+         copyResponse={copyResponse}
        />
        </Grid>
        </Grid>
