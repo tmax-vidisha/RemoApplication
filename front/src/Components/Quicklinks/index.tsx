@@ -149,7 +149,7 @@ import { configuration } from "../../index";
                   })}
               </List>
               
-                  <RouterNavLink to="/userquicklink" >
+                  <RouterNavLink to="/userQuickLink" >
                   <span>More QuickLinks</span><ChevronRightIcon />
                     </RouterNavLink>
                 

@@ -29,7 +29,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={announcement} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/AnnoncementInput">Announcement
+                        <Link to="/tableAnnouncementPage">Announcement
                         </Link></Grid>
                 </Box>
                 <Box className={classes.boxContent}>
@@ -121,7 +121,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={quickLinks} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/userquicklink">
+                        <Link to="/userQuickLink">
                             Quick Links
                         </Link></Grid>
                 </Box>

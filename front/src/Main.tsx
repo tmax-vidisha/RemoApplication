@@ -24,7 +24,9 @@ import {
     HeroInputPage,
     NewsInputPage,
     EventsInputPage,
-    EmpHighlightInputPage
+    EmpHighlightInputPage,
+    MyFilePage,
+    MeetingsPage
      } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';
@@ -42,14 +44,15 @@ import SubFolder from './Components/Workspace/Sharepoint/components/SubFolder';
 import { Grid, Paper, Typography } from '@mui/material';
 import Footer from './Components/Footer';
 import UploadFile from './UploadFile';
-
-
 // import LeftMenu from './Components/WorkSpaceOne/LeftMenu';
 import WorkSpaceOne from './Components/WorkSpaceOne/index';
+// import SecondWorkSpace from './Layout/SecondWorkSpace';
+// import ContentEditor from './Components/ContentEditor';
+import AllLinks from './Components/Quicklinks/AllLinks';
 import SecondWorkSpace from './Layout/SecondWorkSpace';
+import TableAnnouncementPage from './Pages/TableAnnouncementPage';
 import ContentEditor from './Components/ContentEditor';
-import TableAnnouncementPage from './Pages/TableAnnouncementPage/index';
- import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
+import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
 
 
 const theme = createTheme({
@@ -180,7 +183,7 @@ const Main = () => {
                                 element={<Welcome />}
                             />
                             <Route
-                                path="/userquicklink"
+                                path="/userQuickLink"
                                 element={<UserQuickLinkPage/>}
                             />
                             <Route
@@ -273,6 +276,15 @@ const Main = () => {
                             <Route
                               path="/sharedWithMe"
                               element={<SharedWithMe/>} />
+                            <Route
+                              path="/allLinks"
+                              element={<AllLinks/>} />
+                            <Route
+                              path="/myFilePage"
+                              element={<MyFilePage/>} />
+                            <Route
+                              path="/MeetingsPage"
+                              element={<MeetingsPage/>} />
 
                         </Routes>
                     </ThemeProvider>

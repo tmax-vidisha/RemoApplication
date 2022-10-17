@@ -74,5 +74,28 @@ export const useStyles = makeStyles({
       verticalAlign: "middle",
       fontSize: "18px",
     },
+  },
+MainPart:{
+  height: 450,
+   width: '100%',
+    backgroundColor:"white",
+    padding:"30px",
+},
+upperPart:{
+  display:"flex",
+  justifyContent:"space-between",
+margin:"30px",
+paddingTop:"30px"
+},
+new:{
+  width:"100px",
+  backgroundColor:"#1dd0d8",
+  
+  borderRadius:"20px",
+ "& MuiButton":{
+  color:"white !important",
   }
+
+}
+
 });

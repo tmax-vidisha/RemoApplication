@@ -15,7 +15,11 @@ import {
   import { AuthenticatedTemplate } from "@azure/msal-react";
   import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
+import Draggable  from 'react-draggable';
+//import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+// import  DndProvider  from 'react-dnd';
+//import { Draggable } from "react-beautiful-dnd";
 
   interface IFolderProps {
     // ceomsg: any;
@@ -30,9 +34,32 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
    
     const { data, error, isLoading } =   props
     // console.log(data,'980ccccccc9090')
+  const [content, setContent] = useState<string>("Drop Something Here");
+    const dragStartHandler = (
+      event: React.DragEvent<HTMLDivElement>,
+      data: string
+    ) => {
+      event.dataTransfer.setData("text", data);
+    };
+  
+    // This function will be triggered when dropping
+    const dropHandler = (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      const data = event.dataTransfer.getData("text");
+      setContent(data);
+    };
+  
+    // This makes the third box become droppable
+    const allowDrop = (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+    };
+
+
   return (
     // <div>CeoMessage</div>
     <AuthenticatedTemplate>
+      <Draggable>
+        
       <Paper elevation={0}>
         {isLoading ? (
           <SkeletonAnimation />
@@ -101,6 +128,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
          )} 
       </Paper>
       
+      </Draggable>
     </AuthenticatedTemplate>
   )
 }
