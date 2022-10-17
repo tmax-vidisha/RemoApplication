@@ -28,7 +28,18 @@ export const useStyles = makeStyles({
     // height:"63px",
     opacity:"5",
     marginBottom:"10px !important",
-    paddingBottom:"10px !important"
+    paddingBottom:"10px !important",
+    marginLeft:"10px !important"
   },
-  
+  todo:{
+    border:"none",
+     height:"30px",
+    fontSize:"12px",
+    
+    color:"gray",
+    ": hover":{
+      color:"blue",
+      backgroundColor:"indigo"
+    }
+  }
 });

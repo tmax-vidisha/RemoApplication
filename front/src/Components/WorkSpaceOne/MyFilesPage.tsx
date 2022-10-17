@@ -480,6 +480,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                             <TableRow
                                                 key={item.name}
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                style={{fontSize:"10px"}}
                                             >
 
                                                 <TableCell component="th" scope="row">

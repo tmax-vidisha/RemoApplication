@@ -25,7 +25,8 @@ import {
     NewsInputPage,
     EventsInputPage,
     EmpHighlightInputPage,
-    MyFilePage
+    MyFilePage,
+    MeetingsPage
      } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';
@@ -284,6 +285,9 @@ const Main = () => {
                             <Route
                               path="/myFilePage"
                               element={<MyFilePage/>} />
+                            <Route
+                              path="/MeetingsPage"
+                              element={<MeetingsPage/>} />
 
                         </Routes>
                     </ThemeProvider>

@@ -93,8 +93,10 @@ export const useStyles = makeStyles({
   },
 
   quick: {
-    marginTop: "5px",
-    marginRight: "10px"
+    // marginTop: "5px",
+     //marginRight: "10px",
+    display:"flex",
+    justifyContent:"space-around",
 
   },
   linkBtn: {
@@ -103,4 +105,31 @@ export const useStyles = makeStyles({
     marginRight: "30px !important",
     padding: "5px 10px !important"
   },
+  ListItemText:{
+    "& span":{
+      fontSize:"12px",
+    },
+    " & p":{
+      fontSize:"12px",
+    }
+  },
+  meeting:{
+    "& MuiButtonBase":{
+      color: "gray !important", 
+      textTransform: "capitalize !important",
+       backgroundColor: " #e6ffe6 !important",
+        border: "5px solid white !important",
+         maxHeight: "55px !important", 
+         width: "auto !important",
+    },
+    "& css-1e6y48t-MuiButtonBase-root-MuiButton-root":{
+      color: "gray ", 
+      textTransform: "capitalize ",
+       backgroundColor: " #e6ffe6 ",
+        border: "5px solid white ",
+         maxHeight: "55px ", 
+         width: "auto ",
+    }
+    
+  }
 });
