@@ -18,6 +18,9 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
+import Draggable from 'react-draggable';
+
+
 // import { height } from 'react-material-ui-carousel/node_modules/@mui/system';
 interface IFolderProps {
   // hero: any;
@@ -92,7 +95,7 @@ interface IFolderProps {
 
 
   return (
-    // <div>HeroImages</div>
+    <div>
 <AuthenticatedTemplate>
   {/* <Box sx={{ flexGrow: 1, position: "relative" }}>
      
@@ -117,11 +120,9 @@ interface IFolderProps {
                   {data?.response && <img  src ={data?.response.image2}  height='252' width="100%"/> }
                 </AutoPlaySwipeableViews>
              </Box>   
-                
-             
-             
-      
+  
      </Box>  */}
+     <Draggable>
       <Box sx={{ flexGrow: 1, position: "relative" }}>
         {isLoading ? (
           <SkeletonAnimation />
@@ -171,8 +172,9 @@ interface IFolderProps {
           </>
         )}
       </Box>
-
+      </Draggable>
     </AuthenticatedTemplate>
+    </div>
   )
 }
 

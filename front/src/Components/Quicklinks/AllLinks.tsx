@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, ListItem } from '@mui/material';
 import { Box } from '@mui/material';
 import admin from "./../../Assets/Images/admin.svg";
-import ITService from "./../../Assets/Images/IT service.svg";
+import ITService from "./../../Assets/Images/IT-ervice.svg";
 import sales from "./../../Assets/Images/sales.svg";
-import vehicle from "./../../Assets/Images/vechicle req.svg";
+import vehicle from "./../../Assets/Images/vechicle-req.svg";
 // import gallery from "./../../Assets/Images/gallery.svg";
 // import Groups from "./../../Assets/Images/Groups.svg";
 // import highlights from "./../../Assets/Images/highlights.svg";
@@ -14,13 +14,17 @@ import vehicle from "./../../Assets/Images/vechicle req.svg";
 // import policies from "./../../Assets/Images/policies.svg";
 // import quickLinks from "./../../Assets/Images/quicklinksBig.svg";
 // import department from "./../../Assets/Images/departmentNew.svg";
-import { Typography, Button } from '@mui/material';
+import { Typography, Button,List,ListItemAvatar ,ListItemText } from '@mui/material';
 import { useStyles } from './Styles';
 import QuickLinks from './../Quicklinks/index';
 import AppVideo from './../CeoMessage/AppVideo';
 import { Link } from 'react-router-dom';
 import LinkOffSharpIcon from '@mui/icons-material/LinkOffSharp';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import { MeetingsPage } from '../../Pages';
+
+
+
 
 
 
@@ -35,20 +39,23 @@ const AllLinks = () => {
     }
 
     return (
-        <Grid style={{paddingTop:"20px",backgroundColor:"white",width:"250px" }}>
+        <Grid style={{ paddingTop: "20px", backgroundColor: "white", width: "280px", borderRadius: "20px" }}>
             <Grid>
                 {show ?
                     <div>
-                        <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }} onClick={() => setShow(!show)}>
-                            <div onClick={handleClickOn}><span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links </div>
+                        <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px", width:"70%" }} onClick={() => setShow(!show)}>
+                            <Grid onClick={handleClickOn} className={classes.quick}>
+                                <Grid><LinkOffSharpIcon /></Grid>
+                                <Grid  style={{textAlign:"right", marginLeft:"30px"}}>Quick Links</Grid> 
+                                </Grid>
                         </Button>
                         {isShown && (
-                            <div style={{marginTop:"30px"}}>
-                                <Grid style={{textAlign:"left", fontSize:"15px", marginLeft:"15px"}}>
-                                        Quick Link
-                                    </Grid>
+                            <div style={{ marginTop: "30px" }}>
+                                <Grid style={{ textAlign: "left", fontSize: "15px", marginLeft: "15px" }}>
+                                    Quick Link
+                                </Grid>
                                 <Grid className={classes.mainPart}>
-                                    
+
                                     <Box className={classes.boxContent}>
                                         <img src={admin} alt="admin" />
                                         <Grid component="p" className={classes.texts}>
@@ -137,11 +144,20 @@ const AllLinks = () => {
                     </div>
                     :
                     <div>
-                        <Button onClick={() => setShow(!show)} style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight: "48px" }}>
-                            <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
-                            Daily Standup Meeting ...
+                        <Button onClick={() => setShow(!show)} style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight: "55px", width: "auto" }}>                          
+                            <List>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                    <CalendarMonthOutlinedIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Daily Standup Meeting..." secondary="Tomorrow 10 AM" className={classes.ListItemText} />
+                                </ListItem>
+                            </List>
                             {/* <StandUpCalendar/> */}
                         </Button>
+                        {
+                            isShown && <MeetingsPage />
+                        }
                     </div>
                 }
             </Grid>

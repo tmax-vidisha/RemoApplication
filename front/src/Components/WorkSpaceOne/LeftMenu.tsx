@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { Box,CssBaseline, List, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, CssBaseline, List, ListItemIcon, ListItemText } from '@mui/material';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItem from '@mui/material/ListItem';
 import TopicTwoToneIcon from '@mui/icons-material/TopicTwoTone';
@@ -23,13 +23,16 @@ import trashIcon from "../../Assets/Images/trash.svg";
 import upload from "../../Assets/Images/upload-blue.svg";
 import menuBlue from "../../Assets/Images/menu-blue.svg";
 import setting from "../../Assets/Images/setting-blue.svg";
+import { MyFilePage } from '../../Pages';
 
 
 interface IFolderProps {
     data?: any,
     error?: any,
-    isLoading?: any
+    isLoading?: any,
+  
 }
+
 
 export const SidebarData = [
     {
@@ -81,7 +84,10 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+   
     const location = useLocation();
+
+
     const selectedMenu = (selValue: any) => {
         setSelValue(selValue);
         setTopMenu(false);
@@ -93,7 +99,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     const clearButton = (
         <ListItem className={classes.topClear} sx={{ position: "absolute", zIndex: 99 }}>
-            <Link  className={classes.topClearLink} onClick={clearMenu} to="/">
+            <Link className={classes.topClearLink} onClick={clearMenu} to="/">
                 clear <ClearIcon />
             </Link>
         </ListItem>
@@ -204,6 +210,9 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                 <Paper elevation={0}>
                     <CardContent sx={{ pb: "16px!important" }}>
                         {!topMenu && clearButton}import { Link } from 'react-router-dom';
+import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
+import { NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
                         <List className={classes.topItems}>
                             {topMenu && data?.response &&

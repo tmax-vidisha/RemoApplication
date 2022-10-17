@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Grid, ListItemText, ListItemIcon, TextField, IconButton, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import { useStyles } from './Styles';
+import { Link } from 'react-router-dom';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import LinkOffSharpIcon from '@mui/icons-material/LinkOffSharp';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
@@ -30,6 +31,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 // import Swal from 'sweetalert2';
 import { useUploadFileOneDriveMutation } from '../../services/graph'
+import admin from "./../../Assets/Images/admin.svg";
+import ITService from "./../../Assets/Images/IT-ervice.svg";
+import sales from "./../../Assets/Images/sales.svg";
+import vehicle from "./../../Assets/Images/vechicle-req.svg";
+import AllLinks from '../Quicklinks/AllLinks';
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -163,7 +170,7 @@ const SearchPart = (id: any) => {
         setOpenOne(false);
     };
 
-    const [text, setText] =  useState<string>('');
+    const [text, setText] = useState<string>('');
 
     const handleOnChange = (e: any) => {
         setText(e.target.value);
@@ -171,14 +178,14 @@ const SearchPart = (id: any) => {
     }
 
 
-    const handleFormSubmit = async(e: any) => {
+    const handleFormSubmit = async (e: any) => {
         e.preventDefault();
         const Data = {
-            name:text,
-           
-          }
-         //  console.log(fd)
-            await sendItem(Data)
+            name: text,
+
+        }
+        //  console.log(fd)
+        await sendItem(Data)
         // const Toast = Swal.mixin({
         //     toast: true,
         //     position: 'top',
@@ -281,9 +288,25 @@ const SearchPart = (id: any) => {
             </div>
         )
     }
+    const [openSix, setOpenSix] = React.useState(false);
+
+    const handleClickOpenSix = () => {
+        setOpenSix(true);
+    };
+
+    const handleCloseSix = () => {
+        setOpenSix(false);
+    };
+    const [show, setShow] = useState(true);
+    const [isShown, setIsShown] = useState(false);
+
+    const handleClickOn = (event: any) => {
+        // setIsShown(current => !current)
+        setIsShown(true)
+    }
 
     return (
-        <Grid container spacing={2} item xs={12} style={{ marginTop: "20px", position: "static", display: "flex", justifyContent: "space-around" }}>
+        <Grid  item xs={12} className={classes.upperSearch} > 
 
             <Grid>
                 <Search style={{ padding: "5px 5px", backgroundColor: "white", }}>
@@ -297,7 +320,7 @@ const SearchPart = (id: any) => {
                 </Search>
             </Grid>
 
-            <Grid style={{ display: "flex", justifyContent: "space-between" }}>
+            <Grid style={{ display: "flex", justifyContent: "flex-end" }}>
                 <Grid>
                     <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
                         <Button
@@ -487,14 +510,24 @@ const SearchPart = (id: any) => {
                     </Grid>
                 </Grid>
 
-                <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }} >
-                    <span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links</Button>
-                {/* <Dialog2 open={openDialog2} close={() => setDialog2Open(false)} ></Dialog2> */}
-                <Button style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight: "48px" }}>
-                    <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
-                    Daily Standup Meeting ...
-                    {/* <StandUpCalendar/> */}
-                </Button>
+                {/* {show ?
+                    <div>
+                        <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }} onClick={() => setShow(!show)}>
+                            <div onClick={handleClickOn}><span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links </div>
+                        </Button>
+                        {isShown && <AllLinks />}
+                    </div>
+                    :
+                    <div>
+                        <Button onClick={() => setShow(!show)} style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight: "48px" }}>
+                            <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
+                            Daily Standup Meeting ...
+                           
+                        </Button>
+                    </div>
+                } */}
+
+
 
             </Grid>
 
@@ -506,6 +539,97 @@ const SearchPart = (id: any) => {
 export default SearchPart;
 
 /*
+ <Dialog2 open={openDialog2} close={() => setDialog2Open(false)} ></Dialog2> 
+<Dialog
+                    open={openSix}
+                    onClose={handleCloseSix}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        {"Quick Links"}
+                    </DialogTitle>
+                    <DialogContent>
+                        <Grid className={classes.mainPart}>
+                            <Box className={classes.boxContent}>
+                                <img src={admin} alt="admin" />
+                                <Grid component="p" className={classes.texts}>
+                                    <Link to="/AnnoncementInput">IT -Service
+                                    </Link></Grid>
+                            </Box>
+                            <Box className={classes.boxContent}>
+                                <img src={ITService} alt="ITService" />
+                                <Grid component="p" className={classes.texts}>
+                                    <Link to="/CEOInput">
+                                        Admin
+                                    </Link></Grid>
+                            </Box>
+                            <Box className={classes.boxContent}>
+                                <img src={sales} alt="sales" />
+                                <Grid component="p" className={classes.texts}>
+                                    <Link to="/ContentEditor">
+                                        Sales
+                                    </Link>
+                                </Grid>
+                            </Box>
+                            <Box className={classes.boxContent}>
+                                <img src={vehicle} alt="vehicle" />
+                                <Grid component="p" className={classes.texts}>
+                                    <Link to="/AnnouncementReadMore">
+                                        Vehicle Request
+                                    </Link>
+
+                                </Grid>
+                            </Box>
+                            <Box className={classes.boxContent}>
+                                <img src={sales} alt="announce" />
+                                <Grid component="p" className={classes.texts}>
+
+                                    <Link to="/EventsInput">
+                                        Hub
+                                    </Link>
+                                </Grid>
+                            </Box>
+                            <Box className={classes.boxContent}>
+                                <img src={ITService} alt="announce" />
+                                <Grid component="p" className={classes.texts}>
+                                    <Link to="/ContentEditor">
+                                        IT Service
+                                    </Link>
+                                </Grid>
+                            </Box>
+                            <Box className={classes.boxContent}>
+                                <img src={admin} alt="announce" />
+                                <Grid component="p" className={classes.texts}>
+                                    <Link to="/HeroInput">
+                                        Admin
+                                    </Link>
+                                </Grid>
+                            </Box>
+                            <Box className={classes.boxContent}>
+                                <img src={sales} alt="announce" />
+                                <Grid component="p" className={classes.texts}>
+                                    <Link to="/EmpHighInput">
+                                        Hub
+                                    </Link> </Grid>
+                            </Box>
+                            <Box className={classes.boxContent}>
+                                <img src={vehicle} alt="announce" />
+                                <Grid component="p" className={classes.texts}>
+                                    <Link to="/EmpHighInput">
+                                        Vehicle Request
+                                    </Link> </Grid>
+                            </Box>
+
+                        </Grid>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleCloseSix}>Close</Button>
+                        <Button onClick={handleCloseSix} autoFocus>
+                            Agree
+                        </Button>
+                    </DialogActions>
+                </Dialog>
                         <ListItemButton
                             className={classes.createNew}
                             // alignItems="flex-start"
@@ -516,7 +640,10 @@ export default SearchPart;
                                 pb: open ? 0 : 2.5,
                                 '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
                                 backgroundColor: "rgb(50 168 189) !important"
-                            }}
+                            }}import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
+import AllLinks from './../Quicklinks/AllLinks';
+
                         >
                             <span className={classes.plus}><LocalHospitalIcon /></span>
                             <ListItemText
