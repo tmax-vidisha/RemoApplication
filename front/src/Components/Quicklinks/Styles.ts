@@ -92,10 +92,15 @@ export const useStyles = makeStyles({
   },
 
   quick: {
-    marginTop: "5px",
-    marginRight: "10px"
+
+    // marginTop: "5px",
+    // marginRight: "10px"
+    display:"flex",
+    justifyContent:"space-between",
 
   },
+  
+ 
   linkBtn: {
     backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
@@ -166,6 +171,7 @@ export const useStyles = makeStyles({
   //   marginRight: "30px !important",
   //   padding: "5px 10px !important"
   // },
+
   ListItemText:{
     "& span":{
       fontSize:"12px",

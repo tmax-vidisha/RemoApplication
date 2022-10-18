@@ -20,6 +20,7 @@ const style = {
 export interface Item {
     id: number
     text:JSX.Element;
+
 }
 
 export interface ContainerState {
@@ -31,15 +32,15 @@ export const Container: FC = () => {
         const [cards, setCards] = useState([
             {
                 id: 1,
+
                 text:<Grid item xs={8}><HeroImagePage /></Grid>,
-               //src:<CeoMessage/>
-            //    src:"./../../Components/HeroImages/index",
-                // image:'./../../Assets/Images/logo.png',
+
             },
             {
                 id: 2,
+
                 text: <Grid item xs={4}><CeoPage/></Grid>,
-              //image:'./../../Assets/Images/CEO.svgg',
+
             },
 
         ])
@@ -57,13 +58,16 @@ export const Container: FC = () => {
         }, [])
 
         const renderCard = useCallback(
+
             (card: { id: number; text: JSX.Element  }, index: number) => {
+
                 return (
                     <Card
                         key={card.id}
                         index={index}
                         id={card.id}
                         text={card.text}
+                        //  data={card.data}
                         moveCard={moveCard}
                     />
                 )

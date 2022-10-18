@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import CeoPage from '../CeoPage/CeoPage';
 import HeroImagePage from './../HeroImagePage/HeroImagePage';
-import Draggable from "react-draggable";
+// import Draggable from "react-draggable";
 
 const MiddleCeoPage = () => {
 
@@ -10,14 +10,14 @@ const MiddleCeoPage = () => {
     return (
         <Grid container spacing={2} item xs={12}>
             <Grid item xs={8}>
-                <Draggable>
+                {/* <Draggable>
                     <HeroImagePage />
-                </Draggable>
+                </Draggable> */}
             </Grid>
             <Grid item xs={4}>
-                <Draggable>
+                {/* <Draggable>
                     <CeoPage />
-                </Draggable>
+                </Draggable> */}
             </Grid>
 
         </Grid>

@@ -185,12 +185,12 @@ const SocialMedia = () => {
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <LinkedInEmbed
               //url="https://www.linkedin.com/embed/feed/update/urn:li:share:6898694772484112384"
-              url="https://www.linkedin.com/embed/feed/update/urn:li:share:6955728295980056577"
+              //url="https://www.linkedin.com/embed/feed/update/urn:li:share:6955728295980056577"
               //url="https://www.linkedin.com/embed/feed/update/urn:li:share:6955091372349542400"
               //url="https://www.linkedin.com/company/google/?originalSubdomain=in"
               //postUrl="https://www.linkedin.com/posts/google_interviewing-is-not-one-sided-as-an-aspiring-activity-6954114739874512897-N4OR?utm_source=linkedin_share&utm_medium=member_desktop_web"
               postUrl="https://www.linkedin.com/embed/feed/update/urn:li:share:6955728295980056577"
-
+              url="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6986017723038269440"
               width={325}
               height={370}
             />
@@ -206,14 +206,14 @@ const SocialMedia = () => {
         </TabPanel>
         <TabPanel value={value} index={3}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <FacebookEmbed 
-            //url="https://www.facebook.com/andrewismusic/posts/451971596293956" 
-           //url="https://www.facebook.com/taqeefmiddleeast/posts/" 
-            //url="https://www.facebook.com/taqeefmiddleeast/photos" 
-            url="https://fb.watch/eqiJfx_kmH/" 
-            width={350} />
+            <FacebookEmbed
+              //url="https://www.facebook.com/andrewismusic/posts/451971596293956" 
+              //url="https://www.facebook.com/taqeefmiddleeast/posts/" 
+              //url="https://www.facebook.com/taqeefmiddleeast/photos" 
+              url="https://fb.watch/eqiJfx_kmH/"
+              width={350} />
           </div>
-          
+
         </TabPanel>
       </Paper>
     </>
