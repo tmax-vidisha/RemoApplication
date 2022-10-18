@@ -8,7 +8,9 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import HeroImages from './../../Components/HeroImages/index';
 import CeoImage from './../../Assets/Images/CEO.svg';
 import logo from './../../Assets/Images/logo.png';
-
+import { CeoPage,HeroImagePage } from '../../Pages';
+import { Grid } from '@mui/material';
+// import {ceo} from '../../Assets/Images/'
 const style = {
     width: 400,
     display: "flex",
@@ -17,8 +19,8 @@ const style = {
 
 export interface Item {
     id: number
-    text: string
-    
+    text:JSX.Element;
+
 }
 
 export interface ContainerState {
@@ -30,23 +32,21 @@ export const Container: FC = () => {
         const [cards, setCards] = useState([
             {
                 id: 1,
-                text: 'Write a cool JS library',
-              
-                // data1:<CeoMessage/>
-               //src:<CeoMessage/>
-            //    src:"./../../Components/HeroImages/index",
-                // image:'./../../Assets/Images/logo.png',
+
+                text:<Grid item xs={8}><HeroImagePage /></Grid>,
+
             },
             {
                 id: 2,
-                text: 'Make it generic enough',
-                // data:HeroImages,
-              //image:'./../../Assets/Images/CEO.svgg',
+
+                text: <Grid item xs={4}><CeoPage/></Grid>,
+
             },
 
         ])
 
         const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
+            //@ts-ignore
             setCards((prevCards: Item[]) =>
                 update(prevCards, {
                     $splice: [
@@ -58,7 +58,9 @@ export const Container: FC = () => {
         }, [])
 
         const renderCard = useCallback(
-            (card: { id: number; text: string , data?:any }, index: number) => {
+
+            (card: { id: number; text: JSX.Element  }, index: number) => {
+
                 return (
                     <Card
                         key={card.id}
@@ -75,6 +77,7 @@ export const Container: FC = () => {
 
         return (
             <div>
+               
                 <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
                 {/* <DndProvider backend={HTML5Backend}>
                     <CeoMessage />

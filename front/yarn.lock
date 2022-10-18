@@ -4805,7 +4805,7 @@ dlv@^1.1.3:
 
 dnd-core@^16.0.1:
   version "16.0.1"
-  resolved "https://registry.npmjs.org/dnd-core/-/dnd-core-16.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/dnd-core/-/dnd-core-16.0.1.tgz#a1c213ed08961f6bd1959a28bb76f1a868360d19"
   integrity sha512-HK294sl7tbw6F6IeuK16YSBUoorvHpY8RHO+9yFfaJyCDVb6n7PRcezrOEOa2SBCqiYpemh5Jx20ZcjKdFAVng==
   dependencies:
     "@react-dnd/asap" "^5.0.1"
