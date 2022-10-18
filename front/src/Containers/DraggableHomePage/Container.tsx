@@ -18,6 +18,7 @@ const style = {
 export interface Item {
     id: number
     text: string
+    
 }
 
 export interface ContainerState {
@@ -30,6 +31,8 @@ export const Container: FC = () => {
             {
                 id: 1,
                 text: 'Write a cool JS library',
+              
+                // data1:<CeoMessage/>
                //src:<CeoMessage/>
             //    src:"./../../Components/HeroImages/index",
                 // image:'./../../Assets/Images/logo.png',
@@ -37,6 +40,7 @@ export const Container: FC = () => {
             {
                 id: 2,
                 text: 'Make it generic enough',
+                // data:HeroImages,
               //image:'./../../Assets/Images/CEO.svgg',
             },
 
@@ -54,13 +58,14 @@ export const Container: FC = () => {
         }, [])
 
         const renderCard = useCallback(
-            (card: { id: number; text: string  }, index: number) => {
+            (card: { id: number; text: string , data?:any }, index: number) => {
                 return (
                     <Card
                         key={card.id}
                         index={index}
                         id={card.id}
                         text={card.text}
+                        //  data={card.data}
                         moveCard={moveCard}
                     />
                 )
