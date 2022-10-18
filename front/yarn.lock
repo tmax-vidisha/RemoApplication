@@ -4805,7 +4805,7 @@ dlv@^1.1.3:
 
 dnd-core@^16.0.1:
   version "16.0.1"
-  resolved "https://registry.npmjs.org/dnd-core/-/dnd-core-16.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/dnd-core/-/dnd-core-16.0.1.tgz#a1c213ed08961f6bd1959a28bb76f1a868360d19"
   integrity sha512-HK294sl7tbw6F6IeuK16YSBUoorvHpY8RHO+9yFfaJyCDVb6n7PRcezrOEOa2SBCqiYpemh5Jx20ZcjKdFAVng==
   dependencies:
     "@react-dnd/asap" "^5.0.1"
@@ -9076,7 +9076,7 @@ react-dnd-html5-backend@^16.0.1:
 
 react-dnd@^16.0.1:
   version "16.0.1"
-  resolved "https://registry.npmjs.org/react-dnd/-/react-dnd-16.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/react-dnd/-/react-dnd-16.0.1.tgz#2442a3ec67892c60d40a1559eef45498ba26fa37"
   integrity sha512-QeoM/i73HHu2XF9aKksIUuamHPDvRglEwdHL4jsp784BgUuWcg6mzfxT0QDdQz8Wj0qyRKx2eMg8iZtWvU4E2Q==
   dependencies:
     "@react-dnd/invariant" "^4.0.1"

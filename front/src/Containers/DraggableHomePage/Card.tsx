@@ -15,7 +15,7 @@ const style = {
 
 export interface CardProps {
   id: any
-  text: string
+  text: JSX.Element
   index: number
   moveCard: (dragIndex: number, hoverIndex: number) => void
 }
@@ -23,7 +23,7 @@ export interface CardProps {
 interface DragItem {
   index: number
   id: string
-  type: string
+  type: JSX.Element
 }
 
 export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
