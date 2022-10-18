@@ -58,7 +58,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
   return (
     // <div>CeoMessage</div>
     <AuthenticatedTemplate>
-      <Draggable>
+      {/* <Draggable> */}
         
       <Paper elevation={0}>
         {isLoading ? (
@@ -128,7 +128,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
          )} 
       </Paper>
       
-      </Draggable>
+      {/* </Draggable> */}
     </AuthenticatedTemplate>
   )
 }

@@ -12,9 +12,12 @@ import { CeoPage,HeroImagePage } from '../../Pages';
 import { Grid } from '@mui/material';
 // import {ceo} from '../../Assets/Images/'
 const style = {
-    width: 400,
+    width: 1150,
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    marginLeft:"18px",
+    
+
 }
 
 export interface Item {
@@ -33,13 +36,13 @@ export const Container: FC = () => {
             {
                 id: 1,
 
-                text:<Grid item xs={8}><HeroImagePage /></Grid>,
+                text:<Grid item xs={12}><HeroImagePage /></Grid>,
 
             },
             {
                 id: 2,
 
-                text: <Grid item xs={4}><CeoPage/></Grid>,
+                text: <Grid item xs={12}><CeoPage/></Grid>,
 
             },
 

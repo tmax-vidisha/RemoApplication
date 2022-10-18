@@ -37,8 +37,8 @@ import Gallery from './../../Components/Gallery/index';
 import MiddleCeoPage from '../../Pages/MiddleCeoPage';
 import ListItem from '@mui/material/ListItem';
 // import { ReactSortable } from "react-sortablejs";
-import {DndProvider } from "react-dnd";
- import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider, useDrag, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import DraggableHomePage from '../DraggableHomePage';
 
 interface ListType {
@@ -223,15 +223,14 @@ const PortalHome = () => {
             <div key={item.id}>{item.name} </div>
           ))}
         </ReactSortable> */}
-      
-         {/* <Grid item xs={8}>
+        <DndProvider backend={HTML5Backend}>
+        {/* <Grid item xs={8}>
           <HeroImagePage />
         </Grid>
         <Grid item xs={4}>
           <CeoPage />
 
-        </Grid>  */}
-         <DndProvider backend={HTML5Backend}>
+        </Grid> */}
         <DraggableHomePage />
         </DndProvider>
         
@@ -330,4 +329,4 @@ const PortalHome = () => {
   )
 }
 
-export default PortalHome
+export default PortalHome;

@@ -151,7 +151,7 @@ const AllLinks = () => {
                                     <ListItemText primary="Daily Standup Meeting..." secondary="Tomorrow 10 AM" className={classes.ListItemText} />
                                 </ListItem>
                             </List>
-                            {/* <StandUpCalendar/> */}
+                            
                         </Button>
                         {
                             isShown && <MeetingsPage />
