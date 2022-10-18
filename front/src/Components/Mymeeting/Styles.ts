@@ -41,5 +41,21 @@ export const useStyles = makeStyles({
       color:"blue",
       backgroundColor:"indigo"
     }
+  },
+
+  calendar:{
+    width: "240px",
+      maxWidth: "240px",
+      marginTop:"50px",
+      border: "none",
+      fontSize:"10px",
+      color:'#bab4b4',
+    "& react-calendar":{
+      width: "240px",
+      maxWidth: "240px",
+      background: "white",
+      border: "none",
+      lineHeight: "1.125em",
+    }
   }
 });

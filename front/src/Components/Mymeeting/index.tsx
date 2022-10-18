@@ -21,6 +21,7 @@ import useCustom from "../../hooks/useCustom";
 import SkeletonAnimation from "../../Containers/Skeleton";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Calendar from 'react-calendar';
 
 
 var moment = require("moment-timezone");
@@ -48,7 +49,10 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
   ) => {
     setAlignment(newAlignment);
   };
-
+  const [isShown, setIsShown] = useState(false);
+  
+  const [value, onChange] = useState(new Date());
+  
   return (
 
     <AuthenticatedTemplate>
@@ -73,20 +77,22 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
               </Typography>
 
             </Stack>
-            <Grid style={{marginBottom:"20px"}}>
-              <ToggleButtonGroup
-                value={alignment}
-                exclusive
-                onChange={handleAlignment}
-                aria-label="text alignment"
-              >
-                <ToggleButton value="left" aria-label="left aligned" style={{ textTransform: "capitalize" }} className={classes.todo}>
-                  Calendar
-                </ToggleButton>
-                <ToggleButton value="center" aria-label="centered" style={{ border: "none", height: "30px", textTransform: "capitalize" }}>
-                  To do
-                </ToggleButton>
-              </ToggleButtonGroup>
+            <Grid >
+              <Grid>
+                <Grid  style={{ textTransform: "capitalize" }} className={classes.todo}  onClick={() => setIsShown(!isShown)}>
+                 Calendar </Grid>
+                 {isShown && (
+                  <div style={{marginTop:"10px"}}>
+                    <Calendar onChange={onChange} value={value} className={classes.calendar}/>
+                  </div>
+                )}
+                               
+                  <Grid style={{ border: "none", height: "30px", textTransform: "capitalize" }}>
+                    To do
+                  </Grid>
+              
+
+              </Grid>
 
             </Grid>
 

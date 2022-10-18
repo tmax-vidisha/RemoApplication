@@ -122,7 +122,7 @@ interface IFolderProps {
              </Box>   
   
      </Box>  */}
-     <Draggable>
+     {/* <Draggable> */}
       <Box sx={{ flexGrow: 1, position: "relative" }}>
         {isLoading ? (
           <SkeletonAnimation />
@@ -172,7 +172,7 @@ interface IFolderProps {
           </>
         )}
       </Box>
-      </Draggable>
+      {/* </Draggable> */}
     </AuthenticatedTemplate>
     </div>
   )
