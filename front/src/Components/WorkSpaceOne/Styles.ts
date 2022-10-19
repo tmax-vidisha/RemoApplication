@@ -203,9 +203,9 @@ export const useStyles = makeStyles({
   },
 
   MuiListItemIcon: {
-    minWidth: "35px",
+    maxWidth: "35px",
     "& img": {
-      width: "12px",
+      width: "15px",
     }
   },
   LeftMenu: {

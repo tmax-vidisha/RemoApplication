@@ -34,13 +34,19 @@ export const useStyles = makeStyles({
   todo:{
     border:"none",
      height:"30px",
+     textAlign:"center",
     fontSize:"12px",
-    
+    width:"70px",
     color:"gray",
-    ": hover":{
-      color:"blue",
-      backgroundColor:"indigo"
+    "& : hover":{
+      color:"blue", 
+    },
+    backgroundColor:"white",
+    "& :hover":{
+      backgroundColor:"#e1f5f3",
+      height:"30px",
     }
+    
   },
 
   calendar:{
@@ -57,5 +63,16 @@ export const useStyles = makeStyles({
       border: "none",
       lineHeight: "1.125em",
     }
+  },
+
+  task:{
+    display:"flex",
+     justifyContent:"flex-start",
+      marginTop:"15px",
+       color:"blue",
+       fontSize:"15px",
+       "& span":{
+        marginRight:"10px",
+       }
   }
 });
