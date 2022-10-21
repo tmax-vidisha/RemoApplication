@@ -40,6 +40,7 @@ import ListItem from '@mui/material/ListItem';
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import DraggableHomePage from '../DraggableHomePage';
+import DroppableHomePage from '../DroppableHomePage';
 
 interface ListType {
   id: number;
@@ -231,7 +232,8 @@ const PortalHome = () => {
           <CeoPage />
 
         </Grid> */}
-        <DraggableHomePage />
+        {/* <DraggableHomePage /> */}
+        <DroppableHomePage />
         </DndProvider>
         
 

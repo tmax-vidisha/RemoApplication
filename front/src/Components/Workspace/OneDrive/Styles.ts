@@ -84,5 +84,6 @@ export const useStyles = makeStyles({
     float: "left",
     width: "calc(100% - 55px)",
     paddingLeft: "15px",
+    
   },
 });
