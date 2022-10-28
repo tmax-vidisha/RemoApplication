@@ -96,6 +96,32 @@ new:{
   color:"white !important",
   }
 
+},
+newPosOfDialog: {
+  position: "absolute",
+  top: "30%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  height:"1000%",
+  width:"700%"
+},
+dropZone:{
+  padding:"20px",
+  textAlign:"center",
+  border: "3px dashed #eeeeee",
+  color: "#bdbdbd",
+  backgroundColor:"#fafafa",
+  marginBottom:"20px"
+
+},
+label: {
+  float: "left"
+},
+
+span: {
+  display: "block",
+  overflow: "hidden",
+  padding: "0px 4px 0px 6px"
 }
 
 });
