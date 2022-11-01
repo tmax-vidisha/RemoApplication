@@ -98,8 +98,16 @@ export const oneDriveApi = createApi({
   }),
   // providesTags : [ 'OneDriveRootItems'],
   }),
-
+  getAllRecentItems: builder.query<any, any>({
+    // query: () => '/api/v1/onedrive/getAllRootItems',
+    query: (id) => ({
+      url: `/api/v1/onedrive/getRecentFiles/${id}`,
+      // headers:{ "authorization": `${AccessToken}` },
   }),
+  // providesTags : [ 'OneDriveRootItems'],
+  }),
+  }),
+  
 })
 export const { useGetAllPrayersQuery,useGetAllCountryCodesQuery } = usersApi
 export const { 
@@ -108,7 +116,8 @@ export const {
                 useGetAllRootItemsOneDriveQuery,
                 useDeleteItemOneDriveMutation,
                 useCopylinkOneDriveMutation,
-                useGetAllSharedItemsQuery
+                useGetAllSharedItemsQuery,
+                useGetAllRecentItemsQuery
                 
               
               

@@ -650,7 +650,45 @@ const getAllOneDriveSharedItems = asyncHandler(async(req:Request, res:Response) 
    
  
  })
-
+ const getAllOneDriveRecentFiles = asyncHandler(async(req:Request, res:Response) => {
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
+ 
+   // const  token = req.headers.authorization
+  console.log(req.body)
+    const {token} = req.params
+   // //  const {token} = req.body
+    console.log(token,'llll')
+   // console.log(req.body,'gregrthtrht')
+   if(!token ){
+  
+   return res.status(404).json({
+       success: false,
+       error: "No Token found"
+   });
+ 
+   }else {
+     
+     const response = 
+     // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+       await axios.get(`https://graph.microsoft.com/v1.0/me/drive/recent`, {
+       headers: {
+           'Authorization': `Bearer ${token} `,
+           'Content-Type': 'application/json'
+         
+         }
+       
+   })
+   console.log(response.data.value,"root" )
+   res.status(200).json({
+     success: true,
+     response :response.data.value
+ 
+  });
+ 
+   }
+   
+ 
+ })
 
 
 
@@ -661,6 +699,7 @@ export {
     getOneDriveItemChildren,
     deleteOneDriveItem,
     copylinkDriveItem,
-    getAllOneDriveSharedItems
+    getAllOneDriveSharedItems,
+    getAllOneDriveRecentFiles
    
 }

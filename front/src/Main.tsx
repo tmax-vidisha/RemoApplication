@@ -53,6 +53,7 @@ import SecondWorkSpace from './Layout/SecondWorkSpace';
 import TableAnnouncementPage from './Pages/TableAnnouncementPage';
 import ContentEditor from './Components/ContentEditor';
 import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
+import RecentFiles from './Components/WorkSpaceOne/RecentFiles';
 
 
 const theme = createTheme({
@@ -276,6 +277,9 @@ const Main = () => {
                             <Route
                               path="/sharedWithMe"
                               element={<SharedWithMe/>} />
+                             <Route
+                              path="/recentFilesOneDrive"
+                              element={<RecentFiles/>} />
                             <Route
                               path="/allLinks"
                               element={<AllLinks/>} />
