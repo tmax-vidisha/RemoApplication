@@ -64,13 +64,13 @@ export const ContainerPage: FC = () => {
             {
                 id: 4,
 
-                text: <Grid item xs={12}> <EmpHighlightPage /></Grid>,
+                text: <Grid item xs={6}> <EmpHighlightPage /></Grid>,
 
             },
             {
                 id: 5,
 
-                text: <Grid item xs={12}>  <NewsPage /></Grid>,
+                text: <Grid item xs={10}>  <NewsPage /></Grid>,
 
             },
             {
