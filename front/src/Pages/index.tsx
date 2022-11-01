@@ -21,6 +21,7 @@ import CeoInputPage from "./CeoPage/CeoInputPage";
 import MeetingsPage from "./MeetingsPage/MeetingsPage";
 import MyFilePage from "./WorkSpace/OneDrive/MyFilePage";
 import SharedFilePage from "./WorkSpace/OneDrive/SharedFilePage";
+import MyRecent from "./WorkSpace/OneDrive/MyRecent";
 export {
     
         EventsPage,
@@ -45,6 +46,7 @@ export {
         NewsInputPage,
         MeetingsPage,
         MyFilePage,
-        SharedFilePage
+        SharedFilePage,
+        MyRecent
 
       };

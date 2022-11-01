@@ -57,7 +57,7 @@ export const SidebarData = [
     {
         id:4,
         title: "Recent",
-        path: "/php",
+        path: "/recentFilesOneDrive",
         icon:<img src={ recentIcon} alt=""/>,
     },
     {
