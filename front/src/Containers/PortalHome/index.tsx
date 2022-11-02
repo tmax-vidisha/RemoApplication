@@ -42,23 +42,15 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import DraggableHomePage from '../DraggableHomePage';
 import DroppableHomePage from '../DroppableHomePage';
 
-interface ListType {
-  id: number;
-  name: string;
-}
-const PETS = [
-  { id: 1, name: <HeroImagePage /> },
-  { id: 2, name: <CeoPage /> },
 
-]
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
+      // flexGrow: 1,
     },
     paper: {
-      padding: theme.spacing(2),
+      //padding: theme.spacing(2),
       textAlign: "center",
       color: theme.palette.text.secondary,
     },
@@ -172,37 +164,10 @@ const PortalHome = () => {
   //  const employeedata = data1.Employee;
   //  const herodata = data1.Hero;
   //  const gallerydata = data1.Gallery;
-
-  const [pets, setPets] = useState(PETS)
-
-  const movePetListItem = useCallback(
-    (dragIndex: any, hoverIndex: any) => {
-      const dragItem = pets[dragIndex]
-      const hoverItem = pets[hoverIndex]
-      // Swap places of dragItem and hoverItem in the pets array
-      setPets(pets => {
-        const updatedPets = [...pets]
-        updatedPets[dragIndex] = hoverItem
-        updatedPets[hoverIndex] = dragItem
-        return updatedPets
-      })
-    },
-    [pets],
-  )
-  // const [state, setState] = useState<ListType[]>([
-  //   { id: 1, link:  <HeroImagePage /> },
-  //   { id: 2, link: <CeoPage /> },
-   
-  // ]);
-
-  const [logoPos, setLogoPos] = useState({ x: 0, y: 0 });
-  // const bindLogoPos =useDrag (() =>{
-
-  // }) 
   
   return (
     <div className={classes.root}>
-      <Grid container spacing={2} className={classes.bannerTop}>
+      <Grid className={classes.bannerTop}>
 
         {/* <Grid item xs={12}>
           <Paper elevation={0}>
@@ -237,24 +202,25 @@ const PortalHome = () => {
         </DndProvider>
         
 
-        <Grid item xs={12} style={{ marginBottom: "16px", paddingTop: "16px", position: "relative" }}>
-          {/* <Link to="/WorkSpaceOne/LeftMenu"><HomeNavigationPage /></Link>  */}
-          {/* hghgjhgjhjhjhjhjhjhj */}
-          <HomeNavigationPage />
+        {/* <Grid item xs={12} style={{ marginBottom: "16px", paddingTop: "16px", position: "relative" }}>
+        
+        
+          <HomeNavigationPage />*/}
 
 
-        </Grid>
-        {/* <Grid item xs={8}>
+        </Grid> 
+       
+      
+       {/* <Grid item xs={8}>
             <Mymeeting />
           </Grid> */}
         {/* <LeftMenu/> */}
-        {/* <WorkSpaceOne/> */}
-      </Grid>
+        {/* <WorkSpaceOne/> 
+        </Grid>*/}
 
-      <Grid container spacing={2}>
+      {/* <Grid container spacing={2}>
         <Grid item xs={8}>
-          {/* <Mymeeting /> */}
-          {/* hhhhhhhhhhhhhh */}
+          
           <MeetingsPage />
         </Grid>
         <Grid item xs={4}>
@@ -263,7 +229,7 @@ const PortalHome = () => {
         <Grid item xs={8}>
           <Grid item xs={12}>
             <NewsPage />
-            {/* jjhjhgjhgjhg */}
+           
           </Grid>
           <Grid
             container
@@ -279,11 +245,10 @@ const PortalHome = () => {
           >
             <Grid item xs={6} style={{ paddingLeft: 0 }}>
               <Gallery />
-              {/* <EventsPage  /> */}
-              {/* hhjfghg */}
+              
             </Grid>
             <Grid item xs={6} style={{ paddingRight: 0 }}>
-              {/* <AnnouncementPage  /> */}
+            
               <SocialMedia />
             </Grid>
           </Grid>
@@ -299,34 +264,25 @@ const PortalHome = () => {
             }}
             spacing={2}
           >
-            <Grid item xs={6} style={{ paddingLeft: 0 }}>
-
-              {/* <Gallery  /> */}
-              {/* bfbbbfbfbfb */}
-            </Grid>
-            <Grid item xs={6} style={{ paddingRight: 0 }}>
-              {/* <SocialMedia /> */}
-            </Grid>
+            
           </Grid>
         </Grid>
         <Grid item xs={4}>
-          {/* <EmpHighlightPage />  */}
-          {/* gfgfghghghghg */}
+        
           <Grid item xs={12} style={{ marginTop: 16 }}>
-            {/* <Weather /> */}
+            <Weather />
           </Grid>
 
           <Grid item xs={12} style={{ marginTop: 16 }}>
             <EventsPage />
-            {/* <QuicklinkPage  /> */}
-            {/* hthhfhfhfgh */}
+           
           </Grid>
           <Grid item xs={12} style={{ marginTop: 16 }}>
             <RecentFilePage />
-            {/* rgrgtrhgthgd */}
+            
           </Grid>
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   )
 }
