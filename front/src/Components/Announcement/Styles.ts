@@ -103,7 +103,8 @@ newPosOfDialog: {
   left: "50%",
   transform: "translate(-50%, -50%)",
   height:"1000%",
-  width:"700%"
+  width:"700%",
+  overflowY:"hidden",
 },
 dropZone:{
   padding:"20px",
