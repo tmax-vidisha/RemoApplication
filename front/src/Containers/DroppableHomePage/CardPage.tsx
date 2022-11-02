@@ -15,8 +15,8 @@ const style = {
     paddingRight: "20px",
     //    display:"grid",
     //     gridTemplateColumn:"repeat(2, 1fr)",
-    display: "flex",
-    justifyContent: "space-around"
+    // display: "flex",
+    // justifyContent: "space-around"
 
 }
 
@@ -111,7 +111,7 @@ export const CardPage: FC<CardProps> = ({ id, text, index, moveCard }) => {
     return (
         //$ts-ignore
         <div >
-            <Grid container spacing={2} item xs={12}>
+            <Grid item xs={12}>
                 <Grid item xs={12} ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
                     {text}
                 </Grid>
