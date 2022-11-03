@@ -106,6 +106,15 @@ export const oneDriveApi = createApi({
   }),
   // providesTags : [ 'OneDriveRootItems'],
   }),
+  downloadUrlItemOneDrive: builder.mutation<any, any>({
+    query: (data) => ({
+        url: '/api/v1/onedrive/getRecentFiles/downloadurl',
+        // headers:{ 'Content-Type': 'application/json' },
+        method: "POST",
+        body: data
+    }),
+    
+  }),
   }),
   
 })
@@ -117,7 +126,8 @@ export const {
                 useDeleteItemOneDriveMutation,
                 useCopylinkOneDriveMutation,
                 useGetAllSharedItemsQuery,
-                useGetAllRecentItemsQuery
+                useGetAllRecentItemsQuery,
+                useDownloadUrlItemOneDriveMutation
                 
               
               
