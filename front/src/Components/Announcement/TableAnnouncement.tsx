@@ -115,7 +115,7 @@ const TableAnnouncement = () => {
             }}
             open={open}
             onClose={handleClose}
-             style={{ paddingTop: "30px" }}
+             style={{ marginTop:"60px", height:"650px"}}
           >
             <DialogTitle id="alert-dialog-title" >
               <Grid style={{ display: "flex", justifyContent: "space-between" }}>
@@ -280,7 +280,7 @@ const TableAnnouncement = () => {
               </Dropzone>
             </DialogContent>
             <DialogActions>
-              <Grid style={{ textAlign: "left" }}>
+              <Grid style={{alignItems:"left", marginRight:"280px" }}>
                 <Button onClick={handleClose}>Preview</Button>
                 <Button onClick={handleClose}>Save</Button>
                 <Button onClick={handleClose} autoFocus>
