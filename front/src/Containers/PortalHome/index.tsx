@@ -48,6 +48,11 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       // flexGrow: 1,
+      margin: "auto",
+      paddingLeft: "0px !important",
+      ".css-1oqqzyl-MuiContainer-root": {
+        // maxWidth: "1200px"
+      }
     },
     paper: {
       //padding: theme.spacing(2),
@@ -58,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: 0,
     },
     containerWidth: {
-      width: "95%",
+      width: "90%",
     },
   })
 );
@@ -164,11 +169,13 @@ const PortalHome = () => {
   //  const employeedata = data1.Employee;
   //  const herodata = data1.Hero;
   //  const gallerydata = data1.Gallery;
-  
+
   return (
     <div className={classes.root}>
       <Grid className={classes.bannerTop}>
-
+        <Grid item xs={12} style={{marginBottom:"10px"}}>
+          <HomeNavigationPage />
+        </Grid>
         {/* <Grid item xs={12}>
           <Paper elevation={0}>
           <MiddleCeoPage/>
@@ -190,17 +197,17 @@ const PortalHome = () => {
           ))}
         </ReactSortable> */}
         <DndProvider backend={HTML5Backend}>
-        {/* <Grid item xs={8}>
+          {/* <Grid item xs={8}>
           <HeroImagePage />
         </Grid>
         <Grid item xs={4}>
           <CeoPage />
 
         </Grid> */}
-        {/* <DraggableHomePage /> */}
-        <DroppableHomePage />
+          {/* <DraggableHomePage /> */}
+          <DroppableHomePage />
         </DndProvider>
-        
+
 
         {/* <Grid item xs={12} style={{ marginBottom: "16px", paddingTop: "16px", position: "relative" }}>
         
@@ -208,14 +215,14 @@ const PortalHome = () => {
           <HomeNavigationPage />*/}
 
 
-        </Grid> 
-       
-      
-       {/* <Grid item xs={8}>
+      </Grid>
+
+
+      {/* <Grid item xs={8}>
             <Mymeeting />
           </Grid> */}
-        {/* <LeftMenu/> */}
-        {/* <WorkSpaceOne/> 
+      {/* <LeftMenu/> */}
+      {/* <WorkSpaceOne/> 
         </Grid>*/}
 
       {/* <Grid container spacing={2}>

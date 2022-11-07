@@ -46,7 +46,7 @@ export const ContainerPage: FC = () => {
             {
                 id: 1,
 
-                text: <Grid item xs={12}><HeroImagePage /></Grid>,
+                text: <Grid item xs={12} ><HeroImagePage /></Grid>,
 
             },
             {
@@ -94,7 +94,7 @@ export const ContainerPage: FC = () => {
             {
                 id: 9,
 
-                text:  <Grid item xs={4}><SocialMedia /> </Grid>,
+                text:  <Grid item xs={4} style={{marginTop:"-70px"}}><SocialMedia /> </Grid>,
 
             },
             {

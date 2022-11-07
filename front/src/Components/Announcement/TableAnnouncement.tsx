@@ -115,7 +115,7 @@ const TableAnnouncement = () => {
             }}
             open={open}
             onClose={handleClose}
-             style={{ marginTop:"60px", height:"650px"}}
+             style={{ marginTop:"66px", height:"650px"}}
           >
             <DialogTitle id="alert-dialog-title" >
               <Grid style={{ display: "flex", justifyContent: "space-between" }}>
