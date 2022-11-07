@@ -7,7 +7,7 @@ import { ContainerPage } from './ContainerPage';
 
 const DroppableHomePage = () => {
     return (
-        <div className="container">
+        <div>
             {/* Wrap components that will be "draggable" and "droppable" */}
             {/* <DndProvider backend={HTML5Backend}>
                 <HeroImagePage />

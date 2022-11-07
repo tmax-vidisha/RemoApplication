@@ -111,7 +111,7 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
                 const { fields = {} } = item;
                 var Title = fields?.Title;
                 var itemId = fields?.id;
-                var completePath;
+                var completePath; 
                 var iconHoverPath;
                 if (fields.Icon != null) {
                   var icon = JSON.parse(fields.Icon);

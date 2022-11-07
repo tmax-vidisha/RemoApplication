@@ -6,13 +6,13 @@ import { ItemTypesNew } from './ItemTypesNew'
 import { Grid } from '@mui/material';
 
 const style = {
-    border: '1px dashed gray',
-    padding: '0.5rem 1rem',
-    margin: '20px',
-    height: "auto",
+    border: '1px dashed white',
+   // padding: '0.5rem 1rem',
+    margin: '5px',
+    height: "50%",
     backgroundColor: 'white',
     cursor: 'move',
-    paddingRight: "20px",
+   //padding: "5px",
     //    display:"grid",
     //     gridTemplateColumn:"repeat(2, 1fr)",
     // display: "flex",
