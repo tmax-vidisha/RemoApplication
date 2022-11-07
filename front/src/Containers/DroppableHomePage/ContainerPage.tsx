@@ -18,12 +18,12 @@ import SocialMedia from '../../Components/SocialMedia';
 
 const style = {
     // width: "1000px",
-     width: " 100%",
+     width: " 60%",
     // overflow: "hidden",
     // display: "flex",
     // justifyContent: "space-between",
     // marginLeft:"18px",
-    marginRight: '20px',
+    marginRight: '5px',
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
     
@@ -70,37 +70,37 @@ export const ContainerPage: FC = () => {
             {
                 id: 5,
 
-                text: <Grid item xs={10}>  <NewsPage /></Grid>,
+                text: <Grid item xs={10} style={{marginTop:"-28px"}}>  <NewsPage /></Grid>,
 
             },
             {
                 id: 6,
 
-                text: <Grid item xs={8}>  <EventsPage /></Grid>,
+                text: <Grid item xs={8} >  <EventsPage /></Grid>,
 
             },
             {
                 id: 7,
 
-                text: <Grid item xs={6}>  <EventsPage /></Grid>,
+                text: <Grid item xs={6} style={{marginTop:"-95px"}}>  <EventsPage /></Grid>,
 
             },
             {
                 id: 8,
 
-                text: <Grid item xs={12}>   <Gallery /></Grid>,
+                text:  <Grid item xs={4}><Gallery /> </Grid>,
 
             },
             {
                 id: 9,
 
-                text: <Grid item xs={12}>    <SocialMedia /></Grid>,
+                text:  <Grid item xs={4}><SocialMedia /> </Grid>,
 
             },
             {
                 id: 10,
 
-                text: <Grid item xs={12}> <RecentFilePage /></Grid>,
+                text:  <Grid item xs={4}> <RecentFilePage />  </Grid>,
 
             },
 
