@@ -18,7 +18,7 @@ import SocialMedia from '../../Components/SocialMedia';
 
 const style = {
     // width: "1000px",
-     width: " 60%",
+    //  width: " 60%",
     // overflow: "hidden",
     // display: "flex",
     // justifyContent: "space-between",
