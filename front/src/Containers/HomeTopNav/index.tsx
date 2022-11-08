@@ -89,7 +89,7 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
     // <div>HomeTopNav</div>
     <AuthenticatedTemplate>
       <Paper elevation={0}>
-        <CardContent sx={{ pb: "16px!important" }}>
+        <CardContent sx={{ pb: "16px!important",paddingRight:"50px"  }}>
           {!topMenu && clearButton}
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Tabs

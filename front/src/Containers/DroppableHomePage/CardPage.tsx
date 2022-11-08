@@ -112,8 +112,8 @@ export const CardPage: FC<CardProps> = ({ id, text, index, moveCard }) => {
     return (
         //$ts-ignore
         <div >
-            <Grid item xs={12}>
-                <Grid item xs={12} ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
+            <Grid>
+                <Grid ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
                     {text}
                 </Grid>
             </Grid>
