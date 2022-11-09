@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from './index';
@@ -115,6 +115,17 @@ const TableAnnouncement = () => {
   const [Title, setTitle] = useState<any>([]);
   const [Description, setDescription] = useState<any>([]);
   const [RecipientEmail, setRecipientEmail] = useState<any>([]);
+  const [state,setState] = useState({
+    warningMsg:""
+  })
+  const [state1,setState1] = useState({
+    files: [],
+    
+  })
+  const [state2,setState2] = useState({
+    files: [],
+    
+  })
 
   const handleChangeisActiveyes = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.value)
@@ -171,6 +182,81 @@ const TableAnnouncement = () => {
     console.log(event.target.value)
     setRecipientEmail(event.target.value);
   };
+
+  useEffect(()=>{
+    state1.files.forEach((file:any) => URL.revokeObjectURL(file.preview));
+    state2.files.forEach((file:any) => URL.revokeObjectURL(file.preview));
+  },[])
+
+  const addFile = (file:any) => {
+    console.log(file);
+    setState1({
+      files: file.map((file:any) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        })
+      )
+    });
+  };
+  
+ const onDrop = (accepted:any, rejected:any) => {
+    if (Object.keys(rejected).length !== 0) {
+      const message = "Please submit valid file type";
+      setState({ warningMsg: message });
+    } else {
+     addFile(accepted);
+      setState({ warningMsg: "" });
+      console.log(accepted[0].preview);
+
+      var blobPromise = new Promise((resolve, reject) => {
+        const reader = new window.FileReader();
+        reader.readAsDataURL(accepted[0]);
+        reader.onloadend = () => {
+          const base64data = reader.result;
+          // this.setState({ base64data: base64data });
+          console.log(base64data);
+        };
+      });
+      blobPromise.then(value => {
+       console.log(value);
+      });
+    }
+  };
+  const addFile1 = (file:any) => {
+    console.log(file);
+    setState2({
+      files: file.map((file:any) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        })
+      )
+    });
+  };
+
+  const onDrop1 = (accepted:any, rejected:any) => {
+    if (Object.keys(rejected).length !== 0) {
+      const message = "Please submit valid file type";
+      setState({ warningMsg: message });
+    } else {
+     addFile1(accepted);
+      setState({ warningMsg: "" });
+      console.log(accepted[0].preview);
+
+      var blobPromise = new Promise((resolve, reject) => {
+        const reader = new window.FileReader();
+        reader.readAsDataURL(accepted[0]);
+        reader.onloadend = () => {
+          const base64data = reader.result;
+          // this.setState({ base64data: base64data });
+          console.log(base64data);
+        };
+      });
+      blobPromise.then(value => {
+       console.log(value);
+      });
+    }
+  };
+
 
   return (
     <div className={classes.MainPart}>
@@ -243,7 +329,8 @@ const TableAnnouncement = () => {
                 <img src={image} alt="" style={{ width: "13px", marginRight: "5px" }} />
                 Image
               </InputLabel>
-              <Dropzone onDrop={handleDrop} >
+              
+              <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps({ className: classes.dropZone })}>
                     <input {...getInputProps()} />
@@ -345,7 +432,7 @@ const TableAnnouncement = () => {
                 <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }}/>
                 Attachments
               </InputLabel>
-              <Dropzone onDrop={handleDrop}>
+              <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps({ className: classes.dropZone })}>
                     <input {...getInputProps()} />
