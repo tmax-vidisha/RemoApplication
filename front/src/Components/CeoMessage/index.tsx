@@ -6,6 +6,7 @@ import {
   CardContent,
   CardMedia,
   Paper,
+  Grid,
   Typography,
 } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -60,7 +61,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
     <AuthenticatedTemplate>
       {/* <Draggable> */}
       
-        <Paper elevation={0}>
+      <Paper elevation={0}>
           {isLoading ? (
             <SkeletonAnimation />
           ) : (
