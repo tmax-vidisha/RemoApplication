@@ -137,7 +137,7 @@ const TableAnnouncement = () => {
                     <span style={{color:"gray", textTransform:"capitalize"}}> Cancel</span> 
                   </Button>
                   <Button>
-                    <img src={copylink} alt="" style={{ width: "13px", marginRight: "5px" }} />
+                    <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
                     <span style={{color:"gray", textTransform:"capitalize"}}> Copy Link</span> 
                   </Button>
                 </Grid>
