@@ -186,7 +186,6 @@ const PortalHome = () => {
           <div
             key={pet.id}
           // index={index}
-
           // onClick={ () =>movePetListItem()}
           >{pet.name} </div>
         ))}
@@ -202,7 +201,6 @@ const PortalHome = () => {
         </Grid>
         <Grid item xs={4}>
           <CeoPage />
-
         </Grid> */}
           {/* <DraggableHomePage /> */}
           <DroppableHomePage />
@@ -279,7 +277,6 @@ const PortalHome = () => {
           <Grid item xs={12} style={{ marginTop: 16 }}>
             <Weather />
           </Grid>
-
           <Grid item xs={12} style={{ marginTop: 16 }}>
             <EventsPage />
            

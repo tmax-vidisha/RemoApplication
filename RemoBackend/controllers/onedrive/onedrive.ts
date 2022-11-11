@@ -584,7 +584,7 @@ const  copylinkDriveItem = asyncHandler(async(req:Request, res:Response) => {
   // })
   // const data = await response.data
   // console.log(data,'kky')
-  const response = await fetch(`https://graph.microsoft.com/v1.0//me/drive/items/${ItemId}/createLink`, {
+  const response = await fetch(`https://graph.microsoft.com/v1.0/me/drive/items/${ItemId}/createLink`, {
     method: 'POST',
     headers: {
      'Authorization': `Bearer ${token}`,
@@ -690,7 +690,49 @@ const getAllOneDriveSharedItems = asyncHandler(async(req:Request, res:Response) 
  
  })
 
+ const getAllOneDriveItemDownloadUrl = asyncHandler(async(req:Request, res:Response) => {
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
+  const  token = req.headers.authorization
+  const {  ItemId,Name } = req.body
+  console.log(ItemId,Name,'treytrutusc')
+ 
 
+
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+     console.log('deklee')
+     if(ItemId ) {
+      const response = 
+    // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+      await axios.get(`https://graph.microsoft.com/v1.0/me/drive/items/${ItemId}`, {
+      headers: {
+          'Authorization': `Bearer ${token} `,
+          'Content-Type': 'application/json'
+        
+        }
+      
+  })
+  const data = await response.data
+  console.log(data["@microsoft.graph.downloadUrl"],'kky')
+  res.status(200).json({
+    success: true,
+    response :data["@microsoft.graph.downloadUrl"]
+
+ });
+
+ }
+ 
+ }
+   
+   
+ 
+ })
 
 
 export {
@@ -700,6 +742,7 @@ export {
     deleteOneDriveItem,
     copylinkDriveItem,
     getAllOneDriveSharedItems,
-    getAllOneDriveRecentFiles
+    getAllOneDriveRecentFiles,
+    getAllOneDriveItemDownloadUrl
    
 }
