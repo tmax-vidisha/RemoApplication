@@ -6,6 +6,7 @@ import graph from './routes/graph';
 // const getAllSites = require('./routes/workspace')
 import workspace from './routes/workspace'
 import onedrive  from  './routes/onedrive/onedrive'
+import announcement from './routes/contenteditor/announcement'
 import header from './routes/header'
 // const RemoToken = require('./controllers/token')
 // const graph = require('./routes/graph')
@@ -18,12 +19,12 @@ import bodyParser from 'body-parser';
 import { json } from "body-parser";
 const SERVER_PORT = process.env.PORT || 4000;
 import multer from "multer";
-
+require('dotenv').config();
 
 
 // Create Express App and Routes
 const app = express();
-app.use(express.json());
+// app.use(express.json());
 app.use(bodyParser.json({ limit: "50mb" }))
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
 // app.use(express.urlencoded({limit: '25mb', extended: true}));
@@ -1529,5 +1530,6 @@ app.use(`/api/v1/lists`,graph)
 app.use(`/api/v1/sites`,workspace)
 app.use(`/api/v1/onedrive`,onedrive)
 app.use(`/api/v1/header`,header)
+app.use(`/api/v1/contentEditor`,announcement)
 
 app.listen(SERVER_PORT, () => console.log(`Msal Node Auth Code Sample app listening on port ${SERVER_PORT}!`))
