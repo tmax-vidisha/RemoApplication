@@ -200,7 +200,18 @@ export const useStyles = makeStyles({
     justifyContent: "space-between",
     textAlign: "center", height: "30px",
     fontSize: "12px",
-    margin:"10px"
+    margin: "10px"
+  },
+
+  profile: {
+    fontSize: "12px !important",
+
+    "& img": {
+      width: "12px",
+      marginRight: "10px",
+    },
+
+
   }
 
 });

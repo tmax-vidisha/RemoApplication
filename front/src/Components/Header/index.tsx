@@ -42,7 +42,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Weather from '../Weather';
 import Calendar from 'react-calendar';
 import ToggleButton from './ToggleButton';
-
+import account from '../../Assets/Images/accountNew.svg';
+import banner from '../../Assets/Images/bannerviewNew.svg';
+import admin from '../../Assets/Images/adminNew.svg';
+import signOut from '../../Assets/Images/signoutNew.svg';
+import { useStyles } from './Styles';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -103,7 +107,7 @@ interface type {
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
+const classes=useStyles();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -153,6 +157,14 @@ const Header = () => {
     [setValue],
   );
 
+  const [anchorEl5, setAnchorEl5] = React.useState<null | HTMLElement>(null);
+  const open5 = Boolean(anchorEl5);
+  const handleClick5 = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl5(event.currentTarget);
+  };
+  const handleClose5 = () => {
+    setAnchorEl5(null);
+  };
   // const handleMobileMenuClose = () => {
   //   setMobileMoreAnchorEl(null);
   // };
@@ -343,15 +355,16 @@ const Header = () => {
     //   </Box>
     // </AuthenticatedTemplate>
     <AuthenticatedTemplate>
-      <Box sx={{ flexGrow: 1, marginBottom:"20px" }}>
+      <Box sx={{ flexGrow: 1, marginBottom: "20px" }}>
         <StyledAppBar position="static">
           <Container>
             <Toolbar
               variant="dense"
               sx={{
-                paddingLeft: "0px !important",  
+                paddingLeft: "0px !important",
                 paddingRight: "0px !important",
               }}>
+
               <RouterNavLink to="/Home">
                 <img src={logo} alt="Remo Digital" />
               </RouterNavLink>
@@ -374,9 +387,9 @@ const Header = () => {
 
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <div>
-                  <ToggleButton/>
+                  <ToggleButton />
                 </div>
-                <div style={{marginLeft:"80px"}}>
+                <div style={{ marginLeft: "80px" }}>
                   <IconButton
                     size="large"
                     aria-label="unread mail count"
@@ -529,12 +542,12 @@ const Header = () => {
                 >
                   <a
                     target={"_blank"}
-                     href="https://outlook.office.com/mail/inbox"
+                    href="https://outlook.office.com/mail/inbox"
                   >
-                  <Badge badgeContent="0" color="error" sx={{ top: "3px" }}>
-                    {/* <MailIcon /> */}
-                    <img src={outlookIcon} alt="Outlook" />
-                  </Badge>
+                    <Badge badgeContent="0" color="error" sx={{ top: "3px" }}>
+                      {/* <MailIcon /> */}
+                      <img src={outlookIcon} alt="Outlook" />
+                    </Badge>
                   </a>
                 </IconButton>
 
@@ -559,11 +572,12 @@ const Header = () => {
                   size="large"
                   edge="end"
                   aria-label="account of current user"
-                  // aria-controls={menuId}
-                  aria-haspopup="true"
-                  // onClick={handleProfileMenuOpen}
                   color="inherit"
-                >
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick5}>
                   <img
                     src={userimg}
                     alt="pic"
@@ -574,6 +588,20 @@ const Header = () => {
                     }}
                   />
                 </IconButton>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl5}
+                  open={open5}
+                  onClose={handleClose5}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                  }}
+                >
+                  <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
+                  <MenuItem onClick={handleClose5}className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
+                  <MenuItem onClick={handleClose5}className={classes.profile}><img src={banner} alt="account" />Display on your banner view</MenuItem>
+                  <MenuItem onClick={handleClose5}className={classes.profile}><img src={signOut} alt="account" />SignOut</MenuItem>
+                </Menu>
               </Box>
               <Box sx={{ display: { xs: "flex", md: "none" } }}>
                 <IconButton

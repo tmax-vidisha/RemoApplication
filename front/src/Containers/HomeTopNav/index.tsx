@@ -84,7 +84,7 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
     setValue(newValue);
   };
   const { data, error, isLoading } = props;
-  console.log(data, '88888ttuytuytu888')
+ // console.log(data, '88888ttuytuytu888')
   return (
     // <div>HomeTopNav</div>
     <AuthenticatedTemplate>

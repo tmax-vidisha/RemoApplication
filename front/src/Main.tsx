@@ -54,6 +54,7 @@ import TableAnnouncementPage from './Pages/TableAnnouncementPage';
 import ContentEditor from './Components/ContentEditor';
 import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
 import RecentFiles from './Components/WorkSpaceOne/RecentFiles';
+import StarredFile from './Components/WorkSpaceOne/StarredFile/index';
 
 
 const theme = createTheme({
@@ -289,6 +290,9 @@ const Main = () => {
                             <Route
                               path="/MeetingsPage"
                               element={<MeetingsPage/>} />
+                            <Route
+                              path="/StarredFile"
+                              element={<StarredFile/>} />
 
                         </Routes>
                     </ThemeProvider>
