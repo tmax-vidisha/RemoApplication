@@ -12,7 +12,7 @@ import { CeoPage, EmpHighlightPage, EventsPage, HeroImagePage, MeetingsPage, New
 import { Grid } from '@mui/material';
 import Gallery from '../../Components/Gallery';
 import SocialMedia from '../../Components/SocialMedia';
-
+import deleteIcon from '../../Assets/Images/delete.svg';
 // import {ceo} from '../../Assets/Images/';
 
 
@@ -40,14 +40,19 @@ export interface ContainerState {
     cards: Item[]
 }
 
+
+
+
 export const ContainerPage: FC = () => {
     {
         const [cards, setCards] = useState([
             {
                 id: 1,
 
-                text: <Grid item xs={12} ><HeroImagePage /></Grid>,
-
+                text: <Grid item xs={12} >
+                    <HeroImagePage  />
+                    </Grid>
+                    // <img src={deleteIcon } alt="delete" style={{position:"relative"}}/>
             },
             {
                 id: 2,

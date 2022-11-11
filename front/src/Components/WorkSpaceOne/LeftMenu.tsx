@@ -63,7 +63,7 @@ export const SidebarData = [
     {
         id:5,
         title: "Starred",
-        path: "/java",
+        path: "/StarredFile",
         icon: <img src={ starredIcon} alt=""/>,
     },
 
