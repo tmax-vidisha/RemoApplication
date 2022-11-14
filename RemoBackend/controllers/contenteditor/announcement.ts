@@ -106,10 +106,10 @@ const postTableAnnouncement = asyncHandler(async (req: Request, res: Response) =
         Title: title,
         Description:description,
         Image:Image,
-        isActive:true,
-        EnableLikes:false,
-        EnableCommands:true,
-        SharedAsEmail:false,
+        isActive:isActive,
+        EnableLikes:EnableLikes,
+        EnableCommands:EnableCommands,
+        SharedAsEmail:SharedAsEmail,
         RecipientEmail:RecipientEmail,
         Attachment:File
 
