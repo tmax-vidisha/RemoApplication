@@ -2,7 +2,7 @@ import React, { useState, useReducer } from 'react';
 import { breadcrumbsReducer, foldersReducer } from '../../Store copy/Reducer/foldersReducer';
 import { ActionType } from '../../Store copy/Actions/actionTypes';
 import WPOneDrive from './../Workspace/OneDrive/index';
-import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions } from '@mui/material';
+import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, Checkbox } from '@mui/material';
 import { Typography } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -34,6 +34,7 @@ import deleteBlue from '../../Assets/Images/delete-blue.svg';
 import success from '../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
 import DialogContentText from '@mui/material/DialogContentText/DialogContentText';
+import { Options16Filled } from '@fluentui/react-icons';
 
 
 interface SimpleDialogProps {
@@ -44,9 +45,9 @@ interface SimpleDialogProps {
     onDelete?: (id: string, name: string) => void;
     onOpenFolder: (id: string, name: string, folder: any) => void;
     deleteResponse: any;
-    downloadUrl:any,
+    downloadUrl: any,
     onCopy?: (id: string, name: string) => void;
-    copyResponse:any;
+    copyResponse: any;
     // open: boolean;
     // // selectedValue: string;
     //  onClose: () => void;
@@ -57,13 +58,13 @@ function SimpleDialog(props: SimpleDialogProps) {
     const classes = useStyles();
     // const { onClose, selectedValue, open } = props;
 
-    const { id, name, folder, onDelete, onOpenFolder, deleteResponse,downloadUrl,onCopy,copyResponse } = props
+    const { id, name, folder, onDelete, onOpenFolder, deleteResponse, downloadUrl, onCopy, copyResponse } = props
     console.log(id, name, folder)
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const openOn = Boolean(anchorEl);
-     console.log(downloadUrl)
+    console.log(downloadUrl)
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -78,9 +79,9 @@ function SimpleDialog(props: SimpleDialogProps) {
     //   onClose(value);
     // };
     console.log(deleteResponse?.success)
-    console.log(copyResponse?.response,'CopyLink')
+    console.log(copyResponse?.response, 'CopyLink')
     const [openOne, setOpenOne] = React.useState(false);
-   
+
 
     const handleClickOne = (popup: any) => {
         setOpenOne(true);
@@ -101,11 +102,11 @@ function SimpleDialog(props: SimpleDialogProps) {
     const handleFolderOpen = () => {
         onOpenFolder(id, name, folder)
     }
-    
+
 
 
     const [openTwo, setOpenTwo] = React.useState(false);
-    
+
     const handleClickTwo = (popup: any) => {
         setOpenTwo(true);
     };
@@ -113,22 +114,22 @@ function SimpleDialog(props: SimpleDialogProps) {
     const handleCloseTwo = () => {
         setOpenTwo(false);
     };
-    const handleDownload = ()=>{
+    const handleDownload = () => {
         window.open(downloadUrl)
     }
-    const [CopySuccess,setCopySuccess] =useState<any>('')
-   
-    const handleCopy = async() =>{
-       onCopy?.(id,name)
-    //    navigator.clipboard.writeText(copyResponse?.response)
-    try {
-        await navigator.clipboard.writeText(copyResponse?.response);
-         setCopySuccess('Copied!');
-        // console.log('Copied')
-      } catch (err) {
-        setCopySuccess('Failed to copy!');
-        // console.log('Failed to copy!')
-      }
+    const [CopySuccess, setCopySuccess] = useState<any>('')
+
+    const handleCopy = async () => {
+        onCopy?.(id, name)
+        //    navigator.clipboard.writeText(copyResponse?.response)
+        try {
+            await navigator.clipboard.writeText(copyResponse?.response);
+            setCopySuccess('Copied!');
+            // console.log('Copied')
+        } catch (err) {
+            setCopySuccess('Failed to copy!');
+            // console.log('Failed to copy!')
+        }
 
     }
 
@@ -170,10 +171,10 @@ function SimpleDialog(props: SimpleDialogProps) {
                     <div className={classes.items}>
                         <img src={linkIcon} alt="linkIcon" /> Copy Link
                     </div>
-                  
+
                 </MenuItem>
                 <MenuItem>
-                    <div onClick ={handleDownload}className={classes.items}>
+                    <div onClick={handleDownload} className={classes.items}>
                         <img src={downloadIcon} alt="downloadIcon" /> Download
                     </div>
 
@@ -237,7 +238,7 @@ function SimpleDialog(props: SimpleDialogProps) {
                         </DialogContent>
 
                         <DialogActions style={{ display: "flex", justifyContent: "space-between", margin: "auto" }}>
-                            <Button autoFocus  style={{ backgroundColor: "#1baab5", color: "white" }}>
+                            <Button autoFocus style={{ backgroundColor: "#1baab5", color: "white" }}>
                                 <p onClick={handleCloseTwo}> OK</p>
                             </Button>
                             <Button autoFocus onClick={handleCloseTwo} >
@@ -267,8 +268,8 @@ interface IFolderProps {
     // onDownload?: (id: string) => void;
     onDelete?: (id: string, name: string) => void;
     deleteResponse: any,
-    onCopy?:(id: string, name: string) => void;
-    copyResponse:any
+    onCopy?: (id: string, name: string) => void;
+    copyResponse: any
     // onRename?: (id: string, name: string) => void;
     // onShare?: (id: string) => void;
 }
@@ -285,7 +286,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     //@ts-ignore
     // const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token);
     // console.log(data?.response)
-    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick, onDelete, deleteResponse,onCopy,copyResponse } = props;
+    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick, onDelete, deleteResponse, onCopy, copyResponse } = props;
     // const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
     // console.log(ItemChildren?.response, 'yujujujuys')
     // const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
@@ -385,10 +386,10 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const [itemId, setItemId] = useState<string>('');
     const [itemName, setItemName] = useState<string>('');
     const [itemfolder, setItemFolder] = useState<any>();
-    const [downUrl,setDownUrl] =  useState<string>('');
-    const de = (id: any, name: any, folder: any,download:any) => {
-         console.log(download,'ygrerthtrhy')
-           console.log(id,name)
+    const [downUrl, setDownUrl] = useState<string>('');
+    const de = (id: any, name: any, folder: any, download: any) => {
+        console.log(download, 'ygrerthtrhy')
+        console.log(id, name)
         console.log(folder)
         setItemId(id)
         setItemName(name)
@@ -410,60 +411,78 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         // console.log(id,name,folder)
         onClick(id, name, folder)
     }
+const [selected, setSelected]=useState(false);
+
+const handleBoxChange=(e:any)=>{
+    const value =e.target.value;
+    console.log(value);
+    if(value== "all"){
+        setSelected(true)
+    return;
+    }
+
+    setSelected(value);
+}
+
     return (
         <>
 
             {/* <Grid className={classes.divFile}>
                 My Files
             </Grid> */}
-             <Grid className={classes.bigPart}> 
-            <Grid className={classes.myFile}>
-                <Grid>
-                    {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
+            <Grid className={classes.bigPart}>
+                <Grid className={classes.myFile}>
+                    <Grid>
+                        {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
                             getChildHandler={breadcrumbClickHandler} /> */}
-                    <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
-                        <InputLabel id="demo-simple-select-standard-label"><span>Sort by</span> Newest</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard"
-                            value={age}
-                            onChange={handleChange}
-                            label="Age"
-                        >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                    </FormControl>
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
+                            <InputLabel id="demo-simple-select-standard-label"><span>Sort by</span> Newest</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard"
+                                value={age}
+                                onChange={handleChange}
+                                label="Age"
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={10}>Ten</MenuItem>
+                                <MenuItem value={20}>Twenty</MenuItem>
+                                <MenuItem value={30}>Thirty</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
+
+                    <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
+                        <button >
+                            <GridViewOutlinedIcon />
+                        </button>
+
+                        <button style={{ marginLeft: "15px" }} >
+                            <FormatListBulletedOutlinedIcon />
+                        </button>
+                    </Grid>
+
                 </Grid>
-
-                <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
-                    <button >
-                        <GridViewOutlinedIcon />
-                    </button>
-
-                    <button style={{ marginLeft: "15px" }} >
-                        <FormatListBulletedOutlinedIcon />
-                    </button>
-                </Grid>
-
-            </Grid>
-            <Stack>
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 300 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Name</TableCell>
-                                <TableCell align="right">Last Modified By</TableCell>
-                                <TableCell align="right">Last Modified Date</TableCell>
-                                <TableCell align="right">File Size</TableCell>
-                                <TableCell align="right">Actions</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        {/* <TableBody>
+                <Stack>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 300 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell padding="checkbox" ><Checkbox 
+                                    value="all"
+                                     onChange={handleChange} 
+                                    //  checked={selected.includes() }
+                                     /></TableCell>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell align="right">Last Modified By</TableCell>
+                                    <TableCell align="right">Last Modified Date</TableCell>
+                                    <TableCell align="right">File Size</TableCell>
+                                    <TableCell align="right">Actions</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            {/* <TableBody>
                                 {rows.map((row) => (
                                     <TableRow
                                         key={row.name}
@@ -480,41 +499,41 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 ))}
                             </TableBody> */}
 
-                        {show ?
-                            <TableBody>
-                                {data?.response &&
-                                    data?.response.map((item: any, index: any) => {
-                                        //   const { fields = {} } = item;
-                                        
-                                        // const  Url= item["@microsoft.graph.downloadUrl"];
-                                        // console.log(Url,'llll')
-                                        //   // console.log(fields,'yjyjyjyjyj')
-                                        //   var eventTitle = fields?.Title;
-                                        //   console.log(eventTitle,'yjyjyjyjyj')
-                                        //   var eventStart = moment(fields?.EventDate).format("llll");
-                                        //   var eventDate = moment(fields?.EndDate).format("llll");
+                            {show ?
+                                <TableBody>
+                                    {data?.response &&
+                                        data?.response.map((item: any, index: any) => {
+                                            //   const { fields = {} } = item;
 
-                                        //   var eventIsActive = fields.IsActive;
-                                        // let createdMonth = moment(item.lastModifiedDateTime).format("MMM");
-                                        // let createdYear = moment(item.lastModifiedDateTime).format("YYYY");
-                                        let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
-                                        //   var createdDate = moment(
-                                        //     item.lastModifiedDateTime
-                                        //   ).fromNow();
-                                        // let result = (item?.folder === undefined) ? item?.webUrl :'';
-                                        // let result ; 
-                                        // if(item?.folder === undefined){
-                                        //   result= item?.webUrl
-                                        // }
-                                        return (
-                                            <TableRow
-                                                key={item.name}
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                style={{fontSize:"10px"}}
-                                            >
+                                            // const  Url= item["@microsoft.graph.downloadUrl"];
+                                            // console.log(Url,'llll')
+                                            //   // console.log(fields,'yjyjyjyjyj')
+                                            //   var eventTitle = fields?.Title;
+                                            //   console.log(eventTitle,'yjyjyjyjyj')
+                                            //   var eventStart = moment(fields?.EventDate).format("llll");
+                                            //   var eventDate = moment(fields?.EndDate).format("llll");
 
-                                                <TableCell component="th" scope="row">
-                                                    {/* <Link 
+                                            //   var eventIsActive = fields.IsActive;
+                                            // let createdMonth = moment(item.lastModifiedDateTime).format("MMM");
+                                            // let createdYear = moment(item.lastModifiedDateTime).format("YYYY");
+                                            let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
+                                            //   var createdDate = moment(
+                                            //     item.lastModifiedDateTime
+                                            //   ).fromNow();
+                                            // let result = (item?.folder === undefined) ? item?.webUrl :'';
+                                            // let result ; 
+                                            // if(item?.folder === undefined){
+                                            //   result= item?.webUrl
+                                            // }
+                                            return (
+                                                <TableRow
+                                                    key={item.name}
+                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                    style={{ fontSize: "10px" }}
+                                                >
+                                                    <TableCell padding="checkbox"><Checkbox /></TableCell>
+                                                    <TableCell component="th" scope="row">
+                                                        {/* <Link 
                                                     onClick={()=>{
                                                         // folderClickHandler(item.id,item.name)
                                                     //  if(item.name.includes('.txt') || item.name.includes('.xlsx') || item.name.includes('.docx')  || item.name.includes('.pptx')){
@@ -533,52 +552,52 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 
                                                     //   href={`${result}`}
                                                     > */}
-                                                    <Link onClick={() => {
-                                                        setShow(!show)
-                                                        onClick(item.id, item.name, item.folder)
-                                                        //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+                                                        <Link onClick={() => {
+                                                            setShow(!show)
+                                                            onClick(item.id, item.name, item.folder)
+                                                            //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
 
 
-                                                    }}
-                                                    // href={`${url}`}
-                                                    >
-                                                        {item.name}
-                                                    </Link>
+                                                        }}
+                                                        // href={`${url}`}
+                                                        >
+                                                            {item.name}
+                                                        </Link>
 
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {item.lastModifiedBy.user.displayName}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {createdDate}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {item.size}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    <Grid
-                                                        onClick={() => de(item.id, item.name, item.folder,item["@microsoft.graph.downloadUrl"]
+                                                    </TableCell>
+                                                    <TableCell align="right">
+                                                        {item.lastModifiedBy.user.displayName}
+                                                    </TableCell>
+                                                    <TableCell align="right">
+                                                        {createdDate}
+                                                    </TableCell>
+                                                    <TableCell align="right">
+                                                        {item.size}
+                                                    </TableCell>
+                                                    <TableCell align="right">
+                                                        <Grid
+                                                            onClick={() => de(item.id, item.name, item.folder, item["@microsoft.graph.downloadUrl"]
                                                             )}>
-                                                        {/* <Button  onClick={()=>de(item.id,item.name)}> */}
-                                                        <SimpleDialog
-                                                            id={itemId}
-                                                            name={itemName}
-                                                            onDelete={onDelete}
-                                                            folder={itemfolder}
-                                                            onOpenFolder={handleOpenFolder}
-                                                            deleteResponse={deleteResponse}
-                                                            downloadUrl={downUrl}
-                                                            onCopy={onCopy}
-                                                            copyResponse={copyResponse}
-                                                        // onOpenFolder={onClick}
-                                                        //  open={openOn}
-                                                        //  onClose={handleClose}
-                                                        //  anchorEl={anchorEl}
-                                                        />
+                                                            {/* <Button  onClick={()=>de(item.id,item.name)}> */}
+                                                            <SimpleDialog
+                                                                id={itemId}
+                                                                name={itemName}
+                                                                onDelete={onDelete}
+                                                                folder={itemfolder}
+                                                                onOpenFolder={handleOpenFolder}
+                                                                deleteResponse={deleteResponse}
+                                                                downloadUrl={downUrl}
+                                                                onCopy={onCopy}
+                                                                copyResponse={copyResponse}
+                                                            // onOpenFolder={onClick}
+                                                            //  open={openOn}
+                                                            //  onClose={handleClose}
+                                                            //  anchorEl={anchorEl}
+                                                            />
 
-                                                        {/* </Button> */}
-                                                    </Grid>
-                                                    {/* <Grid style={{ borderRadius: "10px", }} >
+                                                            {/* </Button> */}
+                                                        </Grid>
+                                                        {/* <Grid style={{ borderRadius: "10px", }} >
                                                             <Button
                                                                 id="fade-button"
                                                                 aria-controls={openOn ? 'fade-menu' : undefined}
@@ -633,43 +652,43 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                 
                                                             </Menu>
                                                         </Grid> */}
-                                                </TableCell>
-                                            </TableRow>
-                                        )
-                                    })}
+                                                    </TableCell>
+                                                </TableRow>
+                                            )
+                                        })}
 
-                            </TableBody> :
-                            <TableBody>
+                                </TableBody> :
+                                <TableBody>
 
-                                {ItemChildren?.response &&
-                                    ItemChildren?.response.map((item: any, index: any) => {
-                                        //   const { fields = {} } = item;
-                                        //   // console.log(fields,'yjyjyjyjyj')
-                                        //   var eventTitle = fields?.Title;
-                                        //   console.log(eventTitle,'yjyjyjyjyj')
-                                        //   var eventStart = moment(fields?.EventDate).format("llll");
-                                        //   var eventDate = moment(fields?.EndDate).format("llll");
+                                    {ItemChildren?.response &&
+                                        ItemChildren?.response.map((item: any, index: any) => {
+                                            //   const { fields = {} } = item;
+                                            //   // console.log(fields,'yjyjyjyjyj')
+                                            //   var eventTitle = fields?.Title;
+                                            //   console.log(eventTitle,'yjyjyjyjyj')
+                                            //   var eventStart = moment(fields?.EventDate).format("llll");
+                                            //   var eventDate = moment(fields?.EndDate).format("llll");
 
-                                        //   var eventIsActive = fields.IsActive;
-                                        // let createdMonth = moment(item.lastModifiedDateTime).format("MMM");
-                                        // let createdYear = moment(item.lastModifiedDateTime).format("YYYY");
-                                        let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
-                                        //   var createdDate = moment(
-                                        //     item.lastModifiedDateTime
-                                        //   ).fromNow();
-                                        // let result = (item?.folder === undefined) ? item?.webUrl :'';
-                                        // let result ; 
-                                        // if(item?.folder === undefined){
-                                        //   result= item?.webUrl
-                                        // }
-                                        return (
-                                            <TableRow
-                                                key={item.name}
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                            >
+                                            //   var eventIsActive = fields.IsActive;
+                                            // let createdMonth = moment(item.lastModifiedDateTime).format("MMM");
+                                            // let createdYear = moment(item.lastModifiedDateTime).format("YYYY");
+                                            let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
+                                            //   var createdDate = moment(
+                                            //     item.lastModifiedDateTime
+                                            //   ).fromNow();
+                                            // let result = (item?.folder === undefined) ? item?.webUrl :'';
+                                            // let result ; 
+                                            // if(item?.folder === undefined){
+                                            //   result= item?.webUrl
+                                            // }
+                                            return (
+                                                <TableRow
+                                                    key={item.name}
+                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                >
 
-                                                <TableCell component="th" scope="row">
-                                                    {/* <Link 
+                                                    <TableCell component="th" scope="row">
+                                                        {/* <Link 
                                                 onClick={()=>{
                                                     // folderClickHandler(item.id,item.name)
                                                 //  if(item.name.includes('.txt') || item.name.includes('.xlsx') || item.name.includes('.docx')  || item.name.includes('.pptx')){
@@ -688,47 +707,47 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                             
                                                 //   href={`${result}`}
                                                 > */}
-                                                    <Link onClick={() => {
-                                                        onClick(item.id, item.name, item.folder)
-                                                        // folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+                                                        <Link onClick={() => {
+                                                            onClick(item.id, item.name, item.folder)
+                                                            // folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
 
-                                                    }}>
-                                                        {item.name}
-                                                    </Link>
+                                                        }}>
+                                                            {item.name}
+                                                        </Link>
 
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {item.lastModifiedBy.user.displayName}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {createdDate}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {item.size}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    <Grid
-                                                        onClick={() => de(item.id, item.name, item.folder,item["@microsoft.graph.downloadUrl"]
+                                                    </TableCell>
+                                                    <TableCell align="right">
+                                                        {item.lastModifiedBy.user.displayName}
+                                                    </TableCell>
+                                                    <TableCell align="right">
+                                                        {createdDate}
+                                                    </TableCell>
+                                                    <TableCell align="right">
+                                                        {item.size}
+                                                    </TableCell>
+                                                    <TableCell align="right">
+                                                        <Grid
+                                                            onClick={() => de(item.id, item.name, item.folder, item["@microsoft.graph.downloadUrl"]
                                                             )}>
-                                                        {/* <Button  onClick={()=>de(item.id,item.name)}> */}
-                                                        <SimpleDialog
-                                                            id={itemId}
-                                                            name={itemName}
-                                                            onDelete={onDelete}
-                                                            folder={itemfolder}
-                                                            onOpenFolder={onClick}
-                                                            deleteResponse={deleteResponse}
-                                                            downloadUrl={downUrl}
-                                                            onCopy={onCopy}
-                                                            copyResponse={copyResponse}
-                                                        //  open={openOn}
-                                                        //  onClose={handleClose}
-                                                        //  anchorEl={anchorEl}
-                                                        />
+                                                            {/* <Button  onClick={()=>de(item.id,item.name)}> */}
+                                                            <SimpleDialog
+                                                                id={itemId}
+                                                                name={itemName}
+                                                                onDelete={onDelete}
+                                                                folder={itemfolder}
+                                                                onOpenFolder={onClick}
+                                                                deleteResponse={deleteResponse}
+                                                                downloadUrl={downUrl}
+                                                                onCopy={onCopy}
+                                                                copyResponse={copyResponse}
+                                                            //  open={openOn}
+                                                            //  onClose={handleClose}
+                                                            //  anchorEl={anchorEl}
+                                                            />
 
-                                                        {/* </Button> */}
-                                                    </Grid>
-                                                    {/* <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
+                                                            {/* </Button> */}
+                                                        </Grid>
+                                                        {/* <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
                                                             <Button
                                                                 id="fade-button"
                                                                 aria-controls={openOn ? 'fade-menu' : undefined}
@@ -781,21 +800,21 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                 
                                                             </Menu>
                                                         </Grid> */}
-                                                </TableCell>
-                                            </TableRow>
-                                        )
-                                    })}
+                                                    </TableCell>
+                                                </TableRow>
+                                            )
+                                        })}
 
-                            </TableBody>
+                                </TableBody>
 
 
-                        }
+                            }
 
-                    </Table>
+                        </Table>
 
-                </TableContainer>
-            </Stack>
-             </Grid> 
+                    </TableContainer>
+                </Stack>
+            </Grid>
 
         </>
     );
