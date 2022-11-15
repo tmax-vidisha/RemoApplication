@@ -472,7 +472,7 @@ const handleBoxChange=(e:any)=>{
                                 <TableRow>
                                     <TableCell padding="checkbox" ><Checkbox 
                                     value="all"
-                                     onChange={handleChange} 
+                                     onChange={handleBoxChange} 
                                     //  checked={selected.includes() }
                                      /></TableCell>
                                     <TableCell>Name</TableCell>
@@ -530,6 +530,7 @@ const handleBoxChange=(e:any)=>{
                                                     key={item.name}
                                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                                     style={{ fontSize: "10px" }}
+
                                                 >
                                                     <TableCell padding="checkbox"><Checkbox /></TableCell>
                                                     <TableCell component="th" scope="row">

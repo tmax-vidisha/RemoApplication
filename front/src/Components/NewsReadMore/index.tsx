@@ -25,6 +25,7 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import { useGetNewsQuery,useUpdateNewsTokenMutation,useGetAllNewsQuery } from '../../services/APIs';
 import { useLocation } from 'react-router-dom'
+import NationalNews from './NationalNews';
 var moment = require("moment-timezone");
 interface IFolderProps {
     data:any, 
@@ -102,7 +103,9 @@ interface IFolderProps {
                         </Paper>
                     </Paper>
                 </Card>
-
+                <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
+                 <NationalNews/>
+                </Paper>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
                     <Card elevation={0}>
                         <Grid container item xs={12} spacing={0}>
