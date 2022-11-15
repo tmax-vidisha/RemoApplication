@@ -1,5 +1,5 @@
 import express from "express";
-import { getPostData,postEventData,postHeroData,postCeoData,postNewsData,postEmpData,postUserQuicklinkData } from  "../controllers/postdata";
+import { getPostData,postEventData,postHeroData,postCeoData,postNewsData,postEmpData,postUserQuicklinkData,postRemoNews } from  "../controllers/postdata";
 // const { getData } = require("../controllers/graph");
 // const createToken = require('../controllers/token')
 import {Router} from "express";
@@ -31,7 +31,7 @@ router.route('/data').post(getPostData)
 router.route('/eventdata').post(postEventData)
 router.route('/herodata').post(postHeroData)
 router.route('/ceodata').post(postCeoData)
-router.route('/newsdata').post(postNewsData)
+router.route('/newsdata').post(postRemoNews)
 router.route('/empdata').post(postEmpData)
 router.route('/userquicklinkdata').post(postUserQuicklinkData)
 export default router;
