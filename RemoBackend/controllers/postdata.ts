@@ -12,6 +12,9 @@ const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`;
 const REMO_SITE_ID = "tmxin.sharepoint.com,1649e6fd-df59-4f03-8e4b-4d765864f406,d2634703-c0cd-42f6-bfb5-c60555dbcb7d"
 const Events_Id = "80d2331e-6970-4fe2-aa79-c6cae73bc150"
 const HeroImage_Id = "7dfccbdf-0469-40e8-ab99-501d6314491f"
+const Site_Id = 'tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43'
+const RemoNews_Id ="25fb939d-87e0-4fb5-b575-f11bd916e4df"
+
 import azure from'azure-storage';
 require('dotenv').config();
 
@@ -994,6 +997,144 @@ const postUserQuicklinkData = asyncHandler(async(req:Request, res:Response) => {
 
 })
 
+function blobStorage(image: any, imageName: any) {
+  //@ts-ignore
+  var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
+  var matches = image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+  var type = matches[1];
+  //@ts-ignore
+  var buffer = new Buffer.from(matches[2], 'base64');
+  const containerName = 'candidate';
+  const blobName = imageName
+  //@ts-ignore
+  blobService.createBlockBlobFromText(containerName, blobName, buffer, { contentType: type }, function (error, result, response) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(result)
+    }
+  });
+  var startDate = new Date();
+  startDate.setMinutes(startDate.getMinutes() - 300);
+  var expiryDate = new Date(startDate);
+  // expiryDate.setMinutes(startDate.getMinutes() + 300);
+  expiryDate.setMonth(startDate.getMonth() + 12);
+  var sharedAccessPolicy = {
+    AccessPolicy: {
+      Permissions: [azure.BlobUtilities.SharedAccessPermissions.READ],  //grent read permission only
+      Start: startDate,
+      Expiry: expiryDate
+    }
+  };
+  console.log(sharedAccessPolicy, 'iiii')
+  //@ts-ignore
+  var sasToken = blobService.generateSharedAccessSignature(containerName, blobName, sharedAccessPolicy);
+  var response = {};
+  //@ts-ignore
+  response.image = blobService.getUrl(containerName, blobName, sasToken);
+  //@ts-ignore
+  console.log(response.image)
+
+  //@ts-ignore
+  return response.image
+}
+
+const postRemoNews = asyncHandler(async (req: Request, res: Response) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  console.log(req.headers.authorization, 'tccccttddddttttvvvvvtttttttyy')
+  const token = req.headers.authorization
+  const {
+  //   // token,
+  //   title, description, image, imageName, isActive, EnableLikes, EnableCommands, SharedAsEmail, RecipientEmail, Attachment, Attachmentname
+  //   // ceotitle,ceodesc,ceousername,
+  //   //  ceoposition,ceopic,ceopicname,
+     newstitle,newsdesc,newspic,newspicname,
+  //   //  employyetitle, empname,empdept,emppic,emppicname,
+  //   //  userquicklink,globalquicklink
+  } = req.body
+  console.log(newstitle, 'isActive')
+  console.log(newsdesc, 'EnableLikes')
+  // console.log(newspic, 'EnableCommands')
+  // console.log(newspicname, 'SharedAsEmail')
+   const Image = blobStorage(newspic, newspicname)
+  // const File = blobStorage(Attachment, Attachmentname)
+  // console.log(Image, 'rtretrt')
+  // console.log(File, 'tththththth')
+  // //    console.log( title,imageName,isActive,EnableLikes,'ytjytjytjty')
+  // console.log(description,'thgtrhj67k87k87k87k87')
+      //  console.log(image,'thgtrhj67k87k87k87k87')
+  //  console.log(globalquicklink,'rgtreyrewyreyweywsF')
+  // console.log(empname,'tey54u6565ieutudrusya')
+  // console.log(empdept,'gregrthtrht')
+  // console.log(emppicname,'gregrthtrht')
+  if (!token) {
+    // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+    // console.log(dataFiles,'dgdfgthtrhytjytjyt')
+    // return res.status(200).json({
+    //     success: true,
+    //     data: dataFiles
+    // });
+    //  res.send(dataFiles)
+    return res.status(404).json({
+      success: false,
+      error: "No Token found"
+    });
+
+  } else {
+    const Data = {
+      fields: {
+        Title: newstitle,
+        Description:newsdesc,
+        NewsImage:Image
+       
+
+
+        //@ts-ignore
+        // heroUrl: response.image
+      }
+    }
+    try {
+      const response = await fetch(`${BASE_PATH}/${Site_Id}/lists/${RemoNews_Id}/items`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Data)
+      });
+      const data = await response.json();
+      // enter you logic when the fetch is successful
+      console.log(data,'rtyyw444444444');
+      // return data
+    } catch (error) {
+      // enter your logic for when there is an error (ex. error toast)
+
+      console.log(error)
+    }
+
+//     const response = 
+//     // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+//       await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/4d933ed8-bce3-4429-9af6-8e509eb6d2dc/items?$expand=fields`, {
+//       headers: {
+//           'Authorization': `Bearer ${token} `,
+//           'Content-Type': 'application/json'
+        
+//         }
+      
+//   })
+//   console.log(response.data.value,"meetingssssssssssssssssssssssss" )
+//   res.status(200).json({
+//     success: true,
+//     response :response.data.value
+
+//  });
+
+  }
+
+})
+
 export {
     // getData,
     // queryGraphApi
@@ -1004,5 +1145,6 @@ export {
   postCeoData,
   postNewsData,
   postEmpData,
-  postUserQuicklinkData
+  postUserQuicklinkData,
+  postRemoNews
 }

@@ -75,7 +75,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
       
   //   }, [])
     const { data, error, isLoading } =  props
-    console.log(data,'888ddd88ttuytuytu888')
+    console.log(data?.response,'NewsDary')
   return (
       
     // <>
@@ -175,6 +175,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
     // </AuthenticatedTemplate>
     
     //  </>
+
     <AuthenticatedTemplate>
       <Paper style={{ maxWidth: "100%" }} elevation={0}>
         {isLoading ? (
@@ -341,7 +342,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                   </CardActionArea>
                 </Card> */}
                 {data?.response &&
-                data?.response?.value.map((item: any, index: any) => {
+                data?.response?.map((item: any, index: any) => {
                   const { fields = {} } = item;
                   var newsTitle = fields?.Title;
                   var newsMessageAsText = fields.Description;
@@ -353,7 +354,8 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
             let newsYear  = moment(fields?.Modified).format("YYYY");
             let newsDate = moment(fields?.Modified).format("DD");
             let newsDay  = moment(fields?.Modified).format('dddd');
-                  var img = fields?.newsUrl
+                  // var img = fields?.newsUrl
+                  var img = fields?.NewsImage
                   // var completePath;
                   // if (fields.NewsImage != null) {
                   //   var profilePic = JSON.parse(fields.NewsImage);
@@ -368,11 +370,11 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                   // var ImgObj = JSON.parse(RawImageTxt); 
                   var newFullPath;
                   var newsPath;
-                  console.log(fields?.NewsImage);
-                  if (fields?.NewsImage != null) {
-                    newFullPath = JSON.parse(fields?.NewsImage);
-                    newsPath = newFullPath?.serverUrl + newFullPath?.serverRelativeUrl;
-                  } 
+                  // console.log(fields?.NewsImage);
+                  // if (fields?.NewsImage != null) {
+                  //   newFullPath = JSON.parse(fields?.NewsImage);
+                  //   newsPath = newFullPath?.serverUrl + newFullPath?.serverRelativeUrl;
+                  // } 
                   return (
                     <Card sx={{ maxWidth: 250, maxHeight: 240 }}>
                     <CardActionArea>
@@ -503,6 +505,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
         )}
       </Paper>
     </AuthenticatedTemplate>
+   
   )
 }
 
