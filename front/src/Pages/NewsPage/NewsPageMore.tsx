@@ -7,6 +7,7 @@ import NewsReadMore from '../../Components/NewsReadMore';
 const NewsPageMore = () => {
   const {token} = useCustom();
   const { data, error, isLoading } = useGetAllNewsQuery(token)
+  console.log(data,'gtththth')
   return (
     <AuthenticatedTemplate>
       <NewsReadMore
