@@ -140,4 +140,12 @@ export const useStyles = makeStyles({
   newsRightBorder: {
     borderRight: " 1px solid #F1F1F1 !important",
   },
+
+  textPart: {
+    display: "flex",
+    justifyContent: "space-between",
+    textAlign: "center", height: "30px",
+    fontSize: "12px",
+    margin: "10px"
+  },
 });

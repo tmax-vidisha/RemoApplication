@@ -26,6 +26,9 @@ import { configuration } from "../../index";
 import { useGetNewsQuery,useUpdateNewsTokenMutation,useGetAllNewsQuery } from '../../services/APIs';
 import { useLocation } from 'react-router-dom'
 import NationalNews from './NationalNews';
+import IconText from '../Header/IconText';
+
+
 var moment = require("moment-timezone");
 interface IFolderProps {
     data:any, 
@@ -82,7 +85,7 @@ interface IFolderProps {
         <AuthenticatedTemplate>
             <Container className={classes.contentEditorWidth}>
             <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-                
+                <IconText/>
             </Paper>
                 <Card className={classes.cardHeight} elevation={0}>
                     <Paper className={classes.innerBackground}>
