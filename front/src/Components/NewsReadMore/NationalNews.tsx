@@ -13,7 +13,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useState } from 'react';
-
+var moment = require("moment-timezone");
 const post = [
     {
         id: 1,
@@ -46,26 +46,36 @@ const post = [
 
 ]
 
+interface IFolderProps {
+    data:any, 
+    error:any,
+    isLoading:any
+    // onClick: any;
+    // onDownload?: (id: string) => void;
+    // onDelete?: (id: string) => void;
+    // onRename?: (id: string, name: string) => void;
+    // onShare?: (id: string) => void;
+  }
 
-
-const NationalNews = () => {
-    
+const NationalNews: React.FC<IFolderProps> = (props: IFolderProps) => {
+    const { data, error, isLoading } =  props
+    console.log(data?.response1,'nEWS')
     return (
         <div>
             <Grid>
                 <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
                     <Grid style={{ borderRight: "1px solid gray", paddingRight: "20px", marginRight: "50px" }}>
                         <Grid>
-                            <img src={rashid} alt="image" style={{ minWidth: "450px", height: "280px", borderRadius: "10px" }} />
+                            <img src={data?.response1[0].fields.NewsImage} alt="image" style={{ minWidth: "450px", height: "280px", borderRadius: "10px" }} />
                         </Grid>
                         <Grid style={{ display: "flex", justifyContent: "space-between", fontSize: "10px" }}>
-                            <Box><Link to="/">National</Link></Box>
+                            <Box><Link to="/">{data?.response1[0].fields.Reference}</Link></Box>
                             <Box>
                                 {/* <span><AccessTimeIcon style={{ width: "13px" }} /> <span>Few Mins Ago</span></span> */}
                                 <List>
                                     <ListItem disablePadding>
                                         <img src={clock} alt="clock" style={{ width: "14px" }} />
-                                        <ListItemText secondary="Few Mins Ago" secondaryTypographyProps={{
+                                        <ListItemText secondary={moment(data?.response1[0].fields?.Modified).fromNow()} secondaryTypographyProps={{
                                             fontSize: 11,
                                             color: 'gray',
                                             marginLeft: "10px"
@@ -75,22 +85,23 @@ const NationalNews = () => {
                             </Box>
                         </Grid>
                         <Typography style={{ width: "350px", textAlign: "left", margin: "10px" }}>
-                            Mohammed Bin Rashid approves new federal department board appointments
+                        {data?.response1[0].fields.Title}
                         </Typography>
 
                     </Grid>
                     <Grid >
                         <List>
                            
-                            {post.map((item: any) => (
-
+                            {data?.response && data?.response?.slice(1,5).map((item: any) => (
+                                
                                 <ListItem  style={{ borderBottom: "1px solid gray" }}>
                                     <Box>                                        
-                                        {item.image}
+                                        {/* {item.fields.NewsImage} */}
+                                        <img src={item.fields.NewsImage} alt="image" style={{ minWidth: "60px", height: "70px", borderRadius: "10px" }} />
                                     </Box>
                                     <Box >
-                                        <Typography style={{ fontSize: "12px" }}> {item.name}</Typography>
-                                        <Typography style={{ fontSize: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}> <span style={{ color: "blue" }}>{item.title} </span> <span> {item.time}</span></Typography>
+                                        <Typography style={{ fontSize: "12px" }}> {item.fields.Title}</Typography>
+                                        <Typography style={{ fontSize: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}> <span style={{ color: "blue" }}>{item.fields.Reference} </span> <span>{moment(item.fields?.Modified).fromNow()}</span></Typography>
                                     </Box>
                                 </ListItem>
 
