@@ -77,6 +77,61 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
   const { data, error, isLoading } = props
   console.log(data?.response, 'NewsDary')
   return (
+=======
+    //               // var ImgObj = JSON.parse(RawImageTxt); 
+    //               var newFullPath;
+    //               var newsPath;
+    //               console.log(fields?.NewsImage);
+    //               if (fields?.NewsImage != null) {
+    //                 newFullPath = JSON.parse(fields?.NewsImage);
+    //                 newsPath = newFullPath?.serverUrl + newFullPath?.serverRelativeUrl;
+    //               } 
+    //               return (
+    //                 <Grid item xs={6} key={index} sx={{ maxWidth: " 49%" }}>
+    //                    <CardMedia
+    //                       className={classes.newsImg}
+    //                       // image={newsPath}
+    //                       image ={img}
+    //                       title="Test"
+    //                     />
+    //                      <Typography
+    //                       variant="body2"
+    //                       color="textSecondary"
+    //                       component="span"
+    //                       className={classes.newsContents}
+    //                     >
+    //                       <RouterNavLink to='/NewsInfo' state={fields?.id} >
+    //                         <div
+    //                           dangerouslySetInnerHTML={{
+    //                             __html: `${fields?.Title}`,
+    //                           }}
+    //                         />
+    //                       </RouterNavLink>
+    //                     </Typography>
+    //                     <Typography
+    //                       className={classes.createdDate}
+    //                       variant="caption"
+    //                       color="textSecondary"
+    //                       component="span"
+    //                       display="block"
+    //                       gutterBottom
+    //                     >
+    //                       <AccessTimeIcon fontSize="small" />
+    //                       <span>{createdDate}</span>
+    //                     </Typography>
+    //                 </Grid>
+    //               )
+    //             })}
+    //           </Grid>
+    //         </CardContent>
+    //       </>
+    //     )}
+    //   </Paper>
+    // </AuthenticatedTemplate>
+
+    //  </>
+
+
     <AuthenticatedTemplate>
       <Paper style={{ maxWidth: "100%" }} elevation={0}>
         {isLoading ? (
