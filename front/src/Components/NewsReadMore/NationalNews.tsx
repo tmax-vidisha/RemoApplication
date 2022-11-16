@@ -81,7 +81,7 @@ const NationalNews = () => {
                     </Grid>
                     <Grid >
                         <List>
-                           
+                            {/* @ts-ignore */}
                             {post.map((item: any) => (
 
                                 <ListItem  style={{ borderBottom: "1px solid gray" }}>
