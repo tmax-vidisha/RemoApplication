@@ -44,43 +44,9 @@ interface IFolderProps {
 // const NewsReadMore = () => {
  const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
-    // const pca = new PublicClientApplication(configuration);
-    // const [tokens, setTokens] = useState<string>();
-    // // const [updateToken,{data,isLoading} ] = useUpdateNewsTokenMutation();
-    // // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
-    // const accounts = pca.getAllAccounts();
-    //  useEffect(() => {
-    //   async function getAccessToken() {
-    //     if (accounts.length > 0) {
-    //       const request = {
-    //         scopes: ['user.read'],
-    //         account: accounts[0]
-    //       }
-    //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
-           
-    //         // updateToken(response.accessToken);
-    //           setTokens(response.accessToken)
-    //         // console.log(token,'uuuuuu')
-    //       }).catch(error => {
-    //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
-    //         console.log(error);
-    //         return null;
-    //       });
-  
-  
-    //     }
-  
-    //     return null;
-    //   }
-    //   getAccessToken();
-  
-       
-      
-    // }, [])
-    // const {news} = props;
-    // console.log(news, 'uuuuuc')
-    const { data, error, isLoading } =  props
-    console.log(data,'888ddd88ttuytuytu888')
+    const { data, error, isLoading } =  props;
+    console.log(data,'888ddd88ttuytuytu888');
+
     return (
         <AuthenticatedTemplate>
             <Container className={classes.contentEditorWidth}>
@@ -113,7 +79,7 @@ interface IFolderProps {
                  <NationalNews/>
                 </Paper>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-                    <Card elevation={0}>
+                    <Card elevation={0} >
                         <Grid container item xs={12} spacing={0}>
                             <Card
                                 className={classes.moreNews}
@@ -144,7 +110,7 @@ interface IFolderProps {
                                             var newsPath = newsPic?.serverUrl + newsPic?.serverRelativeUrl;
                                         }
                                         return (
-                                            <Grid key={index} item xs={8} className={classes.newsRightBorder}>
+                                            <Grid key={index} item xs={8} className={classes.newsRightBorder} >
                                                 <CardContent sx={{ pb: "0!important" }}>
                                                     <Typography variant="subtitle1" gutterBottom>
                                                         <div

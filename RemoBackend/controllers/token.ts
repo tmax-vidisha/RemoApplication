@@ -17,6 +17,8 @@ const News_Id = "72988e1e-2ebf-48dc-96ce-2db3cbb7c3e3"
 const EmpHighlights = "14f67e9e-4581-4a06-8c29-f775b8770fe4"
 const HeroImage_Id = "7dfccbdf-0469-40e8-ab99-501d6314491f"
 const Photo_Gallery ="55cf720b-4646-49ed-bc64-c97ed72b75f0"
+const Site_Id = "tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43"
+const RemoNews_Id ="25fb939d-87e0-4fb5-b575-f11bd916e4df"
 import asyncHandler from '../middleware/asyncHandler'
 const app = express();
 // const getTokens = require('./graph')
@@ -682,6 +684,48 @@ const getEventsMeetings = asyncHandler(async(req:Request, res:Response) => {
 
 })
 
+const getRemoNews = asyncHandler(async(req:Request, res:Response) => {
+  console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
+
+  // const  token = req.headers.authorization
+  // console.log(req.body)
+  const {token} = req.params
+  //  const {token} = req.body
+  console.log(token,'llll')
+  // console.log(req.body,'gregrthtrht')
+  if(!token ){
+ 
+  return res.status(404).json({
+      success: false,
+      error: "No Token found"
+  });
+
+  }else {
+    
+    const response = 
+    // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+      await axios.get(`${BASE_PATH}/${Site_Id}/lists/${RemoNews_Id}/items?$expand=fields`, {
+      headers: {
+          'Authorization': `Bearer ${token} `,
+          'Content-Type': 'application/json'
+        
+        }
+      
+  })
+  console.log(response.data.value,"meetingssssssssssssssssssssssss" )
+  res.status(200).json({
+    success: true,
+    response :response.data.value
+
+ });
+
+  }
+  
+
+})
+
+
+
 
 
 
@@ -703,7 +747,8 @@ export {
     getEmpData,
     getHeroData,
     createRequset,
-    getEventsMeetings
+    getEventsMeetings,
+    getRemoNews
     
 
 }
