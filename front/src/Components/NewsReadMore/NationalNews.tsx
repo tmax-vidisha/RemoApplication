@@ -81,12 +81,11 @@ const NationalNews = () => {
                     </Grid>
                     <Grid >
                         <List>
-                            {/* @ts-ignore */}
+                           
                             {post.map((item: any) => (
 
                                 <ListItem  style={{ borderBottom: "1px solid gray" }}>
-                                    <Box>
-                                        {/* <img src={scotish} alt="sco" style={{ width: "100px", height: "70px", marginRight: "20px" }} /> */}
+                                    <Box>                                        
                                         {item.image}
                                     </Box>
                                     <Box >
