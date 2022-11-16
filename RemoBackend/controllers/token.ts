@@ -712,6 +712,7 @@ const getRemoNews = asyncHandler(async(req:Request, res:Response) => {
         }
       
   })
+
   const responseTop = 
     // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
       await axios.get(`${BASE_PATH}/${Site_Id}/lists/${RemoNews_Id}/items?$expand=fields&$top=5`, {
@@ -727,6 +728,7 @@ const getRemoNews = asyncHandler(async(req:Request, res:Response) => {
     success: true,
     response :response.data.value,
     response1:responseTop.data.value
+
 
  });
 

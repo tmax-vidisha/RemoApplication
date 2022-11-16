@@ -39,4 +39,4 @@ router.route('/mymeetings/:token').get(getEventsMeetings)
 //  router.route('/folder').get(getFolderData)
 
 // module.exports = router
-export default router
+export default router;

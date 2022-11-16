@@ -77,52 +77,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
   const { data, error, isLoading } = props
   console.log(data?.response, 'NewsDary')
   return (
-
-    // <>
-    //  <AuthenticatedTemplate>
-    //   <Paper style={{ maxWidth: "100%" }} elevation={0}>
-    //     {isLoading ? (
-    //       <SkeletonAnimation />
-    //     ) : (
-    //       <>
-    //         <CardContent sx={{ pb: "16px!important" }}>
-    //           <Typography
-    //             variant="h6"
-    //             component="h6"
-    //             color="secondary"
-    //             className={classes.newsHeader}
-    //           >
-    //             News
-    //           </Typography>
-
-    //           <Grid
-    //             container
-    //             item
-    //             xs={12}
-    //             spacing={0}
-    //             sx={{ justifyContent: "space-between" }}
-    //           >
-    //              {data?.response &&
-    //             data?.response?.value.map((item: any, index: any) => {
-    //               const { fields = {} } = item;
-    //               var newsTitle = fields?.Title;
-    //               var newsMessageAsText = fields.Description;
-    //               var newsIsActive = fields.IsActive;
-    //               var createdDate = moment(
-    //                 fields.Modified
-    //               ).fromNow();
-    //               var img = fields?.newsUrl
-    //               // var completePath;
-    //               // if (fields.NewsImage != null) {
-    //               //   var profilePic = JSON.parse(fields.NewsImage);
-    //               //   if (profilePic.serverUrl) {
-    //               //     completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
-    //               //   } else {
-    //               //     completePath = profilePic.serverRelativeUrl
-    //               //   }
-    //               // }
-    //               // let RawImageTxt = fields.newsUrl;
-
+=======
     //               // var ImgObj = JSON.parse(RawImageTxt); 
     //               var newFullPath;
     //               var newsPath;
@@ -176,6 +131,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     //  </>
 
+
     <AuthenticatedTemplate>
       <Paper style={{ maxWidth: "100%" }} elevation={0}>
         {isLoading ? (
@@ -207,140 +163,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={2}>
-                {/* <Card sx={{ maxWidth: 250, maxHeight: 240 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      // className={classes.newsImg}
-                      component="img"
-                      height="160"
-                      image={data?.response.image}
-                      // image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-                      alt="green iguana"
-                    />
-                    <CardContent>
-                      <Stack direction="row" justifyContent="space-between">
-                        <Typography
-                          className={classes.newsHeader2}
-                          variant="body2"
-                          color="text.primary"
-                        >
-                          David Siddiqa
-                        </Typography>
-                        <Typography
-                          className={classes.newsHeader2}
-                          variant="body2"
-                          color="text.primary"
-                        >
-                          Thursday, June 05, 2022
-                        </Typography>
-                      </Stack>
-                      <div className={classes.row}>
-                        <div className={classes.block}>
-                          <img src={like} alt="like" />
-                        </div>
-                        <div className={classes.block}>
-                          <img src={share} alt="like" />
-                        </div>
-                        <div className={classes.block}>
-                          <img src={pin} alt="like" />
-                        </div>
-                        <div className={classes.block}>
-                          <img src={internet} alt="like" />
-                        </div>
-                      </div>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
 
-                <Card sx={{ maxWidth: 250, maxHeight: 240 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      //  className={classes.newsImg}
-                      component="img"
-                      height="160"
-                      image={data?.response.image1}
-                      // image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-                      alt="green iguana"
-                    />
-                    <CardContent>
-                      <Stack direction="row" justifyContent="space-between">
-                        <Typography
-                          className={classes.newsHeader2}
-                          variant="body2"
-                          color="text.primary"
-                        >
-                          David Siddiqa
-                        </Typography>
-                        <Typography
-                          className={classes.newsHeader2}
-                          variant="body2"
-                          color="text.primary"
-                        >
-                          Thursday, June 05, 2022
-                        </Typography>
-                      </Stack>
-                      <div className={classes.row}>
-                        <div className={classes.block}>
-                          <img src={like} alt="like" />
-                        </div>
-                        <div className={classes.block}>
-                          <img src={share} alt="like" />
-                        </div>
-                        <div className={classes.block}>
-                          <img src={pin} alt="like" />
-                        </div>
-                        <div className={classes.block}>
-                          <img src={internet} alt="like" />
-                        </div>
-                      </div>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-
-                <Card sx={{ maxWidth: 250, maxHeight: 240 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      // className={classes.newsImg}
-                      component="img"
-                      height="160"
-                      image={data?.response.image2}
-                      // image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-                      alt="green iguana"
-                    />
-                    <CardContent>
-                      <Stack direction="row" justifyContent="space-between">
-                        <Typography
-                          className={classes.newsHeader2}
-                          variant="body2"
-                          color="text.primary"
-                        >
-                          David Siddiqa
-                        </Typography>
-                        <Typography
-                          className={classes.newsHeader2}
-                          variant="body2"
-                          color="text.primary"
-                        >
-                          Thursday, June 05, 2022
-                        </Typography>
-                      </Stack>
-                      <div className={classes.row}>
-                        <div className={classes.block}>
-                          <img src={like} alt="like" />
-                        </div>
-                        <div className={classes.block}>
-                          <img src={share} alt="like" />
-                        </div>
-                        <div className={classes.block}>
-                          <img src={pin} alt="like" />
-                        </div>
-                        <div className={classes.block}>
-                          <img src={internet} alt="like" />
-                        </div>
-                      </div>
-                    </CardContent>
-                  </CardActionArea>
-                </Card> */}
                 {data?.response &&
                   data?.response?.map((item: any, index: any) => {
                     const { fields = {} } = item;
@@ -425,63 +248,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                     )
                   })}
               </Stack>
-              {/* <Grid container item xs={12} spacing={0}>
-                {data?.response && (
-                  <Grid
-                    item
-                    xs={12}
-                    sx={{
-                      maxWidth: " 100%",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      // marginRight: "15px",
-                      gap: "20px",
-                    }}
-                  >
-                    <CardMedia
-                      className={classes.newsImg}
-                      image={data?.response.image}
-                      title="Test"
-                    />
 
-                    <CardMedia
-                      className={classes.newsImg}
-                      image={data?.response.image1}
-                      title="Test"
-                    />
-                    <CardMedia
-                      className={classes.newsImg}
-                      image={data?.response.image2}
-                      title="Test"
-                    />
-
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="span"
-                      className={classes.newsContents}
-                    >
-                      <RouterNavLink to="/NewsInfo">
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: `${data?.response.value[2].fields?.Title}`,
-                          }}
-                        />
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: `${data?.response.value[1].fields?.Title}`,
-                          }}
-                        />
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: `${data?.response.value[2].fields?.Title}`,
-                          }}
-                        />
-                      </RouterNavLink>
-                    </Typography>
-                  </Grid>
-                )}
-              </Grid> */}
               <div>
                 <Stack
                   direction="row"
@@ -509,4 +276,4 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
   )
 }
 
-export default News
+export default News;

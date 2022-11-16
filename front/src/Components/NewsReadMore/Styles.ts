@@ -110,13 +110,17 @@ export const useStyles = makeStyles({
     height: 20,
   },
   moreNews: {
-    display: "flex",
+   display:"grid", 
+   gridTemplateColumns:"repeat(3, 1fr)",
   },
   moreNewsItem: {
-    display: "flex",
+    display:"grid", 
+   gridTemplateColumns:"repeat(3, 1fr)",
+
   },
   moreNewsTag: {
-    display: "flex",
+    display:"grid", 
+   gridTemplateColumns:"repeat(3, 1fr)",
     alignItems: "center !important",
     "& span": {
       "& a": {
