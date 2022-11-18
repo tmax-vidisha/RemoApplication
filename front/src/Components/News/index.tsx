@@ -249,8 +249,3 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
 }
 
 export default News
-
-
-
-
-

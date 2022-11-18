@@ -13,6 +13,7 @@ import { Grid } from '@mui/material';
 import Gallery from '../../Components/Gallery';
 import SocialMedia from '../../Components/SocialMedia';
 import deleteIcon from '../../Assets/Images/delete.svg';
+import SlideShowNews from '../../Components/News/SlideShowNews';
 // import {ceo} from '../../Assets/Images/';
 
 
@@ -106,6 +107,12 @@ export const ContainerPage: FC = () => {
                 id: 10,
 
                 text:  <Grid item xs={4}> <RecentFilePage />  </Grid>,
+
+            },
+            {
+                id: 11,
+
+                text:  <Grid item xs={6}> <SlideShowNews />  </Grid>,
 
             },
 

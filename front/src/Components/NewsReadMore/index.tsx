@@ -46,6 +46,10 @@ interface IFolderProps {
 // const NewsReadMore = () => {
 const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
+
+    const { data, error, isLoading } =  props;
+    console.log(data,'888ddd88ttuytuytu888');
+
     // const pca = new PublicClientApplication(configuration);
     // const [tokens, setTokens] = useState<string>();
     // // const [updateToken,{data,isLoading} ] = useUpdateNewsTokenMutation();
@@ -81,8 +85,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
     // }, [])
     // const {news} = props;
     // console.log(news, 'uuuuuc')
-    const { data, error, isLoading } = props
-    console.log(data, '888ddd88ttuytuytu888')
+
     return (
         <AuthenticatedTemplate>
             <Container className={classes.contentEditorWidth}>
@@ -310,7 +313,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </CardContent>
                 </Paper>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-                    <Card elevation={0}>
+                    <Card elevation={0} >
                         <Grid container item xs={12} spacing={0}>
                             <Card
                                 className={classes.moreNews}
@@ -341,7 +344,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         //     var newsPath = newsPic?.serverUrl + newsPic?.serverRelativeUrl;
                                         // }
                                         return (
-                                            <Grid key={index} item xs={8} className={classes.newsRightBorder}>
+                                            <Grid key={index} item xs={8} className={classes.newsRightBorder} >
                                                 <CardContent sx={{ pb: "0!important" }}>
                                                     <Typography variant="subtitle1" gutterBottom>
                                                         {/* <div
