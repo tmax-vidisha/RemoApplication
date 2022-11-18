@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from './index';
@@ -23,6 +23,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
+import { useUploadItemInAnnouncementMutation } from '../../services/contentEditor';
 
 
 const renderCell = (params: any) => {
@@ -83,6 +84,7 @@ const TableAnnouncement = () => {
   const classes = useStyles();
 
   const [open, setOpen] = useState<boolean>(false);
+  const [sendItem] = useUploadItemInAnnouncementMutation();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -112,52 +114,97 @@ const TableAnnouncement = () => {
   const [checkednoEnableCommands, setCheckednoEnableCommands] =useState<boolean>(false);
   const [checkedyesSharedAsEmail, setCheckedyesSharedAsEmail] =useState<boolean>(true);
   const [checkednoSharedAsEmail, setCheckednoSharedAsEmail] =useState<boolean>(false);
-  const [Title, setTitle] = useState<any>([]);
-  const [Description, setDescription] = useState<any>([]);
-  const [RecipientEmail, setRecipientEmail] = useState<any>([]);
+  const   [isActives,setIsActives] = useState<boolean>(false)
+  const   [enablelikes,setEnableLikes] = useState<boolean>(false)
+  const   [enableCommands,setCommands] = useState<boolean>(false)
+  const   [sharedAsEmails,setSharedEmails] = useState<boolean>(false)
+  const [Title, setTitle] = useState<any>('');
+  const [Description, setDescription] = useState<any>('');
+  const [RecipientEmail, setRecipientEmail] = useState<any>('');
+  const [state,setState] = useState({
+    warningMsg:""
+  })
+  const [state1,setState1] = useState({
+    files: [],
+    
+  })
+  const [state2,setState2] = useState({
+    files: [],
+    
+  })
+  const [filename1,setFilename1] = useState<any>('')
+  const [filename2,setFilename2] = useState<any>('')
+  const [base1,setBase1]= useState<any>('')
+  const [base2,setBase2]= useState<any>('')
 
   const handleChangeisActiveyes = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     console.log(event.target.checked)
     setCheckedyesisActive(event.target.checked);
+    setIsActives(true)
+    //@ts-ignore
+      // setIsActives(event.target.value)
+   
     
   };
   const handleChangeisActiveno = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     console.log(event.target.checked)
     setCheckednoisActive(event.target.checked);
+      //@ts-ignore
+      setIsActives(false)
+      // console.log(isActives,'ytujyujy')
+    
   };
   
   const handleChangeEnableLikesyes = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     console.log(event.target.checked)
     setCheckedyesEnableLikes(event.target.checked);
+   
+      setEnableLikes(true)
+    
     
   };
   const handleChangeEnableLikesno = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     console.log(event.target.checked)
     setCheckednoEnableLikes(event.target.checked);
+    
+      setEnableLikes(false)
+    
   };
   const handleChangeEnableCommandsyes = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     console.log(event.target.checked)
     setCheckedyesEnableCommands(event.target.checked);
+    
+      setCommands(true)
+    
   };
   const handleChangeEnableCommandsno = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     console.log(event.target.checked)
     setCheckednoEnableCommands(event.target.checked);
+    
+      setCommands(false)
+    
   };
   const handleChangeSharedAsEmailyes = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     console.log(event.target.checked)
     setCheckedyesSharedAsEmail(event.target.checked);
+    
+      setSharedEmails(true)
+    
   };
   const handleChangeSharedAsEmailno = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     console.log(event.target.checked)
     setCheckednoSharedAsEmail(event.target.checked);
+   
+      setSharedEmails(false)
+    
   };
   const handleChangeTitleField = (event: any) => {
     console.log(event.target.value)
@@ -171,6 +218,102 @@ const TableAnnouncement = () => {
     console.log(event.target.value)
     setRecipientEmail(event.target.value);
   };
+
+  useEffect(()=>{
+    state1.files.forEach((file:any) => URL.revokeObjectURL(file.preview));
+    state2.files.forEach((file:any) => URL.revokeObjectURL(file.preview));
+  },[])
+
+  const addFile = (file:any) => {
+    setFilename1(file[0].name)
+    console.log(file[0].name);
+    setState1({
+      files: file.map((file:any) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        })
+      )
+    });
+  };
+  
+ const onDrop = (accepted:any, rejected:any) => {
+    if (Object.keys(rejected).length !== 0) {
+      const message = "Please submit valid file type";
+      setState({ warningMsg: message });
+    } else {
+     addFile(accepted);
+      setState({ warningMsg: "" });
+      console.log(accepted[0].preview);
+
+      var blobPromise = new Promise((resolve, reject) => {
+        const reader = new window.FileReader();
+        reader.readAsDataURL(accepted[0]);
+        reader.onloadend = () => {
+          const base64data = reader.result;
+          // this.setState({ base64data: base64data });
+          setBase1(base64data)
+          console.log(base64data);
+        };
+      });
+      blobPromise.then(value => {
+       console.log(value);
+      });
+    }
+  };
+  const addFile1 = (file:any) => {
+    setFilename2(file[0].name)
+    console.log(file[0].name);
+    setState2({
+      files: file.map((file:any) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        })
+      )
+    });
+  };
+
+  const onDrop1 = (accepted:any, rejected:any) => {
+    if (Object.keys(rejected).length !== 0) {
+      const message = "Please submit valid file type";
+      setState({ warningMsg: message });
+    } else {
+     addFile1(accepted);
+      setState({ warningMsg: "" });
+      console.log(accepted[0].preview);
+
+      var blobPromise = new Promise((resolve, reject) => {
+        const reader = new window.FileReader();
+        reader.readAsDataURL(accepted[0]);
+        reader.onloadend = () => {
+          const base64data = reader.result;
+          // this.setState({ base64data: base64data });
+          setBase2(base64data)
+          console.log(base64data);
+        };
+      });
+      blobPromise.then(value => {
+       console.log(value);
+      });
+    }
+  };
+const handleSubmit = async  () =>{
+  console.log('grdgdg')
+  const announcementData = {
+    // token :tokens,
+    title: Title,
+    description: Description,
+    image:base1,
+    imageName:filename1,
+    isActive:isActives,
+    EnableLikes:enablelikes,
+    EnableCommands:enableCommands,
+    SharedAsEmail:sharedAsEmails,
+    RecipientEmail:RecipientEmail,
+    Attachment:base2,
+    Attachmentname:filename2
+  }
+ await sendItem(announcementData)
+}
 
   return (
     <div className={classes.MainPart}>
@@ -243,7 +386,8 @@ const TableAnnouncement = () => {
                 <img src={image} alt="" style={{ width: "13px", marginRight: "5px" }} />
                 Image
               </InputLabel>
-              <Dropzone onDrop={handleDrop} >
+              
+              <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps({ className: classes.dropZone })}>
                     <input {...getInputProps()} />
@@ -261,11 +405,11 @@ const TableAnnouncement = () => {
                     <Box style={{display: 'flex',}}>
                     <FormControlLabel
                         label="Yes"
-                        control={<Checkbox checked={checkedyesisActive} value='Yes' onChange={handleChangeisActiveyes} />}
+                        control={<Checkbox checked={checkedyesisActive}  onChange={handleChangeisActiveyes} />}
                       />
                     <FormControlLabel
                         label="No"
-                        control={<Checkbox checked={checkednoisActive} value='No' onChange={handleChangeisActiveno} />}
+                        control={<Checkbox checked={checkednoisActive}  onChange={handleChangeisActiveno} />}
                       />
                     </Box>
                     
@@ -279,11 +423,11 @@ const TableAnnouncement = () => {
                      
                       <FormControlLabel
                         label="Yes"
-                        control={<Checkbox checked={checkedyesEnableLikes} value='Yes' onChange={handleChangeEnableLikesyes} />}
+                        control={<Checkbox checked={checkedyesEnableLikes}  onChange={handleChangeEnableLikesyes} />}
                       />
                       <FormControlLabel
                         label="No"
-                        control={<Checkbox checked={checkednoEnableLikes} value='No' onChange={handleChangeEnableLikesno} />}
+                        control={<Checkbox checked={checkednoEnableLikes}  onChange={handleChangeEnableLikesno} />}
                       />
                     </Box>
                    
@@ -301,11 +445,11 @@ const TableAnnouncement = () => {
                     <Box style={{display:"flex"}}>
                     <FormControlLabel
                         label="Yes"
-                        control={<Checkbox checked={checkedyesEnableCommands} value='Yes' onChange={handleChangeEnableCommandsyes} />}
+                        control={<Checkbox checked={checkedyesEnableCommands}  onChange={handleChangeEnableCommandsyes} />}
                       />
                     <FormControlLabel
                         label="No"
-                        control={<Checkbox checked={checkednoEnableCommands} value='No' onChange={handleChangeEnableCommandsno} />}
+                        control={<Checkbox checked={checkednoEnableCommands}  onChange={handleChangeEnableCommandsno} />}
                       />
                     </Box>
                     
@@ -319,7 +463,6 @@ const TableAnnouncement = () => {
                     <FormControlLabel
                         label="Yes"
                         control={<Checkbox checked={checkedyesSharedAsEmail} 
-                        value='Yes'
                         onChange={handleChangeSharedAsEmailyes} />}
                       />
                     <FormControlLabel
@@ -345,7 +488,7 @@ const TableAnnouncement = () => {
                 <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }}/>
                 Attachments
               </InputLabel>
-              <Dropzone onDrop={handleDrop}>
+              <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps({ className: classes.dropZone })}>
                     <input {...getInputProps()} />
@@ -358,7 +501,7 @@ const TableAnnouncement = () => {
               <Grid style={{alignItems:"left", marginRight:"280px" }}>
                 <Button onClick={handleClose}>Preview</Button>
                 <Button onClick={handleClose}>Save</Button>
-                <Button onClick={handleClose} autoFocus>
+                <Button onClick={handleSubmit} autoFocus>
                   submit
                 </Button>
                 <Button>Cancel</Button>

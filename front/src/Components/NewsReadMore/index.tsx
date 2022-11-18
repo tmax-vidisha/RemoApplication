@@ -18,6 +18,8 @@ import {
     Grid,
     Paper,
     Typography,
+    CardActionArea,
+    Stack
 } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { PublicClientApplication } from "@azure/msal-browser";
@@ -49,6 +51,42 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
     console.log(data, '888ddd88ttuytuytu888');
 
 
+    // const pca = new PublicClientApplication(configuration);
+    // const [tokens, setTokens] = useState<string>();
+    // // const [updateToken,{data,isLoading} ] = useUpdateNewsTokenMutation();
+    // // console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
+    // const accounts = pca.getAllAccounts();
+    //  useEffect(() => {
+    //   async function getAccessToken() {
+    //     if (accounts.length > 0) {
+    //       const request = {
+    //         scopes: ['user.read'],
+    //         account: accounts[0]
+    //       }
+    //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
+
+    //         // updateToken(response.accessToken);
+    //           setTokens(response.accessToken)
+    //         // console.log(token,'uuuuuu')
+    //       }).catch(error => {
+    //         // Do not fallback to interaction when running outside the context of MsalProvider. Interaction should always be done inside context.
+    //         console.log(error);
+    //         return null;
+    //       });
+
+
+    //     }
+
+    //     return null;
+    //   }
+    //   getAccessToken();
+
+
+
+    // }, [])
+    // const {news} = props;
+    // console.log(news, 'uuuuuc')
+
     return (
         <AuthenticatedTemplate>
             <Container className={classes.contentEditorWidth}>
@@ -78,7 +116,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Paper>
                 </Card>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
-                    <NationalNews />
+                    {/* <NationalNews /> */}
                 </Paper>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
                     <Card elevation={0} >
@@ -178,6 +216,195 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                         </Grid>
                     </Card>
+                </Paper>
+                <Paper>
+                    <CardContent sx={{ pb: "16px!important" }}>
+                        <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            spacing={2}
+                        >
+                            <Typography
+                                variant="h6"
+                                component="h6"
+                                color="secondary"
+                            //   className={classes.newsHeader}
+                            >
+                                World News
+                            </Typography>
+                            {/* <Typography
+                  variant="h6"
+                  component="h6"
+                  color="secondary"
+                //   className={classes.newsHeader1}
+                >
+                  View All
+                </Typography> */}
+                        </Stack>
+                        <Stack direction="row" spacing={2}>
+
+                            {data?.response &&
+                                data?.response?.slice(5,10).map((item: any, index: any) => {
+                                    const { fields = {} } = item;
+                                    var newsTitle = fields?.Title;
+                                    var newsMessageAsText = fields.Description;
+                                    var newsIsActive = fields.IsActive;
+                                    var createdDate = moment(
+                                        fields.Modified
+                                    ).fromNow();
+                                    let newsMonth = moment(fields?.Modified).format("MMM");
+                                    let newsYear = moment(fields?.Modified).format("YYYY");
+                                    let newsDate = moment(fields?.Modified).format("DD");
+                                    let newsDay = moment(fields?.Modified).format('dddd');
+                                    // var img = fields?.newsUrl
+                                    var img = fields?.NewsImage
+                                    // var completePath;
+                                    // if (fields.NewsImage != null) {
+                                    //   var profilePic = JSON.parse(fields.NewsImage);
+                                    //   if (profilePic.serverUrl) {
+                                    //     completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
+                                    //   } else {
+                                    //     completePath = profilePic.serverRelativeUrl
+                                    //   }
+                                    // }
+                                    // let RawImageTxt = fields.newsUrl;
+
+                                    // var ImgObj = JSON.parse(RawImageTxt); 
+                                    var newFullPath;
+                                    var newsPath;
+                                    // console.log(fields?.NewsImage);
+                                    // if (fields?.NewsImage != null) {
+                                    //   newFullPath = JSON.parse(fields?.NewsImage);
+                                    //   newsPath = newFullPath?.serverUrl + newFullPath?.serverRelativeUrl;
+                                    // } 
+                                    return (
+                                        <Card sx={{ maxWidth: 250, maxHeight: 240 }}>
+                                            <CardActionArea>
+                                                <CardMedia
+                                                    // className={classes.newsImg}
+                                                    component="img"
+                                                    height="160"
+                                                    image={img}
+                                                    // image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
+                                                    alt="green iguana"
+                                                />
+                                                <CardContent>
+                                                    <Stack direction="row" justifyContent="space-between">
+                                                        <Typography
+                                                            // className={classes.newsHeader2}
+                                                            variant="body2"
+                                                            color="text.primary"
+                                                        >
+
+                                                            {newsTitle}
+                                                        </Typography>
+                                                        <Typography
+                                                            // className={classes.newsHeader2}
+                                                            variant="body2"
+                                                            color="text.primary"
+                                                        >
+                                                            {/* Thursday, June 05, 2022 */}
+                                                            {/* {newsDay} {newsDate} {newsMonth} {newsYear} */}
+                                                            {fields?.Reference}
+                                                        </Typography>
+                                                    </Stack>
+                                                    {/* <div className={classes.row}>
+                              <div className={classes.block}>
+                                <img src={like} alt="like" />
+                              </div>
+                              <div className={classes.block}>
+                                <img src={share} alt="like" />
+                              </div>
+                              <div className={classes.block}>
+                                <img src={pin} alt="like" />
+                              </div>
+                              <div className={classes.block}>
+                                <img src={internet} alt="like" />
+                              </div>
+                            </div> */}
+                                                </CardContent>
+                                            </CardActionArea>
+                                        </Card>
+                                    )
+                                })}
+                        </Stack>
+                        {/* <Grid container item xs={12} spacing={0}>
+                {data?.response && (
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      maxWidth: " 100%",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      // marginRight: "15px",
+                      gap: "20px",
+                    }}
+                  >
+                    <CardMedia
+                      className={classes.newsImg}
+                      image={data?.response.image}
+                      title="Test"
+                    />
+
+                    <CardMedia
+                      className={classes.newsImg}
+                      image={data?.response.image1}
+                      title="Test"
+                    />
+                    <CardMedia
+                      className={classes.newsImg}
+                      image={data?.response.image2}
+                      title="Test"
+                    />
+
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="span"
+                      className={classes.newsContents}
+                    >
+                      <RouterNavLink to="/NewsInfo">
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: `${data?.response.value[2].fields?.Title}`,
+                          }}
+                        />
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: `${data?.response.value[1].fields?.Title}`,
+                          }}
+                        />
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: `${data?.response.value[2].fields?.Title}`,
+                          }}
+                        />
+                      </RouterNavLink>
+                    </Typography>
+                  </Grid>
+                )}
+              </Grid> */}
+                        <div>
+                            <Stack
+                                direction="row"
+                                justifyContent="space-between"
+                                alignItems="center"
+                                paddingTop={5}
+                            >
+                                {/* <div>
+                    <ArrowBackIosIcon />
+                  </div>
+                  <div>
+                    <MoreHorizIcon />
+                  </div>
+                  <div>
+                    <ArrowForwardIosIcon />
+                  </div> */}
+                            </Stack>
+                        </div>
+                    </CardContent>
                 </Paper>
             </Container>
         </AuthenticatedTemplate>
