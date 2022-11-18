@@ -195,16 +195,10 @@ const PortalHome = () => {
             <div key={item.id}>{item.name} </div>
           ))}
         </ReactSortable> */}
-        <DndProvider backend={HTML5Backend}>
-          {/* <Grid item xs={8}>
-          <HeroImagePage />
-        </Grid>
-        <Grid item xs={4}>
-          <CeoPage />
-        </Grid> */}
-          {/* <DraggableHomePage /> */}
+        {/* <DndProvider backend={HTML5Backend}>
+         
           <DroppableHomePage />
-        </DndProvider>
+        </DndProvider> */}
 
 
         {/* <Grid item xs={12} style={{ marginBottom: "16px", paddingTop: "16px", position: "relative" }}>
@@ -223,7 +217,7 @@ const PortalHome = () => {
       {/* <WorkSpaceOne/> 
         </Grid>*/}
 
-      {/* <Grid container spacing={2}>
+      <Grid container spacing={2}>
         <Grid item xs={8}>
           
           <MeetingsPage />
@@ -286,7 +280,7 @@ const PortalHome = () => {
             
           </Grid>
         </Grid>
-      </Grid> */}
+      </Grid>
     </div>
   )
 }
