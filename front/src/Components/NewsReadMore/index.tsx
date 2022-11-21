@@ -116,7 +116,15 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Paper>
                 </Card>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
-                    {/* <NationalNews /> */}
+                    <NationalNews
+
+                        data={data}
+
+                        isLoading={isLoading}
+
+                        error={error}
+
+                    />
                 </Paper>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
                     <Card elevation={0} >
@@ -128,89 +136,89 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 elevation={0}
 
                             >
-                         
-                                    {data?.response.value &&
-                                        data?.response?.value.map((item: any, index: any) => {
-                                            const { fields = {} } = item;
-                                            var Title = fields?.Title;
-                                            //   console.log()
-                                            //   var name = fields?.Title;
-                                            var desc = fields?.Description;
-                                            var isActive = fields?.IsActive;
-                                            var createdDate = moment(fields?.Created).format(
-                                                "MMM DD YYYY"
-                                            );
-                                            var img = fields?.newsUrl;
-                                            //   var profilePic = JSON.parse(fields.EmpImage);
-                                            //   var completePath;
-                                            //   if (profilePic.serverUrl) {
-                                            //     completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
-                                            //   } else {
-                                            //     completePath = profilePic.serverRelativeUrl
-                                            //   }
-                                            if (fields?.NewsImage != null) {
-                                                var newsPic = JSON.parse(fields?.NewsImage);
-                                                var newsPath = newsPic?.serverUrl + newsPic?.serverRelativeUrl;
-                                            }
-                                            return (
-                                                <Grid key={index} item xs={8} className={classes.newsRightBorder} >
-                                              
-                                                    <CardContent sx={{ pb: "0!important" }}>
-                                                        <Typography variant="subtitle1" gutterBottom>
-                                                            <div
-                                                                dangerouslySetInnerHTML={{
-                                                                    __html: `${Title}`,
-                                                                }} />
-                                                        </Typography>
-                                                        <Typography className={classes.moreNewsTag}>
-                                                            <Typography
-                                                                className={classes.newsTag}
-                                                                variant="caption"
-                                                                display="block"
-                                                            >
-                                                                <RouterNavLink to="#">
-                                                                    {fields?.Reference}
-                                                                </RouterNavLink>
-                                                            </Typography>
-                                                            <Typography
-                                                                className={classes.createdDateNews}
-                                                                variant="caption"
-                                                                color="textSecondary"
-                                                                component="span"
-                                                                display="block"
-                                                                gutterBottom
-                                                            >
-                                                                <AccessTimeIcon fontSize="small" />
-                                                                <span>{createdDate}</span>
-                                                            </Typography>
-                                                        </Typography>
-                                                    </CardContent>
-                                                    <CardContent>
-                                                        <CardMedia
-                                                            className={classes.newsImg}
-                                                            image={img}
-                                                            title="Test"
-                                                        />
-                                                    </CardContent>
-                                                    <CardContent>
-                                                        <Typography
-                                                            className={classes.ceoContent}
-                                                            variant="caption"
-                                                            component="span"
-                                                        >
-                                                            <div
-                                                                dangerouslySetInnerHTML={{
-                                                                    __html: `${desc}`,
-                                                                }}
-                                                            />
-                                                        </Typography>
-                                                    </CardContent>
-                                                   
-                                                </Grid>
-                                            )
 
-                                        })}
-                                       
+                                {data?.response.value &&
+                                    data?.response?.value.map((item: any, index: any) => {
+                                        const { fields = {} } = item;
+                                        var Title = fields?.Title;
+                                        //   console.log()
+                                        //   var name = fields?.Title;
+                                        var desc = fields?.Description;
+                                        var isActive = fields?.IsActive;
+                                        var createdDate = moment(fields?.Created).format(
+                                            "MMM DD YYYY"
+                                        );
+                                        var img = fields?.newsUrl;
+                                        //   var profilePic = JSON.parse(fields.EmpImage);
+                                        //   var completePath;
+                                        //   if (profilePic.serverUrl) {
+                                        //     completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
+                                        //   } else {
+                                        //     completePath = profilePic.serverRelativeUrl
+                                        //   }
+                                        if (fields?.NewsImage != null) {
+                                            var newsPic = JSON.parse(fields?.NewsImage);
+                                            var newsPath = newsPic?.serverUrl + newsPic?.serverRelativeUrl;
+                                        }
+                                        return (
+                                            <Grid key={index} item xs={8} className={classes.newsRightBorder} >
+
+                                                <CardContent sx={{ pb: "0!important" }}>
+                                                    <Typography variant="subtitle1" gutterBottom>
+                                                        <div
+                                                            dangerouslySetInnerHTML={{
+                                                                __html: `${Title}`,
+                                                            }} />
+                                                    </Typography>
+                                                    <Typography className={classes.moreNewsTag}>
+                                                        <Typography
+                                                            className={classes.newsTag}
+                                                            variant="caption"
+                                                            display="block"
+                                                        >
+                                                            <RouterNavLink to="#">
+                                                                {fields?.Reference}
+                                                            </RouterNavLink>
+                                                        </Typography>
+                                                        <Typography
+                                                            className={classes.createdDateNews}
+                                                            variant="caption"
+                                                            color="textSecondary"
+                                                            component="span"
+                                                            display="block"
+                                                            gutterBottom
+                                                        >
+                                                            <AccessTimeIcon fontSize="small" />
+                                                            <span>{createdDate}</span>
+                                                        </Typography>
+                                                    </Typography>
+                                                </CardContent>
+                                                <CardContent>
+                                                    <CardMedia
+                                                        className={classes.newsImg}
+                                                        image={img}
+                                                        title="Test"
+                                                    />
+                                                </CardContent>
+                                                <CardContent>
+                                                    <Typography
+                                                        className={classes.ceoContent}
+                                                        variant="caption"
+                                                        component="span"
+                                                    >
+                                                        <div
+                                                            dangerouslySetInnerHTML={{
+                                                                __html: `${desc}`,
+                                                            }}
+                                                        />
+                                                    </Typography>
+                                                </CardContent>
+
+                                            </Grid>
+                                        )
+
+                                    })}
+
 
                             </Card>
 
@@ -245,7 +253,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <Stack direction="row" spacing={2}>
 
                             {data?.response &&
-                                data?.response?.slice(5,10).map((item: any, index: any) => {
+                                data?.response?.slice(5, 10).map((item: any, index: any) => {
                                     const { fields = {} } = item;
                                     var newsTitle = fields?.Title;
                                     var newsMessageAsText = fields.Description;

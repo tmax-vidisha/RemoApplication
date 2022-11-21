@@ -12,7 +12,7 @@ import {
   Stack,
   CardActionArea
 } from "@mui/material";
-
+import { Link } from 'react-router-dom';
 import {
   NavLink as RouterNavLink,
 } from "react-router-dom";
@@ -192,6 +192,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
           <>
             <CardContent sx={{ pb: "16px!important" }}>
               <Stack
+
                 direction="row"
                 justifyContent="space-between"
                 alignItems="center"
@@ -211,7 +212,8 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                   color="secondary"
                   className={classes.newsHeader1}
                 >
-                  View All
+                  <Link to="/NationalNews"> View All </Link>
+                 
                 </Typography>
               </Stack>
 
@@ -290,7 +292,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                   <div>
 
-                    <ArrowBackIosIcon onClick={previous} />
+                    <ArrowBackIosIcon onClick={previous} style={{cursor:"pointer"}}/>
 
                   </div>
 
@@ -302,7 +304,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                   <div>
 
-                    <ArrowForwardIosIcon onClick={next} />
+                    <ArrowForwardIosIcon onClick={next}  style={{cursor:"pointer"}}/>
 
                   </div>
 
