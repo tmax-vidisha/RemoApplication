@@ -292,7 +292,8 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                   <div>
 
-                    <ArrowBackIosIcon onClick={previous} style={{cursor:"pointer"}}/>
+                  <ArrowBackIosIcon onClick={previous} style={{cursor:"pointer"}}/>
+
 
                   </div>
 
@@ -304,7 +305,9 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                   <div>
 
+
                     <ArrowForwardIosIcon onClick={next}  style={{cursor:"pointer"}}/>
+
 
                   </div>
 

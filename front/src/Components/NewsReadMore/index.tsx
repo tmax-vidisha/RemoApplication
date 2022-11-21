@@ -1,4 +1,5 @@
-import React from 'react'
+// @ts-nocheck
+import React, { useRef } from 'react'
 import { Fragment, useEffect, useState } from "react";
 import {
     NavLink as RouterNavLink,
@@ -7,6 +8,9 @@ import {
 import { AuthenticatedTemplate } from "@azure/msal-react";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { useStyles } from "./Styles";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import SkeletonAnimation from "../../Containers/Skeleton";
 // import Carousel from 'react-grid-carousel';
 import {
     Breadcrumbs,
@@ -30,7 +34,9 @@ import NationalNews from './NationalNews';
 import IconText from '../Header/IconText';
 // import { Carousel } from '@trendyol-js/react-carousel';
 //import Carousel from 'react-material-ui-carousel';
-
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 var moment = require("moment-timezone");
 interface IFolderProps {
@@ -86,6 +92,48 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
     // }, [])
     // const {news} = props;
     // console.log(news, 'uuuuuc')
+    const slider = useRef();
+    const slider1 = useRef();
+    const next = () => {
+        slider.current.slickNext();
+    };
+    const previous = () => {
+        slider.current.slickPrev();
+    };
+    const next1 = () => {
+        slider1.current.slickNext();
+    };
+    const previous1 = () => {
+        slider1.current.slickPrev();
+    };
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplaySpeed: 3000,
+        arrows: false,
+
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: true,
+                    dots: true,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
+    };
 
     return (
         <AuthenticatedTemplate>
@@ -119,300 +167,228 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                     <NationalNews
 
                         data={data}
-
                         isLoading={isLoading}
-
                         error={error}
 
                     />
                 </Paper>
-                <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-                    <Card elevation={0} >
-                        <Grid container item xs={12} spacing={0} style={{ overflowX: "scroll", width: "800px" }}>
+                <Paper style={{ maxWidth: "100%" }} elevation={0}>
+                    {isLoading ? (
+                        <SkeletonAnimation />
+                    ) : (
+                        <>
+                            <CardContent sx={{ pb: "16px!important" }}>
+                                <Stack
+                                    direction="row"
+                                    justifyContent="space-between"
+                                    alignItems="center"
+                                    spacing={2}
+                                >
+                                    <Typography
+                                        variant="h6"
+                                        component="h6"
+                                        color="secondary"
+                                        className={classes.newsHeader}
+                                    >
+                                        Top News
+                                    </Typography>
+                                    <Typography
+                                        variant="h6"
+                                        component="h6"
+                                        color="secondary"
+                                        className={classes.newsHeader1}
+                                    >
+                                        {/* View All */}
+                                        <div>
 
+                                            <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer" }} />
+                                            <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer" }} />
+
+
+                                        </div>
+                                    </Typography>
+                                </Stack>
+
+                                <Slider
+                                    ref={(c) => (slider.current = c)} {...settings}
+                                >
+
+                                    {data?.response &&
+                                        data?.response?.map((card, index) => (
+                                            <div key={index}>
+                                                <Card sx={{ maxWidth: 250, maxHeight: 260 }}>
+                                                    <CardActionArea>
+                                                        <CardMedia
+                                                            // className={classes.newsImg}
+                                                            style={{ margin: '7px' }}
+                                                            component="img"
+                                                            height="160"
+                                                            image={card.fields?.NewsImage}
+                                                            // image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
+                                                            alt="green iguana"
+                                                        />
+                                                        <CardContent>
+                                                            <Stack direction="row" justifyContent="space-between">
+                                                                <Typography
+                                                                    className={classes.newsHeader2}
+                                                                    variant="body2"
+                                                                    color="text.primary"
+                                                                >
+                                                                    David Siddiqa
+                                                                    {/* {newsTitle} */}
+                                                                </Typography>
+                                                                <Typography
+                                                                    className={classes.newsHeader2}
+                                                                    variant="body2"
+                                                                    color="text.primary"
+                                                                >
+                                                                    {/* Thursday, June 05, 2022 */}
+                                                                    {moment(card.fields?.Modified).format('dddd')} {moment(card.fields?.Modified).format("DD")} {moment(card.fields?.Modified).format("MMM")} {moment(card.fields?.Modified).format("YYYY")}
+                                                                </Typography>
+                                                            </Stack>
+
+                                                        </CardContent>
+
+                                                    </CardActionArea>
+                                                </Card>
+                                            </div>
+                                        ))}
+
+                                </Slider>
+                                <div>
+
+                                    <Stack
+
+                                        direction="row"
+
+                                        justifyContent="space-between"
+
+                                        alignItems="center"
+
+                                        paddingTop={1}
+
+                                    >
+                                    </Stack>
+
+                                </div>
+
+                            </CardContent>
+                        </>
+                    )}
+                </Paper>
+                <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
+                    <Card elevation={0}>
+                        <Grid container item xs={12} spacing={0}>
                             <Card
                                 className={classes.moreNews}
                                 sx={{ mb: 3 }}
                                 elevation={0}
-
                             >
 
-                                {data?.response.value &&
-                                    data?.response?.value.map((item: any, index: any) => {
-                                        const { fields = {} } = item;
-                                        var Title = fields?.Title;
-                                        //   console.log()
-                                        //   var name = fields?.Title;
-                                        var desc = fields?.Description;
-                                        var isActive = fields?.IsActive;
-                                        var createdDate = moment(fields?.Created).format(
-                                            "MMM DD YYYY"
-                                        );
-                                        var img = fields?.newsUrl;
-                                        //   var profilePic = JSON.parse(fields.EmpImage);
-                                        //   var completePath;
-                                        //   if (profilePic.serverUrl) {
-                                        //     completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
-                                        //   } else {
-                                        //     completePath = profilePic.serverRelativeUrl
-                                        //   }
-                                        if (fields?.NewsImage != null) {
-                                            var newsPic = JSON.parse(fields?.NewsImage);
-                                            var newsPath = newsPic?.serverUrl + newsPic?.serverRelativeUrl;
-                                        }
-                                        return (
-                                            <Grid key={index} item xs={8} className={classes.newsRightBorder} >
+                <Paper style={{ maxWidth: "100%" }} elevation={0}>
+                    {isLoading ? (
+                        <SkeletonAnimation />
+                    ) : (
+                        <>
+                            <CardContent sx={{ pb: "16px!important" }}>
+                                <Stack
+                                    direction="row"
+                                    justifyContent="space-between"
+                                    alignItems="center"
+                                    spacing={2}
+                                >
+                                    <Typography
+                                        variant="h6"
+                                        component="h6"
+                                        color="secondary"
+                                        className={classes.newsHeader}
+                                    >
+                                        World News
+                                    </Typography>
+                                    <Typography
+                                        variant="h6"
+                                        component="h6"
+                                        color="secondary"
+                                        className={classes.newsHeader1}
+                                    >
+                                        {/* View All */}
+                                        <div>
 
-                                                <CardContent sx={{ pb: "0!important" }}>
-                                                    <Typography variant="subtitle1" gutterBottom>
-                                                        <div
-                                                            dangerouslySetInnerHTML={{
-                                                                __html: `${Title}`,
-                                                            }} />
-                                                    </Typography>
-                                                    <Typography className={classes.moreNewsTag}>
-                                                        <Typography
-                                                            className={classes.newsTag}
-                                                            variant="caption"
-                                                            display="block"
-                                                        >
-                                                            <RouterNavLink to="#">
-                                                                {fields?.Reference}
-                                                            </RouterNavLink>
-                                                        </Typography>
-                                                        <Typography
-                                                            className={classes.createdDateNews}
-                                                            variant="caption"
-                                                            color="textSecondary"
-                                                            component="span"
-                                                            display="block"
-                                                            gutterBottom
-                                                        >
-                                                            <AccessTimeIcon fontSize="small" />
-                                                            <span>{createdDate}</span>
-                                                        </Typography>
-                                                    </Typography>
-                                                </CardContent>
-                                                <CardContent>
-                                                    <CardMedia
-                                                        className={classes.newsImg}
-                                                        image={img}
-                                                        title="Test"
-                                                    />
-                                                </CardContent>
-                                                <CardContent>
-                                                    <Typography
-                                                        className={classes.ceoContent}
-                                                        variant="caption"
-                                                        component="span"
-                                                    >
-                                                        <div
-                                                            dangerouslySetInnerHTML={{
-                                                                __html: `${desc}`,
-                                                            }}
+
+                                            <ArrowBackIosIcon onClick={previous1} style={{ cursor: "pointer" }} />
+                                            <ArrowForwardIosIcon onClick={next1} style={{ cursor: "pointer" }} />
+
+
+                                        </div>
+                                    </Typography>
+                                </Stack>
+
+                                <Slider
+                                    ref={(c) => (slider1.current = c)} {...settings}
+                                >
+
+                                    {data?.response &&
+                                        data?.response?.map((card, index) => (
+                                            <div key={index}>
+                                                <Card sx={{ maxWidth: 250, maxHeight: 260 }}>
+                                                    <CardActionArea>
+                                                        <CardMedia
+                                                            // className={classes.newsImg}
+                                                            style={{ margin: '7px' }}
+                                                            component="img"
+                                                            height="160"
+                                                            image={card.fields?.NewsImage}
+                                                            // image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
+                                                            alt="green iguana"
                                                         />
-                                                    </Typography>
-                                                </CardContent>
+                                                        <CardContent>
+                                                            <Stack direction="row" justifyContent="space-between">
+                                                                <Typography
+                                                                    className={classes.newsHeader2}
+                                                                    variant="body2"
+                                                                    color="text.primary"
+                                                                >
+                                                                    David Siddiqa
+                                                                    {/* {newsTitle} */}
+                                                                </Typography>
+                                                                <Typography
+                                                                    className={classes.newsHeader2}
+                                                                    variant="body2"
+                                                                    color="text.primary"
+                                                                >
+                                                                    {/* Thursday, June 05, 2022 */}
+                                                                    {moment(card.fields?.Modified).format('dddd')} {moment(card.fields?.Modified).format("DD")} {moment(card.fields?.Modified).format("MMM")} {moment(card.fields?.Modified).format("YYYY")}
+                                                                </Typography>
+                                                            </Stack>
 
-                                            </Grid>
-                                        )
+                                                        </CardContent>
 
-                                    })}
+                                                    </CardActionArea>
+                                                </Card>
+                                            </div>
+                                        ))}
 
+                                </Slider>
+                                <div>
 
-                            </Card>
+                                    <Stack
 
-                        </Grid>
-                    </Card>
-                </Paper>
-                <Paper>
-                    <CardContent sx={{ pb: "16px!important" }}>
-                        <Stack
-                            direction="row"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            spacing={2}
-                        >
-                            <Typography
-                                variant="h6"
-                                component="h6"
-                                color="secondary"
-                            //   className={classes.newsHeader}
-                            >
-                                World News
-                            </Typography>
-                            {/* <Typography
-                  variant="h6"
-                  component="h6"
-                  color="secondary"
-                //   className={classes.newsHeader1}
-                >
-                  View All
-                </Typography> */}
-                        </Stack>
-                        <Stack direction="row" spacing={2}>
+                                        direction="row"
 
-                            {data?.response &&
-                                data?.response?.slice(5, 10).map((item: any, index: any) => {
-                                    const { fields = {} } = item;
-                                    var newsTitle = fields?.Title;
-                                    var newsMessageAsText = fields.Description;
-                                    var newsIsActive = fields.IsActive;
-                                    var createdDate = moment(
-                                        fields.Modified
-                                    ).fromNow();
-                                    let newsMonth = moment(fields?.Modified).format("MMM");
-                                    let newsYear = moment(fields?.Modified).format("YYYY");
-                                    let newsDate = moment(fields?.Modified).format("DD");
-                                    let newsDay = moment(fields?.Modified).format('dddd');
-                                    // var img = fields?.newsUrl
-                                    var img = fields?.NewsImage
-                                    // var completePath;
-                                    // if (fields.NewsImage != null) {
-                                    //   var profilePic = JSON.parse(fields.NewsImage);
-                                    //   if (profilePic.serverUrl) {
-                                    //     completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
-                                    //   } else {
-                                    //     completePath = profilePic.serverRelativeUrl
-                                    //   }
-                                    // }
-                                    // let RawImageTxt = fields.newsUrl;
+                                        justifyContent="space-between"
 
-                                    // var ImgObj = JSON.parse(RawImageTxt); 
-                                    var newFullPath;
-                                    var newsPath;
-                                    // console.log(fields?.NewsImage);
-                                    // if (fields?.NewsImage != null) {
-                                    //   newFullPath = JSON.parse(fields?.NewsImage);
-                                    //   newsPath = newFullPath?.serverUrl + newFullPath?.serverRelativeUrl;
-                                    // } 
-                                    return (
-                                        <Card sx={{ maxWidth: 250, maxHeight: 240 }}>
-                                            <CardActionArea>
-                                                <CardMedia
-                                                    // className={classes.newsImg}
-                                                    component="img"
-                                                    height="160"
-                                                    image={img}
-                                                    // image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-                                                    alt="green iguana"
-                                                />
-                                                <CardContent>
-                                                    <Stack direction="row" justifyContent="space-between">
-                                                        <Typography
-                                                            // className={classes.newsHeader2}
-                                                            variant="body2"
-                                                            color="text.primary"
-                                                        >
+                                        alignItems="center"
 
-                                                            {newsTitle}
-                                                        </Typography>
-                                                        <Typography
-                                                            // className={classes.newsHeader2}
-                                                            variant="body2"
-                                                            color="text.primary"
-                                                        >
-                                                            {/* Thursday, June 05, 2022 */}
-                                                            {/* {newsDay} {newsDate} {newsMonth} {newsYear} */}
-                                                            {fields?.Reference}
-                                                        </Typography>
-                                                    </Stack>
-                                                    {/* <div className={classes.row}>
-                              <div className={classes.block}>
-                                <img src={like} alt="like" />
-                              </div>
-                              <div className={classes.block}>
-                                <img src={share} alt="like" />
-                              </div>
-                              <div className={classes.block}>
-                                <img src={pin} alt="like" />
-                              </div>
-                              <div className={classes.block}>
-                                <img src={internet} alt="like" />
-                              </div>
-                            </div> */}
-                                                </CardContent>
-                                            </CardActionArea>
-                                        </Card>
-                                    )
-                                })}
-                        </Stack>
-                        {/* <Grid container item xs={12} spacing={0}>
-                {data?.response && (
-                  <Grid
-                    item
-                    xs={12}
-                    sx={{
-                      maxWidth: " 100%",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      // marginRight: "15px",
-                      gap: "20px",
-                    }}
-                  >
-                    <CardMedia
-                      className={classes.newsImg}
-                      image={data?.response.image}
-                      title="Test"
-                    />
+                                        paddingTop={1}
 
-                    <CardMedia
-                      className={classes.newsImg}
-                      image={data?.response.image1}
-                      title="Test"
-                    />
-                    <CardMedia
-                      className={classes.newsImg}
-                      image={data?.response.image2}
-                      title="Test"
-                    />
+                                    >
+                                    </Stack>
 
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="span"
-                      className={classes.newsContents}
-                    >
-                      <RouterNavLink to="/NewsInfo">
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: `${data?.response.value[2].fields?.Title}`,
-                          }}
-                        />
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: `${data?.response.value[1].fields?.Title}`,
-                          }}
-                        />
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: `${data?.response.value[2].fields?.Title}`,
-                          }}
-                        />
-                      </RouterNavLink>
-                    </Typography>
-                  </Grid>
-                )}
-              </Grid> */}
-                        <div>
-                            <Stack
-                                direction="row"
-                                justifyContent="space-between"
-                                alignItems="center"
-                                paddingTop={5}
-                            >
-                                {/* <div>
-                    <ArrowBackIosIcon />
-                  </div>
-                  <div>
-                    <MoreHorizIcon />
-                  </div>
-                  <div>
-                    <ArrowForwardIosIcon />
-                  </div> */}
-                            </Stack>
-                        </div>
-                    </CardContent>
+                                </div>
+
+                            </CardContent>
+                        </>
+                    )}
                 </Paper>
             </Container>
         </AuthenticatedTemplate>
@@ -420,4 +396,3 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
 }
 
 export default NewsReadMore;
-
