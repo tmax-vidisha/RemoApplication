@@ -111,7 +111,7 @@ export const useStyles = makeStyles({
   },
   moreNews: {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "repeat(4, 1fr)",
   },
   moreNewsItem: {
     display: "grid",
