@@ -27,6 +27,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@trendyol-js/react-carousel": "^3.0.0",
     "@types/date-fns": "^2.6.0",
     "@types/draft-convert": "^2.1.4",
     "@types/draft-js": "^0.11.9",

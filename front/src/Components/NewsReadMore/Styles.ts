@@ -110,17 +110,17 @@ export const useStyles = makeStyles({
     height: 20,
   },
   moreNews: {
-   display:"grid", 
-   gridTemplateColumns:"repeat(3, 1fr)",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
   },
   moreNewsItem: {
-    display:"grid", 
-   gridTemplateColumns:"repeat(3, 1fr)",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
 
   },
   moreNewsTag: {
-    display:"grid", 
-   gridTemplateColumns:"repeat(3, 1fr)",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
     alignItems: "center !important",
     "& span": {
       "& a": {
@@ -152,4 +152,12 @@ export const useStyles = makeStyles({
     fontSize: "12px",
     margin: "10px"
   },
+  MultiCarousel: {
+    float: "left",
+    overflow: "hidden",
+    padding: "15px",
+    width: "100%",
+    position: "relative",
+  }
+
 });
