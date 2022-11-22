@@ -219,7 +219,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     <CardActionArea>
                                                         <CardMedia
                                                             // className={classes.newsImg}
-                                                            style={{ margin: '7px' }}
+                                                            style={{ margin: '7px', borderRadius:"8px" }}
                                                             component="img"
                                                             height="160"
                                                             image={card.fields?.NewsImage}
@@ -284,7 +284,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 elevation={0}
                             >
                                 {data?.response &&
-                                    data?.response?.slice(0,3).map((newsItem: any, index: any) => {
+                                    data?.response?.slice(0,4).map((newsItem: any, index: any) => {
                                         const { fields = {} } = newsItem;
                                         //   const selectItemId = locationProps?.state;
 
@@ -413,7 +413,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     <CardActionArea>
                                                         <CardMedia
                                                             // className={classes.newsImg}
-                                                            style={{ margin: '7px' }}
+                                                            style={{ margin: '7px', borderRadius:"8px" }}
                                                             component="img"
                                                             height="160"
                                                             image={card.fields?.NewsImage}

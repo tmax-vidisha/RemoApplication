@@ -70,7 +70,7 @@ const NationalNews: React.FC<IFolderProps> = (props: IFolderProps) => {
                             <img src={data?.response1[0].fields.NewsImage} alt="image" style={{ minWidth: "450px", height: "280px", borderRadius: "10px" }} />
                         </Grid>
                         <Grid style={{ display: "flex", justifyContent: "space-between", fontSize: "10px" }}>
-                            <Box style={{ margin:"10px",}}><Link to="/" style={{color:"#39c8cf",}}>{data?.response1[0].fields.Reference}</Link></Box>
+                            <Box style={{ margin:"10px",}}><Link to="/SubNews" style={{color:"#39c8cf",}}>{data?.response1[0].fields.Reference}</Link></Box>
                             <Box>
                                 {/* <span><AccessTimeIcon style={{ width: "13px" }} /> <span>Few Mins Ago</span></span> */}
                                 <List>
