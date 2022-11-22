@@ -165,11 +165,9 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                 </Card>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
                     <NationalNews
-
                         data={data}
                         isLoading={isLoading}
                         error={error}
-
                     />
                 </Paper>
                 <Paper style={{ maxWidth: "100%" }} elevation={0}>
@@ -187,8 +185,9 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     <Typography
                                         variant="h6"
                                         component="h6"
-                                        color="secondary"
+                                        
                                         className={classes.newsHeader}
+                                        style={{color:"#39c8cf"}}
                                     >
                                         Top News
                                     </Typography>
@@ -201,8 +200,8 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         {/* View All */}
                                         <div>
 
-                                            <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer" }} />
-                                            <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer" }} />
+                                            <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer",color:"#39c8cf" }} />
+                                            <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer",color:"#39c8cf" }} />
 
 
                                         </div>
@@ -220,7 +219,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     <CardActionArea>
                                                         <CardMedia
                                                             // className={classes.newsImg}
-                                                            style={{ margin: '7px' }}
+                                                            style={{ margin: '7px', borderRadius:"8px" }}
                                                             component="img"
                                                             height="160"
                                                             image={card.fields?.NewsImage}
@@ -284,7 +283,87 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 sx={{ mb: 3 }}
                                 elevation={0}
                             >
+                                {data?.response &&
+                                    data?.response?.slice(0,4).map((newsItem: any, index: any) => {
+                                        const { fields = {} } = newsItem;
+                                        //   const selectItemId = locationProps?.state;
 
+                                        //    var ref = fields?.Reference;
+                                        let createdDate = moment(fields?.Created).format(
+                                            "MMM DD YYYY"
+                                        );
+                                        // if (fields?.NewsImage != null) {
+                                        //   var newsPic = JSON.parse(fields?.NewsImage);
+                                        //   var newsPath = newsPic?.serverUrl + newsPic?.serverRelativeUrl;
+                                        // }
+                                        return (
+                                            <>
+                                                <Grid key={index} item xs={12} className={classes.newsRightBorder}>
+                                                    <CardContent sx={{ pb: "0!important" }}>
+                                                        {/* <Typography variant="subtitle1" gutterBottom>
+                                                            <div
+                                                                dangerouslySetInnerHTML={{
+                                                                    __html: `${fields?.Title}`,
+                                                                }}
+                                                            />
+                                                        </Typography> */}
+                                                        <Typography className={classes.moreNewsTag}>
+                                                            <Typography
+                                                                className={classes.newsTag}
+                                                                variant="caption"
+                                                                display="block"
+                                                            >
+                                                                {/* <RouterNavLink to="#"> */}
+                                                                    {fields?.Reference}
+                                                                   
+                                                                {/* </RouterNavLink> */}
+                                                            </Typography>
+
+                                                            {/* <Typography
+                                                                className={classes.createdDateNews}
+                                                                variant="caption"
+                                                                color="textSecondary"
+                                                                component="span"
+                                                                display="block"
+                                                                gutterBottom
+                                                            >
+                                                                <AccessTimeIcon fontSize="small" />
+                                                                <span>{createdDate}</span>
+                                                            </Typography> */}
+                                                        </Typography>
+                                                    </CardContent>
+                                                    <CardContent>
+                                                        <CardMedia
+                                                            className={classes.newsImg}
+                                                            image={fields?.NewsImage}
+                                                            title="Test"
+                                                        />
+                                                    </CardContent>
+
+                                                    <CardContent>
+                                                        <Typography
+                                                            className={classes.ceoContent}
+                                                            variant="caption"
+                                                            component="span"
+                                                        >
+                                                            <div
+                                                                dangerouslySetInnerHTML={{
+                                                                    __html: `${fields?.Description}`,
+                                                                }}
+                                                            />
+                                                        </Typography>
+                                                    </CardContent>
+                                                </Grid>
+                                                
+                                            </>
+                                        );
+
+                                    })}
+
+                            </Card>
+                        </Grid>
+                    </Card>
+                </Paper>
                 <Paper style={{ maxWidth: "100%" }} elevation={0}>
                     {isLoading ? (
                         <SkeletonAnimation />
@@ -300,8 +379,9 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     <Typography
                                         variant="h6"
                                         component="h6"
-                                        color="secondary"
+                                        
                                         className={classes.newsHeader}
+                                        style={{color:"#39c8cf"}}
                                     >
                                         World News
                                     </Typography>
@@ -314,9 +394,8 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         {/* View All */}
                                         <div>
 
-
-                                            <ArrowBackIosIcon onClick={previous1} style={{ cursor: "pointer" }} />
-                                            <ArrowForwardIosIcon onClick={next1} style={{ cursor: "pointer" }} />
+                                            <ArrowBackIosIcon onClick={previous1} style={{ cursor: "pointer",color:"#39c8cf" }} />
+                                            <ArrowForwardIosIcon onClick={next1} style={{ cursor: "pointer" , color:"#39c8cf"}} />
 
 
                                         </div>
@@ -334,7 +413,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     <CardActionArea>
                                                         <CardMedia
                                                             // className={classes.newsImg}
-                                                            style={{ margin: '7px' }}
+                                                            style={{ margin: '7px', borderRadius:"8px" }}
                                                             component="img"
                                                             height="160"
                                                             image={card.fields?.NewsImage}
