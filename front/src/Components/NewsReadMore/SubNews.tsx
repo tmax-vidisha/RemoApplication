@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { Fragment, useEffect, useState } from "react";
 import {
     NavLink as RouterNavLink,
-   
+
 
 } from "react-router-dom";
 import { AuthenticatedTemplate } from "@azure/msal-react";
@@ -109,7 +109,11 @@ const SubNews = () => {
                                     <Link className={classes.breadLinks} color="inherit" href="/">
                                         Home
                                     </Link>
-                                    <Typography>News</Typography>
+                                    <Typography>
+                                        <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
+                                            News
+                                        </Link>
+                                    </Typography>
                                     <Typography>News Read More</Typography>
                                 </Breadcrumbs>
                             </Typography>
@@ -131,35 +135,35 @@ const SubNews = () => {
                                 <Grid>
                                     <img src={prince} alt="image" style={{ minWidth: "450px", height: "280px", borderRadius: "10px" }} />
                                 </Grid>
-                                <Grid style={{ width: "150px", display: "flex", justifyContent: "space-between", color: "gray", marginLeft:"20px", marginBottom:"20px" }}>
-                                    <Typography style={{fontSize: "8px"}}>2 hour ago</Typography>
-                                    <Typography style={{fontSize: "8px"}}> 1k views</Typography>
+                                <Grid style={{ width: "150px", display: "flex", justifyContent: "space-between", color: "gray", marginLeft: "20px", marginBottom: "20px" }}>
+                                    <Typography style={{ fontSize: "8px" }}>2 hour ago</Typography>
+                                    <Typography style={{ fontSize: "8px" }}> 1k views</Typography>
                                 </Grid>
-                                <Grid style={{width:"500px", fontSize:"12px", textAlign:"left", margin:"20px"}}>
+                                <Grid style={{ width: "500px", fontSize: "12px", textAlign: "left", margin: "20px" }}>
                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                                 </Grid>
 
                             </Grid>
                             <Grid item xs={6} >
-                            <Typography style={{ textAlign: "left", color: "#39c8cf", fontSize: "12px", marginTop: "15px" }}><Link href="/MoreNews"> More News on National</Link></Typography>
+                                <Typography style={{ textAlign: "left", color: "#39c8cf", fontSize: "12px", marginTop: "15px" }}><Link href="/MoreNews"> More News on National</Link></Typography>
 
                                 <List>
-                           
-                            {post.slice(0,5).map((item: any) => (
-                                
-                                <ListItem  style={{ borderBottom: "1px solid #e6e6e6" }}>
-                                    <Box>                                        
-                                        {item.image}
-                                        {/* <img src={item.image} alt="image" style={{ minWidth: "100px", height: "70px", borderRadius: "5px" , marginRight:"20px"}} /> */}
-                                    </Box>
-                                    <Box >
-                                        <Typography style={{ fontSize: "12px" , color:"#8c8c8c", marginTop:"-33px"}}> {item.name}</Typography>
-                                        <Typography style={{ fontSize: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}> <span style={{ color:"#39c8cf" }}>{item.title} </span> <span style={{color:"#8c8c8c"}}>{item.time}</span></Typography>
-                                    </Box>
-                                </ListItem>
 
-                            ))}
-                        </List>
+                                    {post.slice(0, 5).map((item: any) => (
+
+                                        <ListItem style={{ borderBottom: "1px solid #e6e6e6" }}>
+                                            <Box>
+                                                {item.image}
+                                                {/* <img src={item.image} alt="image" style={{ minWidth: "100px", height: "70px", borderRadius: "5px" , marginRight:"20px"}} /> */}
+                                            </Box>
+                                            <Box >
+                                                <Typography style={{ fontSize: "12px", color: "#8c8c8c", marginTop: "-33px" }}> {item.name}</Typography>
+                                                <Typography style={{ fontSize: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}> <span style={{ color: "#39c8cf" }}>{item.title} </span> <span style={{ color: "#8c8c8c" }}>{item.time}</span></Typography>
+                                            </Box>
+                                        </ListItem>
+
+                                    ))}
+                                </List>
 
                             </Grid>
 
