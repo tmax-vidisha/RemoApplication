@@ -283,7 +283,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 elevation={0}
                             >
                                 {data?.response &&
-                                    data?.response?.slice(0,3).map((newsItem: any, index: any) => {
+                                    data?.response?.slice(0,4).map((newsItem: any, index: any) => {
                                         const { fields = {} } = newsItem;
                                         //   const selectItemId = locationProps?.state;
 
