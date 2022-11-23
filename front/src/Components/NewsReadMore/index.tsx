@@ -37,6 +37,8 @@ import IconText from '../Header/IconText';
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import left from '../../Assets/Images/left.svg';
+import right from '../../Assets/Images/right.svg';
 
 var moment = require("moment-timezone");
 interface IFolderProps {
@@ -200,10 +202,11 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         {/* View All */}
                                         <div>
 
-                                            <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer",color:"#39c8cf" }} />
-                                            <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer",color:"#39c8cf" }} />
-
-
+                                            {/* <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer",color:"#39c8cf" }} />
+                                            <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer",color:"#39c8cf" }} /> */}
+                                            <img src={left}  onClick={previous} />
+                                              
+                                            <img src={right}  onClick={next}/> 
                                         </div>
                                     </Typography>
                                 </Stack>
@@ -394,9 +397,11 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         {/* View All */}
                                         <div>
 
-                                            <ArrowBackIosIcon onClick={previous1} style={{ cursor: "pointer",color:"#39c8cf" }} />
-                                            <ArrowForwardIosIcon onClick={next1} style={{ cursor: "pointer" , color:"#39c8cf"}} />
-
+                                            {/* <ArrowBackIosIcon onClick={previous1} style={{ cursor: "pointer",color:"#39c8cf" }} />
+                                            <ArrowForwardIosIcon onClick={next1} style={{ cursor: "pointer" , color:"#39c8cf"}} /> */}
+                                            <img src={left} onClick={previous1} />
+                                              
+                                             <img src={right}  onClick={next1}/> 
 
                                         </div>
                                     </Typography>

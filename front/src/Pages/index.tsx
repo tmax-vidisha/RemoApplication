@@ -8,6 +8,7 @@ import EmpHighlightInputPage from "./EmployeeHighlightPage/EmpHighlightInputPage
 import RecentFilePage from "./RecentFilesPage/RecentFilePage";
 import NewsPage from "./NewsPage/NewsPage";
 import NewsPageMore from "./NewsPage/NewsPageMore";
+import SubNewss from "./NewsPage/SubNewss";
 import HeroImagePage from "./HeroImagePage/HeroImagePage";
 import HeroInputPage from "./HeroImagePage/HeroInputPage";
 import QuicklinkPage from "./QuickLinkPage/QuicklinkPage";
@@ -47,6 +48,7 @@ export {
         MeetingsPage,
         MyFilePage,
         SharedFilePage,
-        MyRecent
+        MyRecent,
+        SubNewss
 
       };

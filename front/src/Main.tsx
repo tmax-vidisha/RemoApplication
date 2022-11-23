@@ -26,7 +26,8 @@ import {
     EventsInputPage,
     EmpHighlightInputPage,
     MyFilePage,
-    MeetingsPage
+    MeetingsPage,
+    SubNewss
      } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';
@@ -55,7 +56,7 @@ import ContentEditor from './Components/ContentEditor';
 import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
 import RecentFiles from './Components/WorkSpaceOne/RecentFiles';
 import StarredFile from './Components/WorkSpaceOne/StarredFile/index';
-import SubNews from './Components/NewsReadMore/SubNews';
+// import SubNews from './Components/NewsReadMore/SubNews';
 import MoreNews from './Components/NewsReadMore/MoreNews';
 
 
@@ -297,7 +298,7 @@ const Main = () => {
                               element={<StarredFile/>} />
                             <Route
                               path="/SubNews"
-                              element={<SubNews/>} />
+                              element={<SubNewss/>} />
                             <Route
                               path="/MoreNews"
                               element={<MoreNews/>} />
