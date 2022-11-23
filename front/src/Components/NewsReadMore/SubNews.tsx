@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { Fragment, useEffect, useState } from "react";
 import {
     NavLink as RouterNavLink,
-
+   
 
 } from "react-router-dom";
 import { AuthenticatedTemplate } from "@azure/msal-react";
@@ -114,11 +114,7 @@ const post = [
                                     <Link className={classes.breadLinks} color="inherit" href="/">
                                         Home
                                     </Link>
-                                    <Typography>
-                                        <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
-                                            News
-                                        </Link>
-                                    </Typography>
+                                    <Typography>News</Typography>
                                     <Typography>News Read More</Typography>
                                 </Breadcrumbs>
                             </Typography>
@@ -140,20 +136,17 @@ const post = [
                                 <Grid>
                                     <img src={data?.response[0].fields.NewsImage} alt="image" style={{ minWidth: "450px", height: "280px", borderRadius: "10px" }} />
                                 </Grid>
-
                                 <Grid style={{ width: "150px", display: "flex", justifyContent: "space-between", color: "gray", marginLeft:"20px", marginBottom:"20px" }}>
                                     <Typography style={{fontSize: "8px"}}>{moment(data?.response[0].fields?.Modified).fromNow()}</Typography>
                                     <Typography style={{fontSize: "8px"}}> 1k views</Typography>
                                 </Grid>
                                 <Grid style={{width:"500px", fontSize:"12px", textAlign:"left", margin:"20px"}}>
                                 {data?.response[0].fields.Description}
-
                                 </Grid>
 
                             </Grid>
                             <Grid item xs={6} >
-                                <Typography style={{ textAlign: "left", color: "#39c8cf", fontSize: "12px", marginTop: "15px" }}><Link href="/MoreNews"> More News on National</Link></Typography>
-
+                            <Typography style={{ textAlign: "left", color: "#39c8cf", fontSize: "12px", marginTop: "15px" }}><Link href="/MoreNews"> More News on National</Link></Typography>
 
                             <List>
                            
@@ -172,7 +165,6 @@ const post = [
 
                            ))}
                        </List>
-
 
                             </Grid>
 
