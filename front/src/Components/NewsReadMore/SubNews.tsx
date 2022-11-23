@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { Fragment, useEffect, useState } from "react";
 import {
     NavLink as RouterNavLink,
+   
 
 } from "react-router-dom";
 import { AuthenticatedTemplate } from "@azure/msal-react";
@@ -119,9 +120,9 @@ const SubNews = () => {
 
                     <Grid>
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
-                            <Grid style={{ borderRight: "1px solid #e6e6e6", paddingRight: "20px", marginRight: "50px" }}>
+                            <Grid item xs={6} style={{ borderRight: "1px solid #e6e6e6", paddingRight: "20px", marginRight: "50px" }}>
                                 <Grid style={{ fontSize: "10px" }}>
-                                    <Box style={{ margin: "10px",textAlign:"left" }}><p style={{ color: "#39c8cf", }}>National</p></Box>
+                                    <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>National</p></Box>
                                     <Typography style={{ width: "350px", textAlign: "left", marginLeft: "10px", fontWeight: "600" }}>
                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                     </Typography>
@@ -130,19 +131,26 @@ const SubNews = () => {
                                 <Grid>
                                     <img src={prince} alt="image" style={{ minWidth: "450px", height: "280px", borderRadius: "10px" }} />
                                 </Grid>
-
-
+                                <Grid style={{ width: "150px", display: "flex", justifyContent: "space-between", color: "gray", marginLeft:"20px", marginBottom:"20px" }}>
+                                    <Typography style={{fontSize: "8px"}}>2 hour ago</Typography>
+                                    <Typography style={{fontSize: "8px"}}> 1k views</Typography>
+                                </Grid>
+                                <Grid style={{width:"500px", fontSize:"12px", textAlign:"left", margin:"20px"}}>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                </Grid>
 
                             </Grid>
-                            <Grid >
-                                {/* <List>
+                            <Grid item xs={6} >
+                            <Typography style={{ textAlign: "left", color: "#39c8cf", fontSize: "12px", marginTop: "15px" }}><Link href="/MoreNews"> More News on National</Link></Typography>
+
+                                <List>
                            
-                            {post.slice(1,5).map((item: any) => (
+                            {post.slice(0,5).map((item: any) => (
                                 
                                 <ListItem  style={{ borderBottom: "1px solid #e6e6e6" }}>
                                     <Box>                                        
-                                        
-                                        <img src={item.image} alt="image" style={{ minWidth: "100px", height: "70px", borderRadius: "5px" , marginRight:"20px"}} />
+                                        {item.image}
+                                        {/* <img src={item.image} alt="image" style={{ minWidth: "100px", height: "70px", borderRadius: "5px" , marginRight:"20px"}} /> */}
                                     </Box>
                                     <Box >
                                         <Typography style={{ fontSize: "12px" , color:"#8c8c8c", marginTop:"-33px"}}> {item.name}</Typography>
@@ -151,38 +159,7 @@ const SubNews = () => {
                                 </ListItem>
 
                             ))}
-                        </List> */}
-
-                                <List>
-                                    <ListItem style={{ borderBottom: "1px solid #e6e6e6" }}>
-                                        <Box>
-                                            <img src={recedent} alt="sco" style={{ width: "100px", height: "70px", marginRight: "20px" }} />
-                                        </Box>
-                                        <Box >
-                                            <Typography style={{ fontSize: "12px" }}> Scotish Oil worker home in Dubai after 11- months iraq ordeal</Typography>
-                                            <Typography style={{ fontSize: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}> <span style={{ color: "blue" }}>science </span> <span> Few Mins ago</span></Typography>
-                                        </Box>
-                                    </ListItem>
-                                    <ListItem style={{ borderBottom: "1px solid #e6e6e6" }}>
-                                        <Box>
-                                            <img src={flight} alt="sco" style={{ width: "100px", height: "70px", marginRight: "20px" }} />
-                                        </Box>
-                                        <Box >
-                                            <Typography style={{ fontSize: "12px" }}> Scotish Oil worker home in Dubai after 11- months iraq ordeal</Typography>
-                                            <Typography style={{ fontSize: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}> <span style={{ color: "blue" }}>science </span> <span> Few Mins ago</span></Typography>
-                                        </Box>
-                                    </ListItem>
-                                    <ListItem style={{ borderBottom: "1px solid #e6e6e6" }}>
-                                        <Box>
-                                            <img src={prince} alt="sco" style={{ width: "100px", height: "70px", marginRight: "20px" }} />
-                                        </Box>
-                                        <Box style={{ marginTop: "0px" }}>
-                                            <Typography style={{ fontSize: "12px" }}> Scotish Oil worker home in Dubai after 11- months iraq ordeal</Typography>
-                                            <Typography style={{ fontSize: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}> <span style={{ color: "blue" }}>science </span> <span> Few Mins ago</span></Typography>
-                                        </Box>
-                                    </ListItem>
-                                </List>
-
+                        </List>
 
                             </Grid>
 

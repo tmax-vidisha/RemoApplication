@@ -56,6 +56,7 @@ import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
 import RecentFiles from './Components/WorkSpaceOne/RecentFiles';
 import StarredFile from './Components/WorkSpaceOne/StarredFile/index';
 import SubNews from './Components/NewsReadMore/SubNews';
+import MoreNews from './Components/NewsReadMore/MoreNews';
 
 
 const theme = createTheme({
@@ -297,6 +298,9 @@ const Main = () => {
                             <Route
                               path="/SubNews"
                               element={<SubNews/>} />
+                            <Route
+                              path="/MoreNews"
+                              element={<MoreNews/>} />
                            
 
                         </Routes>
