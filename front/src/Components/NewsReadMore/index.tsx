@@ -34,11 +34,13 @@ import NationalNews from './NationalNews';
 import IconText from '../Header/IconText';
 // import { Carousel } from '@trendyol-js/react-carousel';
 //import Carousel from 'react-material-ui-carousel';
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import left from '../../Assets/Images/left.svg';
-import right from '../../Assets/Images/right.svg';
+
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import left from './../../Assets/Images/left.svg';
+import right from './../../Assets/Images/right.svg';
+
 
 var moment = require("moment-timezone");
 interface IFolderProps {
@@ -149,6 +151,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <Paper className={classes.contentHeader} elevation={0}>
                             <Typography className={classes.breadcrumbs} variant="h6">
                                 News
+
                             </Typography>
                             <Typography variant="caption" display="block" gutterBottom>
                                 <Breadcrumbs
@@ -159,7 +162,11 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     <Link className={classes.breadLinks} color="inherit" href="/">
                                         Home
                                     </Link>
-                                    <Typography>News</Typography>
+                                    <Typography>
+                                        <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
+                                            News
+                                        </Link>
+                                    </Typography>
                                 </Breadcrumbs>
                             </Typography>
                         </Paper>
@@ -187,9 +194,9 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     <Typography
                                         variant="h6"
                                         component="h6"
-                                        
+
                                         className={classes.newsHeader}
-                                        style={{color:"#39c8cf"}}
+                                        style={{ color: "#39c8cf" ,fontSize:"15px"}}
                                     >
                                         Top News
                                     </Typography>
@@ -202,11 +209,14 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         {/* View All */}
                                         <div>
 
-                                            {/* <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer",color:"#39c8cf" }} />
-                                            <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer",color:"#39c8cf" }} /> */}
-                                            <img src={left}  onClick={previous} />
-                                              
-                                            <img src={right}  onClick={next}/> 
+
+                                            {/* <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer", color: "#39c8cf" }} />
+                                            <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer", color: "#39c8cf" }} /> */}
+                                            <img src={left} alt="left" onClick={previous} style={{ cursor: "pointer", color: "#39c8cf" }} />
+                                            <img src={right} alt="right" onClick={next} style={{ cursor: "pointer", color: "#39c8cf" }} />
+
+
+
                                         </div>
                                     </Typography>
                                 </Stack>
@@ -218,11 +228,11 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     {data?.response &&
                                         data?.response?.map((card, index) => (
                                             <div key={index}>
-                                                <Card sx={{ maxWidth: 250, maxHeight: 260 }}>
+                                                <Card sx={{ maxWidth: 250, maxHeight: 260, margin: '5px',  }}>
                                                     <CardActionArea>
                                                         <CardMedia
                                                             // className={classes.newsImg}
-                                                            style={{ margin: '7px', borderRadius:"8px" }}
+                                                            style={{ borderRadius: "8px" }}
                                                             component="img"
                                                             height="160"
                                                             image={card.fields?.NewsImage}
@@ -232,17 +242,17 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                         <CardContent>
                                                             <Stack direction="row" justifyContent="space-between">
                                                                 <Typography
-                                                                    className={classes.newsHeader2}
+                                                                    // className={classes.newsHeader2}
                                                                     variant="body2"
-                                                                    color="text.primary"
+                                                                    style={{color:"#8c8c8c", fontSize:"12px"}}
                                                                 >
                                                                     David Siddiqa
                                                                     {/* {newsTitle} */}
                                                                 </Typography>
                                                                 <Typography
-                                                                    className={classes.newsHeader2}
+                                                                    // className={classes.newsHeader2}
                                                                     variant="body2"
-                                                                    color="text.primary"
+                                                                    style={{color:"#8c8c8c", fontSize:"12px"}}
                                                                 >
                                                                     {/* Thursday, June 05, 2022 */}
                                                                     {moment(card.fields?.Modified).format('dddd')} {moment(card.fields?.Modified).format("DD")} {moment(card.fields?.Modified).format("MMM")} {moment(card.fields?.Modified).format("YYYY")}
@@ -287,7 +297,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 elevation={0}
                             >
                                 {data?.response &&
-                                    data?.response?.slice(0,4).map((newsItem: any, index: any) => {
+                                    data?.response?.slice(0, 4).map((newsItem: any, index: any) => {
                                         const { fields = {} } = newsItem;
                                         //   const selectItemId = locationProps?.state;
 
@@ -317,8 +327,8 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                 display="block"
                                                             >
                                                                 {/* <RouterNavLink to="#"> */}
-                                                                    {fields?.Reference}
-                                                                   
+                                                                {fields?.Reference}
+
                                                                 {/* </RouterNavLink> */}
                                                             </Typography>
 
@@ -357,7 +367,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                         </Typography>
                                                     </CardContent>
                                                 </Grid>
-                                                
+
                                             </>
                                         );
 
@@ -382,9 +392,9 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     <Typography
                                         variant="h6"
                                         component="h6"
-                                        
+
                                         className={classes.newsHeader}
-                                        style={{color:"#39c8cf"}}
+                                        style={{ color: "#39c8cf", fontSize:"15px" }}
                                     >
                                         World News
                                     </Typography>
@@ -397,11 +407,13 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         {/* View All */}
                                         <div>
 
-                                            {/* <ArrowBackIosIcon onClick={previous1} style={{ cursor: "pointer",color:"#39c8cf" }} />
-                                            <ArrowForwardIosIcon onClick={next1} style={{ cursor: "pointer" , color:"#39c8cf"}} /> */}
-                                            <img src={left} onClick={previous1} />
-                                              
-                                             <img src={right}  onClick={next1}/> 
+
+                                            {/* <ArrowBackIosIcon onClick={previous1} style={{ cursor: "pointer", color: "#39c8cf" }} />
+                                            <ArrowForwardIosIcon onClick={next1} style={{ cursor: "pointer", color: "#39c8cf" }} /> */}
+                                            <img src={left} alt="left" onClick={previous1} style={{ cursor: "pointer", color: "#39c8cf" }} />
+                                            <img src={right} alt="right" onClick={next1} style={{ cursor: "pointer", color: "#39c8cf" }} />
+
+
 
                                         </div>
                                     </Typography>
@@ -414,11 +426,11 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     {data?.response &&
                                         data?.response?.map((card, index) => (
                                             <div key={index}>
-                                                <Card sx={{ maxWidth: 250, maxHeight: 260 }}>
+                                                <Card sx={{ maxWidth: 250, maxHeight: 260,margin: '5px' }}>
                                                     <CardActionArea>
                                                         <CardMedia
                                                             // className={classes.newsImg}
-                                                            style={{ margin: '7px', borderRadius:"8px" }}
+                                                            style={{  borderRadius: "8px" }}
                                                             component="img"
                                                             height="160"
                                                             image={card.fields?.NewsImage}
@@ -430,7 +442,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                 <Typography
                                                                     className={classes.newsHeader2}
                                                                     variant="body2"
-                                                                    color="text.primary"
+                                                                    style={{color:"#8c8c8c", fontSize:"12px"}}
                                                                 >
                                                                     David Siddiqa
                                                                     {/* {newsTitle} */}
@@ -438,7 +450,7 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                 <Typography
                                                                     className={classes.newsHeader2}
                                                                     variant="body2"
-                                                                    color="text.primary"
+                                                                    style={{color:"#8c8c8c", fontSize:"12px"}}
                                                                 >
                                                                     {/* Thursday, June 05, 2022 */}
                                                                     {moment(card.fields?.Modified).format('dddd')} {moment(card.fields?.Modified).format("DD")} {moment(card.fields?.Modified).format("MMM")} {moment(card.fields?.Modified).format("YYYY")}

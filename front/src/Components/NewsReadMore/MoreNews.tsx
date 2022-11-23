@@ -38,9 +38,105 @@ import clock from '../../Assets/Images/clock.svg';
 import IconText from '../Header/IconText';
 // import { Carousel } from '@trendyol-js/react-carousel';
 //import Carousel from 'react-material-ui-carousel';
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+
+const post = [
+    {
+        id: 1,
+        image: <img src={scotish} alt="sco" style={{ width: "230px", height: "120px", borderRadius: "8px" }} />,
+        name: "Scotish Oil worker home in Dubai after 11- months iraq ordeal",
+        title: "science",
+        time: "Few Mins ago"
+    },
+    {
+        id: 2,
+        image: <img src={recedent} alt="sco" style={{ width: "230px", height: "120px", borderRadius: "8px" }} />,
+        name: "Fighting for water bottles, Dubai residents reveal uncomfortable quarantine in UK ",
+        title: "science",
+        time: "Few Mins ago"
+    },
+    {
+        id: 3,
+        image: <img src={flight} alt="sco" style={{ width: "230px", height: "120px", borderRadius: "8px" }} />,
+        name: "Vatican honour for Crown Prince fills country with pride, Sheikha Fatima says",
+        title: "Health",
+        time: "Few Mins ago"
+    },
+    {
+        id: 4,
+        image: <img src={prince} alt="sco" style={{ width: "230px", height: "120px", borderRadius: "8px" }} />,
+        name: "PepsiCo unveils Expo 2020 Dubai pavilions with once in a lifetime experiences",
+        title: "Health",
+        time: "Few Mins ago"
+    },
+    {
+        id: 5,
+        image: <img src={prince} alt="sco" style={{ width: "230px", height: "120px", borderRadius: "8px" }} />,
+        name: "PepsiCo unveils Expo 2020 Dubai pavilions with once in a lifetime experiences",
+        title: "Health",
+        time: "Few Mins ago"
+    },
+    {
+        id: 6,
+        image: <img src={scotish} alt="sco" style={{ width: "230px", height: "120px", borderRadius: "8px" }} />,
+        name: "Scotish Oil worker home in Dubai after 11- months iraq ordeal",
+        title: "science",
+        time: "Few Mins ago"
+    },
+
+]
+
+const category = [
+    {
+        id: 1,
+        name: "National",
+        point: 20,
+    },
+    {
+        id: 2,
+        name: "Sports",
+        point: 11,
+    },
+    {
+        id: 3,
+        name: "Science",
+        point: 21,
+    },
+    {
+        id: 4,
+        name: "Technology",
+        point: 14,
+    },
+    {
+        id: 5,
+        name: "Health",
+        point: 16,
+    },
+    {
+        id: 6,
+        name: "Education",
+        point: 30,
+    },
+    {
+        id: 7,
+        name: "Sports",
+        point: 26,
+    },
+    {
+        id: 8,
+        name: "Government",
+        point: 21,
+    },
+    {
+        id: 9,
+        name: "Transport",
+        point: 20,
+    },
+
+]
 
 const MoreNews = () => {
     const classes = useStyles();
@@ -55,7 +151,10 @@ const MoreNews = () => {
                         <div className={classes.innerBannerOverlay}></div>
                         <Paper className={classes.contentHeader} elevation={0}>
                             <Typography className={classes.breadcrumbs} variant="h6">
-                                News
+
+                                <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
+                                    News
+                                </Link>
                             </Typography>
                             <Typography variant="caption" display="block" gutterBottom>
                                 <Breadcrumbs
@@ -66,7 +165,10 @@ const MoreNews = () => {
                                     <Link className={classes.breadLinks} color="inherit" href="/">
                                         Home
                                     </Link>
-                                    <Typography>News</Typography>
+                                    <Typography>
+                                        <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
+                                            News
+                                        </Link></Typography>
                                     <Typography>National</Typography>
                                 </Breadcrumbs>
                             </Typography>
@@ -77,7 +179,35 @@ const MoreNews = () => {
 
                     <Grid>
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
-                           
+                            <Grid item xs={10} style={{borderRight: "1px solid #e6e6e6", padding:"10px"}}>
+                                <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>National</p></Box>
+                                <Grid style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+                                    {post.slice(0, 6).map((item: any) => (
+                                        <Grid style={{ margin: "20px" }}>
+                                            <Box style={{ width: "230px", height: "120px", }}>
+                                                {item.image}
+                                            </Box>
+                                            <Typography style={{ width: "230px", fontSize: "12px", color: "gray" }}>{item.name} </Typography>
+                                        </Grid>
+                                    ))
+                                    }
+                                </Grid>
+
+
+                            </Grid>
+                            <Grid item xs={2}>
+                                <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>Related Category</p></Box>
+                                <>
+                                    {
+                                        category.map((item: any) => (
+                                            <Grid style={{ display: "flex", justifyContent: "space-between", margin: "15px", width: "250px", color: "gray",borderBottom: "1px solid #e6e6e6" }}>
+                                                <Typography style={{ fontSize: "12px" }}>{item.name}</Typography>
+                                                <Typography style={{ fontSize: "12px" }}>{item.point}</Typography>
+                                            </Grid>
+                                        ))
+                                    }
+                                </>
+                            </Grid>
 
                         </Stack>
 
