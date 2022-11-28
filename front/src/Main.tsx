@@ -59,7 +59,6 @@ import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
 import RecentFiles from './Components/WorkSpaceOne/RecentFiles';
 import StarredFile from './Components/WorkSpaceOne/StarredFile/index';
 import SubNews from './Components/NewsReadMore/SubNews';
-import MoreNews from './Components/NewsReadMore/MoreNews';
 import ImagesVideos from './Components/ImagesVideos';
 
 
@@ -305,13 +304,13 @@ const Main = () => {
                               element={<SubNewss/>} />
                             <Route
                               path="/MoreNews"
-
                               element={<MoreNewsPage/>} />
                             <Route
                               path="/ImagesVideos"
                               element={<ImagesAndVideosPage/>} />
 
                         
+
                            
 
                         </Routes>
