@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { Fragment, useEffect, useState } from "react";
 import {
     NavLink as RouterNavLink,
-
+   
 
 } from "react-router-dom";
 import { AuthenticatedTemplate } from "@azure/msal-react";
@@ -46,11 +46,11 @@ import 'slick-carousel/slick/slick-theme.css'
 
 var moment = require("moment-timezone");
 
-// interface IFolderProps {
-//     data: any,
-//     error: any,
-//     isLoading: any,
-// }
+interface IFolderProps {
+    data: any,
+    error: any,
+    isLoading: any,
+}
 
 const post = [
     {
@@ -82,11 +82,16 @@ const post = [
         time: "Few Mins ago"
     },
 
+
 ]
-const SubNews = () => {
+// const SubNews = () => {
+    const SubNews: React.FC<IFolderProps> = (props: IFolderProps) => {    
     const classes = useStyles();
-    // const { data, error, isLoading } = props;
+    const { data, error, isLoading } = props;
     // console.log(data?.response1, 'nEWS');
+
+    // const filterdPeople = data?.response && data?.response?.filter((person:any)=> person.fields.Reference == "National")
+    // console.log(filterdPeople,'tytrhthtrhtrh')
     return (
         <div>
             <Container className={classes.contentEditorWidth}>
@@ -109,11 +114,7 @@ const SubNews = () => {
                                     <Link className={classes.breadLinks} color="inherit" href="/">
                                         Home
                                     </Link>
-                                    <Typography>
-                                        <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
-                                            News
-                                        </Link>
-                                    </Typography>
+                                    <Typography>News</Typography>
                                     <Typography>News Read More</Typography>
                                 </Breadcrumbs>
                             </Typography>
@@ -126,44 +127,44 @@ const SubNews = () => {
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
                             <Grid item xs={6} style={{ borderRight: "1px solid #e6e6e6", paddingRight: "20px", marginRight: "50px" }}>
                                 <Grid style={{ fontSize: "10px" }}>
-                                    <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>National</p></Box>
+                                    <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>{data?.response[0].fields.Reference}</p></Box>
                                     <Typography style={{ width: "350px", textAlign: "left", marginLeft: "10px", fontWeight: "600" }}>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    {data?.response[0].fields.Title}
                                     </Typography>
 
                                 </Grid>
                                 <Grid>
-                                    <img src={prince} alt="image" style={{ minWidth: "450px", height: "280px", borderRadius: "10px" }} />
+                                    <img src={data?.response[0].fields.NewsImage} alt="image" style={{ minWidth: "450px", height: "280px", borderRadius: "10px" }} />
                                 </Grid>
-                                <Grid style={{ width: "150px", display: "flex", justifyContent: "space-between", color: "gray", marginLeft: "20px", marginBottom: "20px" }}>
-                                    <Typography style={{ fontSize: "8px" }}>2 hour ago</Typography>
-                                    <Typography style={{ fontSize: "8px" }}> 1k views</Typography>
+                                <Grid style={{ width: "150px", display: "flex", justifyContent: "space-between", color: "gray", marginLeft:"20px", marginBottom:"20px" }}>
+                                    <Typography style={{fontSize: "8px"}}>{moment(data?.response[0].fields?.Modified).fromNow()}</Typography>
+                                    <Typography style={{fontSize: "8px"}}> 1k views</Typography>
                                 </Grid>
-                                <Grid style={{ width: "500px", fontSize: "12px", textAlign: "left", margin: "20px" }}>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                <Grid style={{width:"500px", fontSize:"12px", textAlign:"left", margin:"20px"}}>
+                                {data?.response[0].fields.Description}
                                 </Grid>
 
                             </Grid>
                             <Grid item xs={6} >
-                                <Typography style={{ textAlign: "left", color: "#39c8cf", fontSize: "12px", marginTop: "15px" }}><Link href="/MoreNews"> More News on National</Link></Typography>
+                            <Typography style={{ textAlign: "left", color: "#39c8cf", fontSize: "12px", marginTop: "15px" }}><Link href="/MoreNews"> More News on National</Link></Typography>
 
-                                <List>
+                            <List>
+                           
+                           {data?.response && data?.response?.filter((person:any)=> person.fields.Reference == "National").map((item: any) => (
+                               
+                               <ListItem  style={{ borderBottom: "1px solid #e6e6e6" }}>
+                                   <Box>                                        
+                                       {/* {item.fields.NewsImage} */}
+                                       <img src={item.fields.NewsImage} alt="image" style={{ minWidth: "100px", height: "70px", borderRadius: "5px" , marginRight:"20px"}} />
+                                   </Box>
+                                   <Box >
+                                       <Typography style={{ fontSize: "12px" , color:"#8c8c8c", marginTop:"-33px"}}> {item.fields.Title}</Typography>
+                                       <Typography style={{ fontSize: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}>  <span style={{color:"#8c8c8c"}}>{moment(item.fields?.Modified).fromNow()}</span></Typography>
+                                   </Box>
+                               </ListItem>
 
-                                    {post.slice(0, 5).map((item: any) => (
-
-                                        <ListItem style={{ borderBottom: "1px solid #e6e6e6" }}>
-                                            <Box>
-                                                {item.image}
-                                                {/* <img src={item.image} alt="image" style={{ minWidth: "100px", height: "70px", borderRadius: "5px" , marginRight:"20px"}} /> */}
-                                            </Box>
-                                            <Box >
-                                                <Typography style={{ fontSize: "12px", color: "#8c8c8c", marginTop: "-33px" }}> {item.name}</Typography>
-                                                <Typography style={{ fontSize: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}> <span style={{ color: "#39c8cf" }}>{item.title} </span> <span style={{ color: "#8c8c8c" }}>{item.time}</span></Typography>
-                                            </Box>
-                                        </ListItem>
-
-                                    ))}
-                                </List>
+                           ))}
+                       </List>
 
                             </Grid>
 

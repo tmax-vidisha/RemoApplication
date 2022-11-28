@@ -34,11 +34,13 @@ import NationalNews from './NationalNews';
 import IconText from '../Header/IconText';
 // import { Carousel } from '@trendyol-js/react-carousel';
 //import Carousel from 'react-material-ui-carousel';
+
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import left from './../../Assets/Images/left.svg';
 import right from './../../Assets/Images/right.svg';
+
 
 var moment = require("moment-timezone");
 interface IFolderProps {
@@ -207,10 +209,12 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         {/* View All */}
                                         <div>
 
+
                                             {/* <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer", color: "#39c8cf" }} />
                                             <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer", color: "#39c8cf" }} /> */}
                                             <img src={left} alt="left" onClick={previous} style={{ cursor: "pointer", color: "#39c8cf" }} />
                                             <img src={right} alt="right" onClick={next} style={{ cursor: "pointer", color: "#39c8cf" }} />
+
 
 
                                         </div>
@@ -403,10 +407,12 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         {/* View All */}
                                         <div>
 
+
                                             {/* <ArrowBackIosIcon onClick={previous1} style={{ cursor: "pointer", color: "#39c8cf" }} />
                                             <ArrowForwardIosIcon onClick={next1} style={{ cursor: "pointer", color: "#39c8cf" }} /> */}
                                             <img src={left} alt="left" onClick={previous1} style={{ cursor: "pointer", color: "#39c8cf" }} />
                                             <img src={right} alt="right" onClick={next1} style={{ cursor: "pointer", color: "#39c8cf" }} />
+
 
 
                                         </div>

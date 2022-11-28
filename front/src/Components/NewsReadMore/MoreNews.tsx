@@ -89,57 +89,73 @@ const post = [
 
 ]
 
-const category = [
-    {
-        id: 1,
-        name: "National",
-        point: 20,
-    },
-    {
-        id: 2,
-        name: "Sports",
-        point: 11,
-    },
-    {
-        id: 3,
-        name: "Science",
-        point: 21,
-    },
-    {
-        id: 4,
-        name: "Technology",
-        point: 14,
-    },
-    {
-        id: 5,
-        name: "Health",
-        point: 16,
-    },
-    {
-        id: 6,
-        name: "Education",
-        point: 30,
-    },
-    {
-        id: 7,
-        name: "Sports",
-        point: 26,
-    },
-    {
-        id: 8,
-        name: "Government",
-        point: 21,
-    },
-    {
-        id: 9,
-        name: "Transport",
-        point: 20,
-    },
 
-]
+interface IFolderProps {
+    data: any,
+    error: any,
+    isLoading: any,
+}
 
-const MoreNews = () => {
+// const MoreNews = () => {
+    const MoreNews: React.FC<IFolderProps> = (props: IFolderProps) => {  
     const classes = useStyles();
+    const { data, error, isLoading } = props;
+   
+    const erewf = (rrr:any) =>{
+        const countTypes =   data?.response && data?.response?.filter((movie:any) => movie.fields.Reference === rrr).length;
+        //@ts-ignore
+        return countTypes;
+    }
+    // const yu = erewf('National')
+    // console.log(yu)
+    const category = [
+        {
+            id: 1,
+            name: "National",
+            point: erewf('National'),
+        },
+        {
+            id: 2,
+            name: "Sports",
+            point: erewf('Sports'),
+        },
+        {
+            id: 3,
+            name: "Science",
+            point: erewf('Science'),
+        },
+        {
+            id: 4,
+            name: "Technology",
+            point: erewf('Technology'),
+        },
+        {
+            id: 5,
+            name: "Health",
+            point: erewf('Health'),
+        },
+        {
+            id: 6,
+            name: "Education",
+            point:  erewf('Education'),
+        },
+        {
+            id: 7,
+            name: "Sports",
+            point: erewf('Sports'),
+        },
+        {
+            id: 8,
+            name: "Government",
+            point:erewf('Government'),
+        },
+        {
+            id: 9,
+            name: "Transport",
+            point: erewf('Transport'),
+        },
+    
+    ]
     return (
         <div>
             <Container className={classes.contentEditorWidth}>
@@ -182,12 +198,12 @@ const MoreNews = () => {
                             <Grid item xs={10} style={{borderRight: "1px solid #e6e6e6", padding:"10px"}}>
                                 <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>National</p></Box>
                                 <Grid style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
-                                    {post.slice(0, 6).map((item: any) => (
+                                    {data?.response && data?.response?.filter((person:any)=> person.fields.Reference == "National").map((item: any) => (
                                         <Grid style={{ margin: "20px" }}>
                                             <Box style={{ width: "230px", height: "120px", }}>
-                                                {item.image}
+                                            <img src={item.fields.NewsImage} alt="sco" style={{ width: "230px", height: "120px", borderRadius: "8px" }} />
                                             </Box>
-                                            <Typography style={{ width: "230px", fontSize: "12px", color: "gray" }}>{item.name} </Typography>
+                                            <Typography style={{ width: "230px", fontSize: "12px", color: "gray" }}>{item.fields.Title} </Typography>
                                         </Grid>
                                     ))
                                     }
@@ -199,7 +215,7 @@ const MoreNews = () => {
                                 <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>Related Category</p></Box>
                                 <>
                                     {
-                                        category.map((item: any) => (
+                                      category.map((item: any) => (
                                             <Grid style={{ display: "flex", justifyContent: "space-between", margin: "15px", width: "250px", color: "gray",borderBottom: "1px solid #e6e6e6" }}>
                                                 <Typography style={{ fontSize: "12px" }}>{item.name}</Typography>
                                                 <Typography style={{ fontSize: "12px" }}>{item.point}</Typography>
