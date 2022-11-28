@@ -57,6 +57,7 @@ import RecentFiles from './Components/WorkSpaceOne/RecentFiles';
 import StarredFile from './Components/WorkSpaceOne/StarredFile/index';
 import SubNews from './Components/NewsReadMore/SubNews';
 import MoreNews from './Components/NewsReadMore/MoreNews';
+import ImagesVideos from './Components/ImagesVideos';
 
 
 const theme = createTheme({
@@ -301,6 +302,9 @@ const Main = () => {
                             <Route
                               path="/MoreNews"
                               element={<MoreNews/>} />
+                            <Route
+                              path="/ImagesVideos"
+                              element={<ImagesVideos/>} />
                            
 
                         </Routes>

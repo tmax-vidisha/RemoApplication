@@ -9,6 +9,7 @@ import {
     Paper,
     Stack,
     Typography,
+    Link
   } from "@mui/material";
   import { useStyles } from "./Styles";
 
@@ -84,7 +85,8 @@ import {
                 color="secondary"
                 className={classes.galleryHeader}
               >
-                View All
+                <Link href="/ImagesVideos"> View All </Link>
+               
               </Typography>
             </Stack>
            
