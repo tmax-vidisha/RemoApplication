@@ -28,7 +28,8 @@ import {
     MyFilePage,
     MeetingsPage,
     SubNewss,
-    MoreNewsPage
+    MoreNewsPage,
+    ImagesAndVideosPage
      } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';
@@ -57,14 +58,10 @@ import ContentEditor from './Components/ContentEditor';
 import SharedWithMe from './Components/WorkSpaceOne/SharedwithMe/index';
 import RecentFiles from './Components/WorkSpaceOne/RecentFiles';
 import StarredFile from './Components/WorkSpaceOne/StarredFile/index';
-<<<<<<< HEAD
 import SubNews from './Components/NewsReadMore/SubNews';
 import MoreNews from './Components/NewsReadMore/MoreNews';
 import ImagesVideos from './Components/ImagesVideos';
-=======
-// import SubNews from './Components/NewsReadMore/SubNews';
-// import MoreNews from './Components/NewsReadMore/MoreNews';
->>>>>>> 3978ad13e1a3534a117f1a2acde5b21206e673c1
+
 
 
 const theme = createTheme({
@@ -308,14 +305,13 @@ const Main = () => {
                               element={<SubNewss/>} />
                             <Route
                               path="/MoreNews"
-<<<<<<< HEAD
-                              element={<MoreNews/>} />
+
+                              element={<MoreNewsPage/>} />
                             <Route
                               path="/ImagesVideos"
-                              element={<ImagesVideos/>} />
-=======
-                              element={<MoreNewsPage/>} />
->>>>>>> 3978ad13e1a3534a117f1a2acde5b21206e673c1
+                              element={<ImagesAndVideosPage/>} />
+
+                        
                            
 
                         </Routes>

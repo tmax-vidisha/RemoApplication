@@ -1,0 +1,34 @@
+import React from 'react'
+
+interface IFolderProps {
+    data: any,
+    error: any,
+    isLoading: any,
+    // onClick?: (id: string, name: string) => void;
+    // dataItem:any,
+    // dataItemError:any,
+    // dataItemIsLoading:any
+  }
+const FolderItems: React.FC<IFolderProps> = (props: IFolderProps) => {
+    const { data, error, isLoading} =props
+  return (
+   
+    <div>
+        {data?.response && data?.response?.map((step: any, indx: any) => {
+                // if (step.fields.ContentType == "Picture") {
+                  return (
+                    <div key={indx} >
+                      <img
+                        src={step.webUrl}
+                        alt="Gallery"
+                        // className={classes.galleryImageWidth}
+                      />
+                    </div>
+                  );
+                // }
+              })}
+    </div>
+  )
+}
+
+export default FolderItems
