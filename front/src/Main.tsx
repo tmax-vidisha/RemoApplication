@@ -28,7 +28,8 @@ import {
     MyFilePage,
     MeetingsPage,
     SubNewss,
-    MoreNewsPage
+    MoreNewsPage,
+    ImagesAndVideosPage
      } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';
@@ -306,7 +307,10 @@ const Main = () => {
                               element={<MoreNewsPage/>} />
                             <Route
                               path="/ImagesVideos"
-                              element={<ImagesVideos/>} />
+                              element={<ImagesAndVideosPage/>} />
+
+                        
+
                            
 
                         </Routes>

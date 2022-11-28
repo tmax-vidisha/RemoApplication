@@ -24,6 +24,7 @@ import MeetingsPage from "./MeetingsPage/MeetingsPage";
 import MyFilePage from "./WorkSpace/OneDrive/MyFilePage";
 import SharedFilePage from "./WorkSpace/OneDrive/SharedFilePage";
 import MyRecent from "./WorkSpace/OneDrive/MyRecent";
+import ImagesAndVideosPage from "./ImagesAndVideosPage/ImagesAndVideosPage";
 export {
     
         EventsPage,
@@ -51,6 +52,7 @@ export {
         SharedFilePage,
         MyRecent,
         SubNewss,
-        MoreNewsPage
+        MoreNewsPage,
+        ImagesAndVideosPage
 
       };

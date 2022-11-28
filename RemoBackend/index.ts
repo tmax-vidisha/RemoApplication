@@ -7,6 +7,7 @@ import graph from './routes/graph';
 import workspace from './routes/workspace'
 import onedrive  from  './routes/onedrive/onedrive'
 import announcement from './routes/contenteditor/announcement'
+import photosandvideo from './routes/photoandvideo/photosandvideo' 
 import header from './routes/header'
 // const RemoToken = require('./controllers/token')
 // const graph = require('./routes/graph')
@@ -1531,5 +1532,6 @@ app.use(`/api/v1/sites`,workspace)
 app.use(`/api/v1/onedrive`,onedrive)
 app.use(`/api/v1/header`,header)
 app.use(`/api/v1/contentEditor`,announcement)
+app.use(`/api/v1/gallery`,photosandvideo)
 
 app.listen(SERVER_PORT, () => console.log(`Msal Node Auth Code Sample app listening on port ${SERVER_PORT}!`))
