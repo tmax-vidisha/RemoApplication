@@ -386,9 +386,9 @@ const classes=useStyles();
               </Search>
 
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                <div>
+                {/* <div>
                   <ToggleButton />
-                </div>
+                </div> */}
                 <div style={{ marginLeft: "80px" }}>
                   <IconButton
                     size="large"
