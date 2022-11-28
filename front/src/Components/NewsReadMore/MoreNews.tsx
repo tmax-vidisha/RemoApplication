@@ -198,7 +198,7 @@ interface IFolderProps {
                             <Grid item xs={10} style={{borderRight: "1px solid #e6e6e6", padding:"10px"}}>
                                 <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>National</p></Box>
                                 <Grid style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
-                                    {data?.response && data?.response?.filter((person:any)=> person.fields.Reference == "National").map((item: any) => (
+                                    {data?.response && data?.response?.filter((person:any)=> person.fields.Reference === "National").map((item: any) => (
                                         <Grid style={{ margin: "20px" }}>
                                             <Box style={{ width: "230px", height: "120px", }}>
                                             <img src={item.fields.NewsImage} alt="sco" style={{ width: "230px", height: "120px", borderRadius: "8px" }} />
