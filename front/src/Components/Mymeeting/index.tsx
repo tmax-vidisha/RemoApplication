@@ -79,20 +79,21 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
 
             </Stack>
             <Grid >
-              <Grid style={{ display: "flex", justifyContent: "flex-start" }}>
+              {/* <Grid style={{ display: "flex", justifyContent: "flex-start" }}>
                 <Grid style={{ textTransform: "capitalize", marginRight:"20px" }} className={classes.todo}  >
                   <div onClick={() => setIsShown(!isShown)}> Calendar </div>
                 </Grid>
                 <Grid style={{ textTransform: "capitalize" }} className={classes.todo} >
                  <div onClick={() => setShow(!show)}>To do </div> 
                 </Grid>
-              </Grid>
+              </Grid> 
 
               {isShown && (
                   <div>
                     <Calendar onChange={onChange} value={value} className={classes.calendar} />
                   </div>
                 )}
+                */}
                 {/* <div>
               { show && (
                 <Grid style={{ overflowY: "scroll", overflowX: "hidden", height: "60px", marginTop: "30px" }}>
@@ -135,11 +136,11 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
 
             <Grid>
               
-              { show && (
+            
                 <div> 
-                <div className={classes.task}>
+                {/* <div className={classes.task}>
                 <span><AddIcon/></span> <span>Add Task </span>
-               </div>
+               </div> */}
                 <Grid style={{ overflowY: "scroll", overflowX: "hidden", height: "60px", marginTop: "30px" }}>
                 {data?.response &&
                   data?.response?.map((item: any, index: any) => {
@@ -174,7 +175,7 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
 
               </Grid>
               </div>
-              )}
+             
               
             </Grid>
             {/* <Grid container item xs={12} spacing={0}>

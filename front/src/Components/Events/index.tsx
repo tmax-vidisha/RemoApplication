@@ -9,13 +9,22 @@ import {
   Paper,
   Typography,
   Stack,
-  List
+  List,
+  TextField
 } from "@mui/material";
 import { useStyles } from "./Styles";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+// import {Calendar} from 'moedim';
+import dayjs, { Dayjs } from 'dayjs';
+import CalendarPicker from '@mui/x-date-pickers/CalendarPicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
+// import { CalendarPicker } from '@mui/x-date-picker/CalendarPicker'
+// import { CalendarPicker} from '@mui/x-date-picker-pro'
 
 interface IFolderProps {
   // event: any;
@@ -27,6 +36,7 @@ interface IFolderProps {
   data: any,
   error: any,
   isLoading: any,
+
 }
 
 
@@ -37,8 +47,9 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
 
   const { data, isLoading, error } = props;
   const classes = useStyles();
-  const [value, onChange] = useState(new Date());
+  // const [value, onChange] = useState(new Date());
   const pca = new PublicClientApplication(configuration);
+  // const [value, setValue] = useState(new Date())
   //  const [updateToken,{data,isLoading} ] = useUpdateTokenMutation();
   //  console.log(data?.response,'ytjyjyjytjyjyjyjyj')
   // const [token, setToken] = useState<string>();
@@ -108,6 +119,7 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
   //       setData(event.Event)
   // },[])
   // console.log(data);
+  const [date, setDate] = React.useState<Dayjs | null>(dayjs(''));
 
   return (
     <AuthenticatedTemplate>
@@ -138,11 +150,16 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
                 View All Events
               </Typography>
             </Stack>
-            <Calendar
+            {/* <Calendar
               className={classes.border}
               onChange={onChange}
               value={value}
-            />
+            /> */}
+            {/* @ts-ignore */}
+            {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+              
+              <CalendarPicker date={date} onChange={(newDate: any) => setDate(newDate)} />
+            </LocalizationProvider> */}
           </div>
         </List>
         {data?.response &&
@@ -152,9 +169,9 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
             let eventTitle = fields.Title;
             let evenDesc = fields?.Description;
             let eventMonth = moment(fields?.EventDate).format("MMM");
-            let eventYear  = moment(fields?.EventDate).format("YYYY");
+            let eventYear = moment(fields?.EventDate).format("YYYY");
             let eventDate = moment(fields?.EventDate).format("DD");
-            let eventDay  = moment(fields?.EventDate).format('dddd');
+            let eventDay = moment(fields?.EventDate).format('dddd');
             return (
               <div key={index} >
                 {/* <Box className={classes.evenLeft}>
@@ -191,9 +208,9 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <li >
                     {/* General Board Meeting */}
                     {eventTitle}
-                    </li>
+                  </li>
                   <li className={classes.list}>
-                  {eventDay}  {eventDate}  {eventMonth}  {eventYear}
+                    {eventDay}  {eventDate}  {eventMonth}  {eventYear}
                   </li>
                 </Typography>
 
