@@ -64,7 +64,7 @@ const NationalNews: React.FC<IFolderProps> = (props: IFolderProps) => {
     return (
         <div>
             <Grid>
-                <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
+                <Stack direction="row" spacing={2} style={{ backgroundColor: "white", borderTopLeftRadius: "7px", }}>
                     <Grid style={{ borderRight: "1px solid #e6e6e6", paddingRight: "20px", marginRight: "50px" }}>
                         <Grid>
                             <img src={data?.response1[0].fields.NewsImage} alt="image" style={{ minWidth: "450px", height: "280px", borderRadius: "10px" }} />
