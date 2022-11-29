@@ -15,6 +15,7 @@ import prince from '../../Assets/Images/prince.jpg';
 import { useStyles } from './Styles';
 import FolderItems from './FolderItems';
 
+
 const post = [
     {
         id: 1,
@@ -131,6 +132,80 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
         //             </Grid >
         //         </Paper>
 
+
+        //     </Container>
+        // </div>
+        <div>
+         {show ? 
+           <Container className={classes.contentEditorWidth}>
+                  <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
+                        <IconText />
+                    </Paper>
+                    <Card className={classes.cardHeight} elevation={0}>
+                        <Paper className={classes.innerBackground}>
+                            <div className={classes.innerBannerOverlay}></div>
+                            <Paper className={classes.contentHeader} elevation={0}>
+                                <Typography className={classes.breadcrumbs} variant="h6">
+   
+                                <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
+                                        News
+                                    </Link>
+                                </Typography>
+                                <Typography variant="caption" display="block" gutterBottom>
+                                   <Breadcrumbs
+                                       className={classes.breadcrumbs}
+                                       separator={<NavigateNextIcon fontSize="small" />}
+                                       aria-label="breadcrumb"
+                                   >
+                                       <Link className={classes.breadLinks} color="inherit" href="/">
+                                           Home
+                                       </Link>
+                                       <Typography>
+                                           
+                                              Gallery Folders
+                                           </Typography>
+                                      
+                                   </Breadcrumbs>
+                               </Typography>
+                           </Paper>
+                       </Paper>
+                   </Card>
+                   <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
+   
+                       <Grid>
+                           <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
+                               <Grid item xs={12}>
+                                   <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>Events</p></Box>
+                                   <Grid style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", marginBottom:"20px" }}>
+                                       {data?.response && data?.response?.map((item: any) => (
+                                           <Grid>
+                                               <Box style={{ width: "180px", height: "100px", margin:"20px" }}>
+                                                   {/* {item.image} */}
+                                               </Box>
+                                               <Typography 
+                                                 style={{  fontSize: "12px", color: "gray", textAlign:"left", marginLeft:"20px" }}
+                                                 onClick={()=>{onClick?.(item.id,item.name) ;setShow(!show)}}
+                                               >
+                                                   {item.name} 
+                                               </Typography>
+                                           </Grid>
+                                       ))
+                                       }
+                                   </Grid>
+   
+   
+                               </Grid>
+                              
+   
+                           </Stack>
+   
+                       </Grid >
+                   </Paper>
+   
+               </Container>
+
+=======
+
         //     </Container>
         // </div>
         <div>
@@ -203,9 +278,7 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                </Container>
          
          
-         
-         
-         
+
          :
          <div>
         <FolderItems
