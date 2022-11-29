@@ -19,9 +19,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 // import {Calendar} from 'moedim';
 import dayjs, { Dayjs } from 'dayjs';
-import CalendarPicker from '@mui/x-date-pickers/CalendarPicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import SubComponentsPickers from './CalendarEvent';
 
 // import { CalendarPicker } from '@mui/x-date-picker/CalendarPicker'
 // import { CalendarPicker} from '@mui/x-date-picker-pro'
@@ -160,6 +158,7 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
               
               <CalendarPicker date={date} onChange={(newDate: any) => setDate(newDate)} />
             </LocalizationProvider> */}
+            <SubComponentsPickers/>
           </div>
         </List>
         {data?.response &&
