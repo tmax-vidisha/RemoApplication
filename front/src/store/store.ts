@@ -7,6 +7,7 @@ import {
 } from '../services/graph'
 import { graphApi } from '../services/APIs';
 import { contentEditorApi } from '../services/contentEditor';
+import { galleryApi } from '../services/gallery';
 export const store = configureStore({
   reducer: {
     [contentEditorApi.reducerPath]: contentEditorApi.reducer,
@@ -14,6 +15,7 @@ export const store = configureStore({
      [oneDriveApi .reducerPath]: oneDriveApi.reducer,
     // counter: counterReducer,
     [graphApi.reducerPath]:graphApi.reducer,
+    [galleryApi.reducerPath]:galleryApi.reducer
    
   },
   middleware: (getDefaultMiddleware) => [
@@ -22,6 +24,7 @@ export const store = configureStore({
     usersApi.middleware,
     oneDriveApi.middleware,
     graphApi.middleware,
+    galleryApi.middleware
    
   ],
   // middleware: (getDefaultMiddleware) =>
