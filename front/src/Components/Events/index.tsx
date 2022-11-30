@@ -16,6 +16,7 @@ import { useStyles } from "./Styles";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import "react-calendar/dist/Calendar.css";
+import Calendar from 'react-calendar';
 // import SubComponentsPickers from './SubComponentsPickers';
 
 // import { CalendarPicker } from '@mui/x-date-picker/CalendarPicker'
