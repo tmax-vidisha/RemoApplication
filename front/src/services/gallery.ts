@@ -50,6 +50,14 @@ export const galleryApi = createApi({
             }),
 
         }),
+        getImages: builder.query<any, any>({
+            // query: () => '/api/v1/onedrive/getAllRootItems',
+            query: (id) => ({
+                url: `/api/v1/gallery/getImages/${id}`,
+                // headers:{ "authorization": `${AccessToken}` },
+            }),
+            // providesTags: ['OneDriveRootItems'],
+        }),
         // deleteItemOneDrive: builder.mutation<any, any>({
         //     query: (data) => ({
         //         url: '/api/v1/onedrive/deleteOneDriveItem',
@@ -99,7 +107,8 @@ export const galleryApi = createApi({
 
 export const {
      useGetAllRootItemSharePointQuery,
-     useGetPictureItemsSharePointMutation
+     useGetPictureItemsSharePointMutation,
+     useGetImagesQuery
 
 
 

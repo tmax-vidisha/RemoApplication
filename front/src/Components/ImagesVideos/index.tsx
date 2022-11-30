@@ -3,10 +3,7 @@ import { Container, Paper, Card, Typography, Link, Grid, Box,Stack } from '@mui/
 import IconText from '../Header/IconText';
 import  Breadcrumbs  from '@mui/material/Breadcrumbs';
 import  NavigateNextIcon  from '@mui/icons-material/NavigateNext';
-import {
-    NavLink as RouterNavLink,
-
-} from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
 import rashid from '../../Assets/Images/rashid.jpg';
 import scotish from '../../Assets/Images/scotish.jpg';
 import recedent from '../../Assets/Images/recedent.jpg';
@@ -63,6 +60,15 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     const { data, error, isLoading,onClick,dataItem,dataItemError,dataItemIsLoading } = props
     const [show,setShow] = useState<boolean>(true);
+    const navigate = useNavigate();
+
+
+
+    function handleClick(childrenData:any) {
+        // navigate(1)
+        navigate('/ImagesAndVideos', { state: { folderData: childrenData } })
+      }
+
     return (
         
         // <div>
@@ -133,94 +139,92 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
 
         //     </Container>
         // </div>
+        
         <div>
-         {show ? 
-           <Container className={classes.contentEditorWidth}>
-                  <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-                        <IconText />
-                    </Paper>
-                    <Card className={classes.cardHeight} elevation={0}>
-                        <Paper className={classes.innerBackground}>
-                            <div className={classes.innerBannerOverlay}></div>
-                            <Paper className={classes.contentHeader} elevation={0}>
-                                <Typography className={classes.breadcrumbs} variant="h6">
-   
+
+            <Container className={classes.contentEditorWidth}>
+                <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
+                    <IconText />
+                </Paper>
+                <Card className={classes.cardHeight} elevation={0}>
+                    <Paper className={classes.innerBackground}>
+                        <div className={classes.innerBannerOverlay}></div>
+                        <Paper className={classes.contentHeader} elevation={0}>
+                            <Typography className={classes.breadcrumbs} variant="h6">
+
                                 <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
-                                        News
+                                    News
+                                </Link>
+                            </Typography>
+                            <Typography variant="caption" display="block" gutterBottom>
+                                <Breadcrumbs
+                                    className={classes.breadcrumbs}
+                                    separator={<NavigateNextIcon fontSize="small" />}
+                                    aria-label="breadcrumb"
+                                >
+                                    <Link className={classes.breadLinks} color="inherit" href="/">
+                                        Home
                                     </Link>
-                                </Typography>
-                                <Typography variant="caption" display="block" gutterBottom>
-                                   <Breadcrumbs
-                                       className={classes.breadcrumbs}
-                                       separator={<NavigateNextIcon fontSize="small" />}
-                                       aria-label="breadcrumb"
-                                   >
-                                       <Link className={classes.breadLinks} color="inherit" href="/">
-                                           Home
-                                       </Link>
-                                       <Typography>
-                                           
-                                              Gallery Folders
-                                           </Typography>
-                                      
-                                   </Breadcrumbs>
-                               </Typography>
-                           </Paper>
-                       </Paper>
-                   </Card>
-                   <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
-   
-                       <Grid>
-                           <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
-                               <Grid item xs={12}>
-                                   <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>Events</p></Box>
-                                   <Grid style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", marginBottom:"20px" }}>
-                                       {data?.response && data?.response?.map((item: any) => (
-                                           <Grid>
-                                               <Box style={{ width: "180px", height: "100px", margin:"20px" }}>
-                                                   {/* {item.image} */}
-                                               </Box>
-                                               <Typography 
-                                                 style={{  fontSize: "12px", color: "gray", textAlign:"left", marginLeft:"20px" }}
-                                                 onClick={()=>{onClick?.(item.id,item.name) ;setShow(!show)}}
-                                               >
-                                                   {item.name} 
-                                               </Typography>
-                                           </Grid>
-                                       ))
-                                       }
-                                   </Grid>
-   
-   
-                               </Grid>
-                              
-   
-                           </Stack>
-   
-                       </Grid >
-                   </Paper>
-   
-               </Container>
-         
-         
-         
-         
-         
-         :
-         <div>
-        <FolderItems
-         data={dataItem}
-         error={dataItemError}
-         isLoading={dataItemIsLoading}
-         
-         
-         /></div>
-         
-         
-         }
-        
-        
-        
+                                    <Link className={classes.breadLinks} color="inherit" href="/GalleryFolder">
+                                        <Typography>
+
+                                            Gallery Folders
+                                        </Typography>
+                                    </Link>
+
+
+                                </Breadcrumbs>
+                            </Typography>
+                        </Paper>
+                    </Paper>
+                </Card>
+                <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
+
+                    <Grid>
+                        <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
+
+                            <Grid item xs={12}>
+                               
+                                    <div>
+                                        <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>Events</p></Box>
+                                        <Grid style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", marginBottom: "20px" }}>
+                                            {data?.response && data?.response?.map((item: any) => (
+                                                <Grid>
+                                                    <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
+                                                        {/* {item.image} */}
+                                                        <img
+                                                          src={item.children[0].webUrl}
+                                                          style={{ width: "100px", height: "60px", margin:"20px" }}
+                                                          alt="Gallery"
+                                                        />
+                                                    </Box>
+                                                    <Typography
+                                                        style={{ fontSize: "12px", color: "gray", textAlign: "left", marginLeft: "20px" }}
+                                                        // onClick={() => { onClick?.(item.id, item.name); setShow(!show) }}
+                                                        // onClick={navigate('/Workspace/drives/folders', { state: { tokens: token, sitesId: site, drivesId: driveId, folderData: data.response } })}
+                                                        onClick={()=>handleClick(item.children)}
+                                                    >
+                                                        {item.name}
+                                                    </Typography>
+                                                </Grid>
+                                            ))
+                                            }
+                                        </Grid>
+                                    </div>
+                                    
+                                    
+
+                                </Grid>
+
+
+                        </Stack>
+
+                    </Grid >
+                </Paper>
+
+            </Container>
+            
+
         </div>
     );
 };

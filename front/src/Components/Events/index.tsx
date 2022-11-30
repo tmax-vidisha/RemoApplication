@@ -25,7 +25,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 // import { CalendarPicker } from '@mui/x-date-picker/CalendarPicker'
 // import { CalendarPicker} from '@mui/x-date-picker-pro'
-
+//@ts-ignore
 interface IFolderProps {
   // event: any;
   // onClick: any;
@@ -160,6 +160,7 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
               
               <CalendarPicker date={date} onChange={(newDate: any) => setDate(newDate)} />
             </LocalizationProvider> */}
+            
           </div>
         </List>
         {data?.response &&
