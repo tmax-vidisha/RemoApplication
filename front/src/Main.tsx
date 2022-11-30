@@ -60,6 +60,7 @@ import RecentFiles from './Components/WorkSpaceOne/RecentFiles';
 import StarredFile from './Components/WorkSpaceOne/StarredFile/index';
 import SubNews from './Components/NewsReadMore/SubNews';
 import ImagesVideos from './Components/ImagesVideos';
+import GalleryFolder from './Components/ImagesVideos/GalleryFolder';
 
 
 
@@ -308,6 +309,9 @@ const Main = () => {
                             <Route
                               path="/ImagesVideos"
                               element={<ImagesAndVideosPage/>} />
+                            <Route
+                              path="/GalleryFolder"
+                              element={<GalleryFolder/>} />
 
                         
 

@@ -16,7 +16,7 @@ const FolderItems: React.FC<IFolderProps> = (props: IFolderProps) => {
   const { data, error, isLoading } = props
   return (
 
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", paddingRight:"20px" }}>
       {data?.response && data?.response?.map((step: any, indx: any) => {
         // if (step.fields.ContentType == "Picture") {
         return (
@@ -32,6 +32,7 @@ const FolderItems: React.FC<IFolderProps> = (props: IFolderProps) => {
                       src={step.webUrl}
                       alt="Gallery"
                     // className={classes.galleryImageWidth}
+                    style={{width:"200px"}}
                     />
 
                   </div>
