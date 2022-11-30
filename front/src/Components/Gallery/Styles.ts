@@ -59,7 +59,7 @@ export const useStyles = makeStyles({
     overflow: "hidden",
   },
   galleryImageWidth: {
-    width: "auto",
+    width: "50px",
     height: "auto",
     borderRadius: "4px",
     minHeight: "100%",
