@@ -33,4 +33,6 @@ const ImagesAndVideosPage = () => {
   )
 }
 
-export default ImagesAndVideosPage
+
+export default ImagesAndVideosPage;
+

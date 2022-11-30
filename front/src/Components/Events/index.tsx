@@ -15,17 +15,14 @@ import {
 import { useStyles } from "./Styles";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-// import {Calendar} from 'moedim';
-import dayjs, { Dayjs } from 'dayjs';
-import CalendarPicker from '@mui/x-date-pickers/CalendarPicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import SubComponentsPickers from './SubComponentsPickers';
 
 // import { CalendarPicker } from '@mui/x-date-picker/CalendarPicker'
 // import { CalendarPicker} from '@mui/x-date-picker-pro'
+
 //@ts-ignore
+
 interface IFolderProps {
   // event: any;
   // onClick: any;
@@ -47,7 +44,7 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
 
   const { data, isLoading, error } = props;
   const classes = useStyles();
-  // const [value, onChange] = useState(new Date());
+   const [value, onChange] = useState(new Date());
   const pca = new PublicClientApplication(configuration);
   // const [value, setValue] = useState(new Date())
   //  const [updateToken,{data,isLoading} ] = useUpdateTokenMutation();
@@ -119,7 +116,7 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
   //       setData(event.Event)
   // },[])
   // console.log(data);
-  const [date, setDate] = React.useState<Dayjs | null>(dayjs(''));
+  
 
   return (
     <AuthenticatedTemplate>
@@ -150,17 +147,19 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
                 View All Events
               </Typography>
             </Stack>
-            {/* <Calendar
+            <Calendar
               className={classes.border}
               onChange={onChange}
               value={value}
-            /> */}
+            />
             {/* @ts-ignore */}
             {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
               
               <CalendarPicker date={date} onChange={(newDate: any) => setDate(newDate)} />
             </LocalizationProvider> */}
-            
+
+            {/* <SubComponentsPickers/> */}
+
           </div>
         </List>
         {data?.response &&
