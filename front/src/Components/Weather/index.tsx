@@ -25,7 +25,7 @@ export default function Weather() {
     const {token} = useCustom();
   //  console.log(token,'sdsfggs')
   
-  const [USD, setUSD] = React.useState('');
+  const [USD, setUSD] = React.useState('USD');
   const [age, setAge] = React.useState('');
   //@ts-ignore
   const {data,error ,isLoading }  = useGetAllCountryCodesQuery(token);
@@ -113,14 +113,16 @@ const  emp =[ {
             <Grid>
                     {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
                             getChildHandler={breadcrumbClickHandler} /> */}
-                    <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
-                        <InputLabel id="demo-simple-select-standard-label"><span>Sort by</span> Newest</InputLabel>
+                    <FormControl variant="standard" sx={{ m: 1, minWidth: 80, height:100 }} >
+                        {/* <InputLabel id="demo-simple-select-standard-label"><span>usd</span> </InputLabel> */}
                         <Select
                             labelId="demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
                             value={age}
                             onChange={handleChange}
+                            MenuProps={{ PaperProps: { sx: { maxHeight: 90 } } }}
                             label="Age"
+                            style={{width:"80px", }}
                         >
                             {/* <MenuItem value="">
                                 <em>None</em>
@@ -136,7 +138,7 @@ const  emp =[ {
                      { data?.response  &&
                         data?.response.map((brand:any) => {
                           const {fields = {}} = brand
-                            return <MenuItem value={fields?.id} key={ fields?.id}>{fields?.Title}</MenuItem>
+                            return <MenuItem style={{width:"50px", fontSize:"10px"}} value={fields?.id} key={ fields?.id}>{fields?.Title}</MenuItem>
                         })
                     }
                         </Select>

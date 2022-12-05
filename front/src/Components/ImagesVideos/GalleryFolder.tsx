@@ -4,10 +4,12 @@ import IconText from '../Header/IconText';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useStyles } from './Styles';
+import { useState } from 'react';
 
 const GalleryFolder = () => {
 
     const classes = useStyles();
+    const [show, setShow] = useState<boolean>(true);
     return (
         <div>
 

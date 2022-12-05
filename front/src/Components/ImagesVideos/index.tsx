@@ -184,7 +184,11 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
 
                             <Grid item xs={12}>
+
+                                {show ?
+
                                
+
                                     <div>
                                         <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>Events</p></Box>
                                         <Grid style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", marginBottom: "20px" }}>
@@ -192,6 +196,12 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 <Grid>
                                                     <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
                                                         {/* {item.image} */}
+
+                                                    </Box>
+                                                    <Typography
+                                                        style={{ fontSize: "12px", color: "gray", textAlign: "left", marginLeft: "20px" }}
+                                                        onClick={() => { onClick?.(item.id, item.name); setShow(!show) }}
+
                                                         <img
                                                           src={item.children[0].webUrl}
                                                           style={{ width: "100px", height: "60px", margin:"20px" }}
@@ -203,6 +213,7 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                         // onClick={() => { onClick?.(item.id, item.name); setShow(!show) }}
                                                         // onClick={navigate('/Workspace/drives/folders', { state: { tokens: token, sitesId: site, drivesId: driveId, folderData: data.response } })}
                                                         onClick={()=>handleClick(item.children)}
+
                                                     >
                                                         {item.name}
                                                     </Typography>
@@ -212,7 +223,18 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         </Grid>
                                     </div>
                                     
+
+                                    :
+                                    <div>
+                                        <FolderItems
+                                            data={dataItem}
+                                            error={dataItemError}
+                                            isLoading={dataItemIsLoading}
+                                        /></div>
+                                    }
+
                                     
+
 
                                 </Grid>
 

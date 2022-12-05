@@ -53,6 +53,38 @@ console.log(filterdVideoData,'Videos')
     // </Grid>
     <div>
 
+
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", paddingRight:"20px" }}>
+      {data?.response && data?.response?.map((step: any, indx: any) => {
+        // if (step.fields.ContentType == "Picture") {
+        return (
+          <Grid key={indx}   >
+
+            <div>
+              {data?.response && data?.response?.map((step: any, indx: any) => {
+                // if (step.fields.ContentType == "Picture") {
+                return (
+                  <div key={indx} >
+
+                    <img
+                      src={step.webUrl}
+                      alt="Gallery"
+                    // className={classes.galleryImageWidth}
+                    style={{width:"200px"}}
+                    />
+
+                  </div>
+
+                );
+                // }
+              })}
+            </div>
+          </Grid>
+        )
+      }
+      )}
+       </div>
+
     <Container className={classes.contentEditorWidth}>
         <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
             <IconText />
@@ -62,6 +94,7 @@ console.log(filterdVideoData,'Videos')
                 <div className={classes.innerBannerOverlay}></div>
                 <Paper className={classes.contentHeader} elevation={0}>
                     <Typography className={classes.breadcrumbs} variant="h6">
+
 
                         <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
                             News
