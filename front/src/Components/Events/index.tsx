@@ -16,11 +16,13 @@ import { useStyles } from "./Styles";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import "react-calendar/dist/Calendar.css";
+import Calendar from 'react-calendar';
 // import SubComponentsPickers from './SubComponentsPickers';
 
 // import { CalendarPicker } from '@mui/x-date-picker/CalendarPicker'
 // import { CalendarPicker} from '@mui/x-date-picker-pro'
-import { Calendar } from 'react-calendar';
+
+//@ts-ignore
 
 interface IFolderProps {
   // event: any;
@@ -156,7 +158,9 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
               
               <CalendarPicker date={date} onChange={(newDate: any) => setDate(newDate)} />
             </LocalizationProvider> */}
+
             {/* <SubComponentsPickers/> */}
+
           </div>
         </List>
         {data?.response &&

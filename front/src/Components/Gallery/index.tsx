@@ -12,6 +12,8 @@ import {
     Link
   } from "@mui/material";
   import { useStyles } from "./Styles";
+  import { useGetAllRootItemSharePointQuery} from '../../services/gallery'
+import useCustom from '../../hooks/useCustom';
 
   interface IFolderProps {
     gallery: any;
@@ -24,9 +26,11 @@ import {
  const Gallery = () => {
   // const Gallery: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
+    const {token} = useCustom();
+    const { data, error, isLoading } =  useGetAllRootItemSharePointQuery(token)
     // const {gallery} = props;
     // const { data, error, isLoading } =   useGetPhotoGalleryQuery('')
-    // console.log(data,'uiiilili')
+  console.log(data,'uiiilili')
   return (
     // <div>Gallery</div>
     // <AuthenticatedTemplate>
@@ -85,7 +89,7 @@ import {
                 color="secondary"
                 className={classes.galleryHeader}
               >
-                <Link href="/ImagesVideos"> View All </Link>
+                <Link href="/GalleryFolder"> View All </Link>
                
               </Typography>
             </Stack>
@@ -98,7 +102,7 @@ import {
                 alignItems="center"
                 // spacing={2}
               >
-                <div className={classes.column}>
+                {/* <div className={classes.column}>
                   <img src="https://media.istockphoto.com/photos/key-in-office-cabinet-lock-picture-id1164813783?k=20&m=1164813783&s=612x612&w=0&h=cAjKzPGnk5od5wj6P6F6F8ynt6VK7PI5rkug9PX1ABI=" />
                 </div>
                 <div className={classes.column}>
@@ -120,7 +124,25 @@ import {
                 <div className={classes.column}>
                   <img src="https://media.istockphoto.com/photos/young-people-work-in-modern-office-picture-id881484382?k=20&m=881484382&s=612x612&w=0&h=SIZswZgkHtJagAnKZLyWXUQmq7Y-aDCIc_nzGQxlXjY=" />
                  
-                </div>
+                </div> */}
+                <div className={classes.galleryWidth}>
+            
+              {data?.response && data?.response?.map((step: any, indx: any) => {
+                // if (step.fields.ContentType == "Picture") {
+                  return (
+                    <div key={indx} className={classes.galleryContainer}>
+                      <img
+                        src={step.children[0].webUrl}
+                        alt="Gallery"
+                        // className={classes.galleryImageWidth}
+                        style={{ width: "100px", height: "60px", margin:"20px" }}
+                      />
+                    </div>
+                  );
+                // }
+              })}
+            
+          </div>
               </Stack>
             </div>
           </CardContent>

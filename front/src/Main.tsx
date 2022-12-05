@@ -60,7 +60,12 @@ import RecentFiles from './Components/WorkSpaceOne/RecentFiles';
 import StarredFile from './Components/WorkSpaceOne/StarredFile/index';
 import SubNews from './Components/NewsReadMore/SubNews';
 import ImagesVideos from './Components/ImagesVideos';
+
 import GalleryFolder from './Components/ImagesVideos/GalleryFolder';
+
+import FolderItems from './Components/ImagesVideos/FolderItems';
+
+
 
 
 
@@ -307,11 +312,16 @@ const Main = () => {
                               path="/MoreNews"
                               element={<MoreNewsPage/>} />
                             <Route
-                              path="/ImagesVideos"
+                              path="/GalleryFolder"
                               element={<ImagesAndVideosPage/>} />
                             <Route
+
                               path="/GalleryFolder"
                               element={<GalleryFolder/>} />
+
+
+                              path="/ImagesAndVideos"
+                              element={<FolderItems/>} />
 
                         
 

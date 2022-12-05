@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
-import { Container, Paper, Card, Typography, Link, Grid, Box, Stack } from '@mui/material';
+import React,{useState} from 'react';
+import { Container, Paper, Card, Typography, Link, Grid, Box,Stack } from '@mui/material';
 import IconText from '../Header/IconText';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import {
-    NavLink as RouterNavLink,
-
-} from "react-router-dom";
+import  Breadcrumbs  from '@mui/material/Breadcrumbs';
+import  NavigateNextIcon  from '@mui/icons-material/NavigateNext';
+import { useNavigate, useLocation } from 'react-router-dom';
 import rashid from '../../Assets/Images/rashid.jpg';
 import scotish from '../../Assets/Images/scotish.jpg';
 import recedent from '../../Assets/Images/recedent.jpg';
@@ -15,13 +12,12 @@ import prince from '../../Assets/Images/prince.jpg';
 import { useStyles } from './Styles';
 import FolderItems from './FolderItems';
 
-
 const post = [
     {
         id: 1,
         image: <img src={scotish} alt="sco" style={{ width: "180px", height: "100px", borderRadius: "8px" }} />,
         title: "science",
-
+       
     },
     {
         id: 2,
@@ -40,7 +36,7 @@ const post = [
     },
     {
         id: 5,
-        image: <img src={prince} alt="sco" style={{ width: "180px", height: "100px", borderRadius: "8px" }} />,
+        image: <img src={prince} alt="sco" style={{width: "180px", height: "100px", borderRadius: "8px" }} />,
         title: "Health",
     },
     {
@@ -55,16 +51,95 @@ interface IFolderProps {
     error: any,
     isLoading: any,
     onClick?: (id: string, name: string) => void;
-    dataItem: any,
-    dataItemError: any,
-    dataItemIsLoading: any
-}
+    dataItem:any,
+    dataItemError:any,
+    dataItemIsLoading:any
+  }
 const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
-    // const ImagesVideos = () => {
+// const ImagesVideos = () => {
     const classes = useStyles();
-    const { data, error, isLoading, onClick, dataItem, dataItemError, dataItemIsLoading } = props
-    const [show, setShow] = useState<boolean>(true);
+    const { data, error, isLoading,onClick,dataItem,dataItemError,dataItemIsLoading } = props
+    const [show,setShow] = useState<boolean>(true);
+    const navigate = useNavigate();
+
+
+
+    function handleClick(childrenData:any) {
+        // navigate(1)
+        navigate('/ImagesAndVideos', { state: { folderData: childrenData } })
+      }
+
     return (
+        
+        // <div>
+        //     <Container className={classes.contentEditorWidth}>
+        //         <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
+        //             <IconText />
+        //         </Paper>
+        //         <Card className={classes.cardHeight} elevation={0}>
+        //             <Paper className={classes.innerBackground}>
+        //                 <div className={classes.innerBannerOverlay}></div>
+        //                 <Paper className={classes.contentHeader} elevation={0}>
+        //                     <Typography className={classes.breadcrumbs} variant="h6">
+
+        //                         <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
+        //                             News
+        //                         </Link>
+        //                     </Typography>
+        //                     <Typography variant="caption" display="block" gutterBottom>
+        //                         <Breadcrumbs
+        //                             className={classes.breadcrumbs}
+        //                             separator={<NavigateNextIcon fontSize="small" />}
+        //                             aria-label="breadcrumb"
+        //                         >
+        //                             <Link className={classes.breadLinks} color="inherit" href="/">
+        //                                 Home
+        //                             </Link>
+        //                             <Typography>
+                                        
+        //                                    Gallery Folders
+        //                                 </Typography>
+                                   
+        //                         </Breadcrumbs>
+        //                     </Typography>
+        //                 </Paper>
+        //             </Paper>
+        //         </Card>
+        //         <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
+
+        //             <Grid>
+        //                 <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
+        //                     <Grid item xs={12}>
+        //                         <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>Events</p></Box>
+        //                         <Grid style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", marginBottom:"20px" }}>
+        //                             {data?.response && data?.response?.map((item: any) => (
+        //                                 <Grid>
+        //                                     <Box style={{ width: "180px", height: "100px", margin:"20px" }}>
+        //                                         {/* {item.image} */}
+        //                                     </Box>
+        //                                     <Typography 
+        //                                       style={{  fontSize: "12px", color: "gray", textAlign:"left", marginLeft:"20px" }}
+        //                                       onClick={()=>onClick?.(item.id,item.name)}
+        //                                     >
+        //                                         {item.name} 
+        //                                     </Typography>
+        //                                 </Grid>
+        //                             ))
+        //                             }
+        //                         </Grid>
+
+
+        //                     </Grid>
+                           
+
+        //                 </Stack>
+
+        //             </Grid >
+        //         </Paper>
+
+        //     </Container>
+        // </div>
+        
         <div>
 
             <Container className={classes.contentEditorWidth}>
@@ -109,7 +184,11 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
 
                             <Grid item xs={12}>
+
                                 {show ?
+
+                               
+
                                     <div>
                                         <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>Events</p></Box>
                                         <Grid style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", marginBottom: "20px" }}>
@@ -117,10 +196,24 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 <Grid>
                                                     <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
                                                         {/* {item.image} */}
+
                                                     </Box>
                                                     <Typography
                                                         style={{ fontSize: "12px", color: "gray", textAlign: "left", marginLeft: "20px" }}
                                                         onClick={() => { onClick?.(item.id, item.name); setShow(!show) }}
+
+                                                        <img
+                                                          src={item.children[0].webUrl}
+                                                          style={{ width: "100px", height: "60px", margin:"20px" }}
+                                                          alt="Gallery"
+                                                        />
+                                                    </Box>
+                                                    <Typography
+                                                        style={{ fontSize: "12px", color: "gray", textAlign: "left", marginLeft: "20px" }}
+                                                        // onClick={() => { onClick?.(item.id, item.name); setShow(!show) }}
+                                                        // onClick={navigate('/Workspace/drives/folders', { state: { tokens: token, sitesId: site, drivesId: driveId, folderData: data.response } })}
+                                                        onClick={()=>handleClick(item.children)}
+
                                                     >
                                                         {item.name}
                                                     </Typography>
@@ -130,6 +223,7 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         </Grid>
                                     </div>
                                     
+
                                     :
                                     <div>
                                         <FolderItems
@@ -138,6 +232,9 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                                             isLoading={dataItemIsLoading}
                                         /></div>
                                     }
+
+                                    
+
 
                                 </Grid>
 
