@@ -64,6 +64,7 @@ import ImagesVideos from './Components/ImagesVideos';
 import GalleryFolder from './Components/ImagesVideos/GalleryFolder';
 
 import FolderItems from './Components/ImagesVideos/FolderItems';
+import PluginImgVideo from './Components/ImagesVideos/PluginImgVideo';
 
 
 
@@ -315,18 +316,15 @@ const Main = () => {
                               path="/GalleryFolder"
                               element={<ImagesAndVideosPage/>} />
                             <Route
-
                               path="/GalleryFolder"
-                              element={<GalleryFolder/>} />
-
-
+                              element={<ImagesAndVideosPage/>} />
+                            <Route
                               path="/ImagesAndVideos"
                               element={<FolderItems/>} />
-
+                            <Route
+                              path="/PluginImgVideo"
+                              element={<PluginImgVideo/>} />
                         
-
-                           
-
                         </Routes>
                     </ThemeProvider>
                     <Footer />
