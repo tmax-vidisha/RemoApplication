@@ -5,11 +5,15 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useStyles } from './Styles';
 import { useState } from 'react';
+import PluginImgVideo from './PluginImgVideo';
+// import SimpleReactLightbox from 'simple-react-lightbox';
 
 const GalleryFolder = () => {
 
     const classes = useStyles();
-    const [show, setShow] = useState<boolean>(true);
+    const [show, setShow] = useState<boolean>(false);
+    const [showResults, setShowResults] = React.useState(false)
+    const onClick = () => setShowResults(true)
     return (
         <div>
 
@@ -37,8 +41,8 @@ const GalleryFolder = () => {
                                         Home
                                     </Link>
                                     <Link className={classes.breadLinks} color="inherit" href="/GalleryFolder">
-                                    <Typography>Gallery Folders </Typography>
-                                        </Link> 
+                                        <Typography>Gallery Folders </Typography>
+                                    </Link>
                                     <Typography>Images </Typography>
                                     <Typography>Videos </Typography>
 
@@ -49,12 +53,21 @@ const GalleryFolder = () => {
                 </Card>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
                     <Grid item xs={12} style={{ backgroundColor: "white" }}>
-                    <Box style={{ margin: "10px", width:"150px", display:"flex", justifyContent:"space-between" }}>
-                        <p style={{ color: "#39c8cf", }}>Images</p>
-                        <p style={{ color: "#39c8cf", }}>Videos</p>
-                    </Box>
-                    
+                        <Box style={{ margin: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}>
+
+                            <p style={{ color: "#39c8cf", }} onClick={onClick}>Images</p>
+                            {showResults ? <p>Hello</p> : null
+
+                            }
+                            <p style={{ color: "#39c8cf", }}>Videos</p>
+                        </Box>
+
                     </Grid>
+                </Paper>
+                <Paper>
+                   
+                        <PluginImgVideo />
+                   
                 </Paper>
             </Container>
         </div>
