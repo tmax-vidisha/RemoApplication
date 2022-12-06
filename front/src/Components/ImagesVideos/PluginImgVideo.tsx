@@ -1,4 +1,5 @@
 import React, { useMemo, useRef } from 'react';
+
 import { useState } from 'react';
 // import ImageGallery from 'react-image-gallery';
 // import { createStyles, makeStyles } from '@mui/styles';
@@ -23,50 +24,76 @@ import { SRLWrapper } from "simple-react-lightbox";
 //   })
 // );
 
-const images = [
-    {
-        original: "https://picsum.photos/id/1018/400/200/",
-        thumbnail: "https://picsum.photos/id/1018/250/150/"
-    },
-    {
-        original: "https://picsum.photos/id/1015/800/400/",
-        thumbnail: "https://picsum.photos/id/1015/250/150/"
-    },
-    {
-        original: "https://picsum.photos/id/1019/800/400/",
-        thumbnail: "https://picsum.photos/id/1019/250/150/"
-    }
-    // {
-    //     original: <img src="https://picsum.photos" alt=""  style={{width:"400px"}}/>,
-    //     thumbnail:<img src="https://picsum.photos" alt="" style={{width:"100px"}} />
-    //   },
-];
+import "react-image-gallery/styles/css/image-gallery.css";
+import { useStyles } from './Styles';
+import { Box } from '@mui/material';
 
+const data=[
+	{
+		"id":  1,
+		"image":  "https://picsum.photos/200/800",
+		"title":  "Lorem Ipsum",
+		"description":
+		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda, velit explicabo non at consequuntur accusamus hic optio alias error nisi sunt sint veniam aperiam similique dolor fugit itaque minima!"
+	},
+	{
+		"id":  2,
+		"image":  "https://picsum.photos/300/200",
+		"title":  "Lorem Ipsum",
+		"description":
+		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda, velit explicabo non at consequuntur accusamus hic optio alias error nisi sunt sint veniam aperiam similique dolor fugit itaque minima!"
+	},
+	{
+		"id":  3,
+		"image":  "https://picsum.photos/800/200",
+		"title":  "Lorem Ipsum",
+		"description":
+		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda, velit explicabo non at consequuntur accusamus hic optio alias error nisi sunt sint veniam aperiam similique dolor fugit itaque minima!"
+	},
+	{
+		"id":  4,
+		"image":  "https://picsum.photos/500/800",
+		"title":  "Lorem Ipsum",
+		"description":
+		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda, velit explicabo non at consequuntur accusamus hic optio alias error nisi sunt sint veniam aperiam similique dolor fugit itaque minima!"
+	},
+	{
+		"id":  4,
+		"image":  "https://picsum.photos/500",
+		"title":  "Lorem Ipsum",
+		"description":
+		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda, velit explicabo non at consequuntur accusamus hic optio alias error nisi sunt sint veniam aperiam similique dolor fugit itaque minima!"
+	}
+]
 
 
 const PluginImgVideo = () => {
 
     // const classes = useStyles();
 
-    // const items = useMemo(() => {
-    //     return images.map((item) => {
-    //         const newItem = { ...item };
-    //         newItem.thumbnail = classes.thubmnail;
-    //         return newItem;
-    //     });
-    // }, [classes.thubmnail]);
 
-    // const playRef = useRef<ImageGallery | null>(null);
-    // const [isPlaying, setIsPlaying] = useState<boolean>(false);
-
-    // const playOrPause = () => {
-    //     setIsPlaying((prev) => {
-    //         playRef?.current?.[prev ? "pause" : "play"]();
-    //         return !prev;
-    //     });
-    // };
+   
 
     return (
+
+        <div>
+        <Box>
+       {data.map((item, index) => (
+			<>
+				<img
+					key={item.id}
+					src={item.image}
+					alt={item.title}
+					style={{ maxHeight:  "80vh", maxWidth:  "50vw" }}
+					onClick={() => {
+					lightBoxHandler(true, index);
+					}}
+				/>
+			</>
+			))}
+       </Box>
+		</div>
+
        
       <SRLWrapper>
       <div>
@@ -85,6 +112,7 @@ const PluginImgVideo = () => {
       </div>
     </SRLWrapper>
        
+
 
     );
 };
