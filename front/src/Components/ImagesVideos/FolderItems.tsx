@@ -4,6 +4,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import IconText from '../Header/IconText';
 import { useStyles } from './Styles';
+import { SRLWrapper } from "simple-react-lightbox";
 interface IFolderProps {
   data: any,
   error: any,
@@ -85,9 +86,11 @@ const FolderItems = () => {
                {
                  filterdVideoData.map((item: any) => (
                    <Grid  >
+                    
                      <video width="120" height="50" controls>
                        <source src={item.webUrl} type="video/mp4" />
                      </video>
+                    
                    </Grid>
                  ))
                }
@@ -95,16 +98,18 @@ const FolderItems = () => {
              </Box>
              
             ) : (
+              <SRLWrapper>
               <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
               {
                 filterdImagesData.map((item: any) => (
                   <Grid  >
-                    <img src={item.webUrl} alt="image" />
+                    <img src={item.webUrl} alt="image" style={{ width: "180px", height: "200px", margin:"20px" }} />
                   </Grid>
                 ))
               }
 
             </Box>
+            </SRLWrapper>
             )
 
             }
