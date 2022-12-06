@@ -7,7 +7,7 @@ import { useStyles } from './Styles';
 import { useState } from 'react';
 import PluginImgVideo from './PluginImgVideo';
 // import SimpleReactLightbox from 'simple-react-lightbox';
-
+import SimpleReactLightbox from 'simple-react-lightbox'
 const GalleryFolder = () => {
 
     const classes = useStyles();
@@ -65,9 +65,9 @@ const GalleryFolder = () => {
                     </Grid>
                 </Paper>
                 <Paper>
-                   
+                <SimpleReactLightbox>
                         <PluginImgVideo />
-                   
+                   </SimpleReactLightbox>
                 </Paper>
             </Container>
         </div>
