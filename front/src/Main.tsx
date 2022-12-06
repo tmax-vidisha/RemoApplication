@@ -64,8 +64,8 @@ import ImagesVideos from './Components/ImagesVideos';
 import GalleryFolder from './Components/ImagesVideos/GalleryFolder';
 
 import FolderItems from './Components/ImagesVideos/FolderItems';
-import PluginImgVideo from './Components/ImagesVideos/PluginImgVideo';
-
+// import PluginImgVideo from './Components/ImagesVideos/PluginImgVideo';
+import SimpleReactLightbox from 'simple-react-lightbox'
 
 
 
@@ -320,10 +320,10 @@ const Main = () => {
                               element={<ImagesAndVideosPage/>} />
                             <Route
                               path="/ImagesAndVideos"
-                              element={<FolderItems/>} />
+                              element={ <SimpleReactLightbox><FolderItems/></SimpleReactLightbox>} />
                             <Route
                               path="/PluginImgVideo"
-                              element={<PluginImgVideo/>} />
+                              element={<GalleryFolder/>} />
                         
                         </Routes>
                     </ThemeProvider>
