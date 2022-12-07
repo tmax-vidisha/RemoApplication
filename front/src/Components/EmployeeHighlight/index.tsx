@@ -23,7 +23,9 @@ interface IFolderProps {
   // onShare?: (id: string) => void;
   data:any, 
   error:any,
-  isLoading:any
+  isLoading:any,
+  onGetItem?:(id:string) =>void,
+  ItemData:any
 }
 //  const EmployeeHighlight = () => {
 const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
@@ -76,9 +78,14 @@ const navigate = useNavigate()
       
 //     }, [])
 
-    const { data, error, isLoading } =  props
-   console.log(data,'980ccccccc9090')
-
+    const { data, error, isLoading,onGetItem ,ItemData} =  props
+   console.log(data,'Empployeedata')
+  console.log(ItemData,'juyuykuku')
+  const handleItem = (itemid:any) =>{
+    //  console.log(itemid,'Idss')
+    onGetItem?.(itemid)
+    navigate('/birthday', { state: { folderData: ItemData } })
+  }
   return (
     
 
@@ -141,22 +148,23 @@ const navigate = useNavigate()
               enableMouseEvents
             >
              {data?.response &&
-                data?.response?.value.map((item: any, index: any) => {
+                data?.response?.map((item: any, index: any) => {
                   const { fields = {} } = item;
-                var EmpTitle = fields?.EmployeeTitle;
-                var empTitle = fields?.Title;
+                var EmpTitle = fields?.Title;
+                var empName = fields?.Name;
                 var DeptVal = fields?.Dept;
-                var img =  fields?.empUrl
-                var completePath;
+                var img =  fields?.EmpImg
 
-                if (fields?.EmpImage != null) {
-                  var profilePic = JSON.parse(fields?.EmpImage);
-                  if (profilePic.serverUrl) {
-                    completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
-                  } else {
-                    completePath = profilePic.serverRelativeUrl
-                  }
-                }
+                // var completePath;
+
+                // if (fields?.EmpImage != null) {
+                //   var profilePic = JSON.parse(fields?.EmpImage);
+                //   if (profilePic.serverUrl) {
+                //     completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
+                //   } else {
+                //     completePath = profilePic.serverRelativeUrl
+                //   }
+                // }
 
                 return (
                   <div className={classes.emp} key={index}>
@@ -171,23 +179,26 @@ const navigate = useNavigate()
                           {EmpTitle}
                         </Typography>
                         <Paper sx={{ display: "flex" }} elevation={0}>
-                        <Link href="/birthday" >
+                       
                           <Box
                             className={classes.profile}
                             component="img"
                             // src={completePath}
                             src ={img}
-                            alt={EmpTitle}
-                            onClick={ () =>navigate("/birthday")}
+                            alt={empName}
+                            onClick={ () =>
+                             
+                              handleItem(item.fields?.id)
+                            }
                           />
-                          </Link> 
+                         
                           <Box className={classes.desc}>
                          
                             <Typography
                               variant="subtitle2"
                               component="div"
                             >
-                             {empTitle}
+                             {empName}
                             </Typography>
                             
                             <Typography
