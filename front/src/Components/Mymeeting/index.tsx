@@ -141,7 +141,7 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
                 {/* <div className={classes.task}>
                 <span><AddIcon/></span> <span>Add Task </span>
                </div> */}
-                <Grid style={{ overflowY: "scroll", overflowX: "hidden", height: "60px", marginTop: "30px" }}>
+                <Grid style={{ overflowY: "hidden", overflowX: "hidden", height: "60px", marginTop: "30px" }}>
                 {data?.response &&
                   data?.response?.map((item: any, index: any) => {
                     const time = item.start.dateTime

@@ -11,6 +11,7 @@ import orgChart from "./../../Assets/Images/orgchart.svg";
 import policy from "./../../Assets/Images/polices.svg";
 //import quickLinks from "./../../Assets/Images/Quicklinks.svg";
 import workspace from "./../../Assets/Images/workspace.svg";
+import { Paper } from '@mui/material';
 
 
 const IconText = (props: any) => {
@@ -80,32 +81,70 @@ const IconText = (props: any) => {
     },
   ];
   const [id1, setId1] = useState(0);
+  const [change, setChange] = useState({ color: 'gray' })
+  const changeColor = () => {
+    let color = change.color === 'gray' ? 'blue' : 'gray';
+    setChange({ color })
+
+  }
+
+  const onMouseOver = (event: any) => {
+    const el = event.target;
+    let colorhex = [
+      "#7AF377",
+      "#3498DB",
+      "#F1C530",
+      "#F29C29",
+      "#8E44AD",
+      "#4AA086",
+      "#E74C3C",
+      "#65CC71",
+      "#D3541B",
+      "#EB4367",
+      "#74F7D9",
+      "#DDA8FC"
+    ];
+    el.style.color = colorhex[Math.floor(Math.random() * 12)];
+  };
+
+  const onMouseOut = (event: any) => {
+    const el = event.target;
+    let black = "#000000";
+    el.style.color = black;
+  };
   return (
-    <Grid item xs={9} className={classes.textPart}>
-      <Grid style={{ marginLeft: "30px" }}>
-        <Link to="/">
-          Home
-        </Link>
-      </Grid>
-      <Grid>
-        <Link to="/WorkSpaceOne">
-          WorkSpace
-        </Link>
-      </Grid>
-      <Grid>
-        <Link to="/WorkSpaceOne">
-          Policy & Procedure
-        </Link>
-      </Grid>
-      <Grid>
-        <Link to="/ContentEditor">
-          Content Editor
-        </Link>
-      </Grid>
-      <Grid>Department</Grid>
-      <Grid>Quick Links</Grid>
-      <Grid>Org Chart</Grid>
-      {/* <Grid>
+    <Paper style={{
+      width: "100vw",
+      // marginLeft: "-64px",
+      // marginTop: "-40px",
+    }}>
+      <Grid item xs={12} style={{ paddingTop: "10px" }}>
+        <Grid item xs={9} className={classes.textPart} >
+          <Grid onMouseEnter={event => onMouseOver(event)}
+            onMouseOut={event => onMouseOut(event)}>
+            <Link to="/" className={classes.link} >
+              Home
+            </Link>
+          </Grid>
+          <Grid>
+            <Link to="/WorkSpaceOne" className={classes.link}>
+              WorkSpace
+            </Link>
+          </Grid>
+          <Grid>
+            <Link to="/WorkSpaceOne" className={classes.link}>
+              Policy & Procedure
+            </Link>
+          </Grid>
+          <Grid>
+            <Link to="/ContentEditor" className={classes.link}>
+              Content Editor
+            </Link>
+          </Grid>
+          <Grid>Department</Grid>
+          <Grid>Quick Links</Grid>
+          <Grid>Org Chart</Grid>
+          {/* <Grid>
                 {itemsList.map((item: any, id: any, index: any) => {
                     const { icon, label, onClick, path } = item;
                     console.log(itemsList, "itemsList icon");
@@ -144,7 +183,11 @@ const IconText = (props: any) => {
 
                 })}
             </Grid> */}
-    </Grid>
+        </Grid>
+        <Grid item xs={3}> </Grid>
+      </Grid>
+    </Paper >
+
   );
 };
 
