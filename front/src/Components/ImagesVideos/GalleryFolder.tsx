@@ -65,9 +65,9 @@ const GalleryFolder = () => {
                     </Grid>
                 </Paper>
                 <Paper>
-                <SimpleReactLightbox>
+                    <SimpleReactLightbox>
                         <PluginImgVideo />
-                   </SimpleReactLightbox>
+                    </SimpleReactLightbox>
                 </Paper>
             </Container>
         </div>

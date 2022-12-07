@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react'
 import { useGetEmployeeHighLightQuery,useUpdateEmpTokenMutation,useGetAllEmpQuery } from '../../services/APIs';
 import { AuthenticatedTemplate } from "@azure/msal-react";
-import { Card, CardContent, Paper, Typography,Avatar } from "@mui/material";
+import { Card, CardContent, Paper, Typography,Avatar, Link } from "@mui/material";
 import { useStyles } from "./Styles";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -11,6 +11,7 @@ import Carousel from 'react-material-ui-carousel'
 import SkeletonAnimation from "../../Containers/Skeleton";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
+import { useNavigate } from 'react-router-dom';
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 //@ts-ignore
 interface IFolderProps {
@@ -36,9 +37,10 @@ const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
    
           const handleStepChange = (step: number) => {
           setActiveStep(step);
-  
 
 }
+
+const navigate = useNavigate()
 
 // const pca = new PublicClientApplication(configuration);
 //     // const [updateToken,{data,isLoading} ] = useUpdateEmpTokenMutation();
@@ -169,20 +171,25 @@ const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
                           {EmpTitle}
                         </Typography>
                         <Paper sx={{ display: "flex" }} elevation={0}>
+                        <Link href="/birthday" >
                           <Box
                             className={classes.profile}
                             component="img"
                             // src={completePath}
                             src ={img}
                             alt={EmpTitle}
+                            onClick={ () =>navigate("/birthday")}
                           />
+                          </Link> 
                           <Box className={classes.desc}>
+                         
                             <Typography
                               variant="subtitle2"
                               component="div"
                             >
-                              {empTitle}
+                             {empTitle}
                             </Typography>
+                            
                             <Typography
                               variant="caption"
                               gutterBottom
