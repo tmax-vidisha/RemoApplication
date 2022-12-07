@@ -66,6 +66,7 @@ import GalleryFolder from './Components/ImagesVideos/GalleryFolder';
 import FolderItems from './Components/ImagesVideos/FolderItems';
 // import PluginImgVideo from './Components/ImagesVideos/PluginImgVideo';
 import SimpleReactLightbox from 'simple-react-lightbox'
+import Birthday from './Components/Birthday';
 
 
 
@@ -324,6 +325,9 @@ const Main = () => {
                             <Route
                               path="/PluginImgVideo"
                               element={<GalleryFolder/>} />
+                            <Route
+                              path="/birthday"
+                              element={<Birthday/>} />
                         
                         </Routes>
                     </ThemeProvider>
