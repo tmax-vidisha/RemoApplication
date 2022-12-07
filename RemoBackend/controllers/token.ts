@@ -19,6 +19,7 @@ const HeroImage_Id = "7dfccbdf-0469-40e8-ab99-501d6314491f"
 const Photo_Gallery ="55cf720b-4646-49ed-bc64-c97ed72b75f0"
 const Site_Id = "tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43"
 const RemoNews_Id ="25fb939d-87e0-4fb5-b575-f11bd916e4df"
+const RemoEmpHight_Id ="2b3bb6db-7ba9-43e9-92b4-0216b80ef2fe"
 import asyncHandler from '../middleware/asyncHandler'
 const app = express();
 // const getTokens = require('./graph')
@@ -602,10 +603,19 @@ const getEmpData = asyncHandler(async(req:Request, res:Response) => {
   });
 
   }else {
-    
+    const response = 
+    // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+      await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/2b3bb6db-7ba9-43e9-92b4-0216b80ef2fe/items?$expand=fields`, {
+      headers: {
+          'Authorization': `Bearer ${token} `,
+          'Content-Type': 'application/json'
+        
+        }
+      
+  })
   res.status(200).json({
      success: true,
-     response :await requestgraphemp(`${BASE_PATH}/${REMO_SITE_ID}/lists/${EmpHighlights}/items?$expand=fields`,token)
+     response :response.data.value
  
   });
 
