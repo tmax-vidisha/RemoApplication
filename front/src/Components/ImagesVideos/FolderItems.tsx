@@ -86,7 +86,7 @@ const FolderItems = () => {
                {
                  filterdVideoData.map((item: any) => (
                    <Grid  >
-                    
+
                      <video width="120" height="50" controls>
                        <source src={item.webUrl} type="video/mp4" />
                      </video>
@@ -103,7 +103,7 @@ const FolderItems = () => {
               {
                 filterdImagesData.map((item: any) => (
                   <Grid  >
-                    <img src={item.webUrl} alt="image" style={{ width: "180px", height: "200px", margin:"20px" }} />
+                    <img src={item.webUrl}  style={{ width: "167px", height: "170px", margin:"20px",borderRadius:"10px" }} />
                   </Grid>
                 ))
               }
