@@ -105,102 +105,18 @@ export const useStyles = makeStyles({
     transform: "translateX(26px) !important"
   },
 
-  //aSFJHDFJHFDJ
-
-  //   switch :{
-  //     position: "relative",
-  //     display: "inline-block",
-  //     width:" 120px",
-  //     height: "34px",
-  //   },
-
-  //   "switch input ":{ 
-  //     display:"none"
-  //    },
-
-  //   slider2: {
-  //     position: "absolute",
-  //     cursor: "pointer",
-  //     top:" 0",
-  //     left: "0",
-  //     right: "0",
-  //     bottom: "0",
-  //     backgroundColor: "#ca2222",
-  //     // -webkit-transition: ".4s",
-  //     transition: ".4s",
-  //   },
-
-  //   "& slider:before": {
-  //     position: "absolute",
-  //     content: "fhfh",
-  //     height: "26px",
-  //     width: "26px",
-  //     left: "4px",
-  //     bottom: "4px",
-  //     backgroundColor: "white",
-  //     // -webkit-transition: .4s,
-  //     transition: ".4s",
-  //   },
-
-  //  "& input:checked + .slider" :{
-  //     position: "absolute",
-  //     backgroundColor: "#2ab934",
-  //   },
-
-  //  " & input:focus + .slider" :{
-  //     boxShadow: "0 0 1px #2196F3",
-  //   },
-
-  //  " & input:checked + .slider:before": {
-  //     transform: "translate X (86px)",
-  //   },
-  //   /*------ ADDED CSS ---------*/
-  //   EMEA:{
-  //     display: "none",
-  //     color: "white",
-  //     position: "absolute",
-  //     transform: "translate(-50%,-50%)",
-  //     top: "50%",
-  //     left: "50%",
-  //     fontSize: "10px",
-  //     fontFamily: "Verdana, sans-serif",
-  //   },
-
-  //    AMERICAS: {
-  //     color: "white",
-  //     position: "absolute",
-  //     transform: "translate(-50%,-50%)",
-  //     top: "50%",
-  //     left: "50%",
-  //     fontSize: "10px",
-  //     fontFamily: "Verdana, sans-serif",
-  //   },
-
-  //   "& input:checked + .slider .EMEA":{ 
-  //     display:" block",
-  //   },
-
-  //   "& input:checked + .slider .AMERICAS":{
-  //      display: "none" ,
-  //     },
-
-  //   /*--------- END --------*/
-
-  //   /* Rounded sliders */
-  //   sliderRound :{
-  //     borderRadius: "34px",
-  //   },
-
-  //   "sliderRound:before" :{
-  //     borderRadius: "50%",
-  //   }
-
   textPart: {
     display: "flex",
-    justifyContent: "space-between",
-    textAlign: "center", height: "30px",
+    justifyContent: "space-evenly",
+    textAlign: "center",
+     height: "30px",
     fontSize: "12px",
-    margin: "10px"
+    marginTop: "10px"
+  },
+
+  link:{
+    color: "#666666",
+     textDecoration: "none"
   },
 
   profile: {
