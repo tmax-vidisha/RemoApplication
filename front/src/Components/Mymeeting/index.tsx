@@ -141,14 +141,14 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
                 {/* <div className={classes.task}>
                 <span><AddIcon/></span> <span>Add Task </span>
                </div> */}
-                <Grid style={{ overflowY: "hidden", overflowX: "hidden", height: "60px", marginTop: "30px" }}>
+                <Grid style={{ overflowY: "hidden", overflowX: "hidden", height: "60px", marginTop: "10px" }}>
                 {data?.response &&
                   data?.response?.map((item: any, index: any) => {
                     const time = item.start.dateTime
                     // moment(fields?.EventDate).format("MMM");
                     // let eventYear  = moment(fields?.EventDate).format("YYYY");
                     // var formatted = moment(time, "HH:mm").format("hh:mm A");
-                    var formatted = moment(time).format("MMM");
+                    var formatted = moment(time).format('HH:mm A');
                     console.log(formatted, 'ffffffffffffffffff')
                     return (
 
