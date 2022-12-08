@@ -30,7 +30,7 @@ import calendarWhite from "../../Assets/Images/calendarWhite.svg";
 import onenote from "../../Assets/Images/onenote.svg";
 import WeatherMap from './WeatherMap';
 import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
+import {Box, Paper} from '@mui/material';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
@@ -40,13 +40,16 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Weather from '../Weather';
-import Calendar from 'react-calendar';
+// import Calendar from 'react-calendar';
 import ToggleButton from './ToggleButton';
 import account from '../../Assets/Images/accountNew.svg';
 import banner from '../../Assets/Images/bannerviewNew.svg';
 import admin from '../../Assets/Images/adminNew.svg';
 import signOut from '../../Assets/Images/signoutNew.svg';
 import { useStyles } from './Styles';
+import { enIN } from 'date-fns/locale';
+import DateFnsUtils from "@date-io/date-fns";
+import { MuiPickersUtilsProvider, Calendar } from "@material-ui/pickers";
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -107,7 +110,7 @@ interface type {
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-const classes=useStyles();
+  const classes = useStyles();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -156,7 +159,12 @@ const classes=useStyles();
     },
     [setValue],
   );
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
+  const handleDateChange = (date: any) => {
+      setSelectedDate(date);
+      console.log("Date is: ", date);
+  };
   const [anchorEl5, setAnchorEl5] = React.useState<null | HTMLElement>(null);
   const open5 = Boolean(anchorEl5);
   const handleClick5 = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -270,90 +278,6 @@ const classes=useStyles();
   //   <p>Profile</p>
   // </MenuItem>;
   return (
-    // <AuthenticatedTemplate>
-    //   <Box sx={{ flexGrow: 1 }}>
-    //     <StyledAppBar position="static">
-    //       <Container>
-    //         <Toolbar variant="dense" sx={{ paddingLeft: "0px !important", paddingRight: "0px !important" }}>
-    //           <RouterNavLink to="/Home" >
-    //             <img src={logo} alt="Remo Digital" />
-    //           </RouterNavLink>
-    //           <Typography
-    //             variant="h6"
-    //             noWrap
-    //             component="div"
-    //             sx={{ display: { xs: "none", sm: "block" } }}
-    //           >
-
-    //           </Typography>
-    //           <Box sx={{ flexGrow: 1 }} />
-    //           <Search>
-    //             <SearchIconWrapper>
-    //               <SearchIcon sx={{ color: "rgb(255 255 255 / 42%)" }} />
-    //             </SearchIconWrapper>
-    //             <StyledInputBase
-    //               placeholder="Search…"
-    //               inputProps={{ "aria-label": "search" }}
-    //             />
-    //           </Search>
-
-    //           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-    //             <a
-    //               target={"_blank"}
-    //               href="https://outlook.office.com/mail/inbox"
-    //             >
-    //               <IconButton
-    //                 size="large"
-    //                 aria-label="unread mail count"
-    //                 color="inherit"
-    //               >
-    //                 <Badge badgeContent={data.length} color="error" sx={{ top: "3px" }}>
-    //                   {/* <MailIcon /> */}
-    //                   <img src={outlookIcon} alt="Outlook" />
-    //                 </Badge>
-    //               </IconButton>
-    //             </a>
-    //             <IconButton
-    //               size="large"
-    //               aria-label="show 17 new notifications"
-    //               color="inherit"
-    //             >
-    //               <Badge badgeContent={17} color="error" sx={{ top: "3px" }}>
-    //                 <img src={teams} alt="teams" />
-    //               </Badge>
-    //             </IconButton>
-
-    //             <IconButton sx={{ top: "3px" }}
-    //               size="large"
-    //               edge="end"
-    //               aria-label="account of current user"
-    //               aria-controls={menuId}
-    //               aria-haspopup="true"
-    //               onClick={handleProfileMenuOpen}
-    //               color="inherit"
-    //             >
-    //               {/* <img src={profilePic} alt="pic" style={{ width: "23px", height: "23px", borderRadius: "30px" }} /> */}
-    //             </IconButton>
-    //           </Box>
-    //           <Box sx={{ display: { xs: "flex", md: "none" } }}>
-    //             <IconButton
-    //               size="large"
-    //               aria-label="show more"
-    //               aria-controls={mobileMenuId}
-    //               aria-haspopup="true"
-    //               onClick={handleMobileMenuOpen}
-    //               color="inherit"
-    //             >
-    //               <MoreIcon />
-    //             </IconButton>
-    //           </Box>
-    //         </Toolbar>
-    //       </Container>
-    //     </StyledAppBar>
-    //     {renderMobileMenu}
-    //     {renderMenu}
-    //   </Box>
-    // </AuthenticatedTemplate>
     <AuthenticatedTemplate>
       <Box sx={{ flexGrow: 1, marginBottom: "20px" }}>
         <StyledAppBar position="static">
@@ -411,6 +335,12 @@ const classes=useStyles();
                     MenuListProps={{
                       "aria-labelledby": "basic-button",
                     }}
+                    PaperProps={{
+                      style: {
+                        marginTop: 15
+                      },
+                    }}
+
                   >
                     <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem>
                   </Menu>
@@ -437,9 +367,16 @@ const classes=useStyles();
                     MenuListProps={{
                       "aria-labelledby": "basic-button",
                     }}
+                    PaperProps={{
+                      style: {
+                        width: 350,
+                        height: 150,
+                        marginTop: 10
+                      },
+                    }}
 
                   >
-                    <MenuItem onClick={handleOnClose}>
+                    <MenuItem>
                       {/* <Grid style={{display:"flex" , justifyContent:"space-between", fontSize:"8px"}}>
                       <Grid> Dubai, UAE</Grid>
                       <Grid> Next Prayer</Grid>
@@ -511,12 +448,26 @@ const classes=useStyles();
                     onClose={handleSecOnClose}
                     MenuListProps={{
                       "aria-labelledby": "basic-button",
-                    }}>
+                    }}
+                    PaperProps={{
+                      style: {
+                        marginTop: 8,
+                        width: 270
+                      },
+                    }}
+                  >
                     <MenuItem onClick={handleSecOnClose}>
-                      <Calendar
+                      {/* <Calendar
                         onChange={onChange}
                         value={value}
-                      />
+                      /> */}
+                      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={enIN}>
+                        <Paper style={{ overflow: "hidden" }}>
+                          <Calendar date={selectedDate} onChange={handleDateChange} />
+                        </Paper>
+                      </MuiPickersUtilsProvider>
+
+
                     </MenuItem>
 
                   </Menu>
@@ -596,11 +547,16 @@ const classes=useStyles();
                   MenuListProps={{
                     'aria-labelledby': 'basic-button',
                   }}
+                  PaperProps={{
+                    style: {
+                      marginTop: -2
+                    },
+                  }}
                 >
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
-                  <MenuItem onClick={handleClose5}className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
-                  <MenuItem onClick={handleClose5}className={classes.profile}><img src={banner} alt="account" />Display on your banner view</MenuItem>
-                  <MenuItem onClick={handleClose5}className={classes.profile}><img src={signOut} alt="account" />SignOut</MenuItem>
+                  <MenuItem onClick={handleClose5} className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
+                  <MenuItem onClick={handleClose5} className={classes.profile}><img src={banner} alt="account" />Display on your banner view</MenuItem>
+                  <MenuItem onClick={handleClose5} className={classes.profile}><img src={signOut} alt="account" />SignOut</MenuItem>
                 </Menu>
               </Box>
               <Box sx={{ display: { xs: "flex", md: "none" } }}>

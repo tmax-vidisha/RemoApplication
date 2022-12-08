@@ -23,58 +23,10 @@ const WorkSpaceOne = () => {
 
     // const activeLink = style={{color:"red"}};
     // const normalLink = style={{color:"blue"}};
-    return (
-        // <Grid>
-        //     <Grid container item xs={10}>
-        //         <IconText />
-        //     </Grid>
-        //     <Grid item xs={12}>
-        //         <Paper style={{ height: "50px", display: "flex", justifyContent: "flex-start",  alignItems: "center", marginBottom: "20px" }} elevation={0}>
-
-        //             <Typography style={{textAlign:"center", marginLeft:"30px", marginRight:"30px"}}><span> <img src={announcementIcon} alt="" /></span> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus   </Typography>
-
-        //         </Paper>
-        //     </Grid>
-        //     <Box style={{ margin: "30px" }}>
-
-        //         <Grid container item xs={12} className={classes.bigPaper}>
-        //             <Grid item xs={1} >
-        //                 <SideBar />
-        //             </Grid>
-        //             <Grid item xs={2}>
-        //                 <LeftMenu />
-        //             </Grid>
-        //             <Grid item xs={9} style={{ paddingLeft: "8px" }}>
-        //                 <SearchPart />
-
-        //                 <MyFilePage />
-        //                 {/* <NavPage/> */}
-        //                 {/* <Routes>
-        // <Route path="/myOneDriveAllFiles" element={<MyFilePage />} />
-        // <Route path="/sharedWithMe" element={<FileSharedPage />} />
-       
-        // </Routes> */}
-        //             </Grid>
-        //             <Grid item xs={2}>
-        //                <AllLinks/>
-        //             </Grid>
-        //         </Grid>
-        //     </Box>
-
-        //     {/* <Grid container spacing={2} item xs={12} >
-        //         <Grid item xs={3}>
-                    
-        //         </Grid>
-        //         <Grid item xs={9}>
-                    
-        //         </Grid>
-        //     </Grid> */}
-        // </Grid>
+    return (      
         <Grid> 
-        <Grid>
-            <Grid container item xs={10}>
-                <IconText />
-            </Grid>
+       
+       <IconText />
             <Grid item xs={12}>
                 <Paper style={{ height: "50px", display: "flex", justifyContent: "flex-start", alignItems: "center", marginBottom: "20px" }} elevation={0}>
 
@@ -132,10 +84,6 @@ const WorkSpaceOne = () => {
                 </Grid>
             </Grid> */}
         </Grid>
-
-        
-        
-    </Grid>
 
     );
 };
