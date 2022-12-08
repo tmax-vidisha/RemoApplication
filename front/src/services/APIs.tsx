@@ -824,7 +824,7 @@ export const graphApi = createApi({
         }),
         createTokenwithEmpDataItemId: builder.mutation<any, any>({
             query: (data) => ({
-                url: 'api/v1/lists//empItemdata',
+                url: 'api/v1/lists/empItemdata',
                 // headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data

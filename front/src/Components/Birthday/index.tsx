@@ -13,7 +13,7 @@ const Birthday = () => {
   console.log(location.state);
   //@ts-ignore
   const { folderData = [] } = location.state;
-//   console.log(folderData,'yyjyjyjyjyyj')
+ console.log(folderData,'yyjyjyjyjyyjdata')
 
     return (
         <div>
