@@ -5,7 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
-// import ImageIcon from "@mui/icons-material/Image";
+// import ImUSDIcon from "@mui/icons-material/ImUSD";
 // import WorkIcon from "@mui/icons-material/Work";
 import useCustom from "../../hooks/useCustom";
 // import BeachAccessIcon from "@mui/icons-material/BeachAccess";
@@ -26,15 +26,19 @@ export default function Weather() {
   //  console.log(token,'sdsfggs')
   
   const [USD, setUSD] = React.useState('USD');
-  const [age, setAge] = React.useState('');
   //@ts-ignore
   const {data,error ,isLoading }  = useGetAllCountryCodesQuery(token);
-  // const {data,error ,isLoading }  = useGetAllPrayersQuery();
+  //  const {data:prayerData, error:prayerError, isLoading:prayerLoading }  = useGetAllPrayersQuery();
   console.log(data?.response,'rgrthrjtqaqqqqqqqq')
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+    setUSD(event.target.value);
 };
+const toggleDropdown = () => {
+  setUSD('!USD');
+};
+// const [isDisplayed, setDisplayed] = useState(false);
+
 const  emp =[ {
   "job_id": 1,
   "job_name": "Engineer"
@@ -66,7 +70,8 @@ const  emp =[ {
         </ListItem>
         <Divider component="span" orientation="vertical" flexItem />
         <ListItem className={classes.weather}>
-          {/* <Typography component="h4">Next Prayer</Typography>
+        <Typography component="h4">Next Prayer</Typography>
+
           <Typography component="h1">16:45</Typography>
 
           <Typography
@@ -77,7 +82,7 @@ const  emp =[ {
           >
             Asher
            
-          </Typography> */}
+          </Typography> 
         
           
         </ListItem>
@@ -91,25 +96,7 @@ const  emp =[ {
 
             component="div"
             sx={{ opacity: 0.6 }}
-          >
-            {/* <FormControl sx={{ m: 1, minWidth: 80 }}>
-              <InputLabel id="demo-simple-select-autowidth-label">Age</InputLabel>
-              <Select
-               labelId="demo-simple-select-standard-label"
-               id="demo-simple-select-standard"
-                value={USD}
-                onChange={handleChange}
-                autoWidth
-                label="USD"
-              >
-
-                <MenuItem value={10}>USD </MenuItem>
-                <MenuItem value={21}>EURO</MenuItem>
-                <MenuItem value={22}>YARN</MenuItem>
-                <MenuItem value={22}>YEN</MenuItem>
-                <MenuItem value={22}>AED</MenuItem>
-              </Select>
-            </FormControl> */}
+          >          
             <Grid>
                     {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
                             getChildHandler={breadcrumbClickHandler} /> */}
@@ -118,10 +105,10 @@ const  emp =[ {
                         <Select
                             labelId="demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
-                            value={age}
+                            value={USD}
                             onChange={handleChange}
                             MenuProps={{ PaperProps: { sx: { maxHeight: 90 } } }}
-                            label="Age"
+                            label="USD"
                             style={{width:"80px", }}
                         >
                             {/* <MenuItem value="">

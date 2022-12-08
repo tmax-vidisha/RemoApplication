@@ -10,6 +10,7 @@ import {
   Typography,
   Stack,
   List,
+  Link,
   TextField
 } from "@mui/material";
 import { useStyles } from "./Styles";
@@ -138,15 +139,16 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
               >
                 Events Calendar
               </Typography>
-
+              <Link href="/viewAllEvents">
               <Typography
                 className={classes.calenderHeader2}
                 variant="h6"
                 component="h1"
                 color="secondary"
               >
-                View All Events
+                 View All Events
               </Typography>
+              </Link>
             </Stack>
             <Calendar
               className={classes.border}

@@ -81,44 +81,30 @@ const IconText = (props: any) => {
     },
   ];
   const [id1, setId1] = useState(0);
-  const [change, setChange] = useState({ color: 'gray' })
-  const changeColor = () => {
-    let color = change.color === 'gray' ? 'blue' : 'gray';
-    setChange({ color })
+  // const [change, setChange] = useState({ color: 'gray' })
+  // const changeColor = () => {
+  //   let color = change.color === 'gray' ? 'blue' : 'gray';
+  //   setChange({ color })
 
-  }
+  // }
 
   const onMouseOver = (event: any) => {
     const el = event.target;
     let colorhex = [
-      "#7AF377",
-      "#3498DB",
-      "#F1C530",
-      "#F29C29",
-      "#8E44AD",
-      "#4AA086",
-      "#E74C3C",
-      "#65CC71",
-      "#D3541B",
-      "#EB4367",
-      "#74F7D9",
-      "#DDA8FC"
+      "#4ddbff",
+      "#666666",    
     ];
     el.style.color = colorhex[Math.floor(Math.random() * 12)];
   };
 
   const onMouseOut = (event: any) => {
     const el = event.target;
-    let black = "#000000";
-    el.style.color = black;
+    let teal = "#4ddbff";
+    el.style.color = teal;
   };
   return (
-    <Paper style={{
-      width: "100vw",
-      // marginLeft: "-64px",
-      // marginTop: "-40px",
-    }}>
-      <Grid item xs={12} style={{ paddingTop: "10px" }}>
+    <Paper >
+      <Grid item xs={12} style={{ paddingTop: "10px" , }}>
         <Grid item xs={9} className={classes.textPart} >
           <Grid onMouseEnter={event => onMouseOver(event)}
             onMouseOut={event => onMouseOut(event)}>
