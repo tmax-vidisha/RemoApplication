@@ -84,6 +84,9 @@ const navigate = useNavigate()
   const handleItem = (itemid:any) =>{
     //  console.log(itemid,'Idss')
     onGetItem?.(itemid)
+    // navigate('/birthday', { state: { folderData: ItemData } })
+  }
+  if(ItemData !==undefined){
     navigate('/birthday', { state: { folderData: ItemData } })
   }
   return (
