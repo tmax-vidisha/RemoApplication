@@ -1,3 +1,4 @@
+// @ts-nocheck 
 import React, { useEffect,useState } from 'react'
 import { useGetEmployeeHighLightQuery,useUpdateEmpTokenMutation,useGetAllEmpQuery } from '../../services/APIs';
 import { AuthenticatedTemplate } from "@azure/msal-react";
@@ -14,6 +15,8 @@ import { configuration } from "../../index";
 import { useNavigate } from 'react-router-dom';
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 //@ts-ignore
+
+
 interface IFolderProps {
   // employee: any;
   // onClick: any;
@@ -23,7 +26,9 @@ interface IFolderProps {
   // onShare?: (id: string) => void;
   data:any, 
   error:any,
-  isLoading:any
+  isLoading:any,
+  onGetItem?:(id:string) =>void,
+  ItemData:any
 }
 //  const EmployeeHighlight = () => {
 const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
@@ -34,10 +39,9 @@ const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
   // console.log(data,'88888888')
   // const {employee} = props;
    const [activeStep, setActiveStep] = React.useState(0);
-   
+  
           const handleStepChange = (step: number) => {
           setActiveStep(step);
-
 }
 
 const navigate = useNavigate()
@@ -76,59 +80,20 @@ const navigate = useNavigate()
       
 //     }, [])
 
-    const { data, error, isLoading } =  props
-   console.log(data,'980ccccccc9090')
-
+    const { data, error, isLoading,onGetItem ,ItemData} =  props
+   console.log(data,'Empployeedata')
+  console.log(ItemData,'juyuykuku')
+  const handleItem = (itemid:any) =>{
+    //  console.log(itemid,'Idss')
+    onGetItem?.(itemid)
+    // navigate('/birthday', { state: { folderData: ItemData } })
+    if(ItemData !==undefined){
+      navigate('/birthday', { state: { folderData: ItemData } })
+    }
+  }
+  
   return (
-    
-
-    // <div>
-    //     <Paper>
-    //     { data && <img  src ={data[0].fields.SASURL.Description}  height="120"/> }
-    //     </Paper>
-    // </div>
-    //  <div>
-          
-    //           {/* {data && data.map((i:any)=>(
-    //             <>
-    //               <Avatar src ={i.image} />
-                  
-    //               </>
-    //           ))} */}
-    //           ggggg
-
-    // <AuthenticatedTemplate>
-      
-    //   {isLoading ?(
-    //     <SkeletonAnimation/>
-    //   )  :(    
-    //           <Paper>
-              
-    //            <Card>
-    //            <AutoPlaySwipeableViews
-    //               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-    //               index={activeStep}
-    //               onChangeIndex={handleStepChange}
-    //               enableMouseEvents
-    //         >
-    //               {data?.response && <img  src ={data?.response.image}  height="120"/> 
-                  
-                  
-    //               }
-                  
-    //               {data?.response && <img  src ={data?.response.image1}  height="120"/> }
-    //               {data?.response && <img  src ={data?.response.image2}  height="120"/> }
-    //             </AutoPlaySwipeableViews>
-                
-    //           </Card>
-             
-    //           </Paper>
-    //    )}     
-      
-    // </AuthenticatedTemplate> 
-
-    // <div>tttt</div>
-    <AuthenticatedTemplate>
+     <AuthenticatedTemplate>
       <Paper elevation={0}>
         {isLoading ? (
           <SkeletonAnimation />
@@ -140,23 +105,25 @@ const navigate = useNavigate()
               onChangeIndex={handleStepChange}
               enableMouseEvents
             >
+         {/* @ts-ignore */}
              {data?.response &&
-                data?.response?.value.map((item: any, index: any) => {
+                data?.response?.map((item: any, index: any) => {
                   const { fields = {} } = item;
-                var EmpTitle = fields?.EmployeeTitle;
-                var empTitle = fields?.Title;
+                var EmpTitle = fields?.Title;
+                var empName = fields?.Name;
                 var DeptVal = fields?.Dept;
-                var img =  fields?.empUrl
-                var completePath;
+                var img =  fields?.EmpImg
 
-                if (fields?.EmpImage != null) {
-                  var profilePic = JSON.parse(fields?.EmpImage);
-                  if (profilePic.serverUrl) {
-                    completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
-                  } else {
-                    completePath = profilePic.serverRelativeUrl
-                  }
-                }
+                // var completePath;
+
+                // if (fields?.EmpImage != null) {
+                //   var profilePic = JSON.parse(fields?.EmpImage);
+                //   if (profilePic.serverUrl) {
+                //     completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
+                //   } else {
+                //     completePath = profilePic.serverRelativeUrl
+                //   }
+                // }
 
                 return (
                   <div className={classes.emp} key={index}>
@@ -171,23 +138,25 @@ const navigate = useNavigate()
                           {EmpTitle}
                         </Typography>
                         <Paper sx={{ display: "flex" }} elevation={0}>
-                        <Link href="/birthday" >
+                       
                           <Box
                             className={classes.profile}
                             component="img"
                             // src={completePath}
                             src ={img}
-                            alt={EmpTitle}
-                            onClick={ () =>navigate("/birthday")}
+                            alt={empName}
+                            onClick={ () =>
+                              handleItem(item.fields?.id)
+                            }
                           />
-                          </Link> 
+                         
                           <Box className={classes.desc}>
                          
                             <Typography
                               variant="subtitle2"
                               component="div"
                             >
-                             {empTitle}
+                             {empName}
                             </Typography>
                             
                             <Typography
@@ -210,7 +179,7 @@ const navigate = useNavigate()
         )}
       </Paper>
     </AuthenticatedTemplate>
-  )
-}
+  );
+};
 
-export default EmployeeHighlight
+export default EmployeeHighlight;
