@@ -279,7 +279,7 @@ const Header = () => {
   // </MenuItem>;
   return (
     <AuthenticatedTemplate>
-      <Box sx={{ flexGrow: 1, marginBottom: "20px" }}>
+      <Box sx={{ flexGrow: 1,}}>
         <StyledAppBar position="static">
           <Container>
             <Toolbar

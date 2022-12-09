@@ -32,6 +32,7 @@ export const useStyles = makeStyles({
     overflow: "hidden",
     width: "53px",
     marginBottom:0,
+    cursor:"pointer"
   },
   desc: {
     paddingLeft: "10px",
