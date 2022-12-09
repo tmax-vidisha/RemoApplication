@@ -4,6 +4,7 @@ import { Paper } from '@mui/material';
 import IconText from './../Header/IconText';
 import { useStyles } from './Styles';
 import birthdayIcon from '../../Assets/Images/birthday.jpg'
+
 import { useLocation } from 'react-router-dom';
 import birthday from "../../Assets/Images/girl.jpg";
 import { Button } from '@mui/material';
@@ -20,6 +21,18 @@ const Birthday = (props:any)=> {
     const { data, error, isLoading,onGetItem ,ItemData} =  props;
     const { folderData = [] } = location.state;
     console.log(folderData, 'birthday data');
+
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+const Birthday = () => {
+
+    const classes = useStyles();
+
+    let location = useLocation();
+  console.log(location.state);
+  //@ts-ignore
+  const { folderData = [] } = location.state;
+ console.log(folderData,'yyjyjyjyjyyjdata')
+
 
     return (
         <div>

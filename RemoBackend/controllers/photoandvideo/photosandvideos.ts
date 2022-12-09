@@ -19,8 +19,8 @@ async function Nested(arr:any,tokens:any) {
         await axios.get(`${BASE_PATH}/${Site_Id}/drives/${Drive_Id}/root:/${arr[i].name}?$expand=children&$top=1&$orderby=lastModifiedDateTime+desc`, {
         headers: {
             'Authorization': `Bearer ${tokens} `,
-            'Content-Type': 'application/json'
-          
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'*',
           }
         
     })

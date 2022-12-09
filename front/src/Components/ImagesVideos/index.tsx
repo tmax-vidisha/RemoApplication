@@ -125,7 +125,7 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                         {/* {item.image} */}
                                                         <img
                                                           src={item.children[0].webUrl}
-                                                          style={{ width: "100px", height: "60px", margin:"20px" }}
+                                                          style={{ width: "170px", height: "100px", margin:"20px",borderRadius:"10px"}}
                                                           alt="Gallery"
                                                         />
                                                     </Box>

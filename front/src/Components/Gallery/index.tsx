@@ -135,7 +135,7 @@ import useCustom from '../../hooks/useCustom';
                         src={step.children[0].webUrl}
                         alt="Gallery"
                         // className={classes.galleryImageWidth}
-                        style={{ width: "100px", height: "60px", margin:"20px" }}
+                         style={{ width: "300px", height: "160px", margin:"20px" , display: "flex",justifyContent: "space-between",flexWrap: "wrap",overflow: "hidden"}}
                       />
                     </div>
                   );
