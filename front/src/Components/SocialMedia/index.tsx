@@ -190,7 +190,7 @@ const SocialMedia = () => {
               //url="https://www.linkedin.com/company/google/?originalSubdomain=in"
               //postUrl="https://www.linkedin.com/posts/google_interviewing-is-not-one-sided-as-an-aspiring-activity-6954114739874512897-N4OR?utm_source=linkedin_share&utm_medium=member_desktop_web"
               postUrl="https://www.linkedin.com/embed/feed/update/urn:li:share:6955728295980056577"
-              url="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6986017723038269440"
+              url="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7008008686715441152"
               width={325}
               height={370}
             />
@@ -210,8 +210,12 @@ const SocialMedia = () => {
               //url="https://www.facebook.com/andrewismusic/posts/451971596293956" 
               //url="https://www.facebook.com/taqeefmiddleeast/posts/" 
               //url="https://www.facebook.com/taqeefmiddleeast/photos" 
+              // url="https://fb.watch/eqiJfx_kmH/"
               url="https://fb.watch/eqiJfx_kmH/"
               width={350} />
+            {/* <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FInfosys&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=319494263513255" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> */}
+            
+
           </div>
 
         </TabPanel>

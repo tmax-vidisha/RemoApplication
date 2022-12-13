@@ -79,7 +79,7 @@ const Birthday = (props:any)=> {
                     </Grid>
 
                     <Box>
-                        {/* {folderData?.response &&
+                        {folderData?.response &&
                              folderData?.response?.map((item: any, index: any) => {
                                 const { fields = {} } = item;
                                 var EmpTitle = fields?.Title;
@@ -88,14 +88,14 @@ const Birthday = (props:any)=> {
                                 var img = fields?.EmpImg
 
                                 return (
-                                    <>
-                                    <img src={item.img} alt="" />
+                                    <div>
+                                    <img src={item.fields?.EmpImg} alt="" />
                                     <p>{EmpTitle}</p>
-                                    </>
+                                    </div>
 
                                 );
                             })}
-                         */}
+                        
                     </Box> 
                 </Paper>
             </Container>
