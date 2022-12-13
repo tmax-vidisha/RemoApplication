@@ -11,6 +11,7 @@ import { enIN } from 'date-fns/locale';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import meeting from "../../Assets/Images/meeting.jpg";
 import { List, ListItem } from '@mui/material';
+import CalendarEvent from './CalendarEvent';
 
 
 const lists = [
@@ -100,14 +101,15 @@ const ViewAllEvents = () => {
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
                             <Grid item xs={6} style={{ padding: "10px" }}>
                                 <Box>
-                                    <ThemeProvider theme={customTheme}>
+                                    {/* <ThemeProvider theme={customTheme}>
                                         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={enIN}>
                                             <Paper style={{ overflow: "hidden" }}>
                                                 <Calendar date={selectedDate} onChange={handleDateChange}
                                                 />
                                             </Paper>
                                         </MuiPickersUtilsProvider>
-                                    </ThemeProvider>
+                                    </ThemeProvider> */}
+                                    <CalendarEvent/>
                                 </Box>
                             </Grid>
                             <Grid item xs={6}>
