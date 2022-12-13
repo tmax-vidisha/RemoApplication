@@ -7,9 +7,9 @@ const EmpHighlightPage = () => {
     const {token} = useCustom();
     const { data, error, isLoading } = useGetAllEmpQuery(token)
     const [sendItem,{data:ItemData}] = useCreateTokenwithEmpDataItemIdMutation();
-     console.log(ItemData,'yuyuu7u7u7ua');
 
-     
+     console.log(ItemData,'yuyuu7u7u7ua')
+
     const handle = (id:any)=>{
        console.log(id,'eaefsaaaa')
 

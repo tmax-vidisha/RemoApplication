@@ -86,12 +86,14 @@ const navigate = useNavigate()
   const handleItem = (itemid:any) =>{
     //  console.log(itemid,'Idss')
     onGetItem?.(itemid)
+
     // navigate('/birthday', { state: { folderData: ItemData } })
     if(ItemData !==undefined){
       navigate('/birthday', { state: { folderData: ItemData } })
     }
   }
   
+
   return (
      <AuthenticatedTemplate>
       <Paper elevation={0}>
@@ -114,7 +116,9 @@ const navigate = useNavigate()
                 var DeptVal = fields?.Dept;
                 var img =  fields?.EmpImg
 
+
                 // var completePath;
+
 
                 // if (fields?.EmpImage != null) {
                 //   var profilePic = JSON.parse(fields?.EmpImage);
@@ -146,6 +150,7 @@ const navigate = useNavigate()
                             src ={img}
                             alt={empName}
                             onClick={ () =>
+
                               handleItem(item.fields?.id)
                             }
                           />
