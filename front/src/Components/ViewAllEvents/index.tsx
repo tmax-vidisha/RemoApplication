@@ -42,23 +42,26 @@ const ViewAllEvents = () => {
 
     const handleDateChange = (date: any) => {
         setSelectedDate(date);
-        console.log("Date is: ", date);
+        // console.log("Date is: ", date);
+        const localDate = new Date(date).toLocaleDateString();
+
+console.log(localDate);
     };
 
     const color = "#00b8e6";
 
-    const customTheme = createMuiTheme({
-        palette: {
-            primary: {
-                main: '#00b8e6',
-                light: '#00b8e6',
-                dark: ' #00b8e6'
-            },
-            secondary: {
-                main: '#00b8e6',
-            },
-        },
-    })
+    // const customTheme = createMuiTheme({
+    //     palette: {
+    //         primary: {
+    //             main: '#00b8e6',
+    //             light: '#00b8e6',
+    //             dark: ' #00b8e6'
+    //         },
+    //         secondary: {
+    //             main: '#00b8e6',
+    //         },
+    //     },
+    // })
     return (
         <div>
             <Container className={classes.contentEditorWidth}>
@@ -100,14 +103,14 @@ const ViewAllEvents = () => {
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
                             <Grid item xs={6} style={{ padding: "10px" }}>
                                 <Box>
-                                    <ThemeProvider theme={customTheme}>
+                                    {/* <ThemeProvider theme={theme}> */}
                                         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={enIN}>
                                             <Paper style={{ overflow: "hidden" }}>
                                                 <Calendar date={selectedDate} onChange={handleDateChange}
                                                 />
                                             </Paper>
                                         </MuiPickersUtilsProvider>
-                                    </ThemeProvider>
+                                    {/* </ThemeProvider> */}
                                 </Box>
                             </Grid>
                             <Grid item xs={6}>

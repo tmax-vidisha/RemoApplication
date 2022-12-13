@@ -85,10 +85,11 @@ const navigate = useNavigate()
     //  console.log(itemid,'Idss')
     onGetItem?.(itemid)
     // navigate('/birthday', { state: { folderData: ItemData } })
+    if(ItemData !==undefined){
+      navigate('/birthday', { state: { folderData: ItemData } })
+    }
   }
-  if(ItemData !==undefined){
-    navigate('/birthday', { state: { folderData: ItemData } })
-  }
+ 
   return (
     
 
@@ -151,7 +152,7 @@ const navigate = useNavigate()
               enableMouseEvents
             >
              {data?.response &&
-                data?.response?.map((item: any, index: any) => {
+                data?.response.map((item: any, index: any) => {
                   const { fields = {} } = item;
                 var EmpTitle = fields?.Title;
                 var empName = fields?.Name;

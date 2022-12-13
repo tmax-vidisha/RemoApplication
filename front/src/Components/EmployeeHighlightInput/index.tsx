@@ -241,7 +241,7 @@ const EmployeeHighlightInput: React.FC<IFolderProps> = (props: IFolderProps) => 
           </Button>
         </CardContent>
 
-        <TableContainer component={Paper} elevation={0} sx={{ marginBottom: "15px" }}>
+        {/* <TableContainer component={Paper} elevation={0} sx={{ marginBottom: "15px" }}>
           <Table>
             <TableHead>
               <TableRow className={classes.tableHeader}>
@@ -297,7 +297,7 @@ const EmployeeHighlightInput: React.FC<IFolderProps> = (props: IFolderProps) => 
                 })}
             </TableBody>
           </Table>
-        </TableContainer>
+        </TableContainer> */}
         <Fragment>
           <Dialog
             maxWidth="md"
