@@ -47,9 +47,8 @@ import banner from '../../Assets/Images/bannerviewNew.svg';
 import admin from '../../Assets/Images/adminNew.svg';
 import signOut from '../../Assets/Images/signoutNew.svg';
 import { useStyles } from './Styles';
-import { enIN } from 'date-fns/locale';
-import DateFnsUtils from "@date-io/date-fns";
-import { MuiPickersUtilsProvider, Calendar } from "@material-ui/pickers";
+import SubCalendar from '../Events/SubCalendar';
+import { Calendar } from 'react-calendar';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -159,12 +158,7 @@ const Header = () => {
     },
     [setValue],
   );
-  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleDateChange = (date: any) => {
-      setSelectedDate(date);
-      console.log("Date is: ", date);
-  };
   const [anchorEl5, setAnchorEl5] = React.useState<null | HTMLElement>(null);
   const open5 = Boolean(anchorEl5);
   const handleClick5 = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -279,7 +273,7 @@ const Header = () => {
   // </MenuItem>;
   return (
     <AuthenticatedTemplate>
-      <Box sx={{ flexGrow: 1, marginBottom: "20px" }}>
+      <Box sx={{ flexGrow: 1,}}>
         <StyledAppBar position="static">
           <Container>
             <Toolbar
@@ -452,24 +446,17 @@ const Header = () => {
                     PaperProps={{
                       style: {
                         marginTop: 8,
-                        width: 270
+                        width: 300
                       },
                     }}
                   >
                     <MenuItem onClick={handleSecOnClose}>
-                      {/* <Calendar
+                      <Calendar
                         onChange={onChange}
                         value={value}
-                      /> */}
-                      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={enIN}>
-                        <Paper style={{ overflow: "hidden" }}>
-                          <Calendar date={selectedDate} onChange={handleDateChange} />
-                        </Paper>
-                      </MuiPickersUtilsProvider>
-
-
+                      />
+                      {/* <SubCalendar/> */}
                     </MenuItem>
-
                   </Menu>
                 </div>
 

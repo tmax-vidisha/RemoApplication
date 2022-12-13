@@ -159,6 +159,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplaySpeed: 3000,
+    autoPlay:false,
     arrows: false,
 
     responsive: [
@@ -212,7 +213,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                   color="secondary"
                   className={classes.newsHeader1}
                 >
-                  <Link to="/NationalNews"> View All </Link>
+                  <Link to="/NewsInfo"> View All </Link>
                  
                 </Typography>
               </Stack>

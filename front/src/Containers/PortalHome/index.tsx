@@ -173,7 +173,7 @@ const PortalHome = () => {
   return (
     <div className={classes.root}>
       <Grid className={classes.bannerTop}>
-        <Grid item xs={12} style={{marginBottom:"10px"}}>
+        <Grid item xs={12} style={{ marginBottom: "10px" }}>
           <HomeNavigationPage />
         </Grid>
         {/* <Grid item xs={12}>
@@ -219,7 +219,13 @@ const PortalHome = () => {
 
       <Grid container spacing={2}>
         <Grid item xs={8}>
-          
+        <HeroImagePage  /> 
+        </Grid>
+        <Grid item xs={4}>
+        <CeoPage />
+          </Grid>
+        <Grid item xs={8}>
+
           <MeetingsPage />
         </Grid>
         <Grid item xs={4}>
@@ -228,7 +234,7 @@ const PortalHome = () => {
         <Grid item xs={8}>
           <Grid item xs={12}>
             <NewsPage />
-           
+
           </Grid>
           <Grid
             container
@@ -244,10 +250,10 @@ const PortalHome = () => {
           >
             <Grid item xs={6} style={{ paddingLeft: 0 }}>
               <Gallery />
-              
+
             </Grid>
             <Grid item xs={6} style={{ paddingRight: 0 }}>
-            
+
               <SocialMedia />
             </Grid>
           </Grid>
@@ -263,21 +269,21 @@ const PortalHome = () => {
             }}
             spacing={2}
           >
-            
+
           </Grid>
         </Grid>
         <Grid item xs={4}>
-        
+
           <Grid item xs={12} style={{ marginTop: 16 }}>
             <Weather />
           </Grid>
           <Grid item xs={12} style={{ marginTop: 16 }}>
             <EventsPage />
-           
+
           </Grid>
           <Grid item xs={12} style={{ marginTop: 16 }}>
             <RecentFilePage />
-            
+
           </Grid>
         </Grid>
       </Grid>

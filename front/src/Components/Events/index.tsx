@@ -18,6 +18,7 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import "react-calendar/dist/Calendar.css";
 import Calendar from 'react-calendar';
+import SubCalendar from './SubCalendar';
 // import SubComponentsPickers from './SubComponentsPickers';
 
 // import { CalendarPicker } from '@mui/x-date-picker/CalendarPicker'
@@ -151,10 +152,11 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
               </Link>
             </Stack>
             <Calendar
-              className={classes.border}
+              // className={classes.border}
               onChange={onChange}
               value={value}
             />
+            {/* <SubCalendar/> */}
             {/* @ts-ignore */}
             {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
               
