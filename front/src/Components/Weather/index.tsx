@@ -12,7 +12,7 @@ import useCustom from "../../hooks/useCustom";
 import Divider from "@mui/material/Divider";
 import { Grid, Paper, Typography } from "@mui/material";
 // import useCustom from "../../hooks/useCustom";
-import { useGetAllPrayersQuery,useGetAllCountryCodesQuery } from "../../services/graph";
+// import { useGetAllPrayersQuery,useGetAllCountryCodesQuery } from "../../services/graph";
 import { useStyles } from "./Styles";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -20,25 +20,48 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 var moment = require("moment-timezone");
 
-export default function Weather() {
+interface IFolderProps {
+  // recent: any;
+  // onClick: any;
+  // onDownload?: (id: string) => void;
+  // onDelete?: (id: string) => void;
+  // onRename?: (id: string, name: string) => void;
+  // onShare?: (id: string) => void;
+  data:any, 
+  error:any,
+  isLoading:any,
+  onClick?: ( name: string) => void;
+    dataItem:any,
+    dataItemError:any,
+    dataItemIsLoading:any
+}
+
+// export default function Weather() {
+  const Weather: React.FC<IFolderProps> = (props: IFolderProps) => {
   var classes = useStyles();
-    const {token} = useCustom();
+    // const {token} = useCustom();
   //  console.log(token,'sdsfggs')
   
   const [USD, setUSD] = React.useState('USD');
   //@ts-ignore
-  const {data,error ,isLoading }  = useGetAllCountryCodesQuery(token);
+  // const {data,error ,isLoading }  = useGetAllCountryCodesQuery(token);
   //  const {data:prayerData, error:prayerError, isLoading:prayerLoading }  = useGetAllPrayersQuery();
+  // console.log(data?.response,'rgrthrjtqaqqqqqqqq')
+  const { data, error, isLoading,onClick,dataItem,dataItemError,dataItemIsLoading } =props;
   console.log(data?.response,'rgrthrjtqaqqqqqqqq')
-
+  console.log(dataItem?.response?.result,"Amount")
   const handleChange = (event: SelectChangeEvent) => {
+    console.log(event.target.value)
     setUSD(event.target.value);
 };
 const toggleDropdown = () => {
   setUSD('!USD');
 };
 // const [isDisplayed, setDisplayed] = useState(false);
-
+const handleTitle = (title:any) =>{
+  // console.log(title,'ttttt')
+  onClick?.(title)
+}
 const  emp =[ {
   "job_id": 1,
   "job_name": "Engineer"
@@ -89,7 +112,7 @@ const  emp =[ {
         <Divider component="span" orientation="vertical" flexItem />
         <ListItem className={classes.currency}>
           <Typography component="h4">1.00 AED is</Typography>
-          <Typography component="h1"> 0.27 </Typography>
+          <Typography component="h1">{dataItem?.response?.result}</Typography>
 
           <Typography
             variant="caption"
@@ -125,7 +148,7 @@ const  emp =[ {
                      { data?.response  &&
                         data?.response.map((brand:any) => {
                           const {fields = {}} = brand
-                            return <MenuItem style={{width:"50px", fontSize:"10px"}} value={fields?.id} key={ fields?.id}>{fields?.Title}</MenuItem>
+                            return <MenuItem style={{width:"50px", fontSize:"10px"}} value={fields?.id} key={ fields?.id} onClick={()=>handleTitle(fields?.Title)}>{fields?.Title}</MenuItem>
                         })
                     }
                         </Select>
@@ -135,5 +158,8 @@ const  emp =[ {
         </ListItem>
       </List>
     </Paper>
+    // <> dgdgerrthtrhrt</>
+   
   );
 }
+export default Weather;

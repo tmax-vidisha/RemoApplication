@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { enIN } from 'date-fns/locale';
 import { Box, Paper } from '@mui/material';
 import { Calendar } from 'react-calendar';
+import "moment-timezone"
 const CalendarEvent = () => {
 
     const [value, setValue] = useState();
@@ -18,6 +19,9 @@ const CalendarEvent = () => {
     const onChange = useCallback(
         (value: any) => {
           setValue(value);
+          const localDate = new Date(value).toLocaleDateString();
+          console.log(localDate)
+          
         },
         [setValue],
       );
