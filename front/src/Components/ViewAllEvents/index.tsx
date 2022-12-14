@@ -115,7 +115,7 @@ console.log(localDate);
                                         </MuiPickersUtilsProvider>
 
                                     </ThemeProvider> */}
-                                    <CalendarEvent/>
+                                    <CalendarEvent />
 
                                 </Box>
                             </Grid>

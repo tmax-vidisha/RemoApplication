@@ -18,7 +18,7 @@ export default function SubCalendar() {
     <>
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={enIN}>
         <Paper style={{ overflow: "hidden" }}>
-          <Calendar date={selectedDate} onChange={handleDateChange} />
+          <Calendar date={selectedDate} onChange={()=>handleDateChange(selectedDate)} />
         </Paper>
       </MuiPickersUtilsProvider>
     </>

@@ -23,7 +23,15 @@ export const usersApi = createApi({
     }),
     
     }),
-     
+    getAllCountryCurrency: builder.mutation<any, any>({
+      query: (data) => ({
+          url: '/api/v1/header/countrycurrency',
+          // headers:{ 'Content-Type': 'application/json' },
+          method: "POST",
+          body: data
+      }),
+      
+  }),
 
   }),
 })
@@ -118,7 +126,7 @@ export const oneDriveApi = createApi({
   }),
   
 })
-export const { useGetAllPrayersQuery,useGetAllCountryCodesQuery } = usersApi
+export const { useGetAllPrayersQuery,useGetAllCountryCodesQuery,useGetAllCountryCurrencyMutation } = usersApi
 export const { 
                 useUploadFileOneDriveMutation,
                 useGetItemChildrenOneDriveMutation,

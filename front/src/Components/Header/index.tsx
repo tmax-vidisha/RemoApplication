@@ -49,6 +49,7 @@ import signOut from '../../Assets/Images/signoutNew.svg';
 import { useStyles } from './Styles';
 import SubCalendar from '../Events/SubCalendar';
 import { Calendar } from 'react-calendar';
+import { WeatherPage } from '../../Pages';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -376,8 +377,8 @@ const Header = () => {
                       <Grid> Next Prayer</Grid>
                       <Grid>1.00 AED is</Grid>
                     </Grid> */}
-                      <Weather />
-
+                      {/* <Weather /> */}
+                       <WeatherPage/>
                     </MenuItem>
 
                   </Menu>
