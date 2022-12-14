@@ -73,14 +73,13 @@ const RecentFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
     const { data, error, isLoading } =props;
     // console.log(data,'thytjytjytjudddddddddddddd')
   return (
-    //  <div>Recent Files</div>
     <AuthenticatedTemplate>
       <Paper elevation={0}>
         {isLoading ? (
           <SkeletonAnimation />
         ) : (
           <>
-            <CardContent sx={{ pb: "4px!important", height: "391px" }}>
+            <CardContent sx={{ pb: "4px!important", height: "391px", marginTop:"16px"}}>
               <Typography
                 variant="h6"
                 component="h6"

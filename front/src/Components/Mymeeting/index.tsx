@@ -60,9 +60,8 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
       <Paper style={{ maxWidth: "100%", height: "auto" }} elevation={0}>
 
         <>
-          <CardContent sx={{ pb: "16px!important" }}>
+          <CardContent >
             <Stack
-
               direction="row"
               justifyContent="space-between"
               alignItems="left"
@@ -141,7 +140,7 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
                 {/* <div className={classes.task}>
                 <span><AddIcon/></span> <span>Add Task </span>
                </div> */}
-                <Grid style={{ overflowY: "hidden", overflowX: "hidden", height: "60px", marginTop: "10px" }}>
+                <Grid style={{ overflowY: "hidden", overflowX: "hidden", height: "50px",  }}>
                 {data?.response &&
                   data?.response?.map((item: any, index: any) => {
                     const time = item.start.dateTime

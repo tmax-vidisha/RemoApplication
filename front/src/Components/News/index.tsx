@@ -159,7 +159,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplaySpeed: 3000,
-    autoPlay:false,
+    autoPlay: false,
     arrows: false,
 
     responsive: [
@@ -211,10 +211,10 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                   variant="h6"
                   component="h6"
                   color="secondary"
-                  className={classes.newsHeader1}
+
                 >
-                  <Link to="/NewsInfo"> View All </Link>
-                 
+                  <Link to="/NewsInfo" className={classes.newsHeader1}> View All </Link>
+
                 </Typography>
               </Stack>
 
@@ -229,7 +229,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <CardActionArea>
                           <CardMedia
                             // className={classes.newsImg}
-                            style={{ margin: '7px' }}
+                            style={{ margin: '7px', borderRadius: "4px", width: "97%" }}
                             component="img"
                             height="160"
                             image={card.fields?.NewsImage}
@@ -278,46 +278,22 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
 
               </Slider>
               <div>
-
                 <Stack
-
                   direction="row"
-
                   justifyContent="space-between"
-
                   alignItems="center"
-
-                  paddingTop={1}
-
-                >
-
+                  paddingTop={1} >
                   <div>
-
-                  <ArrowBackIosIcon onClick={previous} style={{cursor:"pointer"}}/>
-
-
+                    <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer",color:"#009BAD"  }} />
                   </div>
-
                   <div>
-
-                    <MoreHorizIcon />
-
+                    <MoreHorizIcon  style={{color:"#009BAD" }}/>
                   </div>
-
                   <div>
-
-
-                    <ArrowForwardIosIcon onClick={next}  style={{cursor:"pointer"}}/>
-
-
+                    <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer", color:"#009BAD" }} />
                   </div>
-
-
-
                 </Stack>
-
               </div>
-
             </CardContent>
           </>
         )}

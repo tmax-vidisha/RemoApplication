@@ -97,31 +97,6 @@ interface IFolderProps {
   return (
     <div>
 <AuthenticatedTemplate>
-  {/* <Box sx={{ flexGrow: 1, position: "relative" }}>
-     
-              
-            <Box   sx={{
-              height: 252,
-              display: "block",
-              overflow: "hidden",
-              width: "100%",
-              borderRadius: "5px",
-              position: "relative",
-            }}>  
-               <AutoPlaySwipeableViews
-                  axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-                  index={activeStep}
-                  onChangeIndex={handleStepChange}
-                  enableMouseEvents
-            >
-                  {data?.response && <img  src ={data?.response.image}  height='252' width="100%"/> }
-                  
-                  {data?.response && <img  src ={data?.response.image1}   height='252' width="100%"/> }
-                  {data?.response && <img  src ={data?.response.image2}  height='252' width="100%"/> }
-                </AutoPlaySwipeableViews>
-             </Box>   
-  
-     </Box>  */}
      {/* <Draggable> */}
       <Box sx={{ flexGrow: 1, position: "relative" }}>
         {isLoading ? (
@@ -153,12 +128,13 @@ interface IFolderProps {
                       <Box
                         component="img"
                         sx={{
-                          height: 252,
+                          height: 253,
                           display: "block",
                           overflow: "hidden",
                           width: "100%",
                           borderRadius: "5px",
                           position: "relative",
+                          paddingBottom:"0px !important"
                         }}
                         src={img}
                         alt={HeroTitle}

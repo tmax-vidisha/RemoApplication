@@ -21,7 +21,7 @@ export const useStyles = makeStyles({
     fontSize: "12px !important",
     color: "black !important",
     opacity:"85%",
-    marginBottom: "6px !important",
+    // marginBottom: "6px !important",
     textAlign:"left"
   },
   meetBorder:{

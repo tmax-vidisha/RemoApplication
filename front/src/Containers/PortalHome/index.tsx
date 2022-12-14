@@ -219,11 +219,11 @@ const PortalHome = () => {
 
       <Grid container spacing={2}>
         <Grid item xs={8}>
-        <HeroImagePage  /> 
+          <HeroImagePage />
         </Grid>
         <Grid item xs={4}>
-        <CeoPage />
-          </Grid>
+          <CeoPage />
+        </Grid>
         <Grid item xs={8}>
 
           <MeetingsPage />
@@ -248,11 +248,11 @@ const PortalHome = () => {
             }}
             spacing={2}
           >
-            <Grid item xs={6} style={{ paddingLeft: 0 }}>
+            <Grid item xs={6} >
               <Gallery />
 
             </Grid>
-            <Grid item xs={6} style={{ paddingRight: 0 }}>
+            <Grid item xs={6} >
 
               <SocialMedia />
             </Grid>
@@ -274,14 +274,17 @@ const PortalHome = () => {
         </Grid>
         <Grid item xs={4}>
 
+
           {/* <Grid item xs={12} style={{ marginTop: 16 }}>
             <Weather />
           </Grid> */}
           <Grid item xs={12} style={{ marginTop: 16 }}>
+
+       
             <EventsPage />
 
           </Grid>
-          <Grid item xs={12} style={{ marginTop: 16 }}>
+          <Grid item xs={12} >
             <RecentFilePage />
 
           </Grid>
