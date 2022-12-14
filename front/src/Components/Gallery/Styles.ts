@@ -43,7 +43,7 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
   galleryWidth: {
     overflow: "hidden",
-    height: "300px",
+    // height: "300px",
     "& div": {
       display: "flex",
       justifyContent: "space-between",
@@ -52,14 +52,14 @@ export const useStyles = makeStyles({
   },
   galleryContainer: {
     float: "left",
-    width: "calc(50% - 5px)",
+    // width: "calc(50% - 5px)",
     padding: "0px",
     paddingBottom: "10px",
-    height: "141px",
+    // height: "141px",
     overflow: "hidden",
   },
   galleryImageWidth: {
-    width: "50px",
+    // width: "50px",
     height: "auto",
     borderRadius: "4px",
     minHeight: "100%",

@@ -68,6 +68,7 @@ import FolderItems from './Components/ImagesVideos/FolderItems';
 import SimpleReactLightbox from 'simple-react-lightbox'
 import Birthday from './Components/Birthday';
 import ViewAllEvents from './Components/ViewAllEvents';
+import HeroBannerMore from './Components/HeroImages/HeroBannerMore';
 
 
 
@@ -332,6 +333,9 @@ const Main = () => {
                             <Route
                               path="/viewAllEvents"
                               element={<ViewAllEvents/>} />
+                            <Route
+                              path="/heroBannerMore"
+                              element={<HeroBannerMore/>} />
                         
                         </Routes>
                     </ThemeProvider>

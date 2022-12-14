@@ -66,7 +66,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
             <SkeletonAnimation />
           ) : (
             <>
-              <CardContent sx={{ pb: "16px!important" }}>
+              <CardContent>
                 <Typography
                   variant="h6"
                   component={"span"}
@@ -113,7 +113,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
                       <div className={classes.ceoImg}>
                         <CardMedia
                           component="img"
-                          height="180"
+                          height="170"
                           image={data?.response.image}
                         />
                         {/* <img   src ={data.image}  height="180" width="170"/> */}

@@ -4,11 +4,11 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
   root: {
     width: "100%",
-    maxWidth: "100%",
+    maxWidth: "90%",
     display: "flex",
     bgcolor: "background.paper",
-    paddingTop: "16px!important",
-    paddingBottom: "16px!important",
+     paddingTop: "16px!important",
+   marginBottom: "16px!important",
     top:"-6px",
     "& > li": {
       width: "33.3%",

@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { useStyles } from "./Styles";
 import { Timeline } from "react-twitter-widgets";
 import { AppBar, Box, Tabs, Tab, Typography, Card, Paper } from "@mui/material";
@@ -8,7 +7,8 @@ import InstagramIcon from "../../Assets/Images/s2.svg";
 import TwitterIcon from "../../Assets/Images/s3.svg";
 import LinkedInIcon from "../../Assets/Images/s4.svg";
 import { FacebookEmbed, LinkedInEmbed, InstagramEmbed } from 'react-social-media-embed';
-
+import { FacebookProvider, Page } from 'react-facebook';
+// import { Facebook } from 'reactjs-social-embed';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -206,16 +206,22 @@ const SocialMedia = () => {
         </TabPanel>
         <TabPanel value={value} index={3}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <FacebookEmbed
+            {/* <FacebookEmbed
               //url="https://www.facebook.com/andrewismusic/posts/451971596293956" 
               //url="https://www.facebook.com/taqeefmiddleeast/posts/" 
               //url="https://www.facebook.com/taqeefmiddleeast/photos" 
               // url="https://fb.watch/eqiJfx_kmH/"
-              url="https://fb.watch/eqiJfx_kmH/"
-              width={350} />
-            {/* <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FInfosys&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=319494263513255" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> */}
-            
+              url="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0&appId=319494263513255&autoLogAppEvents=1"
+              width={350} /> */}
 
+            {/* <Facebook type="post" width="100%" height="680px" show_text={true}
+              url="https://www.facebook.com/postmalone/posts/1992925354174335" /> */}
+          </div>
+          <div className="fb-page"
+            data-tabs="timeline,events,messages"
+            data-href="https://www.facebook.com/Infosys"
+            data-width="380"
+            data-hide-cover="false">
           </div>
 
         </TabPanel>

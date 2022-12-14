@@ -1,19 +1,13 @@
 import React from 'react';
-import { Container, Paper, Card, Typography, Link, Grid, Box } from '@mui/material';
 import IconText from '../Header/IconText';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
+import { Container, Card, Paper, Typography, Link, Breadcrumbs, Grid, CardMedia } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useStyles } from './Styles';
-import { useState } from 'react';
-import PluginImgVideo from './PluginImgVideo';
-// import SimpleReactLightbox from 'simple-react-lightbox';
-import SimpleReactLightbox from 'simple-react-lightbox'
-const GalleryFolder = () => {
+// import carVideo from '../../Assets/videos/Cars.mp4';
 
+const HeroBannerMore = () => {
     const classes = useStyles();
-    const [show, setShow] = useState<boolean>(false);
-    const [showResults, setShowResults] = React.useState(false)
-    const onClick = () => setShowResults(true)
+
     return (
         <div>
             <IconText />
@@ -24,8 +18,8 @@ const GalleryFolder = () => {
                         <Paper className={classes.contentHeader} elevation={0}>
                             <Typography className={classes.breadcrumbs} variant="h6">
 
-                                <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
-                                    News
+                                <Link className={classes.breadLinks} color="inherit" href="/">
+                                    Banner
                                 </Link>
                             </Typography>
                             <Typography variant="caption" display="block" gutterBottom>
@@ -37,12 +31,9 @@ const GalleryFolder = () => {
                                     <Link className={classes.breadLinks} color="inherit" href="/">
                                         Home
                                     </Link>
-                                    <Link className={classes.breadLinks} color="inherit" href="/GalleryFolder">
-                                        <Typography>Gallery Folders </Typography>
+                                    <Link className={classes.breadLinks} color="inherit" href="/">
+                                        <Typography>BannerRead More </Typography>
                                     </Link>
-                                    <Typography>Images </Typography>
-                                    <Typography>Videos </Typography>
-
                                 </Breadcrumbs>
                             </Typography>
                         </Paper>
@@ -50,24 +41,19 @@ const GalleryFolder = () => {
                 </Card>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
                     <Grid item xs={12} style={{ backgroundColor: "white" }}>
-                        <Box style={{ margin: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}>
-
-                            
-                            {showResults ? <p style={{ color: "#39c8cf", }} onClick={onClick}>Images</p> : <p style={{ color: "#39c8cf", }} onClick={onClick}>Videos</p>
-                            }
-                            
-                        </Box>
-
+                        {/* <video src={carVideo} width="320" height="240" controls /> */}
+                        {/* <CardMedia
+                            component="video"
+                            height="140"
+                            image="../../"
+                            title="Contemplative Reptile"
+                        /> */}
                     </Grid>
                 </Paper>
-                <Paper>
-                    <SimpleReactLightbox>
-                        <PluginImgVideo />
-                    </SimpleReactLightbox>
-                </Paper>
+
             </Container>
         </div>
     );
 };
 
-export default GalleryFolder;
+export default HeroBannerMore;
