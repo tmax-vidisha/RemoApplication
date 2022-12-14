@@ -4,14 +4,14 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    // maxwidth: "100%",
+    height:'auto',
+    //  maxwidth: "100%",
     //backgroundColor: theme.palette.background.paper,
   },
   tabWidth: {
     // Width: "100%",
   },
   tabHeader: {
-  
     borderRadius: "4px",
     backgroundColor: "transparent!important",
   },

@@ -37,13 +37,9 @@ const FolderItems = () => {
   // const [show, setShow] = React.useState(false)
   const HandleClick = () => setShowResults(true);
   return (
-
     <div>
-
+ <IconText />
       <Container className={classes.contentEditorWidth}>
-        <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-          <IconText />
-        </Paper>
         <Card className={classes.cardHeight} elevation={0}>
           <Paper className={classes.innerBackground}>
             <div className={classes.innerBannerOverlay}></div>
@@ -82,12 +78,12 @@ const FolderItems = () => {
               <p style={{ color: "#39c8cf", }} onClick={HandleClick}>Videos</p>
             </Box>
             {showResults ? (
-               <Box style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", marginTop: "50px" }}>
+               <Box style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)",}}>
                {
                  filterdVideoData.map((item: any) => (
                    <Grid  >
 
-                     <video width="120" height="50" controls>
+                     <video width="200" height="150" controls>
                        <source src={item.webUrl} type="video/mp4" />
                      </video>
                     

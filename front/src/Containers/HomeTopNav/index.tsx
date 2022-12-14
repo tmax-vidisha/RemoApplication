@@ -86,10 +86,9 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
   const { data, error, isLoading } = props;
  // console.log(data, '88888ttuytuytu888')
   return (
-    // <div>HomeTopNav</div>
     <AuthenticatedTemplate>
       <Paper elevation={0}>
-        <CardContent sx={{ pb: "16px!important",paddingRight:"50px"  }}>
+        <CardContent sx={{ pb: "16px !important" ,}}  style={{marginBottom:"16px" }} >
           {!topMenu && clearButton}
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Tabs

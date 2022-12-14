@@ -20,7 +20,7 @@ export const useStyles = makeStyles({
   headRow: {
     fontSize: "0.87rem !important",
     marginBottom: "10px!important",
-    lineHeight: "20px!important",
+    lineHeight: "10px!important",
     marginTop: " 12px !important",
   },
   ceoContent: {

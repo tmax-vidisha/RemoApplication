@@ -87,15 +87,15 @@ import useCustom from '../../hooks/useCustom';
                 variant="h6"
                 component="h6"
                 color="secondary"
-                className={classes.galleryHeader}
+                
               >
-                <Link href="/GalleryFolder"> View All </Link>
+                <Link href="/GalleryFolder" className={classes.galleryHeader}> View All </Link>
                
               </Typography>
             </Stack>
            
 
-            <div className={classes.row}>
+            <div>
               <Stack
                 direction="row"
                 justifyContent="center"
@@ -135,7 +135,7 @@ import useCustom from '../../hooks/useCustom';
                         src={step.children[0].webUrl}
                         alt="Gallery"
                         // className={classes.galleryImageWidth}
-                         style={{ width: "300px", height: "160px", margin:"20px" , display: "flex",justifyContent: "space-between",flexWrap: "wrap",overflow: "hidden"}}
+                         style={{ width: "150px", height: "150px",marginLeft:"10px",marginTop:"30px", display: "flex",justifyContent: "space-between",flexWrap: "wrap",overflow: "hidden", borderRadius:"8px"}}
                       />
                     </div>
                   );
