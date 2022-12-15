@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import { useStyles } from "./Styles";
 import { Timeline } from "react-twitter-widgets";

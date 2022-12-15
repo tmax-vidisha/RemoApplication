@@ -34,11 +34,15 @@ import { convertToHTML } from "draft-convert";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { configuration } from "../../index";
 import moment from "moment";
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import { LocalizationProvider } from "@mui/lab";
-import { useGetEventsQuery,useCreateEventMutation,useCreateTokenwithDataMutation, useUpdateTokenMutation,useGetAllEventsQuery,
-              useCreateTokenwithEventDataMutation } from "../../services/APIs";
-import { PublicClientApplication } from "@azure/msal-browser";
+ import AdapterDateFns from '@mui/lab/AdapterDateFns';
+ import { LocalizationProvider } from "@mui/lab";
+// import { useGetEventsQuery,useCreateEventMutation,useCreateTokenwithDataMutation, useUpdateTokenMutation,useGetAllEventsQuery,
+//               useCreateTokenwithEventDataMutation } from "../../services/APIs";
+// import { PublicClientApplication } from "@azure/msal-browser";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+
 
 interface IFolderProps {
   // event: any;
@@ -180,8 +184,8 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
 
   return (
     <AuthenticatedTemplate>
-      <Container className={classes.contentEditorWidth}>
-        <Card className={classes.cardHeight} elevation={0}>
+    <Container className={classes.contentEditorWidth}>
+    <Card className={classes.cardHeight} elevation={0}>
           <Paper className={classes.innerBackground}>
             <div className={classes.innerBannerOverlay}></div>
             <Paper className={classes.contentHeader} elevation={0}>
@@ -204,176 +208,180 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
           </Paper>
         </Card>
 
-        <CardContent className={classes.contentArea}>
-          <Typography
-            variant="h5"
-            component="h5"
-            className={classes.breadcrumbsHeader}
-          >
-            <Link to="/ContentEditor" color="inherit" >
-                  Content Editor
-                </Link>
-         
-          </Typography>
-          <Button
-            variant="contained"
-            className={classes.breadcrumbsLinks}
-            size="small"
-            startIcon={<AddCircleOutlineIcon />}
-            onClick={handleClickOpen}
-          >
-            Add New
-          </Button>
-        </CardContent>
+      <CardContent className={classes.contentArea}>
+        <Typography
+          variant="h5"
+          component="h5"
+          className={classes.breadcrumbsHeader}
+        >
+          Content Editor
+        </Typography>
+        <Button
+          variant="contained"
+          className={classes.breadcrumbsLinks}
+          size="small"
+          startIcon={<AddCircleOutlineIcon />}
+          onClick={handleClickOpen}
+        >
+          Add New
+        </Button>
+      </CardContent>
 
-        <TableContainer component={Paper} elevation={0}>
-          <Table>
-            <TableHead>
-              <TableRow className={classes.tableHeader}>
-                <TableCell sx={{ minWidth: 120 }}>Title</TableCell>
-                <TableCell sx={{ minWidth: 120 }}>Start Date</TableCell>
-                <TableCell sx={{ minWidth: 120 }}>End Date</TableCell>
-                <TableCell sx={{ minWidth: 80 }}>Modified On</TableCell>
-                <TableCell sx={{ minWidth: 80, textAlign: "center" }}>
-                  Is Active
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data?.response &&
-                data?.response.map((item: any, index: any) => {
-                  const { fields = {} } = item;
-                  // console.log(fields,'yjyjyjyjyj')
-                  var eventTitle = fields?.Title;
-                  console.log(eventTitle,'yjyjyjyjyj')
-                  var eventStart = moment(fields?.EventDate).format("llll");
-                  var eventDate = moment(fields?.EndDate).format("llll");
+      <TableContainer component={Paper} elevation={0}>
+        <Table>
+          <TableHead>
+            <TableRow className={classes.tableHeader}>
+              <TableCell sx={{ minWidth: 120 }}>Title</TableCell>
+              <TableCell sx={{ minWidth: 120 }}>Start Date</TableCell>
+              <TableCell sx={{ minWidth: 120 }}>End Date</TableCell>
+              <TableCell sx={{ minWidth: 80 }}>Modified On</TableCell>
+              <TableCell sx={{ minWidth: 80, textAlign: "center" }}>
+                Is Active
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          {/* <TableBody>
+            {eventItems &&
+              eventItems.map((item: any, index: any) => {
+                const { fields = {} } = item;
 
-                  var eventIsActive = fields.IsActive;
-                  var createdDate = moment(
-                    fields.Modified
-                  ).fromNow();
+                var eventTitle = fields?.Title;
+                var eventStart = moment(fields?.EventDate).format("llll");
+                var eventDate = moment(fields?.EndDate).format("llll");
 
-                  return (
-                    <TableRow key={index}
-                      className={classes.tableCell}
-                      sx={{
-                        verticalAlign: "top !important",
-                        "&:last-child td, &:last-child th": { border: 0 },
-                      }}
-                    >
-                      <TableCell>{eventTitle}</TableCell>
+                var eventIsActive = fields.IsActive;
+                var createdDate = moment(
+                  fields.Modified
+                ).fromNow();
 
-                      <TableCell sx={{ minWidth: 220 }}>{eventStart}</TableCell>
-                      <TableCell sx={{ minWidth: 220 }}>{eventDate}</TableCell>
-                      <TableCell sx={{ minWidth: 80 }}>{createdDate}</TableCell>
-                      <TableCell sx={{ minWidth: 80, textAlign: "center" }}>
-                        <span className={classes.tableStatusNo}>{eventIsActive ? "Yes" : "No"}</span>
-                      </TableCell>
-                    </TableRow>
-                  )
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                return (
+                  <TableRow key={index}
+                    className={classes.tableCell}
+                    sx={{
+                      verticalAlign: "top !important",
+                      "&:last-child td, &:last-child th": { border: 0 },
+                    }}
+                  >
+                    <TableCell>{eventTitle}</TableCell>
 
-        <Fragment>
-          <Dialog
-            maxWidth="md"
-            open={open}
-            onClose={handleClose}
-          >
-            <DialogTitle sx={{ pb: 0 }}> Add New Item</DialogTitle>
-            <DialogContent>
+                    <TableCell sx={{ minWidth: 220 }}>{eventStart}</TableCell>
+                    <TableCell sx={{ minWidth: 220 }}>{eventDate}</TableCell>
+                    <TableCell sx={{ minWidth: 80 }}>{createdDate}</TableCell>
+                    <TableCell sx={{ minWidth: 80, textAlign: "center" }}>
+                      <span className={classes.tableStatusNo}>{eventIsActive ? "Yes" : "No"}</span>
+                    </TableCell>
+                  </TableRow>
+                )
+              })}
+          </TableBody> */}
+        </Table>
+      </TableContainer>
 
-              <Paper
-                elevation={0}
-                className={classes.ContentAreaBox}>
-                <div>
-                  <Grid xs={12} item>
-                    <Typography component="div" sx={{ pb: 2 }}>
-                      <TextField
-                        autoComplete="off"
-                        label="Title"
-                        placeholder="Please enter the title"
-                        onChange={handleChangeTitleField}
-                        fullWidth
-                        margin="dense"
-                        size="small"
-                      />
-                    </Typography>
-                  </Grid>
-                  <Grid container>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <Grid xs={6} item>
-                        <Typography component="div" sx={{ pb: 2 }}>
-                          <DateTimePicker
-                          //@ts-ignore
-                            label="Event Start Date"
-                            value={startDate}
-                            onChange={startDateHandleChange}
-                            renderInput={(params: any) => <TextField {...params} />}
-                          />
-                        </Typography>
-                      </Grid>
-                      <Grid xs={6} item>
-                        <Typography component="div" sx={{ pb: 2 }}>
-                          <DateTimePicker
-                          //@ts-ignore
-                            label="Event End Date"
-                            value={endDate}
-                            onChange={endDateHandleChange}
-                            renderInput={(params: any) => <TextField {...params} />}
-                          />
-                        </Typography>
-                      </Grid>
-                    </LocalizationProvider>
-                  </Grid>
-                  <Grid xs={12} item>
-                    <Typography component="div" sx={{ pb: 1 }}>
-                      <div className={classes.richEditor}>
-                        <Editor
-                          editorState={editorState}
-                          onEditorStateChange={handleEditorChange}
-                          wrapperClassName="wrapper-class"
-                          editorClassName="editor-class"
-                          toolbarClassName={classes.toolbarClass}
+      <Fragment>
+        <Dialog
+          maxWidth="md"
+          open={open}
+          onClose={handleClose}
+        >
+          <DialogTitle sx={{ pb: 0 }}> Add New Item</DialogTitle>
+          <DialogContent>
+
+            <Paper
+              elevation={0}
+              className={classes.ContentAreaBox}>
+              <div>
+                <Grid xs={12} item>
+                  <Typography component="div" sx={{ pb: 2 }}>
+                    <TextField
+                      autoComplete="off"
+                      label="Title"
+                      placeholder="Please enter the title"
+                      onChange={handleChangeTitleField}
+                      fullWidth
+                      margin="dense"
+                      size="small"
+                    />
+                  </Typography>
+                </Grid>
+                <Grid container>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <Grid xs={6} item>
+                      <Typography component="div" sx={{ pb: 2 }}>
+                        <DateTimePicker
+                        //@ts-ignore
+                          label="Event Start Date"
+                          value={startDate}
+                          onChange={startDateHandleChange}
+                          renderInput={(params: any) => <TextField {...params} />}
                         />
-                      </div>
-                    </Typography>
-                  </Grid>
+                      </Typography>
+                    </Grid>
+                    <Grid xs={6} item>
+                      <Typography component="div" sx={{ pb: 2 }}>
+                        <DateTimePicker
+                        //@ts-ignore
+                          label="Event End Date"
+                          value={endDate}
+                          onChange={endDateHandleChange}
+                          renderInput={(params: any) => <TextField {...params} />}
+                        />
+                      </Typography>
+                    </Grid>
+                  </LocalizationProvider>
+                </Grid>
+                <Grid xs={12} item>
+                  <Typography component="div" sx={{ pb: 1 }}>
+                    <div className={classes.richEditor}>
+                      <Editor
+                        editorState={editorState}
+                        onEditorStateChange={handleEditorChange}
+                        wrapperClassName="wrapper-class"
+                        editorClassName="editor-class"
+                        toolbarClassName={classes.toolbarClass}
+                      />
+                    </div>
+                  </Typography>
+                </Grid>
 
-                  <Grid xs={12} item>
-                    <Typography component="div" sx={{ pb: 1 }}>
-                      <div className={classes.rootButton}>
-                        <Button
-                          variant="contained"
-                          className={classes.buttonSubmit}
-                          size="small"
-                          onClick={handleSubmitClick}
-                        >
-                          Submit
-                        </Button>
-                        <Button
-                          className={classes.buttonClear}
-                          sx={{ textTransform: "capitalize" }}
-                          size="small"
-                        >
-                          Clear
-                        </Button>
-                      </div>
-                    </Typography>
-                  </Grid>
-                </div>
-              </Paper>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>Close</Button>
-            </DialogActions>
-          </Dialog>
-        </Fragment>
-      </Container>
-    </AuthenticatedTemplate>
+                <Grid xs={12} item>
+                  <Typography component="div" sx={{ pb: 1 }}>
+                    <div className={classes.rootButton}>
+                      <Button
+                        variant="contained"
+                        className={classes.buttonSubmit}
+                        size="small"
+                        onClick={handleSubmitClick}
+                      >
+                        Submit
+                      </Button>
+                      <Button
+                        className={classes.buttonClear}
+                        sx={{ textTransform: "capitalize" }}
+                        size="small"
+                      >
+                        Clear
+                      </Button>
+                    </div>
+                  </Typography>
+                </Grid>
+                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DateTimePicker
+        renderInput={(props) => <TextField {...props} />}
+        label="DateTimePicker"
+        value={startDate}
+        onChange={startDateHandleChange}
+      />
+    </LocalizationProvider> */}
+              </div>
+            </Paper>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Close</Button>
+          </DialogActions>
+        </Dialog>
+      </Fragment>
+    </Container>
+  </AuthenticatedTemplate>
   )
 }
 

@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import meeting from "../../Assets/Images/meeting.jpg";
 import { List, ListItem } from '@mui/material';
 import CalendarEvent from './CalendarEvent';
-
+var moment = require("moment-timezone");
 
 const lists = [
     {
@@ -35,10 +35,21 @@ const lists = [
     },
 
 ]
+interface IFolderProps {
+    data:any, 
+    error:any,
+    isLoading:any
+    onClick:(Date: any) => void;
+    // onDownload?: (id: string) => void;
+    // onDelete?: (id: string) => void;
+    // onRename?: (id: string, name: string) => void;
+    // onShare?: (id: string) => void;
+  }
 
-const ViewAllEvents = () => {
+// const ViewAllEvents = () => {
+const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {    
     const classes = useStyles();
-
+    const { data, error, isLoading,onClick } =  props
     const [selectedDate, setSelectedDate] = useState(new Date());
 
     const handleDateChange = (date: any) => {
@@ -63,6 +74,8 @@ console.log(localDate);
     //         },
     //     },
     // })
+    console.log(data?.response)
+    
     return (
         <div>
             <Container className={classes.contentEditorWidth}>
@@ -115,24 +128,25 @@ console.log(localDate);
                                         </MuiPickersUtilsProvider>
 
                                     </ThemeProvider> */}
-                                    <CalendarEvent />
+                                    <CalendarEvent onClick={onClick}/>
 
                                 </Box>
                             </Grid>
                             <Grid item xs={6}>
                                
-
-                                <List style={{border:"1px solid #e6e6e6", margin:"20px"}}>
+                                
+                                {/* <List style={{border:"1px solid #e6e6e6", margin:"20px"}}>
                                 <Grid style={{borderBottom:"1px solid #e6e6e6", color:'#4ddbff'}}> 9th July</Grid>
                                     {
-                                        lists.map((list) => (
+                                        data?.response &&
+                                        data?.response?.map((list:any) => (
                                             <ListItem style={{ width:"600px", borderBottom:"1px solid #e6e6e6"}}>
                                                 <Grid style={{ display: "flex", justifyContent: "space-between" }}>
                                                     <Grid style={{marginRight:"30px"}}> {list.image}</Grid>
                                                     <Grid>
-                                                    <Typography style={{fontSize:"12px", color:"#666666"}}> {list.time}</Typography>
-                                                    <Typography style={{fontSize:"15px", color:"#666666", fontWeight:600}}> {list.title}</Typography>
-                                                    <Typography style={{fontSize:"12px", color:"#666666"}}>{list.details} </Typography>
+                                                    <Typography style={{fontSize:"12px", color:"#666666"}}>{moment(list.fields?.EventDate).format('HH:mm A')}</Typography>
+                                                    <Typography style={{fontSize:"15px", color:"#666666", fontWeight:600}}> {list.fields?.Title}</Typography>
+                                                    <Typography style={{fontSize:"12px", color:"#666666"}}>{list.fields?.Description} </Typography>
                                                 </Grid>
                                                 </Grid>
                                                 
@@ -140,7 +154,38 @@ console.log(localDate);
                                             </ListItem>
                                         ))
                                     }
-                                </List>
+                                   
+                                </List> */}
+                                {data?.response?.length > 0 ?
+                                   (
+                                    <List style={{border:"1px solid #e6e6e6", margin:"20px"}}>
+                                    <Grid style={{borderBottom:"1px solid #e6e6e6", color:'#4ddbff'}}> 9th July</Grid>
+                                        {
+                                            data?.response &&
+                                            data?.response?.map((list:any) => (
+                                                <ListItem style={{ width:"600px", borderBottom:"1px solid #e6e6e6"}}>
+                                                    <Grid style={{ display: "flex", justifyContent: "space-between" }}>
+                                                        <Grid style={{marginRight:"30px"}}> {list.image}</Grid>
+                                                        <Grid>
+                                                        <Typography style={{fontSize:"12px", color:"#666666"}}>{moment(list.fields?.EventDate).format('HH:mm A')}</Typography>
+                                                        <Typography style={{fontSize:"15px", color:"#666666", fontWeight:600}}> {list.fields?.Title}</Typography>
+                                                        <Typography style={{fontSize:"12px", color:"#666666"}}>{list.fields?.Description} </Typography>
+                                                    </Grid>
+                                                    </Grid>
+                                                    
+    
+                                                </ListItem>
+                                            ))
+                                        }
+                                       
+                                    </List>
+                                ):(
+                                    <List style={{border:"1px solid #e6e6e6", margin:"20px"}}>
+                                    <Grid style={{borderBottom:"1px solid #e6e6e6", color:'#4ddbff'}}> 9th July</Grid>
+                                        <Typography>No Events</Typography>
+                                    </List>
+
+                                )}
                             </Grid>
 
                         </Stack>
