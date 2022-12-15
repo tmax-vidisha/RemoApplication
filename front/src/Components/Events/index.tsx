@@ -67,12 +67,12 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
               >
                 Events Calendar
               </Typography>
-              <Link href="/viewAllEvents">
+              <Link href="/viewAllEvents"  className={classes.calenderHeader2}>
               <Typography
-                className={classes.calenderHeader2}
                 variant="h6"
                 component="h1"
                 color="secondary"
+                className={classes.calenderHeader2}
               >
                  View All Events
               </Typography>

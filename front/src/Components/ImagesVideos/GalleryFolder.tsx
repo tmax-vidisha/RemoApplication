@@ -13,7 +13,13 @@ const GalleryFolder = () => {
     const classes = useStyles();
     const [show, setShow] = useState<boolean>(false);
     const [showResults, setShowResults] = React.useState(false)
-    const onClick = () => setShowResults(true)
+
+    const handleClick=()=>{
+        setShow(true)
+    }
+    const onClick = () => {
+        setShowResults(true);
+    }
     return (
         <div>
             <IconText />
@@ -40,9 +46,8 @@ const GalleryFolder = () => {
                                     <Link className={classes.breadLinks} color="inherit" href="/GalleryFolder">
                                         <Typography>Gallery Folders </Typography>
                                     </Link>
-                                    <Typography>Images </Typography>
-                                    <Typography>Videos </Typography>
-
+                                    {showResults ? <Typography>Images </Typography>
+                                     :  <Typography>Videos </Typography>}   
                                 </Breadcrumbs>
                             </Typography>
                         </Paper>
@@ -50,12 +55,9 @@ const GalleryFolder = () => {
                 </Card>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
                     <Grid item xs={12} style={{ backgroundColor: "white" }}>
-                        <Box style={{ margin: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}>
-
-                            
-                            {showResults ? <p style={{ color: "#39c8cf", }} onClick={onClick}>Images</p> : <p style={{ color: "#39c8cf", }} onClick={onClick}>Videos</p>
-                            }
-                            
+                        <Box style={{ margin: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}>                
+                             <p style={{ color: "#39c8cf", }} onClick={handleClick}>Images</p> 
+                             <p style={{ color: "#39c8cf", }} onClick={onClick}>Videos</p>
                         </Box>
 
                     </Grid>

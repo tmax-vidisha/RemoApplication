@@ -39,6 +39,7 @@ import { LocalizationProvider } from "@mui/lab";
 import { useGetEventsQuery,useCreateEventMutation,useCreateTokenwithDataMutation, useUpdateTokenMutation,useGetAllEventsQuery,
               useCreateTokenwithEventDataMutation } from "../../services/APIs";
 import { PublicClientApplication } from "@azure/msal-browser";
+import SubCalendar from "../Events/SubCalendar";
 
 interface IFolderProps {
   // event: any;
@@ -186,7 +187,7 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
             <div className={classes.innerBannerOverlay}></div>
             <Paper className={classes.contentHeader} elevation={0}>
               <Typography className={classes.breadcrumbs} variant="h6">
-               <Link to="/ContentEditor">Content Editor</Link>
+               <Link to="/ContentEditor" style={{color:"#009BAD", fontSize:"14px"}}>Content Editor</Link>
               </Typography>
               <Typography variant="caption" display="block" gutterBottom>
                 <Breadcrumbs
@@ -210,7 +211,7 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
             component="h5"
             className={classes.breadcrumbsHeader}
           >
-            <Link to="/ContentEditor" color="inherit" >
+            <Link to="/ContentEditor" style={{color:"#009BAD", fontSize:"14px"}} >
                   Content Editor
                 </Link>
          
@@ -290,7 +291,7 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                 elevation={0}
                 className={classes.ContentAreaBox}>
                 <div>
-                  <Grid xs={12} item>
+                  <Grid item xs={12} >
                     <Typography component="div" sx={{ pb: 2 }}>
                       <TextField
                         autoComplete="off"
@@ -303,9 +304,11 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                       />
                     </Typography>
                   </Grid>
-                  <Grid container>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <Grid xs={6} item>
+
+                  <Grid xs={12}>
+                  <SubCalendar/>
+                      {/* <Grid item xs={12} >
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <Typography component="div" sx={{ pb: 2 }}>
                           <DateTimePicker
                           //@ts-ignore
@@ -315,8 +318,6 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                             renderInput={(params: any) => <TextField {...params} />}
                           />
                         </Typography>
-                      </Grid>
-                      <Grid xs={6} item>
                         <Typography component="div" sx={{ pb: 2 }}>
                           <DateTimePicker
                           //@ts-ignore
@@ -325,9 +326,14 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                             onChange={endDateHandleChange}
                             renderInput={(params: any) => <TextField {...params} />}
                           />
+                         
                         </Typography>
+                        </LocalizationProvider>
+                      </Grid> */}
+                      {/* <Grid xs={6} item>
+                      
                       </Grid>
-                    </LocalizationProvider>
+                   */}
                   </Grid>
                   <Grid xs={12} item>
                     <Typography component="div" sx={{ pb: 1 }}>
