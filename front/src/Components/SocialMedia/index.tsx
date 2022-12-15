@@ -190,19 +190,13 @@ const SocialMedia = () => {
               //url="https://www.linkedin.com/embed/feed/update/urn:li:share:6955091372349542400"
               //url="https://www.linkedin.com/company/google/?originalSubdomain=in"
               //postUrl="https://www.linkedin.com/posts/google_interviewing-is-not-one-sided-as-an-aspiring-activity-6954114739874512897-N4OR?utm_source=linkedin_share&utm_medium=member_desktop_web"
-              postUrl="https://www.linkedin.com/embed/feed/update/urn:li:share:6955728295980056577"
-              url="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7008008686715441152"
+              postUrl="https://widgets.sociablekit.com/linkedin-page-posts/iframe/106017"
+              url="https://widgets.sociablekit.com/linkedin-page-posts/iframe/106017"
               width={325}
               height={370}
             />
-            {/* <LinkedinProfile
-              lang="en_US"
-              task="technomax-systems" // Or "SCHOOL_NAME"
-            /> */}
-            {/* <iframe 
-            src="https://www.linkedin.com/embed/feed/update/urn:li:share:6898694772484112384"
-             height="570" width="325"
-             ></iframe> */}
+
+            
           </div>
         </TabPanel>
         <TabPanel value={value} index={3}>
@@ -212,18 +206,17 @@ const SocialMedia = () => {
               //url="https://www.facebook.com/taqeefmiddleeast/posts/" 
               //url="https://www.facebook.com/taqeefmiddleeast/photos" 
               // url="https://fb.watch/eqiJfx_kmH/"
-              url="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0&appId=319494263513255&autoLogAppEvents=1"
+              url="https://www.sociablekit.com/app/embed/64772"
               width={350} /> */}
 
             {/* <Facebook type="post" width="100%" height="680px" show_text={true}
               url="https://www.facebook.com/postmalone/posts/1992925354174335" /> */}
+             
+             <iframe src='https://www.sociablekit.com/app/embed/64772' width='350' height='370' ></iframe>
+
           </div>
-          <div className="fb-page"
-            data-tabs="timeline,events,messages"
-            data-href="https://www.facebook.com/Infosys"
-            data-width="380"
-            data-hide-cover="false">
-          </div>
+
+
 
         </TabPanel>
       </Paper>
@@ -231,4 +224,11 @@ const SocialMedia = () => {
   )
 }
 
-export default SocialMedia
+export default SocialMedia;
+
+/*
+linkedin
+<iframe src='https://widgets.sociablekit.com/linkedin-page-posts/iframe/106017' frameborder='0' width='100%' height='1000'></iframe>
+https://widgets.sociablekit.com/linkedin-page-posts/iframe/106017
+
+*/

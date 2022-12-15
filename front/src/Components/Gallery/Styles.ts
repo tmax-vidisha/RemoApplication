@@ -75,6 +75,7 @@ export const useStyles = makeStyles({
     fontSize: "1rem !important",
     color: "#009BAD !important",
     marginBottom: "12px !important",
+    textDecoration:"none !important",
   },
 
   /* Create two equal columns that floats next to each other */

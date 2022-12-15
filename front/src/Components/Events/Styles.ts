@@ -31,7 +31,8 @@ export const useStyles = makeStyles({
   calenderHeader2: {
     fontSize: "0.8rem !important",
     color: "#009BAD !important",
-    marginBottom: "12px !important",
+    marginBottom: "8px !important",
+    textDecoration:"none !important"
   },
   border: {
     border: "1px solid #837c7c17",
