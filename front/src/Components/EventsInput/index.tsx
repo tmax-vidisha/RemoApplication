@@ -34,15 +34,11 @@ import { convertToHTML } from "draft-convert";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { configuration } from "../../index";
 import moment from "moment";
-
-
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { LocalizationProvider } from "@mui/lab";
 import { useGetEventsQuery,useCreateEventMutation,useCreateTokenwithDataMutation, useUpdateTokenMutation,useGetAllEventsQuery,
               useCreateTokenwithEventDataMutation } from "../../services/APIs";
 import { PublicClientApplication } from "@azure/msal-browser";
-import SubCalendar from "../Events/SubCalendar";
-
 
 interface IFolderProps {
   // event: any;
@@ -190,7 +186,7 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
             <div className={classes.innerBannerOverlay}></div>
             <Paper className={classes.contentHeader} elevation={0}>
               <Typography className={classes.breadcrumbs} variant="h6">
-               <Link to="/ContentEditor" style={{color:"#009BAD", fontSize:"14px"}}>Content Editor</Link>
+               <Link to="/ContentEditor">Content Editor</Link>
               </Typography>
               <Typography variant="caption" display="block" gutterBottom>
                 <Breadcrumbs
@@ -208,28 +204,24 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
           </Paper>
         </Card>
 
-
-        <CardContent className={classes.contentArea}>
-          <Typography
-            variant="h5"
-            component="h5"
-            className={classes.breadcrumbsHeader}
-          >
-            <Link to="/ContentEditor" style={{color:"#009BAD", fontSize:"14px"}} >
-                  Content Editor
-                </Link>
-         
-          </Typography>
-          <Button
-            variant="contained"
-            className={classes.breadcrumbsLinks}
-            size="small"
-            startIcon={<AddCircleOutlineIcon />}
-            onClick={handleClickOpen}
-          >
-            Add New
-          </Button>
-        </CardContent>
+      <CardContent className={classes.contentArea}>
+        <Typography
+          variant="h5"
+          component="h5"
+          className={classes.breadcrumbsHeader}
+        >
+          Content Editor
+        </Typography>
+        <Button
+          variant="contained"
+          className={classes.breadcrumbsLinks}
+          size="small"
+          startIcon={<AddCircleOutlineIcon />}
+          onClick={handleClickOpen}
+        >
+          Add New
+        </Button>
+      </CardContent>
 
       <TableContainer component={Paper} elevation={0}>
         <Table>
@@ -281,65 +273,53 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
         </Table>
       </TableContainer>
 
+      <Fragment>
+        <Dialog
+          maxWidth="md"
+          open={open}
+          onClose={handleClose}
+        >
+          <DialogTitle sx={{ pb: 0 }}> Add New Item</DialogTitle>
+          <DialogContent>
 
-              <Paper
-                elevation={0}
-                className={classes.ContentAreaBox}>
-                <div>
-                  <Grid item xs={12} >
-                    <Typography component="div" sx={{ pb: 2 }}>
-                      <TextField
-                        autoComplete="off"
-                        label="Title"
-                        placeholder="Please enter the title"
-                        onChange={handleChangeTitleField}
-                        fullWidth
-                        margin="dense"
-                        size="small"
-                      />
-                    </Typography>
-                  </Grid>
-
-                  <Grid xs={12}>
-                  <SubCalendar/>
-                      {/* <Grid item xs={12} >
-                      <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <Typography component="div" sx={{ pb: 2 }}>
-                          <DateTimePicker
-                          //@ts-ignore
-                            label="Event Start Date"
-                            value={startDate}
-                            onChange={startDateHandleChange}
-                            renderInput={(params: any) => <TextField {...params} />}
-                          />
-                        </Typography>
-                        <Typography component="div" sx={{ pb: 2 }}>
-                          <DateTimePicker
-                          //@ts-ignore
-                            label="Event End Date"
-                            value={endDate}
-                            onChange={endDateHandleChange}
-                            renderInput={(params: any) => <TextField {...params} />}
-                          />
-                         
-                        </Typography>
-                        </LocalizationProvider>
-                      </Grid> */}
-                      {/* <Grid xs={6} item>
-                      
-                      </Grid>
-                   */}
-                  </Grid>
-                  <Grid xs={12} item>
-                    <Typography component="div" sx={{ pb: 1 }}>
-                      <div className={classes.richEditor}>
-                        <Editor
-                          editorState={editorState}
-                          onEditorStateChange={handleEditorChange}
-                          wrapperClassName="wrapper-class"
-                          editorClassName="editor-class"
-                          toolbarClassName={classes.toolbarClass}
-
+            <Paper
+              elevation={0}
+              className={classes.ContentAreaBox}>
+              <div>
+                <Grid xs={12} item>
+                  <Typography component="div" sx={{ pb: 2 }}>
+                    <TextField
+                      autoComplete="off"
+                      label="Title"
+                      placeholder="Please enter the title"
+                      onChange={handleChangeTitleField}
+                      fullWidth
+                      margin="dense"
+                      size="small"
+                    />
+                  </Typography>
+                </Grid>
+                <Grid container>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <Grid xs={6} item>
+                      <Typography component="div" sx={{ pb: 2 }}>
+                        <DateTimePicker
+                        //@ts-ignore
+                          label="Event Start Date"
+                          value={startDate}
+                          onChange={startDateHandleChange}
+                          renderInput={(params: any) => <TextField {...params} />}
+                        />
+                      </Typography>
+                    </Grid>
+                    <Grid xs={6} item>
+                      <Typography component="div" sx={{ pb: 2 }}>
+                        <DateTimePicker
+                        //@ts-ignore
+                          label="Event End Date"
+                          value={endDate}
+                          onChange={endDateHandleChange}
+                          renderInput={(params: any) => <TextField {...params} />}
                         />
                       </Typography>
                     </Grid>
@@ -380,14 +360,6 @@ const EventsInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </div>
                   </Typography>
                 </Grid>
-                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateTimePicker
-        renderInput={(props) => <TextField {...props} />}
-        label="DateTimePicker"
-        value={startDate}
-        onChange={startDateHandleChange}
-      />
-    </LocalizationProvider> */}
               </div>
             </Paper>
           </DialogContent>
