@@ -9,7 +9,9 @@ import { getPostData,
          postUserQuicklinkData,
          postRemoNews,
          postRemEmpHighlight,
-         RemEmpHighlightItemId
+         RemEmpHighlightItemId,
+         postRemoEventData,
+         getRemoEventData
         } from  "../controllers/postdata";
 
 // const { getData } = require("../controllers/graph");
@@ -41,11 +43,11 @@ const router = Router()
 
 // router.route('/').get(getTokens)
 router.route('/data').post(getPostData)
-router.route('/eventdata').post(postEventData)
+router.route('/eventdata').post(postRemoEventData)
 router.route('/herodata').post(postHeroData)
 router.route('/ceodata').post(postCeoData)
 router.route('/newsdata').post(postRemoNews)
-
+router.route('/eventdataOne').post(getRemoEventData)
 router.route('/empdata').post(postEmpData)
 
 router.route('/empdata').post(postRemEmpHighlight)

@@ -786,6 +786,15 @@ export const graphApi = createApi({
             }),
             
         }),
+        createTokenwithEventDataOne: builder.mutation<any, any>({
+            query: (data) => ({
+                url: 'api/v1/lists/eventdataOne',
+                // headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            
+        }),
         createTokenwithHeroData: builder.mutation<any, any>({
             query: (data) => ({
                 url: 'api/v1/lists/herodata',
@@ -983,7 +992,8 @@ export const {
     useGetAllEmpQuery,
     useGetAllHeroQuery,
     useGetAllMeetingsQuery,
-    useCreateTokenwithEmpDataItemIdMutation
+    useCreateTokenwithEmpDataItemIdMutation,
+    useCreateTokenwithEventDataOneMutation
 
     
     
