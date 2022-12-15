@@ -141,10 +141,8 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     return (
         <AuthenticatedTemplate>
-            <Container className={classes.contentEditorWidth}>
-                <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-                    <IconText />
-                </Paper>
+             <IconText />
+            <Container className={classes.contentEditorWidth}>          
                 <Card className={classes.cardHeight} elevation={0}>
                     <Paper className={classes.innerBackground}>
                         <div className={classes.innerBannerOverlay}></div>
