@@ -4,7 +4,7 @@ import { Paper } from '@mui/material';
 import IconText from './../Header/IconText';
 import { useStyles } from './Styles';
 import birthdayIcon from '../../Assets/Images/birthday.jpg'
-
+import loveIcon from '../../Assets/Images/love.svg'
 import { useLocation } from 'react-router-dom';
 import birthday from "../../Assets/Images/girl.jpg";
 import { Button } from '@mui/material';
@@ -80,8 +80,10 @@ const Birthday = () => {
                     <Grid style={{ textAlign: "left", margin: "30px" }}>
                         {folderData?.response?.fields.Description}
                     </Grid>
-                    <Grid>
-                        <Button style={{ border: "1px solid blue" }}> Let wish him</Button>
+                    <Grid>                        
+                        <Button style={{ border: "1px solid #1BAAB5", color: "#1BAAB5", }}>
+                        <img src ={loveIcon} alt="love" style={{width:"15px", marginRight:"10px"}}/>
+                             Let wish him</Button>
                     </Grid>
                 </Paper>
                 <Paper>

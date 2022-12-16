@@ -78,16 +78,14 @@ console.log(localDate);
     
     return (
         <div>
-            <Container className={classes.contentEditorWidth}>
-                <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-                    <IconText  style={{marginTop:"-40px"}}/>
-                </Paper>
+            <IconText/>
+             <Container className={classes.contentEditorWidth}>
                 <Card className={classes.cardHeight} elevation={0}>
+               
                     <Paper className={classes.innerBackground}>
                         <div className={classes.innerBannerOverlay}></div>
                         <Paper className={classes.contentHeader} elevation={0}>
                             <Typography className={classes.breadcrumbs} variant="h6">
-
                                 <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
                                     Events
                                 </Link>
@@ -105,14 +103,13 @@ console.log(localDate);
                                         <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
                                             Events
                                         </Link></Typography>
-
                                 </Breadcrumbs>
                             </Typography>
                         </Paper>
                     </Paper>
+                    
                 </Card>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
-
                     <Grid>
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
                             <Grid item xs={6} style={{ padding: "30px" }}>
@@ -165,13 +162,11 @@ console.log(localDate);
                                                     <Grid style={{ display: "flex", justifyContent: "space-between" }}>
                                                         <Grid style={{marginRight:"30px"}}> {list.image}</Grid>
                                                         <Grid>
-                                                        <Typography style={{fontSize:"12px", color:"#666666"}}>{moment(list.fields?.EventDate).format('HH:mm A')}</Typography>
-                                                        <Typography style={{fontSize:"15px", color:"#666666", fontWeight:600}}> {list.fields?.Title}</Typography>
-                                                        <Typography style={{fontSize:"12px", color:"#666666"}}>{list.fields?.Description} </Typography>
+                                                        <p style={{fontSize:"12px", color:"#666666"}}>{moment(list.fields?.EventDate).format('HH:mm A')}</p>
+                                                        <p style={{fontSize:"15px", color:"#666666", fontWeight:600}}> {list.fields?.Title}</p>
+                                                        <p style={{fontSize:"12px", color:"#666666"}}>{list.fields?.Description} </p>
                                                     </Grid>
                                                     </Grid>
-                                                    
-    
                                                 </ListItem>
                                             ))
                                         }
