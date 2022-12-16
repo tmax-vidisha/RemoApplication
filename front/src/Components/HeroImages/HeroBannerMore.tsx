@@ -3,7 +3,7 @@ import IconText from '../Header/IconText';
 import { Container, Card, Paper, Typography, Link, Breadcrumbs, Grid, CardMedia } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useStyles } from './Styles';
-// import carVideo from '../../Assets/videos/Cars.mp4';
+//  import carVideo from '../../Assets/videos/Cars.mp4';
 
 const HeroBannerMore = () => {
     const classes = useStyles();
@@ -42,12 +42,12 @@ const HeroBannerMore = () => {
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
                     <Grid item xs={12} style={{ backgroundColor: "white" }}>
                         {/* <video src={carVideo} width="320" height="240" controls /> */}
-                        {/* <CardMedia
+                        <CardMedia
                             component="video"
                             height="140"
-                            image="../../"
+                            image="../../Assets/videos/Cars.mp4"
                             title="Contemplative Reptile"
-                        /> */}
+                        />
                     </Grid>
                 </Paper>
 

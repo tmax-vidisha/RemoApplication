@@ -99,7 +99,7 @@ const ViewAllEvents = () => {
 
                     <Grid>
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
-                            <Grid item xs={6} style={{ padding: "10px" }}>
+                            <Grid item xs={6} style={{ padding: "30px" }}>
                                 <Box>
                                     {/* <ThemeProvider theme={customTheme}>
                                         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={enIN}>
@@ -128,8 +128,6 @@ const ViewAllEvents = () => {
                                                     <Typography style={{fontSize:"12px", color:"#666666"}}>{list.details} </Typography>
                                                 </Grid>
                                                 </Grid>
-                                                
-
                                             </ListItem>
                                         ))
                                     }
