@@ -1,5 +1,6 @@
 import React from 'react'
 import ViewAllEvents from '../../Components/ViewAllEvents'
+import { AuthenticatedTemplate } from '@azure/msal-react';
 import { useCreateTokenwithEventDataOneMutation } from '../../services/APIs'
 const ViewAllEventPage = () => {
     const [sendItem,{data,error,isLoading}] = useCreateTokenwithEventDataOneMutation();
@@ -15,14 +16,14 @@ const ViewAllEventPage = () => {
       await sendItem(Data)
    }
   return (
-    <div>
+    <AuthenticatedTemplate>
         <ViewAllEvents
              data = {data}
              isLoading={isLoading}
              error= {error}
-           onClick={getEventData}        
+            onClick={getEventData}        
         />
-    </div>
+    </AuthenticatedTemplate>
   )
 }
 
