@@ -89,19 +89,16 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     return (
         <div>
-
             <Container className={classes.contentEditorWidth}>
-              
-
-            <IconText/>
-             <Container className={classes.contentEditorWidth}>
-
+                <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
+                    <IconText style={{ marginTop: "-40px" }} />
+                </Paper>
                 <Card className={classes.cardHeight} elevation={0}>
-               
                     <Paper className={classes.innerBackground}>
                         <div className={classes.innerBannerOverlay}></div>
                         <Paper className={classes.contentHeader} elevation={0}>
                             <Typography className={classes.breadcrumbs} variant="h6">
+
                                 <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
                                     Events
                                 </Link>
@@ -119,16 +116,17 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         <Link className={classes.breadLinks} color="inherit" href="/NewsInfo">
                                             Events
                                         </Link></Typography>
+
                                 </Breadcrumbs>
                             </Typography>
                         </Paper>
                     </Paper>
-                    
                 </Card>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
+
                     <Grid>
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
-                            <Grid item xs={6} style={{ padding: "30px" }}>
+                            <Grid item xs={6} style={{ padding: "10px" }}>
                                 <Box>
 
                                     {/* <ThemeProvider theme={customTheme}>
@@ -173,13 +171,14 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     <Typography style={{fontSize:"12px", color:"#666666"}}>{list.fields?.Description} </Typography>
                                                 </Grid>
                                                 </Grid>
+                                                
+
                                             </ListItem>
                                         ))
                                     }
                                    
                                 </List> */}
                                 {data?.response?.length > 0 ?
-
                                     (
                                         <List style={{ border: "1px solid #e6e6e6", margin: "20px" }}>
                                             <Grid style={{ borderBottom: "1px solid #e6e6e6", color: '#4ddbff' }}> {moment(value).format("DD")} { moment(value).format("MMM")}</Grid>
@@ -218,8 +217,7 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
                                             <Typography>No Events</Typography>
                                         </List>
 
-                                   )}
-
+                                    )}
                             </Grid>
 
                         </Stack>
