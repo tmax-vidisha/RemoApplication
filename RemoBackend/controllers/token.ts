@@ -20,6 +20,7 @@ const Photo_Gallery ="55cf720b-4646-49ed-bc64-c97ed72b75f0"
 const Site_Id = "tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43"
 const RemoNews_Id ="25fb939d-87e0-4fb5-b575-f11bd916e4df"
 const RemoEmpHight_Id ="2b3bb6db-7ba9-43e9-92b4-0216b80ef2fe"
+const EventFilter ="https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,1649e6fd-df59-4f03-8e4b-4d765864f406,d2634703-c0cd-42f6-bfb5-c60555dbcb7d/lists('Events')/items?$expand=fields&$orderby=fields/EventDate asc&$filter=fields/EventDate+gt+'2022-07-25'"
 import asyncHandler from '../middleware/asyncHandler'
 const app = express();
 // const getTokens = require('./graph')

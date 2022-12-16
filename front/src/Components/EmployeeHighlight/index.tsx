@@ -1,4 +1,3 @@
-// @ts-nocheck 
 import React, { useEffect,useState } from 'react'
 import { useGetEmployeeHighLightQuery,useUpdateEmpTokenMutation,useGetAllEmpQuery } from '../../services/APIs';
 import { AuthenticatedTemplate } from "@azure/msal-react";
@@ -15,8 +14,6 @@ import { configuration } from "../../index";
 import { useNavigate } from 'react-router-dom';
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 //@ts-ignore
-
-
 interface IFolderProps {
   // employee: any;
   // onClick: any;
@@ -39,9 +36,10 @@ const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
   // console.log(data,'88888888')
   // const {employee} = props;
    const [activeStep, setActiveStep] = React.useState(0);
-  
+   
           const handleStepChange = (step: number) => {
           setActiveStep(step);
+
 }
 
 const navigate = useNavigate()
@@ -86,16 +84,62 @@ const navigate = useNavigate()
   const handleItem = (itemid:any) =>{
     //  console.log(itemid,'Idss')
     onGetItem?.(itemid)
-
     // navigate('/birthday', { state: { folderData: ItemData } })
     if(ItemData !==undefined){
       navigate('/birthday', { state: { folderData: ItemData } })
     }
   }
-  
-
+ 
   return (
-     <AuthenticatedTemplate>
+    
+
+    // <div>
+    //     <Paper>
+    //     { data && <img  src ={data[0].fields.SASURL.Description}  height="120"/> }
+    //     </Paper>
+    // </div>
+    //  <div>
+          
+    //           {/* {data && data.map((i:any)=>(
+    //             <>
+    //               <Avatar src ={i.image} />
+                  
+    //               </>
+    //           ))} */}
+    //           ggggg
+
+    // <AuthenticatedTemplate>
+      
+    //   {isLoading ?(
+    //     <SkeletonAnimation/>
+    //   )  :(    
+    //           <Paper>
+              
+    //            <Card>
+    //            <AutoPlaySwipeableViews
+    //               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+    //               index={activeStep}
+    //               onChangeIndex={handleStepChange}
+    //               enableMouseEvents
+    //         >
+    //               {data?.response && <img  src ={data?.response.image}  height="120"/> 
+                  
+                  
+    //               }
+                  
+    //               {data?.response && <img  src ={data?.response.image1}  height="120"/> }
+    //               {data?.response && <img  src ={data?.response.image2}  height="120"/> }
+    //             </AutoPlaySwipeableViews>
+                
+    //           </Card>
+             
+    //           </Paper>
+    //    )}     
+      
+    // </AuthenticatedTemplate> 
+
+    // <div>tttt</div>
+    <AuthenticatedTemplate>
       <Paper elevation={0}>
         {isLoading ? (
           <SkeletonAnimation />
@@ -107,18 +151,15 @@ const navigate = useNavigate()
               onChangeIndex={handleStepChange}
               enableMouseEvents
             >
-         {/* @ts-ignore */}
              {data?.response &&
-                data?.response?.map((item: any, index: any) => {
+                data?.response.map((item: any, index: any) => {
                   const { fields = {} } = item;
                 var EmpTitle = fields?.Title;
                 var empName = fields?.Name;
                 var DeptVal = fields?.Dept;
                 var img =  fields?.EmpImg
 
-
                 // var completePath;
-
 
                 // if (fields?.EmpImage != null) {
                 //   var profilePic = JSON.parse(fields?.EmpImage);
@@ -150,7 +191,7 @@ const navigate = useNavigate()
                             src ={img}
                             alt={empName}
                             onClick={ () =>
-
+                             
                               handleItem(item.fields?.id)
                             }
                           />
@@ -184,7 +225,7 @@ const navigate = useNavigate()
         )}
       </Paper>
     </AuthenticatedTemplate>
-  );
-};
+  )
+}
 
-export default EmployeeHighlight;
+export default EmployeeHighlight

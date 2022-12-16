@@ -274,10 +274,18 @@ const PortalHome = () => {
         </Grid>
         <Grid item xs={4}>
 
+
           {/* <Grid item xs={12}>
             <Weather />
           </Grid> */}
           <Grid item xs={12} >
+
+
+          {/* <Grid item xs={12} style={{ marginTop: 16 }}>
+            <Weather />
+          </Grid> */}
+          <Grid item xs={12} style={{ marginTop: 16 }}>
+
             <EventsPage />
 
           </Grid>
