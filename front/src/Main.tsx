@@ -29,7 +29,8 @@ import {
     MeetingsPage,
     SubNewss,
     MoreNewsPage,
-    ImagesAndVideosPage
+    ImagesAndVideosPage,
+    ViewAllEventPage
      } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';
@@ -332,7 +333,7 @@ const Main = () => {
                               element={<Birthday/>} />
                             <Route
                               path="/viewAllEvents"
-                              element={<ViewAllEvents/>} />
+                              element={<ViewAllEventPage/>} />
                             <Route
                               path="/heroBannerMore"
                               element={<HeroBannerMore/>} />

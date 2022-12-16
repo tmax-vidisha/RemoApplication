@@ -274,9 +274,9 @@ const PortalHome = () => {
         </Grid>
         <Grid item xs={4}>
 
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Weather />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} >
             <EventsPage />
 
