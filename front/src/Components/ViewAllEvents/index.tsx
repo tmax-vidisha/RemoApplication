@@ -115,7 +115,7 @@ console.log(localDate);
 
                     <Grid>
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
-                            <Grid item xs={6} style={{ padding: "10px" }}>
+                            <Grid item xs={6} style={{ padding: "30px" }}>
                                 <Box>
 
                                     {/* <ThemeProvider theme={customTheme}>
@@ -149,8 +149,6 @@ console.log(localDate);
                                                     <Typography style={{fontSize:"12px", color:"#666666"}}>{list.fields?.Description} </Typography>
                                                 </Grid>
                                                 </Grid>
-                                                
-
                                             </ListItem>
                                         ))
                                     }
