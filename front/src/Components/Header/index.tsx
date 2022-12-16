@@ -21,7 +21,7 @@ import { StyledAppBar } from "./Styles";
 import logo from "../../Assets/Images/logo_white.svg";
 import teams from "../../Assets/Images/tq2.svg";
 import outlookIcon from "../../Assets/Images/tq3.svg";
-import { useGetUnReadMailsQuery } from '../../services/APIs';
+// import { useGetUnReadMailsQuery } from '../../services/APIs';
 import userimg from "../../Assets/Images/userimg.svg";
 import birthday from "../../Assets/Images/birthday.svg";
 import temp from "../../Assets/Images/temp.svg";
@@ -50,7 +50,8 @@ import { useStyles } from './Styles';
 import SubCalendar from '../Events/SubCalendar';
 import { Calendar } from 'react-calendar';
 import { WeatherPage } from '../../Pages';
-
+import { useGetAllUnReadMailsQuery } from '../../services/graph';
+import useCustom from '../../hooks/useCustom';
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -109,6 +110,9 @@ interface type {
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const {token} = useCustom();
+  const { data, error, isLoading } = useGetAllUnReadMailsQuery(token)
+  // console.log(data,'UnReadCount')
   const open = Boolean(anchorEl);
   const classes = useStyles();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -483,7 +487,7 @@ const Header = () => {
                     target={"_blank"}
                     href="https://outlook.office.com/mail/inbox"
                   >
-                    <Badge badgeContent="0" color="error" sx={{ top: "3px" }}>
+                    <Badge badgeContent={data?.response?.unreadItemCount} color="error" sx={{ top: "3px" }}>
                       {/* <MailIcon /> */}
                       <img src={outlookIcon} alt="Outlook" />
                     </Badge>

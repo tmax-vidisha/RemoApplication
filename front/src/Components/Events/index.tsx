@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useGetEventsQuery, useUpdateTokenMutation, useGetAllEventsQuery, useGetAllEvtQuery } from '../../services/APIs'
 import { AuthenticatedTemplate } from "@azure/msal-react";
 import {
@@ -36,7 +36,7 @@ interface IFolderProps {
   data: any,
   error: any,
   isLoading: any,
-
+  onClick: (Date: any) => void;
 }
 
 
@@ -44,10 +44,21 @@ var moment = require("moment-timezone");
 
 const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
 
-  const { data, isLoading, error } = props;
+  const { data, isLoading, error, onClick } = props;
   const classes = useStyles();
-   const [value, onChange] = useState(new Date());
+  const [value, setValue] = useState();
   const pca = new PublicClientApplication(configuration);
+
+  const onChange = useCallback(
+    (value: any) => {
+      setValue(value);
+      //   const localDate = new Date(value).toLocaleDateString();
+      //   console.log(localDate)
+      onClick?.(value)
+    },
+    [setValue],
+  );
+  console.log(data?.res, 'ryerytuAaaaaaaaaaaaaaaaaaaaaaaaaaaa')
   return (
     <AuthenticatedTemplate>
       <Paper elevation={0}>
@@ -67,19 +78,19 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
               >
                 Events Calendar
               </Typography>
-              <Link href="/viewAllEvents"  className={classes.calenderHeader2}>
-              <Typography
-                variant="h6"
-                component="h1"
-                color="secondary"
-                className={classes.calenderHeader2}
-              >
-                 View All Events
-              </Typography>
+              <Link href="/viewAllEvents" className={classes.calenderHeader2}>
+                <Typography
+                  variant="h6"
+                  component="h1"
+                  color="secondary"
+                  className={classes.calenderHeader2}
+                >
+                  View All Events
+                </Typography>
               </Link>
             </Stack>
             <Calendar
-           className={classes.border}
+              className={classes.border}
               onChange={onChange}
               value={value}
             />
@@ -94,66 +105,41 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
 
           </div>
         </List>
-        {data?.response &&
-          data?.response?.map((item: any, index: any) => {
-            const { fields = {} } = item;
-            //   console.log(fields);
-            let eventTitle = fields.Title;
-            let evenDesc = fields?.Description;
-            let eventMonth = moment(fields?.EventDate).format("MMM");
-            let eventYear = moment(fields?.EventDate).format("YYYY");
-            let eventDate = moment(fields?.EventDate).format("DD");
-            let eventDay = moment(fields?.EventDate).format('dddd');
-            return (
-              <div key={index} >
-                {/* <Box className={classes.evenLeft}>
-                        <h2>{eventDate}</h2>
-                        <p>{eventMonth}</p>
-                      </Box>
-                      <Box className={classes.evenRight}>
-                        <RouterNavLink className={classes.eventLink} to={{ pathname: '/EventReadMore' }} state={fields?.id }> 
-                          <Typography
-                            variant="subtitle1"
-                            component="div"
-                            color="black"
-                            className={classes.headRow}
-                          >
-                            {eventTitle}
-                          </Typography>
+        {data?.res?.length > 0 ?
+          (
+            <>
+              {data?.res &&
+                data?.res?.map((item: any, index: any) => {
+                  const { fields = {} } = item;
 
-                          <Typography
-                            variant="caption"
-                            color="textSecondary"
-                            component="span"
-                            className={classes.eventDesc}
-                          >
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: `${evenDesc}`,
-                              }}
-                            />
-                          </Typography>
-                        </RouterNavLink>
-                      </Box>
-                      <Box className={classes.eventClear}></Box> */}
-                <Typography className={classes.calenderinfo}>
-                  <li >
-                    {/* General Board Meeting */}
-                    {eventTitle}
-                  </li>
-                  <li className={classes.list}>
-                    {eventDay}  {eventDate}  {eventMonth}  {eventYear}
-                  </li>
-                </Typography>
+                  let eventTitle = fields.Title;
+                  let evenDesc = fields?.Description;
+                  let eventMonth = moment(fields?.EventDate).format("MMM");
+                  let eventYear = moment(fields?.EventDate).format("YYYY");
+                  let eventDate = moment(fields?.EventDate).format("DD");
+                  let eventDay = moment(fields?.EventDate).format('dddd');
+                  return (
+                    <div key={index} >
 
-                {/* <Typography className={classes.calenderinfo}>
-                  <li>Review Meeting with corporate manager</li>
-                  <li className={classes.list}>Thursday, June 06, 2022</li>
-                </Typography> */}
-              </div>
-            );
-          })}
+                      <Typography className={classes.calenderinfo}>
+                        <li >
 
+                          {eventTitle}
+                        </li>
+                        <li className={classes.list}>
+                          {eventDay}  {eventDate}  {eventMonth}  {eventYear}
+                        </li>
+                      </Typography>
+
+
+                    </div>
+                  );
+                })}
+            </>
+          ) : (
+            <Typography>No Events</Typography>
+
+          )}
       </Paper>
     </AuthenticatedTemplate>
 

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Container, Paper, Card, Typography, Link, Breadcrumbs, Grid, Box, Stack, createMuiTheme } from '@mui/material';
 import { useStyles } from './Styles';
 import IconText from '../Header/IconText';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import DateFnsUtils from "@date-io/date-fns";
-import { MuiPickersUtilsProvider, Calendar } from "@material-ui/pickers";
+// import { MuiPickersUtilsProvider, Calendar } from "@material-ui/pickers";
 // import ruLocale from "date-fns/locale/ru";
 import { useState } from 'react';
 import { enIN } from 'date-fns/locale';
@@ -12,6 +12,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import meeting from "../../Assets/Images/meeting.jpg";
 import { List, ListItem } from '@mui/material';
 import CalendarEvent from './CalendarEvent';
+import { Calendar } from 'react-calendar';
+// import "moment-timezone"
 var moment = require("moment-timezone");
 
 const lists = [
@@ -36,28 +38,28 @@ const lists = [
 
 ]
 interface IFolderProps {
-    data:any, 
-    error:any,
-    isLoading:any
-    onClick:(Date: any) => void;
+    data: any,
+    error: any,
+    isLoading: any
+    onClick: (Date: any) => void;
     // onDownload?: (id: string) => void;
     // onDelete?: (id: string) => void;
     // onRename?: (id: string, name: string) => void;
     // onShare?: (id: string) => void;
-  }
+}
 
 // const ViewAllEvents = () => {
-const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {    
+const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
-    const { data, error, isLoading,onClick } =  props
+    const { data, error, isLoading, onClick } = props
     const [selectedDate, setSelectedDate] = useState(new Date());
-
+    const [value, setValue] = useState();
     const handleDateChange = (date: any) => {
         setSelectedDate(date);
         // console.log("Date is: ", date);
         const localDate = new Date(date).toLocaleDateString();
 
-console.log(localDate);
+        console.log(localDate);
     };
 
     const color = "#00b8e6";
@@ -74,12 +76,26 @@ console.log(localDate);
     //         },
     //     },
     // })
+    const onChange = useCallback(
+        (value: any) => {
+          setValue(value);
+        //   const localDate = new Date(value).toLocaleDateString();
+        //   console.log(localDate)
+          onClick?.(value)
+        },
+        [setValue],
+      );
     console.log(data?.response)
-    
+
     return (
         <div>
+
+            <Container className={classes.contentEditorWidth}>
+              
+
             <IconText/>
              <Container className={classes.contentEditorWidth}>
+
                 <Card className={classes.cardHeight} elevation={0}>
                
                     <Paper className={classes.innerBackground}>
@@ -125,13 +141,24 @@ console.log(localDate);
                                         </MuiPickersUtilsProvider>
 
                                     </ThemeProvider> */}
-                                    <CalendarEvent onClick={onClick}/>
+                                    {/* <CalendarEvent onClick={onClick}/> */}
+                                    <div>
+                                        <Box>
+
+                                           
+                                            <Calendar
+                                                // className={classes.border}
+                                                onChange={onChange}
+                                                value={value}
+                                            />
+                                        </Box>
+                                    </div>
 
                                 </Box>
                             </Grid>
                             <Grid item xs={6}>
-                               
-                                
+
+
                                 {/* <List style={{border:"1px solid #e6e6e6", margin:"20px"}}>
                                 <Grid style={{borderBottom:"1px solid #e6e6e6", color:'#4ddbff'}}> 9th July</Grid>
                                     {
@@ -152,33 +179,47 @@ console.log(localDate);
                                    
                                 </List> */}
                                 {data?.response?.length > 0 ?
-                                   (
-                                    <List style={{border:"1px solid #e6e6e6", margin:"20px"}}>
-                                    <Grid style={{borderBottom:"1px solid #e6e6e6", color:'#4ddbff'}}> 9th July</Grid>
-                                        {
-                                            data?.response &&
-                                            data?.response?.map((list:any) => (
-                                                <ListItem style={{ width:"600px", borderBottom:"1px solid #e6e6e6"}}>
-                                                    <Grid style={{ display: "flex", justifyContent: "space-between" }}>
-                                                        <Grid style={{marginRight:"30px"}}> {list.image}</Grid>
-                                                        <Grid>
-                                                        <p style={{fontSize:"12px", color:"#666666"}}>{moment(list.fields?.EventDate).format('HH:mm A')}</p>
-                                                        <p style={{fontSize:"15px", color:"#666666", fontWeight:600}}> {list.fields?.Title}</p>
-                                                        <p style={{fontSize:"12px", color:"#666666"}}>{list.fields?.Description} </p>
-                                                    </Grid>
-                                                    </Grid>
-                                                </ListItem>
-                                            ))
-                                        }
-                                       
-                                    </List>
-                                ):(
-                                    <List style={{border:"1px solid #e6e6e6", margin:"20px"}}>
-                                    <Grid style={{borderBottom:"1px solid #e6e6e6", color:'#4ddbff'}}> 9th July</Grid>
-                                        <Typography>No Events</Typography>
-                                    </List>
 
-                                )}
+                                    (
+                                        <List style={{ border: "1px solid #e6e6e6", margin: "20px" }}>
+                                            <Grid style={{ borderBottom: "1px solid #e6e6e6", color: '#4ddbff' }}> {moment(value).format("DD")} { moment(value).format("MMM")}</Grid>
+                                            {
+                                                data?.response &&
+                                                data?.response?.map((list: any) => {
+                                                    // const { fields = {} } = item;
+
+                                                    // let eventTitle = fields.Title;
+                                                    let evenDesc = list.fields?.Description;
+                                                    let myEvents = evenDesc.replace(/<[^>]+>/g, '')
+                                                    console.log(myEvents)
+                                                    // let eventMonth = moment(fields?.EventDate).format("MMM");
+                                                    // let eventYear = moment(fields?.EventDate).format("YYYY");
+                                                    return (
+                                                        <ListItem style={{ width: "600px", borderBottom: "1px solid #e6e6e6" }}>
+                                                            <Grid style={{ display: "flex", justifyContent: "space-between" }}>
+                                                                <Grid style={{ marginRight: "30px" }}> {list.image}</Grid>
+                                                                <Grid>
+                                                                    <Typography style={{ fontSize: "12px", color: "#666666" }}>{moment(list.fields?.EventDate).format('HH:mm A')}</Typography>
+                                                                    <Typography style={{ fontSize: "15px", color: "#666666", fontWeight: 600 }}> {list.fields?.Title}</Typography>
+                                                                    <Typography style={{ fontSize: "12px", color: "#666666" }}>{myEvents} </Typography>
+                                                                </Grid>
+                                                            </Grid>
+
+
+                                                        </ListItem>
+                                                    )
+                                                })
+                                            }
+
+                                        </List>
+                                    ) : (
+                                        <List style={{ border: "1px solid #e6e6e6", margin: "20px" }}>
+                                            <Grid style={{ borderBottom: "1px solid #e6e6e6", color: '#4ddbff' }}>{moment(value).format("DD")} { moment(value).format("MMM")} </Grid>
+                                            <Typography>No Events</Typography>
+                                        </List>
+
+                                   )}
+
                             </Grid>
 
                         </Stack>
