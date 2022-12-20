@@ -1,11 +1,17 @@
 import React from 'react'
 import useCustom from "../../hooks/useCustom";
-import {useGetAllCountryCodesQuery,useGetAllCountryCurrencyMutation} from '../../services/graph'
+import {useGetAllCountryCodesQuery,useGetAllCountryCurrencyMutation,useGetWeatherQuery,useGetAllPrayersQuery} from '../../services/graph'
 import  Weather from '../../Components/Weather'
 const WeatherPage = () => {
   const {token} = useCustom();
   const {data,error ,isLoading }  = useGetAllCountryCodesQuery(token);
   const [sendItem,{data:AmountResponse,error: Error,isLoading: IsLoading}] = useGetAllCountryCurrencyMutation();
+  //@ts-ignore
+  const {data:weatherData,error:weatherError ,isLoading:weatherLoading }  = useGetWeatherQuery();
+  //@ts-ignore
+  const {data:prayerData,error:prayerError ,isLoading:prayerLoading }  = useGetAllPrayersQuery();
+  console.log(weatherData?.response,'WeatherData')
+  console.log(prayerData,'prayerData')
   const  getFolderItems = async(name:string) =>{
     console.log(name,"Currency")
     const Data = {
@@ -26,6 +32,8 @@ const WeatherPage = () => {
            dataItem={AmountResponse}
            dataItemError={Error}
            dataItemIsLoading={IsLoading}
+           weatherData={weatherData}
+          prayerData={prayerData}
       />
     </div>
   )

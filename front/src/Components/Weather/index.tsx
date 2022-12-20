@@ -1,4 +1,5 @@
 /* eslint-disable */
+// @ts-nocheck
 import * as React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -19,7 +20,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 var moment = require("moment-timezone");
-
 interface IFolderProps {
   // recent: any;
   // onClick: any;
@@ -33,7 +33,9 @@ interface IFolderProps {
   onClick?: ( name: string) => void;
     dataItem:any,
     dataItemError:any,
-    dataItemIsLoading:any
+    dataItemIsLoading:any,
+    weatherData:any
+    prayerData:any
 }
 
 // export default function Weather() {
@@ -43,11 +45,13 @@ interface IFolderProps {
   //  console.log(token,'sdsfggs')
   
   const [USD, setUSD] = React.useState('USD');
+  const [prayerTime,setprayerTime]= React.useState<any>();
+  const [prayerType,setPrayerType]= React.useState<any>();
   //@ts-ignore
   // const {data,error ,isLoading }  = useGetAllCountryCodesQuery(token);
   //  const {data:prayerData, error:prayerError, isLoading:prayerLoading }  = useGetAllPrayersQuery();
   // console.log(data?.response,'rgrthrjtqaqqqqqqqq')
-  const { data, error, isLoading,onClick,dataItem,dataItemError,dataItemIsLoading } =props;
+  const { data, error, isLoading,onClick,dataItem,dataItemError,dataItemIsLoading,weatherData,prayerData } =props;
   console.log(data?.response,'rgrthrjtqaqqqqqqqq')
   console.log(dataItem?.response?.result,"Amount")
   const handleChange = (event: SelectChangeEvent) => {
@@ -74,13 +78,55 @@ const  emp =[ {
   "job_id": 3,
   "job_name": "Teacher"
 }]
+function getDifferenceInhrsandmins(EndTime, StartTime) {
+  let diff = moment(EndTime, 'HH:mm').diff(moment(StartTime, 'HH:mm'));
+  let d = moment.duration(diff);
+  let hours =  Math.floor(d.asHours());
+  let minutes = moment.utc(diff).format("mm");
+  let RemainingTime = hours+":"+minutes;
+  return RemainingTime;
+}
+let CurrentTime:any = moment(new Date()).format("HH:mm");
+      
+setTimeout(function(){
+  if (prayerData?.response?.Fajr > CurrentTime) {
+    let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Fajr,CurrentTime);
+   setprayerTime(prayerData?.response?.Fajr);
+   setPrayerType(`Fajr in ${RemainingTime} Hrs`);
+  } else if (prayerData?.response?.Sunrise > CurrentTime) {
+    let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Sunrise,CurrentTime);
+    setprayerTime(prayerData?.response?.Sunrise);
+    setPrayerType(`Sunrise in ${RemainingTime} Hrs`);
+  } else if (prayerData?.response?.Dhuhr > CurrentTime) {
+    let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Dhuhr,CurrentTime);
+    setprayerTime(prayerData?.response?.Dhuhr);
+    setPrayerType(`Dhuhr in  ${RemainingTime} Hrs`);
+  } else if (prayerData?.response?.Asr > CurrentTime) {
+      let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Asr,CurrentTime);
+      setprayerTime(prayerData?.response?.Asr);
+      setPrayerType(`Asr in ${RemainingTime} Hrs`);
+  } else if (prayerData?.response?.Maghrib > CurrentTime) {
+    let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Maghrib,CurrentTime);
+    setprayerTime(prayerData?.response?.Maghrib);
+    setPrayerType(`Maghrib in ${RemainingTime} Hrs`);
+  } else if (prayerData?.response?.Isha > CurrentTime) {
+    let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Isha,CurrentTime);
+    setprayerTime(prayerData?.response?.Isha);          
+    setPrayerType(`Isha in ${RemainingTime} Hrs`);
+  }
+},500);
+
+console.log(prayerTime,prayerType)
+
+
 
   return (
     <Paper elevation={0}>
       <List className={classes.root}>
         <ListItem className={classes.weather}>
-          <Typography component="h4">Dubai, UAE</Typography>
-          <Typography component="h1">32.01C</Typography>
+          <Typography component="h4">{weatherData?.response?.location?.region}, UAE</Typography>
+          <img src={weatherData?.response?.current?.condition?.icon} alt="weathersky"/>
+          <Typography component="h1">{weatherData?.response?.current?.temp_c}°C</Typography>
 
           <Typography
             variant="caption"
@@ -88,14 +134,14 @@ const  emp =[ {
             component="div"
             sx={{ opacity: 0.6 }}
           >
-            Sunny
+            {weatherData?.response?.current?.condition?.text}
           </Typography>
         </ListItem>
         <Divider component="span" orientation="vertical" flexItem />
         <ListItem className={classes.weather}>
         <Typography component="h4">Next Prayer</Typography>
 
-          <Typography component="h1">16:45</Typography>
+          <Typography component="h1">{prayerTime}</Typography>
 
           <Typography
             variant="caption"
@@ -103,7 +149,7 @@ const  emp =[ {
             component="div"
             sx={{ opacity: 0.6 }}
           >
-            Asher
+           {prayerType}
            
           </Typography> 
         
