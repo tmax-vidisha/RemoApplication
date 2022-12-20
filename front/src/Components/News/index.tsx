@@ -229,13 +229,14 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <CardActionArea>
                           <CardMedia
                             // className={classes.newsImg}
-                            style={{ margin: '7px', borderRadius: "4px", width: "97%" }}
+                            style={{ margin: '7px', borderRadius: "4px", width: "97%", position:"relative" }}
                             component="img"
                             height="160"
+                            // title={card.fields?.LinkTitle}
                             image={card.fields?.NewsImage}
-                            // image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
                             alt="green iguana"
                           />
+                          <Grid className={classes.cardNewTitle}>{card.fields?.LinkTitle}</Grid>
                           <CardContent>
                             <Stack direction="row" justifyContent="space-between">
                               <Typography

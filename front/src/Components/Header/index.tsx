@@ -1,17 +1,12 @@
 import React, { useCallback, useState } from 'react'
 import { Link, NavLink as RouterNavLink } from "react-router-dom";
-import { styled, alpha } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from '@mui/icons-material/AccountCircleOutlined';
-//import AccountCircle from "@mui/icons-material/AccountCircle";
-//import MailIcon from "@mui/icons-material/Mail";
 import { Container, Grid } from "@mui/material";
 import MailIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -30,17 +25,7 @@ import calendarWhite from "../../Assets/Images/calendarWhite.svg";
 import onenote from "../../Assets/Images/onenote.svg";
 import WeatherMap from './WeatherMap';
 import Backdrop from '@mui/material/Backdrop';
-import {Box, Paper} from '@mui/material';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Weather from '../Weather';
-// import Calendar from 'react-calendar';
+import { Box, Paper } from '@mui/material';
 import ToggleButton from './ToggleButton';
 import account from '../../Assets/Images/accountNew.svg';
 import banner from '../../Assets/Images/bannerviewNew.svg';
@@ -50,6 +35,10 @@ import { useStyles } from './Styles';
 import SubCalendar from '../Events/SubCalendar';
 import { Calendar } from 'react-calendar';
 import { WeatherPage } from '../../Pages';
+
+import SearchBar from './SearchBar';
+
+
 import { useGetAllUnReadMailsQuery } from '../../services/graph';
 import useCustom from '../../hooks/useCustom';
 const style = {
@@ -64,45 +53,7 @@ const style = {
   p: 4,
 };
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    //   marginLeft: theme.spacing(3),
-    width: "22%",
-    marginRight: "12em",
-  },
-}));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 1),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(0.5, 0.5, 0.5, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(2.5)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
 
 interface type {
   onClose: () => void;
@@ -121,13 +72,7 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  //   const { data, error, isLoading } =   useGetUnReadMailsQuery('') 
-  //   console.log(data,'ttttttttt')
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  // const isMenuOpen = Boolean(anchorEl);
-  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -278,7 +223,7 @@ const Header = () => {
   // </MenuItem>;
   return (
     <AuthenticatedTemplate>
-      <Box sx={{ flexGrow: 1,}}>
+      <Box sx={{ flexGrow: 1, }}>
         <StyledAppBar position="static">
           <Container>
             <Toolbar
@@ -287,32 +232,21 @@ const Header = () => {
                 paddingLeft: "0px !important",
                 paddingRight: "0px !important",
               }}>
-
-              <RouterNavLink to="/Home">
-                <img src={logo} alt="Remo Digital" />
-              </RouterNavLink>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ display: { xs: "none", sm: "block" } }}
-              ></Typography>
-              <Box sx={{ flexGrow: 1 }} />
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon sx={{ color: "rgb(255 255 255 / 42%)" }} />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search Here"
-                  inputProps={{ "aria-label": "search" }}
-                />
-              </Search>
-
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                {/* <div>
+                <div>
+                  <RouterNavLink to="/Home">
+                    <img src={logo} alt="Remo Digital" />
+                  </RouterNavLink>
+                </div>
+                <div style={{marginLeft:"80px"}}>
+                  <SearchBar />
+                </div>
+              </Box>
+              <Box sx={{ display: { xs: "none", md: "flex", marginLeft:"80px" } }}>
+                <div>
                   <ToggleButton />
-                </div> */}
-                <div style={{ marginLeft: "80px" }}>
+                </div>
+                <div style={{ marginLeft: "50px" }}>
                   <IconButton
                     size="large"
                     aria-label="unread mail count"
@@ -382,7 +316,7 @@ const Header = () => {
                       <Grid>1.00 AED is</Grid>
                     </Grid> */}
                       {/* <Weather /> */}
-                       <WeatherPage/>
+                      <WeatherPage />
                     </MenuItem>
 
                   </Menu>
@@ -436,7 +370,9 @@ const Header = () => {
                     aria-haspopup="true"
                     aria-expanded={openSecond ? "true" : undefined}
                   >
-                    <Badge color="error" sx={{ top: "3px" }}>
+                    <Badge sx={{
+                      top: "3px",
+                    }}>
                       <img src={calendarWhite} alt="calendar" />
                     </Badge>
                   </IconButton>
@@ -472,8 +408,14 @@ const Header = () => {
                 ><a
                   target={"_blank"}
                   href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
-                ><Badge badgeContent="1" color="error" sx={{ top: "3px" }}>
-                      {/* badgeContent={17}  */}
+                >
+                    <Badge badgeContent="1" color="error" sx={{
+                      top: "3px",
+                      "& .MuiBadge-badge": {
+                        color: "white",
+                        backgroundColor: "#009BAD"
+                      }
+                    }}>
                       <img src={teamm} alt="teams" />
                     </Badge>
                   </a>
@@ -487,8 +429,18 @@ const Header = () => {
                     target={"_blank"}
                     href="https://outlook.office.com/mail/inbox"
                   >
+
+                    <Badge badgeContent="0" color="error" sx={{
+                      top: "3px",
+                      "& .MuiBadge-badge": {
+                        color: "white",
+                        backgroundColor: "#009BAD"
+                      }
+                    }}>
+
                     <Badge badgeContent={data?.response?.unreadItemCount} color="error" sx={{ top: "3px" }}>
                       {/* <MailIcon /> */}
+
                       <img src={outlookIcon} alt="Outlook" />
                     </Badge>
                   </a>
