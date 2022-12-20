@@ -116,7 +116,7 @@ setTimeout(function(){
   }
 },500);
 
-console.log(prayerTime,prayerType)
+ console.log(prayerTime,prayerType,'rgrhrthr6hjaaaa')
 
 
 
@@ -140,7 +140,7 @@ console.log(prayerTime,prayerType)
         <Divider component="span" orientation="vertical" flexItem />
         <ListItem className={classes.weather}>
         <Typography component="h4">Next Prayer</Typography>
-
+           
           <Typography component="h1">{prayerTime}</Typography>
 
           <Typography
