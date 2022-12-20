@@ -5,8 +5,6 @@ import { useCreateTokenwithEventDataOneMutation } from '../../services/APIs'
 const ViewAllEventPage = () => {
     const [sendItem,{data,error,isLoading}] = useCreateTokenwithEventDataOneMutation();
 
- 
-
     console.log(data,'EventData')
     const  getEventData = async(Date:any) =>{
         console.log(Date,'yyyyyyyy')
@@ -18,17 +16,15 @@ const ViewAllEventPage = () => {
       await sendItem(Data)
    }
   return (
-<AuthenticatedTemplate>
-<ViewAllEvents
+    <AuthenticatedTemplate>
+        <ViewAllEvents
              data = {data}
              isLoading={isLoading}
              error= {error}
             onClick={getEventData}        
         />
-</AuthenticatedTemplate>
+    </AuthenticatedTemplate>
   )
 }
-
- 
 
 export default ViewAllEventPage

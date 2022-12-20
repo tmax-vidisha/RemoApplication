@@ -32,7 +32,22 @@ export const usersApi = createApi({
       }),
       
   }),
-
+  getAllUnReadMails: builder.query<any, any>({
+    // query: () => '/api/v1/onedrive/getAllRootItems',
+    query: (id) => ({
+      url: `/api/v1/header/unreadmails/${id}`,
+      // headers:{ "authorization": `${AccessToken}` },
+  }),
+  
+  }),
+  getWeather: builder.query<any, any>({
+    // query: () => '/api/v1/onedrive/getAllRootItems',
+    query: () => ({
+      url: `/api/v1/header/weatherData`,
+      // headers:{ "authorization": `${AccessToken}` },
+  }),
+ 
+  }),
   }),
 })
 
@@ -126,7 +141,7 @@ export const oneDriveApi = createApi({
   }),
   
 })
-export const { useGetAllPrayersQuery,useGetAllCountryCodesQuery,useGetAllCountryCurrencyMutation } = usersApi
+export const { useGetAllPrayersQuery,useGetAllCountryCodesQuery,useGetAllCountryCurrencyMutation,useGetAllUnReadMailsQuery,useGetWeatherQuery } = usersApi
 export const { 
                 useUploadFileOneDriveMutation,
                 useGetItemChildrenOneDriveMutation,

@@ -4,7 +4,7 @@ import { Container, Card, Paper, Typography, Link, Breadcrumbs, Grid, CardMedia 
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useStyles } from './Styles';
 //  import carVideo from '../../Assets/videos/Cars.mp4';
-import { VideoCard } from 'material-ui-player'
+// import { VideoCard } from 'material-ui-player'
 
 const HeroBannerMore = () => {
     const classes = useStyles();
