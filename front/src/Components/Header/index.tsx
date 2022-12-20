@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import { Link, NavLink as RouterNavLink } from "react-router-dom";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from '@mui/icons-material/AccountCircleOutlined';
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Hidden } from "@mui/material";
 import MailIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
@@ -25,7 +25,7 @@ import calendarWhite from "../../Assets/Images/calendarWhite.svg";
 import onenote from "../../Assets/Images/onenote.svg";
 import WeatherMap from './WeatherMap';
 import Backdrop from '@mui/material/Backdrop';
-import { Box, Paper } from '@mui/material';
+import { Box, Paper, IconButton } from '@mui/material';
 import ToggleButton from './ToggleButton';
 import account from '../../Assets/Images/accountNew.svg';
 import banner from '../../Assets/Images/bannerviewNew.svg';
@@ -61,7 +61,7 @@ interface type {
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const {token} = useCustom();
+  const { token } = useCustom();
   const { data, error, isLoading } = useGetAllUnReadMailsQuery(token)
   // console.log(data,'UnReadCount')
   const open = Boolean(anchorEl);
@@ -238,11 +238,11 @@ const Header = () => {
                     <img src={logo} alt="Remo Digital" />
                   </RouterNavLink>
                 </div>
-                <div style={{marginLeft:"80px"}}>
+                <div style={{ marginLeft: "80px" }}>
                   <SearchBar />
                 </div>
               </Box>
-              <Box sx={{ display: { xs: "none", md: "flex", marginLeft:"80px" } }}>
+              <Box sx={{ display: { xs: "none", md: "flex", marginLeft: "80px" } }}>
                 <div>
                   <ToggleButton />
                 </div>
@@ -304,18 +304,11 @@ const Header = () => {
                       style: {
                         width: 350,
                         height: 150,
-                        marginTop: 10
+                        overflow: "Hidden",
                       },
-                    }}
-
-                  >
+                    }} >             
+                      <CloseIcon  onClick={handleOnClose} style={{width:"20px", marginRight:"-270px", cursor:"pointer"}}/>                    
                     <MenuItem>
-                      {/* <Grid style={{display:"flex" , justifyContent:"space-between", fontSize:"8px"}}>
-                      <Grid> Dubai, UAE</Grid>
-                      <Grid> Next Prayer</Grid>
-                      <Grid>1.00 AED is</Grid>
-                    </Grid> */}
-                      {/* <Weather /> */}
                       <WeatherPage />
                     </MenuItem>
 
@@ -430,17 +423,13 @@ const Header = () => {
                     href="https://outlook.office.com/mail/inbox"
                   >
 
-                    <Badge badgeContent="0" color="error" sx={{
+                    <Badge badgeContent={data?.response?.unreadItemCount} color="error" sx={{
                       top: "3px",
                       "& .MuiBadge-badge": {
                         color: "white",
                         backgroundColor: "#009BAD"
                       }
                     }}>
-
-                    <Badge badgeContent={data?.response?.unreadItemCount} color="error" sx={{ top: "3px" }}>
-                      {/* <MailIcon /> */}
-
                       <img src={outlookIcon} alt="Outlook" />
                     </Badge>
                   </a>
@@ -495,8 +484,12 @@ const Header = () => {
                     style: {
                       marginTop: -2
                     },
-                  }}
-                >
+                  }}>
+                    <Box>
+                      <Grid style={{color: "#009BAD", fontSize:"13px"}}>Mohammed </Grid>
+                      <Grid style={{fontSize:"12px"}}>mohammedB@tmax.in</Grid>
+                      </Box>
+                  
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={banner} alt="account" />Display on your banner view</MenuItem>
