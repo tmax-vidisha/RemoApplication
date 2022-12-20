@@ -112,24 +112,30 @@ const IconText = (props: any) => {
               Home
             </Link>
           </Grid>
-          <Grid>
+          <Grid onMouseEnter={event => onMouseOver(event)}
+            onMouseOut={event => onMouseOut(event)}>
             <Link to="/WorkSpaceOne" className={classes.link}>
               WorkSpace
             </Link>
           </Grid>
-          <Grid>
+          <Grid onMouseEnter={event => onMouseOver(event)}
+            onMouseOut={event => onMouseOut(event)}>
             <Link to="/WorkSpaceOne" className={classes.link}>
               Policy & Procedure
             </Link>
           </Grid>
-          <Grid>
+          <Grid onMouseEnter={event => onMouseOver(event)}
+            onMouseOut={event => onMouseOut(event)}>
             <Link to="/ContentEditor" className={classes.link}>
               Content Editor
             </Link>
           </Grid>
-          <Grid>Department</Grid>
-          <Grid>Quick Links</Grid>
-          <Grid>Org Chart</Grid>
+          <Grid onMouseEnter={event => onMouseOver(event)}
+            onMouseOut={event => onMouseOut(event)}>Department</Grid>
+          <Grid onMouseEnter={event => onMouseOver(event)}
+            onMouseOut={event => onMouseOut(event)}>Quick Links</Grid>
+          <Grid onMouseEnter={event => onMouseOver(event)}
+            onMouseOut={event => onMouseOut(event)}>Org Chart</Grid>
           {/* <Grid>
                 {itemsList.map((item: any, id: any, index: any) => {
                     const { icon, label, onClick, path } = item;

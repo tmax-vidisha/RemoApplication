@@ -35,6 +35,7 @@ export const useStyles = makeStyles({
     display: "flex",
     background: "#f3f3f3",
     padding: "5px 9px",
+    marginRight:"45px",
     borderRadius: "30px",
     color: "#333333!important",
     fontSize: "14px",
