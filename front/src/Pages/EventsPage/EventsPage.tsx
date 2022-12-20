@@ -1,7 +1,7 @@
 import React from 'react'
 import Events from '../../Components/Events'
 import useCustom from '../../hooks/useCustom'
-import { useGetAllEventsQuery,useCreateTokenwithEventDataOneMutation } from '../../services/APIs';
+import { useGetAllEventsQuery,useCreateTokenwithEventDataOneMutation,useCreateTokenwithEventDataLandingMutation } from '../../services/APIs';
 import { AuthenticatedTemplate } from '@azure/msal-react';
 
 
@@ -9,7 +9,7 @@ const EventsPage = () => {
     // const {token} = useCustom();
     // const { data, error, isLoading } = useGetAllEventsQuery(token)
     //  console.log(data,'events')
-    const [sendItem,{data,error,isLoading}] = useCreateTokenwithEventDataOneMutation();
+    const [sendItem,{data,error,isLoading}] = useCreateTokenwithEventDataLandingMutation();
     const  getEventData = async(Date:any) =>{
       console.log(Date,'yyyyyyyy')
       const Data = {
