@@ -116,9 +116,7 @@ const Weather: React.FC<IFolderProps> = (props: IFolderProps) => {
     }
   }, 500);
 
-  console.log(prayerTime, prayerType)
-
-
+ console.log(prayerTime,prayerType,'rgrhrthr6hjaaaa')
 
   return (
     <Paper elevation={0}>
@@ -147,7 +145,8 @@ const Weather: React.FC<IFolderProps> = (props: IFolderProps) => {
         </ListItem>
         <Divider component="span" orientation="vertical" flexItem />
         <ListItem className={classes.weather}>
-          <Typography component="h4">Next Prayer</Typography>
+
+        <Typography component="h4">Next Prayer</Typography>
 
           <Typography component="h1">{prayerTime}</Typography>
 

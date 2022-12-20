@@ -1382,6 +1382,60 @@ console.log(responseDate)
         })
       const data = await response.data
       console.log(data, 'kky')
+      // const response1 =
+      //   // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+      //   await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/b74c9809-11b3-487e-b432-cca12365b8ea/items?$expand=fields&$top=2&$orderby=fields/EventDate+asc&$filter=fields/EventDate+gt+'${responseDate}'`, {
+      //     headers: {
+      //       'Authorization': `Bearer ${token} `,
+      //       // 'Content-Type': 'application/json',
+      //       'Prefer':'allowthrottleablequeries'
+      //     }
+
+      //   })
+      //   const dataEventTop= await response1.data
+
+     
+      res.status(200).json({
+        success: true,
+        response: data.value,
+        // res:dataEventTop.value
+
+      });
+
+   
+
+  }
+
+})
+const getRemoEventDataLanding = asyncHandler(async (req: Request, res: Response) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+
+  console.log(req.headers.authorization, 'tssccccttddddttttvvvvvtttttttyy')
+  const token = req.headers.authorization
+  const {  Date } = req.body
+  //  console.log(Date, 'treytrutusc')
+//  const MyDate = moment(Date).format('YYYY-MM-DD'); 
+// //  console.log(MyDate,'sywwa')
+// var momentObj = moment(Date);
+// var momentString = momentObj.format('YYYY-MM-DD'); 
+// console.log(momentString,'rerr')
+// let yourdate = '2021-01-02T07:57:45.121Z';
+
+var responseDate = moment(Date).format('YYYY-MM-DD');
+console.log(responseDate)
+  if (!token) {
+
+    return res.status(404).json({
+      success: false,
+      error: "No Token found"
+    });
+
+  } else {
+    console.log('deklee')
+    
+     
       const response1 =
         // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
         await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/b74c9809-11b3-487e-b432-cca12365b8ea/items?$expand=fields&$top=2&$orderby=fields/EventDate+asc&$filter=fields/EventDate+gt+'${responseDate}'`, {
@@ -1397,8 +1451,8 @@ console.log(responseDate)
      
       res.status(200).json({
         success: true,
-        response: data.value,
-        res:dataEventTop.value
+        response: dataEventTop.value
+        // res:dataEventTop.value
 
       });
 
@@ -1424,5 +1478,6 @@ export {
   postRemEmpHighlight,
   RemEmpHighlightItemId,
   postRemoEventData,
-  getRemoEventData
+  getRemoEventData,
+  getRemoEventDataLanding
 }
