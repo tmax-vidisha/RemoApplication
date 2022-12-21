@@ -39,7 +39,7 @@ import { WeatherPage } from '../../Pages';
 import SearchBar from './SearchBar';
 
 
-import { useGetAllUnReadMailsQuery } from '../../services/graph';
+import { useGetAllUnReadMailsQuery,useGetAllUnReadMeetingsQuery } from '../../services/graph';
 import useCustom from '../../hooks/useCustom';
 const style = {
   position: 'absolute' as 'absolute',
@@ -61,9 +61,13 @@ interface type {
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const { token } = useCustom();
+
+  const {token} = useCustom();
+  //@ts-ignore
+
   const { data, error, isLoading } = useGetAllUnReadMailsQuery(token)
-  // console.log(data,'UnReadCount')
+  const { data:CountData, error:CountError, isLoading:CountLoading } = useGetAllUnReadMeetingsQuery(token)
+  // console.log(CountData?.response.length,'UnReadCountTemas')
   const open = Boolean(anchorEl);
   const classes = useStyles();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -402,7 +406,7 @@ const Header = () => {
                   target={"_blank"}
                   href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
                 >
-                    <Badge badgeContent="1" color="error" sx={{
+                    <Badge badgeContent={CountData?.response.length} color="error" sx={{
                       top: "3px",
                       "& .MuiBadge-badge": {
                         color: "white",
@@ -430,6 +434,7 @@ const Header = () => {
                         backgroundColor: "#009BAD"
                       }
                     }}>
+
                       <img src={outlookIcon} alt="Outlook" />
                     </Badge>
                   </a>
