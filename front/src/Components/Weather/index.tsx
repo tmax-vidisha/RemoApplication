@@ -27,133 +27,135 @@ interface IFolderProps {
   // onDelete?: (id: string) => void;
   // onRename?: (id: string, name: string) => void;
   // onShare?: (id: string) => void;
-  data:any, 
-  error:any,
-  isLoading:any,
-  onClick?: ( name: string) => void;
-    dataItem:any,
-    dataItemError:any,
-    dataItemIsLoading:any,
-    weatherData:any
-    prayerData:any
+  data: any,
+  error: any,
+  isLoading: any,
+  onClick?: (name: string) => void;
+  dataItem: any,
+  dataItemError: any,
+  dataItemIsLoading: any,
+  weatherData: any
+  prayerData: any
 }
 
 // export default function Weather() {
-  const Weather: React.FC<IFolderProps> = (props: IFolderProps) => {
+const Weather: React.FC<IFolderProps> = (props: IFolderProps) => {
   var classes = useStyles();
-    // const {token} = useCustom();
+  // const {token} = useCustom();
   //  console.log(token,'sdsfggs')
-  
+
   const [USD, setUSD] = React.useState('USD');
-  const [prayerTime,setprayerTime]= React.useState<any>();
-  const [prayerType,setPrayerType]= React.useState<any>();
+  const [prayerTime, setprayerTime] = React.useState<any>();
+  const [prayerType, setPrayerType] = React.useState<any>();
   //@ts-ignore
   // const {data,error ,isLoading }  = useGetAllCountryCodesQuery(token);
   //  const {data:prayerData, error:prayerError, isLoading:prayerLoading }  = useGetAllPrayersQuery();
   // console.log(data?.response,'rgrthrjtqaqqqqqqqq')
-  const { data, error, isLoading,onClick,dataItem,dataItemError,dataItemIsLoading,weatherData,prayerData } =props;
-  console.log(data?.response,'rgrthrjtqaqqqqqqqq')
-  console.log(dataItem?.response?.result,"Amount")
+  const { data, error, isLoading, onClick, dataItem, dataItemError, dataItemIsLoading, weatherData, prayerData } = props;
+  console.log(data?.response, 'rgrthrjtqaqqqqqqqq')
+  console.log(dataItem?.response?.result, "Amount")
   const handleChange = (event: SelectChangeEvent) => {
     console.log(event.target.value)
     setUSD(event.target.value);
-};
-const toggleDropdown = () => {
-  setUSD('!USD');
-};
-// const [isDisplayed, setDisplayed] = useState(false);
-const handleTitle = (title:any) =>{
-  // console.log(title,'ttttt')
-  onClick?.(title)
-}
-const  emp =[ {
-  "job_id": 1,
-  "job_name": "Engineer"
-},
-{
-  "job_id": 2,
-  "job_name": "Scientist"
-},
-{
-  "job_id": 3,
-  "job_name": "Teacher"
-}]
-function getDifferenceInhrsandmins(EndTime, StartTime) {
-  let diff = moment(EndTime, 'HH:mm').diff(moment(StartTime, 'HH:mm'));
-  let d = moment.duration(diff);
-  let hours =  Math.floor(d.asHours());
-  let minutes = moment.utc(diff).format("mm");
-  let RemainingTime = hours+":"+minutes;
-  return RemainingTime;
-}
-let CurrentTime:any = moment(new Date()).format("HH:mm");
-      
-setTimeout(function(){
-  if (prayerData?.response?.Fajr > CurrentTime) {
-    let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Fajr,CurrentTime);
-   setprayerTime(prayerData?.response?.Fajr);
-   setPrayerType(`Fajr in ${RemainingTime} Hrs`);
-  } else if (prayerData?.response?.Sunrise > CurrentTime) {
-    let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Sunrise,CurrentTime);
-    setprayerTime(prayerData?.response?.Sunrise);
-    setPrayerType(`Sunrise in ${RemainingTime} Hrs`);
-  } else if (prayerData?.response?.Dhuhr > CurrentTime) {
-    let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Dhuhr,CurrentTime);
-    setprayerTime(prayerData?.response?.Dhuhr);
-    setPrayerType(`Dhuhr in  ${RemainingTime} Hrs`);
-  } else if (prayerData?.response?.Asr > CurrentTime) {
-      let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Asr,CurrentTime);
+  };
+  const toggleDropdown = () => {
+    setUSD('!USD');
+  };
+  // const [isDisplayed, setDisplayed] = useState(false);
+  const handleTitle = (title: any) => {
+    // console.log(title,'ttttt')
+    onClick?.(title)
+  }
+  const emp = [{
+    "job_id": 1,
+    "job_name": "Engineer"
+  },
+  {
+    "job_id": 2,
+    "job_name": "Scientist"
+  },
+  {
+    "job_id": 3,
+    "job_name": "Teacher"
+  }]
+  function getDifferenceInhrsandmins(EndTime, StartTime) {
+    let diff = moment(EndTime, 'HH:mm').diff(moment(StartTime, 'HH:mm'));
+    let d = moment.duration(diff);
+    let hours = Math.floor(d.asHours());
+    let minutes = moment.utc(diff).format("mm");
+    let RemainingTime = hours + ":" + minutes;
+    return RemainingTime;
+  }
+  let CurrentTime: any = moment(new Date()).format("HH:mm");
+
+  setTimeout(function () {
+    if (prayerData?.response?.Fajr > CurrentTime) {
+      let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Fajr, CurrentTime);
+      setprayerTime(prayerData?.response?.Fajr);
+      setPrayerType(`Fajr in ${RemainingTime} Hrs`);
+    } else if (prayerData?.response?.Sunrise > CurrentTime) {
+      let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Sunrise, CurrentTime);
+      setprayerTime(prayerData?.response?.Sunrise);
+      setPrayerType(`Sunrise in ${RemainingTime} Hrs`);
+    } else if (prayerData?.response?.Dhuhr > CurrentTime) {
+      let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Dhuhr, CurrentTime);
+      setprayerTime(prayerData?.response?.Dhuhr);
+      setPrayerType(`Dhuhr in  ${RemainingTime} Hrs`);
+    } else if (prayerData?.response?.Asr > CurrentTime) {
+      let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Asr, CurrentTime);
       setprayerTime(prayerData?.response?.Asr);
       setPrayerType(`Asr in ${RemainingTime} Hrs`);
-  } else if (prayerData?.response?.Maghrib > CurrentTime) {
-    let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Maghrib,CurrentTime);
-    setprayerTime(prayerData?.response?.Maghrib);
-    setPrayerType(`Maghrib in ${RemainingTime} Hrs`);
-  } else if (prayerData?.response?.Isha > CurrentTime) {
-    let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Isha,CurrentTime);
-    setprayerTime(prayerData?.response?.Isha);          
-    setPrayerType(`Isha in ${RemainingTime} Hrs`);
-  }
-},500);
+    } else if (prayerData?.response?.Maghrib > CurrentTime) {
+      let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Maghrib, CurrentTime);
+      setprayerTime(prayerData?.response?.Maghrib);
+      setPrayerType(`Maghrib in ${RemainingTime} Hrs`);
+    } else if (prayerData?.response?.Isha > CurrentTime) {
+      let RemainingTime = getDifferenceInhrsandmins(prayerData?.response?.Isha, CurrentTime);
+      setprayerTime(prayerData?.response?.Isha);
+      setPrayerType(`Isha in ${RemainingTime} Hrs`);
+    }
+  }, 500);
 
  console.log(prayerTime,prayerType,'rgrhrthr6hjaaaa')
-
-
 
   return (
     <Paper elevation={0}>
       <List className={classes.root}>
         <ListItem className={classes.weather}>
           <Typography component="h4">{weatherData?.response?.location?.region}, UAE</Typography>
-          <img src={weatherData?.response?.current?.condition?.icon} alt="weathersky"/>
-          <Typography component="h1">{weatherData?.response?.current?.temp_c}°C</Typography>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <img src={weatherData?.response?.current?.condition?.icon} alt="weathersky" style={{
+                width: "45px",
+                marginLeft: "-20px"
+              }} />
+            </div>
+            <div>
+              <Typography component="h1" sx={{ color: "#009BAD" }}>{weatherData?.response?.current?.temp_c}°C</Typography>
+              <Typography
+                variant="caption"
+                component="div"
+                sx={{ opacity: 0.6 }}
+              >
+                {weatherData?.response?.current?.condition?.text}
+              </Typography>
+            </div>
+          </div>
 
-          <Typography
-            variant="caption"
-
-            component="div"
-            sx={{ opacity: 0.6 }}
-          >
-            {weatherData?.response?.current?.condition?.text}
-          </Typography>
         </ListItem>
         <Divider component="span" orientation="vertical" flexItem />
         <ListItem className={classes.weather}>
+
         <Typography component="h4">Next Prayer</Typography>
-           
+
           <Typography component="h1">{prayerTime}</Typography>
 
           <Typography
             variant="caption"
-
             component="div"
-            sx={{ opacity: 0.6 }}
-          >
-           {prayerType}
-           
-          </Typography> 
-        
-          
+            sx={{ opacity: 0.6 }}>
+            {prayerType}
+          </Typography>
         </ListItem>
         <Divider component="span" orientation="vertical" flexItem />
         <ListItem className={classes.currency}>
@@ -165,47 +167,34 @@ setTimeout(function(){
 
             component="div"
             sx={{ opacity: 0.6 }}
-          >          
+          >
             <Grid>
-                    {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
-                            getChildHandler={breadcrumbClickHandler} /> */}
-                    <FormControl variant="standard" sx={{ m: 1, minWidth: 80, height:100 }} >
-                        {/* <InputLabel id="demo-simple-select-standard-label"><span>usd</span> </InputLabel> */}
-                        <Select
-                            labelId="demo-simple-select-standard-label"
-                            id="demo-simple-select-standard"
-                            value={USD}
-                            onChange={handleChange}
-                            MenuProps={{ PaperProps: { sx: { maxHeight: 90 } } }}
-                            label="USD"
-                            style={{width:"80px", }}
-                        >
-                            {/* <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem> */}
-                            {/* {
-                        emp.map((brand) => {
-                            return <MenuItem value={brand.job_id} key={brand.job_id}>{brand.job_name}</MenuItem>
-                        })
-                    } */}
-                     { data?.response  &&
-                        data?.response.map((brand:any) => {
-                          const {fields = {}} = brand
-                            return <MenuItem style={{width:"50px", fontSize:"10px"}} value={fields?.id} key={ fields?.id} onClick={()=>handleTitle(fields?.Title)}>{fields?.Title}</MenuItem>
-                        })
-                    }
-                        </Select>
-                    </FormControl>
-                </Grid>
+              <FormControl variant="standard" sx={{ m: 1, minWidth: 80, height: 80 , }} >
+                {/* <InputLabel id="demo-simple-select-standard-label"><span>usd</span> </InputLabel> */}
+                <Select
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  value={USD}
+                  onChange={handleChange}
+                  MenuProps={{ PaperProps: { sx: { maxHeight: 90 } } }}
+                  label="USD"
+                  style={{ width: "70px", fontSize:"12px" }}
+                >
+                  {data?.response &&
+                    data?.response.map((brand: any) => {
+                      const { fields = {} } = brand
+                      return <MenuItem style={{ width: "50px", fontSize: "10px" }} value={fields?.id} key={fields?.id} onClick={() => handleTitle(fields?.Title)}>{fields?.Title}</MenuItem>
+                    })
+                  }
+                </Select>
+              </FormControl>
+            </Grid>
           </Typography>
         </ListItem>
       </List>
     </Paper>
     // <> dgdgerrthtrhrt</>
-   
+
   );
 }
 export default Weather;

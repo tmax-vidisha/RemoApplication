@@ -4,16 +4,17 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
   root: {
     width: "100%",
-    maxWidth: "90%",
+    maxWidth: "95%",
     display: "flex",
+    overflowY: 'hidden',
     bgcolor: "background.paper",
      paddingTop: "16px!important",
    marginBottom: "16px!important",
     top:"-6px",
     "& > li": {
-      width: "33.3%",
-      float: "left",
-      textAlign: "center",
+      // width: "33.3%",
+       float: "left",
+      // textAlign: "center",
     },
   },
   weather: {
@@ -27,11 +28,9 @@ export const useStyles = makeStyles({
     "& > h1": {
       fontSize: "15px",
       color: "#009BAD",
-      marginBottom: "5px",
-      lineHeight: "26px",
-    },
-    "& > div": {
      
+    },
+    "& > div": { 
       lineHeight: "13px",
       paddingTop: "3px",
     },
