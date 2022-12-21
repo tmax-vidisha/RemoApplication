@@ -158,7 +158,7 @@ setTimeout(function(){
         <Divider component="span" orientation="vertical" flexItem />
         <ListItem className={classes.currency}>
           <Typography component="h4">1.00 AED is</Typography>
-          <Typography component="h1">{dataItem?.response?.result}</Typography>
+          <Typography component="h1">{parseFloat(dataItem?.response?.result).toFixed(2)}</Typography>
 
           <Typography
             variant="caption"
