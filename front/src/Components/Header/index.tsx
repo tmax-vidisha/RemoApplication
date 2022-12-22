@@ -39,7 +39,7 @@ import { WeatherPage } from '../../Pages';
 import SearchBar from './SearchBar';
 
 
-import { useGetAllUnReadMailsQuery,useGetAllUnReadMeetingsQuery } from '../../services/graph';
+import { useGetAllUnReadMailsQuery,useGetAllUnReadMeetingsQuery,useGetAllUserInfoQuery } from '../../services/graph';
 import useCustom from '../../hooks/useCustom';
 const style = {
   position: 'absolute' as 'absolute',
@@ -67,7 +67,8 @@ const Header = () => {
 
   const { data, error, isLoading } = useGetAllUnReadMailsQuery(token)
   const { data:CountData, error:CountError, isLoading:CountLoading } = useGetAllUnReadMeetingsQuery(token)
-  // console.log(CountData?.response.length,'UnReadCountTemas')
+  const { data:UserData, error:UserError, isLoading:UserLoading } = useGetAllUserInfoQuery(token)
+   console.log(UserData?.response,'UserInfo')
   const open = Boolean(anchorEl);
   const classes = useStyles();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -491,8 +492,8 @@ const Header = () => {
                     },
                   }}>
                     <Box>
-                      <Grid style={{color: "#009BAD", fontSize:"13px"}}>Mohammed </Grid>
-                      <Grid style={{fontSize:"12px"}}>mohammedB@tmax.in</Grid>
+                      <Grid style={{color: "#009BAD", fontSize:"13px"}}>{UserData?.response?.name}</Grid>
+                      <Grid style={{fontSize:"12px"}}>{UserData?.response?.email}</Grid>
                       </Box>
                   
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
