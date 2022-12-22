@@ -35,6 +35,7 @@ import { useStyles } from './Styles';
 import SubCalendar from '../Events/SubCalendar';
 import { Calendar } from 'react-calendar';
 import { WeatherPage } from '../../Pages';
+import close from "../../Assets/Images/close.svg";
 
 import SearchBar from './SearchBar';
 
@@ -243,9 +244,9 @@ const Header = () => {
                 </div>
               </Box>
               <Box sx={{ display: { xs: "none", md: "flex", marginLeft: "80px" } }}>
-                <div>
+                {/* <div>
                   <ToggleButton />
-                </div>
+                </div> */}
                 <div style={{ marginLeft: "50px" }}>
                   <IconButton
                     size="large"
@@ -307,7 +308,7 @@ const Header = () => {
                         overflow: "Hidden",
                       },
                     }} >             
-                      <CloseIcon  onClick={handleOnClose} style={{width:"20px", marginRight:"-270px", cursor:"pointer"}}/>                    
+                      <img src={close}  alt="" onClick={handleOnClose} style={{width:"15px", marginRight:"-290px", cursor:"pointer"}}/>                    
                     <MenuItem>
                       <WeatherPage />
                     </MenuItem>

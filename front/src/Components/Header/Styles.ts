@@ -182,7 +182,11 @@ export const useStyles = makeStyles({
       }
     }
   },
-
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  }
   // switch:{
   //   "& switch-left-right": {
   //     " & switch-label":{

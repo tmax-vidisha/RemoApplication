@@ -55,4 +55,11 @@ export const useStyles = makeStyles({
      
     },
   },
+
+  prayer:{
+    position:"absolute", top:"20px", left:"39px", fontSize:"12px",  color: "#009BAD"
+  },
+  prayerTime:{
+    position:"absolute", top:"44px",fontSize: "12px",color:"#999999", fontWeight:100
+  }
 });

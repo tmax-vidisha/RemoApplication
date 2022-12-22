@@ -7,7 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 // import ImUSDIcon from "@mui/icons-material/ImUSD";
-// import WorkIcon from "@mui/icons-material/Work";
+ import mosque from "../../Assets/Images/prayer.svg";
 import useCustom from "../../hooks/useCustom";
 // import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import Divider from "@mui/material/Divider";
@@ -148,15 +148,14 @@ const Weather: React.FC<IFolderProps> = (props: IFolderProps) => {
         <Divider component="span" orientation="vertical" flexItem />
         <ListItem className={classes.weather}>
           <Typography component="h4">Next Prayer</Typography>
-
-          <Typography component="h1">{prayerTime}</Typography>
-
-          <Typography
-            variant="caption"
-            component="div"
-            sx={{ opacity: 0.6 }}>
+          <div>
+          <img src={mosque} alt=""  style={{position:"relative", width:"80px", marginTop:"-20px"}}/>
+          <p  className={classes.prayer}>{prayerTime}</p>
+          <p className={classes.prayerTime}>
             {prayerType}
-          </Typography>
+          </p>
+          </div>
+         
         </ListItem>
         <Divider component="span" orientation="vertical" flexItem />
         <ListItem className={classes.currency}>
