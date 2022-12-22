@@ -85,9 +85,9 @@ const navigate = useNavigate()
     //  console.log(itemid,'Idss')
     onGetItem?.(itemid)
     // navigate('/birthday', { state: { folderData: ItemData } })
-    if(ItemData !==undefined){
-      navigate('/birthday', { state: { folderData: ItemData } })
-    }
+    // if(ItemData !==undefined){
+    //   navigate('/birthday', { state: { folderData: ItemData } })
+    // }
   }
  
   return (
@@ -190,9 +190,13 @@ const navigate = useNavigate()
                             // src={completePath}
                             src ={img}
                             alt={empName}
-                            onClick={ () =>
+                            onClick={ () =>{
                              
                               handleItem(item.fields?.id)
+                               if(ItemData !==undefined){
+                                  navigate('/birthday', { state: { folderData: ItemData } })
+                                }
+                            }
                             }
                           />
                          
