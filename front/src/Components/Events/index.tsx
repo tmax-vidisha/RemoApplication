@@ -58,7 +58,7 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
     },
     [setValue],
   );
-  console.log(data?.res, 'ryerytuAaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+  console.log(data?.response, 'ryerytuAaaaaaaaaaaaaaaaaaaaaaaaaaaa')
   return (
     <AuthenticatedTemplate>
       <Paper elevation={0}>
@@ -105,11 +105,11 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
 
           </div>
         </List>
-        {data?.res?.length > 0 ?
+        {data?.response?.length > 0 ?
           (
             <>
-              {data?.res &&
-                data?.res?.map((item: any, index: any) => {
+              {data?.response &&
+                data?.response?.map((item: any, index: any) => {
                   const { fields = {} } = item;
 
                   let eventTitle = fields.Title;

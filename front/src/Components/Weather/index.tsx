@@ -116,9 +116,7 @@ const Weather: React.FC<IFolderProps> = (props: IFolderProps) => {
     }
   }, 500);
 
-  console.log(prayerTime, prayerType)
-
-
+ console.log(prayerTime,prayerType,'rgrhrthr6hjaaaa')
 
   return (
     <Paper elevation={0}>
