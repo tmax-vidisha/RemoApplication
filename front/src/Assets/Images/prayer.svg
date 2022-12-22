@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="63" height="47.12" viewBox="0 0 63 47.12">
+  <g id="prayer" transform="translate(-0.447)">
+    <g id="Group_215" data-name="Group 215" transform="translate(16.878)">
+      <g id="Group_214" data-name="Group 214" transform="translate(0 0)">
+        <g id="Group_213" data-name="Group 213" transform="translate(0)">
+          <g id="Group_212" data-name="Group 212">
+            <g id="Group_211" data-name="Group 211">
+              <g id="Group_210" data-name="Group 210">
+                <path id="Path_227" data-name="Path 227" d="M15.205,67h0c1.235,5.58,23.353,8.2,11.564,24.824H3.641C-8.148,75.2,13.858,72.58,15.205,67Z" transform="translate(-0.181 -59.478)" fill="#f4f4f6" fill-rule="evenodd"/>
+                <path id="Path_228" data-name="Path 228" d="M113.094,4.715A4.618,4.618,0,0,1,104,3.592,4.766,4.766,0,0,1,105.684,0a4.575,4.575,0,0,0-.561,2.021,4.5,4.5,0,0,0,4.491,4.491A4.642,4.642,0,0,0,113.094,4.715Z" transform="translate(-92.344 0)" fill="#f4f4f6" fill-rule="evenodd"/>
+                <path id="Path_229" data-name="Path 229" d="M130.807,5l.674,2.021h2.133L131.93,8.254l.561,2.021-1.684-1.235-1.684,1.235.674-2.021L128,7.021h2.133Z" transform="translate(-113.649 -4.439)" fill="#f4f4f6" fill-rule="evenodd"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path id="Rectangle_292" data-name="Rectangle 292" d="M5,0H58a5,5,0,0,1,5,5v9a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V5A5,5,0,0,1,5,0Z" transform="translate(0.447 33.12)" fill="#f4f4f6"/>
+  </g>
+</svg>

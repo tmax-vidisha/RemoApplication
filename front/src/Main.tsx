@@ -70,6 +70,7 @@ import SimpleReactLightbox from 'simple-react-lightbox'
 import Birthday from './Components/Birthday';
 import ViewAllEvents from './Components/ViewAllEvents';
 import HeroBannerMore from './Components/HeroImages/HeroBannerMore';
+import HeroThumbnail from './Components/HeroImages/HeroThumbnail';
 
 
 
@@ -190,9 +191,7 @@ const Main = () => {
                             <Header />
                             {/* <Grid item xs={12}>
                                 <Paper style={{ height: "60px", display: "flex", justifyContent: "center", alignItems: "center" }} elevation={0}>
-
                                     <Typography> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus in blanditiis dolorum Optio voluptatibus  </Typography>
-
                                 </Paper>
                             </Grid> */}
                         </AuthenticatedTemplate>
@@ -337,6 +336,9 @@ const Main = () => {
                             <Route
                               path="/heroBannerMore"
                               element={<HeroBannerMore/>} />
+                            <Route
+                              path="/heroThumbnail"
+                              element={<HeroThumbnail/>} />
                         
                         </Routes>
                     </ThemeProvider>

@@ -1,6 +1,6 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AuthenticatedTemplate } from "@azure/msal-react";
-import { useGetHeroImageQuery,useUpdateHeroTokenMutation,useGetAllHeroQuery } from '../../services/APIs'
+import { useGetHeroImageQuery, useUpdateHeroTokenMutation, useGetAllHeroQuery } from '../../services/APIs'
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import SkeletonAnimation from "../../Containers/Skeleton";
@@ -19,30 +19,31 @@ import { configuration } from "../../index";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
 import Draggable from 'react-draggable';
+import { Link } from 'react-router-dom';
 
 
 // import { height } from 'react-material-ui-carousel/node_modules/@mui/system';
 interface IFolderProps {
   // hero: any;
-  data:any, 
-  error:any,
-  isLoading:any
+  data: any,
+  error: any,
+  isLoading: any
   // onClick: any;
   // onDownload?: (id: string) => void;
   // onDelete?: (id: string) => void;
   // onRename?: (id: string, name: string) => void;
   // onShare?: (id: string) => void;
 }
- const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 //  const HeroImages = () => {
- const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
+const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   // const { data, error, isLoading } =   useGetHeroImageQuery('')
   // console.log(data,'qwwwww')
-//  const classes = useStyles();
+  //  const classes = useStyles();
 
   const theme = useTheme();
-   const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(0);
   //  const pca = new PublicClientApplication(configuration);
   //  const [token, setToken] = useState<string>();
   //   // const [updateToken,{data,isLoading} ] = useUpdateHeroTokenMutation();
@@ -56,7 +57,7 @@ interface IFolderProps {
   //           account: accounts[0]
   //         }
   //         const accessToken = await pca.acquireTokenSilent(request).then((response) => {
-           
+
   //           // updateToken(response.accessToken);
   //             setToken(response.accessToken)
   //           // console.log(token,'uuuuuu')
@@ -65,91 +66,95 @@ interface IFolderProps {
   //           console.log(error);
   //           return null;
   //         });
-  
-  
+
+
   //       }
-  
+
   //       return null;
   //     }
   //     getAccessToken();
-  
-       
-      
-  //   }, [])
-//    var maxSteps= data;
-// const {hero} = props;
-//   const handleNext = () => {
-//     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-//   };
 
-//   const handleBack = () => {
-//     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-//   };
+
+
+  //   }, [])
+  //    var maxSteps= data;
+  // const {hero} = props;
+  //   const handleNext = () => {
+  //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  //   };
+
+  //   const handleBack = () => {
+  //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  //   };
 
   const handleStepChange = (step: number) => {
     setActiveStep(step);
-  }; 
+  };
 
-  const { data, error, isLoading } =  props
-  console.log(data,'888ddd88txccccccccccccccctuytuytu888')
+  const { data, error, isLoading } = props
+  console.log(data, '888ddd88txccccccccccccccctuytuytu888')
 
 
   return (
     <div>
-<AuthenticatedTemplate>
-     {/* <Draggable> */}
-      <Box sx={{ flexGrow: 1, position: "relative" }}>
-        {isLoading ? (
-          <SkeletonAnimation />
-        ) : (
-          <>
-            <AutoPlaySwipeableViews
-              axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-              index={activeStep}
-              
-              onChangeIndex={handleStepChange}
-              enableMouseEvents
-            >
-              {data?.response &&
-                data?.response?.value.map((item: any, index: any) => {
-                  const { fields = {} } = item;
-                var HeroTitle = fields?.Title;
-                var img = fields?.heroUrl
-                var profilePic = JSON.parse(fields.HeroPic);
-                var completePath;
-                if (profilePic.serverUrl) {
-                  completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
-                } else {
-                  completePath = profilePic.serverRelativeUrl
-                }
-                return (
-                  <div key={index}>
-                    {Math.abs(activeStep - index) <= 2 ? (
-                      <Box
-                        component="img"
-                        sx={{
-                          height: 253,
-                          display: "block",
-                          overflow: "hidden",
-                          width: "100%",
-                          borderRadius: "5px",
-                          position: "relative",
-                          paddingBottom:"0px !important"
-                        }}
-                        src={img}
-                        alt={HeroTitle}
-                      />
-                    ) : null}
-                  </div>
-                );
-              })}
-            </AutoPlaySwipeableViews>
-           
-          </>
-        )}
-      </Box>
-      {/* </Draggable> */}
-    </AuthenticatedTemplate>
+      <AuthenticatedTemplate>
+        {/* <Draggable> */}
+        <Box sx={{ flexGrow: 1, position: "relative" }}>
+          {isLoading ? (
+            <SkeletonAnimation />
+          ) : (
+            <>
+              <AutoPlaySwipeableViews
+                axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+                index={activeStep}
+
+                onChangeIndex={handleStepChange}
+                enableMouseEvents
+              >
+                {data?.response &&
+                  data?.response?.value.map((item: any, index: any) => {
+                    const { fields = {} } = item;
+                    var HeroTitle = fields?.Title;
+                    var img = fields?.heroUrl
+                    var profilePic = JSON.parse(fields.HeroPic);
+                    var completePath;
+                    if (profilePic.serverUrl) {
+                      completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
+                    } else {
+                      completePath = profilePic.serverRelativeUrl
+                    }
+                    return (
+                      <div key={index}>
+                        {Math.abs(activeStep - index) <= 2 ? (
+                          <Link to="/heroBannerMore">
+                            <Box
+                              component="img"
+                              sx={{
+                                height: 253,
+                                display: "block",
+                                overflow: "hidden",
+                                width: "100%",
+                                borderRadius: "5px",
+                                position: "relative",
+                                paddingBottom: "0px !important"
+                              }}
+
+                              src={img}
+                              alt={HeroTitle}
+                            />
+                          </Link>
+
+                        ) : null}
+                      </div>
+                    );
+                  })}
+              </AutoPlaySwipeableViews>
+
+            </>
+          )}
+        </Box>
+        {/* </Draggable> */}
+      </AuthenticatedTemplate>
     </div>
   )
 }

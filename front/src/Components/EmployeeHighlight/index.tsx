@@ -92,53 +92,6 @@ const navigate = useNavigate()
  
   return (
     
-
-    // <div>
-    //     <Paper>
-    //     { data && <img  src ={data[0].fields.SASURL.Description}  height="120"/> }
-    //     </Paper>
-    // </div>
-    //  <div>
-          
-    //           {/* {data && data.map((i:any)=>(
-    //             <>
-    //               <Avatar src ={i.image} />
-                  
-    //               </>
-    //           ))} */}
-    //           ggggg
-
-    // <AuthenticatedTemplate>
-      
-    //   {isLoading ?(
-    //     <SkeletonAnimation/>
-    //   )  :(    
-    //           <Paper>
-              
-    //            <Card>
-    //            <AutoPlaySwipeableViews
-    //               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-    //               index={activeStep}
-    //               onChangeIndex={handleStepChange}
-    //               enableMouseEvents
-    //         >
-    //               {data?.response && <img  src ={data?.response.image}  height="120"/> 
-                  
-                  
-    //               }
-                  
-    //               {data?.response && <img  src ={data?.response.image1}  height="120"/> }
-    //               {data?.response && <img  src ={data?.response.image2}  height="120"/> }
-    //             </AutoPlaySwipeableViews>
-                
-    //           </Card>
-             
-    //           </Paper>
-    //    )}     
-      
-    // </AuthenticatedTemplate> 
-
-    // <div>tttt</div>
     <AuthenticatedTemplate>
       <Paper elevation={0}>
         {isLoading ? (
