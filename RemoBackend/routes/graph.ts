@@ -50,7 +50,7 @@ router.route('/ceodata').post(postCeoData)
 router.route('/newsdata').post(postRemoNews)
 router.route('/eventdataOne').post(getRemoEventData)
 router.route('/eventdataLanding').post(getRemoEventDataLanding)
-router.route('/empdata').post(postEmpData)
+// router.route('/empdata').post(postEmpData)
 
 router.route('/empdata').post(postRemEmpHighlight)
 
