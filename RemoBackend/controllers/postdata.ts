@@ -1199,7 +1199,7 @@ const postRemEmpHighlight = asyncHandler(async (req: Request, res: Response) => 
       }
     }
     try {
-      const response = await fetch(`${BASE_PATH}/${Site_Id}/lists/${RemoEmpHight_Id}/items`, {
+      const response = await fetch(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/2b3bb6db-7ba9-43e9-92b4-0216b80ef2fe/items`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

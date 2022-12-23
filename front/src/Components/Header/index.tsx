@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Link, NavLink as RouterNavLink } from "react-router-dom";
 import Toolbar from "@mui/material/Toolbar";
 import Badge from "@mui/material/Badge";
@@ -42,6 +42,7 @@ import SearchBar from './SearchBar';
 
 import { useGetAllUnReadMailsQuery,useGetAllUnReadMeetingsQuery,useGetAllUserInfoQuery } from '../../services/graph';
 import useCustom from '../../hooks/useCustom';
+import moment from 'moment';
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -59,17 +60,31 @@ const style = {
 interface type {
   onClose: () => void;
 }
-
-const Header = () => {
+interface IFolderProps {
+  data:any, 
+  error:any,
+  isLoading:any,
+  CountData:any,
+  CountError:any,
+  CountLoading:any,
+  UserData:any,
+  UserError:any,
+  UserLoading:any,
+  EmpData:any,
+  EmpError:any,
+  EmpLoading:any
+} 
+// const Header = () => {
+  const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
+  const { data, error, isLoading,CountData,CountError,CountLoading,UserData,UserError,UserLoading, EmpData,EmpError,EmpLoading } =   props
   const {token} = useCustom();
   //@ts-ignore
 
-  const { data, error, isLoading } = useGetAllUnReadMailsQuery(token)
-  const { data:CountData, error:CountError, isLoading:CountLoading } = useGetAllUnReadMeetingsQuery(token)
-  const { data:UserData, error:UserError, isLoading:UserLoading } = useGetAllUserInfoQuery(token)
-   console.log(UserData?.response,'UserInfo')
+  // const { data, error, isLoading } = useGetAllUnReadMailsQuery(token)
+  // const { data:CountData, error:CountError, isLoading:CountLoading } = useGetAllUnReadMeetingsQuery(token)
+  // const { data:UserData, error:UserError, isLoading:UserLoading } = useGetAllUserInfoQuery(token)
+   console.log(EmpData?.response,'EmpInfo')
   const open = Boolean(anchorEl);
   const classes = useStyles();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -84,7 +99,7 @@ const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
-
+   const [birthdayName,setBirthdayName] = useState<any>();
   const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
 
   const openFirst = Boolean(anchorE2);
@@ -227,6 +242,34 @@ const Header = () => {
   //   </IconButton>
   //   <p>Profile</p>
   // </MenuItem>;
+  let CurrentDate: any = moment(new Date()).format("DD-MM");
+  console.log(CurrentDate,"Date")
+
+ useEffect(()=>{
+      if(EmpData?.response !==undefined){
+        const  EmpN = EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
+              return i.fields.Name
+            })
+            setBirthdayName(EmpN)
+            // console.log(EmpN ,'rgregreg')
+          //   let modifiedArr = EmpN.map(function(element:any){
+          //     return element ;
+             
+          // });
+       
+      }
+ },[])
+//   const  EmpN = EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
+//     return i.fields.Name
+//   })
+//   // console.log(EmpN ,'rgregreg')
+//   let modifiedArr = EmpN.map(function(element:any){
+//     return element ;
+   
+// });
+// setBirthdayName(modifiedArr)
+
+// console.log(modifiedArr,'mm')
   return (
     <AuthenticatedTemplate>
       <Box sx={{ flexGrow: 1, }}>
@@ -281,7 +324,10 @@ const Header = () => {
                     }}
 
                   >
-                    <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem>
+                    {birthdayName && birthdayName.map((Employee:any)=>{
+                        return <MenuItem onClick={handleClose}>{Employee}'s birthday Today</MenuItem>
+                    })}
+                    
                   </Menu>
                 </div>
                 <div>
