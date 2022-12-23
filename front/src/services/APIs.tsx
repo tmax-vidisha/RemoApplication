@@ -973,7 +973,7 @@ export const {
     useCreateTokenwithDataMutation,
     useCreateTokenwithEventDataMutation,
     useCreateTokenwithHeroDataMutation,
-    useCreateTokenwithCeoDataMutation,
+     useCreateTokenwithCeoDataMutation,
     useCreateTokenwithNewsDataMutation,
     useCreateTokenwithEmpDataMutation,
     useCreateTokenwithUserQuickDataMutation,
