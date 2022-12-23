@@ -99,7 +99,7 @@ interface IFolderProps {
     setAnchorEl(event.currentTarget);
   };
 
-   const [birthdayName,setBirthdayName] = useState<any>();
+   const [birthdayName,setBirthdayName] = useState<string[]>([]);
   const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
 
   const openFirst = Boolean(anchorE2);
@@ -251,6 +251,7 @@ interface IFolderProps {
               return i.fields.Name
             })
             setBirthdayName(EmpN)
+            console.log(birthdayName,'gggggg')
             // console.log(EmpN ,'rgregreg')
           //   let modifiedArr = EmpN.map(function(element:any){
           //     return element ;
@@ -324,10 +325,17 @@ interface IFolderProps {
                     }}
 
                   >
-                    {birthdayName && birthdayName.map((Employee:any)=>{
-                        return <MenuItem onClick={handleClose}>{Employee}'s birthday Today</MenuItem>
-                    })}
                     
+                  
+                    {EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
+                            //  return <MenuItem onClick={handleClose}>{i.fields.Name}'s birthday Today</MenuItem>
+                          // return  console.log(i.fields.Name)
+                          if(i.fields.name !== null || i.fields.name !== undefined ){
+                            return <MenuItem onClick={handleClose}>{i.fields.Name}'s birthday Today</MenuItem>
+                          }else {
+                            return <MenuItem onClick={handleClose}>No birthday Today</MenuItem>
+                          }
+            })}
                   </Menu>
                 </div>
                 <div>
