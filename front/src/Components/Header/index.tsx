@@ -302,9 +302,9 @@ console.log(EmpData?.response,'lllllllllere')
                 </div>
               </Box>
               <Box sx={{ display: { xs: "none", md: "flex", marginLeft: "80px" } }}>
-                {/* <div>
+                <div>
                   <ToggleButton />
-                </div> */}
+                </div>
                 <div style={{ marginLeft: "50px" }}>
                   <IconButton
                     size="large"
@@ -319,7 +319,7 @@ console.log(EmpData?.response,'lllllllllere')
                       <img src={birthday} alt="" />
                     </Badge>
                   </IconButton>
-                  <Menu
+               <Menu
                     id="basic-menu"
                     anchorEl={anchorEl}
                     open={open}
@@ -334,6 +334,10 @@ console.log(EmpData?.response,'lllllllllere')
                     }}
 
                   >
+
+                    <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem>
+                  </Menu> 
+
                     
                   
                     {/* {EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
@@ -361,6 +365,7 @@ console.log(EmpData?.response,'lllllllllere')
             )}
             
                   </Menu>
+
                 </div>
                 <div>
                   <IconButton
@@ -390,8 +395,8 @@ console.log(EmpData?.response,'lllllllllere')
                         height: 150,
                         overflow: "Hidden",
                       },
-                    }} >             
-                      <img src={close}  alt="" onClick={handleOnClose} style={{width:"15px", marginRight:"-290px", cursor:"pointer"}}/>                    
+                    }} >
+                    <img src={close} alt="" onClick={handleOnClose} style={{ width: "15px", marginRight: "-290px", cursor: "pointer" }} />
                     <MenuItem>
                       <WeatherPage />
                     </MenuItem>
@@ -570,11 +575,18 @@ console.log(EmpData?.response,'lllllllllere')
                       marginTop: -2
                     },
                   }}>
+
+                  <Box>
+                    <Grid style={{ color: "#009BAD", fontSize: "13px" }}>Mohammed </Grid>
+                    <Grid style={{ fontSize: "12px" }}>mohammedB@tmax.in</Grid>
+                  </Box>
+
                     <Box>
                       <Grid style={{color: "#009BAD", fontSize:"13px"}}>{UserData?.response?.name}</Grid>
                       <Grid style={{fontSize:"12px"}}>{UserData?.response?.email}</Grid>
                       </Box>
                   
+
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={banner} alt="account" />Display on your banner view</MenuItem>

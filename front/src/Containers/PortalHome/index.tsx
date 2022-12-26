@@ -41,7 +41,7 @@ import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import DraggableHomePage from '../DraggableHomePage';
 import DroppableHomePage from '../DroppableHomePage';
-
+import WhatsNew from './../../Components/Header/WhatsNew';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -171,7 +171,11 @@ const PortalHome = () => {
   //  const gallerydata = data1.Gallery;
 
   return (
-    <div className={classes.root}>
+    <>
+     
+     <WhatsNew />
+    <div className={classes.root} style={{marginTop:"10px"}}>
+       
       <Grid className={classes.bannerTop}>
         <Grid item xs={12} style={{ marginBottom: "10px" }}>
           <HomeNavigationPage />
@@ -284,6 +288,7 @@ const PortalHome = () => {
         </Grid>
       </Grid>
     </div>
+    </>
   )
 }
 

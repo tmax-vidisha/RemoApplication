@@ -86,7 +86,6 @@ const ToggleButton = () => {
             }
             {!toggle &&
                 <div>
-
                     <NewsPageMore />
                 </div>
 

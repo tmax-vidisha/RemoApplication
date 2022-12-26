@@ -84,13 +84,19 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
     setValue(newValue);
   };
   const { data, error, isLoading } = props;
- // console.log(data, '88888ttuytuytu888')
+  // console.log(data, '88888ttuytuytu888')
   return (
     <AuthenticatedTemplate>
       <Paper elevation={0}>
-        <CardContent sx={{ pb: "16px !important" ,}}  style={{marginBottom:"16px" }} >
+        <CardContent sx={{ pb: "16px !important", }} style={{ marginBottom: "16px" }} >
           {!topMenu && clearButton}
           <Box sx={{ display: "flex", justifyContent: "center" }}>
+            
+              {/* <div className={classes.block}>
+                <div className={classes.blockLeft}></div>
+                <div className={classes.blockRight}></div>
+              </div> */}
+           
             <Tabs
               className={classes.button}
               value={value}
@@ -110,7 +116,7 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
                 const { fields = {} } = item;
                 var Title = fields?.Title;
                 var itemId = fields?.id;
-                var completePath; 
+                var completePath;
                 var iconHoverPath;
                 if (fields.Icon != null) {
                   var icon = JSON.parse(fields.Icon);

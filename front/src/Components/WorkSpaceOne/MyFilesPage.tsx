@@ -103,8 +103,6 @@ function SimpleDialog(props: SimpleDialogProps) {
         onOpenFolder(id, name, folder)
     }
 
-
-
     const [openTwo, setOpenTwo] = React.useState(false);
 
     const handleClickTwo = (popup: any) => {
@@ -130,9 +128,7 @@ function SimpleDialog(props: SimpleDialogProps) {
             setCopySuccess('Failed to copy!');
             // console.log('Failed to copy!')
         }
-
     }
-
 
     return (
         <Grid style={{ borderRadius: "10px", }} >
@@ -141,10 +137,7 @@ function SimpleDialog(props: SimpleDialogProps) {
                 aria-controls={openOn ? 'fade-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={openOn ? 'true' : undefined}
-                onClick={handleClick}
-
-            >
-
+                onClick={handleClick}>
                 <img src={actions} alt="actions" />
             </Button>
             <Menu
@@ -156,10 +149,7 @@ function SimpleDialog(props: SimpleDialogProps) {
                 open={openOn}
                 onClose={handleClose}
                 TransitionComponent={Fade}
-                className={classes.menu}
-
-            >
-
+                className={classes.menu}>
                 <MenuItem >
                     <div className={classes.items} onClick={handleFolderOpen}>
                         <img src={openIcon} alt="folder" /> Open
@@ -224,12 +214,9 @@ function SimpleDialog(props: SimpleDialogProps) {
                             <Typography>
                                 <Box style={{ textAlign: "center", color: "#1baab5", }}>
                                     <img src={success} alt="delete" style={{ width: "80px", color: "#1baab5", }} />
-
                                 </Box>
-
                             </Typography>
                             <Grid>
-
                                 <Box>
                                     <Typography style={{ textAlign: "center" }}>deleted Items move to trash successfully</Typography>
                                 </Box>

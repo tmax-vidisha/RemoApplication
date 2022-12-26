@@ -29,20 +29,26 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={announcement} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/tableAnnouncementPage">Announcement
+                        <Link to="/tableAnnouncementPage" className={classes.link}>Announcement
+                        </Link></Grid>
+                </Box>
+                <Box className={classes.boxContent}>
+                    <img src={announcement} alt="announce" />
+                    <Grid component="p" className={classes.texts}>
+                        <Link to="/birthdayEditor" className={classes.link}>Birthday
                         </Link></Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={CEO} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/CEOInput">
+                        <Link to="/CEOInput" className={classes.link}>
                             CEO Message
                         </Link></Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={contentEditor} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/ContentEditor">
+                        <Link to="/ContentEditor" className={classes.link}>
                             Content Editor
                         </Link>
                     </Grid>
@@ -50,7 +56,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={department} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/AnnouncementReadMore">
+                        <Link to="/AnnouncementReadMore" className={classes.link}>
                             Department
                         </Link>
 
@@ -59,8 +65,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={gallery} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-
-                        <Link to="/EventsInput">
+                        <Link to="/EventsInput" className={classes.link}>
                             Events
                         </Link>
                     </Grid>
@@ -68,7 +73,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={events} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/ContentEditor">
+                        <Link to="/ContentEditor" className={classes.link}>
                             Gallery
                         </Link>
                     </Grid>
@@ -76,7 +81,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={Groups} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/HeroInput">
+                        <Link to="/HeroInput" className={classes.link}>
                             Hero Banner
                         </Link>
                     </Grid>
@@ -84,28 +89,28 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={highlights} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/EmpHighInput">
+                        <Link to="/EmpHighInput" className={classes.link}>
                             Highlights
                         </Link> </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={logomaster} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/EmpHighInput">
+                        <Link to="/EmpHighInput" className={classes.link}>
                             Logo Master
                         </Link> </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={navigation} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/ContentEditor">
+                        <Link to="/ContentEditor" className={classes.link}>
                             Navigation
                         </Link> </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={news} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/NewsInfo">
+                        <Link to="/NewsInfo" className={classes.link}>
                             News
                         </Link>
                     </Grid>
@@ -113,7 +118,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={policies} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/Policy">
+                        <Link to="/Policy" className={classes.link}>
                             Policies & Procedure
                         </Link>
                     </Grid>
@@ -121,13 +126,13 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={quickLinks} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/userQuickLink">
+                        <Link to="/userQuickLink" className={classes.link}>
                             Quick Links
                         </Link></Grid>
                 </Box>
-                <Box className={classes.boxContent}>
+                {/* <Box className={classes.boxContent}>
                     <AppVideo />
-                </Box>
+                </Box> */}
 
             </Grid>
         </Grid>

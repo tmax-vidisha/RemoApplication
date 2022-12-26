@@ -93,10 +93,8 @@ export const useStyles = makeStyles({
     color: "white !important",
     marginRight: "15px !important",
     padding: "3px 8px !important",
+},
 
-
-
-  },
   createNew: {
     // backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
