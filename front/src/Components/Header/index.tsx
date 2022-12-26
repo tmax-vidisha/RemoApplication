@@ -146,7 +146,7 @@ interface IFolderProps {
   //   setAnchorEl(null);
   //   handleMobileMenuClose();
   // };
-
+console.log(EmpData?.response,'lllllllllere')
   // const handleMobileMenuOpen = (event: any) => {
   //   setMobileMoreAnchorEl(event.currentTarget);
   // };
@@ -251,7 +251,16 @@ interface IFolderProps {
               return i.fields.Name
             })
             setBirthdayName(EmpN)
-            console.log(birthdayName,'gggggg')
+            console.log(birthdayName,'ggggggeeeeeeeee')
+            if(birthdayName.length >0) {
+              console.log('Birhdadddy')
+              {birthdayName.map((i:any)=>{
+                return console.log(i)
+              })}
+            }else{
+              console.log('No Birthday')
+            }
+            
             // console.log(EmpN ,'rgregreg')
           //   let modifiedArr = EmpN.map(function(element:any){
           //     return element ;
@@ -327,15 +336,30 @@ interface IFolderProps {
                   >
                     
                   
-                    {EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
-                            //  return <MenuItem onClick={handleClose}>{i.fields.Name}'s birthday Today</MenuItem>
+                    {/* {EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
+                        //  return <MenuItem onClick={handleClose}></MenuItem>
                           // return  console.log(i.fields.Name)
-                          if(i.fields.name !== null || i.fields.name !== undefined ){
+                          if( i?.fields.Name !== undefined ){
                             return <MenuItem onClick={handleClose}>{i.fields.Name}'s birthday Today</MenuItem>
+                            // console.log("Birthday")
                           }else {
-                            return <MenuItem onClick={handleClose}>No birthday Today</MenuItem>
+                              return <MenuItem onClick={handleClose}>No birthday Today</MenuItem>
+                            // console.log(" No Birthday")
                           }
-            })}
+                          // if(i.length >0) {
+                          //   return true
+                          // }
+                          
+                        //  return <MenuItem onClick={handleClose}>{i.fields.Name}</MenuItem>
+            })} */}
+            {birthdayName.length >0 ?(
+                 birthdayName.map((i:any)=>{
+                  return <MenuItem onClick={handleClose}>{i}'s birthday Today</MenuItem>
+                })
+            ):(
+             <MenuItem onClick={handleClose}>No birthday Today</MenuItem>
+            )}
+            
                   </Menu>
                 </div>
                 <div>
