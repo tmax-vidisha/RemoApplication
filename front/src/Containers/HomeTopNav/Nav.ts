@@ -10,7 +10,7 @@ export const topNavigationBar = [
       {
         Title: "Workspace",
         Desc: "Current user workspace",
-        Path: "/Workspace",
+        Path: "/WorkSpaceOne",
       },
     ],
   },
@@ -41,18 +41,18 @@ export const topNavigationBar = [
   {
     name: "Department",
     details: [
-      { Title: "Information Technology", Desc: "IT Dept", Path: "" },
+      { Title: "Information Technology", Desc: "IT Dept", Path: "/" },
       { Title: "Admin", Desc: "Admin Dept", Path: "" },
-      { Title: "Finance", Desc: "Finance Dept", Path: "" },
-      { Title: "Operations", Desc: "Operation Dept", Path: "" },
+      { Title: "Finance", Desc: "Finance Dept", Path: "/" },
+      { Title: "Operations", Desc: "Operation Dept", Path: "/" },
     ],
   },
   {
     name: "Quick Links",
-    details: [{ Title: "Link1", Desc: "Link", Path: "" }],
+    details: [{ Title: "Link1", Desc: "Link", Path: "/" }],
   },
   {
     name: "Org Chart",
-    details: [{ Title: "Link1", Desc: "Link", Path: "" }],
+    details: [{ Title: "Link1", Desc: "Link", Path: "/" }],
   },
 ];

@@ -71,7 +71,7 @@ import Birthday from './Components/Birthday';
 import ViewAllEvents from './Components/ViewAllEvents';
 import HeroBannerMore from './Components/HeroImages/HeroBannerMore';
 import HeroThumbnail from './Components/HeroImages/HeroThumbnail';
-
+import BirthdayEditor from './Components/BirthdayEditor/BirthdayEditor';
 
 
 
@@ -339,6 +339,9 @@ const Main = () => {
                             <Route
                               path="/heroThumbnail"
                               element={<HeroThumbnail/>} />
+                            <Route
+                              path="/birthdayEditor"
+                              element={<BirthdayEditor/>} />
                         
                         </Routes>
                     </ThemeProvider>

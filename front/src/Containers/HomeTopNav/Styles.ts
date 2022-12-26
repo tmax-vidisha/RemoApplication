@@ -76,4 +76,23 @@ export const useStyles = makeStyles({
     fontSize: "13px",
     color: "#acacac",
   },
+
+  
+  block :{
+    backgroundColor: "#D25A1E",
+    minHeight: "40px",
+    // minWidth: "30%",
+    width: "calc(50% - 25px)",
+    position: "relative",
+    
+  },
+  
+  blockLeft :{
+    clipPath: "polygon(0 0, 100% 0, calc(100% - 3rem) 100%, 0% 100%)",
+  },
+  
+  blockRight :{
+    marginLeft: "-2rem",
+    clipPath: "polygon(3rem 0, 100% 0, 100% 100%, 0% 100%)",
+  }
 });

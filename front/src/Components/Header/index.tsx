@@ -244,9 +244,9 @@ const Header = () => {
                 </div>
               </Box>
               <Box sx={{ display: { xs: "none", md: "flex", marginLeft: "80px" } }}>
-                {/* <div>
+                <div>
                   <ToggleButton />
-                </div> */}
+                </div>
                 <div style={{ marginLeft: "50px" }}>
                   <IconButton
                     size="large"
@@ -261,7 +261,7 @@ const Header = () => {
                       <img src={birthday} alt="" />
                     </Badge>
                   </IconButton>
-                  <Menu
+               <Menu
                     id="basic-menu"
                     anchorEl={anchorEl}
                     open={open}
@@ -277,7 +277,7 @@ const Header = () => {
 
                   >
                     <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem>
-                  </Menu>
+                  </Menu> 
                 </div>
                 <div>
                   <IconButton
@@ -307,8 +307,8 @@ const Header = () => {
                         height: 150,
                         overflow: "Hidden",
                       },
-                    }} >             
-                      <img src={close}  alt="" onClick={handleOnClose} style={{width:"15px", marginRight:"-290px", cursor:"pointer"}}/>                    
+                    }} >
+                    <img src={close} alt="" onClick={handleOnClose} style={{ width: "15px", marginRight: "-290px", cursor: "pointer" }} />
                     <MenuItem>
                       <WeatherPage />
                     </MenuItem>
@@ -486,11 +486,11 @@ const Header = () => {
                       marginTop: -2
                     },
                   }}>
-                    <Box>
-                      <Grid style={{color: "#009BAD", fontSize:"13px"}}>Mohammed </Grid>
-                      <Grid style={{fontSize:"12px"}}>mohammedB@tmax.in</Grid>
-                      </Box>
-                  
+                  <Box>
+                    <Grid style={{ color: "#009BAD", fontSize: "13px" }}>Mohammed </Grid>
+                    <Grid style={{ fontSize: "12px" }}>mohammedB@tmax.in</Grid>
+                  </Box>
+
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={banner} alt="account" />Display on your banner view</MenuItem>

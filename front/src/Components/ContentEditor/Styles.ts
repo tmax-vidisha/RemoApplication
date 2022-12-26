@@ -97,25 +97,34 @@ export const useStyles = makeStyles({
 
   mainPart:{
     display:"grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    padding:"20px"
+    gridTemplateColumns: "repeat(4, 1fr)",
+    padding:"15px",
+    "& :hover":{
+      backgroundColor:"#009BAD",
+      color:"white",
+    }
+
   },
   texts:{
     fontSize:"12px",
     marginTop:"10px",
     color: "#1BAAB5",
     // color: "#606C74",
-    // "&:hover": {
-    //   color: "#1BAAB5",
-    // },
-
     "& div":{
         fontSize:"12px",
         "& p":{
             fontSize:"12px",
-
+            color: "#1BAAB5",
+            "&:hover": {
+              color: "white",
+            },
+           
         }
     }
+  },
+  link:{
+    color:"#009BAD",
+    textDecoration:"none",
   },
 
   headText:{
