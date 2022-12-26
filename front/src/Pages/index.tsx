@@ -27,6 +27,7 @@ import MyRecent from "./WorkSpace/OneDrive/MyRecent";
 import ImagesAndVideosPage from "./ImagesAndVideosPage/ImagesAndVideosPage";
 import WeatherPage from "./WeatherPage/WeatherPage";
 import ViewAllEventPage from "./EventsPage/ViewAllEventPage";
+import HeaderPage from "./HeaderPage/HeaderPage";
 export {
     
         EventsPage,
@@ -57,6 +58,7 @@ export {
         MoreNewsPage,
         ImagesAndVideosPage,
         WeatherPage,
-        ViewAllEventPage
+        ViewAllEventPage,
+        HeaderPage
 
       };
