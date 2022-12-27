@@ -30,7 +30,8 @@ import {
     SubNewss,
     MoreNewsPage,
     ImagesAndVideosPage,
-    ViewAllEventPage
+    ViewAllEventPage,
+    HeaderPage
      } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';
@@ -189,7 +190,7 @@ const Main = () => {
                 <Router>
                     <ThemeProvider theme={theme}>
                     <AuthenticatedTemplate>
-                            <Header />
+                            <HeaderPage />
                             {/* <Grid item xs={12}>
                                 <Paper style={{ height: "60px", display: "flex", justifyContent: "center", alignItems: "center" }} elevation={0}>
                                     <Typography> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus in blanditiis dolorum Optio voluptatibus  </Typography>

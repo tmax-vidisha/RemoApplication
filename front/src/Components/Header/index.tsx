@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Link, NavLink as RouterNavLink } from "react-router-dom";
 import Toolbar from "@mui/material/Toolbar";
 import Badge from "@mui/material/Badge";
@@ -40,8 +40,9 @@ import close from "../../Assets/Images/close.svg";
 import SearchBar from './SearchBar';
 
 
-import { useGetAllUnReadMailsQuery } from '../../services/graph';
+import { useGetAllUnReadMailsQuery,useGetAllUnReadMeetingsQuery,useGetAllUserInfoQuery } from '../../services/graph';
 import useCustom from '../../hooks/useCustom';
+import moment from 'moment';
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -59,12 +60,31 @@ const style = {
 interface type {
   onClose: () => void;
 }
-
-const Header = () => {
+interface IFolderProps {
+  data:any, 
+  error:any,
+  isLoading:any,
+  CountData:any,
+  CountError:any,
+  CountLoading:any,
+  UserData:any,
+  UserError:any,
+  UserLoading:any,
+  EmpData:any,
+  EmpError:any,
+  EmpLoading:any
+} 
+// const Header = () => {
+  const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const { token } = useCustom();
-  const { data, error, isLoading } = useGetAllUnReadMailsQuery(token)
-  // console.log(data,'UnReadCount')
+  const { data, error, isLoading,CountData,CountError,CountLoading,UserData,UserError,UserLoading, EmpData,EmpError,EmpLoading } =   props
+  const {token} = useCustom();
+  //@ts-ignore
+
+  // const { data, error, isLoading } = useGetAllUnReadMailsQuery(token)
+  // const { data:CountData, error:CountError, isLoading:CountLoading } = useGetAllUnReadMeetingsQuery(token)
+  // const { data:UserData, error:UserError, isLoading:UserLoading } = useGetAllUserInfoQuery(token)
+   console.log(EmpData?.response,'EmpInfo')
   const open = Boolean(anchorEl);
   const classes = useStyles();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -79,7 +99,7 @@ const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
-
+   const [birthdayName,setBirthdayName] = useState<string[]>([]);
   const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
 
   const openFirst = Boolean(anchorE2);
@@ -126,7 +146,7 @@ const Header = () => {
   //   setAnchorEl(null);
   //   handleMobileMenuClose();
   // };
-
+console.log(EmpData?.response,'lllllllllere')
   // const handleMobileMenuOpen = (event: any) => {
   //   setMobileMoreAnchorEl(event.currentTarget);
   // };
@@ -222,6 +242,44 @@ const Header = () => {
   //   </IconButton>
   //   <p>Profile</p>
   // </MenuItem>;
+  let CurrentDate: any = moment(new Date()).format("DD-MM");
+  console.log(CurrentDate,"Date")
+
+ useEffect(()=>{
+      if(EmpData?.response !==undefined){
+        const  EmpN = EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
+              return i.fields.Name
+            })
+            setBirthdayName(EmpN)
+            console.log(birthdayName,'ggggggeeeeeeeee')
+            if(birthdayName.length >0) {
+              console.log('Birhdadddy')
+              {birthdayName.map((i:any)=>{
+                return console.log(i)
+              })}
+            }else{
+              console.log('No Birthday')
+            }
+            
+            // console.log(EmpN ,'rgregreg')
+          //   let modifiedArr = EmpN.map(function(element:any){
+          //     return element ;
+             
+          // });
+       
+      }
+ },[])
+//   const  EmpN = EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
+//     return i.fields.Name
+//   })
+//   // console.log(EmpN ,'rgregreg')
+//   let modifiedArr = EmpN.map(function(element:any){
+//     return element ;
+   
+// });
+// setBirthdayName(modifiedArr)
+
+// console.log(modifiedArr,'mm')
   return (
     <AuthenticatedTemplate>
       <Box sx={{ flexGrow: 1, }}>
@@ -276,8 +334,38 @@ const Header = () => {
                     }}
 
                   >
+
                     <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem>
                   </Menu> 
+
+                    
+                  
+                    {/* {EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
+                        //  return <MenuItem onClick={handleClose}></MenuItem>
+                          // return  console.log(i.fields.Name)
+                          if( i?.fields.Name !== undefined ){
+                            return <MenuItem onClick={handleClose}>{i.fields.Name}'s birthday Today</MenuItem>
+                            // console.log("Birthday")
+                          }else {
+                              return <MenuItem onClick={handleClose}>No birthday Today</MenuItem>
+                            // console.log(" No Birthday")
+                          }
+                          // if(i.length >0) {
+                          //   return true
+                          // }
+                          
+                        //  return <MenuItem onClick={handleClose}>{i.fields.Name}</MenuItem>
+            })} */}
+            {birthdayName.length >0 ?(
+                 birthdayName.map((i:any)=>{
+                  return <MenuItem onClick={handleClose}>{i}'s birthday Today</MenuItem>
+                })
+            ):(
+             <MenuItem onClick={handleClose}>No birthday Today</MenuItem>
+            )}
+            
+                  </Menu>
+
                 </div>
                 <div>
                   <IconButton
@@ -403,7 +491,7 @@ const Header = () => {
                   target={"_blank"}
                   href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
                 >
-                    <Badge badgeContent="1" color="error" sx={{
+                    <Badge badgeContent={CountData?.response.length} color="error" sx={{
                       top: "3px",
                       "& .MuiBadge-badge": {
                         color: "white",
@@ -431,6 +519,7 @@ const Header = () => {
                         backgroundColor: "#009BAD"
                       }
                     }}>
+
                       <img src={outlookIcon} alt="Outlook" />
                     </Badge>
                   </a>
@@ -486,10 +575,17 @@ const Header = () => {
                       marginTop: -2
                     },
                   }}>
+
                   <Box>
                     <Grid style={{ color: "#009BAD", fontSize: "13px" }}>Mohammed </Grid>
                     <Grid style={{ fontSize: "12px" }}>mohammedB@tmax.in</Grid>
                   </Box>
+
+                    <Box>
+                      <Grid style={{color: "#009BAD", fontSize:"13px"}}>{UserData?.response?.name}</Grid>
+                      <Grid style={{fontSize:"12px"}}>{UserData?.response?.email}</Grid>
+                      </Box>
+                  
 
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
                   <MenuItem onClick={handleClose5} className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
