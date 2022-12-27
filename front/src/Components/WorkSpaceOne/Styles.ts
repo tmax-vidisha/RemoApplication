@@ -245,6 +245,7 @@ export const useStyles = makeStyles({
     padding: "0px",
     margin: "50px",
     backgroundColor: "#d1eae33b",
+    background: "#d1eae33b",
   },
   sideBar: {
     // marginLeft: "25px",
