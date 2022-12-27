@@ -1,10 +1,15 @@
+// @ts-nocheck
 import { Grid, Typography, Paper, Container, Link, Breadcrumbs, Box, Card } from '@mui/material';
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import IconText from '../Header/IconText';
 import { useStyles } from './Styles';
 import { SRLWrapper } from "simple-react-lightbox";
+import Slider from "react-slick";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 interface IFolderProps {
   data: any,
   error: any,
@@ -36,9 +41,70 @@ const FolderItems = () => {
 
   // const [show, setShow] = React.useState(false)
   const HandleClick = () => setShowResults(true);
+  const [nav1, setNav1] = useState(null);
+  const [nav2, setNav2] = useState(null);
+  const [slider1, setSlider1] = useState(null);
+  const [slider2, setSlider2] = useState(null);
+
+  useEffect(() => {
+
+    setNav1(slider1);
+    setNav2(slider2);
+
+  });
+
+
+  const settingsMain = {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+    asNavFor: '.slider-nav'
+  };
+
+  const settingsThumbs = {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    asNavFor: '.slider-for',
+    dots: true,
+    centerMode: true,
+    swipeToSlide: true,
+    focusOnSelect: true,
+    centerPadding: '10px'
+  };
+
+  const slidesData = [
+    {
+      id: 1,
+      title: 'repellendus id ullam',
+      label: 'Dolorem officiis temporibus.'
+    }, {
+      id: 2,
+      title: 'excepturi consequatur est',
+      label: 'Officia non provident dolor esse et neque.'
+    }, {
+      id: 3,
+      title: 'eius doloribus blanditiis',
+      label: 'Ut recusandae vel vitae molestiae id soluta.'
+    }, {
+      id: 4,
+      title: 'nihil voluptates delectus',
+      label: 'Qui vel consequatur recusandae illo repellendus.'
+    }, {
+      id: 5,
+      title: 'nemo dolorem necessitatibus',
+      label: 'Placeat odit velit itaque voluptatem.'
+    }, {
+      id: 6,
+      title: 'dolorem quibusdam quasi',
+      label: 'Adipisci officiis repudiandae.'
+    },
+  ];
+
+
   return (
     <div>
- <IconText />
+      <IconText />
       <Container className={classes.contentEditorWidth}>
         <Card className={classes.cardHeight} elevation={0}>
           <Paper className={classes.innerBackground}>
@@ -78,39 +144,109 @@ const FolderItems = () => {
               <p style={{ color: "#39c8cf", }} onClick={HandleClick}>Videos</p>
             </Box>
             {showResults ? (
-               <Box style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)",}}>
-               {
-                 filterdVideoData.map((item: any) => (
-                   <Grid  >
+                 <Box style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)",}}>
+                 {
+                   filterdVideoData.map((item: any) => (
+                     <Grid  >
 
-                     <video width="200" height="150" controls>
-                       <source src={item.webUrl} type="video/mp4" />
-                     </video>
-                    
-                   </Grid>
-                 ))
-               }
- 
-             </Box>
-             
+                       <video width="200" height="150" >
+                         <source src={item.webUrl} type="video/mp4" />
+                       </video>
+
+                     </Grid>
+                   ))
+                 }
+
+               </Box>
+              // <div>
+              //   <div>
+              //     <Slider
+              //       {...settingsMain}
+              //       asNavFor={nav2}
+              //       ref={slider => (setSlider1(slider))}
+              //     >
+
+              //       {
+              //         filterdVideoData.map((item: any) => (
+              //           <Grid  >
+
+              //             <video width="200" height="150"
+              //             >
+              //               <source src={item.webUrl} type="video/mp4" />
+              //             </video>
+
+              //           </Grid>
+              //         ))
+              //       }
+
+              //     </Slider>
+              //   </div>
+              //   <div >
+              //     <Slider
+
+              //       asNavFor={nav1}
+              //       ref={slider => (setSlider2(slider))}
+              //       slidesToShow={4}
+              //       swipeToSlide={true}
+              //       focusOnSelect={true}
+              //       infinite={false}
+              //       autoplay={false}
+              //       arrows={false}
+              //       centerMode={false}
+              //       responsive={[
+              //         {
+              //           breakpoint: 768,
+              //           settings: {
+              //             slidesToShow: 3,
+              //             slidesToScroll: 1,
+              //             infinite: false,
+              //             dots: false,
+              //             arrows: false,
+              //             autoplay: false,
+              //             centerMode: false
+              //           }
+              //         }
+              //       ]
+              //       }
+              //     >
+
+              //       {
+              //         filterdVideoData.map((item: any) => (
+              //           <li><a href="#" data-interception="off">
+
+              //             <video width="200" height="150" >
+              //               <source src={item.webUrl} type="video/mp4" />
+              //             </video>
+
+              //           </a></li>
+              //         ))
+              //       }
+
+              //     </Slider>
+              //   </div>
+
+
+
+              // </div>
+
             ) : (
               <SRLWrapper>
-              <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
-              {
-                filterdImagesData.map((item: any) => (
-                  <Grid  >
-                    <img src={item.webUrl}  style={{ width: "167px", height: "170px", margin:"20px",borderRadius:"10px" }} />
-                  </Grid>
-                ))
-              }
+                <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
+                  {
+                    filterdImagesData.map((item: any) => (
+                      <Grid  >
+                        <img src={item.webUrl} style={{ width: "167px", height: "170px", margin: "20px", borderRadius: "10px" }} />
+                      </Grid>
+                    ))
+                  }
 
-            </Box>
-            </SRLWrapper>
+                </Box>
+              </SRLWrapper>
             )
 
             }
-            
-           
+
+
 
           </Grid>
         </Paper>
