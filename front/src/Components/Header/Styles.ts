@@ -109,9 +109,9 @@ export const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-evenly",
     textAlign: "center",
-    height: "30px",
+    height: "25px",
     fontSize: "12px",
-    marginTop: "10px"
+    // marginTop: "10px"
   },
 
   link: {
@@ -186,92 +186,11 @@ export const useStyles = makeStyles({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  }
-  // switch:{
-  //   "& switch-left-right": {
-  //     " & switch-label":{
-  //      overflow: "hidden",
-
-  //     },
-
-  //     "& switch-label:before":{
-  //       width: "20px",
-  //       height: "20px",
-  //       top: "4px",
-  //       left:" 0",
-  //       right: "0",
-  //       bottom:" 0",
-  //       padding: "11px 0 0 0",
-  //       textIndent: "-12px",
-  //       borderRadius: "20px",
-  //       boxShadow: "inset 0 1px 4px rgba(0, 0, 0, 0.2), inset 0 0 3px rgba(0, 0, 0, 0.1)",
-  //     },
-  //     "& switch-label:after":{
-  //       width: "20px",
-  //       height: "20px",
-  //       top: "4px",
-  //       left:" 0",
-  //       right: "0",
-  //       bottom:" 0",
-  //       padding: "11px 0 0 0",
-  //       textIndent: "-12px",
-  //       borderRadius: "20px",
-  //       boxShadow: "inset 0 1px 4px rgba(0, 0, 0, 0.2), inset 0 0 3px rgba(0, 0, 0, 0.1)",
-  //     },     
-  //    },  
-  //    "& switch-left-right, & switch-label:before": {
-  //     background: "#eceeef",
-  //     textAlign: "left",
-  //     paddingLeft: "80px",
-  //   },
-  //   "& switch-left-right , & switch-input:checked ~ & switch-label:before ":{
-  //     opacity: 1,
-  //     left: "100px",
-  //   },
-  //   "& switch-left-right , & switch-input:checked ~ & switch-label:after ":{
-  //     left: 0,
-  //   },
-  //   "switch-left-right .switch-input:checked ~ .switch-label":{
-  //     background: "inherit",
-  //   }
-
-  // }
-  
-  // .switch-left-right .switch-label:before, .switch-left-right .switch-label:after {
-  //   width: 20px;
-  //   height: 20px;
-  //   top: 4px;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   padding: 11px 0 0 0;
-  //   text-indent: -12px;
-  //   border-radius: 20px;
-  //   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2), inset 0 0 3px rgba(0, 0, 0, 0.1);
-  // }
-  // .switch-left-right .switch-label:before {
-  //   background: #eceeef;
-  //   text-align: left;
-  //   padding-left: 80px;
-  // }
-  // .switch-left-right .switch-label:after {
-  //   text-align: left;
-  //   text-indent: 9px;
-  //   background: #FF7F50;
-  //   left: -100px;
-  //   opacity: 1;
-  //   width: 100%;
-  // }
-  // .switch-left-right .switch-input:checked ~ .switch-label:before {
-  //   opacity: 1;
-  //   left: 100px;
-  // }
-  // .switch-left-right .switch-input:checked ~ .switch-label:after {
-  //   left: 0;
-  // }
-  // .switch-left-right .switch-input:checked ~ .switch-label {
-  //   background: inherit;
-  // }
-
+  },
+ 
+what:{
+  boxShadow: "10px 1px 30px -10px #858080fc",
+  height: "40px", display: "flex", justifyContent: "center", alignItems: "center", marginTop:"10px", marginBottom:"10px"
+}
 
 });

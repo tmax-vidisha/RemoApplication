@@ -13,6 +13,7 @@ import { NavLink } from "react-router-dom";
 import IconText from '../Header/IconText';
 import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
 import AllLinks from './../Quicklinks/AllLinks';
+import WhatsNew from '../Header/WhatsNew';
 
 
 
@@ -28,13 +29,9 @@ const WorkSpaceOne = () => {
        
        <IconText />
             <Grid item xs={12}>
-                <Paper style={{ height: "50px", display: "flex", justifyContent: "flex-start", alignItems: "center", marginTop: "20px" }} elevation={0}>
-
-                    <Typography style={{ textAlign: "center", marginLeft: "30px", marginRight: "30px" }}><span> <img src={announcementIcon} alt="" /></span> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus   </Typography>
-
-                </Paper>
+                <WhatsNew/>
             </Grid>
-            <Box style={{ margin: "30px" }}>
+            <Box style={{ margin: "30px", }}>
 
                 <Grid container item xs={12} className={classes.bigPaper}>
                     <Grid item xs={1} >

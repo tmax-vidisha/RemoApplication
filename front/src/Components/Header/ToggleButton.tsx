@@ -58,9 +58,9 @@ interface type {
 
 }
 
-const ToggleButton = () => {
+const ToggleButton = (permission:any) => {
     const classes = useStyles();
-  
+
 
     const [toggle, setToggle] = React.useState(true);
     const toggleChecked = () => setToggle(toggle => !toggle);
@@ -72,11 +72,22 @@ const ToggleButton = () => {
     return (
         <div>
 
-            <div style={{marginTop:"15px", backgroundColor: "permission.enabled ? 'green' : 'orange'"}}>
+            <div style={{ marginTop: "15px"}}>
                 <Space direction="vertical">
-                    <Switch checkedChildren="left side menu open" unCheckedChildren="right side menu open" defaultChecked />
+                    <Switch 
+                    checkedChildren={"slide to top menu"}
+                     unCheckedChildren={"slide to left menu " }
+                     defaultChecked={true}
+                     style={{border: permission.enabled ? '1px solid white' : '1px solid white',
+                      backgroundColor:permission.enabled?'#02354D':'#02354D',
+                    color:permission.enabled ? 'white':'yellow', width:"150px"}}
+                      onChange={(checked) =>{
+                        console.log("switch is checked", checked)
+                      }}
+                      
+                    />
                 </Space>
-              
+
             </div>
             {toggle &&
                 <div>
@@ -90,7 +101,7 @@ const ToggleButton = () => {
                 </div>
 
             }
-           
+
         </div>
     );
 }
