@@ -6,11 +6,17 @@ import Header from '../Header';
 // import  poster from "../../Assets/videos/poster.mp4"
 import { Card } from '@mui/material';
 import { CardMedia } from '@mui/material';
-
+import {useLocation, useNavigate } from 'react-router-dom';
 
 
 const HeroThumbnail = () => {
     const classes = useStyles();
+    let location = useLocation();
+    console.log(location.state);
+    //@ts-ignore
+    const { folderData } = location.state;
+
+    console.log(folderData,'hththfhfz')
     return (
         <div>
             <IconText />      
@@ -28,7 +34,7 @@ const HeroThumbnail = () => {
                         component="video"
                         autoPlay
                         controls
-                       src="../../Assets/videos/poster.mp4"
+                        src={folderData}
                         // src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                         width="840"
                         height="300"

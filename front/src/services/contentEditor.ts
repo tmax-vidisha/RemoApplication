@@ -4,7 +4,7 @@ import { AccessToken } from '../App';
 
 
 
-
+//@ts-ignore
 
 export const contentEditorApi = createApi({
     reducerPath: 'contentEditorApi',

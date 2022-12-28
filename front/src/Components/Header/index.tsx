@@ -333,10 +333,20 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                       style: {
                         marginTop: 15
                       },
-                    }}>
+                    }}
 
-                    {/* <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem>
-                  </Menu> */}
+                  >
+
+                    {/* <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem> */}
+                    {birthdayName.length > 0 ? (
+                    birthdayName.map((i: any) => {
+                      console.log(i,'kkkkkkkkkkkk')
+                      return <MenuItem onClick={handleClose}>{i}'s birthday Today</MenuItem>
+                    })
+                  ) : (
+                    <MenuItem onClick={handleClose}>No birthday Today</MenuItem>
+                  )}
+                  </Menu>
 
 
 
@@ -356,16 +366,9 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                           
                         //  return <MenuItem onClick={handleClose}>{i.fields.Name}</MenuItem>
             })} */}
-                  {birthdayName.length > 0 ? (
-                    birthdayName.map((i: any) => {
-                      return <MenuItem onClick={handleClose}>{i}'s birthday Today</MenuItem>
-                    })
-                  ) : (
-                    <MenuItem onClick={handleClose}>No birthday Today</MenuItem>
-                  )}
+                
 
-                </Menu>
-
+              
               </div>
               <div>
                 <IconButton

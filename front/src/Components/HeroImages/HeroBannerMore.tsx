@@ -3,12 +3,18 @@ import IconText from '../Header/IconText';
 import { Container, Card, Paper, Typography, Link, Breadcrumbs, Grid, CardMedia } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useStyles } from './Styles';
+import {useLocation } from 'react-router-dom';
 //  import carVideo from '../../Assets/videos/Cars.mp4';
 // import { VideoCard } from 'material-ui-player'
-
+var moment = require("moment-timezone");
 const HeroBannerMore = () => {
     const classes = useStyles();
+    let location = useLocation();
+    console.log(location.state);
+    //@ts-ignore
+    const { folderData= {},Title,Description,Modified } = location.state;
 
+    console.log(folderData,Title,Description,Modified,'hrtret5ey   r6')
     return (
         <div>
             <IconText />
@@ -62,7 +68,7 @@ const HeroBannerMore = () => {
                                     component="video"
                                     autoPlay
                                     controls
-                                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                                    src={folderData}
                                     width="840"
                                     height="300"
                                 />
@@ -73,10 +79,10 @@ const HeroBannerMore = () => {
                             <VideoCard src={'https://youtu.be/nvzkHGNdtfk'}   />
                         </Card> */}
                         <Grid item xs={12} style={{ margin: "30px" }}>
-                            <Typography style={{ color: "#606C74", textAlign: "left" }}>Technology thats designed  to help us all live</Typography>
-                            <Typography style={{ color: "#1BAAB5", textAlign: "left" }}>Today</Typography>
+                            <Typography style={{ color: "#606C74", textAlign: "left" }}>{Title}</Typography>
+                            <Typography style={{ color: "#1BAAB5", textAlign: "left" }}>{moment(Modified).format('DD-MM-YYYY')}</Typography>
                             <Typography style={{color: "#606C74",}}>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                               {Description}
                             </Typography>
                         </Grid>
                     </Grid>

@@ -4,6 +4,7 @@ import { useGetHeroImageQuery, useUpdateHeroTokenMutation, useGetAllHeroQuery } 
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import SkeletonAnimation from "../../Containers/Skeleton";
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -41,6 +42,7 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   // const { data, error, isLoading } =   useGetHeroImageQuery('')
   // console.log(data,'qwwwww')
   //  const classes = useStyles();
+  const navigate = useNavigate();
 
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -94,7 +96,16 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   const { data, error, isLoading } = props
   console.log(data, '888ddd88txccccccccccccccctuytuytu888')
 
+ const  handleClick = (Url:any) =>{
+  navigate('/heroThumbnail', { state: { folderData: Url } })
+ }
 
+ const  handleReadMoreVideo = (Url:any,Title:any,Description:any,Modified:any) =>{
+  navigate('/heroBannerMore', { state: { folderData: Url,Title,Description,Modified } })
+ }
+ const  handleReadMoreImages = (Url:any,Title:any,Description:any,Modified:any) =>{
+  navigate('/heroBannerMoreImages', { state: { folderData: Url,Title,Description,Modified } })
+ }
   return (
     // <div>
     //   <AuthenticatedTemplate>
@@ -183,11 +194,11 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
                          
                               
                               
-                              <h1>{HeroTitle}</h1>
+                              <h1 onClick={()=> handleReadMoreVideo(fields?.Url,HeroTitle,fields.Description,fields?.Modified)}>{HeroTitle}</h1>
                                <video width="200" height="150" >
                                   <source src={fields?.Url} type="video/mp4" />
                                 </video>
-
+                              <button onClick={()=> handleClick(fields?.Url)}>Start Explore</button>
                               
                             
   
@@ -200,7 +211,7 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <div key={index}>
                          
                             
-                         <h1>{HeroTitle}</h1>
+                         <h1 onClick={()=> handleReadMoreImages(fields?.Url,HeroTitle,fields.Description,fields?.Modified)}>{HeroTitle}</h1>
                          <img src={fields?.Url} style={{ width: "167px", height: "170px", margin: "20px", borderRadius: "10px" }} />
                               
                             
