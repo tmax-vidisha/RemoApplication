@@ -78,6 +78,15 @@ import CeoEditor from './Components/CeoEditor/CeoEditor';
 import CeoContentPage from './Components/CeoEditor/CeoContentPage';
 import HeroContentPage from './Components/HeroEditor/HeroContentPage';
 import ContentEditorPage from './Components/EditorContent/ContentEditorPage';
+import DepartmentContentPage from './Components/DepartmentEditor/DepartmentContentPage';
+import EventsContentPage from './Components/EventsEditor/EventsContentPage';
+import GalleryContentPage from './Components/GalleryEditor/GalleryContentPage';
+import HighlightsContentPage from './Components/HighlightsEditor/HighlightsContentPage';
+import LogoContentPage from './Components/LogoMasterEditor/LogoContentPage';
+import NavigationContentPage from './Components/NavigationEditor/NavigationContentPage';
+import NewsContentPage from './Components/NewsEditor/NewsContentPage';
+import PoliciesContentPage from './Components/PoliciesEditor/PoliciesContentPage';
+import QuickContentPage from './Components/QuickLinksEditor/QuickContentPage';
 
 
 
@@ -357,6 +366,33 @@ const Main = () => {
                             <Route
                               path="/contentEditorPage"
                               element={<ContentEditorPage/>} />
+                            <Route
+                              path="/departmentContentPage"
+                              element={<DepartmentContentPage/>} />
+                            <Route
+                              path="/eventsContentPage"
+                              element={<EventsContentPage/>} />
+                            <Route
+                              path="/galleryContentPage"
+                              element={<GalleryContentPage/>} />
+                            <Route
+                              path="/highlightsContentPage"
+                              element={<HighlightsContentPage/>} />
+                            <Route
+                              path="/logoContentPage"
+                              element={<LogoContentPage/>} />
+                            <Route
+                              path="/navigationContentPage"
+                              element={<NavigationContentPage/>} />
+                            <Route
+                              path="/newsContentPage"
+                              element={<NewsContentPage/>} />
+                            <Route
+                              path="/policiesContentPage"
+                              element={<PoliciesContentPage/>} />
+                            <Route
+                              path="/quickContentPage"
+                              element={<QuickContentPage/>} />
                         
                         </Routes>
                     </ThemeProvider>

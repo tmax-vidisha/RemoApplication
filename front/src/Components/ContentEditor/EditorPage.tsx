@@ -56,7 +56,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={department} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/AnnouncementReadMore" className={classes.link}>
+                        <Link to="/departmentContentPage" className={classes.link}>
                             Department
                         </Link>
 
@@ -65,7 +65,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={gallery} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/EventsInput" className={classes.link}>
+                        <Link to="/eventsContentPage" className={classes.link}>
                             Events
                         </Link>
                     </Grid>
@@ -73,7 +73,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={events} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/ContentEditor" className={classes.link}>
+                        <Link to="/galleryContentPage" className={classes.link}>
                             Gallery
                         </Link>
                     </Grid>
@@ -89,28 +89,28 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={highlights} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/EmpHighInput" className={classes.link}>
+                        <Link to="/highlightsContentPage" className={classes.link}>
                             Highlights
                         </Link> </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={logomaster} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/EmpHighInput" className={classes.link}>
+                        <Link to="/logoContentPage" className={classes.link}>
                             Logo Master
                         </Link> </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={navigation} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/ContentEditor" className={classes.link}>
+                        <Link to="/navigationContentPage" className={classes.link}>
                             Navigation
                         </Link> </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={news} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/NewsInfo" className={classes.link}>
+                        <Link to="/newsContentPage" className={classes.link}>
                             News
                         </Link>
                     </Grid>
@@ -118,7 +118,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={policies} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/Policy" className={classes.link}>
+                        <Link to="/policiesContentPage" className={classes.link}>
                             Policies & Procedure
                         </Link>
                     </Grid>
@@ -126,7 +126,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={quickLinks} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/userQuickLink" className={classes.link}>
+                        <Link to="/quickContentPage" className={classes.link}>
                             Quick Links
                         </Link></Grid>
                 </Box>
