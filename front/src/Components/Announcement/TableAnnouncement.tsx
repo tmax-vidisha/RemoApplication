@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from './index';
-import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar } from '@mui/material';
+import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar,Typography } from '@mui/material';
 import { useStyles } from './Styles';
 import Dropzone from "react-dropzone";
 import title from '../../Assets/Images/title.svg';
@@ -24,6 +24,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
 import { useUploadItemInAnnouncementMutation } from '../../services/contentEditor';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import publish from '../../Assets/Images/publish.svg';
+import Asterisk from '../../Assets/Images/Asterisk.svg';
+import FileUpload from "react-material-file-upload";
+import birthday from '../../Assets/Images/birthday.jpg'
+import love from "../../Assets/Images/love.svg";
+import view from "../../Assets/Images/viewNew.svg";
 
 
 const renderCell = (params: any) => {
@@ -106,6 +113,7 @@ const TableAnnouncement = () => {
   // const handleChange2 = (event:any) => {
   //   setChecked([event.target.checked, checked[1]]);
   // };
+  const [files, setFiles] = useState<File[]>([]);
   const [checkedyesisActive, setCheckedyesisActive] =useState<boolean>(true);
   const [checkednoisActive, setCheckednoisActive] =useState<boolean>(false);
   const [checkedyesEnableLikes, setCheckedyesEnableLikes] =useState<boolean>(true);
@@ -315,11 +323,28 @@ const handleSubmit = async  () =>{
  await sendItem(announcementData)
 }
 
+const [openPreview, setOpenPreview] =useState<boolean>(false);
+const handleClickPreview = () => {
+  setOpenPreview(true);
+};
+
+const handleClosePreview = () => {
+  setOpenPreview(false);
+};
+
   return (
-    <div className={classes.MainPart}>
+    <div className={classes.Section}>
+      <Box className={classes.MainPart}>
       <Grid className={classes.upperPart}>
         <Grid>Announcement</Grid>
-        <Grid className={classes.new}><Button onClick={handleClickOpen} >+ New</Button>
+        <Grid className={classes.new}>
+        <Button
+            onClick={handleClickOpen}
+            className={classes.create}
+            sx={{ textTransform: "capitalize",}}>
+            <span className={classes.plus}><LocalHospitalIcon/></span>
+            New
+          </Button>
           <Dialog
             classes={{
               paper: classes.newPosOfDialog
@@ -329,21 +354,23 @@ const handleSubmit = async  () =>{
              style={{ marginTop:"60px", height:"650px"}}
           >
             <DialogTitle id="alert-dialog-title" >
-              <Grid style={{ display: "flex", justifyContent: "space-between" }}>
-                <Grid>
-                  <Button>
-                    <img src={save} alt="" style={{ width: "13px", marginRight: "5px", textTransform: "capitalize" }} />
-                    Save
+            <Grid className={classes.dialogTitle}>
+            <Grid>
+                  <Button className={classes.dialogBtn}>
+                    <img src={save} alt="" style={{ width: "13px", marginRight: "5px",  }} />
+                    <span style={{color: "#606C74",textTransform: "capitalize"}}>Save</span>
                   </Button>
-                  <Button>
+                  <Button style={{ color: "#606C74", fontSize: "12px" }}>
                     <img src={cancel} alt="" style={{ width: "13px", marginRight: "5px" }} />
-                    Cancel
+                    <span style={{textTransform: "capitalize"}}>Cancel</span> 
                   </Button>
                   <Button>
-
                     <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
-                    <span style={{color:"gray", textTransform:"capitalize"}}> Copy Link</span> 
-
+                    <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Copy Link</span>
+                  </Button>
+                  <Button>
+                    <img src={publish} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                    <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Publish</span>
                   </Button>
                 </Grid>
                 <Grid>
@@ -382,19 +409,27 @@ const handleSubmit = async  () =>{
                 style={{ width: "100%" }}
                 onChange={handleChangeDescriptionField}
               />
-              <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-                <img src={image} alt="" style={{ width: "13px", marginRight: "5px" }} />
-                Image
-              </InputLabel>
+               <div style={{marginBottom:"10px"}}>
+                <div style={{paddingBottom:"40px"}}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={image} alt="" className={classes.titleIcon}  />
+                  Image<img src={Asterisk} alt="..." />
+                </InputLabel>
+                </div>
+                <Grid className={classes.svg}>
+                  <FileUpload value={files} onChange={setFiles} />
+                </Grid>
+
+              </div>             
               
-              <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
+              {/* <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps({ className: classes.dropZone })}>
                     <input {...getInputProps()} />
                     <p>Drag'n'drop files, or click to select files</p>
                   </div>
                 )}
-              </Dropzone>
+              </Dropzone> */}
              
                 <Grid>
                   <Box sx={{ display: 'flex', justifyContent:"space-between"}}>
@@ -488,23 +523,107 @@ const handleSubmit = async  () =>{
                 <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }}/>
                 Attachments
               </InputLabel>
-              <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
+              <Grid className={classes.svg}>
+                  <FileUpload value={files} onChange={setFiles} />
+                </Grid>
+              {/* <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps({ className: classes.dropZone })}>
                     <input {...getInputProps()} />
                     <p>Drag'n'drop files, or click to select files</p>
                   </div>
                 )}
-              </Dropzone>
+              </Dropzone> */}
             </DialogContent>
             <DialogActions>
-              <Grid style={{alignItems:"left", marginRight:"280px" }}>
-                <Button onClick={handleClose}>Preview</Button>
-                <Button onClick={handleClose}>Save</Button>
-                <Button onClick={handleSubmit} autoFocus>
+              <Grid className={classes.actionDivTwo}>
+                <Button onClick={handleClickPreview} className={classes.saveBtn}>
+                  Preview
+                </Button>
+                <Dialog
+                  classes={{
+                    paper: classes.newPosOfDialog
+                  }}
+                  open={openPreview}
+                  onClose={handleClosePreview}
+                  style={{ marginTop: "60px", height: "650px" }}
+                >
+                  <DialogTitle id="alert-dialog-title" >
+                    <Grid style={{ display: "flex", justifyContent: "space-between", }}>
+                      <Grid>
+                        <Button style={{ color: "#606C74", fontSize: "12px" }}>
+                          <img src={save} alt="" style={{ width: "13px", marginRight: "5px", textTransform: "capitalize" }} />
+                          Save
+                        </Button>
+                        <Button style={{ color: "#606C74", fontSize: "12px" }}>
+                          <img src={cancel} alt="" style={{ width: "13px", marginRight: "5px" }} />
+                          Cancel
+                        </Button>
+                        <Button>
+                          <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                          <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Copy Link</span>
+                        </Button>
+                        <Button>
+                          <img src={publish} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                          <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Publish</span>
+                        </Button>
+                      </Grid>
+                      <Grid>
+                        <Button onClick={handleClosePreview}>
+                          <img src={cancel} alt="" style={{ width: "13px" }} />
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  </DialogTitle>
+
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                      <Divider />
+                      <p style={{ textAlign: "left" }}>New Item</p>
+                    </DialogContentText>
+                    <Grid>
+                      <Box>
+                        <img src={birthday} alt="" className={classes.backgroundImage} />
+                        {/* <img src={girl} alt="" className={classes.girl} /> */}
+                        {/* <p>Ayesha Siddiqa</p>
+                        <p>HR Manager</p> */}
+                      </Box>
+                      <Grid>
+                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> Happy Birthday Ayesha siddiqa</Typography>
+                        <p style={{ textAlign: "left", marginLeft: "15px" }}>
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </p>
+                      </Grid>
+                      <Grid className={classes.iconDiv}>
+                        <div className={classes.iconView}>
+                          <span><img src={love} alt="" /></span>
+                          <span>10</span>
+                        </div>
+                        <div className={classes.iconView}>
+                          <span><img src={comments} alt="" /></span>
+                          <span>10</span>
+                        </div>
+                        <div className={classes.iconView}>
+                          <span> <img src={view} alt="" />
+                          </span><span>10</span>
+                        </div>
+                      </Grid>
+                    </Grid>
+                  </DialogContent>
+                  <DialogActions>
+                    <Grid className={classes.actionPart}>
+                      <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
+                      <Button className={classes.cancelBtn}>Cancel</Button>
+                    </Grid>
+                  </DialogActions>
+
+                </Dialog>
+
+                <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                   submit
                 </Button>
-                <Button>Cancel</Button>
+                <Button className={classes.cancelBtn}>Cancel</Button>
               </Grid>
 
             </DialogActions>
@@ -520,6 +639,7 @@ const handleSubmit = async  () =>{
         rowsPerPageOptions={[5]}
         checkboxSelection
       />
+      </Box>
     </div>
   );
 }

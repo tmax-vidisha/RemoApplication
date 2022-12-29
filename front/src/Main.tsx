@@ -74,6 +74,10 @@ import HeroBannerMore from './Components/HeroImages/HeroBannerMore';
 import HeroThumbnail from './Components/HeroImages/HeroThumbnail';
 import BirthdayEditor from './Components/BirthdayEditor/BirthdayEditor';
 import BirthdayContentPage from './Components/BirthdayEditor/BirthdayContentPage';
+import CeoEditor from './Components/CeoEditor/CeoEditor';
+import CeoContentPage from './Components/CeoEditor/CeoContentPage';
+import HeroContentPage from './Components/HeroEditor/HeroContentPage';
+import ContentEditorPage from './Components/EditorContent/ContentEditorPage';
 
 
 
@@ -342,11 +346,17 @@ const Main = () => {
                               path="/heroThumbnail"
                               element={<HeroThumbnail/>} />
                             <Route
-                              path="/birthdayEditor"
-                              element={<BirthdayEditor/>} />
-                            <Route
                               path="/birthdayContentPage"
                               element={<BirthdayContentPage/>} />
+                            <Route
+                              path="/ceoContentPage"
+                              element={<CeoContentPage/>} />
+                            <Route
+                              path="/heroContentPage"
+                              element={<HeroContentPage/>} />
+                            <Route
+                              path="/contentEditorPage"
+                              element={<ContentEditorPage/>} />
                         
                         </Routes>
                     </ThemeProvider>
