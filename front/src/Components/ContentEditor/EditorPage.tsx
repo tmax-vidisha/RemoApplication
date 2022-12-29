@@ -35,20 +35,20 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={announcement} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/birthdayEditor" className={classes.link}>Birthday
+                        <Link to="/birthdayContentPage" className={classes.link}>Birthday
                         </Link></Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={CEO} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/CEOInput" className={classes.link}>
+                        <Link to="/ceoContentPage" className={classes.link}>
                             CEO Message
                         </Link></Grid>
                 </Box>
                 <Box className={classes.boxContent}>
                     <img src={contentEditor} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/ContentEditor" className={classes.link}>
+                        <Link to="/contentEditorPage" className={classes.link}>
                             Content Editor
                         </Link>
                     </Grid>
@@ -81,7 +81,7 @@ const EditorPage = () => {
                 <Box className={classes.boxContent}>
                     <img src={Groups} alt="announce" />
                     <Grid component="p" className={classes.texts}>
-                        <Link to="/HeroInput" className={classes.link}>
+                        <Link to="/heroContentPage" className={classes.link}>
                             Hero Banner
                         </Link>
                     </Grid>

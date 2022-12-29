@@ -3,9 +3,9 @@ import WhatsNew from './../Header/WhatsNew';
 import { Grid ,Box } from '@mui/material';
 import SideBar from './../WorkSpaceOne/SideBar';
 import { useStyles } from './Styles';
-import BirthdayEditor from './BirthdayEditor';
+import CeoEditor from './CeoEditor';
 
-const BirthdayContentPage = () => {
+const CeoContentPage = () => {
     const classes=useStyles()
     return (
         <div>
@@ -15,14 +15,14 @@ const BirthdayContentPage = () => {
                 <Grid item xs={12}>
                     <WhatsNew />
                 </Grid>
-                <Box style={{ margin: "30px", }}>
+                <Box style={{ margin: "30px"}}>
 
                     <Grid container item xs={12} className={classes.bigPaper}>
                         <Grid item xs={1} >
                             <SideBar />
                         </Grid>
                         <Grid item xs={11} >
-                            <BirthdayEditor />
+                            <CeoEditor />
                         </Grid>
                        
                     </Grid>
@@ -32,4 +32,4 @@ const BirthdayContentPage = () => {
     );
 };
 
-export default BirthdayContentPage;
+export default CeoContentPage;
