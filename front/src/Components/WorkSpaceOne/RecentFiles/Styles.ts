@@ -296,7 +296,15 @@ export const useStyles = makeStyles({
     position: "static",
     display: "flex",
     justifyContent: "flex-end"
-  }
+  },
+  
+  divText: {
+    color: "#1b6189",
+    marginLeft: "20px",
+    marginTop: "20px",
+    textAlign: "left",
+
+  },
 
 });
 

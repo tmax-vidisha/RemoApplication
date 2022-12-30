@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '@mui/material';
+import { Container} from '@mui/material';
 import IconText from '../Header/IconText';
 import { useStyles } from './Styles';
 import Header from '../Header';
@@ -7,6 +7,9 @@ import Header from '../Header';
 import { Card } from '@mui/material';
 import { CardMedia } from '@mui/material';
 import {useLocation, useNavigate } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
+
 
 
 const HeroThumbnail = () => {
@@ -20,14 +23,15 @@ const HeroThumbnail = () => {
     return (
         <div>
             <IconText />      
-            <Container className={classes.contentEditorWidth}>
+            <Container className={classes.contentEditorWidth} style={{margin:"20px"}}>
                 {/* <video poster="../../Assets/videos/poster.mp4" onClick={e => e.currentTarget.play()} /> */}
                 <Card
                     raised
                     sx={{
-                        maxWidth: 800,
+                        width: '100%',
                         margin: "0 auto",
                         padding: "0.1em",
+                        
                     }}
                 >
                     <CardMedia
@@ -36,9 +40,9 @@ const HeroThumbnail = () => {
                         controls
                         src={folderData}
                         // src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                        width="840"
-                        height="300"
+                        style={{width:'100%', height:"200px",position:"relative"  }}
                     />
+                    <button style={{position:"absolute",bottom: "22%"}}><Link to="/">Back</Link></button>
                 </Card>
 
             </Container>

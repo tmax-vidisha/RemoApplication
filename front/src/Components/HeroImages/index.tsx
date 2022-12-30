@@ -5,6 +5,9 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import SkeletonAnimation from "../../Containers/Skeleton";
 import { useNavigate } from 'react-router-dom';
+
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+
 import {
   Button,
   Card,
@@ -41,7 +44,11 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   // const { data, error, isLoading } =   useGetHeroImageQuery('')
   // console.log(data,'qwwwww')
+
+  const classes = useStyles();
+
   //  const classes = useStyles();
+
   const navigate = useNavigate();
 
   const theme = useTheme();
@@ -96,6 +103,18 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   const { data, error, isLoading } = props
   console.log(data, '888ddd88txccccccccccccccctuytuytu888')
 
+
+  const handleClick = (Url: any) => {
+    navigate('/heroThumbnail', { state: { folderData: Url } })
+  }
+
+  const handleReadMoreVideo = (Url: any, Title: any, Description: any, Modified: any) => {
+    navigate('/heroBannerMore', { state: { folderData: Url, Title, Description, Modified } })
+  }
+  const handleReadMoreImages = (Url: any, Title: any, Description: any, Modified: any) => {
+    navigate('/heroBannerMoreImages', { state: { folderData: Url, Title, Description, Modified } })
+  }
+
  const  handleClick = (Url:any) =>{
   navigate('/heroThumbnail', { state: { folderData: Url } })
  }
@@ -106,6 +125,7 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
  const  handleReadMoreImages = (Url:any,Title:any,Description:any,Modified:any) =>{
   navigate('/heroBannerMoreImages', { state: { folderData: Url,Title,Description,Modified } })
  }
+
   return (
     // <div>
     //   <AuthenticatedTemplate>
@@ -167,7 +187,7 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
     //     {/* </Draggable> */}
     //   </AuthenticatedTemplate>
     // </div>
-   
+
 
     <div>
       <AuthenticatedTemplate>
@@ -188,6 +208,31 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
                   data?.response?.map((item: any, index: any) => {
                     const { fields = {} } = item;
                     var HeroTitle = fields?.Title;
+
+                    if (fields?.FileType == "mp4") {
+                      return (
+                        <div key={index} style={{ position: "relative" }}>
+                          <p className={classes.videoTitle} onClick={() => handleReadMoreVideo(fields?.Url, HeroTitle, fields.Description, fields?.Modified)}>{HeroTitle}</p>
+                          <video className={classes.video}>
+                            <source src={fields?.Url} type="video/mp4" />
+                          </video>
+                          <button onClick={() => handleClick(fields?.Url)} className={classes.exploreBtn}><span><PlayArrowIcon  style={{width:"15px"}}/></span><span style={{fontSize:"12px", marginTop:"5px", marginLeft:"5px"}}>Start Explore</span></button>
+                        </div>
+                      );
+                    }
+                    else {
+                      return (
+                        //         <div key={index} className={classes.videoContent}>
+                        //            <p className={classes.videoTitle} onClick={()=> handleReadMoreImages(fields?.Url,HeroTitle,fields.Description,fields?.Modified)}>{HeroTitle}</p>
+                        //          <img src={fields?.Url} className={classes.video} />
+                        //  </div>
+                        <Card>
+                          <div style={{ position: "relative" }}>
+                            <CardMedia className={classes.displayImg} component="img" image={fields?.Url} title={HeroTitle} alt="Pancakes" />
+                            <div className={classes.videoTitle} onClick={() => handleReadMoreImages(fields?.Url, HeroTitle, fields.Description, fields?.Modified)}> {HeroTitle}</div>
+                          </div>
+                        </Card>
+
                     if(fields?.FileType=="mp4"){
                       return (
                         <div key={index}>
@@ -218,6 +263,7 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   
                          
                         </div>
+
                       );
                     }
                   })}
@@ -232,4 +278,4 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   )
 }
 
-export default HeroImages
+export default HeroImages;

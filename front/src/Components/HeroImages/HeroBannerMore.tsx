@@ -59,7 +59,7 @@ const HeroBannerMore = () => {
                             <Card
                                 raised
                                 sx={{
-                                    maxWidth: 800,
+                                    width: '100%',
                                     margin: "0 auto",
                                     padding: "0.1em",
                                 }}
@@ -69,8 +69,12 @@ const HeroBannerMore = () => {
                                     autoPlay
                                     controls
                                     src={folderData}
+
+                                   style={{width:'1100px', height:"200px"}}
+
                                     width="840"
                                     height="300"
+
                                 />
                             </Card>
                         </Grid>

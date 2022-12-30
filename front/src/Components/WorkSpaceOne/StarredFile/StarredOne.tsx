@@ -2,35 +2,40 @@ import React from 'react';
 import { Grid, Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper, Link } from '@mui/material';
 import moment from "moment";
 import starred from '../../../Assets/Images/starred.svg';
+import { useStyles } from './Style';
 // interface IFolderProps {
 //     data: any,
 //     error: any,
 //     isLoading: any,
 // }
 
-const StarredOne= () => {
-  
+const StarredOne = () => {
 
-   function createData(
-    name: string,
-    lastModifiedBy: string,
-    ModifiedDate: string,
-    fileSize: string,
-    Actions: any,
-) {
-    return { name, lastModifiedBy, ModifiedDate, fileSize, Actions };
-}
+const classes=useStyles();
 
-const rows = [
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt=""/>),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb",<img src={starred} alt=""/>),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt=""/>),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt=""/>),
+    function createData(
+        name: string,
+        lastModifiedBy: string,
+        ModifiedDate: string,
+        fileSize: string,
+        Actions: any,
+    ) {
+        return { name, lastModifiedBy, ModifiedDate, fileSize, Actions };
+    }
 
-];
+    const rows = [
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt="" />),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt="" />),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt="" />),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt="" />),
+
+    ];
 
     return (
-        <>
+        <Grid>
+            <Grid className={classes.divText}>
+                Starred
+            </Grid>
             <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
@@ -44,21 +49,21 @@ const rows = [
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                                key={row.name}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.lastModifiedBy}</TableCell>
-                                <TableCell align="right">{row.ModifiedDate}</TableCell>
-                                <TableCell align="right">{row.fileSize}</TableCell>
-                                <TableCell align="right">{row.Actions}</TableCell>
-                            </TableRow>
-                        ))} 
-                           
+                            {rows.map((row) => (
+                                <TableRow
+                                    key={row.name}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell component="th" scope="row">
+                                        {row.name}
+                                    </TableCell>
+                                    <TableCell align="right">{row.lastModifiedBy}</TableCell>
+                                    <TableCell align="right">{row.ModifiedDate}</TableCell>
+                                    <TableCell align="right">{row.fileSize}</TableCell>
+                                    <TableCell align="right">{row.Actions}</TableCell>
+                                </TableRow>
+                            ))}
+
 
                         </TableBody>
 
@@ -66,7 +71,7 @@ const rows = [
 
                 </TableContainer>
             </Grid>
-        </>
+        </Grid>
     );
 };
 

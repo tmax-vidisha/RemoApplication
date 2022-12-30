@@ -90,6 +90,10 @@ import NavigationContentPage from './Components/NavigationEditor/NavigationConte
 import NewsContentPage from './Components/NewsEditor/NewsContentPage';
 import PoliciesContentPage from './Components/PoliciesEditor/PoliciesContentPage';
 import QuickContentPage from './Components/QuickLinksEditor/QuickContentPage';
+import DocumentLibrary from './Components/WorkSpaceOne/DocumentLibrary';
+import TrashFiles from './Components/WorkSpaceOne/Trash/TrashFiles';
+import Trash from './Components/WorkSpaceOne/Trash';
+import HeroBannerMoreImages from './Components/HeroImages/HeroBannerMoreImages';
 
 
 
@@ -355,12 +359,16 @@ const Main = () => {
                             <Route
                               path="/heroBannerMore"
                               element={<HeroBannerMore/>} />
+                               <Route
+                              path="/heroBannerMoreImages"
+                              element={<HeroBannerMoreImages/>} />
                             <Route
                               path="/heroBannerMoreImages"
                               element={<HeroBannerMoreImages/>} />
                             <Route
                               path="/heroThumbnail"
                               element={<HeroThumbnail/>} />
+                              
                             <Route
                               path="/birthdayContentPage"
                               element={<BirthdayContentPage/>} />
@@ -400,6 +408,12 @@ const Main = () => {
                             <Route
                               path="/quickContentPage"
                               element={<QuickContentPage/>} />
+                            <Route
+                              path="/documentLibrary"
+                              element={<DocumentLibrary/>} />
+                            <Route
+                              path="/trash"
+                              element={<Trash/>} />
                         
                         </Routes>
                     </ThemeProvider>

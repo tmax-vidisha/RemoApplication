@@ -254,8 +254,15 @@ export const useStyles = makeStyles({
     textAlign: "center",
     //width:"50px",
     borderRadius:" 20px 1px 1px 20px",
+  },
+  
+  divText: {
+    color: "#1b6189",
+    marginLeft: "20px",
+    marginTop: "20px",
+    textAlign: "left",
 
-  }
+  },
 
 });
 

@@ -38,47 +38,28 @@ const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 300 },
+  { field: 'Title', headerName: 'Title', width: 200 },
   { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
   { field: 'Name', headerName: 'Name', width: 100 },
-  { field: 'DOB', headerName: 'DOB', width: 100 },
-  { field: 'Image', headerName: 'Image', width: 130 },
-  { field: 'Designation', headerName: 'Designation', width: 130 },
-  { field: 'DOJ', headerName: 'DOJ', type: 'date', width: 130 },
   { field: 'Description', headerName: 'Description', width: 130 },
+  { field: 'Designation', headerName: 'Designation', width: 130 },
+  { field: 'Image', headerName: 'Image', width: 130 },
   { field: 'IS Active', headerName: 'IS Active', width: 100 },
-  { field: 'EnableLikes', headerName: 'EnableLikes', type: 'image', width: 100 },
-  {
-    field: 'EnableComments',
-    headerName: 'EnableComments',
-    type: 'image',
-    width: 100,
-  },
-  // {
-  //   field: 'ShareAsEmail',
-  //   headerName: 'ShareAsEmail',
-  //   type: 'email',
-  //   width: 160,
-  // },
-  // {
-  //   field: 'RecipientEmail',
-  //   headerName: 'RecipientEmail',
-  //   type: 'email',
-  //   width: 160,
-  // },
+ 
 ];
 
 
 const rows = [
-  { id: 1, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 2, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 3, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 4, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 5, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 6, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 7, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 8, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  // { id: 9, Title: 'Milestone comes as DP World marks a decade of partnership', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Image: activeView, ModifiedOn: '10 months ago', IsActive: 'Roxie', EnableLikes: 'Harvey', EnableComments: 65, ShareAsEmail: 'info@gmail.com', RecipientEmail: 'contact@gmail.com' },
+  { id: 1, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />,},
+  { id: 3, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />,},
+  { id: 4, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />,},
+  { id: 5, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />,},
+  { id: 6, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />,},
+  { id: 7, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />},
+  { id: 8, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />},
+  { id: 9, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />},
+  { id: 10, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />},
+ 
 ];
 
 
@@ -397,28 +378,30 @@ const CeoEditor = () => {
                 />
               </div>
               <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} style={{ textAlign: "left", margin: "10px" }}>
-                  <img src={calenderIcon} alt="" className={classes.titleIcon} />
-                  DOB<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
+                  <img src={descripton} alt="" className={classes.titleIcon} />
+                  Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
                 </InputLabel>
                 <TextField
-                  type="date"
-                  id="date"
-                  multiline={false}
-                  defaultValue="2022-12-26"
+                  id="outlined-multiline-static"
+                  // label="Multiline"
+                  multiline
+                  rows={4}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeDescriptionField}
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={title} alt="" className={classes.titleIcon} />
+                  Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
                   className={classes.span}
                   style={{ width: "100%" }}
                   onChange={handleChangeTitleField}
-                  placeholder="MM/DD/YYYY"
-                  InputLabelProps={{
-                    color: "secondary",
-                    className: "DatePicker",
-                    style: { color: "gray" },
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    style: { color: "gray" },
-                  }}
+                  placeholder="Enter value here"
                 />
               </div>
 
@@ -444,59 +427,7 @@ const CeoEditor = () => {
                 </Grid>
 
               </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="Enter value here"
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={calenderIcon} alt="" className={classes.titleIcon} />
-                  DOJ<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  type="date"
-                  id="date"
-                  multiline={false}
-                  defaultValue="2022-12-26"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="MM/DD/YYYY"
-                  InputLabelProps={{
-                    color: "secondary",
-                    className: "DatePicker",
-                    style: { color: "gray" },
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    style: { color: "gray" },
-                  }}
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
-                  <img src={descripton} alt="" className={classes.titleIcon} />
-                  Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-multiline-static"
-                  // label="Multiline"
-                  multiline
-                  rows={4}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeDescriptionField}
-                />
-              </div>
-              <Grid>
+                 <Grid>
                 <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
                   <Box>
                     <img src={isActive} alt="" style={{ width: "15px", marginRight: "15px" }} />
@@ -514,81 +445,13 @@ const CeoEditor = () => {
                   </Box>
 
                 </Box>
-                <Grid sx={{ display: 'flex', justifyContent: "space-between" }}>
-                  <Box>
-                    <img src={like1} alt="" style={{ width: "15px", marginRight: "15px" }} />
-                    <span>EnableLikes </span>
-                  </Box>
-                  <Box style={{ display: 'flex', }}>
-
-                    <FormControlLabel
-                      label="Yes"
-                      control={<Checkbox checked={checkedyesEnableLikes} onChange={handleChangeEnableLikesyes} />}
-                    />
-                    <FormControlLabel
-                      label="No"
-                      control={<Checkbox checked={checkednoEnableLikes} onChange={handleChangeEnableLikesno} />}
-                    />
-                  </Box>
-
-                </Grid>
               </Grid>
-              <Grid>
-
-                <Grid>
-                  <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
-                    <Box>
-                      <img src={comments} alt="" className={classes.checkLike} />
-                      <span> EnableCommands</span>
-
-                    </Box>
-                    <Box style={{ display: "flex" }}>
-                      <FormControlLabel
-                        label="Yes"
-                        control={<Checkbox checked={checkedyesEnableCommands} onChange={handleChangeEnableCommandsyes} />}
-                      />
-                      <FormControlLabel
-                        label="No"
-                        control={<Checkbox checked={checkednoEnableCommands} onChange={handleChangeEnableCommandsno} />}
-                      />
-                    </Box>
-
-                  </Box>
-                  <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
-                    <Box>
-                      <img src={shareasemail} alt="" className={classes.checkLike} />
-                      <span>  ShareAsEmail</span>
-                    </Box>
-                    <Box style={{ display: "flex" }}>
-                      <FormControlLabel
-                        label="Yes"
-                        control={<Checkbox checked={checkedyesSharedAsEmail}
-                          onChange={handleChangeSharedAsEmailyes} />}
-                      />
-                      <FormControlLabel
-                        label="No"
-                        control={<Checkbox checked={checkednoSharedAsEmail}
-                          onChange={handleChangeSharedAsEmailno} />}
-                      />
-                    </Box>
-
-                  </Box>
-
-                </Grid>
-              </Grid>
-
-
-              {/* <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-              <img src={recipientEmail} alt="" style={{ width: "13px", marginRight: "15px" }} />
-              RecipentEmail
-            </InputLabel>
-            <TextField
-              id="outlined-adornment-weight" sx={{ width: "100%" }} onChange={handleChangeReciepientEmailField} />
-            <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+              <div style={{marginBottom:"15px"}}>
+              <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
               <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }} />
               Attachments
             </InputLabel>
-            <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
+            {/* <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
               {({ getRootProps, getInputProps }) => (
                 <div {...getRootProps({ className: classes.dropZone })}>
                   <input {...getInputProps()} type="file" />
@@ -596,6 +459,11 @@ const CeoEditor = () => {
                 </div>
               )}
             </Dropzone> */}
+             <Grid className={classes.svg}>
+                  <FileUpload value={files} onChange={setFiles} />
+                </Grid>
+                </div>
+            
             </DialogContent>
             <DialogActions>
               <Grid className={classes.actionDivTwo}>
@@ -646,12 +514,13 @@ const CeoEditor = () => {
                     <Grid>
                       <Box>
                         <img src={birthday} alt="" className={classes.backgroundImage} />
-                        <img src={girl} alt="" className={classes.girl} />
+                        {/* <img src={girl} alt="" className={classes.girl} />
                         <p>Ayesha Siddiqa</p>
-                        <p>HR Manager</p>
+                        <p>HR Manager</p> */}
                       </Box>
                       <Grid>
-                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> Happy Birthday Ayesha siddiqa</Typography>
+                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> Mohammed abdul Rahman Matua</Typography>
+                       <p style={{ textAlign: "left", marginLeft: "15px" , color:"#009BAD"}}>CEO</p>
                         <p style={{ textAlign: "left", marginLeft: "15px" }}>
                           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </p>
@@ -661,14 +530,14 @@ const CeoEditor = () => {
                           <span><img src={love} alt="" /></span>
                           <span>10</span>
                         </div>
-                        <div className={classes.iconView}>
+                        {/* <div className={classes.iconView}>
                           <span><img src={comments} alt="" /></span>
                           <span>10</span>
                         </div>
                         <div className={classes.iconView}>
                           <span> <img src={view} alt="" />
                           </span><span>10</span>
-                        </div>
+                        </div> */}
                       </Grid>
                     </Grid>
                   </DialogContent>

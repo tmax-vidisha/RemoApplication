@@ -127,7 +127,7 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
                     <Grid>
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
                             <Grid item xs={6} style={{ padding: "10px" }}>
-                                <Box>
+                                <Box style={{margin:'30px'}}>
 
                                     {/* <ThemeProvider theme={customTheme}>
 
@@ -142,9 +142,7 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     {/* <CalendarEvent onClick={onClick}/> */}
                                     <div>
                                         <Box>
-
-                                           
-                                            <Calendar
+                                             <Calendar
                                                 // className={classes.border}
                                                 onChange={onChange}
                                                 value={value}
@@ -155,7 +153,6 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 </Box>
                             </Grid>
                             <Grid item xs={6}>
-
 
                                 {/* <List style={{border:"1px solid #e6e6e6", margin:"20px"}}>
                                 <Grid style={{borderBottom:"1px solid #e6e6e6", color:'#4ddbff'}}> 9th July</Grid>

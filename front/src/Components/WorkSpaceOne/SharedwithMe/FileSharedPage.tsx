@@ -125,22 +125,16 @@ function SimpleDialog(props: SimpleDialogProps) {
                 open={openOn}
                 onClose={handleClose}
                 TransitionComponent={Fade}
-                className={classes.menu}
-
-            >
-
+                className={classes.menu} >
                 <MenuItem >
                     <div className={classes.items} onClick={handleFolderOpen}>
                         <img src={openIcon} alt="folder" /> Open
                     </div>
-
                 </MenuItem>
-
                 <MenuItem>
                     <div className={classes.items}>
                         <img src={linkIcon} alt="linkIcon" /> Copy Link
                     </div>
-
                 </MenuItem>
                 <MenuItem>
                     <div className={classes.items}>
@@ -226,16 +220,16 @@ interface IFolderProps {
     isLoading: any,
 }
 
- //const FileShared: React.FC<IFolderProps> = (props: IFolderProps) =>{
-const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) =>{
+//const FileShared: React.FC<IFolderProps> = (props: IFolderProps) =>{
+const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
-    const {data,isLoading,error } = props
+    const { data, isLoading, error } = props
     const [age, setAge] = React.useState('');
     const [show, setShow] = useState<boolean>(true);
-
+    const classes = useStyles();
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
-       //setAge('');
+        //setAge('');
     };
 
     function createData(
@@ -256,20 +250,24 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) =>{
 
     ];
     return (
-        <Grid style={{marginTop:"30px", marginRight:"15px"}}>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 600 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell align="right">Last Modified By</TableCell>
-                            <TableCell align="right">Last Modified Date</TableCell>
-                            <TableCell align="right">File Size</TableCell>
-                            <TableCell align="right">Actions</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                                {/* {rows.map((row) => (
+        <Grid>
+            <Grid className={classes.divText}>
+                Shared with me
+            </Grid>
+            <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 600 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Name</TableCell>
+                                <TableCell align="right">Last Modified By</TableCell>
+                                <TableCell align="right">Last Modified Date</TableCell>
+                                <TableCell align="right">File Size</TableCell>
+                                <TableCell align="right">Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {/* {rows.map((row) => (
                                     <TableRow
                                         key={row.name}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -283,38 +281,38 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) =>{
                                         <TableCell align="right">{row.Actions}</TableCell>
                                     </TableRow>
                                 ))} */}
-                               {data?.response &&
-                                    data?.response.map((item: any, index: any) => {
-                                        //   const { fields = {} } = item;
-                                        
-                                        // const  Url= item["@microsoft.graph.downloadUrl"];
-                                        // console.log(Url,'llll')
-                                        //   // console.log(fields,'yjyjyjyjyj')
-                                        //   var eventTitle = fields?.Title;
-                                        //   console.log(eventTitle,'yjyjyjyjyj')
-                                        //   var eventStart = moment(fields?.EventDate).format("llll");
-                                        //   var eventDate = moment(fields?.EndDate).format("llll");
+                            {data?.response &&
+                                data?.response.map((item: any, index: any) => {
+                                    //   const { fields = {} } = item;
 
-                                        //   var eventIsActive = fields.IsActive;
-                                        // let createdMonth = moment(item.lastModifiedDateTime).format("MMM");
-                                        // let createdYear = moment(item.lastModifiedDateTime).format("YYYY");
-                                        let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
-                                        //   var createdDate = moment(
-                                        //     item.lastModifiedDateTime
-                                        //   ).fromNow();
-                                        // let result = (item?.folder === undefined) ? item?.webUrl :'';
-                                        // let result ; 
-                                        // if(item?.folder === undefined){
-                                        //   result= item?.webUrl
-                                        // }
-                                        return (
-                                            <TableRow
-                                                key={item.name}
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                            >
+                                    // const  Url= item["@microsoft.graph.downloadUrl"];
+                                    // console.log(Url,'llll')
+                                    //   // console.log(fields,'yjyjyjyjyj')
+                                    //   var eventTitle = fields?.Title;
+                                    //   console.log(eventTitle,'yjyjyjyjyj')
+                                    //   var eventStart = moment(fields?.EventDate).format("llll");
+                                    //   var eventDate = moment(fields?.EndDate).format("llll");
 
-                                                <TableCell component="th" scope="row">
-                                                    {/* <Link 
+                                    //   var eventIsActive = fields.IsActive;
+                                    // let createdMonth = moment(item.lastModifiedDateTime).format("MMM");
+                                    // let createdYear = moment(item.lastModifiedDateTime).format("YYYY");
+                                    let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
+                                    //   var createdDate = moment(
+                                    //     item.lastModifiedDateTime
+                                    //   ).fromNow();
+                                    // let result = (item?.folder === undefined) ? item?.webUrl :'';
+                                    // let result ; 
+                                    // if(item?.folder === undefined){
+                                    //   result= item?.webUrl
+                                    // }
+                                    return (
+                                        <TableRow
+                                            key={item.name}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+
+                                            <TableCell component="th" scope="row">
+                                                {/* <Link 
                                                     onClick={()=>{
                                                         // folderClickHandler(item.id,item.name)
                                                     //  if(item.name.includes('.txt') || item.name.includes('.xlsx') || item.name.includes('.docx')  || item.name.includes('.pptx')){
@@ -333,7 +331,7 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) =>{
                                                 
                                                     //   href={`${result}`}
                                                     > */}
-                                                    <Link 
+                                                <Link
                                                     // onClick={() => {
                                                     //     setShow(!show)
                                                     //     onClick(item.id, item.name, item.folder)
@@ -341,24 +339,24 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) =>{
 
 
                                                     // }}
-                                                     href={`${item.webUrl}`}
-                                                    >
-                                                        {item.name}
-                                                    </Link>
+                                                    href={`${item.webUrl}`}
+                                                >
+                                                    {item.name}
+                                                </Link>
 
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {item.lastModifiedBy.user.displayName}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {createdDate}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {item.size}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    
-                                                    {/* <Grid style={{ borderRadius: "10px", }} >
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {item.lastModifiedBy.user.displayName}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {createdDate}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                {item.size}
+                                            </TableCell>
+                                            <TableCell align="right">
+
+                                                {/* <Grid style={{ borderRadius: "10px", }} >
                                                             <Button
                                                                 id="fade-button"
                                                                 aria-controls={openOn ? 'fade-menu' : undefined}
@@ -413,16 +411,17 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) =>{
                                                                 
                                                             </Menu>
                                                         </Grid> */}
-                                                </TableCell>
-                                            </TableRow>
-                                        )
-                                    })}
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                })}
 
-                            </TableBody>                  
+                        </TableBody>
 
-                </Table>
+                    </Table>
 
-            </TableContainer>
+                </TableContainer>
+            </Grid>
         </Grid>
     );
 };
