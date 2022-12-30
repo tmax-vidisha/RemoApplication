@@ -33,14 +33,14 @@ export const contentEditorApi = createApi({
             }),
 
         }),
-        // getAllRootItemsOneDrive: builder.query<any, any>({
-        //     // query: () => '/api/v1/onedrive/getAllRootItems',
-        //     query: (id) => ({
-        //         url: `/api/v1/onedrive/getAllRootItems/${id}`,
-        //         // headers:{ "authorization": `${AccessToken}` },
-        //     }),
-        //     // providesTags: ['OneDriveRootItems'],
-        // }),
+        getLatestAnnouncement: builder.query<any, any>({
+            // query: () => '/api/v1/onedrive/getAllRootItems',
+            query: (id) => ({
+                url: `/api/v1/contentEditor/announcementlatest/${id}`,
+                // headers:{ "authorization": `${AccessToken}` },
+            }),
+            // providesTags: ['OneDriveRootItems'],
+        }),
         // getItemChildrenOneDrive: builder.mutation<any, any>({
         //     query: (data) => ({
         //         url: '/api/v1/onedrive/getItemChildren',
@@ -99,6 +99,7 @@ export const contentEditorApi = createApi({
 
 export const {
      useUploadItemInAnnouncementMutation,
+     useGetLatestAnnouncementQuery
     // useGetItemChildrenOneDriveMutation,
     // useGetAllRootItemsOneDriveQuery,
     // useDeleteItemOneDriveMutation,

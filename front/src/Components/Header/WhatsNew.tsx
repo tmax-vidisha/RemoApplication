@@ -4,9 +4,15 @@ import { Paper } from '@mui/material';
 import { Typography } from '@mui/material';
 import announce from "../../Assets/Images/announcement.svg";
 import { useStyles } from './Styles';
+import { useGetLatestAnnouncementQuery } from '../../services/contentEditor';
+import useCustom from '../../hooks/useCustom';
 
 const WhatsNew = () => {
+
     const classes=useStyles();
+    const {token} = useCustom();
+    const { data, error, isLoading } = useGetLatestAnnouncementQuery(token);
+    console.log(data?.response,'Whats New')
     return (
         <div>
             <Grid item xs={12} style={{backgroundColor:"#e6e6e6"}}>

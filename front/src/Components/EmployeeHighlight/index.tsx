@@ -24,8 +24,8 @@ interface IFolderProps {
   data:any, 
   error:any,
   isLoading:any,
-  onGetItem?:(id:string) =>void,
-  ItemData:any
+  // onGetItem?:(id:string) =>void,
+  // ItemData:any
 }
 //  const EmployeeHighlight = () => {
 const EmployeeHighlight: React.FC<IFolderProps> = (props: IFolderProps) => {
@@ -78,13 +78,13 @@ const navigate = useNavigate()
       
 //     }, [])
 
-    const { data, error, isLoading,onGetItem ,ItemData} =  props
+    const { data, error, isLoading} =  props
    console.log(data,'Empployeedata')
-  console.log(ItemData,'juyuykuku')
-  const handleItem = (itemid:any) =>{
+  // console.log(ItemData,'juyuykuku')
+  const handleItem = (Title:any,Dept:any,img:any,description:any,Name:any) =>{
     //  console.log(itemid,'Idss')
-    onGetItem?.(itemid)
-    // navigate('/birthday', { state: { folderData: ItemData } })
+    // onGetItem?.(itemid)
+    navigate('/birthday', { state: {  Title,Dept,img,description,Name } })
     // if(ItemData !==undefined){
     //   navigate('/birthday', { state: { folderData: ItemData } })
     // }
@@ -110,7 +110,8 @@ const navigate = useNavigate()
                 var EmpTitle = fields?.Title;
                 var empName = fields?.Name;
                 var DeptVal = fields?.Dept;
-                var img =  fields?.EmpImg
+                var img =  fields?.EmpImg;
+                var desc = fields?.Description;
 
                 // var completePath;
 
@@ -145,10 +146,10 @@ const navigate = useNavigate()
                             alt={empName}
                             onClick={ () =>{
                              
-                              handleItem(item.fields?.id)
-                               if(ItemData !==undefined){
-                                  navigate('/birthday', { state: { folderData: ItemData } })
-                                }
+                              handleItem(EmpTitle,DeptVal,img,desc,empName)
+                              //  if(ItemData !==undefined){
+                              //     navigate('/birthday', { state: { folderData: ItemData } })
+                              //   }
                             }
                             }
                           />
