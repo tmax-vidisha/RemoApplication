@@ -6,18 +6,18 @@ import EmployeeHighlight from '../../Components/EmployeeHighlight';
 const EmpHighlightPage = () => {
     const {token} = useCustom();
     const { data, error, isLoading } = useGetAllEmpQuery(token)
-    const [sendItem,{data:ItemData}] = useCreateTokenwithEmpDataItemIdMutation();
+    // const [sendItem,{data:ItemData}] = useCreateTokenwithEmpDataItemIdMutation();
 
-     console.log(ItemData,'yuyuu7u7u7ua')
+    //  console.log(ItemData,'yuyuu7u7u7ua')
 
-    const handle = (id:any)=>{
-       console.log(id,'eaefsaaaa')
+    // const handle = (id:any)=>{
+    //    console.log(id,'eaefsaaaa')
 
-       const Data = {
-        ItemId:id
-       }
-       sendItem(Data)
-    }
+    //    const Data = {
+    //     ItemId:id
+    //    }
+    //    sendItem(Data)
+    // }
 
   return (
     <AuthenticatedTemplate>
@@ -25,8 +25,8 @@ const EmpHighlightPage = () => {
        data={data}
        error= {error}
        isLoading= {isLoading}
-       onGetItem = {handle}
-       ItemData={ItemData}
+      //  onGetItem = {handle}
+      //  ItemData={ItemData}
        />
         </AuthenticatedTemplate>
   )

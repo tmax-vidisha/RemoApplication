@@ -30,11 +30,12 @@ const Birthday = () => {
     let location = useLocation();
   console.log(location.state);
   //@ts-ignore
-  const { folderData = [] } = location.state;
- console.log(folderData?.response,'yyjyjyjyjyyjdata')
+  const { Title,Dept,img,description ,Name} = location.state;
+ console.log(Title,Dept,img,description,Name,'yyjyjyjyjyyjdata')
 
 
     return (
+        
         <div>
             <Paper elevation={0} sx={{ mb: 2 }}>
                 <IconText />
@@ -70,15 +71,15 @@ const Birthday = () => {
                             </Paper>
 
                         </Paper>
-                        <img src={folderData?.response?.fields.EmpImg} alt="icon" style={{ position: "sticky", width: "100px", borderRadius: "50%", marginTop: "-54px" }} />
+                        <img src={img} alt="icon" style={{ position: "sticky", width: "100px", borderRadius: "50%", marginTop: "-54px" }} />
 
                     </Card>
                     <Grid>
-                        <Typography style={{ fontSize: '25px', fontWeight: "700", color: "rgb(2 51 73)" }}> {folderData?.response?.fields.Name}</Typography>
-                        <Typography> {folderData?.response?.fields.Dept}</Typography>
+                        <Typography style={{ fontSize: '25px', fontWeight: "700", color: "rgb(2 51 73)" }}> {Name}</Typography>
+                        <Typography> {Dept}</Typography>
                     </Grid>
                     <Grid style={{ textAlign: "left", margin: "30px" }}>
-                        {folderData?.response?.fields.Description}
+                        {description}
                     </Grid>
                     <Grid>                        
                         <Button style={{ border: "1px solid #1BAAB5", color: "#1BAAB5", }}>
