@@ -69,7 +69,12 @@ const HeroBannerMore = () => {
                                     autoPlay
                                     controls
                                     src={folderData}
+
                                    style={{width:'1100px', height:"200px"}}
+
+                                    width="840"
+                                    height="300"
+
                                 />
                             </Card>
                         </Grid>

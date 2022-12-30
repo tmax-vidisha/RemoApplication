@@ -5,7 +5,9 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import SkeletonAnimation from "../../Containers/Skeleton";
 import { useNavigate } from 'react-router-dom';
+
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+
 import {
   Button,
   Card,
@@ -42,7 +44,11 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   // const { data, error, isLoading } =   useGetHeroImageQuery('')
   // console.log(data,'qwwwww')
+
   const classes = useStyles();
+
+  //  const classes = useStyles();
+
   const navigate = useNavigate();
 
   const theme = useTheme();
@@ -97,6 +103,7 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   const { data, error, isLoading } = props
   console.log(data, '888ddd88txccccccccccccccctuytuytu888')
 
+
   const handleClick = (Url: any) => {
     navigate('/heroThumbnail', { state: { folderData: Url } })
   }
@@ -107,6 +114,18 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   const handleReadMoreImages = (Url: any, Title: any, Description: any, Modified: any) => {
     navigate('/heroBannerMoreImages', { state: { folderData: Url, Title, Description, Modified } })
   }
+
+ const  handleClick = (Url:any) =>{
+  navigate('/heroThumbnail', { state: { folderData: Url } })
+ }
+
+ const  handleReadMoreVideo = (Url:any,Title:any,Description:any,Modified:any) =>{
+  navigate('/heroBannerMore', { state: { folderData: Url,Title,Description,Modified } })
+ }
+ const  handleReadMoreImages = (Url:any,Title:any,Description:any,Modified:any) =>{
+  navigate('/heroBannerMoreImages', { state: { folderData: Url,Title,Description,Modified } })
+ }
+
   return (
     // <div>
     //   <AuthenticatedTemplate>
@@ -189,6 +208,7 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
                   data?.response?.map((item: any, index: any) => {
                     const { fields = {} } = item;
                     var HeroTitle = fields?.Title;
+
                     if (fields?.FileType == "mp4") {
                       return (
                         <div key={index} style={{ position: "relative" }}>
@@ -212,6 +232,38 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
                             <div className={classes.videoTitle} onClick={() => handleReadMoreImages(fields?.Url, HeroTitle, fields.Description, fields?.Modified)}> {HeroTitle}</div>
                           </div>
                         </Card>
+
+                    if(fields?.FileType=="mp4"){
+                      return (
+                        <div key={index}>
+                         
+                              
+                              
+                              <h1 onClick={()=> handleReadMoreVideo(fields?.Url,HeroTitle,fields.Description,fields?.Modified)}>{HeroTitle}</h1>
+                               <video width="200" height="150" >
+                                  <source src={fields?.Url} type="video/mp4" />
+                                </video>
+                              <button onClick={()=> handleClick(fields?.Url)}>Start Explore</button>
+                              
+                            
+  
+                         
+                        </div>
+                      );
+                    }
+                   else {
+                      return (
+                        <div key={index}>
+                         
+                            
+                         <h1 onClick={()=> handleReadMoreImages(fields?.Url,HeroTitle,fields.Description,fields?.Modified)}>{HeroTitle}</h1>
+                         <img src={fields?.Url} style={{ width: "167px", height: "170px", margin: "20px", borderRadius: "10px" }} />
+                              
+                            
+  
+                         
+                        </div>
+
                       );
                     }
                   })}
