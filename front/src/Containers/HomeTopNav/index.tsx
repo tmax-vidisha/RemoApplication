@@ -172,9 +172,7 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
                       <ListItem key={index}>
                         <Link
                           to="/"
-                          className={classes.topLink}
-
-                        >
+                          className={classes.topLink}>
                           <img
                             src={iconHoverPath}
                             alt={fields.Title}

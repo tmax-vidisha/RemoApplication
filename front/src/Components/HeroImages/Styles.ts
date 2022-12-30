@@ -38,12 +38,14 @@ export const useStyles = makeStyles({
     maxWidth: "100%",
   },
   contentEditorWidth: {
-    width: "95%",
+    width: "100%",
+    
   },
   cardHeight: {
     paddingTop: "20px",
     background: "transparent !important",
     boxShadow: "none",
+    borderRadius:"10px"
   },
   contentHeader: {
     position: "relative",
@@ -102,4 +104,55 @@ export const useStyles = makeStyles({
     opacity: 0.6,
     paddingRight: "10px",
   },
+
+  videoContent:{
+    // position:"relative",
+    // border:"1px solid red"
+     
+  },
+  video:{
+    height: '253px',
+    display: "block",
+    overflow: "hidden",
+    width: "100%",
+    borderRadius: "5px",
+    // position: "relative",
+    paddingBottom: "0px !important"
+  },
+  displayImg:{
+    height: '253px',
+    display: "block",
+    overflow: "hidden",
+    width: "100%",
+    borderRadius: "5px",
+    position: "relative",
+    paddingBottom: "0px !important"
+  },
+  videoTitle:{
+    position: "absolute", 
+    color: "white",
+    top: '70%',
+    left: '34%',
+    transform: "translateX(-50%)",
+    textAlign:"left",
+    cursor:"pointer",
+  },
+  exploreBtn:{
+    position:"absolute",
+    color:"white",
+    backgroundColor: "#009BAD",
+    bottom:"3%",
+    left:"25%",
+    cursor:"pointer",
+    border:"none",
+    borderRadius:"5px",
+    textAlign:"center",
+    display:"flex",
+    justifyContent:"space-between",
+
+ },
+ bannerTitle:{
+
+ }
+  
 });

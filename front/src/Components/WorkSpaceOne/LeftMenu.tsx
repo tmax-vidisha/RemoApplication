@@ -51,7 +51,7 @@ export const SidebarData = [
     {
         id:3,
         title: "Document Library",
-        path: "/css",
+        path: "/documentLibrary",
         icon: <img src={DocumentIcon} alt=""/>,
     },
     {
@@ -70,7 +70,7 @@ export const SidebarData = [
     {
         id:6,
         title: "Trash",
-        path: "/node",
+        path: "/trash",
         icon: <img src={ trashIcon} alt=""/>,
     }
 
