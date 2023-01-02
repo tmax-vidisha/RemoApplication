@@ -48,13 +48,6 @@ const HeroBannerMoreImages = () => {
             </Card>
             <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 , borderRadius:"10px"}} >
                 <Grid item xs={12} style={{ backgroundColor: "white" }}>
-                    {/* <video src={carVideo} width="320" height="240" controls /> */}
-                    {/* <CardMedia
-                        component="video"
-                        height="140"
-                        image="../../Assets/videos/Cars.mp4"
-                        title="Contemplative Reptile"
-                    /> */}
                     <Grid item xs={12}>
                         <Card
                             raised
@@ -75,10 +68,6 @@ const HeroBannerMoreImages = () => {
                             />
                         </Card>
                     </Grid>
-
-                    {/* <Card>
-                        <VideoCard src={'https://youtu.be/nvzkHGNdtfk'}   />
-                    </Card> */}
                     <Grid item xs={12} style={{ margin: "15px" }}>
                         <Typography style={{ color: "#6c6565", textAlign: "left", fontSize:"20px", marginBottom:'10px',fontWeight:"600"  }}>{Title}</Typography>
                         <Typography style={{ color: "#1BAAB5", textAlign: "left" , fontSize:"12px", marginBottom:'10px'}}>{moment(Modified).format('DD-MM-YYYY')}</Typography>

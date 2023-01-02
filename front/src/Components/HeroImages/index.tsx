@@ -108,68 +108,6 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
     navigate('/heroBannerMoreImages', { state: { folderData: Url, Title, Description, Modified } })
   }
   return (
-    // <div>
-    //   <AuthenticatedTemplate>
-    //     {/* <Draggable> */}
-    //     <Box sx={{ flexGrow: 1, position: "relative" }}>
-    //       {isLoading ? (
-    //         <SkeletonAnimation />
-    //       ) : (
-    //         <>
-    //           <AutoPlaySwipeableViews
-    //             axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-    //             index={activeStep}
-
-    //             onChangeIndex={handleStepChange}
-    //             enableMouseEvents
-    //           >
-    //             {data?.response &&
-    //               data?.response?.value.map((item: any, index: any) => {
-    //                 const { fields = {} } = item;
-    //                 var HeroTitle = fields?.Title;
-    //                 var img = fields?.heroUrl
-    //                 var profilePic = JSON.parse(fields.HeroPic);
-    //                 var completePath;
-    //                 if (profilePic.serverUrl) {
-    //                   completePath = profilePic.serverUrl + (profilePic.serverRelativeUrl).replace(profilePic.serverUrl, "");
-    //                 } else {
-    //                   completePath = profilePic.serverRelativeUrl
-    //                 }
-    //                 return (
-    //                   <div key={index}>
-    //                     {Math.abs(activeStep - index) <= 2 ? (
-    //                       <Link to="/heroBannerMore">
-    //                         <Box
-    //                           component="img"
-    //                           sx={{
-    //                             height: 253,
-    //                             display: "block",
-    //                             overflow: "hidden",
-    //                             width: "100%",
-    //                             borderRadius: "5px",
-    //                             position: "relative",
-    //                             paddingBottom: "0px !important"
-    //                           }}
-
-    //                           src={img}
-    //                           alt={HeroTitle}
-    //                         />
-    //                       </Link>
-
-    //                     ) : null}
-    //                   </div>
-    //                 );
-    //               })}
-    //           </AutoPlaySwipeableViews>
-
-    //         </>
-    //       )}
-    //     </Box>
-    //     {/* </Draggable> */}
-    //   </AuthenticatedTemplate>
-    // </div>
-
-
     <div>
       <AuthenticatedTemplate>
         {/* <Draggable> */}
