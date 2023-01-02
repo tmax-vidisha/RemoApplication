@@ -46,10 +46,7 @@ const HeroBannerMoreImages = () => {
                     </Paper>
                 </Paper>
             </Card>
-
             <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 , borderRadius:"10px"}} >
-
-          
                 <Grid item xs={12} style={{ backgroundColor: "white" }}>
                     {/* <video src={carVideo} width="320" height="240" controls /> */}
                     {/* <CardMedia
@@ -62,7 +59,6 @@ const HeroBannerMoreImages = () => {
                         <Card
                             raised
                             sx={{
-
                                 width: '100%',
                                 margin: "0 auto",
                                 padding: "0.1em",
@@ -75,28 +71,14 @@ const HeroBannerMoreImages = () => {
                                 // autoPlay
                                 // controls
                                 src={folderData}
-
                                 style={{width:'1120px', height:"200px", margin:"15px", }}
-
-
                             />
                         </Card>
                     </Grid>
-
-                    {/* <Card>
-                        <VideoCard src={'https://youtu.be/nvzkHGNdtfk'}   />
-                    </Card> */}
-
                     <Grid item xs={12} style={{ margin: "15px" }}>
                         <Typography style={{ color: "#6c6565", textAlign: "left", fontSize:"20px", marginBottom:'10px',fontWeight:"600"  }}>{Title}</Typography>
                         <Typography style={{ color: "#1BAAB5", textAlign: "left" , fontSize:"12px", marginBottom:'10px'}}>{moment(Modified).format('DD-MM-YYYY')}</Typography>
                         <Typography style={{color: "#606C74",fontSize:"12px", textAlign:"left", paddingBottom:'20px'}}>
-
-                    <Grid item xs={12} style={{ margin: "30px" }}>
-                        <Typography style={{ color: "#606C74", textAlign: "left" }}>{Title}</Typography>
-                        <Typography style={{ color: "#1BAAB5", textAlign: "left" }}>{moment(Modified).format('DD-MM-YYYY')}</Typography>
-                        <Typography style={{color: "#606C74",}}>
-
                            {Description}
                         </Typography>
                     </Grid>

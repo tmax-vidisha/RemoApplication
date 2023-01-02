@@ -547,7 +547,6 @@ const CeoEditor = () => {
                       <Button className={classes.cancelBtn}>Cancel</Button>
                     </Grid>
                   </DialogActions>
-
                 </Dialog>
 
                 <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
