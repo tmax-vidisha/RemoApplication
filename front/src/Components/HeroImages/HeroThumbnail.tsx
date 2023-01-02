@@ -7,7 +7,9 @@ import Header from '../Header';
 import { Card } from '@mui/material';
 import { CardMedia } from '@mui/material';
 import {useLocation, useNavigate } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
+
 
 
 const HeroThumbnail = () => {

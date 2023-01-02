@@ -108,6 +108,7 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
     navigate('/heroBannerMoreImages', { state: { folderData: Url, Title, Description, Modified } })
   }
   return (
+   
     <div>
       <AuthenticatedTemplate>
         {/* <Draggable> */}
