@@ -75,8 +75,8 @@ const HeroBannerMoreImages = () => {
                 </Paper>
 
             </Card>
-
             <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 , borderRadius:"10px"}} >
+
 
                 <Grid item xs={12} style={{ backgroundColor: "white" }}>
 
@@ -87,7 +87,6 @@ const HeroBannerMoreImages = () => {
                             raised
 
                             sx={{
-
                                 width: '100%',
 
                                 margin: "0 auto",
@@ -111,8 +110,8 @@ const HeroBannerMoreImages = () => {
                                 // controls
 
                                 src={folderData}
-
                                 style={{width:'1120px', height:"200px", margin:"15px", }}
+
 
                             />
 

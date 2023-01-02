@@ -6,7 +6,7 @@ import WorkSpaceOne from './../WorkSpaceOne/index';
 import { Link, NavLink } from 'react-router-dom';
 import { NewsPageMore } from '../../Pages';
 import { Switch, Space } from 'antd';
-
+import Welcome from './../../Welcome';
 
 const useStyles = makeStyles({
     root: {
@@ -52,6 +52,7 @@ const useStyles = makeStyles({
         color: "#23bf58 !important",
         transform: "translateX(26px) !important"
     }
+
 });
 
 interface type {
@@ -67,7 +68,9 @@ const ToggleButton = (permission:any) => {
 
     const [show, setShow] = React.useState(false);
 
-
+    const handleClick = () => {
+        setToggle(!toggle);
+      };
 
     return (
         <div>
@@ -84,22 +87,16 @@ const ToggleButton = (permission:any) => {
                       onChange={(checked) =>{
                         console.log("switch is checked", checked)
                       }}
-                      
+                      onClick={handleClick} 
                     />
                 </Space>
 
             </div>
             {toggle &&
-                <div>
                     <Link to="/WorkSpaceOne" ></Link>
-                </div>
-
-            }
+              }
             {!toggle &&
-                <div>
-                    <NewsPageMore />
-                </div>
-
+                    <Link to="/" ></Link>
             }
 
         </div>
