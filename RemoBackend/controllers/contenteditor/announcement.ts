@@ -188,9 +188,12 @@ const getLatestAnnouncement = asyncHandler(async(req:Request, res:Response) => {
 
   
   console.log(response.data.value,"meetingssssssssssssssssssssssss" )
+  const rev = response.data.value
+  var ydata = [...rev].reverse();
+
   res.status(200).json({
     success: true,
-    response :response.data.value,
+    response :ydata,
     // response1:responseTop.data.value
 
 

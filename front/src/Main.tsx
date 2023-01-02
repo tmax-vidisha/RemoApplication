@@ -74,7 +74,7 @@ import HeroBannerMore from './Components/HeroImages/HeroBannerMore';
 import HeroThumbnail from './Components/HeroImages/HeroThumbnail';
 import BirthdayEditor from './Components/BirthdayEditor/BirthdayEditor';
 
-import HeroBannerMoreImages from './Components/HeroImages/HeroBannerMoreImages';
+// import HeroBannerMoreImages from './Components/HeroImages/HeroBannerMoreImages';
 
 import BirthdayContentPage from './Components/BirthdayEditor/BirthdayContentPage';
 import CeoEditor from './Components/CeoEditor/CeoEditor';
