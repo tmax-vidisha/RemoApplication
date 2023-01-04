@@ -5,6 +5,13 @@ export const useStyles = makeStyles({
   topItems: {
     display: "flex",
     justifyContent: "space-around",
+    // "& ul":{
+    //   "& li":{
+    //     "& a":{
+    //       textDecorationLine: 'none'
+    //     }
+    //   }
+    // }
     
   },
   button: {
@@ -52,29 +59,54 @@ export const useStyles = makeStyles({
     textDecoration: "none !important",
     "& .topImg": {
       margin: "auto",
-      display: "block",
+      display: "block !important",
     },
     "& .topImgH": {
       margin: "auto",
-      display: "none",
+      color:"#009BAD",
+      display: "none !important",
     },
   },
+  topImg:{
+    margin: "auto",
+      display: "block !important",
+  },
+
+  topImgH:{
+    margin: "auto",
+    color:"#009BAD",
+    display: "none !important",
+  },
   topMenu:{
-    "&:hover a .topImg":{
-      display:"none !important",
-    },
-    "&:hover a .topImgH":{
-      display:"block !important"
-    },
+    // "&:hover a .topImg":{
+    //   display:"none !important",
+    // },
+    // "&:hover a .topImgH":{
+    //    display:"block !important",     
+    // },
     "&:hover a p":{
-      color:"#009BAD"
+      color:"#009BAD",
+      textDecoration: "none !important",
     },
+    "& a":{
+      textDecorationLine: "none !important",
+      "&:hover .topImgH":{
+        display:"block !important",       
+     },
+     "&:hover .topImg":{
+      display:"none !important",
+   
+    },
+    }
   },
   topText: {
     margin: 0,
     marginTop: "16px",
     fontSize: "13px",
     color: "#acacac",
+    "& a p":{
+      textDecoration: "none !important",
+    }
   },
 
   
@@ -94,5 +126,24 @@ export const useStyles = makeStyles({
   blockRight :{
     marginLeft: "-2rem",
     clipPath: "polygon(3rem 0, 100% 0, 100% 100%, 0% 100%)",
-  }
+  },
+
+  root: {
+    flexGrow: 1,
+    backgroundColor: " white"
+  },
+  indicator: {
+    backgroundColor: "yellow"
+  },
+  tabRoot: {
+    backgroundColor: " red",
+    "&:hover": {
+      color: "yellow",
+      opacity: 1
+    }
+  },
+  selectedTab: {
+    color: "yellow"
+  },
+  
 });

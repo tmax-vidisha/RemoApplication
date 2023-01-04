@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { useGetTopNavigationQuery, useUpdateNavigationTokenMutation, useGetAllNavigationQuery } from '../../services/APIs';
-import { NavLink as RouterNavLink } from "react-router-dom";
+import { NavLink as RouterNavLink, useNavigation } from "react-router-dom";
 import { AuthenticatedTemplate } from "@azure/msal-react";
 import { topNavigationBar } from "./Nav";
 import { PublicClientApplication } from "@azure/msal-browser";
@@ -11,23 +11,90 @@ import {
   List,
   ListItem,
   Paper,
-  Tab,
+  // Tab,
   Tabs,
+
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useStyles } from "./Styles";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import content from "./../../Assets/Images/contentEditor.svg";
+import contentHover from "./../../Assets/Images/contentEditorHover.svg";
+import department from "./../../Assets/Images/department.svg";
+import departmentHover from "./../../Assets/Images/departmentHover.svg";
+import home from "./../../Assets/Images/Home.svg";
+import homeHover from "./../../Assets/Images/homeHover.svg";
+import orgChart from "./../../Assets/Images/orgchart.svg";
+import orgChartHover from "./../../Assets/Images/orgChartHover.svg";
+import policy from "./../../Assets/Images/policies.svg";
+import policyHover from "./../../Assets/Images/policiesHover.svg";
+import quickLinks from "./../../Assets/Images/Quicklinks.svg";
+import quickLinksHover from "./../../Assets/Images/quickLinksHover.svg";
+import workspace from "./../../Assets/Images/workspace.svg";
+import workspaceHover from "./../../Assets/Images/workspaceHover.svg";
+import { NavLink } from 'react-router-dom';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import MuiToggleButton from '@mui/material/ToggleButton';
 
 interface IFolderProps {
   data: any,
   error: any,
   isLoading: any
 }
-// const HomeTopNav = () => {
-const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
+interface type {
+  selectedColor: string;
+}
+// interface TabPanelProps {
+//   children?: React.ReactNode;
+//   index: number;
+//   value: any;
+// }
+
+// function TabPanel(props: TabPanelProps) {
+//   const { children, value, index, ...other } = props;
+
+//   return (
+//       <div
+//           role="tabpanel"
+//           hidden={value !== index}
+//           id={`simple-tabpanel-${index}`}
+//           aria-labelledby={`simple-tab-${index}`}
+//           {...other}
+//       >
+//           {value === index && (
+//               <Box sx={{ p: 2, boxShadow: '0 0 5px #eaeaea' }}>
+//                   {children}
+//               </Box>
+//           )}
+//       </div>
+//   );
+// }
+
+// function a11yProps(index: number) {
+//   return {
+//       id: `simple-tab-${index}`,
+//       'aria-controls': `simple-tabpanel-${index}`,
+//   };
+// }
+
+const ToggleButton = styled(MuiToggleButton)((selectedColor: any) => ({
+  '&.Mui-selected, &.Mui-selected:hover': {
+    color: 'white',
+    backgroundColor: "#009BAD",
+  },
+}));
+
+
+const HomeTopNav = (props: any) => {
+  //const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
   const [SelValue, setSelValue] = useState("");
   const [topMenu, setTopMenu] = useState(true);
+  const { history } = props;
+  let navigate = useNavigate();
+
   // const pca = new PublicClientApplication(configuration);
   // const [token, setToken] = useState<string>();
   // // const [updateToken,{data,isLoading} ] = useUpdateNavigationTokenMutation();
@@ -78,26 +145,214 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
       </Link>
     </ListItem>
   );
-  const [value, setValue] = useState("one");
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
   const { data, error, isLoading } = props;
   // console.log(data, '88888ttuytuytu888')
+
+  const itemsList = [
+    {
+      id: 0,
+      label: 'Home',
+      Icon: home,
+      iconHover: homeHover,
+      onClick: () => navigate("/"),
+      to: '/',
+    },
+    {
+      id: 1,
+      label: 'WorkSpace',
+      Icon: workspace,
+      iconHover: workspaceHover,
+      onClick: () => navigate("/WorkSpaceOne"),
+      to: '/WorkSpaceOne',
+    },
+    {
+      id: 2,
+      label: 'Policies & Procedure',
+      Icon: policy,
+      iconHover: policyHover,
+      onClick: () => navigate("/policiesContentPage"),
+      to: '/policiesContentPage',
+
+    },
+    {
+      id: 3,
+      label: 'Content Editor',
+      Icon: content,
+      iconHover: contentHover,
+      onClick: () => navigate("/ContentEditor"),
+      to: '/ContentEditor',
+    },
+    {
+      id: 4,
+      label: 'Department',
+      Icon: department,
+      iconHover: departmentHover,
+      onClick: () => navigate("/security"),
+      to: '/security',
+
+    },
+    {
+      id: 5,
+      label: "Quick Links",
+      Icon: quickLinks,
+      iconHover: quickLinksHover,
+      onClick: () => navigate("/quickLinks"),
+      to: '/quickLinks',
+    },
+    {
+      id: 6,
+      label: "Org Chart",
+      Icon: orgChart,
+      iconHover: orgChartHover,
+      onClick: () => navigate("/quickLinks"),
+      to: '/quickLinks',
+    },
+  ];
+  const [id1, setId1] = useState(0);
+  const [show, setShow] = useState(true);
+
+
+
+  const [alignment, setAlignment] = useState('Quicklinks');
+
+  const handleAlignment = (event: any, newAlignment: any) => {
+    setAlignment(newAlignment);
+  };
+  const handleClick=()=>{
+    setShow(false)
+}
+
   return (
     <AuthenticatedTemplate>
       <Paper elevation={0}>
         <CardContent sx={{ pb: "16px !important", }} style={{ marginBottom: "16px" }} >
-          {!topMenu && clearButton}
+
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            {/* <Tabs
+              className={classes.button}
+              value={value}
+              onChange={handleChange}
+            // textColor="secondary"
+            // indicatorColor="none"
+            //TabIndicatorProps={{style: {backgroundColor:'blue'}}}
+            // aria-label="secondary tabs example"
+            >
+              <Tab style={{ textTransform: "none", border: "1px solid black" }} value="one" label="Quicklinks" />
+              <Tab style={{ textTransform: "none" }} value="two" label="My Links" />
+            </Tabs> */}
+
+            <ToggleButtonGroup
+              value={alignment}
+              exclusive
+              onChange={handleAlignment}>
+              {/* @ts-ignore */}
+              <ToggleButton value="Quicklinks" onClick={handleClick}>Quicklinks</ToggleButton>
+              <ToggleButton value="My Links" onClick={handleClick}>My Links</ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+          {show ?
+            <List className={classes.topItems}>
+              {itemsList.map((item: any, id: any, index: any) => {
+                const { Icon, iconHover, onClick, path } = item;
+                console.log(itemsList, "itemsList");
+
+                return (
+                  <ListItem key={index}  onClick={onClick} className={classes.topMenu}>
+                    {itemsList && (
+                      <NavLink end to={path} className={classes.topLink}> 
+                            <img src={Icon} alt="..." className="topImg" />
+                            <img
+                            src={iconHover}
+                              alt=""
+                              className="topImgH"
+                            />
+                            <p className={classes.topText} > {item.label}</p>
+                            {/* </Link> */}
+                       
+                      </NavLink>)
+                    }
+                  </ListItem>
+                )
+              })}
+
+
+            </List>
+            : <List className={classes.topItems}>
+            {itemsList.map((item: any, id: any, index: any) => {
+              const { Icon, iconHover, onClick, path } = item;
+              console.log(itemsList, "itemsList");
+
+              return (
+                <ListItem key={index}  onClick={onClick} className={classes.topMenu}>
+                  {itemsList && (
+                    <NavLink end to={path} className={classes.topLink}> 
+                          <img src={Icon} alt="..." className="topImg" />
+                          <img
+                          src={iconHover}
+                            alt=""
+                            className="topImgH"
+                          />
+                          <p className={classes.topText} > {item.label}</p>
+                          {/* </Link> */}
+                     
+                    </NavLink>)
+                  }
+                </ListItem>
+              )
+            })}
+
+
+          </List>
+          }
+
+          {/* <TabPanel value={value} index={0}>
+         hello
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Hwlo
+          </TabPanel> */}
+
+        </CardContent>
+      </Paper>
+    </AuthenticatedTemplate>
+
+  )
+}
+
+export default HomeTopNav;
+
+ 
+                          {/* <ListItemIcon onClick={() => { setId1(id); }}>
+                        {(id1 === id) ? (
+                          <img src={iconHover} alt="icon" className="topImgH" />
+                        ) : (
+                          <img src={Icon} alt="icon" className="topImg" />
+                        )}
+                      </ListItemIcon> */}
+                          {/* <Link
+                            className={classes.topLink}
+                            onClick={(event: any) => selectedMenu(id1)}
+                            to="/"
+                          > */}
+                          
+
+/*
+<AuthenticatedTemplate>
+      <Paper elevation={0}>
+        <CardContent sx={{ pb: "16px !important", }} style={{ marginBottom: "16px" }} >
+          {!topMenu && clearButton}import { Icon } from '@fluentui/react/lib/Icon';
+import { ListItemIcon } from '@mui/material/ListItemIcon';
+import { createTheme } from '@mui/material/styles';
+
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             
-              {/* <div className={classes.block}>
-                <div className={classes.blockLeft}></div>
-                <div className={classes.blockRight}></div>
-              </div> */}
+              // <div className={classes.block}>
+              //   <div className={classes.blockLeft}></div>
+              //   <div className={classes.blockRight}></div>
+              // </div> 
            
-            <Tabs
+              <Tabs
               className={classes.button}
               value={value}
               onChange={handleChange}
@@ -201,9 +456,7 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
                         >
                           {fields.Title}
                         </RouterNavLink>
-                        {/* <Link className={classes.topLink} href={fields.Path}>
                         
-                      </Link> */}
                       </ListItem>
                     </>
                   );
@@ -213,8 +466,4 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
         </CardContent>
       </Paper>
     </AuthenticatedTemplate>
-
-  )
-}
-
-export default HomeTopNav
+*/
