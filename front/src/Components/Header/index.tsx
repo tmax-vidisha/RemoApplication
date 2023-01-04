@@ -579,10 +579,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   },
                 }}>
 
-                <Box>
-                  <Grid style={{ color: "#009BAD", fontSize: "13px" }}>Mohammed </Grid>
-                  <Grid style={{ fontSize: "12px" }}>mohammedB@tmax.in</Grid>
-                </Box>
+              
 
                 <Box>
                   <Grid style={{ color: "#009BAD", fontSize: "13px" }}>{UserData?.response?.name}</Grid>
