@@ -76,7 +76,7 @@ const ToggleButton = (permission:any) => {
         <div>
 
             <div style={{ marginTop: "15px"}}>
-                <Space direction="vertical">
+               
                     <Switch 
                     checkedChildren={"slide to top menu"}
                      unCheckedChildren={"slide to left menu " }
@@ -89,7 +89,7 @@ const ToggleButton = (permission:any) => {
                       }}
                       onClick={handleClick} 
                     />
-                </Space>
+            
 
             </div>
             {toggle &&
