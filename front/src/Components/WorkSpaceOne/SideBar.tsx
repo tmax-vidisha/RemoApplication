@@ -32,7 +32,7 @@ const SideBar = (props: any) => {
   const [open, setOpen] = React.useState(false);
   const { history } = props;
   const location = useLocation();
-  const theme = useTheme();
+  const theme = useTheme(); 
 
 
   const itemsList = [

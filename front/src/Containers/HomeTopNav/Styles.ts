@@ -145,5 +145,28 @@ export const useStyles = makeStyles({
   selectedTab: {
     color: "yellow"
   },
+  tabs: {
+    boxShadow: "0px 0px 11px 0px #b7b1b1",
+    "& .MuiTabs-indicator": {
+      display: "none",
+      //backgroundColor: "orange"
+    },
+    "& .MuiButtonBase-root.MuiTab-root": {
+      fontSize: "12px",
+      width:"50%",
+      height:"30px"
+      
+    },
+    "& .Mui-selected": {
+      // textDecoration: "underline",
+      color:"white",
+      backgroundColor:"#009BAD",
+     
+    },
+    "& .MuiTab-root.Mui-selected": {
+      color: 'white'
+    }
+  
+  }
   
 });

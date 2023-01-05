@@ -42,6 +42,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import DraggableHomePage from '../DraggableHomePage';
 import DroppableHomePage from '../DroppableHomePage';
 import WhatsNew from './../../Components/Header/WhatsNew';
+import TopNavLink from '../HomeTopNav/TopNavLink';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -178,7 +179,8 @@ const PortalHome = () => {
        
       <Grid className={classes.bannerTop}>
         <Grid item xs={12} style={{ marginBottom: "10px" }}>
-          <HomeNavigationPage />
+          {/* <HomeNavigationPage /> */}
+          <TopNavLink/>
         </Grid>
         {/* <Grid item xs={12}>
           <Paper elevation={0}>

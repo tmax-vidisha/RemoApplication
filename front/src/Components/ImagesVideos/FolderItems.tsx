@@ -38,8 +38,6 @@ const FolderItems = () => {
 
   const [showResults, setShowResults] = React.useState(true)
   const onClick = () => setShowResults(false)
-
-  // const [show, setShow] = React.useState(false)
   const HandleClick = () => setShowResults(true);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
@@ -157,8 +155,36 @@ const FolderItems = () => {
                    ))
                  }
 
-               </Box>
-              // <div>
+               </Box>            
+
+            ) : (
+              <SRLWrapper>
+                <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
+                  {
+                    filterdImagesData.map((item: any) => (
+                      <Grid  >
+                        <img src={item.webUrl} style={{ width: "167px", height: "170px", margin: "20px", borderRadius: "10px" }} />
+                      </Grid>
+                    ))
+                  }
+
+                </Box>
+              </SRLWrapper>
+            )}
+
+
+
+          </Grid>
+        </Paper>
+      </Container>
+    </div>
+  )
+}
+
+export default FolderItems;
+
+
+ // <div>
               //   <div>
               //     <Slider
               //       {...settingsMain}
@@ -228,31 +254,3 @@ const FolderItems = () => {
 
 
               // </div>
-
-            ) : (
-              <SRLWrapper>
-                <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
-                  {
-                    filterdImagesData.map((item: any) => (
-                      <Grid  >
-                        <img src={item.webUrl} style={{ width: "167px", height: "170px", margin: "20px", borderRadius: "10px" }} />
-                      </Grid>
-                    ))
-                  }
-
-                </Box>
-              </SRLWrapper>
-            )
-
-            }
-
-
-
-          </Grid>
-        </Paper>
-      </Container>
-    </div>
-  )
-}
-
-export default FolderItems;

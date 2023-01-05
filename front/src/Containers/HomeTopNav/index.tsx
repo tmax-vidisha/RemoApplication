@@ -11,9 +11,6 @@ import {
   List,
   ListItem,
   Paper,
-  // Tab,
-  Tabs,
-
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useStyles } from "./Styles";
@@ -37,6 +34,17 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import MuiToggleButton from '@mui/material/ToggleButton';
+import admin from "./../../Assets/Images/admin.svg";
+import adminHover from "./../../Assets/Images/admin.svg";
+import hub from "./../../Assets/Images/hub.svg";
+import hubHover from "./../../Assets/Images/hubHover.svg";
+import ITservice from "./../../Assets/Images/ITservice.svg";
+import ITserviceHover from "./../../Assets/Images/ITserviceHover.svg";
+import sales from "./../../Assets/Images/sales.svg";
+import salesHover from "./../../Assets/Images/salesHover.svg";
+import vehicle from "./../../Assets/Images/vehicleRequest.svg";
+import vehicleH from "./../../Assets/Images/vehicleRHover.svg";
+
 
 interface IFolderProps {
   data: any,
@@ -209,19 +217,66 @@ const HomeTopNav = (props: any) => {
       to: '/quickLinks',
     },
   ];
+
+  const myLinkList = [
+    {
+      id: 0,
+      label: 'Sales',
+      icon: sales,
+      iconHov: salesHover,
+      onClick: () => navigate("/"),
+      to: '/',
+    },
+    {
+      id: 1,
+      label: 'Vehicle',
+      icon: vehicle,
+      iconHov: vehicleH,
+      onClick: () => navigate("/WorkSpaceOne"),
+      to: '/WorkSpaceOne',
+    },
+    {
+      id: 2,
+      label: 'IT service',
+      icon: ITservice,
+      iconHov:ITserviceHover,
+      onClick: () => navigate("/policiesContentPage"),
+      to: '/policiesContentPage',
+
+    },
+    {
+      id: 3,
+      label: 'Hub',
+      icon: hub,
+      iconHov: hubHover,
+      onClick: () => navigate("/ContentEditor"),
+      to: '/ContentEditor',
+    },
+    {
+      id: 4,
+      label: 'Admin',
+      icon: admin,
+      iconHov: adminHover,
+      onClick: () => navigate("/security"),
+      to: '/security',
+
+    },
+
+  ];
+
   const [id1, setId1] = useState(0);
   const [show, setShow] = useState(true);
-
-
 
   const [alignment, setAlignment] = useState('Quicklinks');
 
   const handleAlignment = (event: any, newAlignment: any) => {
     setAlignment(newAlignment);
   };
-  const handleClick=()=>{
-    setShow(false)
-}
+  // const onClick = () => setShow(false)
+  // const HandleClick = () => setShow(true);
+  const [showResults, setShowResults] = useState(true)
+  const onClick = () => setShowResults(false)
+  const HandleClick = () => setShowResults(true);
 
   return (
     <AuthenticatedTemplate>
@@ -247,29 +302,64 @@ const HomeTopNav = (props: any) => {
               exclusive
               onChange={handleAlignment}>
               {/* @ts-ignore */}
-              <ToggleButton value="Quicklinks" onClick={handleClick}>Quicklinks</ToggleButton>
-              <ToggleButton value="My Links" onClick={handleClick}>My Links</ToggleButton>
+              <ToggleButton value="Quicklinks" onClick={onClick} >Quicklinks</ToggleButton>
+              <ToggleButton value="My Links" onClick={HandleClick} >My Links</ToggleButton>
             </ToggleButtonGroup>
-          </Box>
-          {show ?
+          </Box>         
+          {showResults ? (
+            <List className={classes.topItems}>
+            <ListItem className={classes.topMenu}>
+              <Link to="/" className={classes.topLink}>
+                <img src={vehicle} alt="..." className="topImg" />
+                <img
+                  src={vehicleH}
+                  alt=""
+                  className="topImgH"
+                />
+                <p className={classes.topText} >vehicle</p>
+              </Link>
+            </ListItem>
+            <ListItem className={classes.topMenu}>
+              <Link to="/" className={classes.topLink}>
+                <img src={sales} alt="..." className="topImg" />
+                <img
+                  src={salesHover}
+                  alt=""
+                  className="topImgH"
+                />
+                <p className={classes.topText} >Sales</p>
+              </Link>
+            </ListItem>
+            <ListItem className={classes.topMenu}>
+              <Link to="/" className={classes.topLink}>
+                <img src={ITservice} alt="..." className="topImg" />
+                <img
+                  src={ITserviceHover}
+                  alt=""
+                  className="topImgH"
+                />
+                <p className={classes.topText} >IT Service</p>
+              </Link>
+            </ListItem>
+          </List>
+
+          ) : (
             <List className={classes.topItems}>
               {itemsList.map((item: any, id: any, index: any) => {
                 const { Icon, iconHover, onClick, path } = item;
                 console.log(itemsList, "itemsList");
 
                 return (
-                  <ListItem key={index}  onClick={onClick} className={classes.topMenu}>
+                  <ListItem key={index} onClick={onClick} className={classes.topMenu}>
                     {itemsList && (
-                      <NavLink end to={path} className={classes.topLink}> 
-                            <img src={Icon} alt="..." className="topImg" />
-                            <img
-                            src={iconHover}
-                              alt=""
-                              className="topImgH"
-                            />
-                            <p className={classes.topText} > {item.label}</p>
-                            {/* </Link> */}
-                       
+                      <NavLink end to={path} className={classes.topLink}>
+                        <img src={Icon} alt="..." className="topImg" />
+                        <img
+                          src={iconHover}
+                          alt=""
+                          className="topImgH"
+                        />
+                        <p className={classes.topText} > {item.label}</p>
                       </NavLink>)
                     }
                   </ListItem>
@@ -278,41 +368,7 @@ const HomeTopNav = (props: any) => {
 
 
             </List>
-            : <List className={classes.topItems}>
-            {itemsList.map((item: any, id: any, index: any) => {
-              const { Icon, iconHover, onClick, path } = item;
-              console.log(itemsList, "itemsList");
-
-              return (
-                <ListItem key={index}  onClick={onClick} className={classes.topMenu}>
-                  {itemsList && (
-                    <NavLink end to={path} className={classes.topLink}> 
-                          <img src={Icon} alt="..." className="topImg" />
-                          <img
-                          src={iconHover}
-                            alt=""
-                            className="topImgH"
-                          />
-                          <p className={classes.topText} > {item.label}</p>
-                          {/* </Link> */}
-                     
-                    </NavLink>)
-                  }
-                </ListItem>
-              )
-            })}
-
-
-          </List>
-          }
-
-          {/* <TabPanel value={value} index={0}>
-         hello
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            Hwlo
-          </TabPanel> */}
-
+          )}
         </CardContent>
       </Paper>
     </AuthenticatedTemplate>
@@ -322,20 +378,87 @@ const HomeTopNav = (props: any) => {
 
 export default HomeTopNav;
 
- 
-                          {/* <ListItemIcon onClick={() => { setId1(id); }}>
+
+{/*
+
+{show ? (
+            <List className={classes.topItems}>
+              {itemsList.map((item: any, id: any, index: any) => {
+                const { Icon, iconHover, onClick, path } = item;
+                console.log(itemsList, "itemsList");
+
+                return (
+                  <ListItem key={index} onClick={onClick} className={classes.topMenu}>
+                    {itemsList && (
+                      <NavLink end to={path} className={classes.topLink}>
+                        <img src={Icon} alt="..." className="topImg" />
+                        <img
+                          src={iconHover}
+                          alt=""
+                          className="topImgH"
+                        />
+                        <p className={classes.topText} > {item.label}</p>
+                      </NavLink>)
+                    }
+                  </ListItem>
+                )
+              })}
+
+
+            </List>)
+            :
+            (
+              <List className={classes.topItems}>
+                <ListItem className={classes.topMenu}>
+                  <Link to="/" className={classes.topLink}>
+                    <img src={vehicle} alt="..." className="topImg" />
+                    <img
+                      src={vehicleH}
+                      alt=""
+                      className="topImgH"
+                    />
+                    <p className={classes.topText} >vehicle</p>
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.topMenu}>
+                  <Link to="/" className={classes.topLink}>
+                    <img src={sales} alt="..." className="topImg" />
+                    <img
+                      src={salesHover}
+                      alt=""
+                      className="topImgH"
+                    />
+                    <p className={classes.topText} >Sales</p>
+                  </Link>
+                </ListItem>
+                <ListItem className={classes.topMenu}>
+                  <Link to="/" className={classes.topLink}>
+                    <img src={ITservice} alt="..." className="topImg" />
+                    <img
+                      src={ITserviceHover}
+                      alt=""
+                      className="topImgH"
+                    />
+                    <p className={classes.topText} >IT Service</p>
+                  </Link>
+                </ListItem>
+              </List>
+            )}
+
+
+<ListItemIcon onClick={() => { setId1(id); }}>
                         {(id1 === id) ? (
                           <img src={iconHover} alt="icon" className="topImgH" />
                         ) : (
                           <img src={Icon} alt="icon" className="topImg" />
                         )}
                       </ListItemIcon> */}
-                          {/* <Link
+{/* <Link
                             className={classes.topLink}
                             onClick={(event: any) => selectedMenu(id1)}
                             to="/"
                           > */}
-                          
+
 
 /*
 <AuthenticatedTemplate>
