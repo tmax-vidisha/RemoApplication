@@ -61,11 +61,16 @@ const rows = [
   { id: 10, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />},
  
 ];
+interface IFolderProps {
+ 
+  onClick?: (obj:any) => void;
+  
+}
 
-
-const CeoEditor = () => {
+// const CeoEditor = () => {
+const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-
+  const { onClick } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -100,7 +105,8 @@ const CeoEditor = () => {
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
   const [Title, setTitle] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
-  const [RecipientEmail, setRecipientEmail] = useState<any>('');
+  const [designations, setDesignations] = useState<any>('');
+  const [ceoName, setCeoName] = useState<any>('');
   const [state, setState] = useState({
     warningMsg: ""
   })
@@ -194,11 +200,14 @@ const CeoEditor = () => {
     console.log(event.target.value)
     setDescription(event.target.value);
   };
-  const handleChangeReciepientEmailField = (event: any) => {
+  const handleChangeDesignation = (event: any) => {
     console.log(event.target.value)
-    setRecipientEmail(event.target.value);
+    setDesignations(event.target.value);
   };
-
+  const handleChangeCeoName = (event: any) => {
+    console.log(event.target.value)
+    setCeoName(event.target.value);
+  };
   useEffect(() => {
     state1.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
     state2.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
@@ -276,23 +285,62 @@ const CeoEditor = () => {
       });
     }
   };
+  const fileRef = React.useRef<HTMLInputElement | null>(null)
+  const fileRef1 = React.useRef<HTMLInputElement | null>(null)
+  const [selectedFiles, setSelectedFiles] = useState<File | null>();
+  const [selectedFiles1, setSelectedFiles1] = useState<File | null>();
+  const [fileSelected, setFileSelected] = useState<any>('');
+  const [fileSelected1, setFileSelected1] = useState<any>('');
+  const [names,setNames] = useState<any>('');
+  const [names1,setNames1] = useState<any>('');
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles(event?.target?.files?.[0]);
+    setNames(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload= (e) =>{
+        console.log(e.target?.result,'kkkkttt')
+      setFileSelected(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
+
+  };
+  const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles1(event?.target?.files?.[0]);
+    setNames1(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload= (e) =>{
+        console.log(e.target?.result,'kkkkttt')
+      setFileSelected1(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
+
+  };
   const handleSubmit = async () => {
     console.log('grdgdg')
     const announcementData = {
       // token :tokens,
       title: Title,
       description: Description,
-      image: base1,
-      imageName: filename1,
+      image: fileSelected,
+      imageName: names,
       isActive: isActives,
-      EnableLikes: enablelikes,
-      EnableCommands: enableCommands,
-      SharedAsEmail: sharedAsEmails,
-      RecipientEmail: RecipientEmail,
-      Attachment: base2,
-      Attachmentname: filename2
+      designation:designations,
+      Name:ceoName,
+      Attachment: fileSelected1,
+      Attachmentname:names1
     }
     //  await sendItem(announcementData)
+    onClick?.(announcementData)
   }
 
   const [files, setFiles] = useState<File[]>([]);
@@ -373,7 +421,7 @@ const CeoEditor = () => {
                   id="outlined-adornment-weight"
                   className={classes.span}
                   style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
+                  onChange={handleChangeCeoName}
                   placeholder="Enter a name"
                 />
               </div>
@@ -400,7 +448,7 @@ const CeoEditor = () => {
                   id="outlined-adornment-weight"
                   className={classes.span}
                   style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
+                  onChange={handleChangeDesignation}
                   placeholder="Enter value here"
                 />
               </div>
@@ -423,7 +471,59 @@ const CeoEditor = () => {
               )}
             </Dropzone> */}
                 <Grid className={classes.svg}>
-                  <FileUpload value={files} onChange={setFiles} />
+                  {/* <FileUpload value={files} onChange={setFiles} /> */}
+                  <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileSelect}
+                    />
+                    {!selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={() => fileRef.current?.click()}
+                      >
+                        Choose file to upload
+                      </Button>
+                    )}
+                    {/* {selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={onUpdate}
+                      >
+                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
+                        <span style={{ padding: '10px' }}> Change</span>
+                        <span>Clear</span>
+                      </Button>
+                    )} */}
+                    {selectedFiles?.name && (
+                      <>
+                        <h1 >{selectedFiles?.name}</h1>
+                        <button
+                          onClick={() => {
+                            setSelectedFiles(null);
+                            if (fileRef.current) {
+                              fileRef.current.value = '';
+                            }
+                          }}
+                        >
+                          Clear 
+                        </button>
+                      </>
+                    )}
+                    <Button
+                      color="primary"
+                      disabled={!selectedFiles}
+                      style={{ textTransform: 'none' }}
+                      // onClick={onUpload}
+                    >
+                      Upload
+                    </Button>
                 </Grid>
 
               </div>
@@ -460,7 +560,59 @@ const CeoEditor = () => {
               )}
             </Dropzone> */}
              <Grid className={classes.svg}>
-                  <FileUpload value={files} onChange={setFiles} />
+                  {/* <FileUpload value={files} onChange={setFiles} /> */}
+                  <input
+                      ref={fileRef1}
+                      hidden
+                      type="file"
+                      // accept="image/*,video/*"
+                      onChange={handleFileSelect1}
+                    />
+                    {!selectedFiles1?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={() => fileRef1.current?.click()}
+                      >
+                        Choose file to upload
+                      </Button>
+                    )}
+                    {/* {selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={onUpdate}
+                      >
+                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
+                        <span style={{ padding: '10px' }}> Change</span>
+                        <span>Clear</span>
+                      </Button>
+                    )} */}
+                    {selectedFiles1?.name && (
+                      <>
+                        <h1 >{selectedFiles1?.name}</h1>
+                        <button
+                          onClick={() => {
+                            setSelectedFiles1(null);
+                            if (fileRef1.current) {
+                              fileRef1.current.value = '';
+                            }
+                          }}
+                        >
+                          Clear 
+                        </button>
+                      </>
+                    )}
+                    <Button
+                      color="primary"
+                      disabled={!selectedFiles}
+                      style={{ textTransform: 'none' }}
+                      // onClick={onUpload}
+                    >
+                      Upload
+                    </Button>
                 </Grid>
                 </div>
             

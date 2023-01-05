@@ -28,6 +28,8 @@ import ImagesAndVideosPage from "./ImagesAndVideosPage/ImagesAndVideosPage";
 import WeatherPage from "./WeatherPage/WeatherPage";
 import ViewAllEventPage from "./EventsPage/ViewAllEventPage";
 import HeaderPage from "./HeaderPage/HeaderPage";
+import HeroContentEditorPage from "./HeroImagePage/HeroContentEditorPage";
+import CeoContentEditorPage from "./CeoPage/CeoContentEditorPage";
 export {
     
         EventsPage,
@@ -59,6 +61,8 @@ export {
         ImagesAndVideosPage,
         WeatherPage,
         ViewAllEventPage,
-        HeaderPage
+        HeaderPage,
+        HeroContentEditorPage,
+        CeoContentEditorPage
 
       };

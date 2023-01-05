@@ -3,8 +3,8 @@ import WhatsNew from './../Header/WhatsNew';
 import { Grid ,Box } from '@mui/material';
 import SideBar from './../WorkSpaceOne/SideBar';
 import { useStyles } from './Styles';
-import HeroBannerEditor from './HeroBannerEditor';
-
+// import HeroBannerEditor from './HeroBannerEditor';
+import HeroContentEditorPage from '../../Pages/HeroImagePage/HeroContentEditorPage'
 const HeroContentPage = () => {
     const classes=useStyles()
     return (
@@ -22,7 +22,7 @@ const HeroContentPage = () => {
                             <SideBar />
                         </Grid>
                         <Grid item xs={11} >
-                            <HeroBannerEditor />
+                            <HeroContentEditorPage />
                         </Grid>
                        
                     </Grid>

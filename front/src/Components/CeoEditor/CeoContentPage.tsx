@@ -3,8 +3,8 @@ import WhatsNew from './../Header/WhatsNew';
 import { Grid ,Box } from '@mui/material';
 import SideBar from './../WorkSpaceOne/SideBar';
 import { useStyles } from './Styles';
-import CeoEditor from './CeoEditor';
-
+// import CeoEditor from './CeoEditor';
+import { CeoContentEditorPage } from '../../Pages';
 const CeoContentPage = () => {
     const classes=useStyles()
     return (
@@ -22,7 +22,7 @@ const CeoContentPage = () => {
                             <SideBar />
                         </Grid>
                         <Grid item xs={11} >
-                            <CeoEditor />
+                            <CeoContentEditorPage />
                         </Grid>
                        
                     </Grid>
