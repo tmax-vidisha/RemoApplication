@@ -27,6 +27,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
 import FileUpload from "react-material-file-upload";
+import useCustom from '../../hooks/useCustom';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
@@ -66,11 +67,17 @@ const rows = [
   { id: 9, Title: 'Das Holding has adoptade a policy of ', Status: 'Active', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', ExperiesOn: '12/19/2022 | 12:00 AM ', 'Image/video': <img src={image} alt="" />, IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
 
 ];
+interface IFolderProps {
+ 
+  onClick?: (obj:any) => void;
+  
+}
 
-
-const HeroBannerEditor = () => {
+// const HeroBannerEditor = () => {
+const HeroBannerEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-
+  const {token} = useCustom();
+  const { onClick } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -105,6 +112,8 @@ const HeroBannerEditor = () => {
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
   const [Title, setTitle] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
+  const [expiresOn, setExpiresOn] = useState<any>('');
+  const [time, setTime] = useState<any>('');
   const [RecipientEmail, setRecipientEmail] = useState<any>('');
   const [state, setState] = useState({
     warningMsg: ""
@@ -203,7 +212,14 @@ const HeroBannerEditor = () => {
     console.log(event.target.value)
     setRecipientEmail(event.target.value);
   };
-
+  const handleChangeExpriesOnField = (event: any) => {
+    console.log(event.target.value)
+    setExpiresOn(event.target.value);
+  };
+  const handleChangeTimeField = (event: any) => {
+    console.log(event.target.value)
+    setTime(event.target.value);
+  };
   useEffect(() => {
     state1.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
     state2.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
@@ -281,27 +297,160 @@ const HeroBannerEditor = () => {
       });
     }
   };
+  
+  const fileRef = React.useRef<HTMLInputElement | null>(null)
+  const fileRef1 = React.useRef<HTMLInputElement | null>(null)
+  const [selectedFiles, setSelectedFiles] = useState<File | null>();
+  const [selectedFiles1, setSelectedFiles1] = useState<File | null>();
+
+  const [fileSelected, setFileSelected] = useState<any>('');
+  const [bB, setBb] = useState<any>();
+  const [names,setNames] = useState<any>('');
+  const [names1,setNames1] = useState<any>('');
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles(event?.target?.files?.[0]);
+    setNames(event?.target?.files?.[0].name)
+
+
+    // const fileList = event.target.files;
+    // // console.log(fileList[0].name,'uuuu')
+    //  setName(fileList[0].name)
+    // console.log(name,'lllllll')
+    // if (!fileList) return;
+    // setFileSelected(fileList[0]);
+//     let reader = new FileReader();
+//     // @ts-ignore
+//     reader.readAsDataURL(event?.target?.files?.[0])
+//     reader.onload= (e) =>{
+//       //  console.log(e.target?.result,'kkkkttt')
+//       setFileSelected(e.target?.result)
+//       //@ts-ignore
+//       // var eee4 = window.atob(e.target?.result)
+//       // console.log(eee4,'rrrrrrthds')
+//     }
+//     fetch(fileSelected)
+// .then(res => res.blob())
+// .then(blob => {
+//   // console.log("here is your binary: ", blob)
+//    setBb(blob)
+//   // now upload it
+//   // fetch(api, {method: 'POST', body: blob})
+// })
+    // var filea = event?.target?.files?.[0];
+    // var reader = new FileReader();
+    // reader.onloadend = function() {
+    //   console.log('Encoded Base 64 File String:', reader.result);
+      
+    //   /******************* for Binary ***********************/
+    //   var data=(reader.result).split(',')[1];
+    //    var binaryBlob = atob(data);
+    //    console.log('Encoded Binary File String:', binaryBlob);
+    // }
+    // reader.readAsDataURL(filea);
+
+    // reader.readAsArrayBuffer(event?.target?.files?.[0]);
+    // reader.onload = function(){
+    //   const binaryData = Buffer.from(reader.result as string,'binary');
+    //   console.log(binaryData);
+    // };
+    // console.log(selectedFiles,'kkkkkttt')
+  };
+  const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles1(event?.target?.files?.[0]);
+    setNames1(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+        // @ts-ignore
+        reader.readAsDataURL(event?.target?.files?.[0])
+        reader.onload= (e) =>{
+            console.log(e.target?.result,'kkkkttt')
+          setFileSelected(e.target?.result)
+          //@ts-ignore
+          // var eee4 = window.atob(e.target?.result)
+          // console.log(eee4,'rrrrrrthds')
+        }
+  };
+  const onUpload = () => {
+    console.log(selectedFiles);
+  };
+
+  // const onClear = () => {
+  //   setSelectedFiles(undefined);
+  // };
+
+  // const onUpdate = (event:any) => {
+  //   if (event.target.textContent.trim().toLowerCase() === 'change') {
+  //     onClear();
+  //     //@ts-ignore
+  //     fileRef.current.click();
+  //     return;
+  //   }
+  //   if (event.target.textContent.trim().toLowerCase() === 'clear') {
+  //     onClear();
+  //     return;
+  //   }
+  // };
+  // const resetInput = () => {
+  //   //@ts-ignore
+  //   fileRef.current.value = null;
+  // };
+  const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`
+const Site_Id = 'tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43'
+const heroBannerDriveId ="b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikNSXwtOP-0VTpmA2oOYWlnu"
+
+async function  uploadItem (){
+  try {
+    const response = await fetch(`${BASE_PATH}/${Site_Id}/drives/${heroBannerDriveId}/items/root:/${names}:/content`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        "Content-type":   'application/json'
+      },
+      body: selectedFiles
+    });
+    const data = await response.json();
+    // enter you logic when the fetch is successful
+    console.log(data, 'rtwssssssssss');
+    return data.webUrl
+    // return data
+  } catch (error) {
+    // enter your logic for when there is an error (ex. error toast)
+
+    console.log(error)
+  }
+}
+
+
   const handleSubmit = async () => {
     console.log('grdgdg')
-    const announcementData = {
+    console.log(selectedFiles,'ghhh')
+    console.log(names)
+    
+    const WebUrl:string =await uploadItem();
+    console.log(WebUrl,'kkkkkkkkkytyyy')
+    // const exten = WebUrl.split('.').pop();
+    // console.log(exten,'gg')
+    if(WebUrl !== undefined){
+    const  sendData = {
       // token :tokens,
       title: Title,
       description: Description,
-      image: base1,
-      imageName: filename1,
+      ExpiresOn:expiresOn,
+      Time:time,
+      WbU: WebUrl,
       isActive: isActives,
       EnableLikes: enablelikes,
       EnableCommands: enableCommands,
       SharedAsEmail: sharedAsEmails,
       RecipientEmail: RecipientEmail,
-      Attachment: base2,
-      Attachmentname: filename2
+      Attachment: fileSelected,
+      Attachmentname: names1
     }
-    //  await sendItem(announcementData)
+     onClick?.(sendData)
   }
-
-  const [files, setFiles] = useState<File[]>([]);
-
+   
+  }
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
@@ -397,7 +546,7 @@ const HeroBannerEditor = () => {
                       defaultValue="2022-12-26"
                       className={classes.span}
                       style={{ width: "100%" }}
-                      onChange={handleChangeTitleField}
+                      onChange={handleChangeExpriesOnField}
                       placeholder="MM/DD/YYYY"
                       InputLabelProps={{
                         color: "secondary",
@@ -423,7 +572,7 @@ const HeroBannerEditor = () => {
                       defaultValue="13:30"
                       className={classes.span}
                       style={{ width: "100%" }}
-                      onChange={handleChangeTitleField}
+                      onChange={handleChangeTimeField}
                       // placeholder="HR/MM/ss"
                       InputLabelProps={{
                         color: "secondary",
@@ -457,7 +606,60 @@ const HeroBannerEditor = () => {
               )}
             </Dropzone> */}
                   <Grid className={classes.svg}>
-                    <FileUpload value={files} onChange={setFiles} />
+                    {/* <FileUpload value={files} onChange={handleChange} /> */}
+                    <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*,video/*"
+                      onChange={handleFileSelect}
+                    />
+                    {!selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={() => fileRef.current?.click()}
+                      >
+                        Choose file to upload
+                      </Button>
+                    )}
+                    {/* {selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={onUpdate}
+                      >
+                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
+                        <span style={{ padding: '10px' }}> Change</span>
+                        <span>Clear</span>
+                      </Button>
+                    )} */}
+                    {selectedFiles?.name && (
+                      <>
+                        <h1 >{selectedFiles?.name}</h1>
+                        <button
+                          onClick={() => {
+                            setSelectedFiles(null);
+                            if (fileRef.current) {
+                              fileRef.current.value = '';
+                            }
+                          }}
+                        >
+                          Clear 
+                        </button>
+                      </>
+                    )}
+                    <Button
+                      color="primary"
+                      disabled={!selectedFiles}
+                      style={{ textTransform: 'none' }}
+                      onClick={onUpload}
+                    >
+                      Upload
+                    </Button>
+
                   </Grid>
 
                 </div>
@@ -562,7 +764,59 @@ const HeroBannerEditor = () => {
               )}
             </Dropzone> */}
                 <Grid className={classes.svg}>
-                  <FileUpload value={files} onChange={setFiles} />
+                  {/* <FileUpload value={files} onChange={setFiles} /> */}
+                  <input
+                      ref={fileRef1}
+                      hidden
+                      type="file"
+                      // accept="image/*,video/*"
+                      onChange={handleFileSelect1}
+                    />
+                    {!selectedFiles1?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={() => fileRef1.current?.click()}
+                      >
+                        Choose file to upload
+                      </Button>
+                    )}
+                    {/* {selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={onUpdate}
+                      >
+                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
+                        <span style={{ padding: '10px' }}> Change</span>
+                        <span>Clear</span>
+                      </Button>
+                    )} */}
+                    {selectedFiles1?.name && (
+                      <>
+                        <h1 >{selectedFiles1?.name}</h1>
+                        <button
+                          onClick={() => {
+                            setSelectedFiles1(null);
+                            if (fileRef1.current) {
+                              fileRef1.current.value = '';
+                            }
+                          }}
+                        >
+                          Clear 
+                        </button>
+                      </>
+                    )}
+                    <Button
+                      color="primary"
+                      disabled={!selectedFiles1}
+                      style={{ textTransform: 'none' }}
+                      onClick={onUpload}
+                    >
+                      Upload
+                    </Button>
                 </Grid>
               </DialogContent>
               <DialogActions>
