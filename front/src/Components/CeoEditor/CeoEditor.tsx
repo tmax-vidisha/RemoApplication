@@ -45,27 +45,32 @@ const columns: GridColDef[] = [
   { field: 'Designation', headerName: 'Designation', width: 130 },
   { field: 'Image', headerName: 'Image', width: 130 },
   { field: 'IS Active', headerName: 'IS Active', width: 100 },
- 
+
 ];
 
 
 const rows = [
-  { id: 1, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />,},
-  { id: 3, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />,},
-  { id: 4, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />,},
-  { id: 5, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />,},
-  { id: 6, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />,},
-  { id: 7, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />},
-  { id: 8, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />},
-  { id: 9, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />},
-  { id: 10, Title: 'Happy Birthday' , Status: 'Active', Name: 'Ayesha Siddiqa',Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near',Designation: 'HR Manager', Image: <img src={image} alt="" />,   IsActive: <Switch {...label} defaultChecked />},
- 
+  { id: 1, Title: 'Happy Birthday', Status: 'Active', Name: 'Ayesha Siddiqa', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Designation: 'HR Manager', Image: <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, },
+  { id: 3, Title: 'Happy Birthday', Status: 'Active', Name: 'Ayesha Siddiqa', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Designation: 'HR Manager', Image: <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, },
+  { id: 4, Title: 'Happy Birthday', Status: 'Active', Name: 'Ayesha Siddiqa', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Designation: 'HR Manager', Image: <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, },
+  { id: 5, Title: 'Happy Birthday', Status: 'Active', Name: 'Ayesha Siddiqa', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Designation: 'HR Manager', Image: <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, },
+  { id: 6, Title: 'Happy Birthday', Status: 'Active', Name: 'Ayesha Siddiqa', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Designation: 'HR Manager', Image: <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, },
+  { id: 7, Title: 'Happy Birthday', Status: 'Active', Name: 'Ayesha Siddiqa', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Designation: 'HR Manager', Image: <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked /> },
+  { id: 8, Title: 'Happy Birthday', Status: 'Active', Name: 'Ayesha Siddiqa', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Designation: 'HR Manager', Image: <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked /> },
+  { id: 9, Title: 'Happy Birthday', Status: 'Active', Name: 'Ayesha Siddiqa', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Designation: 'HR Manager', Image: <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked /> },
+  { id: 10, Title: 'Happy Birthday', Status: 'Active', Name: 'Ayesha Siddiqa', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Designation: 'HR Manager', Image: <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked /> },
+
 ];
+interface IFolderProps {
 
+  onClick?: (obj: any) => void;
 
-const CeoEditor = () => {
+}
+
+// const CeoEditor = () => {
+const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-
+  const { onClick } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -100,7 +105,8 @@ const CeoEditor = () => {
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
   const [Title, setTitle] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
-  const [RecipientEmail, setRecipientEmail] = useState<any>('');
+  const [designations, setDesignations] = useState<any>('');
+  const [ceoName, setCeoName] = useState<any>('');
   const [state, setState] = useState({
     warningMsg: ""
   })
@@ -194,11 +200,14 @@ const CeoEditor = () => {
     console.log(event.target.value)
     setDescription(event.target.value);
   };
-  const handleChangeReciepientEmailField = (event: any) => {
+  const handleChangeDesignation = (event: any) => {
     console.log(event.target.value)
-    setRecipientEmail(event.target.value);
+    setDesignations(event.target.value);
   };
-
+  const handleChangeCeoName = (event: any) => {
+    console.log(event.target.value)
+    setCeoName(event.target.value);
+  };
   useEffect(() => {
     state1.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
     state2.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
@@ -276,145 +285,184 @@ const CeoEditor = () => {
       });
     }
   };
+  const fileRef = React.useRef<HTMLInputElement | null>(null)
+  const fileRef1 = React.useRef<HTMLInputElement | null>(null)
+  const [selectedFiles, setSelectedFiles] = useState<File | null>();
+  const [selectedFiles1, setSelectedFiles1] = useState<File | null>();
+  const [fileSelected, setFileSelected] = useState<any>('');
+  const [fileSelected1, setFileSelected1] = useState<any>('');
+  const [names, setNames] = useState<any>('');
+  const [names1, setNames1] = useState<any>('');
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles(event?.target?.files?.[0]);
+    setNames(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload = (e) => {
+      console.log(e.target?.result, 'kkkkttt')
+      setFileSelected(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
+
+  };
+  const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles1(event?.target?.files?.[0]);
+    setNames1(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload = (e) => {
+      console.log(e.target?.result, 'kkkkttt')
+      setFileSelected1(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
+
+  };
   const handleSubmit = async () => {
     console.log('grdgdg')
     const announcementData = {
       // token :tokens,
       title: Title,
       description: Description,
-      image: base1,
-      imageName: filename1,
+      image: fileSelected,
+      imageName: names,
       isActive: isActives,
-      EnableLikes: enablelikes,
-      EnableCommands: enableCommands,
-      SharedAsEmail: sharedAsEmails,
-      RecipientEmail: RecipientEmail,
-      Attachment: base2,
-      Attachmentname: filename2
+      designation: designations,
+      Name: ceoName,
+      Attachment: fileSelected1,
+      Attachmentname: names1
     }
     //  await sendItem(announcementData)
+    onClick?.(announcementData)
   }
 
   const [files, setFiles] = useState<File[]>([]);
 
   return (
     <div className={classes.Section}>
-    <Box className={classes.MainPart}>
-      <Grid className={classes.upperPart}>
-        <Grid>Ceo Message</Grid>
-        <Grid className={classes.new}>
-          <Button
-            onClick={handleClickOpen}
-            className={classes.create}
-            sx={{ textTransform: "capitalize", }}>
-            <span className={classes.plus}><LocalHospitalIcon /></span>
-            New
-          </Button>
-          <Dialog
-            classes={{
-              paper: classes.newPosOfDialog
-            }}
-            open={openOne}
-            onClose={handleClose}
-            style={{ marginTop: "60px", height: "650px" }}
-          >
-            <DialogTitle id="alert-dialog-title" >
-              <Grid className={classes.dialogTitle}>
-                <Grid>
-                  <Button className={classes.dialogBtn}>
-                    <img src={save} alt="" style={{ width: "13px", marginRight: "5px", }} />
-                    <span style={{ color: "#606C74", textTransform: "capitalize" }}>Save</span>
-                  </Button>
-                  <Button style={{ color: "#606C74", fontSize: "12px" }}>
-                    <img src={cancel} alt="" style={{ width: "13px", marginRight: "5px" }} />
-                    <span style={{ textTransform: "capitalize" }}>Cancel</span>
-                  </Button>
-                  <Button>
-                    <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
-                    <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Copy Link</span>
-                  </Button>
-                  <Button>
-                    <img src={publish} alt="" style={{ width: "12px", marginRight: "5px" }} />
-                    <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Publish</span>
-                  </Button>
+      <Box className={classes.MainPart}>
+        <Grid className={classes.upperPart}>
+          <Grid>Ceo Message</Grid>
+          <Grid className={classes.new}>
+            <Button
+              onClick={handleClickOpen}
+              className={classes.create}
+              sx={{ textTransform: "capitalize", }}>
+              <span className={classes.plus}><LocalHospitalIcon /></span>
+              New
+            </Button>
+            <Dialog
+              classes={{
+                paper: classes.newPosOfDialog
+              }}
+              open={openOne}
+              onClose={handleClose}
+              style={{ marginTop: "60px", height: "650px" }}
+            >
+              <DialogTitle id="alert-dialog-title" >
+                <Grid className={classes.dialogTitle}>
+                  <Grid>
+                    <Button className={classes.dialogBtn}>
+                      <img src={save} alt="" style={{ width: "13px", marginRight: "5px", }} />
+                      <span style={{ color: "#606C74", textTransform: "capitalize" }}>Save</span>
+                    </Button>
+                    <Button style={{ color: "#606C74", fontSize: "12px" }}>
+                      <img src={cancel} alt="" style={{ width: "13px", marginRight: "5px" }} />
+                      <span style={{ textTransform: "capitalize" }}>Cancel</span>
+                    </Button>
+                    <Button>
+                      <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                      <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Copy Link</span>
+                    </Button>
+                    <Button>
+                      <img src={publish} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                      <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Publish</span>
+                    </Button>
+                  </Grid>
+                  <Grid>
+                    <Button onClick={handleClose}>
+                      <img src={cancel} alt="" style={{ width: "13px" }} />
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid>
-                  <Button onClick={handleClose}>
-                    <img src={cancel} alt="" style={{ width: "13px" }} />
-                  </Button>
-                </Grid>
-              </Grid>
-            </DialogTitle>
+              </DialogTitle>
 
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                <Divider />
-                <p style={{ textAlign: "left" }}>New Item</p>
-              </DialogContentText>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Title<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="Enter value here"
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Name<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="Enter a name"
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
-                  <img src={descripton} alt="" className={classes.titleIcon} />
-                  Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-multiline-static"
-                  // label="Multiline"
-                  multiline
-                  rows={4}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeDescriptionField}
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="Enter value here"
-                />
-              </div>
-
-              <div style={{ marginBottom: "10px" }}>
-                <div style={{ paddingBottom: "40px" }}>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  <Divider />
+                  <p style={{ textAlign: "left" }}>New Item</p>
+                </DialogContentText>
+                <div style={{ marginBottom: "10px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                    <img src={image} alt="" className={classes.titleIcon} />
-                    Image<img src={Asterisk} alt="..." />
+                    <img src={title} alt="" className={classes.titleIcon} />
+                    Title<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
                   </InputLabel>
+                  <TextField
+                    id="outlined-adornment-weight"
+                    className={classes.span}
+                    style={{ width: "100%" }}
+                    onChange={handleChangeTitleField}
+                    placeholder="Enter value here"
+                  />
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
+                    <img src={title} alt="" className={classes.titleIcon} />
+                    Name<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                  </InputLabel>
+                  <TextField
+                    id="outlined-adornment-weight"
+                    className={classes.span}
+                    style={{ width: "100%" }}
+                    onChange={handleChangeCeoName}
+                    placeholder="Enter a name"
+                  />
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
+                    <img src={descripton} alt="" className={classes.titleIcon} />
+                    Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                  </InputLabel>
+                  <TextField
+                    id="outlined-multiline-static"
+                    // label="Multiline"
+                    multiline
+                    rows={4}
+                    style={{ width: "100%" }}
+                    onChange={handleChangeDescriptionField}
+                  />
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                    <img src={title} alt="" className={classes.titleIcon} />
+                    Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                  </InputLabel>
+                  <TextField
+                    id="outlined-adornment-weight"
+                    className={classes.span}
+                    style={{ width: "100%" }}
+                    onChange={handleChangeDesignation}
+                    placeholder="Enter value here"
+                  />
                 </div>
 
+                <div style={{ marginBottom: "10px" }}>
+                  <div style={{ paddingBottom: "40px" }}>
+                    <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                      <img src={image} alt="" className={classes.titleIcon} />
+                      Image<img src={Asterisk} alt="..." />
+                    </InputLabel>
+                  </div>
 
-                {/* <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
+
+                  {/* <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
               {({ getRootProps, getInputProps }) => (
                 <div {...getRootProps({ className: classes.dropZone })}>
                   <input {...getInputProps()}  type="file"/>
@@ -422,115 +470,218 @@ const CeoEditor = () => {
                 </div>
               )}
             </Dropzone> */}
-                <Grid className={classes.svg}>
-                  <FileUpload value={files} onChange={setFiles} />
-                </Grid>
-
-              </div>
-                 <Grid>
-                <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
-                  <Box>
-                    <img src={isActive} alt="" style={{ width: "15px", marginRight: "15px" }} />
-                    <span>IsActive</span>
-                  </Box>
-                  <Box style={{ display: 'flex', }}>
-                    <FormControlLabel
-                      label="Yes"
-                      control={<Checkbox checked={checkedyesisActive} onChange={handleChangeisActiveyes} />}
+                  <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileSelect}
                     />
-                    <FormControlLabel
-                      label="No"
-                      control={<Checkbox checked={checkednoisActive} onChange={handleChangeisActiveno} />}
-                    />
+                    {!selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        onClick={() => fileRef.current?.click()}
+                        style={{ textTransform: 'none', fontSize:"12px",backgroundColor: "#009BAD", }}
+
+                      >
+                        Choose file to upload
+                      </Button>
+                    )}
+                    {/* {selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={onUpdate}
+                      >
+                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
+                        <span style={{ padding: '10px' }}> Change</span>
+                        <span>Clear</span>
+                      </Button>
+                    )} */}
+                    <div style={{ display: "flex", justifyContent: "space-between", width: "300px" }}>                      
+                      <div>
+                      {selectedFiles?.name && (
+                      <>
+                        <p style={{fontSize:"12px"}}>{selectedFiles?.name}</p>
+                        <button
+                          onClick={() => {
+                            setSelectedFiles(null);
+                            if (fileRef.current) {
+                              fileRef.current.value = '';
+                            }
+                          }}
+                          style={{padding:"5px", border:"none", borderRadius:"4px"}}
+                        >
+                          Clear
+                        </button>
+                      </>
+                    )}
+                      </div>
+                      <div>
+                      <Button
+                      color="primary"
+                      disabled={!selectedFiles}
+                      style={{ textTransform: 'none',color:"white", marginTop:"10px" }}
+                    // onClick={onUpload}
+                    >
+                      Upload
+                    </Button>
+                      </div>
+                      </div>
+
+                    
+                   
+                  </Grid>
+
+                </div>
+                <Grid>
+                  <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
+                    <Box>
+                      <img src={isActive} alt="" style={{ width: "15px", marginRight: "15px" }} />
+                      <span>IsActive</span>
+                    </Box>
+                    <Box style={{ display: 'flex', }}>
+                      <FormControlLabel
+                        label="Yes"
+                        control={<Checkbox checked={checkedyesisActive} onChange={handleChangeisActiveyes} />}
+                      />
+                      <FormControlLabel
+                        label="No"
+                        control={<Checkbox checked={checkednoisActive} onChange={handleChangeisActiveno} />}
+                      />
+                    </Box>
+
                   </Box>
-
-                </Box>
-              </Grid>
-              <div style={{marginBottom:"15px"}}>
-              <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-              <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }} />
-              Attachments
-            </InputLabel>
-            {/* <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()} type="file" />
-                  <p>Drag'n'drop files, or click to select files</p>
-                </div>
-              )}
-            </Dropzone> */}
-             <Grid className={classes.svg}>
-                  <FileUpload value={files} onChange={setFiles} />
                 </Grid>
-                </div>
-            
-            </DialogContent>
-            <DialogActions>
-              <Grid className={classes.actionDivTwo}>
-                <Button onClick={handleClickPreview} className={classes.saveBtn}>
-                  Preview
-                </Button>
-                <Dialog
-                  classes={{
-                    paper: classes.newPosOfDialog
-                  }}
-                  open={openPreview}
-                  onClose={handleClosePreview}
-                  style={{ marginTop: "60px", height: "650px" }}
-                >
-                  <DialogTitle id="alert-dialog-title" >
-                    <Grid style={{ display: "flex", justifyContent: "space-between", }}>
-                      <Grid>
-                        <Button style={{ color: "#606C74", fontSize: "12px" }}>
-                          <img src={save} alt="" style={{ width: "13px", marginRight: "5px", textTransform: "capitalize" }} />
-                          Save
+                <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                    <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }} />
+                    Attachments
+                  </InputLabel>
+                  <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <input
+                      ref={fileRef1}
+                      hidden
+                      type="file"
+                      // accept="image/*,video/*"
+                      onChange={handleFileSelect1}
+                      
+                    />
+                    
+                        {!selectedFiles1?.name && (
+                          <>
+                            {/* <p style={{ fontSize: "12px" }}>{selectedFiles1?.name}</p> */}
+                            <Button
+                              variant="contained"
+                              component="label"
+                              style={{ textTransform: 'none', fontSize:"12px",backgroundColor: "#009BAD", }}
+                              onClick={() => fileRef1.current?.click()}
+                            >
+                              Choose file to upload
+                            </Button>
+                          </>
+                        )}                    
+                    <div style={{ display: "flex", justifyContent: "space-between", width: "300px" }}>
+                      <div>
+                        {selectedFiles1?.name && (
+                          <>
+                            <p style={{ fontSize: "12px", color:"gray" }}>{selectedFiles1?.name}</p>
+                            <button
+                              onClick={() => {
+                                setSelectedFiles1(null);
+                                if (fileRef1.current) {
+                                  fileRef1.current.value = '';
+                                }
+                              }} style={{padding:"5px", border:"none", borderRadius:"4px"}}>Clear
+                            </button>
+                          </>
+                        )}
+                      </div>
+                      <div>
+                        <Button
+                          disabled={!selectedFiles}
+                          style={{ textTransform: 'none',color:"white", marginTop:"10px" }}
+                        // onClick={onUpload}
+                        >
+                          Upload
                         </Button>
-                        <Button style={{ color: "#606C74", fontSize: "12px" }}>
-                          <img src={cancel} alt="" style={{ width: "13px", marginRight: "5px" }} />
-                          Cancel
-                        </Button>
-                        <Button>
-                          <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
-                          <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Copy Link</span>
-                        </Button>
-                        <Button>
-                          <img src={publish} alt="" style={{ width: "12px", marginRight: "5px" }} />
-                          <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Publish</span>
-                        </Button>
-                      </Grid>
-                      <Grid>
-                        <Button onClick={handleClosePreview}>
-                          <img src={cancel} alt="" style={{ width: "13px" }} />
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </DialogTitle>
+                      </div>
+                    </div>
 
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                      <Divider />
-                      <p style={{ textAlign: "left" }}>New Item</p>
-                    </DialogContentText>
-                    <Grid>
-                      <Box>
-                        <img src={birthday} alt="" className={classes.backgroundImage} />
-                        {/* <img src={girl} alt="" className={classes.girl} />
+                  </Grid>
+                </div>
+
+              </DialogContent>
+              <DialogActions>
+                <Grid className={classes.actionDivTwo}>
+                  <Button onClick={handleClickPreview} className={classes.saveBtn}>
+                    Preview
+                  </Button>
+                  <Dialog
+                    classes={{
+                      paper: classes.newPosOfDialog
+                    }}
+                    open={openPreview}
+                    onClose={handleClosePreview}
+                    style={{ marginTop: "60px", height: "650px" }}
+                  >
+                    <DialogTitle id="alert-dialog-title" >
+                      <Grid style={{ display: "flex", justifyContent: "space-between", }}>
+                        <Grid>
+                          <Button style={{ color: "#606C74", fontSize: "12px" }}>
+                            <img src={save} alt="" style={{ width: "13px", marginRight: "5px", textTransform: "capitalize" }} />
+                            Save
+                          </Button>
+                          <Button style={{ color: "#606C74", fontSize: "12px" }}>
+                            <img src={cancel} alt="" style={{ width: "13px", marginRight: "5px" }} />
+                            Cancel
+                          </Button>
+                          <Button>
+                            <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                            <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Copy Link</span>
+                          </Button>
+                          <Button>
+                            <img src={publish} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                            <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Publish</span>
+                          </Button>
+                        </Grid>
+                        <Grid>
+                          <Button onClick={handleClosePreview}>
+                            <img src={cancel} alt="" style={{ width: "13px" }} />
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        <Divider />
+                        <p style={{ textAlign: "left" }}>New Item</p>
+                      </DialogContentText>
+                      <Grid>
+                        <Box>
+                          <img src={birthday} alt="" className={classes.backgroundImage} />
+                          {/* <img src={girl} alt="" className={classes.girl} />
                         <p>Ayesha Siddiqa</p>
                         <p>HR Manager</p> */}
-                      </Box>
-                      <Grid>
-                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> Mohammed abdul Rahman Matua</Typography>
-                       <p style={{ textAlign: "left", marginLeft: "15px" , color:"#009BAD"}}>CEO</p>
-                        <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
-                      </Grid>
-                      <Grid className={classes.iconDiv}>
-                        <div className={classes.iconView}>
-                          <span><img src={love} alt="" /></span>
-                          <span>10</span>
-                        </div>
-                        {/* <div className={classes.iconView}>
+                        </Box>
+                        <Grid>
+                          <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> Mohammed abdul Rahman Matua</Typography>
+                          <p style={{ textAlign: "left", marginLeft: "15px", color: "#009BAD" }}>CEO</p>
+                          <p style={{ textAlign: "left", marginLeft: "15px" }}>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                          </p>
+                        </Grid>
+                        <Grid className={classes.iconDiv}>
+                          <div className={classes.iconView}>
+                            <span><img src={love} alt="" /></span>
+                            <span>10</span>
+                          </div>
+                          {/* <div className={classes.iconView}>
                           <span><img src={comments} alt="" /></span>
                           <span>10</span>
                         </div>
@@ -538,39 +689,39 @@ const CeoEditor = () => {
                           <span> <img src={view} alt="" />
                           </span><span>10</span>
                         </div> */}
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  </DialogContent>
-                  <DialogActions>
-                    <Grid className={classes.actionPart}>
-                      <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
-                      <Button className={classes.cancelBtn}>Cancel</Button>
-                    </Grid>
-                  </DialogActions>
-                </Dialog>
+                    </DialogContent>
+                    <DialogActions>
+                      <Grid className={classes.actionPart}>
+                        <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
+                        <Button className={classes.cancelBtn}>Cancel</Button>
+                      </Grid>
+                    </DialogActions>
+                  </Dialog>
 
-                <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
-                <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
-                  submit
-                </Button>
-                <Button className={classes.cancelBtn}>Cancel</Button>
-              </Grid>
+                  <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                  <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
+                    submit
+                  </Button>
+                  <Button className={classes.cancelBtn}>Cancel</Button>
+                </Grid>
 
-            </DialogActions>
+              </DialogActions>
 
-          </Dialog>
+            </Dialog>
 
+          </Grid>
         </Grid>
-      </Grid>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
-    </Box>
-  </div>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+        />
+      </Box>
+    </div>
   );
 };
 

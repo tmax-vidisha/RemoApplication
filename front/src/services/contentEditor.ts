@@ -41,6 +41,24 @@ export const contentEditorApi = createApi({
             }),
             // providesTags: ['OneDriveRootItems'],
         }),
+        uploadItemInHeroBanner: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/heroBanner/uploadItem',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+
+        }),
+        uploadItemInCeo: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/ceoData/uploadItem',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+
+        }),
         // getItemChildrenOneDrive: builder.mutation<any, any>({
         //     query: (data) => ({
         //         url: '/api/v1/onedrive/getItemChildren',
@@ -99,7 +117,9 @@ export const contentEditorApi = createApi({
 
 export const {
      useUploadItemInAnnouncementMutation,
-     useGetLatestAnnouncementQuery
+     useGetLatestAnnouncementQuery,
+     useUploadItemInHeroBannerMutation,
+     useUploadItemInCeoMutation
     // useGetItemChildrenOneDriveMutation,
     // useGetAllRootItemsOneDriveQuery,
     // useDeleteItemOneDriveMutation,

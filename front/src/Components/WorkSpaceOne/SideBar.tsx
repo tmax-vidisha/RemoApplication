@@ -1,13 +1,13 @@
 import React from 'react';
 import MenuItem from '@mui/material/MenuItem';
-import content from "./../../Assets/Images/content_editor.svg";
-import department from "./../../Assets/Images/department.svg";
+import content from "./../../Assets/Images/contentELeft.svg";
+import department from "./../../Assets/Images/departmentLeft.svg";
 import departmentTwo from "./../../Assets/Images/departmentLeft-nav.svg";
 import home from "./../../Assets/Images/home-remo.svg";
-import orgChart from "./../../Assets/Images/orgchart.svg";
-import policy from "./../../Assets/Images/polices.svg";
-import quickLinks from "./../../Assets/Images/Quicklinks.svg";
-import workspace from "./../../Assets/Images/workspace.svg";
+import orgChart from "./../../Assets/Images/orgchartLeft.svg";
+import policy from "./../../Assets/Images/policesLeft.svg";
+import quickLinks from "./../../Assets/Images/quicklinksLeft.svg";
+import workspace from "./../../Assets/Images/workspaceLeft.svg";
 import Menu from '@mui/material/Menu';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -32,7 +32,7 @@ const SideBar = (props: any) => {
   const [open, setOpen] = React.useState(false);
   const { history } = props;
   const location = useLocation();
-  const theme = useTheme(); 
+  const theme = useTheme();
 
 
   const itemsList = [
@@ -99,47 +99,59 @@ const SideBar = (props: any) => {
   const [id1, setId1] = useState(0);
 
   return (
-    <Grid style={{width:"95px"}} className={classes.sideBar}>
+    <Grid style={{ width: "95px" }} className={classes.sideBar}>
       <Box>
         <Grid aria-label="secondary mailbox folders">
           <List>
             <ListItem disablePadding className={classes.sideIcon}>
               <ListItemButton>
                 <Link to="/">
-                <img src={home} alt="home" />
+                  <img src={home} alt="home" />
                 </Link>
-              
-                {/* <ListItemText primary="Trash" /> */}
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton>
+                <Link to="/WorkSpaceOne">
                 <img src={workspace} alt="workspace" />
+                </Link>     
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
-              <ListItemButton component="a" href="#simple-list">
+              <ListItemButton>
+                <Link to="/policiesContentPage">
                 <img src={policy} alt="policy" />
+                </Link>       
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
-              <ListItemButton component="a" href="#simple-list">
+              <ListItemButton>
+                <Link to="/ContentEditor">
                 <img src={content} alt="content" />
+                </Link>               
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
-              <ListItemButton component="a" href="#simple-list">
+              <ListItemButton>
+                <Link to="/departmentContentPage">
                 <img src={departmentTwo} alt="department" />
+                </Link>       
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
-              <ListItemButton component="a" href="#simple-list">
-                <img src={quickLinks} alt="quickLinks" />
+              <ListItemButton>
+                <Link to="/quickContentPage">
+                  <img src={quickLinks} alt="quickLinks" />
+                </Link>
+
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
-              <ListItemButton component="a" href="#simple-list">
-                <img src={orgChart} alt="orgChart" />
+              <ListItemButton>
+                <Link to="/">
+                  <img src={orgChart} alt="orgChart" />
+                </Link>
+
               </ListItemButton>
             </ListItem>
           </List>
@@ -183,24 +195,24 @@ const SideBar = (props: any) => {
 
           })}
         </List> */}
-        <Grid style={{marginTop:"210px"}}>
+        <Grid style={{ marginTop: "210px" }}>
           <List>
             <ListItem>
               <ListItemButton>
-                <MoreHorizIcon  style={{color:"white"}}/>
-                
+                <MoreHorizIcon style={{ color: "white" }} />
+
               </ListItemButton>
             </ListItem>
             <ListItem>
               <ListItemButton>
-              <img src={upload} alt="upload"  />
-                
+                <img src={upload} alt="upload" />
+
               </ListItemButton>
             </ListItem>
             <ListItem>
               <ListItemButton>
-              <img src={setting} alt="setting"/>
-                
+                <img src={setting} alt="setting" />
+
               </ListItemButton>
             </ListItem>
           </List>
