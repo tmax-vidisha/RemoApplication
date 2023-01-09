@@ -85,15 +85,7 @@ export const useStyles = makeStyles({
 
   },
 
-  boxContent:{
-    width:"150px",
-    border:"1px solid #eee7e7",
-    boxShadow:"5px 3px 10px 4px #eee7e7",
-    margin:"15px",
-    padding:"15px",
-    backgroundColor:"#fff",
-    borderRadius:"10px",
-  },
+  
 
   mainPart:{
     display:"grid",
@@ -122,10 +114,7 @@ export const useStyles = makeStyles({
         }
     }
   },
-  link:{
-    color:"#009BAD",
-    textDecoration:"none",
-  },
+
 
   headText:{
     margin:"0px",
@@ -137,7 +126,56 @@ export const useStyles = makeStyles({
     // "&:hover": {
     //   color: "#1BAAB5",
     // },
-  }
+  },
+  link:{
+    color:"#009BAD",
+    textDecoration:"none",
+    "& .topImg": {
+      margin: "auto",
+      display: "block !important",
+    },
+    "& .topImgH": {
+      margin: "auto",
+      display: "none !important",
+    },
+  },
+  topImg:{
+    margin: "auto",
+      display: "block !important",
+  },
+
+  topImgH:{
+    margin: "auto",
+    color:"#009BAD",
+    display: "none !important",
+    
+  },
+
+  boxContent:{
+    width:"150px",
+    border:"1px solid #eee7e7",
+    boxShadow:"5px 3px 10px 4px #eee7e7",
+    margin:"15px",
+    padding:"15px",
+    backgroundColor:"#fff",
+    borderRadius:"10px",
+   
+    "& a":{
+      textDecorationLine: "none !important",
+      "&:hover .topImgH":{
+        display:"block !important",       
+     },
+     "&:hover .topImg":{
+      display:"none !important",
+   
+    },
+    "&:hover .texts":{
+      color:"#009BAD",
+      textDecoration: "none !important",
+    },
+    }
+  },
+ 
 
 });
 
