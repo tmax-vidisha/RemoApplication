@@ -208,14 +208,23 @@ export const useStyles = makeStyles({
   },
   svg: {
     // display: "none !important",
+    
     alignItems: "left",
+    "& input":{
+      color: "white",
+      backgroundColor: "#009BAD",
+    },
+    "& p":{
+      fontSize:"12px",
+    },
     " & span": {
       display: "none !important",
+      fontSize:"12px"
     },
     "& button": {
       display: "block",
       color: "white",
-      backgroundColor: "#b8bdc1",
+      backgroundColor: "#009BAD",
       fontSize:"12px"
     }
   },

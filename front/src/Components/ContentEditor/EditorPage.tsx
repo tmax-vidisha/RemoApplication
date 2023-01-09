@@ -96,6 +96,15 @@ const EditorPage = () => {
         },
         {
             id: 6,
+            label: 'Gallery',
+            Icon:gallery,
+            iconHover: highlightH,
+            onClick: () => navigate("/highlightsContentPage"),
+            to: '/highlightsContentPage',
+
+        },
+        {
+            id: 6,
             label: 'Highlights',
             Icon:highlights,
             iconHover: highlightH,
