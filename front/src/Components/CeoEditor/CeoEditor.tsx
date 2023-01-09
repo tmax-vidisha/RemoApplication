@@ -63,8 +63,9 @@ const rows = [
 ];
 interface IFolderProps {
 
-  onClick?: (obj: any) => void;
-
+ 
+  onClick?: (obj:any) => void;
+  
 }
 
 // const CeoEditor = () => {
@@ -291,8 +292,10 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const [selectedFiles1, setSelectedFiles1] = useState<File | null>();
   const [fileSelected, setFileSelected] = useState<any>('');
   const [fileSelected1, setFileSelected1] = useState<any>('');
-  const [names, setNames] = useState<any>('');
-  const [names1, setNames1] = useState<any>('');
+
+  const [names,setNames] = useState<any>('');
+  const [names1,setNames1] = useState<any>('');
+
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event?.target?.files?.[0].name)
     setSelectedFiles(event?.target?.files?.[0]);
@@ -300,8 +303,10 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     let reader = new FileReader();
     // @ts-ignore
     reader.readAsDataURL(event?.target?.files?.[0])
-    reader.onload = (e) => {
-      console.log(e.target?.result, 'kkkkttt')
+
+    reader.onload= (e) =>{
+        console.log(e.target?.result,'kkkkttt')
+
       setFileSelected(e.target?.result)
       //@ts-ignore
       // var eee4 = window.atob(e.target?.result)
@@ -316,8 +321,10 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     let reader = new FileReader();
     // @ts-ignore
     reader.readAsDataURL(event?.target?.files?.[0])
-    reader.onload = (e) => {
-      console.log(e.target?.result, 'kkkkttt')
+
+    reader.onload= (e) =>{
+        console.log(e.target?.result,'kkkkttt')
+
       setFileSelected1(e.target?.result)
       //@ts-ignore
       // var eee4 = window.atob(e.target?.result)
@@ -334,10 +341,12 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       image: fileSelected,
       imageName: names,
       isActive: isActives,
-      designation: designations,
-      Name: ceoName,
+
+      designation:designations,
+      Name:ceoName,
       Attachment: fileSelected1,
-      Attachmentname: names1
+      Attachmentname:names1
+
     }
     //  await sendItem(announcementData)
     onClick?.(announcementData)
@@ -392,6 +401,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Button>
                   </Grid>
                 </Grid>
+
               </DialogTitle>
 
               <DialogContent>
@@ -440,6 +450,72 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   />
                 </div>
                 <div style={{ marginBottom: "10px" }}>
+
+              </Grid>
+            </DialogTitle>
+
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                <Divider />
+                <p style={{ textAlign: "left" }}>New Item</p>
+              </DialogContentText>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={title} alt="" className={classes.titleIcon} />
+                  Title<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeTitleField}
+                  placeholder="Enter value here"
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
+                  <img src={title} alt="" className={classes.titleIcon} />
+                  Name<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeCeoName}
+                  placeholder="Enter a name"
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
+                  <img src={descripton} alt="" className={classes.titleIcon} />
+                  Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-multiline-static"
+                  // label="Multiline"
+                  multiline
+                  rows={4}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeDescriptionField}
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={title} alt="" className={classes.titleIcon} />
+                  Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeDesignation}
+                  placeholder="Enter value here"
+                />
+              </div>
+
+              <div style={{ marginBottom: "10px" }}>
+                <div style={{ paddingBottom: "40px" }}>
+
                   <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                     <img src={title} alt="" className={classes.titleIcon} />
                     Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -470,14 +546,81 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                 </div>
               )}
             </Dropzone> */}
-                  <Grid className={classes.svg}>
-                    {/* <FileUpload value={files} onChange={setFiles} /> */}
-                    <input
+
+                <Grid className={classes.svg}>
+                  {/* <FileUpload value={files} onChange={setFiles} /> */}
+                  <input
+
                       ref={fileRef}
                       hidden
                       type="file"
                       accept="image/*"
                       onChange={handleFileSelect}
+
+                    />
+                    {!selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={() => fileRef.current?.click()}
+                      >
+                        Choose file to upload
+                      </Button>
+                    )}
+                    {/* {selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={onUpdate}
+                      >
+                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
+                        <span style={{ padding: '10px' }}> Change</span>
+                        <span>Clear</span>
+                      </Button>
+                    )} */}
+                    {selectedFiles?.name && (
+                      <>
+                        <h1 >{selectedFiles?.name}</h1>
+                        <button
+                          onClick={() => {
+                            setSelectedFiles(null);
+                            if (fileRef.current) {
+                              fileRef.current.value = '';
+                            }
+                          }}
+                        >
+                          Clear 
+                        </button>
+                      </>
+                    )}
+                    <Button
+                      color="primary"
+                      disabled={!selectedFiles}
+                      style={{ textTransform: 'none' }}
+                      // onClick={onUpload}
+                    >
+                      Upload
+                    </Button>
+                </Grid>
+
+              </div>
+                 <Grid>
+                <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
+                  <Box>
+                    <img src={isActive} alt="" style={{ width: "15px", marginRight: "15px" }} />
+                    <span>IsActive</span>
+                  </Box>
+                  <Box style={{ display: 'flex', }}>
+                    <FormControlLabel
+                      label="Yes"
+                      control={<Checkbox checked={checkedyesisActive} onChange={handleChangeisActiveyes} />}
+                    />
+                    <FormControlLabel
+                      label="No"
+                      control={<Checkbox checked={checkednoisActive} onChange={handleChangeisActiveno} />}
+
                     />
                     {!selectedFiles?.name && (
                       <Button
@@ -538,6 +681,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   </Grid>
 
                 </div>
+
                 <Grid>
                   <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
                     <Box>
@@ -556,6 +700,64 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Box>
 
                   </Box>
+
+              )}
+            </Dropzone> */}
+             <Grid className={classes.svg}>
+                  {/* <FileUpload value={files} onChange={setFiles} /> */}
+                  <input
+                      ref={fileRef1}
+                      hidden
+                      type="file"
+                      // accept="image/*,video/*"
+                      onChange={handleFileSelect1}
+                    />
+                    {!selectedFiles1?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={() => fileRef1.current?.click()}
+                      >
+                        Choose file to upload
+                      </Button>
+                    )}
+                    {/* {selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={onUpdate}
+                      >
+                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
+                        <span style={{ padding: '10px' }}> Change</span>
+                        <span>Clear</span>
+                      </Button>
+                    )} */}
+                    {selectedFiles1?.name && (
+                      <>
+                        <h1 >{selectedFiles1?.name}</h1>
+                        <button
+                          onClick={() => {
+                            setSelectedFiles1(null);
+                            if (fileRef1.current) {
+                              fileRef1.current.value = '';
+                            }
+                          }}
+                        >
+                          Clear 
+                        </button>
+                      </>
+                    )}
+                    <Button
+                      color="primary"
+                      disabled={!selectedFiles}
+                      style={{ textTransform: 'none' }}
+                      // onClick={onUpload}
+                    >
+                      Upload
+                    </Button>
+
                 </Grid>
                 <div style={{ marginBottom: "15px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
