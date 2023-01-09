@@ -240,13 +240,11 @@ const TopNavLink = () => {
                                         <ListItem key={index} onClick={onClick} className={classes.topMenu}>
                                             {myLinkList && (
                                                 <NavLink end to={path} className={classes.topLink}>
-                                                    <img src={icon} alt="..." className="topImg"  style={{width:"25px"}}/>
+                                                    <img src={icon} alt="..." className={classes.topImg} />
                                                     <img
                                                         src={iconHov}
                                                         alt=""
-                                                        className="topImgH"
-                                                        style={{width:"25px"}}
-                                                    />
+                                                        className={classes.topImgH}/>
                                                     <p className={classes.topText} > {item.label}</p>
                                                 </NavLink>)
                                             }

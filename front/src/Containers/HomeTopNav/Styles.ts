@@ -70,20 +70,17 @@ export const useStyles = makeStyles({
   topImg:{
     margin: "auto",
       display: "block !important",
+      width:"25px"
   },
 
   topImgH:{
     margin: "auto",
     color:"#009BAD",
     display: "none !important",
+    width:"25px"
+    
   },
   topMenu:{
-    // "&:hover a .topImg":{
-    //   display:"none !important",
-    // },
-    // "&:hover a .topImgH":{
-    //    display:"block !important",     
-    // },
     "&:hover a p":{
       color:"#009BAD",
       textDecoration: "none !important",

@@ -265,7 +265,29 @@ export const useStyles = makeStyles({
   dialogBtn: {
     color: "#606C74 !important",
     fontSize: "12px"
-  }
+  },
+  dateTime:{
+    marginBottom: "10px",
+     display: "flex", 
+     justifyContent: "space-between" 
+  },
+  prevHeading:{
+    textAlign: "left",
+     margin: "15px !important",
+      fontWeight: 600 
+  },
+  prevDate:{
+    textAlign: "left",
+     marginLeft: "15px",
+     color:"#009BAD !important"
+  },
+  prevDesc:{
+    textAlign: "left",
+     marginLeft: "15px",
+     
+  },
+
+
 
 
 });
