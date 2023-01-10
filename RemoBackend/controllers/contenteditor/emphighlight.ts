@@ -70,7 +70,8 @@ const postEmployee = asyncHandler(async (req: Request, res: Response) => {
         SharedAsEmail,
         // RecipientEmail,
         image,
-        imageName
+        imageName,
+        isDraft
       } = req.body
     console.log(isActive, 'isActive')
     
@@ -83,6 +84,7 @@ const postEmployee = asyncHandler(async (req: Request, res: Response) => {
     console.log(  SharedAsEmail)
     console.log(dob,'dob')
     console.log(doj,'doj')
+    console.log(isDraft,'doj')
     //  console.log(File, 'tththththth')
     // //    console.log( title,imageName,isActive,EnableLikes,'ytjytjytjty')
     // console.log(description,'thgtrhj67k87k87k87k87')
@@ -121,6 +123,7 @@ const postEmployee = asyncHandler(async (req: Request, res: Response) => {
           ShareAsEmail:SharedAsEmail,
          
           isActive:isActive,
+          isDraft:isDraft
         //   Designation:designation,
          
   

@@ -354,6 +354,29 @@ interface IFolderProps {
       EnableLikes: enablelikes,
       EnableCommands: enableCommands,
       SharedAsEmail: sharedAsEmails,
+      isDraft:false
+      
+    }
+    //  await sendItem(announcementData)
+    onClick?.(announcementData)
+  }
+  const handleSave = async () => {
+    console.log('grdgdg')
+    const announcementData = {
+      // token :tokens,
+      name:EmpName,
+      title: Title,
+      description: Description,
+      designation:Designation,
+      image: fileSelected,
+      imageName: names,
+      dob:dob,
+      doj:doj,
+      isActive: isActives,
+      EnableLikes: enablelikes,
+      EnableCommands: enableCommands,
+      SharedAsEmail: sharedAsEmails,
+      isDraft:true
       
     }
     //  await sendItem(announcementData)
@@ -779,7 +802,7 @@ interface IFolderProps {
 
                   </Dialog>
 
-                  <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                  <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
                   <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                     submit
                   </Button>
