@@ -445,7 +445,38 @@ async function  uploadItem (){
       SharedAsEmail: sharedAsEmails,
       RecipientEmail: RecipientEmail,
       Attachment: fileSelected,
-      Attachmentname: names1
+      Attachmentname: names1,
+      isDraft:false
+    }
+     onClick?.(sendData)
+  }
+   
+  }
+  const handleSave = async () => {
+    console.log('grdgdg')
+    console.log(selectedFiles,'ghhh')
+    console.log(names)
+    
+    const WebUrl:string =await uploadItem();
+    console.log(WebUrl,'kkkkkkkkkytyyy')
+    // const exten = WebUrl.split('.').pop();
+    // console.log(exten,'gg')
+    if(WebUrl !== undefined){
+    const  sendData = {
+      // token :tokens,
+      title: Title,
+      description: Description,
+      ExpiresOn:expiresOn,
+      Time:time,
+      WbU: WebUrl,
+      isActive: isActives,
+      EnableLikes: enablelikes,
+      EnableCommands: enableCommands,
+      SharedAsEmail: sharedAsEmails,
+      RecipientEmail: RecipientEmail,
+      Attachment: fileSelected,
+      Attachmentname: names1,
+      isDraft:true
     }
      onClick?.(sendData)
   }
@@ -903,7 +934,7 @@ async function  uploadItem (){
 
                   </Dialog>
 
-                  <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                  <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
                   <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                     submit
                   </Button>

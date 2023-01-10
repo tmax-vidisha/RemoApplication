@@ -107,7 +107,7 @@ const postCeo = asyncHandler(async (req: Request, res: Response) => {
     const token = req.headers.authorization
     const {
       // token,
-      title, description, image, imageName, isActive,  Attachment, Attachmentname,designation,Name
+      title, description, image, imageName, isActive,  Attachment, Attachmentname,designation,Name,isDraft
       // ceotitle,ceodesc,ceousername,
       //  ceoposition,ceopic,ceopicname,
       //  newstitle,newsdesc,newspic,newspicname,
@@ -115,11 +115,11 @@ const postCeo = asyncHandler(async (req: Request, res: Response) => {
       //  userquicklink,globalquicklink
     } = req.body
     console.log(isActive, 'isActive')
-    
+    console.log(isDraft,'isDraft')
      const Image = blobStorage(image, imageName)
     const File = blobStorage1(Attachment, Attachmentname)
-    console.log(Image, 'rtretrt')
-     console.log(File, 'tththththth')
+    // console.log(Image, 'rtretrt')
+    //  console.log(File, 'tththththth')
     // //    console.log( title,imageName,isActive,EnableLikes,'ytjytjytjty')
     // console.log(description,'thgtrhj67k87k87k87k87')
         //  console.log(image,'thgtrhj67k87k87k87k87')
@@ -151,7 +151,8 @@ const postCeo = asyncHandler(async (req: Request, res: Response) => {
           isActive:isActive,
           Designation:designation,
           Name:Name,
-         Attachment:File
+         Attachment:File,
+         isDraft:isDraft
   
   
           //@ts-ignore
