@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Box, Grid, Typography, Card, Link, Breadcrumbs } from '@mui/material';
+import { Container, Box, Grid, Typography, Card, Link, Breadcrumbs, Icon } from '@mui/material';
 import { Paper } from '@mui/material';
 import IconText from './../Header/IconText';
 import { useStyles } from './Styles';
@@ -8,6 +8,8 @@ import ITService from "./../../Assets/Images/IT-ervice.svg";
 import sales from "./../../Assets/Images/sales.svg";
 import vehicle from "./../../Assets/Images/vechicle-req.svg";
 import add from "./../../Assets/Images/addmore.svg";
+import hub from "./../../Assets/Images/hub.svg";
+import editAdd from "./../../Assets/Images/editAdd.svg";
 import { useLocation } from 'react-router-dom';
 import birthday from "../../Assets/Images/girl.jpg";
 import { Button } from '@mui/material';
@@ -20,6 +22,40 @@ const QuicklinksPage = () => {
 
     let location = useLocation();
     console.log(location.state);
+
+    const itemList = [
+        {
+            id: 0,
+            icon: vehicle,
+            text: 'Vehicle'
+        },
+        {
+            id: 1,
+            icon: ITService,
+            text: 'IT Service'
+        },
+        {
+            id: 2,
+            icon: sales,
+            text: 'Sales'
+        },
+        {
+            id: 3,
+            icon: hub,
+            text: 'Hub'
+        },
+        {
+            id: 4,
+            icon: admin,
+            text: 'Admin'
+        },
+        {
+            id: 5,
+            icon: add,
+            text: 'Quicklnks'
+        },
+
+    ]
 
     return (
         <div>
@@ -54,12 +90,24 @@ const QuicklinksPage = () => {
                 </Card>
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
                     <Grid item xs={12} style={{ backgroundColor: "white" }}>
+
                         <Grid className={classes.bigBox}>
                             <p className={classes.addedText}>Added Quicklinks</p>
-                            <p className={classes.dragText}> you can drag and drop to change position</p>
+                            <p className={classes.dragText}>you can drag and drop to change position</p>
                         </Grid>
 
-                        <Grid item xs={12} className={classes.bigBox}>
+                        <Grid  className={classes.bigBox}>
+                            {
+                                itemList.map((item) => (
+                                    <Box className={classes.boxIcon}>
+                                        <img src={item.icon} alt="" />
+                                        <p className={classes.iconTitle}>{item.text} </p>
+                                    </Box>
+                                ))
+                            }
+                        </Grid>
+                        {/* <Grid item xs={12} className={classes.bigBox}>
+
                             <Box className={classes.boxIcon}>
                                 <img src={ITService} alt="" />
                                 <p className={classes.iconTitle}>IT Service </p>
@@ -79,6 +127,35 @@ const QuicklinksPage = () => {
                             <Box className={classes.boxIcon} style={{ border: "1px solid gray" }}>
                                 <img src={add} alt="" />
                                 <p className={classes.iconTitle}>QuickLinks</p>
+                            </Box>
+                        </Grid> */}
+                    </Grid>
+                    <Grid item xs={12} style={{ backgroundColor: "white" }}>
+                        <Grid className={classes.bigBox} style={{ width: "40%" }}>
+                            <p className={classes.addedText}>Quicklinks</p>
+                            <p className={classes.dragText}>Select any 5 links to show in a Home page</p>
+                        </Grid>
+
+                        <Grid item xs={12} className={classes.bigBox}>
+                            <Box className={classes.boxIcon}>
+                                <img src={ITService} alt="" />
+                                <p className={classes.iconTitle}>IT Service </p>
+                            </Box>
+                            <Box className={classes.boxIcon}>
+                                <img src={admin} alt="" />
+                                <p className={classes.iconTitle}>Admin </p>
+                            </Box>
+                            <Box className={classes.boxIcon}>
+                                <img src={vehicle} alt="" />
+                                <p className={classes.iconTitle}>Vehicle Request</p>
+                            </Box>
+                            <Box className={classes.boxIcon} >
+                                <img src={sales} alt="" />
+                                <p className={classes.iconTitle}>Sales</p>
+                            </Box>
+                            <Box className={classes.boxIcon}>
+                                <img src={hub} alt="" />
+                                <p className={classes.iconTitle}>Hub</p>
                             </Box>
                         </Grid>
                     </Grid>
