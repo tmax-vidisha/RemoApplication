@@ -420,7 +420,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                 </Grid>
               </DialogTitle>
 
-              <DialogContent>
+              {/* <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                   <Divider />
                   <p style={{ textAlign: "left" }}>New Item</p>
@@ -465,7 +465,74 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     onChange={handleChangeDescriptionField}
                   />
                 </div>
+
+                
+            </DialogContent> */}
+
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                <Divider />
+                <p style={{ textAlign: "left" }}>New Item</p>
+              </DialogContentText>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={title} alt="" className={classes.titleIcon} />
+                  Title<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeTitleField}
+                  placeholder="Enter value here"
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
+                  <img src={title} alt="" className={classes.titleIcon} />
+                  Name<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeCeoName}
+                  placeholder="Enter a name"
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
+                  <img src={descripton} alt="" className={classes.titleIcon} />
+                  Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-multiline-static"
+                  // label="Multiline"
+                  multiline
+                  rows={4}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeDescriptionField}
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={title} alt="" className={classes.titleIcon} />
+                  Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeDesignation}
+                  placeholder="Enter value here"
+                />
+              </div>
+
+              <div style={{ marginBottom: "10px" }}>
+                <div style={{ paddingBottom: "40px" }}>
+
                 <div style={{ marginBottom: "10px" }}>
+
                   <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                     <img src={title} alt="" className={classes.titleIcon} />
                     Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -505,6 +572,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                       accept="image/*"
                       onChange={handleFileSelect}
                     />
+                    </Box>
                     {!selectedFiles?.name && (
                       <Button
                         variant="contained"
@@ -528,6 +596,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <span>Clear</span>
                       </Button>
                     )} */}
+                    </Box>
                     <div style={{ display: "flex", justifyContent: "space-between", width: "300px" }}>                      
                       <div>
                       {selectedFiles?.name && (
@@ -582,6 +651,64 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Box>
 
                   </Box>
+
+                  </Grid>
+          
+             <Grid className={classes.svg}>
+                  {/* <FileUpload value={files} onChange={setFiles} /> */}
+                  <input
+                      ref={fileRef1}
+                      hidden
+                      type="file"
+                      // accept="image/*,video/*"
+                      onChange={handleFileSelect1}
+                    />
+                    {!selectedFiles1?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={() => fileRef1.current?.click()}
+                      >
+                        Choose file to upload
+                      </Button>
+                    )}
+                    {/* {selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={onUpdate}
+                      >
+                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
+                        <span style={{ padding: '10px' }}> Change</span>
+                        <span>Clear</span>
+                      </Button>
+                    )} */}
+                    {selectedFiles1?.name && (
+                      <>
+                        <h1 >{selectedFiles1?.name}</h1>
+                        <button
+                          onClick={() => {
+                            setSelectedFiles1(null);
+                            if (fileRef1.current) {
+                              fileRef1.current.value = '';
+                            }
+                          }}
+                        >
+                          Clear 
+                        </button>
+                      </>
+                    )}
+                    <Button
+                      color="primary"
+                      disabled={!selectedFiles}
+                      style={{ textTransform: 'none' }}
+                      // onClick={onUpload}
+                    >
+                      Upload
+                    </Button>
+
                 </Grid>
                 <div style={{ marginBottom: "15px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
