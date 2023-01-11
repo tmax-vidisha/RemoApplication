@@ -93,6 +93,7 @@ import DocumentLibrary from './Components/WorkSpaceOne/DocumentLibrary';
 import TrashFiles from './Components/WorkSpaceOne/Trash/TrashFiles';
 import Trash from './Components/WorkSpaceOne/Trash';
 import HeroBannerMoreImages from './Components/HeroImages/HeroBannerMoreImages';
+import QuicklinksPage from './Components/QuicklinksPage';
 
 
 
@@ -413,6 +414,9 @@ const Main = () => {
                             <Route
                               path="/trash"
                               element={<Trash/>} />
+                            <Route
+                              path="/quickLinksPage"
+                              element={<QuicklinksPage/>} />
                         
                         </Routes>
                     </ThemeProvider>
