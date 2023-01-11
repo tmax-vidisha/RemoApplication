@@ -404,7 +404,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
               </DialogTitle>
 
-              <DialogContent>
+              {/* <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                   <Divider />
                   <p style={{ textAlign: "left" }}>New Item</p>
@@ -449,10 +449,8 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     onChange={handleChangeDescriptionField}
                   />
                 </div>
-                <div style={{ marginBottom: "10px" }}>
-
-              </Grid>
-            </DialogTitle>
+                
+            </DialogContent> */}
 
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
@@ -622,6 +620,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                       control={<Checkbox checked={checkednoisActive} onChange={handleChangeisActiveno} />}
 
                     />
+                    </Box>
                     {!selectedFiles?.name && (
                       <Button
                         variant="contained"
@@ -645,6 +644,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <span>Clear</span>
                       </Button>
                     )} */}
+                    </Box>
                     <div style={{ display: "flex", justifyContent: "space-between", width: "300px" }}>                      
                       <div>
                       {selectedFiles?.name && (
@@ -700,9 +700,8 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Box>
 
                   </Box>
-
-              )}
-            </Dropzone> */}
+                  </Grid>
+          
              <Grid className={classes.svg}>
                   {/* <FileUpload value={files} onChange={setFiles} /> */}
                   <input
