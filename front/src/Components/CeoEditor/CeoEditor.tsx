@@ -528,9 +528,6 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                 />
               </div>
 
-              <div style={{ marginBottom: "10px" }}>
-                <div style={{ paddingBottom: "40px" }}>
-
                 <div style={{ marginBottom: "10px" }}>
 
                   <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
@@ -572,7 +569,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                       accept="image/*"
                       onChange={handleFileSelect}
                     />
-                    </Box>
+                   
                     {!selectedFiles?.name && (
                       <Button
                         variant="contained"
@@ -596,7 +593,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <span>Clear</span>
                       </Button>
                     )} */}
-                    </Box>
+                  
                     <div style={{ display: "flex", justifyContent: "space-between", width: "300px" }}>                      
                       <div>
                       {selectedFiles?.name && (
