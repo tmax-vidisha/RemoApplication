@@ -29,9 +29,8 @@ import WeatherPage from "./WeatherPage/WeatherPage";
 import ViewAllEventPage from "./EventsPage/ViewAllEventPage";
 import HeaderPage from "./HeaderPage/HeaderPage";
 import HeroContentEditorPage from "./HeroImagePage/HeroContentEditorPage";
-
 import CeoContentEditorPage from "./CeoPage/CeoContentEditorPage";
-
+import BirthdayPage from "./EmployeeHighlightPage/BirthdayPage";
 export {
     
         EventsPage,
@@ -65,8 +64,7 @@ export {
         ViewAllEventPage,
         HeaderPage,
         HeroContentEditorPage,
-
-        CeoContentEditorPage
-
+        CeoContentEditorPage,
+        BirthdayPage
 
       };

@@ -69,6 +69,7 @@ const postheroBanner = asyncHandler(async(req:Request, res:Response) => {
     RecipientEmail,
     Attachment,
     Attachmentname,
+    isDraft
   } = req.body
    console.log( title,'hh')
   console.log(  description)
@@ -84,6 +85,7 @@ const postheroBanner = asyncHandler(async(req:Request, res:Response) => {
     console.log(  EnableLikes)
     console.log(  EnableCommands)
     console.log(  SharedAsEmail)
+    console.log(  isDraft)
     const File = blobStorage(Attachment, Attachmentname)
      console.log(File, 'tththththth')
     if(!token ){
@@ -108,8 +110,8 @@ const postheroBanner = asyncHandler(async(req:Request, res:Response) => {
               ExpiresOn:ExpiresOn,
                Time:Time,
                RecipentEmail:RecipientEmail,
-               Attachment:File
-      
+               Attachment:File,
+               isDraft:isDraft
       
              
             }

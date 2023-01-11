@@ -80,11 +80,17 @@ const rows = [
   { id: 8, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
   // { id: 9, Title: 'Milestone comes as DP World marks a decade of partnership', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Image: activeView, ModifiedOn: '10 months ago', IsActive: 'Roxie', EnableLikes: 'Harvey', EnableComments: 65, ShareAsEmail: 'info@gmail.com', RecipientEmail: 'contact@gmail.com' },
 ];
+interface IFolderProps {
+ 
+  onClick?: (obj:any) => void;
+  
+}
 
 
-const BirthdayEditor = () => {
+// const BirthdayEditor = () => {
+  const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-
+  const { onClick } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -118,8 +124,12 @@ const BirthdayEditor = () => {
   const [enableCommands, setCommands] = useState<boolean>(false)
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
   const [Title, setTitle] = useState<any>('');
+  const [EmpName, setEmpName] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
+  const [Designation, setDesignation] = useState<any>('');
   const [RecipientEmail, setRecipientEmail] = useState<any>('');
+  const [dob, setDob] = useState<any>('');
+  const [doj, setDoj] = useState<any>('');
   const [state, setState] = useState({
     warningMsg: ""
   })
@@ -213,11 +223,22 @@ const BirthdayEditor = () => {
     console.log(event.target.value)
     setDescription(event.target.value);
   };
-  const handleChangeReciepientEmailField = (event: any) => {
+  const handleChangeDesignationField = (event: any) => {
     console.log(event.target.value)
-    setRecipientEmail(event.target.value);
+    setDesignation(event.target.value);
   };
-
+  const handleChangeNameField = (event: any) => {
+    console.log(event.target.value)
+    setEmpName(event.target.value);
+  };
+  const handleChangeDObField = (event: any) => {
+    console.log(event.target.value)
+    setDob(event.target.value);
+  };
+  const handleChangeDOjField = (event: any) => {
+    console.log(event.target.value)
+    setDoj(event.target.value);
+  };
   useEffect(() => {
     state1.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
     state2.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
@@ -295,23 +316,71 @@ const BirthdayEditor = () => {
       });
     }
   };
+  const fileRef = React.useRef<HTMLInputElement | null>(null)
+  const [selectedFiles, setSelectedFiles] = useState<File | null>();
+  const [fileSelected, setFileSelected] = useState<any>('');
+  const [names,setNames] = useState<any>('');
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles(event?.target?.files?.[0]);
+    setNames(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload= (e) =>{
+        console.log(e.target?.result,'kkkkttt')
+      setFileSelected(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
+
+  };
+  
   const handleSubmit = async () => {
     console.log('grdgdg')
     const announcementData = {
       // token :tokens,
+      name:EmpName,
       title: Title,
       description: Description,
-      image: base1,
-      imageName: filename1,
+      designation:Designation,
+      image: fileSelected,
+      imageName: names,
+      dob:dob,
+      doj:doj,
       isActive: isActives,
       EnableLikes: enablelikes,
       EnableCommands: enableCommands,
       SharedAsEmail: sharedAsEmails,
-      RecipientEmail: RecipientEmail,
-      Attachment: base2,
-      Attachmentname: filename2
+      isDraft:false
+      
     }
     //  await sendItem(announcementData)
+    onClick?.(announcementData)
+  }
+  const handleSave = async () => {
+    console.log('grdgdg')
+    const announcementData = {
+      // token :tokens,
+      name:EmpName,
+      title: Title,
+      description: Description,
+      designation:Designation,
+      image: fileSelected,
+      imageName: names,
+      dob:dob,
+      doj:doj,
+      isActive: isActives,
+      EnableLikes: enablelikes,
+      EnableCommands: enableCommands,
+      SharedAsEmail: sharedAsEmails,
+      isDraft:true
+      
+    }
+    //  await sendItem(announcementData)
+    onClick?.(announcementData)
   }
 
   const [files, setFiles] = useState<File[]>([]);
@@ -392,7 +461,7 @@ const BirthdayEditor = () => {
                     id="outlined-adornment-weight"
                     className={classes.span}
                     style={{ width: "100%" }}
-                    onChange={handleChangeTitleField}
+                    onChange={handleChangeNameField}
                     placeholder="Enter a name"
                   />
                 </div>
@@ -408,7 +477,7 @@ const BirthdayEditor = () => {
                     defaultValue="2022-12-26"
                     className={classes.span}
                     style={{ width: "100%" }}
-                    onChange={handleChangeTitleField}
+                    onChange={handleChangeDObField}
                     placeholder="MM/DD/YYYY"
                     InputLabelProps={{
                       color: "secondary",
@@ -440,7 +509,59 @@ const BirthdayEditor = () => {
                 )}
               </Dropzone> */}
                   <Grid className={classes.svg}>
-                    <FileUpload value={files} onChange={setFiles} />
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileSelect}
+                    />
+                    {!selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={() => fileRef.current?.click()}
+                      >
+                        Choose file to upload
+                      </Button>
+                    )}
+                    {/* {selectedFiles?.name && (
+                      <Button
+                        variant="contained"
+                        component="label"
+                        style={{ textTransform: 'none' }}
+                        onClick={onUpdate}
+                      >
+                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
+                        <span style={{ padding: '10px' }}> Change</span>
+                        <span>Clear</span>
+                      </Button>
+                    )} */}
+                    {selectedFiles?.name && (
+                      <>
+                        <h1 >{selectedFiles?.name}</h1>
+                        <button
+                          onClick={() => {
+                            setSelectedFiles(null);
+                            if (fileRef.current) {
+                              fileRef.current.value = '';
+                            }
+                          }}
+                        >
+                          Clear 
+                        </button>
+                      </>
+                    )}
+                    <Button
+                      color="primary"
+                      disabled={!selectedFiles}
+                      style={{ textTransform: 'none' }}
+                      // onClick={onUpload}
+                    >
+                      Upload
+                    </Button>
                   </Grid>
 
                 </div>
@@ -453,7 +574,7 @@ const BirthdayEditor = () => {
                     id="outlined-adornment-weight"
                     className={classes.span}
                     style={{ width: "100%" }}
-                    onChange={handleChangeTitleField}
+                    onChange={handleChangeDesignationField}
                     placeholder="Enter value here"
                   />
                 </div>
@@ -469,7 +590,7 @@ const BirthdayEditor = () => {
                     defaultValue="2022-12-26"
                     className={classes.span}
                     style={{ width: "100%" }}
-                    onChange={handleChangeTitleField}
+                    onChange={handleChangeDOjField}
                     placeholder="MM/DD/YYYY"
                     InputLabelProps={{
                       color: "secondary",
@@ -681,7 +802,7 @@ const BirthdayEditor = () => {
 
                   </Dialog>
 
-                  <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                  <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
                   <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                     submit
                   </Button>

@@ -63,9 +63,8 @@ const rows = [
 ];
 interface IFolderProps {
 
- 
-  onClick?: (obj:any) => void;
-  
+  onClick?: (obj: any) => void;
+
 }
 
 // const CeoEditor = () => {
@@ -104,6 +103,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const [enablelikes, setEnableLikes] = useState<boolean>(false)
   const [enableCommands, setCommands] = useState<boolean>(false)
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
+  const [isDraft, setIsDraft] = useState<boolean>(false)
   const [Title, setTitle] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
   const [designations, setDesignations] = useState<any>('');
@@ -292,10 +292,8 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const [selectedFiles1, setSelectedFiles1] = useState<File | null>();
   const [fileSelected, setFileSelected] = useState<any>('');
   const [fileSelected1, setFileSelected1] = useState<any>('');
-
-  const [names,setNames] = useState<any>('');
-  const [names1,setNames1] = useState<any>('');
-
+  const [names, setNames] = useState<any>('');
+  const [names1, setNames1] = useState<any>('');
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event?.target?.files?.[0].name)
     setSelectedFiles(event?.target?.files?.[0]);
@@ -303,10 +301,8 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     let reader = new FileReader();
     // @ts-ignore
     reader.readAsDataURL(event?.target?.files?.[0])
-
-    reader.onload= (e) =>{
-        console.log(e.target?.result,'kkkkttt')
-
+    reader.onload = (e) => {
+      console.log(e.target?.result, 'kkkkttt')
       setFileSelected(e.target?.result)
       //@ts-ignore
       // var eee4 = window.atob(e.target?.result)
@@ -321,10 +317,8 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     let reader = new FileReader();
     // @ts-ignore
     reader.readAsDataURL(event?.target?.files?.[0])
-
-    reader.onload= (e) =>{
-        console.log(e.target?.result,'kkkkttt')
-
+    reader.onload = (e) => {
+      console.log(e.target?.result, 'kkkkttt')
       setFileSelected1(e.target?.result)
       //@ts-ignore
       // var eee4 = window.atob(e.target?.result)
@@ -333,6 +327,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
   };
   const handleSubmit = async () => {
+    console.log(isDraft,'isDraft')
     console.log('grdgdg')
     const announcementData = {
       // token :tokens,
@@ -341,13 +336,35 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       image: fileSelected,
       imageName: names,
       isActive: isActives,
-
-      designation:designations,
-      Name:ceoName,
+      designation: designations,
+      Name: ceoName,
       Attachment: fileSelected1,
-      Attachmentname:names1
-
+      Attachmentname: names1,
+      isDraft:false
     }
+    // console.log(announcementData)
+    //  await sendItem(announcementData)
+    onClick?.(announcementData)
+  }
+  const handleSave = async () => {
+  
+  // setIsDraft(true)
+  // console.log(isDraft,'isDraft')
+    console.log('grdgdg')
+    const announcementData = {
+      // token :tokens,
+      title: Title,
+      description: Description,
+      image: fileSelected,
+      imageName: names,
+      isActive: isActives,
+      designation: designations,
+      Name: ceoName,
+      Attachment: fileSelected1,
+      Attachmentname: names1,
+      isDraft:true
+    }
+    // console.log(announcementData)
     //  await sendItem(announcementData)
     onClick?.(announcementData)
   }
@@ -401,7 +418,6 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Button>
                   </Grid>
                 </Grid>
-
               </DialogTitle>
 
               {/* <DialogContent>
@@ -449,6 +465,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     onChange={handleChangeDescriptionField}
                   />
                 </div>
+
                 
             </DialogContent> */}
 
@@ -514,6 +531,8 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
               <div style={{ marginBottom: "10px" }}>
                 <div style={{ paddingBottom: "40px" }}>
 
+                <div style={{ marginBottom: "10px" }}>
+
                   <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                     <img src={title} alt="" className={classes.titleIcon} />
                     Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -544,81 +563,14 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                 </div>
               )}
             </Dropzone> */}
-
-                <Grid className={classes.svg}>
-                  {/* <FileUpload value={files} onChange={setFiles} /> */}
-                  <input
-
+                  <Grid className={classes.svg} style={{border:"1px dashed gray",borderRadius:"5px", height:"100px"}}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <input
                       ref={fileRef}
                       hidden
                       type="file"
                       accept="image/*"
                       onChange={handleFileSelect}
-
-                    />
-                    {!selectedFiles?.name && (
-                      <Button
-                        variant="contained"
-                        component="label"
-                        style={{ textTransform: 'none' }}
-                        onClick={() => fileRef.current?.click()}
-                      >
-                        Choose file to upload
-                      </Button>
-                    )}
-                    {/* {selectedFiles?.name && (
-                      <Button
-                        variant="contained"
-                        component="label"
-                        style={{ textTransform: 'none' }}
-                        onClick={onUpdate}
-                      >
-                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
-                        <span style={{ padding: '10px' }}> Change</span>
-                        <span>Clear</span>
-                      </Button>
-                    )} */}
-                    {selectedFiles?.name && (
-                      <>
-                        <h1 >{selectedFiles?.name}</h1>
-                        <button
-                          onClick={() => {
-                            setSelectedFiles(null);
-                            if (fileRef.current) {
-                              fileRef.current.value = '';
-                            }
-                          }}
-                        >
-                          Clear 
-                        </button>
-                      </>
-                    )}
-                    <Button
-                      color="primary"
-                      disabled={!selectedFiles}
-                      style={{ textTransform: 'none' }}
-                      // onClick={onUpload}
-                    >
-                      Upload
-                    </Button>
-                </Grid>
-
-              </div>
-                 <Grid>
-                <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
-                  <Box>
-                    <img src={isActive} alt="" style={{ width: "15px", marginRight: "15px" }} />
-                    <span>IsActive</span>
-                  </Box>
-                  <Box style={{ display: 'flex', }}>
-                    <FormControlLabel
-                      label="Yes"
-                      control={<Checkbox checked={checkedyesisActive} onChange={handleChangeisActiveyes} />}
-                    />
-                    <FormControlLabel
-                      label="No"
-                      control={<Checkbox checked={checkednoisActive} onChange={handleChangeisActiveno} />}
-
                     />
                     </Box>
                     {!selectedFiles?.name && (
@@ -626,10 +578,10 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                         variant="contained"
                         component="label"
                         onClick={() => fileRef.current?.click()}
-                        style={{ textTransform: 'none', fontSize:"12px",backgroundColor: "#009BAD", }}
+                        style={{ textTransform: 'none', fontSize:"12px",backgroundColor: "#009BAD",  margin:"auto"}}
 
                       >
-                        Choose file to upload
+                        Browse file 
                       </Button>
                     )}
                     {/* {selectedFiles?.name && (
@@ -665,14 +617,14 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     )}
                       </div>
                       <div>
-                      <Button
+                      {/* <Button
                       color="primary"
                       disabled={!selectedFiles}
                       style={{ textTransform: 'none',color:"white", marginTop:"10px" }}
                     // onClick={onUpload}
                     >
                       Upload
-                    </Button>
+                    </Button> */}
                       </div>
                       </div>
 
@@ -681,7 +633,6 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   </Grid>
 
                 </div>
-
                 <Grid>
                   <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
                     <Box>
@@ -700,6 +651,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Box>
 
                   </Box>
+
                   </Grid>
           
              <Grid className={classes.svg}>
@@ -901,7 +853,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </DialogActions>
                   </Dialog>
 
-                  <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                  <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
                   <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                     submit
                   </Button>
