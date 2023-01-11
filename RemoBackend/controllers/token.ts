@@ -606,11 +606,12 @@ const getEmpData = asyncHandler(async(req:Request, res:Response) => {
   }else {
     const response = 
     // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
-      await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/2b3bb6db-7ba9-43e9-92b4-0216b80ef2fe/items?$expand=fields`, {
+      // await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/2b3bb6db-7ba9-43e9-92b4-0216b80ef2fe/items?$expand=fields`, {
+        await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists('EmpHighlights')/items?$expand=fields&$select=*&$filter=fields/isDraft  ne '1'`, {
       headers: {
           'Authorization': `Bearer ${token} `,
-          'Content-Type': 'application/json'
-        
+          'Content-Type': 'application/json',
+          'Prefer':'HonorNonIndexedQueriesWarningMayFailRandomly'
         }
       
   })
@@ -769,10 +770,12 @@ const getRemoHero = asyncHandler(async(req:Request, res:Response) => {
     
     const response = 
     // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
-      await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/0ec4e29a-d2ec-4835-a011-ea8a3fe33ed4/items?$expand=fields`, {
+      // await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/0ec4e29a-d2ec-4835-a011-ea8a3fe33ed4/items?$expand=fields`, {
+        await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists('Hero')/items?$expand=fields&$select=*&$filter=fields/isDraft  ne '1'`, {
       headers: {
           'Authorization': `Bearer ${token} `,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Prefer':'HonorNonIndexedQueriesWarningMayFailRandomly'
         
         }
       
