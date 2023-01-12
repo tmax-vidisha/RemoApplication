@@ -739,14 +739,14 @@ interface IFolderProps {
                       <Grid>
                         <Box>
                           <img src={birthday} alt="" className={classes.backgroundImage} />
-                          <img src={girl} alt="" className={classes.girl} />
-                          <p>Ayesha Siddiqa</p>
-                          <p>HR Manager</p>
+                          <img src={fileSelected} alt="" className={classes.girl} />
+                          <p>{EmpName}</p>
+                          <p>{Designation}</p>
                         </Box>
                         <Grid>
-                          <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> Happy Birthday Ayesha siddiqa</Typography>
+                          <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> {Title}{EmpName}</Typography>
                           <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            {Description}
                           </p>
                         </Grid>
                         <Grid className={classes.iconDiv}>
@@ -767,8 +767,8 @@ interface IFolderProps {
                     </DialogContent>
                     <DialogActions>
                       <Grid className={classes.actionPart}>
-                        <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
-                        <Button className={classes.cancelBtn}>Cancel</Button>
+                        <Button onClick={handleSave} autoFocus className={classes.saveBtn}>Save</Button>
+                        <Button onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                       </Grid>
                     </DialogActions>
 
