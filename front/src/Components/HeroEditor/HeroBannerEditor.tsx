@@ -33,6 +33,7 @@ import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
+import browse from "../../Assets/Images/browse.svg";
 import { useStyles } from './Styles';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
@@ -619,80 +620,50 @@ async function  uploadItem (){
 
                 </div>
 
-                <div style={{ marginBottom: "10px" }}>
-                  <div style={{ paddingBottom: "40px" }}>
-                    <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                      <img src={image} alt="" className={classes.titleIcon} />
+                <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                  <img src={image} alt="" className={classes.titleIcon} />
                       Image/video<img src={Asterisk} alt="..." />
-                    </InputLabel>
-                  </div>
-
-
-                  {/* <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()}  type="file"/>
-                  <p>Drag'n'drop files, or click to select files</p>
-                </div>
-              )}
-            </Dropzone> */}
-                  <Grid className={classes.svg}>
-                    {/* <FileUpload value={files} onChange={handleChange} /> */}
+                  </InputLabel>
+                   <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
                     <input
                       ref={fileRef}
                       hidden
                       type="file"
-                      accept="image/*,video/*"
+                      accept="image/*"
                       onChange={handleFileSelect}
                     />
+
                     {!selectedFiles?.name && (
-                      <Button
-                        variant="contained"
-                        component="label"
-                        style={{ textTransform: 'none' }}
-                        onClick={() => fileRef.current?.click()}
-                      >
-                        Choose file to upload
-                      </Button>
+                      <p
+                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
                     )}
-                    {/* {selectedFiles?.name && (
-                      <Button
-                        variant="contained"
-                        component="label"
-                        style={{ textTransform: 'none' }}
-                        onClick={onUpdate}
-                      >
-                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
-                        <span style={{ padding: '10px' }}> Change</span>
-                        <span>Clear</span>
-                      </Button>
-                    )} */}
-                    {selectedFiles?.name && (
-                      <>
-                        <h1 >{selectedFiles?.name}</h1>
-                        <button
-                          onClick={() => {
-                            setSelectedFiles(null);
-                            if (fileRef.current) {
-                              fileRef.current.value = '';
-                            }
-                          }}
-                        >
-                          Clear 
-                        </button>
-                      </>
-                    )}
-                    <Button
-                      color="primary"
-                      disabled={!selectedFiles}
-                      style={{ textTransform: 'none' }}
-                      onClick={onUpload}
-                    >
-                      Upload
-                    </Button>
 
+                    <div>
+                      {selectedFiles?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles(null);
+                              if (fileRef.current) {
+                                fileRef.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
                   </Grid>
-
                 </div>
                 <Grid>
                   <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
@@ -782,73 +753,50 @@ async function  uploadItem (){
                 </InputLabel>
                 <TextField
                   id="outlined-adornment-weight" sx={{ width: "100%" }} onChange={handleChangeReciepientEmailField} />
+              
                 <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
                   <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }} />
                   Attachments
                 </InputLabel>
-                {/* <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()} type="file" />
-                  <p>Drag'n'drop files, or click to select files</p>
-                </div>
-              )}
-            </Dropzone> */}
                 <Grid className={classes.svg}>
-                  {/* <FileUpload value={files} onChange={setFiles} /> */}
-                  <input
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
+                    <input
                       ref={fileRef1}
                       hidden
                       type="file"
-                      // accept="image/*,video/*"
+                      accept="image/*"
                       onChange={handleFileSelect1}
                     />
-                    {!selectedFiles1?.name && (
-                      <Button
-                        variant="contained"
-                        component="label"
-                        style={{ textTransform: 'none' }}
-                        onClick={() => fileRef1.current?.click()}
-                      >
-                        Choose file to upload
-                      </Button>
+
+                    {!selectedFiles?.name && (
+                      <p
+                        onClick={() => fileRef1.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
                     )}
-                    {/* {selectedFiles?.name && (
-                      <Button
-                        variant="contained"
-                        component="label"
-                        style={{ textTransform: 'none' }}
-                        onClick={onUpdate}
-                      >
-                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
-                        <span style={{ padding: '10px' }}> Change</span>
-                        <span>Clear</span>
-                      </Button>
-                    )} */}
-                    {selectedFiles1?.name && (
-                      <>
-                        <h1 >{selectedFiles1?.name}</h1>
-                        <button
-                          onClick={() => {
-                            setSelectedFiles1(null);
-                            if (fileRef1.current) {
-                              fileRef1.current.value = '';
-                            }
-                          }}
-                        >
-                          Clear 
-                        </button>
-                      </>
-                    )}
-                    <Button
-                      color="primary"
-                      disabled={!selectedFiles1}
-                      style={{ textTransform: 'none' }}
-                      onClick={onUpload}
-                    >
-                      Upload
-                    </Button>
-                </Grid>
+
+                    <div>
+                      {selectedFiles1?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles1?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles1(null);
+                              if (fileRef1.current) {
+                                fileRef1.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </Grid>
               </DialogContent>
               <DialogActions>
                 <Grid className={classes.actionDivTwo}>
