@@ -11,6 +11,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useStyles } from "./Styles";
 import { useGetCeoMessageQuery,useUpdateCeoMsgTokenMutation,useGetAllCeoMsgQuery } from '../../services/APIs'
 import moment from "moment";
+import love from "../../Assets/Images/love.svg"
 interface IFolderProps {
    // ceomsg: any;
    data:any, 
@@ -102,7 +103,7 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
               </div>
               <div className={classes.ceoContentHeader}>
                 <Typography variant="subtitle1" component="h6">
-                {data?.response.value[0].fields?.UserName}
+                {data?.response.value[0].fields?.UserName} <img src={love} alt="" style={{width:"15px"}}/>
                 </Typography>
                 <Typography
                   variant="caption"
@@ -122,6 +123,7 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
                       dangerouslySetInnerHTML={{
                         __html: data?.response.value[0].fields.Description,
                       }}
+                      style={{textAlign:"left"}}
                     />
                   </Fragment>
                 </Typography>

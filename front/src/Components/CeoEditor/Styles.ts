@@ -76,11 +76,11 @@ export const useStyles = makeStyles({
     },
   },
   MainPart: {
-     height: 550,
-     width: '100%',
+    height: 550,
+    width: '100%',
     backgroundColor: "white",
-    marginLeft:"20px",
-    paddingRight:"10px",
+    marginLeft: "20px",
+    paddingRight: "10px",
     //  padding: "30px",
     // margin:"30px",
     // marginRight:"50px",
@@ -88,11 +88,11 @@ export const useStyles = makeStyles({
     //  border: "1px solid red",
     borderTopRightRadius: '9px',
   },
- Section: {
+  Section: {
     height: 'auto',
-     width: '100%',
+    width: '100%',
     backgroundColor: "#d1eae33b",
-   paddingRight: "55px",
+    paddingRight: "55px",
     // marginRight: '50px',
     //  border: "1px solid red",
     borderTopRightRadius: '9px',
@@ -208,27 +208,38 @@ export const useStyles = makeStyles({
   },
   svg: {
     // display: "none !important",
-    
-    alignItems: "left",
-    "& input":{
+    border: "1px dashed gray", 
+    borderRadius: "5px", 
+    padding:"20px",
+    height: "auto",
+    alignItems: "center",
+    "& input": {
       color: "white",
       backgroundColor: "#009BAD",
     },
-    "& p":{
-      fontSize:"12px",
+    "& p": {
+      fontSize: "12px",
+      margin: "0px",
+      textAlign:"center",
+      color:"#606C74",
     },
     " & span": {
       display: "none !important",
-      fontSize:"12px"
+      fontSize: "12px"
     },
     "& button": {
       display: "block",
       color: "white",
       backgroundColor: "#009BAD",
-      fontSize:"12px"
-    }
+      fontSize: "12px"
+    },
+    "& img": {
+      width: "45px",
+    // marginRight:"70px"
+    },
+   
   },
-
+ 
   backgroundImage: {
     backgroundSize: "cover",
     textAlign: "center",
