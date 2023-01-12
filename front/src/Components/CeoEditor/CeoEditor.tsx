@@ -33,6 +33,7 @@ import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
+import browse from "../../Assets/Images/browse.svg";
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -326,8 +327,9 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     }
 
   };
+
   const handleSubmit = async () => {
-    console.log(isDraft,'isDraft')
+    console.log(isDraft, 'isDraft')
     console.log('grdgdg')
     const announcementData = {
       // token :tokens,
@@ -340,16 +342,16 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       Name: ceoName,
       Attachment: fileSelected1,
       Attachmentname: names1,
-      isDraft:false
+      isDraft: false
     }
     // console.log(announcementData)
     //  await sendItem(announcementData)
     onClick?.(announcementData)
   }
   const handleSave = async () => {
-  
-  // setIsDraft(true)
-  // console.log(isDraft,'isDraft')
+
+    // setIsDraft(true)
+    // console.log(isDraft,'isDraft')
     console.log('grdgdg')
     const announcementData = {
       // token :tokens,
@@ -362,7 +364,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       Name: ceoName,
       Attachment: fileSelected1,
       Attachmentname: names1,
-      isDraft:true
+      isDraft: true
     }
     // console.log(announcementData)
     //  await sendItem(announcementData)
@@ -419,8 +421,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   </Grid>
                 </Grid>
               </DialogTitle>
-
-              {/* <DialogContent>
+              <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                   <Divider />
                   <p style={{ textAlign: "left" }}>New Item</p>
@@ -465,71 +466,7 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     onChange={handleChangeDescriptionField}
                   />
                 </div>
-
-                
-            </DialogContent> */}
-
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                <Divider />
-                <p style={{ textAlign: "left" }}>New Item</p>
-              </DialogContentText>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Title<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="Enter value here"
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Name<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeCeoName}
-                  placeholder="Enter a name"
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
-                  <img src={descripton} alt="" className={classes.titleIcon} />
-                  Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-multiline-static"
-                  // label="Multiline"
-                  multiline
-                  rows={4}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeDescriptionField}
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeDesignation}
-                  placeholder="Enter value here"
-                />
-              </div>
-
                 <div style={{ marginBottom: "10px" }}>
-
                   <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                     <img src={title} alt="" className={classes.titleIcon} />
                     Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -542,26 +479,16 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     placeholder="Enter value here"
                   />
                 </div>
-
-                <div style={{ marginBottom: "10px" }}>
-                  <div style={{ paddingBottom: "40px" }}>
-                    <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                      <img src={image} alt="" className={classes.titleIcon} />
+                  <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                  <img src={image} alt="" className={classes.titleIcon} />
                       Image<img src={Asterisk} alt="..." />
-                    </InputLabel>
-                  </div>
-
-
-                  {/* <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()}  type="file"/>
-                  <p>Drag'n'drop files, or click to select files</p>
-                </div>
-              )}
-            </Dropzone> */}
-                  <Grid className={classes.svg} style={{border:"1px dashed gray",borderRadius:"5px", height:"100px"}}>
+                  </InputLabel>
+                   <Grid className={classes.svg}>
                     {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
                     <input
                       ref={fileRef}
                       hidden
@@ -569,66 +496,33 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                       accept="image/*"
                       onChange={handleFileSelect}
                     />
-                   
+
                     {!selectedFiles?.name && (
-                      <Button
-                        variant="contained"
-                        component="label"
-                        onClick={() => fileRef.current?.click()}
-                        style={{ textTransform: 'none', fontSize:"12px",backgroundColor: "#009BAD",  margin:"auto"}}
-
-                      >
-                        Browse file 
-                      </Button>
+                      <p
+                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
                     )}
-                    {/* {selectedFiles?.name && (
-                      <Button
-                        variant="contained"
-                        component="label"
-                        style={{ textTransform: 'none' }}
-                        onClick={onUpdate}
-                      >
-                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
-                        <span style={{ padding: '10px' }}> Change</span>
-                        <span>Clear</span>
-                      </Button>
-                    )} */}
-                  
-                    <div style={{ display: "flex", justifyContent: "space-between", width: "300px" }}>                      
-                      <div>
+
+                    <div>
                       {selectedFiles?.name && (
-                      <>
-                        <p style={{fontSize:"12px"}}>{selectedFiles?.name}</p>
-                        <button
-                          onClick={() => {
-                            setSelectedFiles(null);
-                            if (fileRef.current) {
-                              fileRef.current.value = '';
-                            }
-                          }}
-                          style={{padding:"5px", border:"none", borderRadius:"4px"}}
-                        >
-                          Clear
-                        </button>
-                      </>
-                    )}
-                      </div>
-                      <div>
-                      {/* <Button
-                      color="primary"
-                      disabled={!selectedFiles}
-                      style={{ textTransform: 'none',color:"white", marginTop:"10px" }}
-                    // onClick={onUpload}
-                    >
-                      Upload
-                    </Button> */}
-                      </div>
-                      </div>
-
-                    
-                   
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles(null);
+                              if (fileRef.current) {
+                                fileRef.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
                   </Grid>
-
                 </div>
                 <Grid>
                   <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
@@ -649,121 +543,53 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                   </Box>
 
-                  </Grid>
-          
-             <Grid className={classes.svg}>
-                  {/* <FileUpload value={files} onChange={setFiles} /> */}
-                  <input
-                      ref={fileRef1}
-                      hidden
-                      type="file"
-                      // accept="image/*,video/*"
-                      onChange={handleFileSelect1}
-                    />
-                    {!selectedFiles1?.name && (
-                      <Button
-                        variant="contained"
-                        component="label"
-                        style={{ textTransform: 'none' }}
-                        onClick={() => fileRef1.current?.click()}
-                      >
-                        Choose file to upload
-                      </Button>
-                    )}
-                    {/* {selectedFiles?.name && (
-                      <Button
-                        variant="contained"
-                        component="label"
-                        style={{ textTransform: 'none' }}
-                        onClick={onUpdate}
-                      >
-                        <span style={{ float: 'left' }}> {selectedFiles?.name}</span>
-                        <span style={{ padding: '10px' }}> Change</span>
-                        <span>Clear</span>
-                      </Button>
-                    )} */}
-                    {selectedFiles1?.name && (
-                      <>
-                        <h1 >{selectedFiles1?.name}</h1>
-                        <button
-                          onClick={() => {
-                            setSelectedFiles1(null);
-                            if (fileRef1.current) {
-                              fileRef1.current.value = '';
-                            }
-                          }}
-                        >
-                          Clear 
-                        </button>
-                      </>
-                    )}
-                    <Button
-                      color="primary"
-                      disabled={!selectedFiles}
-                      style={{ textTransform: 'none' }}
-                      // onClick={onUpload}
-                    >
-                      Upload
-                    </Button>
-
                 </Grid>
                 <div style={{ marginBottom: "15px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
                     <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }} />
                     Attachments
                   </InputLabel>
+
                   <Grid className={classes.svg}>
                     {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
                     <input
                       ref={fileRef1}
-                      hidden
                       type="file"
                       // accept="image/*,video/*"
                       onChange={handleFileSelect1}
-                      
-                    />
-                    
-                        {!selectedFiles1?.name && (
-                          <>
-                            {/* <p style={{ fontSize: "12px" }}>{selectedFiles1?.name}</p> */}
-                            <Button
-                              variant="contained"
-                              component="label"
-                              style={{ textTransform: 'none', fontSize:"12px",backgroundColor: "#009BAD", }}
-                              onClick={() => fileRef1.current?.click()}
-                            >
-                              Choose file to upload
-                            </Button>
-                          </>
-                        )}                    
-                    <div style={{ display: "flex", justifyContent: "space-between", width: "300px" }}>
-                      <div>
-                        {selectedFiles1?.name && (
-                          <>
-                            <p style={{ fontSize: "12px", color:"gray" }}>{selectedFiles1?.name}</p>
-                            <button
-                              onClick={() => {
-                                setSelectedFiles1(null);
-                                if (fileRef1.current) {
-                                  fileRef1.current.value = '';
-                                }
-                              }} style={{padding:"5px", border:"none", borderRadius:"4px"}}>Clear
-                            </button>
-                          </>
-                        )}
-                      </div>
-                      <div>
-                        <Button
-                          disabled={!selectedFiles}
-                          style={{ textTransform: 'none',color:"white", marginTop:"10px" }}
-                        // onClick={onUpload}
-                        >
-                          Upload
-                        </Button>
-                      </div>
+                      hidden />
+
+                    {!selectedFiles1?.name && (
+                      <p
+                        onClick={() => fileRef1.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
+                    )}
+
+                    <div>
+                      {selectedFiles?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles1?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles1(null);
+                              if (fileRef1.current) {
+                                fileRef1.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
                     </div>
 
                   </Grid>
+
                 </div>
 
               </DialogContent>

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from './index';
@@ -31,6 +32,7 @@ import FileUpload from "react-material-file-upload";
 import birthday from '../../Assets/Images/birthday.jpg'
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
+import browse from "../../Assets/Images/browse.svg";
 
 
 const renderCell = (params: any) => {
@@ -332,6 +334,47 @@ const handleClosePreview = () => {
   setOpenPreview(false);
 };
 
+const fileRef = React.useRef<HTMLInputElement | null>(null)
+const fileRef1 = React.useRef<HTMLInputElement | null>(null)
+const [selectedFiles, setSelectedFiles] = useState<File | null>();
+const [selectedFiles1, setSelectedFiles1] = useState<File | null>();
+const [fileSelected, setFileSelected] = useState<any>('');
+const [fileSelected1, setFileSelected1] = useState<any>('');
+const [names, setNames] = useState<any>('');
+const [names1, setNames1] = useState<any>('');
+const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+  // console.log(event?.target?.files?.[0].name)
+  setSelectedFiles(event?.target?.files?.[0]);
+  setNames(event?.target?.files?.[0].name)
+  let reader = new FileReader();
+  // @ts-ignore
+  reader.readAsDataURL(event?.target?.files?.[0])
+  reader.onload = (e) => {
+    console.log(e.target?.result, 'kkkkttt')
+    setFileSelected(e.target?.result)
+    //@ts-ignore
+    // var eee4 = window.atob(e.target?.result)
+    // console.log(eee4,'rrrrrrthds')
+  }
+
+};
+const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+  // console.log(event?.target?.files?.[0].name)
+  setSelectedFiles1(event?.target?.files?.[0]);
+  setNames1(event?.target?.files?.[0].name)
+  let reader = new FileReader();
+  // @ts-ignore
+  reader.readAsDataURL(event?.target?.files?.[0])
+  reader.onload = (e) => {
+    console.log(e.target?.result, 'kkkkttt')
+    setFileSelected1(e.target?.result)
+    //@ts-ignore
+    // var eee4 = window.atob(e.target?.result)
+    // console.log(eee4,'rrrrrrthds')
+  }
+
+};
+
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
@@ -409,18 +452,51 @@ const handleClosePreview = () => {
                 style={{ width: "100%" }}
                 onChange={handleChangeDescriptionField}
               />
-               <div style={{marginBottom:"10px"}}>
-                <div style={{paddingBottom:"40px"}}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={image} alt="" className={classes.titleIcon}  />
-                  Image<img src={Asterisk} alt="..." />
-                </InputLabel>
-                </div>
-                <Grid className={classes.svg}>
-                  <FileUpload value={files} onChange={setFiles} />
-                </Grid>
+                <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                  <img src={image} alt="" className={classes.titleIcon} />
+                      Image<img src={Asterisk} alt="..." />
+                  </InputLabel>
+                   <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
+                    <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileSelect}
+                    />
 
-              </div>             
+                    {!selectedFiles?.name && (
+                      <p
+                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
+                    )}
+
+                    <div>
+                      {selectedFiles?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles(null);
+                              if (fileRef.current) {
+                                fileRef.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </Grid>
+                </div>            
               
               {/* <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
                 {({ getRootProps, getInputProps }) => (
@@ -519,13 +595,53 @@ const handleClosePreview = () => {
               </InputLabel>
               <TextField
                 id="outlined-adornment-weight" sx={{width:"100%"}}  onChange={handleChangeReciepientEmailField}  />
-              <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-                <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }}/>
-                Attachments
-              </InputLabel>
-              <Grid className={classes.svg}>
-                  <FileUpload value={files} onChange={setFiles} />
-                </Grid>
+              <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                    <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }} />
+                    Attachments
+                  </InputLabel>
+
+                  <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
+                    <input
+                      ref={fileRef1}
+                      type="file"
+                      // accept="image/*,video/*"
+                      onChange={handleFileSelect1}
+                      hidden />
+
+                    {!selectedFiles1?.name && (
+                      <p
+                        onClick={() => fileRef1.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
+                    )}
+
+                    <div>
+                      {selectedFiles?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles1?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles1(null);
+                              if (fileRef1.current) {
+                                fileRef1.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
+
+                  </Grid>
+
+                </div>
               {/* <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps({ className: classes.dropZone })}>

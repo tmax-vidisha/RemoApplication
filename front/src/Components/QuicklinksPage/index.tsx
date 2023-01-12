@@ -9,12 +9,13 @@ import sales from "./../../Assets/Images/sales.svg";
 import vehicle from "./../../Assets/Images/vechicle-req.svg";
 import add from "./../../Assets/Images/addmore.svg";
 import hub from "./../../Assets/Images/hub.svg";
-import editAdd from "./../../Assets/Images/editAdd.svg";
+import dragDrop from "./../../Assets/Images/dragdropIcon.svg";
 import { useLocation } from 'react-router-dom';
 import birthday from "../../Assets/Images/girl.jpg";
 import { Button } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import QuickLinks from './../Quicklinks/index';
+import { useState } from 'react';
 
 const QuicklinksPage = () => {
 
@@ -56,6 +57,10 @@ const QuicklinksPage = () => {
         },
 
     ]
+    const [show , setShow]=useState(false);
+    const handleClick=()=>{
+        setShow(true)
+    }
 
     return (
         <div>
@@ -93,7 +98,7 @@ const QuicklinksPage = () => {
 
                         <Grid className={classes.bigBox}>
                             <p className={classes.addedText}>Added Quicklinks</p>
-                            <p className={classes.dragText}>you can drag and drop to change position</p>
+                            <p className={classes.dragText}><img src={dragDrop} alt="" />you can drag and drop to change position</p>
                         </Grid>
 
                         <Grid  className={classes.bigBox}>

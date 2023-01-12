@@ -53,7 +53,7 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
   const [show, setShow] = useState(false);
 
   const [value, onChange] = useState(new Date());
-
+  let current_time = moment().format('DD/MM/YYYY HH:mm:ss')
   return (
 
     <AuthenticatedTemplate>
@@ -75,7 +75,7 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
               >
                 Meetings Info
               </Typography>
-
+              <Typography className={classes.meetHeader}>{current_time}</Typography>
             </Stack>
             <Grid >
               {/* <Grid style={{ display: "flex", justifyContent: "flex-start" }}>
@@ -93,7 +93,7 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
                   </div>
                 )}
                 */}
-                {/* <div>
+              {/* <div>
               { show && (
                 <Grid style={{ overflowY: "scroll", overflowX: "hidden", height: "60px", marginTop: "30px" }}>
                 {data?.response &&
@@ -134,48 +134,48 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
             </Grid>
 
             <Grid>
-              
-            
-                <div> 
+
+
+              <div>
                 {/* <div className={classes.task}>
                 <span><AddIcon/></span> <span>Add Task </span>
                </div> */}
-                <Grid style={{ overflowY: "hidden", overflowX: "hidden", height: "50px",  }}>
-                {data?.response &&
-                  data?.response?.map((item: any, index: any) => {
-                    const time = item.start.dateTime
-                    // moment(fields?.EventDate).format("MMM");
-                    // let eventYear  = moment(fields?.EventDate).format("YYYY");
-                    // var formatted = moment(time, "HH:mm").format("hh:mm A");
-                    var formatted = moment(time).format('HH:mm A');
-                    console.log(formatted, 'ffffffffffffffffff')
-                    return (
+                <Grid style={{ overflowY: "hidden", overflowX: "hidden", height: "50px", }}>
+                  {data?.response &&
+                    data?.response?.map((item: any, index: any) => {
+                      const time = item.start.dateTime
+                      // moment(fields?.EventDate).format("MMM");
+                      // let eventYear  = moment(fields?.EventDate).format("YYYY");
+                      // var formatted = moment(time, "HH:mm").format("hh:mm A");
+                      var formatted = moment(time).format('HH:mm A');
+                      console.log(formatted, 'ffffffffffffffffff')
+                      return (
 
 
-                      <Grid container item xs={12} spacing={0}  >
-                        <Grid item xs={0.8}>
-                          <Typography className={classes.meetTime} >{formatted}</Typography>
+                        <Grid container item xs={12} spacing={0}  >
+                          <Grid item xs={0.8}>
+                            <Typography className={classes.meetTime} >{formatted}</Typography>
+
+                          </Grid>
+                          <Grid className={classes.meetBorder} item xs={0.2}>
+
+                          </Grid>
+                          <Grid item xs={10}>
+                            <Typography className={classes.meetText}>{item.subject}</Typography>
+
+                          </Grid>
 
                         </Grid>
-                        <Grid className={classes.meetBorder} item xs={0.2}>
 
-                        </Grid>
-                        <Grid item xs={10}>
-                          <Typography className={classes.meetText}>{item.subject}</Typography>
-
-                        </Grid>
-
-                      </Grid>
-
-                    )
+                      )
 
 
-                  })}
+                    })}
 
-              </Grid>
+                </Grid>
               </div>
-             
-              
+
+
             </Grid>
             {/* <Grid container item xs={12} spacing={0}>
 

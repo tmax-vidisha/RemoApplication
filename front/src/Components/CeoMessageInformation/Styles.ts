@@ -63,7 +63,8 @@ export const useStyles = makeStyles({
   },
   ceoCreatedDate: {
     color: "#009BAD !important",
-    paddingBottom: "20px",
+    paddingBottom: "10px",
+    textAlign:"left"
   },
   contentRoot: {
     display: "flex",
@@ -86,11 +87,13 @@ export const useStyles = makeStyles({
     marginTop: "7px",
     opacity: 0.6,
     paddingRight: "10px",
+    marginBottom:"10px"
   },
   ceoContentHeader: {
     width: "auto-fit",
     "& h6": {
       fontSize: "1.5rem !important",
+      textAlign:"left"
     },
   },
 });
