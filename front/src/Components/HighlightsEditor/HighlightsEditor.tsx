@@ -33,6 +33,7 @@ import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
+import browse from "../../Assets/Images/browse.svg";
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -316,6 +317,28 @@ const HighlightsEditor = () => {
   }
 
   const [files, setFiles] = useState<File[]>([]);
+  const fileRef = React.useRef<HTMLInputElement | null>(null)
+  const [selectedFiles, setSelectedFiles] = useState<File | null>();
+  const [fileSelected, setFileSelected] = useState<any>('');
+  const [names,setNames] = useState<any>('');
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles(event?.target?.files?.[0]);
+    setNames(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload= (e) =>{
+        console.log(e.target?.result,'kkkkttt')
+      setFileSelected(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
+
+  };
+  
 
   return (
     <div className={classes.Section}>
@@ -422,29 +445,51 @@ const HighlightsEditor = () => {
                   }}
                 />
               </div>
-
-              <div style={{ marginBottom: "10px" }}>
-                <div style={{ paddingBottom: "40px" }}>
-                  <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                    <img src={image} alt="" className={classes.titleIcon} />
-                    Image<img src={Asterisk} alt="..." />
+              <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                  <img src={image} alt="" className={classes.titleIcon} />
+                      Image<img src={Asterisk} alt="..." />
                   </InputLabel>
+                   <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
+                    <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileSelect}
+                    />
+
+                    {!selectedFiles?.name && (
+                      <p
+                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
+                    )}
+
+                    <div>
+                      {selectedFiles?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles(null);
+                              if (fileRef.current) {
+                                fileRef.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </Grid>
                 </div>
-
-
-                {/* <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()}  type="file"/>
-                  <p>Drag'n'drop files, or click to select files</p>
-                </div>
-              )}
-            </Dropzone> */}
-                <Grid className={classes.svg}>
-                  <FileUpload value={files} onChange={setFiles} />
-                </Grid>
-
-              </div>
               <div style={{ marginBottom: "10px" }}>
                 <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                   <img src={title} alt="" className={classes.titleIcon} />

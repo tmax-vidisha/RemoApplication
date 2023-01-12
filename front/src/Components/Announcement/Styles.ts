@@ -248,6 +248,7 @@ Section: {
 
   svg: {
     // display: "none !important",
+    cursor:"pointer",
     border: "1px dashed gray", 
     borderRadius: "5px", 
     padding:"20px",
