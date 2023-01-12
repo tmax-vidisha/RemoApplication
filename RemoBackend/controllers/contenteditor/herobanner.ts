@@ -13,6 +13,7 @@ function blobStorage(image: any, imageName: any) {
   //@ts-ignore
   var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
   var matches = image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+  if(matches !== null){
   var type = matches[1];
   //@ts-ignore
   var buffer = new Buffer.from(matches[2], 'base64');
@@ -49,8 +50,8 @@ function blobStorage(image: any, imageName: any) {
 
   //@ts-ignore
   return response.image
+  }
 }
-
 
 const postheroBanner = asyncHandler(async(req:Request, res:Response) => {
     // console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
@@ -68,7 +69,7 @@ const postheroBanner = asyncHandler(async(req:Request, res:Response) => {
     SharedAsEmail,
     RecipientEmail,
     Attachment,
-    Attachmentname,
+    // Attachmentname,
     isDraft
   } = req.body
    console.log( title,'hh')
@@ -80,14 +81,14 @@ const postheroBanner = asyncHandler(async(req:Request, res:Response) => {
   
   console.log(  RecipientEmail)
   console.log(  Attachment)
-    console.log(Attachmentname)
+    // console.log(Attachmentname)
     console.log(isActive)
     console.log(  EnableLikes)
     console.log(  EnableCommands)
     console.log(  SharedAsEmail)
     console.log(  isDraft)
-    const File = blobStorage(Attachment, Attachmentname)
-     console.log(File, 'tththththth')
+    // const File = blobStorage(Attachment, Attachmentname)
+    //  console.log(File, 'tththththth')
     if(!token ){
  
         return res.status(404).json({
@@ -110,7 +111,7 @@ const postheroBanner = asyncHandler(async(req:Request, res:Response) => {
               ExpiresOn:ExpiresOn,
                Time:Time,
                RecipentEmail:RecipientEmail,
-               Attachment:File,
+               Attachment:Attachment,
                isDraft:isDraft
       
              

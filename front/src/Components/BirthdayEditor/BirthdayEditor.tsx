@@ -778,7 +778,7 @@ interface IFolderProps {
                   <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                     submit
                   </Button>
-                  <Button className={classes.cancelBtn}>Cancel</Button>
+                  <Button   onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                 </Grid>
 
               </DialogActions>
