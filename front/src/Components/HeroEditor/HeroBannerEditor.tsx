@@ -33,8 +33,10 @@ import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
+import clock from "../../Assets/Images/clock.svg";
 import browse from "../../Assets/Images/browse.svg";
 import { useStyles } from './Styles';
+
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -619,7 +621,7 @@ async function  uploadItemDocument (){
                   </div>
                   <div>
                     <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} style={{ textAlign: "left", margin: "10px" }}>
-                      <img src={calenderIcon} alt="" className={classes.titleIcon} />
+                      <img src={clock} alt="" className={classes.titleIcon} />
                       Time<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
                     </InputLabel>
                     <TextField
@@ -729,7 +731,6 @@ async function  uploadItemDocument (){
                   </Grid>
                 </Grid>
                 <Grid>
-
                   <Grid>
                     <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
                       <Box>
@@ -771,9 +772,7 @@ async function  uploadItemDocument (){
 
                   </Grid>
                 </Grid>
-
-
-                <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+<InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
                   <img src={recipientEmail} alt="" style={{ width: "13px", marginRight: "15px" }} />
                   RecipentEmail
                 </InputLabel>

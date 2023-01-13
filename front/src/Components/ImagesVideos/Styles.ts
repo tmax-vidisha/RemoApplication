@@ -160,6 +160,35 @@ export const useStyles = makeStyles({
     position: "relative",
   },
 
+  lightbox: {
+    display: "none",
+    position: "fixed",
+    zIndex: "999",
+    top: "0",
+    left: "0",
+    right: "0",
+    bottom:" 0",    
+    /* A bit of padding around image */
+    padding:" 1em",
+    /* Translucent background */
+    background: "rgba(0, 0, 0, 0.8)",
+
+     
+ "& lightbox:target" :{
+  display: "block",
+},
+
+"& lightbox span" :{
+  display: "block",
+  width:" 100%",
+  height:" 100%",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "contain",
+}
+
+  },
+  
 
 
 });

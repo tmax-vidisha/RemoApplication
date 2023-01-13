@@ -7,9 +7,9 @@ import IconText from '../Header/IconText';
 import { useStyles } from './Styles';
 import { SRLWrapper } from "simple-react-lightbox";
 import Slider from "react-slick";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 interface IFolderProps {
   data: any,
   error: any,
@@ -138,25 +138,23 @@ const FolderItems = () => {
           <Grid item xs={12} style={{ backgroundColor: "white" }}>
             <Box style={{ margin: "10px", width: "150px", display: "flex", justifyContent: "space-between" }}>
               <p style={{ color: "#39c8cf", }} onClick={onClick}>Images</p>
-
               <p style={{ color: "#39c8cf", }} onClick={HandleClick}>Videos</p>
             </Box>
             {showResults ? (
-                 <Box style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)",}}>
-                 {
-                   filterdVideoData.map((item: any) => (
-                     <Grid  >
+              
+              <Box style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", }}>
+                  {
+                    filterdVideoData.map((item: any) => (
 
-                       <video width="200" height="150" >
-                         <source src={item.webUrl} type="video/mp4" />
-                       </video>
-
-                     </Grid>
-                   ))
-                 }
-
-               </Box>            
-
+                      <Grid>
+                        <video width="200" height="150" >
+                          <source src={item.webUrl} type="video/mp4" />
+                        </video>
+                      </Grid>
+                    ))
+                  }
+              </Box>
+             
             ) : (
               <SRLWrapper>
                 <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
@@ -171,9 +169,6 @@ const FolderItems = () => {
                 </Box>
               </SRLWrapper>
             )}
-
-
-
           </Grid>
         </Paper>
       </Container>
