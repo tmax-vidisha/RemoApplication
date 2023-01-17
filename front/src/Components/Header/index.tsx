@@ -508,13 +508,10 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
               <IconButton
                 size="large"
                 aria-label="unread mail count"
-                color="inherit"
-              >
+                color="inherit">
                 <a
                   target={"_blank"}
-                  href="https://outlook.office.com/mail/inbox"
-                >
-
+                  href="https://outlook.office.com/mail/inbox">
                   <Badge badgeContent={data?.response?.unreadItemCount} color="error" sx={{
                     top: "3px",
                     "& .MuiBadge-badge": {
@@ -522,12 +519,10 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                       backgroundColor: "#009BAD"
                     }
                   }}>
-
                     <img src={outlookIcon} alt="Outlook" />
                   </Badge>
                 </a>
               </IconButton>
-
               <IconButton
                 size="large"
                 aria-label="show 17 new notifications"
@@ -578,15 +573,10 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     marginTop: -2
                   },
                 }}>
-
-              
-
                 <Box>
                   <Grid style={{ color: "#009BAD", fontSize: "13px" }}>{UserData?.response?.name}</Grid>
                   <Grid style={{ fontSize: "12px" }}>{UserData?.response?.email}</Grid>
                 </Box>
-
-
                 <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
                 <MenuItem onClick={handleClose5} className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
                 <MenuItem onClick={handleClose5} className={classes.profile}><img src={banner} alt="account" />Display on your banner view</MenuItem>

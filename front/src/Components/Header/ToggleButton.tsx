@@ -62,21 +62,18 @@ interface type {
 const ToggleButton = (permission:any) => {
     const classes = useStyles();
 
-
     const [toggle, setToggle] = React.useState(true);
     const toggleChecked = () => setToggle(toggle => !toggle);
-
-    const [show, setShow] = React.useState(false);
+    const [showResults, setShowResults] = React.useState(false)
 
     const handleClick = () => {
-        setToggle(!toggle);
+        setShowResults(true)
       };
 
     return (
         <div>
 
             <div style={{ marginTop: "15px"}}>
-               
                     <Switch 
                     checkedChildren={"slide to top menu"}
                      unCheckedChildren={"slide to left menu " }
@@ -88,16 +85,16 @@ const ToggleButton = (permission:any) => {
                         console.log("switch is checked", checked)
                       }}
                       onClick={handleClick} 
-                    />
-            
-
+                    />           
             </div>
-            {toggle &&
+            { showResults ? 
+           <Link to="/WorkSpaceOne" ></Link> : <Link to="/" ></Link> }
+            {/* {toggle &&
                     <Link to="/WorkSpaceOne" ></Link>
               }
             {!toggle &&
                     <Link to="/" ></Link>
-            }
+            } */}
 
         </div>
     );

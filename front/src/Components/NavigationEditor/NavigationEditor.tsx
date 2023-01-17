@@ -33,27 +33,21 @@ import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
+import home from "../../Assets/Images/Home.svg";
+import browse from "../../Assets/Images/browse.svg";
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 300 },
-  { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
-  { field: 'Name', headerName: 'Name', width: 100 },
-  { field: 'DOB', headerName: 'DOB', width: 100 },
-  { field: 'Image', headerName: 'Image', width: 130 },
-  { field: 'Designation', headerName: 'Designation', width: 130 },
-  { field: 'DOJ', headerName: 'DOJ', type: 'date', width: 130 },
-  { field: 'Description', headerName: 'Description', width: 130 },
+  { field: 'id', headerName: 'ID', width: 50 },
+  { field: 'Title', headerName: 'Title', width: 70 },
+  { field: 'Hover On icon', headerName: 'Hover On icon', type: 'image', width: 130 },
+  { field: 'Hover Off icon', headerName: 'Hover Off icon', type: 'image', width: 130 },
+  { field: 'Open in New Tab', headerName: 'Open in New Tab', type: 'image', width: 130 },
+  { field: 'Order', headerName: 'Order', width: 100 },
   { field: 'IS Active', headerName: 'IS Active', width: 100 },
-  { field: 'EnableLikes', headerName: 'EnableLikes', type: 'image', width: 100 },
-  {
-    field: 'EnableComments',
-    headerName: 'EnableComments',
-    type: 'image',
-    width: 100,
-  },
+  { field: 'URL', headerName: 'URL', type: 'text', width: 100 },
+  {field: 'Link Master ID',headerName: 'Link Master ID',type: 'text', width: 200,},
   // {
   //   field: 'ShareAsEmail',
   //   headerName: 'ShareAsEmail',
@@ -70,15 +64,13 @@ const columns: GridColDef[] = [
 
 
 const rows = [
-  { id: 1, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 2, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 3, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 4, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 5, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 6, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 7, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 8, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  // { id: 9, Title: 'Milestone comes as DP World marks a decade of partnership', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Image: activeView, ModifiedOn: '10 months ago', IsActive: 'Roxie', EnableLikes: 'Harvey', EnableComments: 65, ShareAsEmail: 'info@gmail.com', RecipientEmail: 'contact@gmail.com' },
+  { id: 1, Title: 'Home','Hover On icon':'<img src={home} alt=""/>','Hover Off icon':'<img src={home} alt=""/>','Open in New Tab':<Switch {...label} defaultChecked />,'Order':"1" , "Is Active": <Switch {...label} defaultChecked />, Url:"https://www.google.com", 'Link Master ID':"56ty65" },
+  { id: 2, Title: 'Home','Hover On icon':'<img src={home} alt=""/>','Hover Off icon':'<img src={home} alt=""/>','Open in New Tab':<Switch {...label} defaultChecked />,'Order':"1" , "Is Active": <Switch {...label} defaultChecked />, 'Url':"www.google.com", 'Link Master ID':"56ty65" },
+  { id: 3, Title: 'Home','Hover On icon':'<img src={home} alt=""/>','Hover Off icon':'<img src={home} alt=""/>','Open in New Tab':<Switch {...label} defaultChecked />,'Order':"1" , "Is Active": <Switch {...label} defaultChecked />, 'Url':"www.google.com", 'Link Master ID':"56ty65" },
+  { id: 4, Title: 'Home','Hover On icon':'<img src={home} alt=""/>','Hover Off icon':'<img src={home} alt=""/>','Open in New Tab':<Switch {...label} defaultChecked />,'Order':"1" , "Is Active": <Switch {...label} defaultChecked />, 'Url':"www.google.com", 'Link Master ID':"56ty65" },
+  { id: 5, Title: 'Home','Hover On icon':'<img src={home} alt=""/>','Hover Off icon':'<img src={home} alt=""/>','Open in New Tab':<Switch {...label} defaultChecked />,'Order':"1" , "Is Active": <Switch {...label} defaultChecked />, 'Url':"www.google.com", 'Link Master ID':"56ty65" },
+  { id: 6, Title: 'Home','Hover On icon':'<img src={home} alt=""/>','Hover Off icon':'<img src={home} alt=""/>','Open in New Tab':<Switch {...label} defaultChecked />,'Order':"1" , "Is Active": <Switch {...label} defaultChecked />, 'Url':"www.google.com", 'Link Master ID':"56ty65" },
+  
 ];
 
 
@@ -315,6 +307,47 @@ const NavigationEditor= () => {
   }
 
   const [files, setFiles] = useState<File[]>([]);
+  const fileRef = React.useRef<HTMLInputElement | null>(null)
+  const fileRef1 = React.useRef<HTMLInputElement | null>(null)
+  const [selectedFiles, setSelectedFiles] = useState<File | null>();
+  const [selectedFiles1, setSelectedFiles1] = useState<File | null>();
+  const [fileSelected, setFileSelected] = useState<any>('');
+  const [fileSelected1, setFileSelected1] = useState<any>('');
+  const [names, setNames] = useState<any>('');
+  const [names1, setNames1] = useState<any>('');
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles(event?.target?.files?.[0]);
+    setNames(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload = (e) => {
+      console.log(e.target?.result, 'kkkkttt')
+      setFileSelected(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
+
+  };
+  const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles1(event?.target?.files?.[0]);
+    setNames1(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload = (e) => {
+      console.log(e.target?.result, 'kkkkttt')
+      setFileSelected1(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
+
+  };
+
 
   return (
     <div className={classes.Section}>
@@ -383,120 +416,116 @@ const NavigationEditor= () => {
                   placeholder="Enter value here"
                 />
               </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Name<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="Enter a name"
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} style={{ textAlign: "left", margin: "10px" }}>
-                  <img src={calenderIcon} alt="" className={classes.titleIcon} />
-                  DOB<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  type="date"
-                  id="date"
-                  multiline={false}
-                  defaultValue="2022-12-26"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="MM/DD/YYYY"
-                  InputLabelProps={{
-                    color: "secondary",
-                    className: "DatePicker",
-                    style: { color: "gray" },
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    style: { color: "gray" },
-                  }}
-                />
-              </div>
-
-              <div style={{ marginBottom: "10px" }}>
-                <div style={{ paddingBottom: "40px" }}>
-                  <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                    <img src={image} alt="" className={classes.titleIcon} />
-                    Image<img src={Asterisk} alt="..." />
+              <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                  <img src={image} alt="" className={classes.titleIcon} />
+                      Hover On Icon<img src={Asterisk} alt="..." />
                   </InputLabel>
-                </div>
+                   <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
+                    <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileSelect}
+                    />
 
+                    {!selectedFiles?.name && (
+                      <p
+                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
+                    )}
 
-                {/* <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()}  type="file"/>
-                  <p>Drag'n'drop files, or click to select files</p>
+                    <div>
+                      {selectedFiles?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles(null);
+                              if (fileRef.current) {
+                                fileRef.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </Grid>
                 </div>
-              )}
-            </Dropzone> */}
-                <Grid className={classes.svg}>
-                  <FileUpload value={files} onChange={setFiles} />
+              <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                  <img src={image} alt="" className={classes.titleIcon} />
+                      Hover Off Icon<img src={Asterisk} alt="..." />
+                  </InputLabel>
+                   <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
+                    <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileSelect}
+                    />
+
+                    {!selectedFiles?.name && (
+                      <p
+                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
+                    )}
+
+                    <div>
+                      {selectedFiles?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles(null);
+                              if (fileRef.current) {
+                                fileRef.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </Grid>
+                </div>
+                <Grid>
+                
+                <Grid sx={{ display: 'flex', justifyContent: "space-between" }}>
+                  <Box>
+                    <img src={like1} alt="" style={{ width: "15px", marginRight: "15px" }} />
+                    <span>Open In New Tab </span>
+                  </Box>
+                  <Box style={{ display: 'flex', }}>
+
+                    <FormControlLabel
+                      label="Yes"
+                      control={<Checkbox checked={checkedyesEnableLikes} onChange={handleChangeEnableLikesyes} />}
+                    />
+                    <FormControlLabel
+                      label="No"
+                      control={<Checkbox checked={checkednoEnableLikes} onChange={handleChangeEnableLikesno} />}
+                    />
+                  </Box>
+
                 </Grid>
-
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="Enter value here"
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={calenderIcon} alt="" className={classes.titleIcon} />
-                  DOJ<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  type="date"
-                  id="date"
-                  multiline={false}
-                  defaultValue="2022-12-26"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="MM/DD/YYYY"
-                  InputLabelProps={{
-                    color: "secondary",
-                    className: "DatePicker",
-                    style: { color: "gray" },
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    style: { color: "gray" },
-                  }}
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
-                  <img src={descripton} alt="" className={classes.titleIcon} />
-                  Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-multiline-static"
-                  // label="Multiline"
-                  multiline
-                  rows={4}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeDescriptionField}
-                />
-              </div>
-              <Grid>
                 <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
                   <Box>
                     <img src={isActive} alt="" style={{ width: "15px", marginRight: "15px" }} />
@@ -514,88 +543,94 @@ const NavigationEditor= () => {
                   </Box>
 
                 </Box>
-                <Grid sx={{ display: 'flex', justifyContent: "space-between" }}>
-                  <Box>
-                    <img src={like1} alt="" style={{ width: "15px", marginRight: "15px" }} />
-                    <span>EnableLikes </span>
-                  </Box>
-                  <Box style={{ display: 'flex', }}>
-
-                    <FormControlLabel
-                      label="Yes"
-                      control={<Checkbox checked={checkedyesEnableLikes} onChange={handleChangeEnableLikesyes} />}
-                    />
-                    <FormControlLabel
-                      label="No"
-                      control={<Checkbox checked={checkednoEnableLikes} onChange={handleChangeEnableLikesno} />}
-                    />
-                  </Box>
-
-                </Grid>
-              </Grid>
-              <Grid>
-
-                <Grid>
-                  <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
-                    <Box>
-                      <img src={comments} alt="" className={classes.checkLike} />
-                      <span> EnableCommands</span>
-
-                    </Box>
-                    <Box style={{ display: "flex" }}>
-                      <FormControlLabel
-                        label="Yes"
-                        control={<Checkbox checked={checkedyesEnableCommands} onChange={handleChangeEnableCommandsyes} />}
-                      />
-                      <FormControlLabel
-                        label="No"
-                        control={<Checkbox checked={checkednoEnableCommands} onChange={handleChangeEnableCommandsno} />}
-                      />
-                    </Box>
-
-                  </Box>
-                  <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
-                    <Box>
-                      <img src={shareasemail} alt="" className={classes.checkLike} />
-                      <span>  ShareAsEmail</span>
-                    </Box>
-                    <Box style={{ display: "flex" }}>
-                      <FormControlLabel
-                        label="Yes"
-                        control={<Checkbox checked={checkedyesSharedAsEmail}
-                          onChange={handleChangeSharedAsEmailyes} />}
-                      />
-                      <FormControlLabel
-                        label="No"
-                        control={<Checkbox checked={checkednoSharedAsEmail}
-                          onChange={handleChangeSharedAsEmailno} />}
-                      />
-                    </Box>
-
-                  </Box>
-
-                </Grid>
               </Grid>
 
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={title} alt="" className={classes.titleIcon} />
+                  Order<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeTitleField}
+                  placeholder="Enter value here"
+                />
+              </div>
+              
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
+                  <img src={descripton} alt="" className={classes.titleIcon} />
+                  Detail Page Url<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-multiline-static"
+                  // label="Multiline"
+                  multiline
+                  rows={4}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeDescriptionField}
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={title} alt="" className={classes.titleIcon} />
+                  Link Master ID<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeTitleField}
+                  placeholder="Enter value here"
+                />
+              </div>
+              <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                  <img src={image} alt="" className={classes.titleIcon} />
+                      Attachment<img src={Asterisk} alt="..." />
+                  </InputLabel>
+                   <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
+                    <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileSelect}
+                    />
 
-              {/* <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-              <img src={recipientEmail} alt="" style={{ width: "13px", marginRight: "15px" }} />
-              RecipentEmail
-            </InputLabel>
-            <TextField
-              id="outlined-adornment-weight" sx={{ width: "100%" }} onChange={handleChangeReciepientEmailField} />
-            <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-              <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }} />
-              Attachments
-            </InputLabel>
-            <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()} type="file" />
-                  <p>Drag'n'drop files, or click to select files</p>
+                    {!selectedFiles?.name && (
+                      <p
+                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
+                    )}
+
+                    <div>
+                      {selectedFiles?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles(null);
+                              if (fileRef.current) {
+                                fileRef.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </Grid>
                 </div>
-              )}
-            </Dropzone> */}
             </DialogContent>
             <DialogActions>
               <Grid className={classes.actionDivTwo}>
@@ -644,16 +679,17 @@ const NavigationEditor= () => {
                       <p style={{ textAlign: "left" }}>New Item</p>
                     </DialogContentText>
                     <Grid>
+                      <h1>Navigation</h1>
                       <Box>
                         <img src={birthday} alt="" className={classes.backgroundImage} />
-                        <img src={girl} alt="" className={classes.girl} />
+                        {/* <img src={girl} alt="" className={classes.girl} />
                         <p>Ayesha Siddiqa</p>
-                        <p>HR Manager</p>
+                        <p>HR Manager</p> */}
                       </Box>
                       <Grid>
-                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> Happy Birthday Ayesha siddiqa</Typography>
+                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>  https://www.google.com</Typography>
                         <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                         <span style={{color:"#606C74"}}></span>LinkMasterID <a href="#" style={{color:"#009BAD"}}>DEPT 00001 </a>
                         </p>
                       </Grid>
                       <Grid className={classes.iconDiv}>
