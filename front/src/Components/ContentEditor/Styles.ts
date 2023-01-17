@@ -152,7 +152,7 @@ export const useStyles = makeStyles({
   },
 
   boxContent:{
-    width:"150px",
+    width:"150px !important",
     border:"1px solid #eee7e7",
     boxShadow:"5px 3px 10px 4px #eee7e7",
     margin:"15px",
@@ -173,6 +173,60 @@ export const useStyles = makeStyles({
       color:"#009BAD",
       textDecoration: "none !important",
     },
+    }
+  },
+  topLink: {
+    fontSize: "12px",
+    color: "#333333 !important",
+    textDecoration: "none !important",
+    margin:"auto",
+    textAlign:"center",
+    "& .topImg": {
+      margin: "auto",
+      display: "block !important",
+    },
+    "& .topImgH": {
+      margin: "auto",
+      color:"#009BAD",
+      display: "none !important",
+    },
+    "& .p":{
+      color:"#009BAD",
+      textDecoration: "none !important",
+    },
+  },
+  
+  topMenu:{
+    width:"160px !important",
+    border:"1px solid #eee7e7",
+    boxShadow:"5px 3px 10px 4px #eee7e7",
+    margin:"15px",
+    padding:"15px",
+    backgroundColor:"#fff",
+    borderRadius:"10px",
+
+    "&:hover a .topText":{
+      color:"#009BAD",
+      textDecoration: "none !important",
+    },
+    "& a":{
+      textDecorationLine: "none !important",
+      "&:hover .topImgH":{
+        display:"block !important",       
+     },
+     "&:hover .topImg":{
+      display:"none !important",
+   
+    },
+    }
+  },
+  topText: {
+    margin: 0,
+    marginTop: "16px",
+    fontSize: "13px",
+    color: "#acacac",
+    "& a p":{
+      textDecoration: "none !important",
     }
   },
  

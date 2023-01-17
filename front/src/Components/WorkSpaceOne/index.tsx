@@ -14,8 +14,7 @@ import IconText from '../Header/IconText';
 import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
 import AllLinks from './../Quicklinks/AllLinks';
 import WhatsNew from '../Header/WhatsNew';
-
-
+import ToggleButton from './../Header/ToggleButton';
 
 
 
@@ -26,7 +25,7 @@ const WorkSpaceOne = () => {
     // const normalLink = style={{color:"blue"}};
     return (      
         <Grid> 
-       
+       {/* <ToggleButton/> */}
        <IconText />
             <Grid item xs={12}>
                 <WhatsNew/>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import { Box } from '@mui/material';
+import { Box ,List ,  ListItem} from '@mui/material';
 import announcement from "./../../Assets/Images/AnnouncementBig.svg";
 import announcementH from "./../../Assets/Images/announcement-h.svg";
 import birthdayH from "./../../Assets/Images/birthday-h.svg";
@@ -13,7 +13,7 @@ import events from "./../../Assets/Images/events.svg";
 import eventH from "./../../Assets/Images/events-h.svg";
 import gallery from "./../../Assets/Images/gallery.svg";
 import galleryH from "./../../Assets/Images/gallery-h.svg";
-import Groups from "./../../Assets/Images/Groups.svg";
+import hero from "./../../Assets/Images/Groups.svg";
 import highlights from "./../../Assets/Images/highlights.svg";
 import highlightH from "./../../Assets/Images/highlights-h.svg";
 import logomaster from "./../../Assets/Images/logomaster.svg";
@@ -33,9 +33,10 @@ import { Typography } from '@mui/material';
 import { useStyles } from './Styles';
 import QuickLinks from './../Quicklinks/index';
 import AppVideo from './../CeoMessage/AppVideo';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 // import { height } from 'react-material-ui-carousel/node_modules/@mui/system';
+
 
 
 const EditorPage = () => {
@@ -104,7 +105,16 @@ const EditorPage = () => {
 
         },
         {
-            id: 6,
+            id: 7,
+            label: 'Hero Banner',
+            Icon:hero,
+            iconHover: heroBannerH,
+            onClick: () => navigate("/highlightsContentPage"),
+            to: '/highlightsContentPage',
+
+        },
+        {
+            id: 8,
             label: 'Highlights',
             Icon:highlights,
             iconHover: highlightH,
@@ -113,27 +123,88 @@ const EditorPage = () => {
 
         },
         {
-            id: 6,
-            label: "Quick Links",
-            Icon: quickLinks,
-            iconHover: quickLinkH,
-            onClick: () => navigate("/quickContentPage"),
-            to: '/quickContentPage',
+            id: 9,
+            label: "Logo Master",
+            Icon: logomaster,
+            iconHover: logomasterH,
+            onClick: () => navigate("/logoContentPage"),
+            to: '/quickLinks',
         },
         {
-            id: 7,
-            label: "gallery",
-            Icon: gallery,
-            iconHover: galleryH,
-            onClick: () => navigate("/quickLinks"),
+            id: 10,
+            label: "Navigation",
+            Icon: navigation,
+            iconHover: navigationH,
+            onClick: () => navigate("/navigationContentPage"),
             to: '/quickLinks',
+        },
+        {
+            id: 11,
+            label: "News",
+            Icon: news,
+            iconHover: newsH,
+            onClick: () => navigate("/newsContentPage"),
+            to: '/newsContentPage',
+        },
+        {
+            id: 12,
+            label: "Policies & Procedure",
+            Icon: policies,
+            iconHover: policiesH,
+            onClick: () => navigate("/policiesContentPage"),
+            to: '/policiesContentPage',
+        },
+        {
+            id: 13,
+            label: "Quick Links",
+            Icon: quickLinks,
+            iconHover:quickLinkH,
+            onClick: () => navigate("/quickContentPage"),
+            to: '/quickContentPage',
         },
     ];
 
     return (
         <Grid>
-            <Grid className={classes.mainPart}>
-                <Box className={classes.boxContent}>
+            <Grid>
+            <List className={classes.mainPart}>
+              {itemsList.map((item: any, id: any, index: any) => {
+                const { Icon, iconHover, onClick, path } = item;
+                console.log(itemsList, "itemsList");
+
+                return (
+                  <ListItem key={index} onClick={onClick} className={classes.topMenu}>
+                    {itemsList && (
+                      <NavLink end to={path} className={classes.topLink}>
+                        <img src={Icon} alt="..." className="topImg" />
+                        <img
+                          src={iconHover}
+                          alt=""
+                          className="topImgH"
+                        />
+                        <p className={classes.topText} > {item.label}</p>
+                      </NavLink>)
+                    }
+                  </ListItem>
+                )
+              })}
+
+
+            </List>
+               
+                {/* <Box className={classes.boxContent}>
+                    <AppVideo />
+                </Box> */}
+
+            </Grid>
+        </Grid>
+    );
+};
+
+export default EditorPage;
+
+/*
+ <Box className={classes.boxContent}>
                     <Link to="/tableAnnouncementPage" className={classes.link}>
                         <img src={announcement} alt="announce" className={classes.topImg} />
                         <img src={announcementH} alt="announce" className={classes.topImgH} />
@@ -189,7 +260,7 @@ const EditorPage = () => {
                     </Grid>
                 </Box>
                 <Box className={classes.boxContent}>
-                    <img src={Groups} alt="announce" />
+                    <img src={hero} alt="announce" />
                     <Grid component="p" className={classes.texts}>
                         <Link to="/heroContentPage" className={classes.link}>
                             Hero Banner
@@ -240,13 +311,4 @@ const EditorPage = () => {
                             Quick Links
                         </Link></Grid>
                 </Box>
-                {/* <Box className={classes.boxContent}>
-                    <AppVideo />
-                </Box> */}
-
-            </Grid>
-        </Grid>
-    );
-};
-
-export default EditorPage;
+*/
