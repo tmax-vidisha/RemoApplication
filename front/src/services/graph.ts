@@ -4,6 +4,7 @@ import { AccessToken } from '../App';
 export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: fetchBaseQuery({
+    // baseUrl: 'http://20.80.251.108/',
     baseUrl: 'http://localhost:4000/',
   }),
   endpoints: (builder) => ({
@@ -70,7 +71,8 @@ export const usersApi = createApi({
 export const oneDriveApi = createApi({
   reducerPath: 'oneDriveApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000/',
+    // baseUrl: 'http://20.80.251.108/',
+     baseUrl: 'http://localhost:4000/',
     prepareHeaders: (headers, { getState }) => {
       // headers.set('Authorization', `Bearer ${access_token}`);
        headers.set('Content-Type', 'application/json');

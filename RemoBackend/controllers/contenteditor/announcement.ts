@@ -17,6 +17,7 @@ function blobStorage(image: any, imageName: any) {
   //@ts-ignore
   var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
   var matches = image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+  if(matches !== null){
   var type = matches[1];
   //@ts-ignore
   var buffer = new Buffer.from(matches[2], 'base64');
@@ -53,8 +54,8 @@ function blobStorage(image: any, imageName: any) {
 
   //@ts-ignore
   return response.image
+ }
 }
-
 
 
 const postTableAnnouncement = asyncHandler(async (req: Request, res: Response) => {
@@ -65,21 +66,23 @@ const postTableAnnouncement = asyncHandler(async (req: Request, res: Response) =
   const token = req.headers.authorization
   const {
     // token,
-    title, description, image, imageName, isActive, EnableLikes, EnableCommands, SharedAsEmail, RecipientEmail, Attachment, Attachmentname
+    title, description, image, imageName, isActive, EnableLikes, EnableCommands, SharedAsEmail, RecipientEmail, Attachment,isDraft
     // ceotitle,ceodesc,ceousername,
     //  ceoposition,ceopic,ceopicname,
     //  newstitle,newsdesc,newspic,newspicname,
     //  employyetitle, empname,empdept,emppic,emppicname,
     //  userquicklink,globalquicklink
   } = req.body
-  console.log(isActive, 'isActive')
-  console.log(EnableLikes, 'EnableLikes')
-  console.log(EnableCommands, 'EnableCommands')
-  console.log(SharedAsEmail, 'SharedAsEmail')
+  // console.log(isActive, 'isActive')
+  // console.log(EnableLikes, 'EnableLikes')
+  // console.log(EnableCommands, 'EnableCommands')
+  // console.log(SharedAsEmail, 'SharedAsEmail')
+  console.log(image,'image')
+  console.log(imageName,'imageName')
   const Image = blobStorage(image, imageName)
-  const File = blobStorage(Attachment, Attachmentname)
-  console.log(Image, 'rtretrt')
-  console.log(File, 'tththththth')
+  // const File = blobStorage(Attachment, Attachmentname)
+   console.log(Image, 'rtretrt')
+  // console.log(File, 'tththththth')
   // //    console.log( title,imageName,isActive,EnableLikes,'ytjytjytjty')
   // console.log(description,'thgtrhj67k87k87k87k87')
       //  console.log(image,'thgtrhj67k87k87k87k87')
@@ -111,8 +114,8 @@ const postTableAnnouncement = asyncHandler(async (req: Request, res: Response) =
         EnableCommands:EnableCommands,
         SharedAsEmail:SharedAsEmail,
         RecipientEmail:RecipientEmail,
-        Attachment:File
-
+        Attachment:Attachment,
+        isDraft:isDraft
 
         //@ts-ignore
         // heroUrl: response.image
