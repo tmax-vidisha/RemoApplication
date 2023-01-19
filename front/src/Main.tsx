@@ -94,6 +94,7 @@ import TrashFiles from './Components/WorkSpaceOne/Trash/TrashFiles';
 import Trash from './Components/WorkSpaceOne/Trash';
 import HeroBannerMoreImages from './Components/HeroImages/HeroBannerMoreImages';
 import QuicklinksPage from './Components/QuicklinksPage';
+import WorkspaceToggle from './Layout/WorkspaceToggle';
 
 
 
@@ -299,9 +300,12 @@ const Main = () => {
                               path="/workspace/drives/subfolders"
                               element={<SubFolder />} />
 
+                            {/* <Route
+                              path="/WorkSpaceOne"
+                              element={<WorkSpaceOne/>} /> */}
                             <Route
                               path="/WorkSpaceOne"
-                              element={<WorkSpaceOne/>} />
+                              element={<WorkspaceToggle/>} />
                             <Route
                               path="/SecondWorkSpace"
                               element={<SecondWorkSpace/>} />

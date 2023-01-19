@@ -62,13 +62,13 @@ interface type {
 const ToggleButton = (permission:any) => {
     const classes = useStyles();
 
-    const [toggle, setToggle] = React.useState(true);
-    const toggleChecked = () => setToggle(toggle => !toggle);
-    const [showResults, setShowResults] = React.useState(false)
+    // const [toggle, setToggle] = React.useState(true);
+    // const toggleChecked = () => setToggle(toggle => !toggle);
+    // const [showResults, setShowResults] = React.useState(false)
 
-    const handleClick = () => {
-        setShowResults(true)
-      };
+    // const handleClick = () => {
+    //     setShowResults(true)
+    //   };
       const [checked, setChecked] =useState(false);
       const handleChange = (nextChecked:any) => {
         setChecked(nextChecked);
