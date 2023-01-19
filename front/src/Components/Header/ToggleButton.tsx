@@ -1,5 +1,5 @@
 import * as React from 'react';
-//  import { useStyles } from './Styles';
+import { useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import SecondWorkSpace from './../../Layout/SecondWorkSpace';
 import WorkSpaceOne from './../WorkSpaceOne/index';
@@ -69,32 +69,36 @@ const ToggleButton = (permission:any) => {
     const handleClick = () => {
         setShowResults(true)
       };
-
+      const [checked, setChecked] =useState(false);
+      const handleChange = (nextChecked:any) => {
+        setChecked(nextChecked);
+      };
     return (
         <div>
 
-            <div style={{ marginTop: "15px"}}>
+            <div>
                     <Switch 
                     checkedChildren={"slide to top menu"}
                      unCheckedChildren={"slide to left menu " }
                      defaultChecked={true}
                      style={{border: permission.enabled ? '1px solid white' : '1px solid white',
                       backgroundColor:permission.enabled?'#02354D':'#02354D',
-                    color:permission.enabled ? 'white':'yellow', width:"150px"}}
-                      onChange={(checked) =>{
-                        console.log("switch is checked", checked)
-                      }}
-                      onClick={handleClick} 
+                    color:permission.enabled ? 'white':'yellow',
+                     width:"150px", 
+                     position: "absolute", top:"4%", marginLeft:"-40px" }}
+                    onChange={handleChange}
+                    checked={checked}
+                    //   onChange={(checked) =>{
+                    //     console.log("switch is checked", checked)
+                    //   }}
+                    //   onChange={(showResults) =>{
+                    //     console.log("switch is checked", showResults)
+                    //     setShowResults(true);
+                    //   }}
+                    //   onClick={handleClick} 
                     />           
             </div>
-            { showResults ? 
-           <Link to="/WorkSpaceOne" ></Link> : <Link to="/" ></Link> }
-            {/* {toggle &&
-                    <Link to="/WorkSpaceOne" ></Link>
-              }
-            {!toggle &&
-                    <Link to="/" ></Link>
-            } */}
+            {checked ? <SecondWorkSpace/> : <WorkSpaceOne/> }
 
         </div>
     );

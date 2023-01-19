@@ -43,6 +43,7 @@ import DraggableHomePage from '../DraggableHomePage';
 import DroppableHomePage from '../DroppableHomePage';
 import WhatsNew from './../../Components/Header/WhatsNew';
 import TopNavLink from '../HomeTopNav/TopNavLink';
+import ToggleButton from '../../Components/Header/ToggleButton';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -172,8 +173,7 @@ const PortalHome = () => {
   //  const gallerydata = data1.Gallery;
 
   return (
-    <>
-     
+    <>   
      <WhatsNew />
     <div className={classes.root} style={{marginTop:"10px"}}>
        

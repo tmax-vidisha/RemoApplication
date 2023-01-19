@@ -33,20 +33,21 @@ import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
+import browse from "../../Assets/Images/browse.svg";
+import dept from "../../Assets/Images/deptIcon.svg";
+
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 300 },
-  { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
-  { field: 'Name', headerName: 'Name', width: 100 },
-  { field: 'DOB', headerName: 'DOB', width: 100 },
-  { field: 'Image', headerName: 'Image', width: 130 },
-  { field: 'Designation', headerName: 'Designation', width: 130 },
-  { field: 'DOJ', headerName: 'DOJ', type: 'date', width: 130 },
+  { field: 'Title', headerName: 'Title', width:70 },
+  { field: 'Status', headerName: 'Status', width: 70 },
   { field: 'Description', headerName: 'Description', width: 130 },
-  { field: 'IS Active', headerName: 'IS Active', width: 100 },
+  { field: 'Image', headerName: 'Image', width: 130 },
+  { field: 'DetailsPageUrl', headerName: 'DetailsPageUrl', width: 130 },
+  { field: 'Site Pages ID', headerName: 'Site Pages ID', width: 70 },
+  { field: 'Is Active', headerName: 'Is Active',type: 'image', width: 70 },
   { field: 'EnableLikes', headerName: 'EnableLikes', type: 'image', width: 100 },
   {
     field: 'EnableComments',
@@ -54,31 +55,27 @@ const columns: GridColDef[] = [
     type: 'image',
     width: 100,
   },
-  // {
-  //   field: 'ShareAsEmail',
-  //   headerName: 'ShareAsEmail',
-  //   type: 'email',
-  //   width: 160,
-  // },
-  // {
-  //   field: 'RecipientEmail',
-  //   headerName: 'RecipientEmail',
-  //   type: 'email',
-  //   width: 160,
-  // },
+  {
+      field: 'ShareAsEmail',
+      headerName: 'ShareAsEmail',
+      type: 'email',
+      width: 160,
+    },
+    { field: 'Page View Count', headerName: 'Page View Count', width: 70 },
+    { field: 'Created', headerName: 'Created', width: 70 }
 ];
 
 
 const rows = [
-  { id: 1, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 2, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 3, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 4, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 5, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 6, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 7, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 8, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  // { id: 9, Title: 'Milestone comes as DP World marks a decade of partnership', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Image: activeView, ModifiedOn: '10 months ago', IsActive: 'Roxie', EnableLikes: 'Harvey', EnableComments: 65, ShareAsEmail: 'info@gmail.com', RecipientEmail: 'contact@gmail.com' },
+  { id: 1, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
+  { id: 2, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
+  { id: 3, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
+  { id: 4, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
+  { id: 5, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
+  { id: 6, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
+  { id: 7, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
+
+ 
 ];
 
 
@@ -315,6 +312,47 @@ const NewsEditor= () => {
   }
 
   const [files, setFiles] = useState<File[]>([]);
+  const fileRef = React.useRef<HTMLInputElement | null>(null)
+  const fileRef1 = React.useRef<HTMLInputElement | null>(null)
+  const [selectedFiles, setSelectedFiles] = useState<File | null>();
+  const [selectedFiles1, setSelectedFiles1] = useState<File | null>();
+  const [fileSelected, setFileSelected] = useState<any>('');
+  const [fileSelected1, setFileSelected1] = useState<any>('');
+  const [names, setNames] = useState<any>('');
+  const [names1, setNames1] = useState<any>('');
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles(event?.target?.files?.[0]);
+    setNames(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload = (e) => {
+      console.log(e.target?.result, 'kkkkttt')
+      setFileSelected(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
+
+  };
+  const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles1(event?.target?.files?.[0]);
+    setNames1(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload = (e) => {
+      console.log(e.target?.result, 'kkkkttt')
+      setFileSelected1(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
+
+  };
+
 
   return (
     <div className={classes.Section}>
@@ -385,105 +423,6 @@ const NewsEditor= () => {
               </div>
               <div style={{ marginBottom: "10px" }}>
                 <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Name<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="Enter a name"
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} style={{ textAlign: "left", margin: "10px" }}>
-                  <img src={calenderIcon} alt="" className={classes.titleIcon} />
-                  DOB<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  type="date"
-                  id="date"
-                  multiline={false}
-                  defaultValue="2022-12-26"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="MM/DD/YYYY"
-                  InputLabelProps={{
-                    color: "secondary",
-                    className: "DatePicker",
-                    style: { color: "gray" },
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    style: { color: "gray" },
-                  }}
-                />
-              </div>
-
-              <div style={{ marginBottom: "10px" }}>
-                <div style={{ paddingBottom: "40px" }}>
-                  <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                    <img src={image} alt="" className={classes.titleIcon} />
-                    Image<img src={Asterisk} alt="..." />
-                  </InputLabel>
-                </div>
-
-
-                {/* <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()}  type="file"/>
-                  <p>Drag'n'drop files, or click to select files</p>
-                </div>
-              )}
-            </Dropzone> */}
-                <Grid className={classes.svg}>
-                  <FileUpload value={files} onChange={setFiles} />
-                </Grid>
-
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Designation<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="Enter value here"
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={calenderIcon} alt="" className={classes.titleIcon} />
-                  DOJ<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  type="date"
-                  id="date"
-                  multiline={false}
-                  defaultValue="2022-12-26"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="MM/DD/YYYY"
-                  InputLabelProps={{
-                    color: "secondary",
-                    className: "DatePicker",
-                    style: { color: "gray" },
-                    shrink: true,
-                  }}
-                  inputProps={{
-                    style: { color: "gray" },
-                  }}
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
                   <img src={descripton} alt="" className={classes.titleIcon} />
                   Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
                 </InputLabel>
@@ -496,6 +435,119 @@ const NewsEditor= () => {
                   onChange={handleChangeDescriptionField}
                 />
               </div>
+              <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                  <img src={image} alt="" className={classes.titleIcon} />
+                      Image<img src={Asterisk} alt="..." />
+                  </InputLabel>
+                   <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
+                    <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileSelect}
+                    />
+
+                    {!selectedFiles?.name && (
+                      <p
+                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
+                    )}
+
+                    <div>
+                      {selectedFiles?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles(null);
+                              if (fileRef.current) {
+                                fileRef.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </Grid>
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
+                  <img src={descripton} alt="" className={classes.titleIcon} />
+                  Details Page Url<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-multiline-static"
+                  // label="Multiline"
+                  // multiline
+                  rows={4}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeDescriptionField}
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={title} alt="" className={classes.titleIcon} />
+                 Short Title<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeTitleField}
+                  placeholder="Enter value here"
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={dept} alt="" className={classes.titleIcon} />
+                 Department<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeTitleField}
+                  placeholder="Enter value here"
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={dept} alt="" className={classes.titleIcon} />
+                Tag<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeTitleField}
+                  placeholder="Enter value here"
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                  <img src={dept} alt="" className={classes.titleIcon} />
+                Dept<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                </InputLabel>
+                <TextField
+                  id="outlined-adornment-weight"
+                  className={classes.span}
+                  style={{ width: "100%" }}
+                  onChange={handleChangeTitleField}
+                  placeholder="Enter value here"
+                />
+              </div>
+              
+              
               <Grid>
                 <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
                   <Box>
@@ -577,25 +629,58 @@ const NewsEditor= () => {
                 </Grid>
               </Grid>
 
-
-              {/* <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+ <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
               <img src={recipientEmail} alt="" style={{ width: "13px", marginRight: "15px" }} />
               RecipentEmail
             </InputLabel>
             <TextField
               id="outlined-adornment-weight" sx={{ width: "100%" }} onChange={handleChangeReciepientEmailField} />
-            <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-              <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }} />
-              Attachments
-            </InputLabel>
-            <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()} type="file" />
-                  <p>Drag'n'drop files, or click to select files</p>
+               <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                  <img src={Attachment} alt="" className={classes.titleIcon} />
+                  Attachments<img src={Asterisk} alt="..." />
+                  </InputLabel>
+                   <Grid className={classes.svg}>
+                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                    <img src={browse} alt="" />
+                    <p>drag and drop here</p>
+                    <p>Or</p>
+                    <input
+                      ref={fileRef}
+                      hidden
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileSelect}
+                    />
+
+                    {!selectedFiles?.name && (
+                      <p
+                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        Browse
+                      </p>
+                    )}
+
+                    <div>
+                      {selectedFiles?.name && (
+                        <>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <button
+                            onClick={() => {
+                              setSelectedFiles(null);
+                              if (fileRef.current) {
+                                fileRef.current.value = '';
+                              }
+                            }}
+                            style={{ padding: "5px", border: "none", borderRadius: "4px" }}
+                          >
+                            Clear
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </Grid>
                 </div>
-              )}
-            </Dropzone> */}
+           
             </DialogContent>
             <DialogActions>
               <Grid className={classes.actionDivTwo}>
@@ -646,12 +731,16 @@ const NewsEditor= () => {
                     <Grid>
                       <Box>
                         <img src={birthday} alt="" className={classes.backgroundImage} />
-                        <img src={girl} alt="" className={classes.girl} />
+                        {/* <img src={girl} alt="" className={classes.girl} />
                         <p>Ayesha Siddiqa</p>
-                        <p>HR Manager</p>
+                        <p>HR Manager</p> */}
                       </Box>
                       <Grid>
-                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> Happy Birthday Ayesha siddiqa</Typography>
+                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>UAE President VP witness Signing Of Landmark Gas Sales Agreement between </Typography>
+                        <div className={classes.newsPrev3}>
+                          <p>News</p>
+                          <p>Dec 26 2022</p>
+                        </div>
                         <p style={{ textAlign: "left", marginLeft: "15px" }}>
                           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </p>
