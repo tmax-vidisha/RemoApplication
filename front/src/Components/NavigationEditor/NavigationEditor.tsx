@@ -687,7 +687,7 @@ const NavigationEditor= () => {
                         <p>HR Manager</p> */}
                       </Box>
                       <Grid>
-                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>  https://www.google.com</Typography>
+                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> https://www.google.com</Typography>
                         <p style={{ textAlign: "left", marginLeft: "15px" }}>
                          <span style={{color:"#606C74"}}></span>LinkMasterID <a href="#" style={{color:"#009BAD"}}>DEPT 00001 </a>
                         </p>

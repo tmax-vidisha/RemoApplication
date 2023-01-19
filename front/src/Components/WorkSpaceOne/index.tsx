@@ -26,7 +26,6 @@ const WorkSpaceOne = () => {
     return (      
         <Grid> 
        {/* <ToggleButton/> */}
-       <IconText />
             <Grid item xs={12}>
                 <WhatsNew/>
             </Grid>

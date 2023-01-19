@@ -304,9 +304,9 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                 </div>
               </Box>
               <Box sx={{ display: { xs: "none", md: "flex", marginLeft: "80px" } }}>
-                <div>
+                {/* <div>
                   <ToggleButton />
-                </div>
+                </div> */}
                 <div style={{ marginLeft: "50px" }}>
                   <IconButton
                     size="large"
