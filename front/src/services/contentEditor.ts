@@ -9,6 +9,7 @@ import { AccessToken } from '../App';
 export const contentEditorApi = createApi({
     reducerPath: 'contentEditorApi',
     baseQuery: fetchBaseQuery({
+        // baseUrl: 'http://20.80.251.108/',
         baseUrl: 'http://localhost:4000/',
         prepareHeaders: (headers, { getState }) => {
             // headers.set('Authorization', `Bearer ${access_token}`);
