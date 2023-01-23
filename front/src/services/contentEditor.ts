@@ -69,6 +69,15 @@ export const contentEditorApi = createApi({
             }),
 
         }),
+        uploadItemInRemoNews: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/remonews/uploadItem',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+
+        }),
         // getItemChildrenOneDrive: builder.mutation<any, any>({
         //     query: (data) => ({
         //         url: '/api/v1/onedrive/getItemChildren',
@@ -130,7 +139,8 @@ export const {
      useGetLatestAnnouncementQuery,
      useUploadItemInHeroBannerMutation,
      useUploadItemInCeoMutation,
-     useUploadItemInEmployeeMutation
+     useUploadItemInEmployeeMutation,
+     useUploadItemInRemoNewsMutation
     // useGetItemChildrenOneDriveMutation,
     // useGetAllRootItemsOneDriveQuery,
     // useDeleteItemOneDriveMutation,
