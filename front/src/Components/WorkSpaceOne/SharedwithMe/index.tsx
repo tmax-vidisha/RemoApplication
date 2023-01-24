@@ -9,50 +9,37 @@ import SearchPart from '../SearchPart';
 import { useStyles } from './Styles';
 import announcementIcon from "../../../Assets/Images/announcement.svg";
 // import  FileSharedPage from './FileSharedPage';
-import  SharedFilePage  from '../../../Pages/WorkSpace/OneDrive/SharedFilePage';
+import SharedFilePage from '../../../Pages/WorkSpace/OneDrive/SharedFilePage';
 
 
 const SharedWithMe = () => {
-    const classes=useStyles();
-    return (
-        <Grid>
-            <IconText />
-            
-            <Grid item xs={12}>
-                <Paper style={{ height: "50px", display: "flex", justifyContent: "flex-start",  alignItems: "center", marginTop: "20px" }} elevation={0}>
+    const classes = useStyles();
+    return (   
+         <Grid>
+         <Grid container item xs={10}>
+             {/* <IconText /> */}
+         </Grid>
+         <Grid item xs={12}>
+             <Paper style={{ height: "50px", display: "flex", justifyContent: "flex-start",  alignItems: "center", marginTop: "15px" }} elevation={0}>
+                 <Typography style={{textAlign:"center", marginLeft:"30px", marginRight:"30px"}}><span> <img src={announcementIcon} alt="" /></span> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus   </Typography>
+             </Paper>
+         </Grid>
+         <Box style={{ margin: "30px" }}>
 
-                    <Typography style={{textAlign:"center", marginLeft:"30px", marginRight:"30px"}}><span> <img src={announcementIcon} alt="" /></span> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus   </Typography>
-
-                </Paper>
-            </Grid>
-            <Box style={{ margin: "30px" }}>
-
-                <Grid container item xs={12} className={classes.bigPaper}>
-                    <Grid item xs={1} >
-                        <SideBar />
-                    </Grid>
-                    <Grid item xs={2}>
-                        <LeftMenu />
-                    </Grid>
-                    <Grid item xs={9} style={{ paddingLeft: "8px" }}>
-                        <SearchPart/>
-
-                        {/* <SharedFiles /> */}
-                        {/* <FileSharedPage/> */}
-                        <SharedFilePage/>
-                    </Grid>
-                </Grid>
-            </Box>
-
-            {/* <Grid container spacing={2} item xs={12} >
-                <Grid item xs={3}>
-                    
-                </Grid>
-                <Grid item xs={9}>
-                    
-                </Grid>
-            </Grid> */}
-        </Grid>
+             <Grid container item xs={12} className={classes.bigPaper}>
+                 <Grid item xs={1} >
+                     <SideBar />
+                 </Grid>
+                 <Grid item xs={2}>
+                     <LeftMenu />
+                 </Grid>
+                 <Grid item xs={9} style={{ paddingLeft: "8px" }}>
+                     <SearchPart/>
+                     <SharedFilePage />
+                 </Grid>
+             </Grid>
+         </Box>
+     </Grid>
     );
 };
 

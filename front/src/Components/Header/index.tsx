@@ -492,7 +492,8 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                 color="inherit"
               ><a
                 target={"_blank"}
-                href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+               //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+               href="https://teams.microsoft.com/_?culture=en-in&country=in#/conversations/19:meeting_NzdhM2FkNDMtOWU1ZC00NzVhLTgxZmEtYzA0ZjU4YjBhYTkz@thread.v2?ctx=chat"
               >
                   <Badge badgeContent={CountData?.response.length} color="error" sx={{
                     top: "3px",

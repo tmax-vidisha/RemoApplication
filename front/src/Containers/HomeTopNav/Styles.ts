@@ -60,24 +60,27 @@ export const useStyles = makeStyles({
     "& .topImg": {
       margin: "auto",
       display: "block !important",
+      width:"25px"
     },
     "& .topImgH": {
       margin: "auto",
       color:"#009BAD",
       display: "none !important",
+      width:"25px"
     },
   },
   topImg:{
     margin: "auto",
       display: "block !important",
-      width:"25px"
+      // width:"25px"
   },
 
   topImgH:{
     margin: "auto",
     color:"#009BAD",
     display: "none !important",
-    width:"25px"
+    // width:"20px",
+    // height:"20px"
     
   },
   topMenu:{

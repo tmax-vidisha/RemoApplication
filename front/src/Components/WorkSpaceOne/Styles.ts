@@ -125,7 +125,7 @@ export const useStyles = makeStyles({
 
   },
   menuImage: {
-    marginRight: "20px"
+    marginRight: "20px",
   },
   menu: {
     marginTop: "15px"
@@ -147,13 +147,9 @@ export const useStyles = makeStyles({
   },
 
   items: {
-
     fontSize: "12px",
-
     "& img": {
-
       width: "10px",
-
       marginRight: "10px",
 
     }
@@ -189,19 +185,28 @@ export const useStyles = makeStyles({
 
   textListItem: {
     fontSize: "12px",
-
+    color: "#606c74",
     "& span": {
       fontSize: "12px",
+      textDecoration:"none",
+      color: "#606c74",
+    },
+    "& span:hover":{
+      color: "#009BAD",
     },
 
-    " & img": {
-
+    "& img": {
+      color: "#606c74",
+      width:"20px",
+    },
+    "& img:hover": {
+      color: "#009BAD",
     }
 
   },
 
   MuiListItemIcon: {
-    maxWidth: "35px",
+    minWidth: "35px !important",
     "& img": {
       width: "15px",
     }
@@ -294,8 +299,17 @@ export const useStyles = makeStyles({
     marginTop: "20px !important",
     position: "static",
     display: "flex",
-    justifyContent: "flex-end"
-  }
+    justifyContent: "flex-end",
+  },
+  shortSpan:{
+    color: "#606c74",
+    fontSize:"13px",
+    marginRight:"10px"
+  },
+  shortBy:{
+    color: "#606c74",
+    fontSize:"14px"
+  },
 
 });
 

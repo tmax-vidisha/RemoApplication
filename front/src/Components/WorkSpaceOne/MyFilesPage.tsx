@@ -35,6 +35,7 @@ import success from '../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
 import DialogContentText from '@mui/material/DialogContentText/DialogContentText';
 import { Options16Filled } from '@fluentui/react-icons';
+import { useEffect } from 'react';
 
 
 interface SimpleDialogProps {
@@ -259,6 +260,7 @@ interface IFolderProps {
     copyResponse: any
     // onRename?: (id: string, name: string) => void;
     // onShare?: (id: string) => void;
+    
 }
 
 
@@ -411,32 +413,50 @@ const handleBoxChange=(e:any)=>{
     setSelected(value);
 }
 
-    return (
-        <>
+const [prices, setPrices] = useState([])
 
-            {/* <Grid className={classes.divFile}>
-                My Files
-            </Grid> */}
-            <Grid className={classes.bigPart}>
+// useEffect(() => {
+//     let prices = products.map(p => p.price.substring(3));
+//     setPrices(prices)
+// }, []);
+
+const sortAscending = () => {
+  const sortAscPrices = [...prices]
+  sortAscPrices.sort((a, b) => a - b)    
+  setPrices( sortAscPrices )
+}
+
+const sortDescending = () => {
+    const sortDescPrices = [...prices]
+    sortDescPrices.sort((a, b) => a - b).reverse()
+    setPrices( sortDescPrices )
+}
+
+
+    return (
+        <div>
+            <Grid className={classes.bigPart} >
                 <Grid className={classes.myFile}>
                     <Grid>
-                        {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
-                            getChildHandler={breadcrumbClickHandler} /> */}
                         <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
-                            <InputLabel id="demo-simple-select-standard-label"><span>Sort by</span> Newest</InputLabel>
+                            <InputLabel id="demo-simple-select-standard-label">
+                            <span className={classes.shortSpan}>Sort by</span>
+                            {/* <span className={classes.shortBy}>Newest</span> */}
+                            </InputLabel>
                             <Select
                                 labelId="demo-simple-select-standard-label"
                                 id="demo-simple-select-standard"
                                 value={age}
                                 onChange={handleChange}
                                 label="Age"
+                                style={{width:"100px"}}
                             >
-                                <MenuItem value="">
+                                {/* <MenuItem value="">
                                     <em>None</em>
-                                </MenuItem>
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
+                                </MenuItem> */}
+                                <MenuItem value={10} onClick={sortAscending}><span className={classes.shortBy}>Newest</span></MenuItem>
+                                <MenuItem value={20} onClick={sortDescending}><span className={classes.shortBy}>Oldest</span></MenuItem>
+                                
                             </Select>
                         </FormControl>
                     </Grid>
@@ -445,7 +465,6 @@ const handleBoxChange=(e:any)=>{
                         <button >
                             <GridViewOutlinedIcon />
                         </button>
-
                         <button style={{ marginLeft: "15px" }} >
                             <FormatListBulletedOutlinedIcon />
                         </button>
@@ -454,7 +473,7 @@ const handleBoxChange=(e:any)=>{
                 </Grid>
                 <Stack>
                     <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 300 }} aria-label="simple table">
+                        <Table sx={{ minWidth: 300, height:400 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell padding="checkbox" ><Checkbox 
@@ -804,7 +823,7 @@ const handleBoxChange=(e:any)=>{
                 </Stack>
             </Grid>
 
-        </>
+        </div>
     );
 };
 

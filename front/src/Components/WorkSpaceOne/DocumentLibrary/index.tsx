@@ -17,9 +17,7 @@ const DocumentLibrary = () => {
             </Grid>
             <Grid item xs={12}>
                 <Paper style={{ height: "50px", display: "flex", justifyContent: "flex-start",  alignItems: "center", marginTop: "15px" }} elevation={0}>
-
                     <Typography style={{textAlign:"center", marginLeft:"30px", marginRight:"30px"}}><span> <img src={announcementIcon} alt="" /></span> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus   </Typography>
-
                 </Paper>
             </Grid>
             <Box style={{ margin: "30px" }}>
