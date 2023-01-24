@@ -3,8 +3,8 @@ import WhatsNew from './../Header/WhatsNew';
 import { Grid ,Box } from '@mui/material';
 import SideBar from './../WorkSpaceOne/SideBar';
 import { useStyles } from './Styles';
-import EventsEditor from './EventsEditor';
-
+// import EventsEditor from './EventsEditor';
+import { EventsContentEditorPage } from '../../Pages';
 const EventsContentPage= () => {
     const classes=useStyles()
     return (
@@ -22,7 +22,7 @@ const EventsContentPage= () => {
                             <SideBar />
                         </Grid>
                         <Grid item xs={11} >
-                            <EventsEditor/>
+                            <EventsContentEditorPage/>
                         </Grid>
                        
                     </Grid>

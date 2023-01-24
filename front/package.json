@@ -59,7 +59,6 @@
     "axios": "^0.27.2",
     "azure-storage": "^2.10.7",
     "date-fns": "^2.29.3",
-    "dayjs": "^1.11.6",
     "dnd-core": "^16.0.1",
     "docx": "^7.4.1",
     "draft-convert": "^2.1.12",
