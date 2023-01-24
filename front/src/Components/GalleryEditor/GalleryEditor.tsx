@@ -25,7 +25,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Box } from '@mui/material';
+import { Box, Menu, MenuItem, Fade } from '@mui/material';
 import { useStyles } from './Styles';
 import FileUpload from "react-material-file-upload";
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
@@ -33,295 +33,174 @@ import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
+import folder from "../../Assets/Images/folder.svg";
+import folderW from "../../Assets/Images/whiteFolder.svg";
+import UploadFile from './UploadFile';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 300 },
-  { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
-  { field: 'Name', headerName: 'Name', width: 100 },
-  { field: 'DOB', headerName: 'DOB', width: 100 },
-  { field: 'Image', headerName: 'Image', width: 130 },
-  { field: 'Designation', headerName: 'Designation', width: 130 },
-  { field: 'DOJ', headerName: 'DOJ', type: 'date', width: 130 },
-  { field: 'Description', headerName: 'Description', width: 130 },
-  { field: 'IS Active', headerName: 'IS Active', width: 100 },
-  { field: 'EnableLikes', headerName: 'EnableLikes', type: 'image', width: 100 },
-  {
-    field: 'EnableComments',
-    headerName: 'EnableComments',
-    type: 'image',
-    width: 100,
-  },
-  // {
-  //   field: 'ShareAsEmail',
-  //   headerName: 'ShareAsEmail',
-  //   type: 'email',
-  //   width: 160,
-  // },
-  // {
-  //   field: 'RecipientEmail',
-  //   headerName: 'RecipientEmail',
-  //   type: 'email',
-  //   width: 160,
-  // },
-];
-
-
-const rows = [
-  { id: 1, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 2, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 3, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 4, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 5, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 6, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 7, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  { id: 8, Title: 'Happy Birthday <img src={comments} alt="image" /> <img src={shareasemail} alt="image" />', Status: 'Active', Name: 'Ayesha Siddiqa', DOB: '12/19/2022', Image: <img src={image} alt="" />, Designation: 'HR Manager', DOJ: '12/19/2022', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', IsActive: 'yes ', EnableLikes: <Switch {...label} defaultChecked />, EnableComments: <Switch {...label} defaultChecked />, },
-  // { id: 9, Title: 'Milestone comes as DP World marks a decade of partnership', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Image: activeView, ModifiedOn: '10 months ago', IsActive: 'Roxie', EnableLikes: 'Harvey', EnableComments: 65, ShareAsEmail: 'info@gmail.com', RecipientEmail: 'contact@gmail.com' },
-];
 
 
 const GalleryEditor = () => {
   const classes = useStyles();
 
-  const [openOne, setOpenOne] = React.useState<boolean>(false);
-  // const [sendItem] = useUploadItemInAnnouncementMutation();
-  const handleClickOpen = () => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const openOn = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const [openOne, setOpenOne] = React.useState(false);
+  const handleClickOne = (popup: any) => {
     setOpenOne(true);
   };
 
-  const handleClose = () => {
+  const handleCloseOne = () => {
     setOpenOne(false);
   };
 
-  const [openPreview, setOpenPreview] = React.useState<boolean>(false);
-  const handleClickPreview = () => {
-    setOpenPreview(true);
-  };
+  const [text, setText] = useState<string>('');
 
-  const handleClosePreview = () => {
-    setOpenPreview(false);
-  };
+  const handleOnChange = (e: any) => {
+    setText(e.target.value);
+    console.log(e.target.value);
+  }
+  const handleFormSubmit = async (e: any) => {
+    e.preventDefault();
+    const Data = {
+      name: text,
 
-
-  const [checkedyesisActive, setCheckedyesisActive] = useState<boolean>(true);
-  const [checkednoisActive, setCheckednoisActive] = useState<boolean>(false);
-  const [checkedyesEnableLikes, setCheckedyesEnableLikes] = useState<boolean>(true);
-  const [checkednoEnableLikes, setCheckednoEnableLikes] = useState<boolean>(false);
-  const [checkedyesEnableCommands, setCheckedyesEnableCommands] = useState<boolean>(true);
-  const [checkednoEnableCommands, setCheckednoEnableCommands] = useState<boolean>(false);
-  const [checkedyesSharedAsEmail, setCheckedyesSharedAsEmail] = useState<boolean>(true);
-  const [checkednoSharedAsEmail, setCheckednoSharedAsEmail] = useState<boolean>(false);
-  const [isActives, setIsActives] = useState<boolean>(false)
-  const [enablelikes, setEnableLikes] = useState<boolean>(false)
-  const [enableCommands, setCommands] = useState<boolean>(false)
-  const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
-  const [Title, setTitle] = useState<any>('');
-  const [Description, setDescription] = useState<any>('');
-  const [RecipientEmail, setRecipientEmail] = useState<any>('');
-  const [state, setState] = useState({
-    warningMsg: ""
-  })
-  const [state1, setState1] = useState({
-    files: [],
-
-  })
-  const [state2, setState2] = useState({
-    files: [],
-
-  })
-  const [filename1, setFilename1] = useState<any>('')
-  const [filename2, setFilename2] = useState<any>('')
-  const [base1, setBase1] = useState<any>('')
-  const [base2, setBase2] = useState<any>('')
-
-  const handleChangeisActiveyes = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value)
-    console.log(event.target.checked)
-    setCheckedyesisActive(event.target.checked);
-    setIsActives(true)
-    //@ts-ignore
-    // setIsActives(event.target.value)
-
-
-  };
-  const handleChangeisActiveno = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value)
-    console.log(event.target.checked)
-    setCheckednoisActive(event.target.checked);
-    //@ts-ignore
-    setIsActives(false)
-    // console.log(isActives,'ytujyujy')
-
-  };
-
-  const handleChangeEnableLikesyes = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value)
-    console.log(event.target.checked)
-    setCheckedyesEnableLikes(event.target.checked);
-
-    setEnableLikes(true)
-
-
-  };
-  const handleChangeEnableLikesno = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value)
-    console.log(event.target.checked)
-    setCheckednoEnableLikes(event.target.checked);
-
-    setEnableLikes(false)
-
-  };
-  const handleChangeEnableCommandsyes = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value)
-    console.log(event.target.checked)
-    setCheckedyesEnableCommands(event.target.checked);
-
-    setCommands(true)
-
-  };
-  const handleChangeEnableCommandsno = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value)
-    console.log(event.target.checked)
-    setCheckednoEnableCommands(event.target.checked);
-
-    setCommands(false)
-
-  };
-  const handleChangeSharedAsEmailyes = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value)
-    console.log(event.target.checked)
-    setCheckedyesSharedAsEmail(event.target.checked);
-
-    setSharedEmails(true)
-
-  };
-  const handleChangeSharedAsEmailno = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value)
-    console.log(event.target.checked)
-    setCheckednoSharedAsEmail(event.target.checked);
-
-    setSharedEmails(false)
-
-  };
-  const handleChangeTitleField = (event: any) => {
-    console.log(event.target.value)
-    setTitle(event.target.value);
-  };
-  const handleChangeDescriptionField = (event: any) => {
-    console.log(event.target.value)
-    setDescription(event.target.value);
-  };
-  const handleChangeReciepientEmailField = (event: any) => {
-    console.log(event.target.value)
-    setRecipientEmail(event.target.value);
-  };
-
-  useEffect(() => {
-    state1.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
-    state2.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
-  }, [])
-
-  const addFile = (file: any) => {
-    setFilename1(file[0].name)
-    console.log(file[0].name);
-    setState1({
-      files: file.map((file: any) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file)
-        })
-      )
-    });
-  };
-
-  const onDrop = (accepted: any, rejected: any) => {
-    if (Object.keys(rejected).length !== 0) {
-      const message = "Please submit valid file type";
-      setState({ warningMsg: message });
-    } else {
-      addFile(accepted);
-      setState({ warningMsg: "" });
-      console.log(accepted[0].preview);
-
-      var blobPromise = new Promise((resolve, reject) => {
-        const reader = new window.FileReader();
-        reader.readAsDataURL(accepted[0]);
-        reader.onloadend = () => {
-          const base64data = reader.result;
-          // this.setState({ base64data: base64data });
-          setBase1(base64data)
-          console.log(base64data);
-        };
-      });
-      blobPromise.then(value => {
-        console.log(value);
-      });
     }
-  };
-  const addFile1 = (file: any) => {
-    setFilename2(file[0].name)
-    console.log(file[0].name);
-    setState2({
-      files: file.map((file: any) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file)
-        })
-      )
-    });
-  };
+    //  console.log(fd)
+    // await sendItem(Data)
+    // const Toast = Swal.mixin({
+    //     toast: true,
+    //     position: 'top',
+    //     showConfirmButton: false,
+    //     timer: 1500,
+    //     timerProgressBar: true,
+    //     didOpen: (toast) => {
+    //         toast.addEventListener('mouseenter', Swal.stopTimer)
+    //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+    //     }
+    // });
 
-  const onDrop1 = (accepted: any, rejected: any) => {
-    if (Object.keys(rejected).length !== 0) {
-      const message = "Please submit valid file type";
-      setState({ warningMsg: message });
-    } else {
-      addFile1(accepted);
-      setState({ warningMsg: "" });
-      console.log(accepted[0].preview);
+    // Toast.fire({
+    //     icon: 'success',
+    //     title: 'Create Successfully'
+    // });
 
-      var blobPromise = new Promise((resolve, reject) => {
-        const reader = new window.FileReader();
-        reader.readAsDataURL(accepted[0]);
-        reader.onloadend = () => {
-          const base64data = reader.result;
-          // this.setState({ base64data: base64data });
-          setBase2(base64data)
-          console.log(base64data);
-        };
-      });
-      blobPromise.then(value => {
-        console.log(value);
-      });
-    }
-  };
-  const handleSubmit = async () => {
-    console.log('grdgdg')
-    const announcementData = {
-      // token :tokens,
-      title: Title,
-      description: Description,
-      image: base1,
-      imageName: filename1,
-      isActive: isActives,
-      EnableLikes: enablelikes,
-      EnableCommands: enableCommands,
-      SharedAsEmail: sharedAsEmails,
-      RecipientEmail: RecipientEmail,
-      Attachment: base2,
-      Attachmentname: filename2
-    }
-    //  await sendItem(announcementData)
+
+    handleCloseOne();
+  }
+  const [uploadedFiles, setUploadedFiles] = useState([])
+  const [fileLimit, setFileLimit] = useState(false);
+
+  const handleUploadFiles = (files: any) => {
+    const uploaded = [...uploadedFiles];
+    let limitExceeded = false;
+
+    files.some((file: any, MAX_COUNT: any) => {
+      // @ts-ignore
+      if (uploaded.findIndex((f) => f.name === file.name) === -1) {
+        // @ts-ignore
+        uploaded.push(file);
+        if (uploaded.length === MAX_COUNT) setFileLimit(true);
+        if (uploaded.length > MAX_COUNT) {
+          alert(` you can only ass a maximum of ${MAX_COUNT} files`);
+          setFileLimit(false);
+          limitExceeded = true;
+          return true;
+        }
+      }
+    })
+
+    if (!limitExceeded) setUploadedFiles(uploaded)
+  }
+  const handleFileEvent = (e: any) => {
+    const chosenFiles = Array.prototype.slice.call(e.target.files)
+    handleUploadFiles(chosenFiles);
   }
 
-  const [files, setFiles] = useState<File[]>([]);
+
 
   return (
     <div className={classes.Section}>
-    <Box className={classes.MainPart}>
-      <Grid className={classes.upperPart}>
-        <Grid>Gallery </Grid>
-        <Grid className={classes.new}>
+      <Box className={classes.MainPart}>
+        <Grid className={classes.upperPart}>
+          <Grid>Picture Gallery </Grid>
+          <Grid>
+            <input type='file' id='fileUpload' accept='application/pdf, image/png, mp4/video '
+              onChange={handleFileEvent}
+              disabled={fileLimit} />
+            <label htmlFor="fileUpLoad">
+              <a className={`btn btn-primary ${!fileLimit ? '' : 'disabled'}`}>Upload </a>
+            </label>
+          </Grid>
+
+          <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
+
+            <Button
+              id="fade-button"
+              aria-controls={openOn ? 'fade-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={openOn ? 'true' : undefined}
+              onClick={handleClick}
+              className={classes.create}
+              sx={{ textTransform: "capitalize", backgroundColor: "rgb(50 168 189) !important" }}>
+              <span className={classes.plus}><LocalHospitalIcon /></span>
+              New
+            </Button>
+            <Menu
+              id="fade-menu"
+              MenuListProps={{
+                'aria-labelledby': 'fade-button',
+              }}
+              anchorEl={anchorEl}
+              open={openOn}
+              onClose={handleClose}
+              TransitionComponent={Fade}
+              className={classes.menu}
+            >
+
+              <MenuItem >
+                <div onClick={handleClickOne}>
+                  <img src={folder} alt="folder" className={classes.menuImage} /> Folders
+                </div>
+                <Dialog open={openOne} onClose={handleCloseOne}>
+                  <DialogTitle>{"Create New Folder"}</DialogTitle>
+                  <DialogContent>
+                    <Box
+                      component="form"
+                      sx={{
+                        '& > :not(style)': { m: 1, width: '25ch' },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <TextField id="outlined-basic" onChange={handleOnChange} variant="outlined" />
+
+                    </Box>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleFormSubmit}
+                      color="primary" autoFocus>
+                      Create
+                    </Button>
+                    <Button onClick={handleCloseOne}
+                      color="primary" autoFocus>
+                      Close
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </MenuItem>
+            </Menu>
+
+          </Grid>
+          {/* <Grid className={classes.new}>
           <Button
             onClick={handleClickOpen}
             className={classes.create}
@@ -429,16 +308,6 @@ const GalleryEditor = () => {
                     Image<img src={Asterisk} alt="..." />
                   </InputLabel>
                 </div>
-
-
-                {/* <Dropzone  onDrop={(accepted, rejected) => onDrop(accepted, rejected)}  >
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()}  type="file"/>
-                  <p>Drag'n'drop files, or click to select files</p>
-                </div>
-              )}
-            </Dropzone> */}
                 <Grid className={classes.svg}>
                   <FileUpload value={files} onChange={setFiles} />
                 </Grid>
@@ -576,26 +445,6 @@ const GalleryEditor = () => {
 
                 </Grid>
               </Grid>
-
-
-              {/* <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-              <img src={recipientEmail} alt="" style={{ width: "13px", marginRight: "15px" }} />
-              RecipentEmail
-            </InputLabel>
-            <TextField
-              id="outlined-adornment-weight" sx={{ width: "100%" }} onChange={handleChangeReciepientEmailField} />
-            <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-              <img src={Attachment} alt="" style={{ width: "13px", marginRight: "15px" }} />
-              Attachments
-            </InputLabel>
-            <Dropzone onDrop={(accepted, rejected) => onDrop1(accepted, rejected)}>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps({ className: classes.dropZone })}>
-                  <input {...getInputProps()} type="file" />
-                  <p>Drag'n'drop files, or click to select files</p>
-                </div>
-              )}
-            </Dropzone> */}
             </DialogContent>
             <DialogActions>
               <Grid className={classes.actionDivTwo}>
@@ -692,17 +541,48 @@ const GalleryEditor = () => {
 
           </Dialog>
 
+        </Grid> */}
         </Grid>
-      </Grid>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
-    </Box>
-  </div>
+        <Box style={{ padding:"30px" }}>
+          <Grid>
+            <div className="uploaded-files-list">
+              {uploadedFiles.map((file, name: any) => (
+                <div>
+                  {/* @ts-ignore */}
+                  {file.name}
+                </div>
+              ))
+              }
+
+            </div>
+            <UploadFile />
+          </Grid>
+          <Grid className={classes.boxContain}>
+            <Box className={classes.galleryBox}>
+              <img src={folderW} alt="" />
+                <div style={{margin:"0px"}}>Approvals Folder</div>
+                <p style={{margin:"0px"}}>September 20, 2022</p>
+            </Box>
+            <Box className={classes.galleryBox}>
+              <img src={folderW} alt="" />
+                <div style={{margin:"0px"}}>Approvals Folder</div>
+                <p style={{margin:"0px"}}>September 20, 2022</p>
+            </Box>
+            <Box className={classes.galleryBox}>
+              <img src={folderW} alt="" />
+                <div style={{margin:"0px"}}>Approvals Folder</div>
+                <p style={{margin:"0px"}}>September 20, 2022</p>
+            </Box>
+            <Box className={classes.galleryBox}>
+              <img src={folderW} alt="" />
+                <div style={{margin:"0px"}}>Approvals Folder</div>
+                <p style={{margin:"0px"}}>September 20, 2022</p>
+            </Box>
+          </Grid>
+        </Box>
+
+      </Box>
+    </div>
   );
 };
 

@@ -200,19 +200,16 @@ const SideBar = (props: any) => {
             <ListItem>
               <ListItemButton>
                 <MoreHorizIcon style={{ color: "white" }} />
-
               </ListItemButton>
             </ListItem>
             <ListItem>
               <ListItemButton>
                 <img src={upload} alt="upload" />
-
               </ListItemButton>
             </ListItem>
             <ListItem>
               <ListItemButton>
                 <img src={setting} alt="setting" />
-
               </ListItemButton>
             </ListItem>
           </List>

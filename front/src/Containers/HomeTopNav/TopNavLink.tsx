@@ -2,15 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import admin from "./../../Assets/Images/admin.svg";
-import adminHover from "./../../Assets/Images/admin.svg";
+import adminHover from "./../../Assets/Images/adminHn.svg";
 import hub from "./../../Assets/Images/hub.svg";
-import hubHover from "./../../Assets/Images/hubHover.svg";
+import hubHover from "./../../Assets/Images/hubHn.svg";
 import ITservice from "./../../Assets/Images/ITservice.svg";
-import ITserviceHover from "./../../Assets/Images/ITserviceHover.svg";
+import ITserviceHover from "./../../Assets/Images/ITserviceHn.svg";
 import sales from "./../../Assets/Images/sales.svg";
-import salesHover from "./../../Assets/Images/salesHover.svg";
+import salesHover from "./../../Assets/Images/salesHn.svg";
 import vehicle from "./../../Assets/Images/vehicleRequest.svg";
-import vehicleH from "./../../Assets/Images/vehicleRHover.svg";
+import vehicleH from "./../../Assets/Images/vehicleHn.svg";
 import content from "./../../Assets/Images/contentEditor.svg";
 import contentHover from "./../../Assets/Images/contentEditorHover.svg";
 import department from "./../../Assets/Images/department.svg";
@@ -91,7 +91,7 @@ const TopNavLink = () => {
             id: 0,
             label: 'Home',
             Icon: home,
-            iconHover: homeHover,
+            IconHover: homeHover,
             onClick: () => navigate("/"),
             to: '/',
         },
@@ -99,7 +99,7 @@ const TopNavLink = () => {
             id: 1,
             label: 'WorkSpace',
             Icon: workspace,
-            iconHover: workspaceHover,
+            IconHover: workspaceHover,
             onClick: () => navigate("/WorkSpaceOne"),
             to: '/WorkSpaceOne',
         },
@@ -107,7 +107,7 @@ const TopNavLink = () => {
             id: 2,
             label: 'Policies & Procedure',
             Icon: policy,
-            iconHover: policyHover,
+            IconHover: policyHover,
             onClick: () => navigate("/policiesContentPage"),
             to: '/policiesContentPage',
 
@@ -116,7 +116,7 @@ const TopNavLink = () => {
             id: 3,
             label: 'Content Editor',
             Icon: content,
-            iconHover: contentHover,
+            IconHover: contentHover,
             onClick: () => navigate("/ContentEditor"),
             to: '/ContentEditor',
         },
@@ -124,7 +124,7 @@ const TopNavLink = () => {
             id: 4,
             label: 'Department',
             Icon: department,
-            iconHover: departmentHover,
+            IconHover: departmentHover,
             onClick: () => navigate("/security"),
             to: '/security',
 
@@ -133,7 +133,7 @@ const TopNavLink = () => {
             id: 5,
             label: "Quick Links",
             Icon: quickLinks,
-            iconHover: quickLinksHover,
+            IconHover: quickLinksHover,
             onClick: () => navigate("/quickLinks"),
             to: '/quickLinks',
         },
@@ -141,7 +141,7 @@ const TopNavLink = () => {
             id: 6,
             label: "Org Chart",
             Icon: orgChart,
-            iconHover: orgChartHover,
+            IconHover: orgChartHover,
             onClick: () => navigate("/quickLinks"),
             to: '/quickLinks',
         },
@@ -151,24 +151,24 @@ const TopNavLink = () => {
         {
             id: 0,
             label: 'Sales',
-            icon: sales,
-            iconHov: salesHover,
+            Icon: sales,
+            IconHover: salesHover,
             onClick: () => navigate("/"),
             to: '/',
         },
         {
             id: 1,
             label: 'Vehicle',
-            icon: vehicle,
-            iconHov: vehicleH,
+            Icon: vehicle,
+            IconHover: vehicleH,
             onClick: () => navigate("/WorkSpaceOne"),
             to: '/WorkSpaceOne',
         },
         {
             id: 2,
             label: 'IT service',
-            icon: ITservice,
-            iconHov: ITserviceHover,
+            Icon: ITservice,
+            IconHover: ITserviceHover,
             onClick: () => navigate("/policiesContentPage"),
             to: '/policiesContentPage',
 
@@ -176,22 +176,24 @@ const TopNavLink = () => {
         {
             id: 3,
             label: 'Hub',
-            icon: hub,
-            iconHov: hubHover,
+            Icon: hub,
+            IconHover: hubHover,
             onClick: () => navigate("/ContentEditor"),
             to: '/ContentEditor',
         },
         {
             id: 4,
             label: 'Admin',
-            icon: admin,
-            iconHov: adminHover,
+            Icon: admin,
+            IconHover: adminHover,
             onClick: () => navigate("/security"),
             to: '/security',
 
         },
 
     ];
+
+    const [selectedIndex, setSelectedIndex]=useState(0);
 
     return (
         <div>
@@ -207,7 +209,7 @@ const TopNavLink = () => {
                         <TabPanel value={value} index={0}>
                             <List className={classes.topItems}>
                                 {itemsList.map((item: any, id: any, index: any) => {
-                                    const { Icon, iconHover, onClick, path } = item;
+                                    const { Icon, IconHover, onClick, path } = item;
                                     console.log(itemsList, "itemsList");
 
                                     return (
@@ -216,7 +218,7 @@ const TopNavLink = () => {
                                                 <NavLink end to={path} className={classes.topLink}>
                                                     <img src={Icon} alt="..." className="topImg" />
                                                     <img
-                                                        src={iconHover}
+                                                        src={IconHover}
                                                         alt=""
                                                         className="topImgH"
                                                     />
@@ -233,22 +235,24 @@ const TopNavLink = () => {
                         <TabPanel value={value} index={1}>
                             <List className={classes.topItems}>
                                 {myLinkList.map((item: any, id: any, index: any) => {
-                                    const { icon, iconHov, onClick, path } = item;
+                                    const { Icon, IconHover, onClick, path } = item;
                                     console.log(myLinkList, "itemsList");
 
                                     return (
                                         <ListItem key={index} onClick={onClick} className={classes.topMenu}>
                                             {myLinkList && (
-                                                <NavLink end to={path} className={classes.topLink}>
-                                                    <img src={icon} alt="..." className={classes.topImg} />
-                                                    <img
-                                                        src={iconHov}
-                                                        alt=""
-                                                        className={classes.topImgH}/>
-                                                    <p className={classes.topText} > {item.label}</p>
-                                                </NavLink>)
+                                                 <NavLink end to={path} className={classes.topLink}>
+                                                 <img src={Icon} alt="..." className="topImg" />
+                                                 <img
+                                                     src={IconHover}
+                                                     alt=""
+                                                     className="topImgH"
+                                                 />
+                                                 <p className={classes.topText} > {item.label}</p>
+                                             </NavLink>)
                                             }
                                         </ListItem>
+                                        
                                     )
                                 })}
 

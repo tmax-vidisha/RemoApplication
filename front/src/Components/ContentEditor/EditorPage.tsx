@@ -100,8 +100,8 @@ const EditorPage = () => {
             label: 'Gallery',
             Icon:gallery,
             iconHover: highlightH,
-            onClick: () => navigate("/highlightsContentPage"),
-            to: '/highlightsContentPage',
+            onClick: () => navigate("/galleryContentPage"),
+            to: '/galleryContentPage',
 
         },
         {
@@ -109,8 +109,8 @@ const EditorPage = () => {
             label: 'Hero Banner',
             Icon:hero,
             iconHover: heroBannerH,
-            onClick: () => navigate("/highlightsContentPage"),
-            to: '/highlightsContentPage',
+            onClick: () => navigate("/heroContentPage"),
+            to: '/heroContentPage',
 
         },
         {

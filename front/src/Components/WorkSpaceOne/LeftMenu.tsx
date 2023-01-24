@@ -30,48 +30,48 @@ interface IFolderProps {
     data?: any,
     error?: any,
     isLoading?: any,
-  
+
 }
 
 
 export const SidebarData = [
     {
-        id:1,
+        id: 1,
         title: "My Files",
         // onClick: () => history.push("/Deliveries"),
         path: "/WorkspaceOne",
-        icon: <img src={filesIcon} alt=""/>,
+        icon: <img src={filesIcon} alt="" />,
     },
     {
-        id:2,
+        id: 2,
         title: "Shared with Me",
         path: "/sharedWithMe",
-        icon: <img src={starredIcon} alt=""/>,
+        icon: <img src={starredIcon} alt="" />,
     },
     {
-        id:3,
+        id: 3,
         title: "Document Library",
         path: "/documentLibrary",
-        icon: <img src={DocumentIcon} alt=""/>,
+        icon: <img src={DocumentIcon} alt="" />,
     },
     {
-        id:4,
+        id: 4,
         title: "Recent",
         path: "/recentFilesOneDrive",
-        icon:<img src={ recentIcon} alt=""/>,
+        icon: <img src={recentIcon} alt="" />,
     },
     {
-        id:5,
+        id: 5,
         title: "Starred",
         path: "/StarredFile",
-        icon: <img src={ starredIcon} alt=""/>,
+        icon: <img src={starredIcon} alt="" />,
     },
 
     {
-        id:6,
+        id: 6,
         title: "Trash",
         path: "/trash",
-        icon: <img src={ trashIcon} alt=""/>,
+        icon: <img src={trashIcon} alt="" />,
     }
 
 ]
@@ -84,7 +84,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-   
+
     const location = useLocation();
 
 
@@ -108,10 +108,11 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
     const { data, error, isLoading } = props;
     console.log(data, 'Left menu data ')
     return (
-        <Box sx={{ width: "190px", bgcolor: 'background.paper', height: "100%" }}>
+        <Box sx={{ width: "170px", bgcolor: 'background.paper', height: "100%", marginRight:"10px" }}>
             <Box style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }} >
-            <CssBaseline />
+                <CssBaseline />
                 <Box >
+                    <div style={{ color: "#1b6189",marginTop:"20px"}}>Work Space</div>
                     <nav>
                         {/* <List>
                             <ListItem disablePadding>
@@ -179,16 +180,15 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         <List key={index}>
                                             <ListItem disablePadding>
                                                 <NavLink end to={item.path}
-                                                // className={({ isActive }) =>
-                                                // isActive ? activeLink: normalLink}
-
-                                                >
+                                                    // className={({ isActive }) =>
+                                                    // isActive ? activeLink: normalLink} 
+                                                    style={{ textDecoration: "none" }}
+                                                    >
                                                     <ListItemButton>
                                                         <ListItemIcon className={classes.MuiListItemIcon}>
-
                                                             {item.icon}
                                                         </ListItemIcon>
-                                                        <ListItemText className={classes.textListItem} >{item.title} </ListItemText>
+                                                        <ListItemText className={classes.textListItem}  style={{ textDecoration: "none" }}>{item.title} </ListItemText>
                                                     </ListItemButton>
 
                                                 </NavLink>
@@ -213,6 +213,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
 import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import WorkSpaceOne from './index';
 
                         <List className={classes.topItems}>
                             {topMenu && data?.response &&

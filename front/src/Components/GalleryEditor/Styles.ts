@@ -265,7 +265,49 @@ export const useStyles = makeStyles({
   dialogBtn: {
     color: "#606C74 !important",
     fontSize: "12px"
-  }
+  },
+  menuImage: {
+    marginRight: "20px",
+  },
+  menu: {
+    marginTop: "15px"
+  },
+  linkPart: {
+    backgroundColor: "#33adff",
+    color: "white",
+    textTransform: "capitalize"
+  },
 
+  createNew: {
+    // backgroundColor: "rgb(50 168 189) !important",
+    color: "white !important",
+    // marginRight: "15px !important",
+    padding: "3px 8px !important",
+
+
+  },
+boxContain:{
+  display:"grid",
+   gridTemplateColumns:"repeat(4, 1fr)"
+},
+
+  galleryBox:{
+    border: "1px solid #f2ebebdb",
+     width: "160px",
+      height: "auto", 
+      padding:"12px",
+       borderRadius:"10px",
+       margin:"20px",
+       "& img":{
+        width:"50px"
+       },
+      "& div":{
+        color:"#009BAD",
+      },
+      "& p":{
+        color: "#606C74 !important",
+        fontSize: "12px"
+      }
+  }
 
 });

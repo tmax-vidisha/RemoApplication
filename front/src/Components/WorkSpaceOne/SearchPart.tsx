@@ -307,8 +307,7 @@ const SearchPart = (id: any) => {
 
     return (
         <Grid  item xs={12} className={classes.upperSearch} > 
-
-            <Grid>
+            <Grid >
                 <Search style={{ padding: "5px 5px", backgroundColor: "white", }}>
                     <SearchIconWrapper>
                         <SearchIcon />
@@ -319,7 +318,6 @@ const SearchPart = (id: any) => {
                     />
                 </Search>
             </Grid>
-
             <Grid style={{ display: "flex", justifyContent: "flex-end" }}>
                 <Grid>
                     <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>

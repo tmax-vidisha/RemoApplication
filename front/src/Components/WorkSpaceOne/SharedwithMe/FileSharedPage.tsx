@@ -1,13 +1,12 @@
 import React, { useState, useReducer } from 'react';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
 import WPOneDrive from '../../Workspace/OneDrive/index';
-import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions } from '@mui/material';
+import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, Stack, Pagination } from '@mui/material';
 import { Typography } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { useStyles } from './Styles';
-import Stack from '@mui/material/Stack';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableCell from '@mui/material/TableCell';
@@ -28,6 +27,7 @@ import deleteIcon from '../../../Assets/Images/delete.svg';
 import deleteBlue from '../../../Assets/Images/delete-blue.svg';
 import success from '../../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
+import  TablePagination  from '@mui/material/TablePagination';
 
 
 
@@ -232,41 +232,53 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         //setAge('');
     };
 
-    function createData(
-        name: string,
-        lastModifiedBy: string,
-        ModifiedDate: string,
-        fileSize: string,
-        Actions: string,
-    ) {
-        return { name, lastModifiedBy, ModifiedDate, fileSize, Actions };
-    }
+    // function createData(
+    //     name: string,
+    //     lastModifiedBy: string,
+    //     ModifiedDate: string,
+    //     fileSize: string,
+    //     Actions: string,
+    // ) {
+    //     return { name, lastModifiedBy, ModifiedDate, fileSize, Actions };
+    // }
 
-    const rows = [
-        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
-        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
-        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
-        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
+    // const rows = [
+    //     createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
+    //     createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
+    //     createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
+    //     createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "..."),
 
-    ];
+    // ];
+
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = ( newPage :any) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event:any) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
     return (
-        <Grid>
-            <Grid className={classes.divText}>
-                Shared with me
-            </Grid>
-            <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 600 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Name</TableCell>
-                                <TableCell align="right">Last Modified By</TableCell>
-                                <TableCell align="right">Last Modified Date</TableCell>
-                                <TableCell align="right">File Size</TableCell>
-                                <TableCell align="right">Actions</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
+         <Grid>
+         <Grid className={classes.divText}>
+         Shared with me
+         </Grid>
+         <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
+             <TableContainer component={Paper}>
+                 <Table sx={{ minWidth: 600 }} aria-label="simple table">
+                     <TableHead>
+                         <TableRow>
+                             <TableCell>Name</TableCell>
+                             <TableCell align="right">Last Modified By</TableCell>
+                             <TableCell align="right">Last Modified Date</TableCell>
+                             <TableCell align="right">File Size</TableCell>
+                             <TableCell align="right">Actions</TableCell>
+                         </TableRow>
+                     </TableHead>
+                     <TableBody>
                             {/* {rows.map((row) => (
                                     <TableRow
                                         key={row.name}
@@ -281,8 +293,9 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         <TableCell align="right">{row.Actions}</TableCell>
                                     </TableRow>
                                 ))} */}
+
                             {data?.response &&
-                                data?.response.map((item: any, index: any) => {
+                                data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
                                     //   const { fields = {} } = item;
 
                                     // const  Url= item["@microsoft.graph.downloadUrl"];
@@ -418,11 +431,11 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                         </TableBody>
 
-                    </Table>
+                 </Table>
 
-                </TableContainer>
-            </Grid>
-        </Grid>
+             </TableContainer>
+         </Grid>
+     </Grid>
     );
 };
 

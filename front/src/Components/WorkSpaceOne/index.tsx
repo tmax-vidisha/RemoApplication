@@ -35,10 +35,10 @@ const WorkSpaceOne = () => {
                     <Grid item xs={1} >
                         <SideBar />
                     </Grid>
-                    <Grid item xs={1} style={{ marginRight: "20px" }}>
+                    <Grid item xs={1} style={{ marginRight: "20px", width:"175px" }}>
                         <LeftMenu />
                     </Grid>
-                    <Grid item xs={7} style={{ paddingLeft: "8px" }}>
+                    <Grid item xs={7} style={{ paddingLeft: "8px",}}>
                        
                         <SearchPart />
   

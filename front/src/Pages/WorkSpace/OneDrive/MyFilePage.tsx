@@ -110,9 +110,9 @@ const MyFilePage = () => {
             <Grid className={classes.divFile}>
                 My Files
             </Grid>
-            <Grid className={classes.bigPart}>
-         <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
-                            getChildHandler={breadcrumbClickHandler} />
+            {/* <Grid className={classes.bigPart}> */}
+         {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
+                            getChildHandler={breadcrumbClickHandler} /> */}
        <MyFilesPage
          data={data}
          error={error}
@@ -127,7 +127,7 @@ const MyFilePage = () => {
          copyResponse={copyResponse}
        />
        </Grid>
-       </Grid>
+      
     </AuthenticatedTemplate>
   )
 

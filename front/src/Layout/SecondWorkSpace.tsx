@@ -14,11 +14,7 @@ const SecondWorkSpace = () => {
             <IconText/>
             <WhatsNew/>
             <Grid container item xs={12} className={classes.bigPaper}>
-                {/* <Grid item xs={1}>
-                    <SideBar />
-                    
-                </Grid> */}
-                <Grid item xs={2}>
+                <Grid item xs={1} style={{marginLeft:"30px"}}>
                     <LeftMenu />
                 </Grid>
                 <Grid item xs={9} style={{ paddingLeft: "8px" }}>
