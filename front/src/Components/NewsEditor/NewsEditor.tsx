@@ -35,7 +35,7 @@ import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
 import browse from "../../Assets/Images/browse.svg";
 import dept from "../../Assets/Images/deptIcon.svg";
-
+var moment = require("moment-timezone");
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -77,11 +77,16 @@ const rows = [
 
  
 ];
+interface IFolderProps {
 
+  onClick?: (obj: any) => void;
 
-const NewsEditor= () => {
+}
+
+// const NewsEditor= () => {
+const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-
+  const { onClick } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -116,6 +121,7 @@ const NewsEditor= () => {
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
   const [Title, setTitle] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
+  const [Reference, setReference] = useState<any>('');
   const [RecipientEmail, setRecipientEmail] = useState<any>('');
   const [state, setState] = useState({
     warningMsg: ""
@@ -210,9 +216,9 @@ const NewsEditor= () => {
     console.log(event.target.value)
     setDescription(event.target.value);
   };
-  const handleChangeReciepientEmailField = (event: any) => {
+  const handleChangeReference = (event: any) => {
     console.log(event.target.value)
-    setRecipientEmail(event.target.value);
+    setReference(event.target.value);
   };
 
   useEffect(() => {
@@ -292,24 +298,7 @@ const NewsEditor= () => {
       });
     }
   };
-  const handleSubmit = async () => {
-    console.log('grdgdg')
-    const announcementData = {
-      // token :tokens,
-      title: Title,
-      description: Description,
-      image: base1,
-      imageName: filename1,
-      isActive: isActives,
-      EnableLikes: enablelikes,
-      EnableCommands: enableCommands,
-      SharedAsEmail: sharedAsEmails,
-      RecipientEmail: RecipientEmail,
-      Attachment: base2,
-      Attachmentname: filename2
-    }
-    //  await sendItem(announcementData)
-  }
+ 
 
   const [files, setFiles] = useState<File[]>([]);
   const fileRef = React.useRef<HTMLInputElement | null>(null)
@@ -353,7 +342,42 @@ const NewsEditor= () => {
 
   };
 
+  const handleSubmit = async () => {
+    console.log('grdgdg')
+    const announcementData = {
+      // token :tokens,
+      title: Title,
+      description: Description,
+      image: fileSelected,
+      imageName: names,
+      isActive: isActives,
+      EnableLikes: enablelikes,
+      EnableCommands: enableCommands,
+      SharedAsEmail: sharedAsEmails,
+      Reference:Reference,
+      isDraft:false
+    }
+     await onClick?.(announcementData)
+  }
 
+  const handleSave = async () => {
+    console.log('grdgdg')
+    const announcementData = {
+      // token :tokens,
+      title: Title,
+      description: Description,
+      image: fileSelected,
+      imageName: names,
+      isActive: isActives,
+      EnableLikes: enablelikes,
+      EnableCommands: enableCommands,
+      SharedAsEmail: sharedAsEmails,
+      Reference:Reference,
+      isDraft:true
+    }
+     await onClick?.(announcementData)
+  }
+  const today = moment();
   return (
     <div className={classes.Section}>
     <Box className={classes.MainPart}>
@@ -480,7 +504,7 @@ const NewsEditor= () => {
                     </div>
                   </Grid>
                 </div>
-                <div style={{ marginBottom: "10px" }}>
+                {/* <div style={{ marginBottom: "10px" }}>
                 <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
                   <img src={descripton} alt="" className={classes.titleIcon} />
                   Details Page Url<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -493,8 +517,8 @@ const NewsEditor= () => {
                   style={{ width: "100%" }}
                   onChange={handleChangeDescriptionField}
                 />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
+              </div> */}
+              {/* <div style={{ marginBottom: "10px" }}>
                 <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                   <img src={title} alt="" className={classes.titleIcon} />
                  Short Title<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -506,8 +530,8 @@ const NewsEditor= () => {
                   onChange={handleChangeTitleField}
                   placeholder="Enter value here"
                 />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
+              </div> */}
+              {/* <div style={{ marginBottom: "10px" }}>
                 <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                   <img src={dept} alt="" className={classes.titleIcon} />
                  Department<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -519,21 +543,21 @@ const NewsEditor= () => {
                   onChange={handleChangeTitleField}
                   placeholder="Enter value here"
                 />
-              </div>
+              </div> */}
               <div style={{ marginBottom: "10px" }}>
                 <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                   <img src={dept} alt="" className={classes.titleIcon} />
-                Tag<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                Reference<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
                 </InputLabel>
                 <TextField
                   id="outlined-adornment-weight"
                   className={classes.span}
                   style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
+                  onChange={handleChangeReference}
                   placeholder="Enter value here"
                 />
               </div>
-              <div style={{ marginBottom: "10px" }}>
+              {/* <div style={{ marginBottom: "10px" }}>
                 <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                   <img src={dept} alt="" className={classes.titleIcon} />
                 Dept<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -545,7 +569,7 @@ const NewsEditor= () => {
                   onChange={handleChangeTitleField}
                   placeholder="Enter value here"
                 />
-              </div>
+              </div> */}
               
               
               <Grid>
@@ -629,19 +653,19 @@ const NewsEditor= () => {
                 </Grid>
               </Grid>
 
- <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+ {/* <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
               <img src={recipientEmail} alt="" style={{ width: "13px", marginRight: "15px" }} />
               RecipentEmail
             </InputLabel>
             <TextField
-              id="outlined-adornment-weight" sx={{ width: "100%" }} onChange={handleChangeReciepientEmailField} />
-               <div style={{ marginBottom: "15px" }}>
+              id="outlined-adornment-weight" sx={{ width: "100%" }} onChange={handleChangeReciepientEmailField} /> */}
+               {/* <div style={{ marginBottom: "15px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
                   <img src={Attachment} alt="" className={classes.titleIcon} />
                   Attachments<img src={Asterisk} alt="..." />
                   </InputLabel>
                    <Grid className={classes.svg}>
-                    {/* <FileUpload value={files} onChange={setFiles} /> */}
+                   
                     <img src={browse} alt="" />
                     <p>drag and drop here</p>
                     <p>Or</p>
@@ -679,7 +703,7 @@ const NewsEditor= () => {
                       )}
                     </div>
                   </Grid>
-                </div>
+                </div> */}
            
             </DialogContent>
             <DialogActions>
@@ -730,19 +754,19 @@ const NewsEditor= () => {
                     </DialogContentText>
                     <Grid>
                       <Box>
-                        <img src={birthday} alt="" className={classes.backgroundImage} />
+                        <img src={fileSelected} alt="" className={classes.backgroundImage} />
                         {/* <img src={girl} alt="" className={classes.girl} />
                         <p>Ayesha Siddiqa</p>
                         <p>HR Manager</p> */}
                       </Box>
                       <Grid>
-                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>UAE President VP witness Signing Of Landmark Gas Sales Agreement between </Typography>
+                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>{Title} </Typography>
                         <div className={classes.newsPrev3}>
-                          <p>News</p>
-                          <p>Dec 26 2022</p>
+                          <p>{Reference}</p>
+                          <p>{ today.format('DD-MM-YYYY')}</p>
                         </div>
                         <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                          {Description}
                         </p>
                       </Grid>
                       <Grid className={classes.iconDiv}>
@@ -763,18 +787,18 @@ const NewsEditor= () => {
                   </DialogContent>
                   <DialogActions>
                     <Grid className={classes.actionPart}>
-                      <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
-                      <Button className={classes.cancelBtn}>Cancel</Button>
+                      <Button onClick={handleSave} autoFocus className={classes.saveBtn}>Save</Button>
+                      <Button onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                     </Grid>
                   </DialogActions>
 
                 </Dialog>
 
-                <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
                 <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                   submit
                 </Button>
-                <Button className={classes.cancelBtn}>Cancel</Button>
+                <Button onClick={handleClose} className={classes.cancelBtn}>Cancel</Button>
               </Grid>
 
             </DialogActions>

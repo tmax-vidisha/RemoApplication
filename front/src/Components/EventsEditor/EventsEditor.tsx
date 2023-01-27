@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from '../Birthday/index';
+// import dayjs, { Dayjs } from 'dayjs';
 import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
 import Dropzone from "react-dropzone";
 import title from '../../Assets/Images/title.svg';
@@ -11,6 +12,9 @@ import clock from '../../Assets/Images/clock.svg';
 import clockGreen from '../../Assets/Images/clockGreen.svg';
 import isActive from '../../Assets/Images/isActive.svg';
 import Attachment from '../../Assets/Images/Attachment.svg';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import recipientEmail from '../../Assets/Images/recipientEmail.svg';
 import shareasemail from '../../Assets/Images/shareasemail.svg';
 import descripton from '../../Assets/Images/description.svg';
@@ -36,7 +40,7 @@ import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
 import browse from "../../Assets/Images/browse.svg";
-
+var moment = require("moment-timezone");
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const columns: GridColDef[] = [
@@ -85,11 +89,16 @@ const rows = [
   { id: 9, Title: 'Global oil Company (GOC)', Status: 'Active', 'Event Date': '12/19/2022', 'End Date': '06/01/2023', },
 
 ];
+interface IFolderProps {
 
+  onClick?: (obj: any) => void;
 
-const EventsEditor = () => {
+}
+
+// const EventsEditor = () => {
+  const EventsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-
+  const { onClick } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -123,8 +132,44 @@ const EventsEditor = () => {
   const [enableCommands, setCommands] = useState<boolean>(false)
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
   const [Title, setTitle] = useState<any>('');
+  const [location, setLocation] = useState<any>('');
+  const [category, setCategory] = useState<any>('');
+  const [startDate, setStartDate] = useState<any>('');
+  const [endDate, setEndDate] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
   const [RecipientEmail, setRecipientEmail] = useState<any>('');
+  const [startTime, setStartTime] = React.useState<any | null>(
+    // dayjs('2014-08-18T21:11:54'),
+     ''
+  );
+  const [endTime, setEndTime] = React.useState<any | null>(
+    // dayjs('2014-08-18T21:11:54'),
+    ''
+  );
+//   function dateConverter(str:any){
+//     var date = new Date(str)
+//   //  let mnth = ("0" + (date.getMonth()+1)).slice(-2)
+//   //  let day  = ("0" + date.getDate()).slice(-2);
+//    let hours  = ("0" + date.getHours()).slice(-2);
+//    let minutes = ("0" + date.getMinutes()).slice(-2);
+//    let seconds  = ("0" + date.getSeconds()).slice(-2);
+//   //  let year = date.getFullYear();
+//     return ` ${hours}:${minutes}:${seconds}`
+//  }
+  const handleChangeStartTime = (event: any) => {
+    // console.log(newValue.$d)
+    // const number = moment(event.target.value, ["HH.mm"]).format("HH:MM A");
+    // console.log(number)
+    setStartTime(event.target.value);
+    // console.log(dateConverter(newValue.$d))
+    //  setStartTime(dateConverter(newValue.$d));
+  };
+  const handleChangeEndTime = (event: any) => {
+    // console.log(event.target.value)
+    // const number1 = moment(event.target.value, ["HH.mm"]).format("HH:MM A");
+    //  console.log(number1)
+    setEndTime(event.target.value)
+  };
   const [state, setState] = useState({
     warningMsg: ""
   })
@@ -214,6 +259,22 @@ const EventsEditor = () => {
     console.log(event.target.value)
     setTitle(event.target.value);
   };
+  const handleChangeLocationField = (event: any) => {
+    console.log(event.target.value)
+    setLocation(event.target.value);
+  };
+  const handleChangeCategoryField = (event: any) => {
+    console.log(event.target.value)
+   setCategory(event.target.value);
+  };
+  const handleChangeStartDateField = (event: any) => {
+    // console.log( moment(event.target.value).format('DD-MM-YYYY'))
+    setStartDate(event.target.value);
+  };
+  const handleChangeEndDateField = (event: any) => {
+    // console.log( moment(event.target.value).format('DD-MM-YYYY'))
+    setEndDate(event.target.value);
+  };
   const handleChangeDescriptionField = (event: any) => {
     console.log(event.target.value)
     setDescription(event.target.value);
@@ -300,24 +361,7 @@ const EventsEditor = () => {
       });
     }
   };
-  const handleSubmit = async () => {
-    console.log('grdgdg')
-    const announcementData = {
-      // token :tokens,
-      title: Title,
-      description: Description,
-      image: base1,
-      imageName: filename1,
-      isActive: isActives,
-      EnableLikes: enablelikes,
-      EnableCommands: enableCommands,
-      SharedAsEmail: sharedAsEmails,
-      RecipientEmail: RecipientEmail,
-      Attachment: base2,
-      Attachmentname: filename2
-    }
-    //  await sendItem(announcementData)
-  }
+  
 
   const [files, setFiles] = useState<File[]>([]);
   const fileRef = React.useRef<HTMLInputElement | null>(null)
@@ -333,7 +377,16 @@ const EventsEditor = () => {
     // console.log(event?.target?.files?.[0].name)
     setSelectedFiles(event?.target?.files?.[0]);
     setNames(event?.target?.files?.[0].name)
-
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload= (e) =>{
+        console.log(e.target?.result,'kkkkttt')
+      setFileSelected(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
 
     // const fileList = event.target.files;
     // // console.log(fileList[0].name,'uuuu')
@@ -382,17 +435,60 @@ const EventsEditor = () => {
     // console.log(event?.target?.files?.[0].name)
     setSelectedFiles1(event?.target?.files?.[0]);
     setNames1(event?.target?.files?.[0].name)
-    let reader = new FileReader();
-        // @ts-ignore
-        reader.readAsDataURL(event?.target?.files?.[0])
-        reader.onload= (e) =>{
-            console.log(e.target?.result,'kkkkttt')
-          setFileSelected(e.target?.result)
-          //@ts-ignore
-          // var eee4 = window.atob(e.target?.result)
-          // console.log(eee4,'rrrrrrthds')
-        }
+    // let reader = new FileReader();
+    //     // @ts-ignore
+    //     reader.readAsDataURL(event?.target?.files?.[0])
+    //     reader.onload= (e) =>{
+    //         console.log(e.target?.result,'kkkkttt')
+    //       setFileSelected(e.target?.result)
+    //       //@ts-ignore
+    //       // var eee4 = window.atob(e.target?.result)
+    //       // console.log(eee4,'rrrrrrthds')
+    //     }
   };
+  const handleSubmit = async () => {
+    console.log('grdgdg')
+    const event = new Date(startDate + ' '+startTime);
+    const event1 = new Date(endDate + ' '+endTime);
+    console.log(event.toUTCString())
+    const announcementData = {
+      // token :tokens,
+      title: Title,
+      description: Description,
+      image: fileSelected,
+      imageName: names,
+      location:location,
+      category:category,
+      startDate:event.toUTCString(),
+     
+      endDate:event1.toUTCString(),
+      // endTime:endTime,
+      isDraft:false
+    }
+    await onClick?.(announcementData)
+  }
+
+  const handleSave = async () => {
+    console.log('grdgdg')
+    const event = new Date(startDate + ' '+startTime);
+    const event1 = new Date(endDate + ' '+endTime);
+    console.log(event.toUTCString())
+    const announcementData = {
+      // token :tokens,
+      title: Title,
+      description: Description,
+      image: fileSelected,
+      imageName: names,
+      location:location,
+      category:category,
+      startDate:event.toUTCString(),
+     
+      endDate:event1.toUTCString(),
+      // endTime:endTime,
+      isDraft:true
+    }
+    await onClick?.(announcementData)
+  }
 
   return (
     <div className={classes.Section}>
@@ -470,7 +566,7 @@ const EventsEditor = () => {
                     id="outlined-adornment-weight"
                     className={classes.span}
                     style={{ width: "100%" }}
-                    onChange={handleChangeTitleField}
+                    onChange={handleChangeLocationField}
                     placeholder="Enter a name"
                   />
                 </div>
@@ -478,7 +574,7 @@ const EventsEditor = () => {
                   <div>
                     <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} style={{ textAlign: "left", margin: "10px" }}>
                       <img src={calenderIcon} alt="" className={classes.titleIcon} />
-                      Event Date<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                      Start Date<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
                     </InputLabel>
                     <TextField
                       type="date"
@@ -487,7 +583,7 @@ const EventsEditor = () => {
                       defaultValue="2022-12-26"
                       className={classes.span}
                       style={{ width: "100%" }}
-                      onChange={handleChangeTitleField}
+                      onChange={handleChangeStartDateField}
                       placeholder="MM/DD/YYYY"
                       InputLabelProps={{
                         color: "secondary",
@@ -505,26 +601,33 @@ const EventsEditor = () => {
                       <img src={clock} alt="" className={classes.titleIcon} />
                       Time<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
                     </InputLabel>
-                    <TextField
-                      type="time"
-                      id="appt-time"
-                      name="appt-time"
-                      multiline={false}
-                      defaultValue="13:30"
-                      className={classes.span}
-                      style={{ width: "100%" }}
-                      onChange={handleChangeTitleField}
-                      // placeholder="HR/MM/ss"
-                      InputLabelProps={{
-                        color: "secondary",
-                        className: "DatePicker",
-                        style: { color: "gray" },
-                        shrink: true,
-                      }}
-                      inputProps={{
-                        style: { color: "gray" },
-                      }}
-                    />
+                    <TextField  
+                      type="time"                     
+                      id="appt-time"                     
+                      name="appt-time"                  
+                      multiline={false}                   
+                      defaultValue="13:30"                   
+                       className={classes.span}               
+                       style={{ width: "100%" }}                
+                        onChange={handleChangeStartTime}                  
+                             // placeholder="HR/MM/ss"                
+                         InputLabelProps={{               
+                         color: "secondary",             
+                         className: "DatePicker",    
+                            style: { color: "gray" },     
+                            shrink: true,                      }}       
+                             inputProps={{         
+                            style: { color: "gray" },                      }}         
+                              />
+                   
+                     {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                              <TimePicker
+                              //  label="Time"
+                               value={startTime}
+                               onChange={handleChangeStartTime}
+                              renderInput={(params) => <TextField {...params} />}
+                              />
+                     </LocalizationProvider> */}
                   </div>
 
                 </div>
@@ -541,7 +644,7 @@ const EventsEditor = () => {
                       defaultValue="2022-12-26"
                       className={classes.span}
                       style={{ width: "100%" }}
-                      onChange={handleChangeTitleField}
+                      onChange={handleChangeEndDateField}
                       placeholder="MM/DD/YYYY"
                       InputLabelProps={{
                         color: "secondary",
@@ -567,7 +670,7 @@ const EventsEditor = () => {
                       defaultValue="13:30"
                       className={classes.span}
                       style={{ width: "100%" }}
-                      onChange={handleChangeTitleField}
+                      onChange={handleChangeEndTime}
                       // placeholder="HR/MM/ss"
                       InputLabelProps={{
                         color: "secondary",
@@ -579,6 +682,14 @@ const EventsEditor = () => {
                         style: { color: "gray" },
                       }}
                     />
+                     {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                              <TimePicker
+                              //  label="Time"
+                               value={endTime}
+                               onChange={handleChangeEndTime}
+                              renderInput={(params) => <TextField {...params} />}
+                              />
+                     </LocalizationProvider> */}
                   </div>
 
                 </div>
@@ -605,7 +716,7 @@ const EventsEditor = () => {
                     id="outlined-adornment-weight"
                     className={classes.span}
                     style={{ width: "100%" }}
-                    onChange={handleChangeTitleField}
+                    onChange={handleChangeCategoryField}
                     placeholder="Enter a name"
                   />
                 </div>
@@ -750,14 +861,14 @@ const EventsEditor = () => {
                       </DialogContentText>
                       <Grid>
                         <Box>
-                          <img src={birthday} alt="" className={classes.backgroundImage} />                        
+                          <img src={fileSelected} alt="" className={classes.backgroundImage} />                        
                         </Box>
                         <Grid>
-                          <Typography className={classes.prevHeading}>General Board Meeting</Typography>
-                          <p className={classes.prevDate}> <img src={calenderIcon} alt="" className={classes.titleIcon} /> 066/05/2023</p>
-                          <p className={classes.prevDate}> <img src={clockGreen} alt="" className={classes.titleIcon} /> 03:00PM - 4:30PM</p>
+                          <Typography className={classes.prevHeading}>{Title}</Typography>
+                          <p className={classes.prevDate}> <img src={calenderIcon} alt="" className={classes.titleIcon} />{moment(startDate).format('DD-MM-YYYY')}</p>
+                          <p className={classes.prevDate}> <img src={clockGreen} alt="" className={classes.titleIcon} /> { moment(startTime, ["HH:mm"]).format("hh:mm A")} - { moment(endTime, ["HH:mm"]).format("hh:mm A")}</p>
                           <p className={classes.prevDesc}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                           {Description}
                           </p>
                         </Grid>
                         <Grid className={classes.iconDiv}>
@@ -778,18 +889,18 @@ const EventsEditor = () => {
                     </DialogContent>
                     <DialogActions>
                       <Grid className={classes.actionPart}>
-                        <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
-                        <Button className={classes.cancelBtn}>Cancel</Button>
+                        <Button onClick={handleSave} autoFocus className={classes.saveBtn}>Save</Button>
+                        <Button onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                       </Grid>
                     </DialogActions>
 
                   </Dialog>
 
-                  <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                  <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
                   <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                     submit
                   </Button>
-                  <Button className={classes.cancelBtn}>Cancel</Button>
+                  <Button onClick={handleClose} className={classes.cancelBtn}>Cancel</Button>
                 </Grid>
 
               </DialogActions>

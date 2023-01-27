@@ -9,6 +9,7 @@ import { AccessToken } from '../App';
 export const contentEditorApi = createApi({
     reducerPath: 'contentEditorApi',
     baseQuery: fetchBaseQuery({
+        // baseUrl: 'http://20.80.251.108/',
         baseUrl: 'http://localhost:4000/',
         prepareHeaders: (headers, { getState }) => {
             // headers.set('Authorization', `Bearer ${access_token}`);
@@ -62,6 +63,24 @@ export const contentEditorApi = createApi({
         uploadItemInEmployee: builder.mutation<any, any>({
             query: (data) => ({
                 url: '/api/v1/contentEditor/employee/uploadItem',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+
+        }),
+        uploadItemInRemoNews: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/remonews/uploadItem',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+
+        }),
+        uploadItemInRemoEvents: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/remoevents/uploadItem',
                 headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
                 body: data
@@ -129,7 +148,9 @@ export const {
      useGetLatestAnnouncementQuery,
      useUploadItemInHeroBannerMutation,
      useUploadItemInCeoMutation,
-     useUploadItemInEmployeeMutation
+     useUploadItemInEmployeeMutation,
+     useUploadItemInRemoNewsMutation,
+     useUploadItemInRemoEventsMutation
     // useGetItemChildrenOneDriveMutation,
     // useGetAllRootItemsOneDriveQuery,
     // useDeleteItemOneDriveMutation,

@@ -2,8 +2,9 @@ import React from 'react';
 import WhatsNew from './../Header/WhatsNew';
 import { Grid ,Box } from '@mui/material';
 import SideBar from './../WorkSpaceOne/SideBar';
-import NewsEditor from './NewsEditor';
+// import NewsEditor from './NewsEditor';
 import { useStyles } from './Styles';
+import { NewsContentEditorPage } from '../../Pages';
 
 
 const NewsContentPage= () => {
@@ -23,7 +24,7 @@ const NewsContentPage= () => {
                             <SideBar />
                         </Grid>
                         <Grid item xs={11} >
-                            <NewsEditor/>
+                            <NewsContentEditorPage/>
                         </Grid>
                        
                     </Grid>
