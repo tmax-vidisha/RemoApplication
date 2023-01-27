@@ -205,12 +205,13 @@ export const useStyles = makeStyles({
     backgroundColor:"#fff",
     borderRadius:"10px",
 
-    "&:hover a .topText":{
-      color:"#009BAD",
-      textDecoration: "none !important",
-    },
+    // "&:hover a .topText":{
+    //   color:"white",
+    //   textDecoration: "none !important",
+    // },
     "& a":{
       textDecorationLine: "none !important",
+      color:"white",
       "&:hover .topImgH":{
         display:"block !important",       
      },

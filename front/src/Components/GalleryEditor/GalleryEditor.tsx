@@ -20,12 +20,13 @@ import save from '../../Assets/Images/save.svg'
 import cancel from '../../Assets/Images/cancel.svg'
 import birthday from '../../Assets/Images/birthday.jpg'
 import copylink from '../../Assets/Images/copy link.svg';
+import { Link } from 'react-router-dom';
 import calenderIcon from '../../Assets/Images/calenderGrey.svg';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Box, Menu, MenuItem, Fade } from '@mui/material';
+import { Box, Menu, MenuItem, Fade,  Breadcrumbs, } from '@mui/material';
 import { useStyles } from './Styles';
 import FileUpload from "react-material-file-upload";
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
@@ -33,9 +34,13 @@ import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
+import uploadB from "../../Assets/Images/uploadB.svg";
 import folder from "../../Assets/Images/folder.svg";
+import success from "../../Assets/Images/successB.svg";
 import folderW from "../../Assets/Images/whiteFolder.svg";
 import UploadFile from './UploadFile';
+import Swal from 'sweetalert2';
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -45,6 +50,24 @@ const GalleryEditor = () => {
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openOn = Boolean(anchorEl);
+
+  const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
+  const openTwo = Boolean(anchorE2);
+  const handleClickTwo = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorE2(event.currentTarget);
+  };
+  const handleCloseTwo = () => {
+    setAnchorE2(null);
+  };
+
+  const [anchorE3, setAnchorE3] = React.useState<null | HTMLElement>(null);
+  const openThree = Boolean(anchorE3);
+  const handleClickThree = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorE3(event.currentTarget);
+  };
+  const handleCloseThree = () => {
+    setAnchorE3(null);
+  };
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -76,22 +99,22 @@ const GalleryEditor = () => {
     }
     //  console.log(fd)
     // await sendItem(Data)
-    // const Toast = Swal.mixin({
-    //     toast: true,
-    //     position: 'top',
-    //     showConfirmButton: false,
-    //     timer: 1500,
-    //     timerProgressBar: true,
-    //     didOpen: (toast) => {
-    //         toast.addEventListener('mouseenter', Swal.stopTimer)
-    //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-    //     }
-    // });
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
 
-    // Toast.fire({
-    //     icon: 'success',
-    //     title: 'Create Successfully'
-    // });
+    Toast.fire({
+        icon: 'success',
+        title: 'Create Successfully'
+    });
 
 
     handleCloseOne();
@@ -131,16 +154,66 @@ const GalleryEditor = () => {
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
         <Grid className={classes.upperPart}>
-          <Grid>Picture Gallery </Grid>
-          <Grid>
+          {/* <Grid style={{color:'#18496a'}}>Picture Gallery </Grid> */}
+          <Typography variant="caption" display="block" gutterBottom>
+                <Breadcrumbs
+                  className={classes.breadcrumbs}
+                  separator={<NavigateNextIcon fontSize="small" className={classes.breadLinks} />}
+                  aria-label="breadcrumb"
+                >
+                  <Link className={classes.breadLinks} color="red" to="/">
+                  Picture Gallery
+                  </Link>
+                  <Typography className={classes.breadLinks}>Approvals Folder</Typography>
+                </Breadcrumbs>
+              </Typography>
+          {/* <Grid>
             <input type='file' id='fileUpload' accept='application/pdf, image/png, mp4/video '
               onChange={handleFileEvent}
               disabled={fileLimit} />
             <label htmlFor="fileUpLoad">
               <a className={`btn btn-primary ${!fileLimit ? '' : 'disabled'}`}>Upload </a>
             </label>
-          </Grid>
+          </Grid> */}
+          <Grid style={{width:"230px", display:"flex", justifyContent:"space-between", marginRight:"20px"}}>
+          <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} >
+            <Button
+              id="fade-button"
+              aria-controls={openTwo ? 'fade-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={openOn ? 'true' : undefined}
+              onClick={handleClickTwo}
+              // className={classes.create}
+              sx={{ textTransform: "capitalize", backgroundColor: "#e5f5f7 !important",color:'#18496a'  }}>
+              <span className={classes.plus}>
+                <img src={uploadB}  alt="" />
+              </span>
+              Upload
+            </Button>
+            <Menu
+              id="fade-menu"
+              MenuListProps={{
+                'aria-labelledby': 'fade-button',
+              }}
+              anchorEl={anchorE2}
+              open={openTwo}
+              onClose={handleCloseTwo}
+              TransitionComponent={Fade}
+              className={classes.menu}
+            >
+              <MenuItem>
+                <div>
+                  <img src={folder} alt="folder" className={classes.menuImage} /> Files
+                </div>
+              </MenuItem>
+              <MenuItem >
+                <div>
+                  <img src={folder} alt="folder" className={classes.menuImage} /> Folders
+                </div>
+              </MenuItem>
+            </Menu>
 
+          </Grid>
           <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
 
             <Button
@@ -152,6 +225,7 @@ const GalleryEditor = () => {
               className={classes.create}
               sx={{ textTransform: "capitalize", backgroundColor: "rgb(50 168 189) !important" }}>
               <span className={classes.plus}><LocalHospitalIcon /></span>
+
               New
             </Button>
             <Menu
@@ -171,34 +245,51 @@ const GalleryEditor = () => {
                   <img src={folder} alt="folder" className={classes.menuImage} /> Folders
                 </div>
                 <Dialog open={openOne} onClose={handleCloseOne}>
-                  <DialogTitle>{"Create New Folder"}</DialogTitle>
+                  <DialogTitle>
+                  <div className={classes.dialogT}>
+                    <div>Create New Folder</div>
+                    <div onClick={handleCloseOne} style={{cursor:"pointer"}}>
+                      <img src={cancel} alt="" />
+                    </div>
+                  </div>
+                  </DialogTitle>
                   <DialogContent>
-                    <Box
-                      component="form"
-                      sx={{
-                        '& > :not(style)': { m: 1, width: '25ch' },
-                      }}
-                      noValidate
-                      autoComplete="off"
-                    >
-                      <TextField id="outlined-basic" onChange={handleOnChange} variant="outlined" />
-
-                    </Box>
+                    <p style={{margin:"0px 0px 5px 0px", textAlign:"left"}}>Enter the name</p>               
+                      <input type="text"  onChange={handleOnChange}  style={{width: "300px",height:"20px" }} />
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={handleFormSubmit}
-                      color="primary" autoFocus>
+                    <div style={{width:"150px", marginRight:"180px"}}>
+                    <Button 
+                    // onClick={handleFormSubmit}
+                    onClick={handleClickThree}
+                       autoFocus style={{backgroundColor:"#009BAD", color:"white", textTransform:"none"}}>
                       Create
                     </Button>
+                    <Dialog open={openThree} onClose={handleCloseThree}>
+                  {/* <DialogTitle>{"Create New Folder"}</DialogTitle> */}
+                  <DialogContent>
+                    <Box>
+                        <img src={success} alt="" style={{width:"50px"}}/>
+                     <Typography>Folder Created SuccessFully</Typography>
+                    </Box>
+                  </DialogContent>
+                  <DialogActions style={{width:"170px"}}>           
+                    <Button autoFocus  style={{backgroundColor:"#009BAD", color:"white"}} onClick={handleCloseThree}>
+                      Ok
+                    </Button>
+                  </DialogActions>
+                </Dialog>
                     <Button onClick={handleCloseOne}
-                      color="primary" autoFocus>
+                      color="primary" autoFocus style={{textTransform:"none"}}>
                       Close
                     </Button>
+                    </div>
                   </DialogActions>
                 </Dialog>
               </MenuItem>
             </Menu>
 
+          </Grid>
           </Grid>
           {/* <Grid className={classes.new}>
           <Button
@@ -243,7 +334,6 @@ const GalleryEditor = () => {
                 </Grid>
               </Grid>
             </DialogTitle>
-
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
                 <Divider />
@@ -543,7 +633,7 @@ const GalleryEditor = () => {
 
         </Grid> */}
         </Grid>
-        <Box style={{ padding:"30px" }}>
+        <Box style={{ padding: "30px" }}>
           <Grid>
             <div className="uploaded-files-list">
               {uploadedFiles.map((file, name: any) => (
@@ -560,23 +650,23 @@ const GalleryEditor = () => {
           <Grid className={classes.boxContain}>
             <Box className={classes.galleryBox}>
               <img src={folderW} alt="" />
-                <div style={{margin:"0px"}}>Approvals Folder</div>
-                <p style={{margin:"0px"}}>September 20, 2022</p>
+              <div style={{ margin: "0px" }}>Approvals Folder</div>
+              <p style={{ margin: "0px" }}>September 20, 2022</p>
             </Box>
             <Box className={classes.galleryBox}>
               <img src={folderW} alt="" />
-                <div style={{margin:"0px"}}>Approvals Folder</div>
-                <p style={{margin:"0px"}}>September 20, 2022</p>
+              <div style={{ margin: "0px" }}>Approvals Folder</div>
+              <p style={{ margin: "0px" }}>September 20, 2022</p>
             </Box>
             <Box className={classes.galleryBox}>
               <img src={folderW} alt="" />
-                <div style={{margin:"0px"}}>Approvals Folder</div>
-                <p style={{margin:"0px"}}>September 20, 2022</p>
+              <div style={{ margin: "0px" }}>Approvals Folder</div>
+              <p style={{ margin: "0px" }}>September 20, 2022</p>
             </Box>
             <Box className={classes.galleryBox}>
               <img src={folderW} alt="" />
-                <div style={{margin:"0px"}}>Approvals Folder</div>
-                <p style={{margin:"0px"}}>September 20, 2022</p>
+              <div style={{ margin: "0px" }}>Approvals Folder</div>
+              <p style={{ margin: "0px" }}>September 20, 2022</p>
             </Box>
           </Grid>
         </Box>

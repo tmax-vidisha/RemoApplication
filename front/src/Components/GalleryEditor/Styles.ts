@@ -308,6 +308,21 @@ boxContain:{
         color: "#606C74 !important",
         fontSize: "12px"
       }
-  }
+  },
+  dialogT:{
+    display:"flex",
+     justifyContent:"space-between",
+     fontSize:"15px",
+     color:"#009BAD"
+  },
+  breadcrumbs: {
+    color:'#18496a',
+    display: "inline-flex",
+  },
+  breadLinks: {
+    color:'#18496a',
+    opacity: 0.8,
+    textDecoration: "none !important",
+  },
 
 });
