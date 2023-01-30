@@ -11,6 +11,7 @@ import herobanner from './routes/contenteditor/herobannner'
 import ceo from './routes/contenteditor/ceo';
 import news from './routes/contenteditor/news';
 import events from './routes/contenteditor/events'
+import navigation from './routes/contenteditor/navigation'
 import employee from './routes/contenteditor/emphighlight'
 import photosandvideo from './routes/photoandvideo/photosandvideo' 
 import header from './routes/header'
@@ -1536,7 +1537,7 @@ app.use(`/api/v1/lists`,graph)
 app.use(`/api/v1/sites`,workspace)
 app.use(`/api/v1/onedrive`,onedrive)
 app.use(`/api/v1/header`,header)
-app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events)
+app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events,navigation)
 app.use(`/api/v1/gallery`,photosandvideo)
 
 app.listen(SERVER_PORT, () => console.log(`Msal Node Auth Code Sample app listening on port ${SERVER_PORT}!`))
