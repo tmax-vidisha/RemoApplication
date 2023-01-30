@@ -72,11 +72,16 @@ const rows = [
   { id: 6, Title: 'Home','Hover On icon':'<img src={home} alt=""/>','Hover Off icon':'<img src={home} alt=""/>','Open in New Tab':<Switch {...label} defaultChecked />,'Order':"1" , "Is Active": <Switch {...label} defaultChecked />, 'Url':"www.google.com", 'Link Master ID':"56ty65" },
   
 ];
+interface IFolderProps {
 
+  onClick?: (obj: any) => void;
 
-const NavigationEditor= () => {
+}
+
+// const NavigationEditor= () => {
+  const NavigationEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-
+  const { onClick } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -109,8 +114,10 @@ const NavigationEditor= () => {
   const [enablelikes, setEnableLikes] = useState<boolean>(false)
   const [enableCommands, setCommands] = useState<boolean>(false)
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
+  const [showImg, setShowImg] = useState<boolean>(true)
   const [Title, setTitle] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
+  const [Order, setOrder] = useState<any>('');
   const [RecipientEmail, setRecipientEmail] = useState<any>('');
   const [state, setState] = useState({
     warningMsg: ""
@@ -205,6 +212,10 @@ const NavigationEditor= () => {
     console.log(event.target.value)
     setDescription(event.target.value);
   };
+  const handleChangeOrderField = (event: any) => {
+    console.log(event.target.value)
+    setOrder(event.target.value);
+  };
   const handleChangeReciepientEmailField = (event: any) => {
     console.log(event.target.value)
     setRecipientEmail(event.target.value);
@@ -287,24 +298,7 @@ const NavigationEditor= () => {
       });
     }
   };
-  const handleSubmit = async () => {
-    console.log('grdgdg')
-    const announcementData = {
-      // token :tokens,
-      title: Title,
-      description: Description,
-      image: base1,
-      imageName: filename1,
-      isActive: isActives,
-      EnableLikes: enablelikes,
-      EnableCommands: enableCommands,
-      SharedAsEmail: sharedAsEmails,
-      RecipientEmail: RecipientEmail,
-      Attachment: base2,
-      Attachmentname: filename2
-    }
-    //  await sendItem(announcementData)
-  }
+ 
 
   const [files, setFiles] = useState<File[]>([]);
   const fileRef = React.useRef<HTMLInputElement | null>(null)
@@ -318,6 +312,7 @@ const NavigationEditor= () => {
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event?.target?.files?.[0].name)
     setSelectedFiles(event?.target?.files?.[0]);
+    console.log(event?.target?.files?.[0].name)
     setNames(event?.target?.files?.[0].name)
     let reader = new FileReader();
     // @ts-ignore
@@ -334,6 +329,7 @@ const NavigationEditor= () => {
   const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event?.target?.files?.[0].name)
     setSelectedFiles1(event?.target?.files?.[0]);
+    console.log(event?.target?.files?.[0].name)
     setNames1(event?.target?.files?.[0].name)
     let reader = new FileReader();
     // @ts-ignore
@@ -347,8 +343,49 @@ const NavigationEditor= () => {
     }
 
   };
-
-
+  const handleSubmit = async () => {
+    console.log('grdgdg')
+    const announcementData = {
+      // token :tokens,
+      title: Title,
+      pageDetails: Description,
+      image: fileSelected,
+      imageName: names,
+      isActive: isActives,
+      openNewTab: enablelikes,
+      order:Order,
+      // EnableCommands: enableCommands,
+      // SharedAsEmail: sharedAsEmails,
+      // RecipientEmail: RecipientEmail,
+      hoverOff: fileSelected1,
+      hoverOffName: names1,
+      isDraft:false
+    }
+    //  await sendItem(announcementData)
+    await onClick?.(announcementData)
+  }
+  
+  const handleSave = async () => {
+    console.log('grdgdg')
+    const announcementData = {
+      // token :tokens,
+      title: Title,
+      pageDetails: Description,
+      image: fileSelected,
+      imageName: names,
+      isActive: isActives,
+      openNewTab: enablelikes,
+      order:Order,
+      // EnableCommands: enableCommands,
+      // SharedAsEmail: sharedAsEmails,
+      // RecipientEmail: RecipientEmail,
+      hoverOff: fileSelected1,
+      hoverOffName: names1,
+      isDraft:true
+    }
+    //  await sendItem(announcementData)
+    await onClick?.(announcementData)
+  }
   return (
     <div className={classes.Section}>
     <Box className={classes.MainPart}>
@@ -472,29 +509,29 @@ const NavigationEditor= () => {
                     <p>drag and drop here</p>
                     <p>Or</p>
                     <input
-                      ref={fileRef}
+                      ref={fileRef1}
                       hidden
                       type="file"
                       accept="image/*"
-                      onChange={handleFileSelect}
+                      onChange={handleFileSelect1}
                     />
 
-                    {!selectedFiles?.name && (
+                    {!selectedFiles1?.name && (
                       <p
-                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        onClick={() => fileRef1.current?.click()} style={{ color: "#009BAD" }}>
                         Browse
                       </p>
                     )}
 
                     <div>
-                      {selectedFiles?.name && (
+                      {selectedFiles1?.name && (
                         <>
-                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles1?.name}</p>
                           <button
                             onClick={() => {
-                              setSelectedFiles(null);
-                              if (fileRef.current) {
-                                fileRef.current.value = '';
+                              setSelectedFiles1(null);
+                              if (fileRef1.current) {
+                                fileRef1.current.value = '';
                               }
                             }}
                             style={{ padding: "5px", border: "none", borderRadius: "4px" }}
@@ -554,7 +591,7 @@ const NavigationEditor= () => {
                   id="outlined-adornment-weight"
                   className={classes.span}
                   style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
+                  onChange={handleChangeOrderField}
                   placeholder="Enter value here"
                 />
               </div>
@@ -589,7 +626,8 @@ const NavigationEditor= () => {
               <div style={{ marginBottom: "15px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
                   <img src={image} alt="" className={classes.titleIcon} />
-                      Attachment<img src={Asterisk} alt="..." />
+                      Attachment
+                      {/* <img src={Asterisk} alt="..." /> */}
                   </InputLabel>
                    <Grid className={classes.svg}>
                     {/* <FileUpload value={files} onChange={setFiles} /> */}
@@ -681,13 +719,17 @@ const NavigationEditor= () => {
                     <Grid>
                       <h1>Navigation</h1>
                       <Box>
-                        <img src={birthday} alt="" className={classes.backgroundImage} />
+                        {showImg ? 
+                        <img src={fileSelected} alt="" className={classes.backgroundImage} onClick={()=>setShowImg(false)} /> :
+                        <img src={fileSelected1} alt="" className={classes.backgroundImage} onClick={()=>setShowImg(true)}/>
+                        
+                        }
                         {/* <img src={girl} alt="" className={classes.girl} />
                         <p>Ayesha Siddiqa</p>
                         <p>HR Manager</p> */}
                       </Box>
                       <Grid>
-                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> https://www.google.com</Typography>
+                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>https://red-moss-0dcddaf10.2.azurestaticapps.net{Description}</Typography>
                         <p style={{ textAlign: "left", marginLeft: "15px" }}>
                          <span style={{color:"#606C74"}}></span>LinkMasterID <a href="#" style={{color:"#009BAD"}}>DEPT 00001 </a>
                         </p>
@@ -710,18 +752,18 @@ const NavigationEditor= () => {
                   </DialogContent>
                   <DialogActions>
                     <Grid className={classes.actionPart}>
-                      <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
-                      <Button className={classes.cancelBtn}>Cancel</Button>
+                      <Button onClick={handleSave} autoFocus className={classes.saveBtn}>Save</Button>
+                      <Button onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                     </Grid>
                   </DialogActions>
 
                 </Dialog>
 
-                <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
                 <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                   submit
                 </Button>
-                <Button className={classes.cancelBtn}>Cancel</Button>
+                <Button  onClick={handleClose} className={classes.cancelBtn}>Cancel</Button>
               </Grid>
 
             </DialogActions>

@@ -33,6 +33,7 @@ import CeoContentEditorPage from "./CeoPage/CeoContentEditorPage";
 import BirthdayPage from "./EmployeeHighlightPage/BirthdayPage";
 import NewsContentEditorPage from "./NewsPage/NewsContentEditorPage";
 import EventsContentEditorPage from "./EventsPage/EventsContentEditorPage";
+import NavigationContentEditorPage from "./QuickLinkPage/NavigationContentEditorPage";
 export {
     
         EventsPage,
@@ -69,6 +70,7 @@ export {
         CeoContentEditorPage,
         BirthdayPage,
         NewsContentEditorPage,
-        EventsContentEditorPage
+        EventsContentEditorPage,
+        NavigationContentEditorPage
 
       };
