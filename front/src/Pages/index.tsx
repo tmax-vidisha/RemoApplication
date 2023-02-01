@@ -34,6 +34,7 @@ import BirthdayPage from "./EmployeeHighlightPage/BirthdayPage";
 import NewsContentEditorPage from "./NewsPage/NewsContentEditorPage";
 import EventsContentEditorPage from "./EventsPage/EventsContentEditorPage";
 import NavigationContentEditorPage from "./QuickLinkPage/NavigationContentEditorPage";
+import ContentEditorMasterPage from "./ContentEditorMaster/ContentEditorMasterPage";
 export {
     
         EventsPage,
@@ -71,6 +72,7 @@ export {
         BirthdayPage,
         NewsContentEditorPage,
         EventsContentEditorPage,
-        NavigationContentEditorPage
+        NavigationContentEditorPage,
+        ContentEditorMasterPage
 
       };
