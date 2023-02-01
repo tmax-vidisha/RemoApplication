@@ -1,89 +1,76 @@
 import React from 'react';
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
+import gIcon from "../../Assets/Images/gsort1.png";
+import gIcon2 from "../../Assets/Images/gsort2.png";
+import gSortIcon from "../../Assets/Images/smallgsort.png";
 import { useState } from 'react';
+
 // @ts-ignore
 import ReactImageVideoLightbox from "react-image-video-lightbox";
 
 const data = [
   {
     index: 0,
-    url: "https://placekitten.com/450/300",
-    thumbnail: "https://placekitten.com/450/300",
+    // url: "https://placekitten.com/450/300",
+    url: gIcon,
+    // thumbnail: "https://placekitten.com/450/300",
+    thumbnail: gSortIcon,
     type: "photo"
   },
   {
     index: 1,
-    url: "https://dev-api.wegolightly.com/upload/644fadb6e4f3c3c9207e1cae39e53efa.webm",
-    thumbnail: "https://www.youtube.com/embed/ScMzIvxBSi4",
+    url: gIcon,
+    thumbnail: gSortIcon,
     type: "video"
   },
   {
     index: 2,
-    url: "https://placekitten.com/550/500",
-    thumbnail: "https://placekitten.com/550/500",
+    url: gIcon,
     type: "photo"
   },
   {
     index: 3,
-    url: "https://www.youtube.com/embed/ScMzIvxBSi4",
+    url: gIcon,
+    thumbnail: gSortIcon,
     type: "video"
   }
 ];
 
+
 const LightBoxGallery = () => {
-
-
 
   const [open, setopen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const openlightbox = (index :any) => {
+  const openlightbox = (index: any) => {
     console.log(index);
     setCurrentIndex(index);
     setopen(true);
   };
   return (
     <div>
-      {data.map((item, index) => {
-        return <img src={item.thumbnail} onClick={() => openlightbox(index)} />;
-      })}
-      <div>kdkdk</div>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+
+        {data.map((item, index) => {
+          return <div>
+            <img src={item.thumbnail} onClick={() => openlightbox(index)} />
+          </div>
+        })}
+      </div>
       {open && (
         <ReactImageVideoLightbox
           data={data}
           startIndex={currentIndex}
           showResourceCount={true}
           onCloseCallback={() => setopen(false)}
-          onNavigationCallback={(currentIndex :any) =>
+          onNavigationCallback={(currentIndex: any) =>
             console.log(`Current index: ${currentIndex}`)
           }
         />
       )}
     </div>
   );
-
-        {/* {isOpen && (
-          <Lightbox
-            mainSrc={images[photoIndex]}
-            nextSrc={images[(photoIndex + 1) % images.length]}
-            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-            onCloseRequest={() => setIsOpen(false)}
-            onMovePrevRequest={() =>
-                setPhotoIndex({
-                photoIndex: (photoIndex + images.length - 1) % images.length,
-              })
-            }
-            onMoveNextRequest={() =>
-                setPhotoIndex({
-                photoIndex: (photoIndex + 1) % images.length,
-              })
-            }
-          />
-        )} */}
-      </div>
-    );
-
 };
 
 export default LightBoxGallery;
