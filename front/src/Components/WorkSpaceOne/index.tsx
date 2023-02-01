@@ -29,55 +29,25 @@ const WorkSpaceOne = () => {
             <Grid item xs={12}>
                 <WhatsNew/>
             </Grid>
-            <Box style={{ margin: "30px", }}>
+            <Box style={{ margin: "20px", }}>
 
                 <Grid container item xs={12} className={classes.bigPaper}>
                     <Grid item xs={1} >
                         <SideBar />
                     </Grid>
-                    <Grid item xs={1} style={{ marginRight: "20px", width:"175px" }}>
+                    <Grid item xs={1.5}>
                         <LeftMenu />
                     </Grid>
                     <Grid item xs={7} style={{ paddingLeft: "8px",}}>
                        
                         <SearchPart />
-  
                         <MyFilePage />
-                        {/* <div>
-                            {
-                                SidebarData.map((item, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <NavLink to={item.path}
-                                                // className={({ isActive }) =>
-                                                //     isActive ? activeLink : normalLink}
-
-                                            >
-                                                <span>{item.icon}</span>
-                                                <span>{item.title}</span>
-                                            </NavLink>
-
-                                        </div>
-                                    )
-                                })
-                            }
-
-                        </div> */}
                     </Grid>
                     <Grid item xs={2}>
                        <AllLinks/>
                     </Grid>
                 </Grid>
             </Box>
-
-            {/* <Grid container spacing={2} item xs={12} >
-                <Grid item xs={3}>
-                    
-                </Grid>
-                <Grid item xs={9}>
-                    
-                </Grid>
-            </Grid> */}
         </Grid>
 
     );

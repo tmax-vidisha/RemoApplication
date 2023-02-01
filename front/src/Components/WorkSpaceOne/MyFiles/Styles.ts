@@ -184,10 +184,10 @@ export const useStyles = makeStyles({
   },
 
   textListItem: {
-    fontSize: "11px",
+    fontSize: "12px",
     color: "#606c74",
     "& span": {
-      fontSize: "11px",
+      fontSize: "12px",
       textDecoration:"none",
       color: "#606c74",
     },
@@ -197,7 +197,7 @@ export const useStyles = makeStyles({
 
     "& img": {
       color: "#606c74",
-      width:"15px",
+      width:"20px",
     },
     "& img:hover": {
       color: "#009BAD",
@@ -206,7 +206,7 @@ export const useStyles = makeStyles({
   },
 
   MuiListItemIcon: {
-    minWidth: "25px !important",
+    minWidth: "35px !important",
     "& img": {
       width: "15px",
     }
@@ -257,7 +257,7 @@ export const useStyles = makeStyles({
     height: "100%",
     backgroundColor: "#02354d",
     textAlign: "center",
-    // width:"75px",
+    //width:"50px",
     borderRadius: " 20px 1px 1px 20px",
 
   },

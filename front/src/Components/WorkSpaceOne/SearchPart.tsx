@@ -306,7 +306,7 @@ const SearchPart = (id: any) => {
     }
 
     return (
-        <Grid  item xs={12} className={classes.upperSearch} > 
+        <Grid item xs={12} className={classes.upperSearch} >
             <Grid >
                 <Search style={{ padding: "5px 5px", backgroundColor: "white", }}>
                     <SearchIconWrapper>
@@ -506,27 +506,26 @@ const SearchPart = (id: any) => {
                             </MenuItem>
                         </Menu>
                     </Grid>
+
                 </Grid>
+                {/* <Grid>
+                    {show ?
+                        <div>
+                            <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }} onClick={() => setShow(!show)}>
+                                <div onClick={handleClickOn}><span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links </div>
+                            </Button>
+                            {isShown && <AllLinks />}
+                        </div>
+                        :
+                        <div>
+                            <Button onClick={() => setShow(!show)} style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight: "48px" }}>
+                                <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
+                                Daily Standup Meeting ...
 
-                {/* {show ?
-                    <div>
-                        <Button className={classes.linkBtn} style={{ textTransform: "capitalize", height: "45px" }} onClick={() => setShow(!show)}>
-                            <div onClick={handleClickOn}><span className={classes.quick} ><LinkOffSharpIcon /></span>Quick Links </div>
-                        </Button>
-                        {isShown && <AllLinks />}
-                    </div>
-                    :
-                    <div>
-                        <Button onClick={() => setShow(!show)} style={{ color: "gray", textTransform: "capitalize", backgroundColor: " #e6ffe6", border: "5px solid white", maxHeight: "48px" }}>
-                            <span className={classes.quick}><CalendarMonthOutlinedIcon /></span>
-                            Daily Standup Meeting ...
-                           
-                        </Button>
-                    </div>
-                } */}
-
-
-
+                            </Button>
+                        </div>
+                    }
+                </Grid> */}
             </Grid>
 
 

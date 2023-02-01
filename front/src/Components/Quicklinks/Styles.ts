@@ -42,11 +42,11 @@ export const useStyles = makeStyles({
     },
   },
   boxContent:{
-    width:"90px",
-    height:"95px",
+    width:"80px",
+    height:"80px",
     border:"1px solid #eee7e7",
     boxShadow:"5px 3px 10px 4px #eee7e7",
-    margin:"15px",
+    margin:"10px",
     padding:"10px",
     backgroundColor:"#e6ffe6",
     borderRadius:"10px",
@@ -106,6 +106,12 @@ export const useStyles = makeStyles({
     color: "white !important",
     marginRight: "30px !important",
     padding: "5px 10px !important"
+  },
+  quickLinkDiv:{
+    paddingTop: "20px", 
+    backgroundColor: "white",
+     width: "260px", 
+     borderRadius: "20px"
   },
   
   // boxContent:{
@@ -198,5 +204,51 @@ export const useStyles = makeStyles({
          width: "auto ",
     }
     
-  }
+  },
+
+  calendar:{
+    fontSize:"12px",
+    width:"240px",
+    margin:"5px",
+    border:"none",
+    height:"275px",
+    "& .react-calendar":{
+      fontSize:"12px",
+      maxWidth:"200px !important",
+      width:"240px",
+      "& .react-calendar__navigation":{
+        display: "flex",
+        height: "35px !important",
+        marginBottom:" 1em",
+      },
+      "& .react-calendar__month-view__weekdays":{
+        textTransform:"capitalize",
+      },
+      "& .react-calendar__month-view__days":{
+        "& .react-calendar__tile ":{
+          fontSize:"9px",
+        }
+      },
+      "& .react-calendar button":{
+        fontSize:"9px",
+      }
+    }
+  },
+  todo:{
+    border:"none",
+     height:"30px",
+     textAlign:"center",
+    fontSize:"12px",
+    width:"70px",
+    color:"gray",
+    "& : hover":{
+      color:"blue", 
+    },
+    backgroundColor:"white",
+    "& :hover":{
+      backgroundColor:"#e1f5f3",
+      height:"30px",
+    }
+    
+  },
 });

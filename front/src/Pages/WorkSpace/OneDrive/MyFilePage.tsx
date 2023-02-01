@@ -2,8 +2,8 @@ import React, { useReducer } from 'react'
 import useCustom from '../../../hooks/useCustom'
 import { breadcrumbsReducer, foldersReducer } from '../../../Store copy/Reducer/foldersReducer';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
-import { useGetAllRootItemsOneDriveQuery, useGetItemChildrenOneDriveMutation,useDeleteItemOneDriveMutation,useCopylinkOneDriveMutation } from '../../../services/graph'
-import {MyFilesPage} from '../../../Components/WorkSpaceOne/MyFilesPage'
+import { useGetAllRootItemsOneDriveQuery, useGetItemChildrenOneDriveMutation, useDeleteItemOneDriveMutation, useCopylinkOneDriveMutation } from '../../../services/graph'
+import { MyFilesPage } from '../../../Components/WorkSpaceOne/MyFiles/MyFilesPage'
 import { AuthenticatedTemplate } from '@azure/msal-react';
 import Breadcrumb from '../../../hooks/Breadcrumb';
 import { Grid } from '@mui/material';
@@ -20,8 +20,8 @@ const MyFilePage = () => {
     const classes = useStyles();
     const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token)
     const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
-    const [sendDeleteItem,{data:deleteResponse}] =  useDeleteItemOneDriveMutation();
-    const [sendCopyItem,{data:copyResponse}] = useCopylinkOneDriveMutation();
+    const [sendDeleteItem, { data: deleteResponse }] = useDeleteItemOneDriveMutation();
+    const [sendCopyItem, { data: copyResponse }] = useCopylinkOneDriveMutation();
     console.log(data?.response)
     const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
         breadcrumbs: [{
@@ -83,54 +83,54 @@ const MyFilePage = () => {
     };
 
 
-    const  deleteDriveItem = async(id:string,name:string) =>{
-         console.log(id,name)
-         const Data = {
+    const deleteDriveItem = async (id: string, name: string) => {
+        console.log(id, name)
+        const Data = {
             // name:id,
             ItemId: id,
-            Name:name
+            Name: name
         }
         await sendDeleteItem(Data)
     }
-    const  copylinkDriveItem = async(id:string,name:string) =>{
-        console.log(id,name)
+    const copylinkDriveItem = async (id: string, name: string) => {
+        console.log(id, name)
         const Data = {
-           // name:id,
-           ItemId: id,
-           Name:name
-       }
-       await sendCopyItem(Data)
-   }
-   
-  
+            // name:id,
+            ItemId: id,
+            Name: name
+        }
+        await sendCopyItem(Data)
+    }
 
-  return (
-    <AuthenticatedTemplate>
-        <Grid style={{marginLeft:"75px"}}>
-            <Grid className={classes.divFile}>
-                My Files
+
+
+    return (
+        <AuthenticatedTemplate>
+            <Grid style={{ marginRight: "10px" }}>
+                <Grid className={classes.divFile}>
+                    My Files
+                </Grid>
+                {/* <Grid className={classes.bigPart}> */}
+                <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
+                    getChildHandler={breadcrumbClickHandler} />
+                <MyFilesPage
+                    data={data}
+                    error={error}
+                    isLoading={isLoading}
+                    ItemChildren={ItemChildren}
+                    itemChildrenError={itemChildrenError}
+                    itemChildrenIsLoading={itemChildrenIsLoading}
+                    onClick={folderClickHandler}
+                    onDelete={deleteDriveItem}
+                    deleteResponse={deleteResponse}
+                    onCopy={copylinkDriveItem}
+                    copyResponse={copyResponse}
+                />
             </Grid>
-            {/* <Grid className={classes.bigPart}> */}
-         {/* <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
-                            getChildHandler={breadcrumbClickHandler} /> */}
-       <MyFilesPage
-         data={data}
-         error={error}
-         isLoading={isLoading}
-         ItemChildren={ItemChildren}
-         itemChildrenError={itemChildrenError}
-         itemChildrenIsLoading={itemChildrenIsLoading}
-         onClick={folderClickHandler}
-         onDelete={deleteDriveItem}
-         deleteResponse={deleteResponse}
-         onCopy={copylinkDriveItem}
-         copyResponse={copyResponse}
-       />
-       </Grid>
-      
-    </AuthenticatedTemplate>
-  )
+
+        </AuthenticatedTemplate>
+    )
 
 }
 
-export default MyFilePage
+export default MyFilePage;

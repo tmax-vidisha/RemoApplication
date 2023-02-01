@@ -6,6 +6,7 @@ import SideBar from './../WorkSpaceOne/SideBar';
 import { useStyles } from './Styles';
 import { NewsContentEditorPage } from '../../Pages';
 
+
 const NewsContentPage= () => {
     const classes=useStyles()
     return (

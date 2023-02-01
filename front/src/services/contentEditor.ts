@@ -87,6 +87,7 @@ export const contentEditorApi = createApi({
             }),
 
         }),
+
         uploadItemInRemoNavigation: builder.mutation<any, any>({
             query: (data) => ({
                 url: '/api/v1/contentEditor/remonavigation/uploadItem',
@@ -96,6 +97,7 @@ export const contentEditorApi = createApi({
             }),
 
         }),
+
         // getItemChildrenOneDrive: builder.mutation<any, any>({
         //     query: (data) => ({
         //         url: '/api/v1/onedrive/getItemChildren',
@@ -159,8 +161,10 @@ export const {
      useUploadItemInCeoMutation,
      useUploadItemInEmployeeMutation,
      useUploadItemInRemoNewsMutation,
+
      useUploadItemInRemoEventsMutation,
      useUploadItemInRemoNavigationMutation
+
     // useGetItemChildrenOneDriveMutation,
     // useGetAllRootItemsOneDriveQuery,
     // useDeleteItemOneDriveMutation,
