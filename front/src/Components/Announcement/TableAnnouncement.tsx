@@ -5,7 +5,8 @@ import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from './index';
 import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar,Typography } from '@mui/material';
 import { useStyles } from './Styles';
-import Dropzone from "react-dropzone";
+// import Dropzone from "react-dropzone";
+import useCustom from '../../hooks/useCustom';
 import title from '../../Assets/Images/title.svg';
 import image from '../../Assets/Images/image.svg';
 import isActive from '../../Assets/Images/isActive.svg';
@@ -24,11 +25,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
-import { useUploadItemInAnnouncementMutation } from '../../services/contentEditor';
+// import { useUploadItemInAnnouncementMutation } from '../../services/contentEditor';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import publish from '../../Assets/Images/publish.svg';
 import Asterisk from '../../Assets/Images/Asterisk.svg';
-import FileUpload from "react-material-file-upload";
+// import FileUpload from "react-material-file-upload";
 import birthday from '../../Assets/Images/birthday.jpg'
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
@@ -89,11 +90,19 @@ const rows = [
   {id: 9, Title: 'Milestone comes as DP World marks a decade of partnership', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Image: activeView, ModifiedOn: '10 months ago',  IsActive: 'Roxie', EnableLikes: 'Harvey', EnableComments: 65, ShareAsEmail: 'info@gmail.com', RecipientEmail: 'contact@gmail.com' },
 ];
 
-const TableAnnouncement = () => {
-  const classes = useStyles();
+interface IFolderProps {
 
+  onClick?: (obj: any) => void;
+
+}
+
+// const TableAnnouncement = () => {
+  const TableAnnouncement: React.FC<IFolderProps> = (props: IFolderProps) => {
+  const classes = useStyles();
+  const {token} = useCustom();
+  const { onClick } = props
   const [open, setOpen] = useState<boolean>(false);
-  const [sendItem] = useUploadItemInAnnouncementMutation();
+  // const [sendItem] = useUploadItemInAnnouncementMutation();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -306,24 +315,7 @@ const TableAnnouncement = () => {
       });
     }
   };
-const handleSubmit = async  () =>{
-  console.log('grdgdg')
-  const announcementData = {
-    // token :tokens,
-    title: Title,
-    description: Description,
-    image:base1,
-    imageName:filename1,
-    isActive:isActives,
-    EnableLikes:enablelikes,
-    EnableCommands:enableCommands,
-    SharedAsEmail:sharedAsEmails,
-    RecipientEmail:RecipientEmail,
-    Attachment:base2,
-    Attachmentname:filename2
-  }
- await sendItem(announcementData)
-}
+
 
 const [openPreview, setOpenPreview] =useState<boolean>(false);
 const handleClickPreview = () => {
@@ -362,18 +354,94 @@ const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
   // console.log(event?.target?.files?.[0].name)
   setSelectedFiles1(event?.target?.files?.[0]);
   setNames1(event?.target?.files?.[0].name)
-  let reader = new FileReader();
-  // @ts-ignore
-  reader.readAsDataURL(event?.target?.files?.[0])
-  reader.onload = (e) => {
-    console.log(e.target?.result, 'kkkkttt')
-    setFileSelected1(e.target?.result)
-    //@ts-ignore
-    // var eee4 = window.atob(e.target?.result)
-    // console.log(eee4,'rrrrrrthds')
-  }
+  // let reader = new FileReader();
+  // // @ts-ignore
+  // reader.readAsDataURL(event?.target?.files?.[0])
+  // reader.onload = (e) => {
+  //   console.log(e.target?.result, 'kkkkttt')
+  //   setFileSelected1(e.target?.result)
+  //   //@ts-ignore
+  //   // var eee4 = window.atob(e.target?.result)
+  //   // console.log(eee4,'rrrrrrthds')
+  // }
 
 };
+const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`
+const Site_Id = 'tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43'
+const heroBannerDriveId ="b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikNSXwtOP-0VTpmA2oOYWlnu"
+const documentsId ="b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikPINNWwDW75Q613iMSyvUzr"
+async function  uploadItemDocument (){
+  try {
+    const response = await fetch(`${BASE_PATH}/${Site_Id}/drives/${documentsId}/items/root:/${names1}:/content`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        "Content-type":   'application/json'
+      },
+      body: selectedFiles1
+    });
+    const data = await response.json();
+    // enter you logic when the fetch is successful
+    console.log(data, 'rtwssssssssss');
+    return data.webUrl
+    // return data
+  } catch (error) {
+    // enter your logic for when there is an error (ex. error toast)
+
+    console.log(error)
+  }
+}
+
+const handleSubmit = async  () =>{
+  console.log('grdgdg')
+  const docUrl :string = await uploadItemDocument();
+  console.log(docUrl,'kkrrrrrrrsssss')
+
+if( docUrl !== undefined){
+      const announcementData = {
+    // token :tokens,
+    title: Title,
+    description: Description,
+    image:fileSelected,
+    imageName:names,
+    isActive:isActives,
+    EnableLikes:enablelikes,
+    EnableCommands:enableCommands,
+    SharedAsEmail:sharedAsEmails,
+    RecipientEmail:RecipientEmail,
+    Attachment:docUrl,
+    isDraft:false
+    
+  }
+   onClick?.(announcementData)
+}
+ 
+}
+const handleSave = async  () =>{
+  console.log('grdgdg')
+  const docUrl :string = await uploadItemDocument();
+  console.log(docUrl,'kkrrrrrrrsssss')
+
+if( docUrl !== undefined){
+      const announcementData = {
+    // token :tokens,
+    title: Title,
+    description: Description,
+    image:fileSelected,
+    imageName:names,
+    isActive:isActives,
+    EnableLikes:enablelikes,
+    EnableCommands:enableCommands,
+    SharedAsEmail:sharedAsEmails,
+    RecipientEmail:RecipientEmail,
+    Attachment:docUrl,
+    isDraft:true
+    
+  }
+   onClick?.(announcementData)
+}
+ 
+}
 
   return (
     <div className={classes.Section}>
@@ -621,7 +689,7 @@ const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
                     )}
 
                     <div>
-                      {selectedFiles?.name && (
+                      {selectedFiles1?.name && (
                         <>
                           <p style={{ fontSize: "12px" }}>{selectedFiles1?.name}</p>
                           <button
@@ -699,15 +767,15 @@ const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
                     </DialogContentText>
                     <Grid>
                       <Box>
-                        <img src={birthday} alt="" className={classes.backgroundImage} />
+                      <img src={fileSelected} alt="" className={classes.backgroundImage} />
                         {/* <img src={girl} alt="" className={classes.girl} /> */}
                         {/* <p>Ayesha Siddiqa</p>
                         <p>HR Manager</p> */}
                       </Box>
                       <Grid>
-                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> Happy Birthday Ayesha siddiqa</Typography>
+                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> {Title}</Typography>
                         <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                          {Description}
                         </p>
                       </Grid>
                       <Grid className={classes.iconDiv}>
@@ -728,18 +796,18 @@ const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
                   </DialogContent>
                   <DialogActions>
                     <Grid className={classes.actionPart}>
-                      <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
-                      <Button className={classes.cancelBtn}>Cancel</Button>
+                      <Button onClick={handleSave}   autoFocus className={classes.saveBtn}>Save</Button>
+                      <Button  onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                     </Grid>
                   </DialogActions>
 
                 </Dialog>
 
-                <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                <Button  onClick={handleSave} className={classes.saveBtn}>Save</Button>
                 <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                   submit
                 </Button>
-                <Button className={classes.cancelBtn}>Cancel</Button>
+                <Button   onClick={handleClose} className={classes.cancelBtn}>Cancel</Button>
               </Grid>
 
             </DialogActions>

@@ -34,6 +34,7 @@ const data = [
 const LightBoxGallery = () => {
 
 
+
   const [open, setopen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -61,6 +62,28 @@ const LightBoxGallery = () => {
       )}
     </div>
   );
+
+        {/* {isOpen && (
+          <Lightbox
+            mainSrc={images[photoIndex]}
+            nextSrc={images[(photoIndex + 1) % images.length]}
+            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+            onCloseRequest={() => setIsOpen(false)}
+            onMovePrevRequest={() =>
+                setPhotoIndex({
+                photoIndex: (photoIndex + images.length - 1) % images.length,
+              })
+            }
+            onMoveNextRequest={() =>
+                setPhotoIndex({
+                photoIndex: (photoIndex + 1) % images.length,
+              })
+            }
+          />
+        )} */}
+      </div>
+    );
+
 };
 
 export default LightBoxGallery;

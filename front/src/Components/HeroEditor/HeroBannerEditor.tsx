@@ -307,6 +307,7 @@ const HeroBannerEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const [selectedFiles1, setSelectedFiles1] = useState<File | null>();
 
   const [fileSelected, setFileSelected] = useState<any>('');
+  const [imgData, setImgData] = useState<any>('');
   const [bB, setBb] = useState<any>();
   const [names,setNames] = useState<any>('');
   const [names1,setNames1] = useState<any>('');
@@ -322,16 +323,16 @@ const HeroBannerEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     // console.log(name,'lllllll')
     // if (!fileList) return;
     // setFileSelected(fileList[0]);
-//     let reader = new FileReader();
-//     // @ts-ignore
-//     reader.readAsDataURL(event?.target?.files?.[0])
-//     reader.onload= (e) =>{
-//       //  console.log(e.target?.result,'kkkkttt')
-//       setFileSelected(e.target?.result)
-//       //@ts-ignore
-//       // var eee4 = window.atob(e.target?.result)
-//       // console.log(eee4,'rrrrrrthds')
-//     }
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload= (e) =>{
+      //  console.log(e.target?.result,'kkkkttt')
+      setImgData(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
 //     fetch(fileSelected)
 // .then(res => res.blob())
 // .then(blob => {
@@ -360,19 +361,19 @@ const HeroBannerEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     // console.log(selectedFiles,'kkkkkttt')
   };
   const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event?.target?.files?.[0].name)
+    console.log(event?.target?.files?.[0])
     setSelectedFiles1(event?.target?.files?.[0]);
     setNames1(event?.target?.files?.[0].name)
-    let reader = new FileReader();
-        // @ts-ignore
-        reader.readAsDataURL(event?.target?.files?.[0])
-        reader.onload= (e) =>{
-            console.log(e.target?.result,'kkkkttt')
-          setFileSelected(e.target?.result)
-          //@ts-ignore
-          // var eee4 = window.atob(e.target?.result)
-          // console.log(eee4,'rrrrrrthds')
-        }
+    // let reader = new FileReader();
+    //     // @ts-ignore
+    //     reader.readAsDataURL(event?.target?.files?.[0])
+    //     reader.onload= (e) =>{
+    //         console.log(e.target?.result,'kkkkttt')
+    //       setFileSelected(e.target?.result)
+    //       //@ts-ignore
+    //       // var eee4 = window.atob(e.target?.result)
+    //       // console.log(eee4,'rrrrrrthds')
+    //     }
   };
   const onUpload = () => {
     console.log(selectedFiles);
@@ -401,7 +402,7 @@ const HeroBannerEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`
 const Site_Id = 'tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43'
 const heroBannerDriveId ="b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikNSXwtOP-0VTpmA2oOYWlnu"
-
+const documentsId ="b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikPINNWwDW75Q613iMSyvUzr"
 async function  uploadItem (){
   try {
     const response = await fetch(`${BASE_PATH}/${Site_Id}/drives/${heroBannerDriveId}/items/root:/${names}:/content`, {
@@ -423,6 +424,27 @@ async function  uploadItem (){
     console.log(error)
   }
 }
+async function  uploadItemDocument (){
+  try {
+    const response = await fetch(`${BASE_PATH}/${Site_Id}/drives/${documentsId}/items/root:/${names1}:/content`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        "Content-type":   'application/json'
+      },
+      body: selectedFiles1
+    });
+    const data = await response.json();
+    // enter you logic when the fetch is successful
+    console.log(data, 'rtwssssssssss');
+    return data.webUrl
+    // return data
+  } catch (error) {
+    // enter your logic for when there is an error (ex. error toast)
+
+    console.log(error)
+  }
+}
 
 
   const handleSubmit = async () => {
@@ -432,9 +454,11 @@ async function  uploadItem (){
     
     const WebUrl:string =await uploadItem();
     console.log(WebUrl,'kkkkkkkkkytyyy')
+    const docUrl :string = await uploadItemDocument();
+    console.log(docUrl,'kkrrrrrrrsssss')
     // const exten = WebUrl.split('.').pop();
     // console.log(exten,'gg')
-    if(WebUrl !== undefined){
+    if(WebUrl !== undefined && docUrl !== undefined){
     const  sendData = {
       // token :tokens,
       title: Title,
@@ -447,8 +471,8 @@ async function  uploadItem (){
       EnableCommands: enableCommands,
       SharedAsEmail: sharedAsEmails,
       RecipientEmail: RecipientEmail,
-      Attachment: fileSelected,
-      Attachmentname: names1,
+      Attachment: docUrl,
+      // Attachmentname: names1,
       isDraft:false
     }
      onClick?.(sendData)
@@ -462,9 +486,11 @@ async function  uploadItem (){
     
     const WebUrl:string =await uploadItem();
     console.log(WebUrl,'kkkkkkkkkytyyy')
+    const docUrl :string = await uploadItemDocument();
+    console.log(docUrl,'kkrrrrrrrsssss')
     // const exten = WebUrl.split('.').pop();
     // console.log(exten,'gg')
-    if(WebUrl !== undefined){
+    if(WebUrl !== undefined && docUrl !== undefined){
     const  sendData = {
       // token :tokens,
       title: Title,
@@ -477,8 +503,8 @@ async function  uploadItem (){
       EnableCommands: enableCommands,
       SharedAsEmail: sharedAsEmails,
       RecipientEmail: RecipientEmail,
-      Attachment: fileSelected,
-      Attachmentname: names1,
+      Attachment: docUrl,
+      // Attachmentname: names1,
       isDraft:true
     }
      onClick?.(sendData)
@@ -770,7 +796,7 @@ async function  uploadItem (){
                       onChange={handleFileSelect1}
                     />
 
-                    {!selectedFiles?.name && (
+                    {!selectedFiles1?.name && (
                       <p
                         onClick={() => fileRef1.current?.click()} style={{ color: "#009BAD" }}>
                         Browse
@@ -845,15 +871,15 @@ async function  uploadItem (){
                       </DialogContentText>
                       <Grid>
                         <Box>
-                          <img src={birthday} alt="" className={classes.backgroundImage} />
+                          <img src={imgData} alt="" className={classes.backgroundImage} />
                           {/* <img src={girl} alt="" className={classes.girl} />
                           <p>Ayesha Siddiqa</p>
                           <p>HR Manager</p> */}
                         </Box>
                         <Grid>
-                          <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}> Connecting the world</Typography>
+                          <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>{Title}</Typography>
                           <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            {Description}
                           </p>
                         </Grid>
                         <Grid className={classes.iconDiv}>
@@ -874,8 +900,8 @@ async function  uploadItem (){
                     </DialogContent>
                     <DialogActions>
                       <Grid className={classes.actionPart}>
-                        <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
-                        <Button className={classes.cancelBtn}>Cancel</Button>
+                        <Button  onClick={handleSave} autoFocus className={classes.saveBtn}>Save</Button>
+                        <Button onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                       </Grid>
                     </DialogActions>
 
@@ -885,7 +911,7 @@ async function  uploadItem (){
                   <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                     submit
                   </Button>
-                  <Button className={classes.cancelBtn}>Cancel</Button>
+                  <Button  onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                 </Grid>
 
               </DialogActions>
