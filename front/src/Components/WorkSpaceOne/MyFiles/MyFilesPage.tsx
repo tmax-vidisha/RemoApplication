@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react';
-import { breadcrumbsReducer, foldersReducer } from '../../Store copy/Reducer/foldersReducer';
-import { ActionType } from '../../Store copy/Actions/actionTypes';
-import WPOneDrive from './../Workspace/OneDrive/index';
+import { breadcrumbsReducer, foldersReducer } from '../../../Store copy/Reducer/foldersReducer';
+import { ActionType } from '../../../Store copy/Actions/actionTypes';
+import WPOneDrive from '../../Workspace/OneDrive/index';
 import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, Checkbox } from '@mui/material';
 import { Typography } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -19,19 +19,19 @@ import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
 import Table from '@mui/material/Table';
 import { Paper } from '@mui/material';
-import useCustom from '../../hooks/useCustom';
-import Breadcrumb from '../../hooks/Breadcrumb';
-import { useGetAllRootItemsOneDriveQuery, useGetItemChildrenOneDriveMutation } from '../../services/graph';
+import useCustom from '../../../hooks/useCustom';
+import Breadcrumb from '../../../hooks/Breadcrumb';
+import { useGetAllRootItemsOneDriveQuery, useGetItemChildrenOneDriveMutation } from '../../../services/graph';
 import moment from "moment";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
-import actions from '../../Assets/Images/action-dots.svg';
-import linkIcon from '../../Assets/Images/link.svg';
-import openIcon from '../../Assets/Images/open.svg';
-import downloadIcon from '../../Assets/Images/DOWLOAD.svg';
-import deleteIcon from '../../Assets/Images/delete.svg';
-import deleteBlue from '../../Assets/Images/delete-blue.svg';
-import success from '../../Assets/Images/success.svg';
+import actions from '../../../Assets/Images/action-dots.svg';
+import linkIcon from '../../../Assets/Images/link.svg';
+import openIcon from '../../../Assets/Images/open.svg';
+import downloadIcon from '../../../Assets/Images/DOWLOAD.svg';
+import deleteIcon from '../../../Assets/Images/delete.svg';
+import deleteBlue from '../../../Assets/Images/delete-blue.svg';
+import success from '../../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
 import DialogContentText from '@mui/material/DialogContentText/DialogContentText';
 import { Options16Filled } from '@fluentui/react-icons';
@@ -462,14 +462,13 @@ const sortDescending = () => {
                     </Grid>
 
                     <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
-                        <button >
+                        <button>
                             <GridViewOutlinedIcon />
                         </button>
                         <button style={{ marginLeft: "15px" }} >
                             <FormatListBulletedOutlinedIcon />
                         </button>
                     </Grid>
-
                 </Grid>
                 <Stack>
                     <TableContainer component={Paper}>

@@ -218,7 +218,7 @@ export const useStyles = makeStyles({
     AlignItems: "center",
     marginLeft: "5px",
     "& li": {
-      padding: "15px 0px",
+      padding: "10px 0px",
       textAlign: "center",
       // display: "flex !important",
       // borderBottom: "1px solid #f0ebeb",

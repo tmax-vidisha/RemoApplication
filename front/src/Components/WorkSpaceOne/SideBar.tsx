@@ -99,7 +99,7 @@ const SideBar = (props: any) => {
   const [id1, setId1] = useState(0);
 
   return (
-    <Grid style={{ width: "95px" }} className={classes.sideBar}>
+    <Grid className={classes.sideBar}>
       <Box>
         <Grid aria-label="secondary mailbox folders">
           <List>
