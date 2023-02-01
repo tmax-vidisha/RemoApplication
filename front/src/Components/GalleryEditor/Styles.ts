@@ -324,5 +324,49 @@ boxContain:{
     opacity: 0.8,
     textDecoration: "none !important",
   },
+  breadcrumbsHeader: {
+    fontSize: "20px",
+    lineHeight: "30px",
+    paddingTop: "10px",
+  },
+  breadcrumbsLinks: {
+    background: "#009BAD !important",
+    height: "30px",
+    textTransform: "capitalize",
+  },
+  contentHeader: {
+    position: "relative",
+    backgroundColor: "unset !important",
+    // paddingTop: "45px",
+  },
+  contentArea: {
+    pl: "0px!important",
+    pr: "0px !important",
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  innerBackground: {
+    // background: "red",
+    // height: "200px",
+    // width: "100%",
+    // backgroundRepeat: "no-repeat",
+    // backgroundSize: "cover",
+    textAlign: "left",
+    borderRadius: "8px",
+    // position: "relative",
+  },
+
+  
+  innerBannerOverlay: {
+    // position: "absolute",
+    // width: "100%",
+    // backgroundImage: `linear-gradient(to bottom, rgba(255,0,0,0), rgb(2 53 77))`,
+    // height: "90%",
+    color: "#ffffff",
+    bottom: 0,
+    borderRadius: "8px",
+   
+  },
+
 
 });

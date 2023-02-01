@@ -23,7 +23,7 @@ const GalleryContentPage= () => {
                             <SideBar />
                         </Grid>
                         <Grid item xs={11} >
-                        <LightBoxGallery/>
+                       
                             <GalleryEditor/>
                         </Grid>
                     </Grid>

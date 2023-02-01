@@ -11,8 +11,6 @@ import herobanner from './routes/contenteditor/herobannner'
 import events from './routes/contenteditor/events'
 import ceo from './routes/contenteditor/ceo';
 import news from './routes/contenteditor/news';
-
-import events from './routes/contenteditor/events'
 import navigation from './routes/contenteditor/navigation'
 
 import employee from './routes/contenteditor/emphighlight'
