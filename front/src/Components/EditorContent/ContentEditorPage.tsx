@@ -4,7 +4,7 @@ import { Grid ,Box } from '@mui/material';
 import SideBar from './../WorkSpaceOne/SideBar';
 import { useStyles } from './Styles';
 import EditorContent from './EditorContent';
-
+import { ContentEditorMasterPage } from '../../Pages';
 
 const ContentEditorPage = () => {
     const classes=useStyles()
@@ -23,7 +23,7 @@ const ContentEditorPage = () => {
                             <SideBar />
                         </Grid>
                         <Grid item xs={11} >
-                            <EditorContent />
+                            <ContentEditorMasterPage />
                         </Grid>
                        
                     </Grid>

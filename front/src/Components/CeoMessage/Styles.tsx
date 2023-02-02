@@ -4,8 +4,9 @@ export const useStyles = makeStyles({
   contentRoot: {
     display: "flex",
     width: "100%",
-    fontSize: "1rem!important",
+    fontSize: "1rem !important",
     marginBottom: "0px !important",
+    textAlign:"left"
   },
   ceoImg: {
     //   paddingTop: "50px",

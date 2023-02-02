@@ -61,10 +61,15 @@ const rows = [
 
 ];
 
+interface IFolderProps {
 
-const EditorContent = () => {
+  onClick?: (obj: any) => void;
+
+}
+// const EditorContent = () => {
+  const EditorContent: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-
+  const { onClick } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -99,6 +104,8 @@ const EditorContent = () => {
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
   const [Title, setTitle] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
+  const [accessible, setAccessible] = useState<any>('');
+  const [belongs, setBelongs] = useState<any>('');
   const [RecipientEmail, setRecipientEmail] = useState<any>('');
   const [state, setState] = useState({
     warningMsg: ""
@@ -193,6 +200,14 @@ const EditorContent = () => {
     console.log(event.target.value)
     setDescription(event.target.value);
   };
+  const handleChangeAccessible = (event: any) => {
+    console.log(event.target.value)
+    setAccessible(event.target.value);
+  };
+  const handleChangeBelongs = (event: any) => {
+    console.log(event.target.value)
+    setBelongs(event.target.value);
+  };
   const handleChangeReciepientEmailField = (event: any) => {
     console.log(event.target.value)
     setRecipientEmail(event.target.value);
@@ -275,31 +290,17 @@ const EditorContent = () => {
       });
     }
   };
-  const handleSubmit = async () => {
-    console.log('grdgdg')
-    const announcementData = {
-      // token :tokens,
-      title: Title,
-      description: Description,
-      image: base1,
-      imageName: filename1,
-      isActive: isActives,
-      EnableLikes: enablelikes,
-      EnableCommands: enableCommands,
-      SharedAsEmail: sharedAsEmails,
-      RecipientEmail: RecipientEmail,
-      Attachment: base2,
-      Attachmentname: filename2
-    }
-    //  await sendItem(announcementData)
-  }
+ 
 
   const [files, setFiles] = useState<File[]>([]);
   const fileRef = React.useRef<HTMLInputElement | null>(null)
+  const fileRef1 = React.useRef<HTMLInputElement | null>(null)
   const [selectedFiles, setSelectedFiles] = useState<File | null>();
+  const [selectedFiles1, setSelectedFiles1] = useState<File | null>();
   const [fileSelected, setFileSelected] = useState<any>('');
+  const [fileSelected1, setFileSelected1] = useState<any>('');
   const [names, setNames] = useState<any>('');
-
+  const [names1, setNames1] = useState<any>('');
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event?.target?.files?.[0].name)
     setSelectedFiles(event?.target?.files?.[0]);
@@ -316,7 +317,68 @@ const EditorContent = () => {
     }
 
   };
+  const handleFileSelect1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(event?.target?.files?.[0].name)
+    setSelectedFiles1(event?.target?.files?.[0]);
+    console.log(event?.target?.files?.[0].name)
+    setNames1(event?.target?.files?.[0].name)
+    let reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(event?.target?.files?.[0])
+    reader.onload = (e) => {
+      console.log(e.target?.result, 'kkkkttt')
+      setFileSelected1(e.target?.result)
+      //@ts-ignore
+      // var eee4 = window.atob(e.target?.result)
+      // console.log(eee4,'rrrrrrthds')
+    }
 
+  };
+
+  const handleSubmit = async () => {
+    console.log('grdgdg')
+    const announcementData = {
+      // token :tokens,
+      title: Title,
+      
+      image: fileSelected,
+      imageName: names,
+      isActive: isActives,
+      Url:Description,
+      Belongs:belongs,
+      Accessible:accessible,
+      // EnableCommands: enableCommands,
+      // SharedAsEmail: sharedAsEmails,
+      // RecipientEmail: RecipientEmail,
+      hoverOff: fileSelected1,
+      hoverOffName: names1,
+      isDraft:false
+    }
+    //  await sendItem(announcementData)
+    await onClick?.(announcementData)
+  }
+  const handleSave = async () => {
+    console.log('grdgdg')
+    const announcementData = {
+      // token :tokens,
+      title: Title,
+      
+      image: fileSelected,
+      imageName: names,
+      isActive: isActives,
+      Url:Description,
+      Belongs:belongs,
+      Accessible:accessible,
+      // EnableCommands: enableCommands,
+      // SharedAsEmail: sharedAsEmails,
+      // RecipientEmail: RecipientEmail,
+      hoverOff: fileSelected1,
+      hoverOffName: names1,
+      isDraft:true
+    }
+    //  await sendItem(announcementData)
+    await onClick?.(announcementData)
+  }
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
@@ -451,29 +513,29 @@ const EditorContent = () => {
                     <p>drag and drop here</p>
                     <p>Or</p>
                     <input
-                      ref={fileRef}
+                      ref={fileRef1}
                       hidden
                       type="file"
                       accept="image/*"
-                      onChange={handleFileSelect}
+                      onChange={handleFileSelect1}
                     />
 
-                    {!selectedFiles?.name && (
+                    {!selectedFiles1?.name && (
                       <p
-                        onClick={() => fileRef.current?.click()} style={{ color: "#009BAD" }}>
+                        onClick={() => fileRef1.current?.click()} style={{ color: "#009BAD" }}>
                         Browse
                       </p>
                     )}
 
                     <div>
-                      {selectedFiles?.name && (
+                      {selectedFiles1?.name && (
                         <>
-                          <p style={{ fontSize: "12px" }}>{selectedFiles?.name}</p>
+                          <p style={{ fontSize: "12px" }}>{selectedFiles1?.name}</p>
                           <button
                             onClick={() => {
-                              setSelectedFiles(null);
-                              if (fileRef.current) {
-                                fileRef.current.value = '';
+                              setSelectedFiles1(null);
+                              if (fileRef1.current) {
+                                fileRef1.current.value = '';
                               }
                             }}
                             style={{ padding: "5px", border: "none", borderRadius: "4px" }}
@@ -514,7 +576,7 @@ const EditorContent = () => {
                     id="outlined-adornment-weight"
                     className={classes.span}
                     style={{ width: "100%" }}
-                    onChange={handleChangeTitleField}
+                    onChange={handleChangeAccessible}
                     placeholder="Enter value here"
                   />
                 </div>
@@ -527,7 +589,7 @@ const EditorContent = () => {
                     id="outlined-adornment-weight"
                     className={classes.span}
                     style={{ width: "100%" }}
-                    onChange={handleChangeTitleField}
+                    onChange={handleChangeBelongs}
                     placeholder="Enter value here"
                   />
                 </div>
@@ -629,14 +691,14 @@ const EditorContent = () => {
                       <Grid>
                         <Box>
                           <p>Hero Banner</p>
-                          <img src={birthday} alt="" className={classes.backgroundImage} />
+                          <img src={fileSelected1} alt="" className={classes.backgroundImage} />
                           {/* <img src={girl} alt="" className={classes.girl} />
                         <p>HR Manager</p> */}
                         </Box>
                         <Grid>
-                          <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>https://www.remodigital.com</Typography>
+                          <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>https://red-moss-0dcddaf10.2.azurestaticapps.net{Description}</Typography>
                           <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                            Belongs to <a href="/">landing page</a>
+                            Belongs to <a href="/">{belongs}</a>
                           </p>
                         </Grid>
                         <Grid className={classes.iconDiv}>
@@ -657,18 +719,18 @@ const EditorContent = () => {
                     </DialogContent>
                     <DialogActions>
                       <Grid className={classes.actionPart}>
-                        <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
-                        <Button className={classes.cancelBtn}>Cancel</Button>
+                        <Button onClick={handleSave} autoFocus className={classes.saveBtn}>Save</Button>
+                        <Button onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                       </Grid>
                     </DialogActions>
 
                   </Dialog>
 
-                  <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                  <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
                   <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                     submit
                   </Button>
-                  <Button className={classes.cancelBtn}>Cancel</Button>
+                  <Button onClick={handleClose} className={classes.cancelBtn}>Cancel</Button>
                 </Grid>
 
               </DialogActions>
