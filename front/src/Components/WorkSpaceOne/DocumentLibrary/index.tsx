@@ -23,7 +23,7 @@ const DocumentLibrary = () => {
                     <Grid item xs={1} >
                         <SideBar />
                     </Grid>
-                    <Grid item xs={1}>
+                    <Grid item xs={1.5}>
                         <LeftMenu />
                     </Grid>
                     <Grid item xs={7} style={{ paddingLeft: "8px", }}>

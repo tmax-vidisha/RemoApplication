@@ -190,7 +190,13 @@ export const useStyles = makeStyles({
  
 what:{
   boxShadow: "10px 1px 30px -10px #858080fc",
-  height: "40px", display: "flex", justifyContent: "center", alignItems: "center", marginTop:"10px", marginBottom:"10px"
+  height: "40px",
+   display: "flex",
+   justifyContent: "left",
+    alignItems: "center",
+     marginTop:"10px",
+      marginBottom:"10px",
+      paddingLeft:"20px"
 }
 
 });

@@ -10,7 +10,7 @@ import { useStyles } from './Styles';
 import announcementIcon from "../../../Assets/Images/announcement.svg";
 // import  FileSharedPage from './FileSharedPage';
 import SharedFilePage from '../../../Pages/WorkSpace/OneDrive/SharedFilePage';
-
+import AllLinks from '../../Quicklinks/AllLinks';
 
 const SharedWithMe = () => {
     const classes = useStyles();
@@ -30,13 +30,16 @@ const SharedWithMe = () => {
                  <Grid item xs={1} >
                      <SideBar />
                  </Grid>
-                 <Grid item xs={2}>
+                 <Grid item xs={1.5}>
                      <LeftMenu />
                  </Grid>
-                 <Grid item xs={9} style={{ paddingLeft: "8px" }}>
+                 <Grid item xs={7} style={{ paddingLeft: "8px" }}>
                      <SearchPart/>
                      <SharedFilePage />
                  </Grid>
+                 <Grid item xs={2}>
+                        <AllLinks />
+                    </Grid>
              </Grid>
          </Box>
      </Grid>

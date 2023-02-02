@@ -95,6 +95,8 @@ import Trash from './Components/WorkSpaceOne/Trash';
 import HeroBannerMoreImages from './Components/HeroImages/HeroBannerMoreImages';
 import QuicklinksPage from './Components/QuicklinksPage';
 import WorkspaceToggle from './Layout/WorkspaceToggle';
+import WhatsNewAnnounce from './Components/WhatsNewAnnounce';
+import WhatsAnnouneReadMore from './Components/WhatsNewAnnounce/WhatsAnnouneReadMore';
 
 
 
@@ -421,6 +423,12 @@ const Main = () => {
                             <Route
                               path="/quickLinksPage"
                               element={<QuicklinksPage/>} />
+                            <Route
+                              path="/whatsNewAnnounce"
+                              element={<WhatsNewAnnounce/>} />
+                            <Route
+                              path="/whatsAnnouneReadMore"
+                              element={<WhatsAnnouneReadMore/>} />
                         
                         </Routes>
                     </ThemeProvider>
