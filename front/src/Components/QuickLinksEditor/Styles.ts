@@ -208,16 +208,37 @@ export const useStyles = makeStyles({
   },
   svg: {
     // display: "none !important",
-    alignItems: "left",
+    cursor:"pointer",
+    border: "1px dashed gray", 
+    borderRadius: "5px", 
+    padding:"20px",
+    height: "auto",
+    alignItems: "center",
+    "& input": {
+      color: "white",
+      backgroundColor: "#009BAD",
+    },
+    "& p": {
+      fontSize: "12px",
+      margin: "0px",
+      textAlign:"center",
+      color:"#606C74",
+    },
     " & span": {
       display: "none !important",
+      fontSize: "12px"
     },
     "& button": {
       display: "block",
       color: "white",
-      backgroundColor: "#b8bdc1",
-      fontSize:"12px"
-    }
+      backgroundColor: "#009BAD",
+      fontSize: "12px"
+    },
+    "& img": {
+      width: "45px",
+    // marginRight:"70px"
+    },
+   
   },
 
   backgroundImage: {
