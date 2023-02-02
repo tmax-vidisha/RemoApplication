@@ -1539,7 +1539,7 @@ app.use(`/api/v1/sites`,workspace)
 app.use(`/api/v1/onedrive`,onedrive)
 app.use(`/api/v1/header`,header)
 
-app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events)
+// app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events)
 
 app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events,navigation,contentEditor)
 
