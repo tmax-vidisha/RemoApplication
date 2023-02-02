@@ -2,7 +2,7 @@ import React, { useState, useReducer } from 'react';
 import { breadcrumbsReducer, foldersReducer } from '../../../Store copy/Reducer/foldersReducer';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
 import WPOneDrive from '../../Workspace/OneDrive/index';
-import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, Checkbox } from '@mui/material';
+import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, Checkbox, TablePagination } from '@mui/material';
 import { Typography } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -260,7 +260,7 @@ interface IFolderProps {
     copyResponse: any
     // onRename?: (id: string, name: string) => void;
     // onShare?: (id: string) => void;
-    
+
 }
 
 
@@ -400,38 +400,49 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         // console.log(id,name,folder)
         onClick(id, name, folder)
     }
-const [selected, setSelected]=useState(false);
+    const [selected, setSelected] = useState(false);
 
-const handleBoxChange=(e:any)=>{
-    const value =e.target.value;
-    console.log(value);
-    if(value== "all"){
-        setSelected(true)
-    return;
+    const handleBoxChange = (e: any) => {
+        const value = e.target.value;
+        console.log(value);
+        if (value == "all") {
+            setSelected(true)
+            return;
+        }
+
+        setSelected(value);
     }
 
-    setSelected(value);
-}
+    const [prices, setPrices] = useState([])
 
-const [prices, setPrices] = useState([])
+    // useEffect(() => {
+    //     let prices = products.map(p => p.price.substring(3));
+    //     setPrices(prices)
+    // }, []);
 
-// useEffect(() => {
-//     let prices = products.map(p => p.price.substring(3));
-//     setPrices(prices)
-// }, []);
+    const sortAscending = () => {
+        const sortAscPrices = [...prices]
+        sortAscPrices.sort((a, b) => a - b)
+        setPrices(sortAscPrices)
+    }
 
-const sortAscending = () => {
-  const sortAscPrices = [...prices]
-  sortAscPrices.sort((a, b) => a - b)    
-  setPrices( sortAscPrices )
-}
+    const sortDescending = () => {
+        const sortDescPrices = [...prices]
+        sortDescPrices.sort((a, b) => a - b).reverse()
+        setPrices(sortDescPrices)
+    }
 
-const sortDescending = () => {
-    const sortDescPrices = [...prices]
-    sortDescPrices.sort((a, b) => a - b).reverse()
-    setPrices( sortDescPrices )
-}
+    const [pg, setpg] = React.useState(0);
+    const [rpg, setrpg] = React.useState(5);
 
+    function handleChangePage( newpage: any) {
+        setpg(newpage);
+    }
+
+    function handleChangeRowsPerPage(event: any) {
+        setrpg(parseInt(event.target.value, 10));
+        setpg(0);
+    }
 
     return (
         <div>
@@ -440,8 +451,8 @@ const sortDescending = () => {
                     <Grid>
                         <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
                             <InputLabel id="demo-simple-select-standard-label">
-                            <span className={classes.shortSpan}>Sort by</span>
-                            {/* <span className={classes.shortBy}>Newest</span> */}
+                                <span className={classes.shortSpan}>Sort by</span>
+                                {/* <span className={classes.shortBy}>Newest</span> */}
                             </InputLabel>
                             <Select
                                 labelId="demo-simple-select-standard-label"
@@ -449,14 +460,14 @@ const sortDescending = () => {
                                 value={age}
                                 onChange={handleChange}
                                 label="Age"
-                                style={{width:"100px"}}
+                                style={{ width: "100px" }}
                             >
                                 {/* <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem> */}
                                 <MenuItem value={10} onClick={sortAscending}><span className={classes.shortBy}>Newest</span></MenuItem>
                                 <MenuItem value={20} onClick={sortDescending}><span className={classes.shortBy}>Oldest</span></MenuItem>
-                                
+
                             </Select>
                         </FormControl>
                     </Grid>
@@ -472,14 +483,14 @@ const sortDescending = () => {
                 </Grid>
                 <Stack>
                     <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 300, height:400 }} aria-label="simple table">
+                        <Table sx={{ minWidth: 300, height: 400 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell padding="checkbox" ><Checkbox 
-                                    value="all"
-                                     onChange={handleBoxChange} 
+                                    <TableCell padding="checkbox" ><Checkbox
+                                        value="all"
+                                        onChange={handleBoxChange}
                                     //  checked={selected.includes() }
-                                     /></TableCell>
+                                    /></TableCell>
                                     <TableCell>Name</TableCell>
                                     <TableCell align="right">Last Modified By</TableCell>
                                     <TableCell align="right">Last Modified Date</TableCell>
@@ -507,7 +518,7 @@ const sortDescending = () => {
                             {show ?
                                 <TableBody>
                                     {data?.response &&
-                                        data?.response.map((item: any, index: any) => {
+                                        data?.response.slice(pg * rpg, pg * rpg + rpg).map((item: any, index: any) => {
                                             //   const { fields = {} } = item;
 
                                             // const  Url= item["@microsoft.graph.downloadUrl"];
@@ -667,7 +678,7 @@ const sortDescending = () => {
                                 <TableBody>
 
                                     {ItemChildren?.response &&
-                                        ItemChildren?.response.map((item: any, index: any) => {
+                                        ItemChildren?.response.slice(pg * rpg, pg * rpg + rpg).map((item: any, index: any) => {
                                             //   const { fields = {} } = item;
                                             //   // console.log(fields,'yjyjyjyjyj')
                                             //   var eventTitle = fields?.Title;
@@ -819,6 +830,15 @@ const sortDescending = () => {
                         </Table>
 
                     </TableContainer>
+                    <TablePagination
+                        rowsPerPageOptions={[5, 10, 25]}
+                        component="div"
+                        count={rows.length}
+                        rowsPerPage={rpg}
+                        page={pg}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
                 </Stack>
             </Grid>
 

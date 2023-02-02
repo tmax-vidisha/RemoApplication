@@ -7,6 +7,8 @@ import announcementIcon from "../../../Assets/Images/announcement.svg";
 import { useStyles } from './Styles';
 // import RecentFile from './RecentFile';
 import { MyRecent } from '../../../Pages';
+import AllLinks from '../../Quicklinks/AllLinks';
+
 const  RecentFiles = () => {
     const classes=useStyles();
   return (
@@ -27,15 +29,18 @@ const  RecentFiles = () => {
                     <Grid item xs={1} >
                         <SideBar />
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={1.5}>
                         <LeftMenu />
                     </Grid>
-                    <Grid item xs={9} style={{ paddingLeft: "8px" }}>
+                    <Grid item xs={7} style={{ paddingLeft: "8px" }}>
                         <SearchPart/>
 
                         {/* <SharedFiles /> */}
                         {/* <FileSharedPage/> */}
                     <MyRecent/>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <AllLinks />
                     </Grid>
                 </Grid>
             </Box>

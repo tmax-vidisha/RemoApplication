@@ -231,16 +231,19 @@ function createData(
     lastModifiedBy: string,
     ModifiedDate: string,
     fileSize: string,
+    deleted: string,
     Actions: any,
 ) {
-    return { name, lastModifiedBy, ModifiedDate, fileSize, Actions };
+    return { name, lastModifiedBy, ModifiedDate, fileSize,deleted, Actions };
 }
 
 const rows = [
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt="" />),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt="" />),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt="" />),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt="" />),
+    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb","now", <img src={actions} alt="" />),
+    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb","now", <img src={actions} alt="" />),
+    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now",<img src={actions} alt="" />),
+    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now",<img src={actions} alt="" />),
+    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now",<img src={actions} alt="" />),
+    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now",<img src={actions} alt="" />),
 
 ];
     return (
@@ -257,6 +260,7 @@ const rows = [
                                 <TableCell align="right">Last Modified By</TableCell>
                                 <TableCell align="right">Last Modified Date</TableCell>
                                 <TableCell align="right">File Size</TableCell>
+                                <TableCell align="right">Deleted</TableCell>
                                 <TableCell align="right">Actions</TableCell>
                             </TableRow>
                         </TableHead>
@@ -272,6 +276,7 @@ const rows = [
                                     <TableCell align="right">{row.lastModifiedBy}</TableCell>
                                     <TableCell align="right">{row.ModifiedDate}</TableCell>
                                     <TableCell align="right">{row.fileSize}</TableCell>
+                                    <TableCell align="right">{row.deleted}</TableCell>
                                     <TableCell align="right">{row.Actions}</TableCell>
                                 </TableRow>
                             ))}

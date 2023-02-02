@@ -49,7 +49,6 @@ const columns: GridColDef[] = [
 
 ];
 
-
 const rows = [
   { id: 1, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
   { id: 2, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
@@ -394,13 +393,10 @@ interface IFolderProps {
               New
             </Button>
             <Dialog
-              classes={{
-                paper: classes.newPosOfDialog
-              }}
+              classes={{paper: classes.newPosOfDialog}}
               open={openOne}
               onClose={handleClose}
-              style={{ marginTop: "60px", height: "650px" }}
-            >
+              style={{ marginTop: "60px", height: "650px" }}>
               <DialogTitle id="alert-dialog-title" >
                 <Grid className={classes.dialogTitle}>
                   <Grid>
@@ -746,9 +742,11 @@ interface IFolderProps {
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
+          // pageSize={5}
+          // rowsPerPageOptions={[5]}
           checkboxSelection
+          pageSize={5} 
+          rowsPerPageOptions={[2, 5, 7]}
         />
       </Box>
     </div>
