@@ -46,11 +46,7 @@ import vehicle from "./../../Assets/Images/vehicleRequest.svg";
 import vehicleH from "./../../Assets/Images/vehicleRHover.svg";
 
 
-interface IFolderProps {
-  data: any,
-  error: any,
-  isLoading: any
-}
+
 interface type {
   selectedColor: string;
 }
@@ -94,13 +90,19 @@ const ToggleButton = styled(MuiToggleButton)((selectedColor: any) => ({
   },
 }));
 
-
-const HomeTopNav = (props: any) => {
-  //const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
+interface IFolderProps {
+  data: any,
+  error: any,
+  isLoading: any
+}
+const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
+// const HomeTopNav = (props: any) => {
+// const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
+    // console.log(props,'props')
+  // console.log(data)
   const [SelValue, setSelValue] = useState("");
   const [topMenu, setTopMenu] = useState(true);
-  const { history } = props;
   let navigate = useNavigate();
 
   // const pca = new PublicClientApplication(configuration);
@@ -155,7 +157,7 @@ const HomeTopNav = (props: any) => {
   );
 
   const { data, error, isLoading } = props;
-  // console.log(data, '88888ttuytuytu888')
+  console.log(data, '88888ttuytuytu888')
 
   const itemsList = [
     {
@@ -277,7 +279,7 @@ const HomeTopNav = (props: any) => {
   const [showResults, setShowResults] = useState(true)
   const onClick = () => setShowResults(false)
   const HandleClick = () => setShowResults(true);
-
+  // const { data, error, isLoading } = props
   return (
     <AuthenticatedTemplate>
       <Paper elevation={0}>
