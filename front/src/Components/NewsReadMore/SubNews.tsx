@@ -94,10 +94,8 @@ const post = [
     // console.log(filterdPeople,'tytrhthtrhtrh')
     return (
         <div>
+             <IconText />
             <Container className={classes.contentEditorWidth}>
-                <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-                    <IconText />
-                </Paper>
                 <Card className={classes.cardHeight} elevation={0}>
                     <Paper className={classes.innerBackground}>
                         <div className={classes.innerBannerOverlay}></div>

@@ -166,11 +166,9 @@ const GalleryEditor = () => {
                   <Link to="/" className={classes.breadLinks}  >
                     Picture Gallery
                   </Link>
-                  <Typography>
-                    <Link to="/birthday" className={classes.breadLinks}  >
+                  <Typography  className={classes.breadLinks}>
                       Approvals Folder
-                    </Link></Typography>
-
+                    </Typography>
                 </Breadcrumbs>
               </Typography>
             </div>

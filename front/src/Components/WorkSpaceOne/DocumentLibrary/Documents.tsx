@@ -1,8 +1,9 @@
 import React from 'react';
-import { Grid, Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper, Link } from '@mui/material';
+import { Grid, Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper,TablePagination, Link } from '@mui/material';
 import moment from "moment";
 import starred from '../../../Assets/Images/starred.svg';
 import { useStyles } from './Styles';
+
 // interface IFolderProps {
 //     data: any,
 //     error: any,
@@ -27,8 +28,22 @@ const rows = [
     createData('Dream designs', "Jahanara", "August 30 2022", "2 kb",<img src={starred} alt=""/>),
     createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt=""/>),
     createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt=""/>),
+    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt=""/>),
+    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt=""/>),
+    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", <img src={starred} alt=""/>),
 
 ];
+const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
 
     return (
         <Grid>
@@ -48,7 +63,7 @@ const rows = [
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                        {rows.map((row) => (
+                        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                             <TableRow
                                 key={row.name}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -69,6 +84,15 @@ const rows = [
                     </Table>
 
                 </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 20]}
+                    component="div"
+                    count={rows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
             </Grid>
         </Grid>
     );

@@ -5,7 +5,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItem from '@mui/material/ListItem';
 import TopicTwoToneIcon from '@mui/icons-material/TopicTwoTone';
 import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Paper } from '@mui/material';
 import { CardContent } from '@mui/material';
 import { AuthenticatedTemplate } from '@azure/msal-react';
@@ -13,25 +13,31 @@ import { useStyles } from './Styles';
 import ClearIcon from '@mui/icons-material/Clear';
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { Grid } from '@mui/material';
-import DocumentIcon from "../../Assets/Images/Document.svg";
+import DocumentIcon from "../../Assets/Images/documentH.svg";
+import documentH from "../../Assets/Images/Document.svg";
 import filesIcon from "../../Assets/Images/files.svg";
+import myfileH from "../../Assets/Images/myfilesH.svg";
 import recentIcon from "../../Assets/Images/recent.svg";
+import recentH from "../../Assets/Images/recentH.svg";
 import searchIcon from "../../Assets/Images/search.svg";
 import sharedIcon from "../../Assets/Images/shared.svg";
+import sharedH from "../../Assets/Images/sharedH.svg";
+import starredH from "../../Assets/Images/starredH.svg";
 import starredIcon from "../../Assets/Images/starred.svg";
 import trashIcon from "../../Assets/Images/trash.svg";
+import trashH from "../../Assets/Images/trashH.svg";
 import upload from "../../Assets/Images/upload-blue.svg";
 import menuBlue from "../../Assets/Images/menu-blue.svg";
 import setting from "../../Assets/Images/setting-blue.svg";
 import { MyFilePage } from '../../Pages';
+import { styled } from '@mui/material/styles';
 
+// interface IFolderProps {
+//     data?: any,
+//     error?: any,
+//     isLoading?: any,
 
-interface IFolderProps {
-    data?: any,
-    error?: any,
-    isLoading?: any,
-
-}
+// }
 
 
 export const SidebarData = [
@@ -41,30 +47,35 @@ export const SidebarData = [
         // onClick: () => history.push("/Deliveries"),
         path: "/WorkspaceOne",
         icon: <img src={filesIcon} alt="" />,
+        iconHover: <img src={myfileH} alt="" />,
     },
     {
         id: 2,
         title: "Shared with Me",
         path: "/sharedWithMe",
         icon: <img src={starredIcon} alt="" />,
+        iconHover: <img src={ sharedH} alt="" />,
     },
     {
         id: 3,
         title: "Document Library",
         path: "/documentLibrary",
-        icon: <img src={DocumentIcon} alt="" />,
+        icon: <img src={documentH} alt="" />,
+        iconHover: <img src={DocumentIcon} alt="" />,
     },
     {
         id: 4,
         title: "Recent",
         path: "/recentFilesOneDrive",
         icon: <img src={recentIcon} alt="" />,
+        iconHover: <img src={recentH} alt="" />,
     },
     {
         id: 5,
         title: "Starred",
         path: "/StarredFile",
         icon: <img src={starredIcon} alt="" />,
+        iconHover: <img src={starredH} alt="" />,
     },
 
     {
@@ -72,17 +83,40 @@ export const SidebarData = [
         title: "Trash",
         path: "/trash",
         icon: <img src={trashIcon} alt="" />,
+        iconHover:<img src={trashH} alt="" />, 
     }
 
 ]
 
-const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
+const LeftMenu = () => {
     const classes = useStyles();
     const [SelValue, setSelValue] = useState("");
     const [topMenu, setTopMenu] = useState(true);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const StyledList = styled(List)({
+        // selected and (selected + hover) states
+        '&& .Mui-selected, && .Mui-selected:hover': {
+            backgroundColor: 'red',
+            '&, & .MuiListItemIcon-root': {
+                color: 'pink',
+            },
+        },
+        // hover states
+        '& .MuiListItemButton-root:hover': {
+            backgroundColor: 'orange',
+            '&, & .MuiListItemIcon-root': {
+                color: 'yellow',
+            },
+        },
+    });
+
+    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const handleListItemClick = (index: number) => {
+        setSelectedIndex(index);
+    };
 
 
     const location = useLocation();
@@ -105,14 +139,18 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
         </ListItem>
     );
 
-    const { data, error, isLoading } = props;
-    console.log(data, 'Left menu data ')
+    let pathname = window.location.pathname;
+    useEffect(() => {
+        pathname = window.location.pathname;
+    }, [window.location.pathname])
+
+    const [isActive, setIsActive] = useState(false);
     return (
-        <Box sx={{  bgcolor: 'background.paper', height: "100%",  }}>
+        <Box sx={{ bgcolor: 'background.paper', height: "100%", }}>
             <Box style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }} >
                 {/* <CssBaseline /> */}
                 <Box >
-                    <div style={{ color: "#1b6189",marginTop:"20px"}}>Work Space</div>
+                    <div style={{ color: "#1b6189", marginTop: "20px" }}>Work Space</div>
                     <nav>
                         <div>
                             {
@@ -124,16 +162,21 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         <List key={index}>
                                             <ListItem disablePadding>
                                                 <NavLink end to={item.path}
-                                                    // className={({ isActive }) =>
-                                                    // isActive ? activeLink: normalLink} 
                                                     style={{ textDecoration: "none" }}
-                                                    >
-                                                    <ListItemButton style={{position:'unset'}}>
-                                                        <ListItemIcon className={classes.MuiListItemIcon}>
-                                                            {item.icon}
-                                                        </ListItemIcon>
-                                                        <ListItemText className={classes.textListItem}  style={{ textDecoration: "none" }}>{item.title} </ListItemText>
+                                                    onClick={() => setIsActive(!isActive)}
+                                                >
+                                                    
+                                                    {isActive ?
+                                                    <ListItemButton style={{ position: 'unset' }}>
+                                                            <ListItemIcon className={classes.MuiListItemIcon}>{item.iconHover}   </ListItemIcon> 
+                                                        <ListItemText className={classes.textListItem} style={{ textDecoration: "none" }}>{item.title} </ListItemText>
                                                     </ListItemButton>
+                                                    :
+                                                    <ListItemButton style={{ position: 'unset' }}>
+                                                            <ListItemIcon className={classes.MuiListItemIcon}>{item.icon}   </ListItemIcon> 
+                                                        <ListItemText className={classes.textListItem} style={{ textDecoration: "none" }}>{item.title} </ListItemText>
+                                                    </ListItemButton>
+                                                      }
 
                                                 </NavLink>
                                             </ListItem>
@@ -148,7 +191,7 @@ const LeftMenu: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                     </nav>
                 </Box>
-                </Box>
+            </Box>
         </Box>
     );
 };
@@ -165,6 +208,7 @@ import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import WorkSpaceOne from './index';
+import { useEffect } from 'react';
 
                         <List className={classes.topItems}>
                             {topMenu && data?.response &&

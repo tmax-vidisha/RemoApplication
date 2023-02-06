@@ -29,7 +29,7 @@ import success from '../../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
 import starred from '../../../Assets/Images/starred.svg';
 import { useStyles } from './Styles';
-
+import TablePagination from '@mui/material/TablePagination';
 
 
 interface SimpleDialogProps {
@@ -221,31 +221,40 @@ interface IFolderProps {
 }
 
 
-const TrashFiles= () => {
+const TrashFiles = () => {
+const classes = useStyles();
 
-  
-const classes=useStyles();
+const [page, setPage] = React.useState(0);
+const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-function createData(
-    name: string,
-    lastModifiedBy: string,
-    ModifiedDate: string,
-    fileSize: string,
-    deleted: string,
-    Actions: any,
-) {
-    return { name, lastModifiedBy, ModifiedDate, fileSize,deleted, Actions };
-}
+const handleChangePage = (event: unknown, newPage: number) => {
+  setPage(newPage);
+};
 
-const rows = [
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb","now", <img src={actions} alt="" />),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb","now", <img src={actions} alt="" />),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now",<img src={actions} alt="" />),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now",<img src={actions} alt="" />),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now",<img src={actions} alt="" />),
-    createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now",<img src={actions} alt="" />),
+const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setRowsPerPage(+event.target.value);
+  setPage(0);
+};
+    function createData(
+        name: string,
+        lastModifiedBy: string,
+        ModifiedDate: string,
+        fileSize: string,
+        deleted: string,
+        Actions: any,
+    ) {
+        return { name, lastModifiedBy, ModifiedDate, fileSize, deleted, Actions };
+    }
 
-];
+    const rows = [
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now", <img src={actions} alt="" />),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now", <img src={actions} alt="" />),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now", <img src={actions} alt="" />),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now", <img src={actions} alt="" />),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now", <img src={actions} alt="" />),
+        createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now", <img src={actions} alt="" />),
+
+    ];
     return (
         <Grid>
             <Grid className={classes.divText}>
@@ -265,7 +274,7 @@ const rows = [
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
+                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                                 <TableRow
                                     key={row.name}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -287,6 +296,15 @@ const rows = [
                     </Table>
 
                 </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 20]}
+                    component="div"
+                    count={rows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
             </Grid>
         </Grid>
     );

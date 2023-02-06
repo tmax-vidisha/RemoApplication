@@ -93,7 +93,7 @@ export const useStyles = makeStyles({
     color: "white !important",
     marginRight: "15px !important",
     padding: "3px 8px !important",
-},
+  },
 
   createNew: {
     // backgroundColor: "rgb(50 168 189) !important",
@@ -185,19 +185,20 @@ export const useStyles = makeStyles({
 
   textListItem: {
     fontSize: "11px",
+    marginLeft: "10px",
     color: "#606c74",
     "& span": {
       fontSize: "11px",
-      textDecoration:"none",
+      textDecoration: "none",
       color: "#606c74",
     },
-    "& span:hover":{
+    "& span:hover": {
       color: "#009BAD",
     },
 
     "& img": {
       color: "#606c74",
-      width:"15px",
+      width: "15px",
     },
     "& img:hover": {
       color: "#009BAD",
@@ -207,10 +208,50 @@ export const useStyles = makeStyles({
 
   MuiListItemIcon: {
     minWidth: "25px !important",
-    "& img": {
-      width: "15px",
-    }
+    fontSize: "12px",
+    color: "#333333 !important",
+    "& .active": {
+      color: "red"
+    },
+    textDecoration: "none !important",
+    "& .topImg": {
+      margin: "auto",
+      display: "block !important",
+      width: "15px"
+    },
+    "& .topImgH": {
+      margin: "auto",
+      color: "#009BAD",
+      display: "none !important",
+      width: "15px"
+    },
+
   },
+  leftMenu:{
+    color: "#606C74",
+    "&:hover":{
+      color: "#1BAAB5",
+    },
+  },
+  active:{
+    color: "#009BAD",
+    backgroundColor:"white"
+},
+
+
+  topImg: {
+    margin: "auto",
+    display: "block !important",
+    width: "15px",
+  },
+
+  topImgH: {
+    margin: "auto",
+    color: "#009BAD",
+    display: "none !important",
+    width: "15px",
+  },
+
   LeftMenu: {
     // background: "#f8f8f8",
     // borderTop: "1px solid #d8d8dd",
@@ -301,14 +342,14 @@ export const useStyles = makeStyles({
     display: "flex",
     justifyContent: "flex-end",
   },
-  shortSpan:{
+  shortSpan: {
     color: "#606c74",
-    fontSize:"13px",
-    marginRight:"10px"
+    fontSize: "13px",
+    marginRight: "10px"
   },
-  shortBy:{
+  shortBy: {
     color: "#606c74",
-    fontSize:"14px"
+    fontSize: "14px"
   },
 
 });

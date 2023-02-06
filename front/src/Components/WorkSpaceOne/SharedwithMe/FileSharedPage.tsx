@@ -27,7 +27,7 @@ import deleteIcon from '../../../Assets/Images/delete.svg';
 import deleteBlue from '../../../Assets/Images/delete-blue.svg';
 import success from '../../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
-import  TablePagination  from '@mui/material/TablePagination';
+import TablePagination from '@mui/material/TablePagination';
 
 
 
@@ -253,32 +253,32 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const handleChangePage = ( newPage :any) => {
+    const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (event:any) => {
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
     return (
-         <Grid>
-         <Grid className={classes.divText}>
-         Shared with me
-         </Grid>
-         <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
-             <TableContainer component={Paper}>
-                 <Table sx={{ minWidth: 600 }} aria-label="simple table">
-                     <TableHead>
-                         <TableRow>
-                             <TableCell>Name</TableCell>
-                             <TableCell align="right">Last Modified By</TableCell>
-                             <TableCell align="right">Last Modified Date</TableCell>
-                             <TableCell align="right">File Size</TableCell>
-                             <TableCell align="right">Actions</TableCell>
-                         </TableRow>
-                     </TableHead>
-                     <TableBody>
+        <Grid>
+            <Grid className={classes.divText}>
+                Shared with me
+            </Grid>
+            <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 600 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Name</TableCell>
+                                <TableCell align="right">Last Modified By</TableCell>
+                                <TableCell align="right">Last Modified Date</TableCell>
+                                <TableCell align="right">File Size</TableCell>
+                                <TableCell align="right">Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
                             {/* {rows.map((row) => (
                                     <TableRow
                                         key={row.name}
@@ -431,11 +431,20 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                         </TableBody>
 
-                 </Table>
+                    </Table>
 
-             </TableContainer>
-         </Grid>
-     </Grid>
+                </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 20]}
+                    component="div"
+                    count={data?.response.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+            </Grid>
+        </Grid>
     );
 };
 

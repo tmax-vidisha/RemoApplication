@@ -1,32 +1,24 @@
 import React from 'react';
-import { Routes, Route } from "react-router-dom";
 import { Grid, Paper, Typography } from '@mui/material';
-import LeftMenu from './LeftMenu';
-import SearchPart from './SearchPart';
 // import {MyFilesPage} from './MyFilesPage';
-import SideBar from './SideBar';
 import { useStyles } from './Styles';
 import { Box } from '@mui/material';
 import announcementIcon from "./../../Assets/Images/announcement.svg";
 
 import { NavLink } from "react-router-dom";
-import IconText from '../Header/IconText';
-import MyFilePage from './../../Pages/WorkSpace/OneDrive/MyFilePage';
-import AllLinks from './../Quicklinks/AllLinks';
-import WhatsNew from '../Header/WhatsNew';
-import ToggleButton from './../Header/ToggleButton';
-import MenuDrawer from './MenuDrawer';
+import WhatsNew from '../../Header/WhatsNew';
+import SideBar from '../SideBar';
+import LeftMenu from '../LeftMenu';
+import SearchPart from '../SearchPart';
+import { MyFilePage } from '../../../Pages';
+import AllLinks from '../../Quicklinks/AllLinks';
+import MenuDrawer from '../MenuDrawer';
 
 
-
-const WorkSpaceOne = () => {
+const MyFiles = () => {
     const classes = useStyles();
-
-    // const activeLink = style={{color:"red"}};
-    // const normalLink = style={{color:"blue"}};
-    return (      
-        <Grid> 
-       {/* <ToggleButton/> */}
+    return (
+        <div>
             <Grid item xs={12}>
                 <WhatsNew/>
             </Grid>
@@ -49,10 +41,9 @@ const WorkSpaceOne = () => {
                        <AllLinks/>
                     </Grid>
                 </Grid>
-            </Box>
-        </Grid>
-
+            </Box> 
+        </div>
     );
 };
 
-export default WorkSpaceOne;
+export default MyFiles;

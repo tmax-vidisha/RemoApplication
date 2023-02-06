@@ -60,29 +60,28 @@ export const useStyles = makeStyles({
     "& .topImg": {
       margin: "auto",
       display: "block !important",
-      width:"25px"
+      width:"35px"
     },
     "& .topImgH": {
       margin: "auto",
       color:"#009BAD",
       display: "none !important",
-      width:"25px"
+      // width:"25px"
     },
   },
   topImg:{
     margin: "auto",
       display: "block !important",
-      // width:"25px"
+       width:"35px"
   },
 
   topImgH:{
     margin: "auto",
     color:"#009BAD",
     display: "none !important",
-    // width:"20px",
-    // height:"20px"
+     width:"35px",
+    },
     
-  },
   topMenu:{
     "&:hover a p":{
       color:"#009BAD",
@@ -91,7 +90,8 @@ export const useStyles = makeStyles({
     "& a":{
       textDecorationLine: "none !important",
       "&:hover .topImgH":{
-        display:"block !important",       
+        display:"block !important", 
+        width:"35px"
      },
      "&:hover .topImg":{
       display:"none !important",
