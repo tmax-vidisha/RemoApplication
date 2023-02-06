@@ -4,6 +4,7 @@ import { AuthenticatedTemplate } from '@azure/msal-react';
 import {useGetAllNavigationQuery} from '../../services/APIs';
 // import HomeTopNav from '../../Containers/HomeTopNav';
 import TopNavLink from '../../Containers/HomeTopNav/TopNavLink';
+
 const HomeNavigationPage = () => {
     const {token} = useCustom();
     const { data, error, isLoading } = useGetAllNavigationQuery(token)
