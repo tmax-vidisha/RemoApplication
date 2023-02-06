@@ -920,6 +920,16 @@ export const graphApi = createApi({
             }),
             
         }),
+        getAllContentEditor: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/contenteditormaster/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+            // providesTags : [ 'News'],
+        }),
     }),
 })
 
@@ -1003,7 +1013,8 @@ export const {
     useGetAllMeetingsQuery,
     useCreateTokenwithEmpDataItemIdMutation,
     useCreateTokenwithEventDataOneMutation,
-    useCreateTokenwithEventDataLandingMutation
+    useCreateTokenwithEventDataLandingMutation,
+    useGetAllContentEditorQuery
 
     
     

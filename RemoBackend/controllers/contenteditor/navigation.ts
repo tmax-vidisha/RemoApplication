@@ -8,49 +8,52 @@ const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`;
 const Site_Id = 'tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43'
 const Navigation_Id  ="3bfefeb5-3307-4f1b-a1e1-e53486d7a738"
 function blobStorage(image: any, imageName: any) {
-    //@ts-ignore
-    var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
-    var matches = image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-    if(matches !== null){
-    var type = matches[1];
-    //@ts-ignore
-    var buffer = new Buffer.from(matches[2], 'base64');
-    const containerName = 'candidate';
-    const blobName = imageName
-    //@ts-ignore
-    blobService.createBlockBlobFromText(containerName, blobName, buffer, { contentType: type }, function (error, result, response) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log(result)
-      }
-    });
-    var startDate = new Date();
-    startDate.setMinutes(startDate.getMinutes() - 300);
-    var expiryDate = new Date(startDate);
-    // expiryDate.setMinutes(startDate.getMinutes() + 300);
-    expiryDate.setMonth(startDate.getMonth() + 12);
-    var sharedAccessPolicy = {
-      AccessPolicy: {
-        Permissions: [azure.BlobUtilities.SharedAccessPermissions.READ],  //grent read permission only
-        Start: startDate,
-        Expiry: expiryDate
-      }
-    };
-    console.log(sharedAccessPolicy, 'iiii')
-    //@ts-ignore
-    var sasToken = blobService.generateSharedAccessSignature(containerName, blobName, sharedAccessPolicy);
-    var response = {};
-    //@ts-ignore
-    response.image = blobService.getUrl(containerName, blobName, sasToken);
-    //@ts-ignore
-    console.log(response.image)
-  
-    //@ts-ignore
-    return response.image
-   }
-  }
-  
+  //@ts-ignore
+  var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
+  var matches = image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+  if(matches !== null){
+  var type = matches[1];
+  //@ts-ignore
+  var buffer = new Buffer.from(matches[2], 'base64');
+  const containerName = 'candidate';
+  const blobName = imageName
+  //@ts-ignore
+  blobService.createBlockBlobFromText(containerName, blobName, buffer,{
+    contentSettings: {
+        contentType: "image/svg+xml"
+    }
+}, function (error, result, response) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(result)
+    }
+  });
+  var startDate = new Date();
+  startDate.setMinutes(startDate.getMinutes() - 300);
+  var expiryDate = new Date(startDate);
+  // expiryDate.setMinutes(startDate.getMinutes() + 300);
+  expiryDate.setMonth(startDate.getMonth() + 12);
+  var sharedAccessPolicy = {
+    AccessPolicy: {
+      Permissions: [azure.BlobUtilities.SharedAccessPermissions.READ],  //grent read permission only
+      Start: startDate,
+      Expiry: expiryDate
+    }
+  };
+  console.log(sharedAccessPolicy, 'iiii')
+  //@ts-ignore
+  var sasToken = blobService.generateSharedAccessSignature(containerName, blobName, sharedAccessPolicy);
+  var response = {};
+  //@ts-ignore
+  response.image = blobService.getUrl(containerName, blobName, sasToken);
+  //@ts-ignore
+  console.log(response.image)
+
+  //@ts-ignore
+  return response.image
+ }
+}
   
   const postRemoNavigation = asyncHandler(async (req: Request, res: Response) => {
   

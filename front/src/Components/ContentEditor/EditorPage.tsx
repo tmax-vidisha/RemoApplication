@@ -38,9 +38,18 @@ import { useNavigate } from 'react-router-dom';
 // import { height } from 'react-material-ui-carousel/node_modules/@mui/system';
 
 
-
-const EditorPage = () => {
+interface IFolderProps {
+    // ceomsg: any;
+    data: any,
+    error: any,
+    isLoading: any
+  }
+  
+// const EditorPage = () => {
+const EditorPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
+    const { data, error, isLoading } = props
+     console.log(data?.response,'fgfdgfd')
     let navigate = useNavigate();
 
     const itemsList = [
@@ -163,14 +172,14 @@ const EditorPage = () => {
             to: '/quickContentPage',
         },
     ];
-
+    // console.log(data?.response[0].fields.HoverOn)
     return (
         <Grid>
             <Grid>
-            <List className={classes.mainPart}>
+            {/* <List className={classes.mainPart}>
               {itemsList.map((item: any, id: any, index: any) => {
                 const { Icon, iconHover, onClick, path } = item;
-                console.log(itemsList, "itemsList");
+                // console.log(itemsList, "itemsList");
 
                 return (
                   <ListItem key={index} onClick={onClick} className={classes.topMenu}>
@@ -190,12 +199,37 @@ const EditorPage = () => {
               })}
 
 
+              
+            </List> */}
+            {/* <>ililj</> */}
+               <List className={classes.mainPart}>
+              {data?.response && data?.response.map((item: any,  index: any) => {
+                // const { Icon, iconHover, onClick, path } = item;
+                // console.log(itemsList, "itemsList");
+                const { fields = {} } = item;
+                return (
+                  <ListItem key={fields.id} onClick={()=>navigate(fields.Url)} className={classes.topMenu}>
+                    {itemsList && (
+                      <NavLink end to={fields.Url} className={classes.topLink}>
+                        <img src={fields.HoverOff} alt="..." className="topImg" />
+                        <img
+                          src={fields.HoverOn}
+                          alt=""
+                          className="topImgH"
+                        />
+                        <p className={classes.topText} > {fields.Title}</p>
+                      </NavLink>)
+                    }
+                  </ListItem>
+                )
+              })}
+              
+
             </List>
-               
                 {/* <Box className={classes.boxContent}>
                     <AppVideo />
                 </Box> */}
-
+                   {/* <img src={data?.response[0].fields.HoverOn} alt={data?.response[0].fields.Title} className="topImg" /> */}
             </Grid>
         </Grid>
     );

@@ -179,8 +179,8 @@ const PortalHome = () => {
        
       <Grid className={classes.bannerTop}>
         <Grid item xs={12} style={{ marginBottom: "10px" }}>
-          {/* <HomeNavigationPage /> */}
-          <TopNavLink/>
+          <HomeNavigationPage />
+          {/* <TopNavLink/> */}
         </Grid>
         {/* <Grid item xs={12}>
           <Paper elevation={0}>

@@ -18,7 +18,11 @@ function blobStorage(image: any, imageName: any) {
     const containerName = 'candidate';
     const blobName = imageName
     //@ts-ignore
-    blobService.createBlockBlobFromText(containerName, blobName, buffer, { contentType: type }, function (error, result, response) {
+    blobService.createBlockBlobFromText(containerName, blobName, buffer,{
+      contentSettings: {
+          contentType: "image/svg+xml"
+      }
+  }, function (error, result, response) {
       if (error) {
         console.log(error);
       } else {
