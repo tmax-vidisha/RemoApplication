@@ -36,35 +36,16 @@ const StarredOne = () => {
     ];
 
     const [page, setPage] = React.useState(0);
-    const [rowPage, setRowPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    function handleChangePage(newPage: any) {
+    const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
-    }
+    };
 
-    function handleChangeRowsPerPage(event: any) {
-        setRowPage(parseInt(event.target.value, 10));
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
         setPage(0);
-    }
-    // const columns: GridColDef[] = [
-    //     { field: 'id', headerName: 'ID', width: 70 },
-    //     { field: 'Name', headerName: 'Name', width: 130 },
-    //     { field: 'Last Modified By', headerName: 'Last Modified By', type: 'text', width: 130 },
-    //     { field: 'Last Modified Date', headerName: 'Last Modified Date', type: 'date', width: 130 },
-    //     { field: 'File Size', headerName: 'File Size', type: 'text', width: 130 },
-
-
-    //   ];
-
-    //   const rows = [
-    //     { id: 1, Name: 'book.xls', 'Last Modified By': 'Jahanara khatun', 'Last Modified Date': '1/2/2023','Size': '20mb', },
-    //     { id: 2, Name: 'book.xls', 'Last Modified By': 'Jahanara khatun', 'Last Modified Date': '1/2/2023','Size': '20mb', },
-    //     { id: 3, Name: 'book.xls', 'Last Modified By': 'Jahanara khatun', 'Last Modified Date': '1/2/2023','Size': '20mb', },
-    //     { id: 4, Name: 'book.xls', 'Last Modified By': 'Jahanara khatun', 'Last Modified Date': '1/2/2023','Size': '20mb', },
-    //     { id: 5, Name: 'book.xls', 'Last Modified By': 'Jahanara khatun', 'Last Modified Date': '1/2/2023','Size': '20mb', },
-    //     { id: 6, Name: 'book.xls', 'Last Modified By': 'Jahanara khatun', 'Last Modified Date': '1/2/2023','Size': '20mb', },
-
-    //   ];
+    };
 
     return (
         <Grid>
@@ -84,7 +65,7 @@ const StarredOne = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.slice(page * rowPage, page * rowPage + rowPage).map((row) => (
+                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                                 <TableRow
                                     key={row.name}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -101,23 +82,14 @@ const StarredOne = () => {
                     </Table>
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
+                    rowsPerPageOptions={[5, 10, 20]}
                     component="div"
                     count={rows.length}
-                    rowsPerPage={rowPage}
+                    rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
-                {/* <DataGrid
-                    rows={rows}
-                    columns={columns}
-                    // pageSize={5}
-                    // rowsPerPageOptions={[5]}
-                    checkboxSelection
-                    pageSize={5}
-                    rowsPerPageOptions={[2, 5, 7]}
-                /> */}
             </Grid>
         </Grid>
     );

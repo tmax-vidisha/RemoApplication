@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom';
 import LinkOffSharpIcon from '@mui/icons-material/LinkOffSharp';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import { MeetingsPage } from '../../Pages';
+import WorkspaceQuicklinks from './WorkspaceQuicklinks';
 
 
 
@@ -46,7 +47,9 @@ const AllLinks = () => {
         [setValue],
     );
     const [showResults, setShowResults] = React.useState(false)
-    const onClick = () => setShowResults(true);
+    const onClickShowResults = () =>{ 
+        setShowResults(true)
+    };
     return (
         <Grid >
             <Grid className={classes.quickLinkDiv}>
@@ -59,96 +62,7 @@ const AllLinks = () => {
                             </Grid>
                         </Button>
                         {isShown && (
-                            <div style={{ marginTop: "30px" }}>
-                                <Grid style={{ textAlign: "left", fontSize: "15px", marginLeft: "15px" }}>
-                                    Quick Link
-                                </Grid>
-                                <Grid className={classes.mainPart}>
-
-                                    <Box className={classes.boxContent}>
-                                        <img src={admin} alt="admin" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/AnnoncementInput">IT -Service
-                                            </Link></Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={ITService} alt="ITService" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/CEOInput">
-                                                Admin
-                                            </Link></Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={sales} alt="sales" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/ContentEditor">
-                                                Sales
-                                            </Link>
-                                        </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={vehicle} alt="vehicle" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/AnnouncementReadMore">
-                                                Vehicle Request
-                                            </Link>
-
-                                        </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={sales} alt="announce" />
-                                        <Grid component="p" className={classes.texts}>
-
-                                            <Link to="/EventsInput">
-                                                Hub
-                                            </Link>
-                                        </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={ITService} alt="announce" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/ContentEditor">
-                                                IT Service
-                                            </Link>
-                                        </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={admin} alt="announce" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/HeroInput">
-                                                Admin
-                                            </Link>
-                                        </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={sales} alt="announce" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/EmpHighInput">
-                                                Hub
-                                            </Link> </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={vehicle} alt="announce" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/EmpHighInput">
-                                                Vehicle Request
-                                            </Link> </Grid>
-                                    </Box>
-
-                                    <Box className={classes.boxContent}>
-                                        <img src={sales} alt="vehicle" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/AnnouncementReadMore">
-                                                Hub
-                                            </Link>
-
-                                        </Grid>
-                                    </Box>
-
-
-
-                                </Grid>
-                            </div>
+                           <WorkspaceQuicklinks/>
                         )}
                     </div>
                     :
@@ -169,7 +83,7 @@ const AllLinks = () => {
                             <div>
                                 <Grid style={{ display: "flex", justifyContent: "flex-start" }}>
                                     <Grid style={{ textTransform: "capitalize", marginRight: "20px" }} className={classes.todo}  >
-                                        <div onClick={onClick}> Calendar </div>
+                                        <div onClick={onClickShowResults}> Calendar </div>
                                     </Grid>
                                     {/* <Grid style={{ textTransform: "capitalize" }} className={classes.todo} >
                                         <div onClick={() => setShow(!show)}>To do </div>
@@ -182,6 +96,7 @@ const AllLinks = () => {
                                     </div> : null}
 
                                 <MeetingsPage />
+                                <WorkspaceQuicklinks/>
                             </div>
 
                         }

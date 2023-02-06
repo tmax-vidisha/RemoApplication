@@ -231,7 +231,6 @@ const PortalHome = () => {
           <CeoPage />
         </Grid>
         <Grid item xs={8}>
-
           <MeetingsPage />
         </Grid>
         <Grid item xs={4}>
@@ -240,7 +239,6 @@ const PortalHome = () => {
         <Grid item xs={8}>
           <Grid item xs={12}>
             <NewsPage />
-
           </Grid>
           <Grid
             container
@@ -259,7 +257,6 @@ const PortalHome = () => {
 
             </Grid>
             <Grid item xs={6} >
-
               <SocialMedia />
             </Grid>
           </Grid>
@@ -273,8 +270,7 @@ const PortalHome = () => {
               marginLeft: 0,
               width: "100%",
             }}
-            spacing={2}
-          >
+            spacing={2}>
 
           </Grid>
         </Grid>

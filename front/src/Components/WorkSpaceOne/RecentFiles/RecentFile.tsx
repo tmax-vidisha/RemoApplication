@@ -11,7 +11,7 @@ import deleteBlue from '../../../Assets/Images/delete-blue.svg';
 import success from '../../../Assets/Images/success.svg';
 import copySuccess from '../../../Assets/Images/copy-success.svg'
 import Fade from '@mui/material/Fade';
-
+import TablePagination from '@mui/material/TablePagination';
 
 
 interface SimpleDialogProps {
@@ -319,6 +319,18 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
         //     setDownUrl(download)
         // }
     }
+
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
     return (
         <Grid>
             <Grid className={classes.divText}>
@@ -353,7 +365,7 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
                             </TableRow>
                         ))} */}
                             {data?.response &&
-                                data?.response.map((item: any, index: any) => {
+                                data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
                                     //   const { fields = {} } = item;
 
                                     // const  Url= item["@microsoft.graph.downloadUrl"];
@@ -454,6 +466,15 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Table>
 
                 </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 20]}
+                    component="div"
+                    count={data?.response.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
             </Grid>
         </Grid>
     )

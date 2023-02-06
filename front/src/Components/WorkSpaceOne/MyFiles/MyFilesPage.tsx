@@ -432,17 +432,17 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         setPrices(sortDescPrices)
     }
 
-    const [pg, setpg] = React.useState(0);
-    const [rpg, setrpg] = React.useState(5);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    function handleChangePage( newpage: any) {
-        setpg(newpage);
-    }
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
 
-    function handleChangeRowsPerPage(event: any) {
-        setrpg(parseInt(event.target.value, 10));
-        setpg(0);
-    }
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
 
     return (
         <div>
@@ -518,7 +518,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                             {show ?
                                 <TableBody>
                                     {data?.response &&
-                                        data?.response.slice(pg * rpg, pg * rpg + rpg).map((item: any, index: any) => {
+                                        data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
                                             //   const { fields = {} } = item;
 
                                             // const  Url= item["@microsoft.graph.downloadUrl"];
@@ -678,7 +678,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 <TableBody>
 
                                     {ItemChildren?.response &&
-                                        ItemChildren?.response.slice(pg * rpg, pg * rpg + rpg).map((item: any, index: any) => {
+                                        ItemChildren?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
                                             //   const { fields = {} } = item;
                                             //   // console.log(fields,'yjyjyjyjyj')
                                             //   var eventTitle = fields?.Title;
@@ -831,14 +831,14 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                     </TableContainer>
                     <TablePagination
-                        rowsPerPageOptions={[5, 10, 25]}
-                        component="div"
-                        count={rows.length}
-                        rowsPerPage={rpg}
-                        page={pg}
-                        onPageChange={handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                    />
+                    rowsPerPageOptions={[5, 10, 20]}
+                    component="div"
+                    count={data?.response.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
                 </Stack>
             </Grid>
 
