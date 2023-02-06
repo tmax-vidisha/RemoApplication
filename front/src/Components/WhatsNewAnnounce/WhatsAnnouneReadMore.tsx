@@ -21,12 +21,19 @@ import bigShip from "../../Assets/Images/bigShip.png";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
 import comments from '../../Assets/Images/comments.svg';
-
-
+import { useLocation } from 'react-router-dom';
+var moment = require("moment-timezone");
 
 
 const WhatsAnnouneReadMore = () => {
     const classes = useStyles();
+    let location = useLocation();
+
+        console.log(location.state);
+    
+        
+        const { data = [] } = location.state;
+        console.log(data?.fields, 'data');
     return (
         <div>
             <IconText />
@@ -59,11 +66,11 @@ const WhatsAnnouneReadMore = () => {
                 <Paper style={{ marginTop: "30px" }}>
                     <Grid>
                         <Grid>
-                            <img src={bigShip} alt="" style={{ width: "1100px", height:"250px" }} />
-                            <p style={{fontSize:"20px"}}>Adnoc announce $548m contract for gas line at lower Zakum field </p>
+                            <img src={data?.fields.Image} alt="" style={{ width: "1100px", height:"250px" }} />
+                            <p style={{fontSize:"20px"}}>{data?.fields.Title} </p>
                             <div style={{marginLeft:"30px"}}>
-                            <p className={classes.itemDate}>Feb 2, 2023</p>
-                            <p className={classes.itemDate}>Adnoc announce $548m contract for gas line at lower Zakum field</p>
+                            <p className={classes.itemDate}>{moment(data?.fields.Modified).format('DD-MM-YYYY')}</p>
+                            <p className={classes.itemDate}>{data?.fields.Description}</p>
                             </div>
                            
                         </Grid>
