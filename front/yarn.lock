@@ -10899,6 +10899,13 @@ react-swipeable@^6.2.0:
   resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-6.2.2.tgz#52ba570f3a7a90db7093094ec476f3d151f727d1"
   integrity sha512-Oz7nSFrssvq2yvy05aNL3F+yBUqSvLsK6x1mu+rQFOpMdQVnt4izKt1vyjvvTb70q6GQOaSpaB6qniROW2MAzQ==
 
+react-switch@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/react-switch/-/react-switch-7.0.0.tgz#400990bb9822864938e343ed24f13276a617bdc0"
+  integrity sha512-KkDeW+cozZXI6knDPyUt3KBN1rmhoVYgAdCJqAh7st7tk8YE6N0iR89zjCWO8T8dUTeJGTR0KU+5CHCRMRffiA==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-toggle-component@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/react-toggle-component/-/react-toggle-component-3.0.8.tgz#e611164aa8aac587871c92658ff5fbdd2dfce83c"
