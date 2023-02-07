@@ -34,40 +34,11 @@ import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
 import browse from "../../Assets/Images/browse.svg";
-
+import { CircularProgress } from '@mui/material';
+import ReactSwitch from 'react-switch';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 300 },
-  { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
-  { field: 'Name', headerName: 'Name', width: 100 },
-  { field: 'DOB', headerName: 'DOB', width: 100 },
-  { field: 'Image', headerName: 'Image', width: 130 },
-  { field: 'Designation', headerName: 'Designation', width: 130 },
-  { field: 'DOJ', headerName: 'DOJ', type: 'date', width: 130 },
-  { field: 'Description', headerName: 'Description', width: 130 },
-  { field: 'IS Active', headerName: 'IS Active', width: 100 },
-  { field: 'EnableLikes', headerName: 'EnableLikes', type: 'image', width: 100 },
-  {
-    field: 'EnableComments',
-    headerName: 'EnableComments',
-    type: 'image',
-    width: 100,
-  },
-  // {
-  //   field: 'ShareAsEmail',
-  //   headerName: 'ShareAsEmail',
-  //   type: 'email',
-  //   width: 160,
-  // },
-  // {
-  //   field: 'RecipientEmail',
-  //   headerName: 'RecipientEmail',
-  //   type: 'email',
-  //   width: 160,
-  // },
-];
+
 
 
 const rows = [
@@ -84,6 +55,9 @@ const rows = [
 interface IFolderProps {
  
   onClick?: (obj:any) => void;
+  data:any,
+  isLoading:any,
+  isSuccess:any,
   
 }
 
@@ -91,7 +65,132 @@ interface IFolderProps {
 // const BirthdayEditor = () => {
   const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { onClick } = props
+  const { onClick,data,isLoading,isSuccess } = props
+  // const isMounted = React.useRef(true)
+  // const [empData ,setEmpData ]= useState([]);
+  // useEffect(()=>{
+  //   if (isMounted) setEmpData(allData)
+   
+  // },[])
+  const handleChangeIsActiveToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhf')
+  };
+  const handleChangeEnableLikesToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhfdddd')
+  };
+  const handleChangeEnableCommentsToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhfdddd')
+  };
+  const handleChangeShareAsEmailToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhfdddd')
+  };
+  const columns: GridColDef[] = [
+    { 
+      field: 'id', 
+      headerName: 'ID', 
+      width: 70,
+      valueGetter : (allData:any) => allData.row.fields.id
+    },
+    { field: 'Title', 
+      headerName: 'Title', 
+      width: 160 ,
+       valueGetter : (allData:any) => allData.row.fields.Title
+    },
+    // { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
+    { field: 'Name',
+      headerName: 'Name', 
+      width: 160,
+      valueGetter : (allData:any) => allData.row.fields.Name
+    },
+    { field: 'DOB', 
+      headerName: 'DOB', 
+      width: 160 ,
+      valueGetter : (allData:any) => allData.row.fields.DOB
+    },
+     { field: 'EmpImg', headerName: 'Image', width: 130, 
+     renderCell: (params) => <img src={params.row.fields.EmpImg}/> 
+    },
+    { field: 'Dept', 
+      headerName: 'Designation', 
+      width: 130 ,
+      valueGetter : (allData:any) => allData.row.fields.Dept
+    },
+    { field: 'DOJ',
+     headerName: 'DOJ', 
+     type: 'date', 
+     width: 130,
+     valueGetter : (allData:any) => allData.row.fields.DOJ
+    },
+    { field: 'Description', 
+      headerName: 'Description', 
+      width: 130,
+      valueGetter : (allData:any) => allData.row.fields.Description
+    },
+    { field: 'isActive', 
+      headerName: 'IS Active', 
+      width: 100,
+      renderCell: (params) => 
+       <ReactSwitch
+      checked={params.row.fields.isActive}
+      onChange={handleChangeIsActiveToggle}
+      onColor={'#0000FF'}
+      checkedIcon={false}
+      uncheckedIcon={false}
+    />
+    },
+    { field: 'EnableLikes', 
+      headerName: 'EnableLikes', 
+      width: 100,
+      renderCell: (params) => 
+      <ReactSwitch
+     checked={params.row.fields.EnableLikes}
+     onChange={handleChangeEnableLikesToggle}
+     onColor={'#0000FF'}
+     checkedIcon={false}
+     uncheckedIcon={false}
+   />
+  
+    },
+    {
+      field: 'EnableCommands',
+      headerName: 'EnableComments',
+      // type: 'image',
+      width: 100,
+      renderCell: (params) => 
+      <ReactSwitch
+     checked={params.row.fields.EnableCommands}
+     onChange={handleChangeEnableCommentsToggle}
+     onColor={'#0000FF'}
+     checkedIcon={false}
+     uncheckedIcon={false}
+   />
+    },
+    {
+      field: 'ShareAsEmail',
+      headerName: 'ShareAsEmail',
+      type: 'email',
+      width: 160,
+      renderCell: (params) => 
+      <ReactSwitch
+      checked={params.row.fields.ShareAsEmail}
+      onChange={handleChangeShareAsEmailToggle}
+      onColor={'#0000FF'}
+      checkedIcon={false}
+      uncheckedIcon={false}
+   />
+    },
+    // {
+    //   field: 'RecipientEmail',
+    //   headerName: 'RecipientEmail',
+    //   type: 'email',
+    //   width: 160,
+    // },
+  ];
+  // console.log(empData,'ththytwwwwwwwwwwwwwwwwwwwww')
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -385,7 +484,33 @@ interface IFolderProps {
   }
 
   const [files, setFiles] = useState<File[]>([]);
+  
+  let content
 
+  if (isLoading) {
+    content = <CircularProgress />
+  } else if (isSuccess) {
+    content = 
+    <div style={{ display: 'flex', height: '100%'}}>
+      <Box sx={{ flexGrow: 1 }}>
+    { data?.response &&
+      <DataGrid 
+        // autoHeight
+        // autoWidth
+        getRowId={(row) => row.id}
+        rows={data?.response}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+          checkboxSelection
+        //sx={{ height: '100%', width: '100%' }}
+    
+   />}
+   </Box>
+    </div>
+  
+  }
+  
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
@@ -787,13 +912,30 @@ interface IFolderProps {
 
           </Grid>
         </Grid>
-        <DataGrid
+       {content}
+        
+
+        {/* <DataGrid
           rows={rows}
+          // getRowId={(rows:any) => rows.id}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
           checkboxSelection
-        />
+        />  */}
+        
+        {/* {empData.length>0
+                        ? <DataGrid
+                            rows={empData}
+                            columns={columns}
+                            getRowId={(rows) => rows.id}
+                            pageSize={5}
+                        />
+                        : <Typography variant="h6" >No pastor for this church yet!</Typography>
+                    } */}
+
+        
+       
       </Box>
     </div>
   );

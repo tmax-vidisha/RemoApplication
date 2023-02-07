@@ -1,9 +1,19 @@
 import React from 'react'
 import BirthdayEditor from '../../Components/BirthdayEditor/BirthdayEditor'
 import {useUploadItemInEmployeeMutation} from '../../services/contentEditor'
+import { useGetAllEmpQuery } from '../../services/APIs';
+import useCustom from '../../hooks/useCustom';
 const BirthdayPage = () => {
     const [sendItem] = useUploadItemInEmployeeMutation();
-   
+    const {token} = useCustom();
+    const { data,isLoading,isSuccess } = useGetAllEmpQuery(token)
+    // console.log(data?.response ,'EmpBirth')
+
+    // const EmpFilter = data?.response?.filter((items:any)=>{ return (
+    //   items.fields
+    // )})
+    // console.log(EmpFilter,'grgtrteeeeeeeeeeeeeeeeee')
+
     const  sendData= async(obj:any) =>{
 
       console.log(obj,'hgfhgfhfgjtjyj')
@@ -28,6 +38,9 @@ const BirthdayPage = () => {
     <div>
         <BirthdayEditor
           onClick={sendData}
+          data={data}
+          isLoading={isLoading}
+          isSuccess={isSuccess}
         />
     </div>
   )
