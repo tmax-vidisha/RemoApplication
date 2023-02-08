@@ -13,13 +13,14 @@ const GalleryFolder = () => {
     const classes = useStyles();
     const [show, setShow] = useState<boolean>(false);
     const [showResults, setShowResults] = React.useState(false)
-
-    const handleClick=()=>{
-        setShow(true)
-    }
     const onClick = () => {
         setShowResults(true);
     }
+    
+    const handleClick=()=>{
+        setShow(true)
+    }
+   
     return (
         <div>
             <IconText />

@@ -114,18 +114,22 @@ export const useStyles = makeStyles({
   bigPart: {
     marginRight: "25px",
     backgroundColor: "white",
-    marginTop: "20px",
+    // marginTop: "20px",
     borderRadius: "10px",
     padding:"10px",
     boxShadow: "10px 1px 30px -10px #c2bcbc",
   },
   divFile: {
-    color: "#1b6189",
-    marginLeft: "20px",
+    color: "#009BAD",
+    marginLeft: "30px",
     marginTop: "20px",
+    marginBottom:"20px",
     textAlign: "left",
 
   },
+  breadcrumb:{
+    color:"#009BAD"
+  }
   // menuImage: {
   //   marginRight: "20px"
   // },

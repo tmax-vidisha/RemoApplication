@@ -89,10 +89,8 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     return (
         <div>
+            <IconText/>
             <Container className={classes.contentEditorWidth}>
-                <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-                    <IconText style={{ marginTop: "-40px" }} />
-                </Paper>
                 <Card className={classes.cardHeight} elevation={0}>
                     <Paper className={classes.innerBackground}>
                         <div className={classes.innerBannerOverlay}></div>
@@ -126,8 +124,8 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                     <Grid>
                         <Stack direction="row" spacing={2} style={{ backgroundColor: "white" }}>
-                            <Grid item xs={6} style={{ padding: "10px" }}>
-                                <Box style={{margin:'30px'}}>
+                            <Grid item xs={6} >
+                                <Box style={{margin:'20px'}}>
 
                                     {/* <ThemeProvider theme={customTheme}>
 
@@ -143,7 +141,7 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     <div>
                                         <Box>
                                              <Calendar
-                                                // className={classes.border}
+                                                className={classes.calendar}
                                                 onChange={onChange}
                                                 value={value}
                                             />
@@ -211,7 +209,7 @@ const ViewAllEvents: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     ) : (
                                         <List style={{ border: "1px solid #e6e6e6", margin: "20px" }}>
                                             <Grid style={{ borderBottom: "1px solid #e6e6e6", color: '#4ddbff' }}>{moment(value).format("DD")} { moment(value).format("MMM")} </Grid>
-                                            <Typography>No Events</Typography>
+                                            <Typography style={{  color: "#606C74", fontSize:"12px"}}>No Events</Typography>
                                         </List>
 
                                     )}
