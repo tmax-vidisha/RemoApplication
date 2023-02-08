@@ -158,6 +158,16 @@ export const useStyles = makeStyles({
     padding: "15px",
     width: "100%",
     position: "relative",
-  }
+  },
+  
+calendar:{
+  "& .react-calendar":{
+    width: "350px",
+    maxWidth:" 100%",
+    background: "white",
+    border: "1px solid #dbdbd5",
+},
+}
+
 
 });

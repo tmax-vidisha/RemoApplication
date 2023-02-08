@@ -181,7 +181,19 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
       },
     ],
   };
+  const [likes, setLikes] = useState(10);
+  const [isClicked, setIsClicked] = useState(false);
 
+  const handleClick = () => {
+    if (isClicked) {
+      setLikes(likes - 1);
+    } else {
+      setLikes(likes + 1);
+    }
+    setIsClicked(!isClicked);
+  };
+  const [isActive, setIsActive] = useState(false);
+  // onClick={() => setIsActive(! isActive)}> {isActive ? activeIcon : inactiveIcon}
 
   return (
     <AuthenticatedTemplate>
@@ -257,8 +269,10 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                               </Typography>
                             </Stack>
                             <div className={classes.row}>
-                              <div className={classes.block}>
-                                <img src={like} alt="like" />
+                              <div className={classes.block} >
+                                <img src={like} alt="like" className={ `like-button ${isClicked && 'liked'}` } onClick={ handleClick }/>
+                                {/* <span className="likes-counter">{ `Like | ${likes}` }</span> */}
+                                <span className="likes-counter">{`${likes}`}</span>
                               </div>
                               <div className={classes.block}>
                                 <img src={share} alt="like" />

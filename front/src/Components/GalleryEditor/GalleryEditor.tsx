@@ -148,30 +148,38 @@ const GalleryEditor = () => {
     const chosenFiles = Array.prototype.slice.call(e.target.files)
     handleUploadFiles(chosenFiles);
   }
-
-
+  const [showResults, setShowResults] = React.useState(false)
+  const onClickShow = () => {
+    setShowResults(true);
+  }
+  const [show, setShow] = useState<boolean>(false);
+  const handleClickHide=()=>{
+    setShow(true)
+}
 
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
         <Grid className={classes.upperPart}>
           {/* <Grid style={{color:'#18496a'}}>Picture Gallery </Grid> */}
-            <div className={classes.contentHeader} >
-              <Typography variant="caption" display="block" gutterBottom>
-                <Breadcrumbs
-                  className={classes.breadcrumbs}
-                  separator={<NavigateNextIcon fontSize="small" />}
-                  aria-label="breadcrumb"
-                >
-                  <Link to="/" className={classes.breadLinks}  >
-                    Picture Gallery
-                  </Link>
-                  <Typography  className={classes.breadLinks}>
-                      Approvals Folder
-                    </Typography>
-                </Breadcrumbs>
-              </Typography>
-            </div>
+          <div className={classes.contentHeader} >
+            <Typography variant="caption" display="block" gutterBottom>
+              <Breadcrumbs
+                className={classes.breadcrumbs}
+                separator={<NavigateNextIcon fontSize="small" />}
+                aria-label="breadcrumb"
+              >
+                <Link to="/" className={classes.breadLinks}  >
+                  Picture Gallery
+                </Link>
+                {/* <Typography className={classes.breadLinks}>
+                  Approvals Folder
+                </Typography> */}
+                {showResults ? <Typography>Approvals Folder</Typography>
+                  : <Typography>Remo Folder </Typography>}
+              </Breadcrumbs>
+            </Typography>
+          </div>
           {/* <Grid>
             <input type='file' id='fileUpload' accept='application/pdf, image/png, mp4/video '
               onChange={handleFileEvent}
@@ -294,14 +302,14 @@ const GalleryEditor = () => {
 
             </Grid>
           </Grid>
-          
+
         </Grid>
         <Box style={{ padding: "30px" }}>
-          <Grid>
+          {/* <Grid>
             <div className="uploaded-files-list">
               {uploadedFiles.map((file, name: any) => (
                 <div>
-                  {/* @ts-ignore */}
+                  
                   {file.name}
                 </div>
               ))
@@ -309,16 +317,16 @@ const GalleryEditor = () => {
 
             </div>
             <UploadFile />
-          </Grid>
+          </Grid> */}
           <Grid className={classes.boxContain}>
-            <Box className={classes.galleryBox}>
+            <Box className={classes.galleryBox} onClick={onClickShow}>
               <img src={folderW} alt="" />
               <div style={{ margin: "0px" }}>Approvals Folder</div>
               <p style={{ margin: "0px" }}>September 20, 2022</p>
             </Box>
-            <Box className={classes.galleryBox}>
+            <Box className={classes.galleryBox} onClick={handleClickHide}>
               <img src={folderW} alt="" />
-              <div style={{ margin: "0px" }}>Approvals Folder</div>
+              <div style={{ margin: "0px" }}>Remo Folder</div>
               <p style={{ margin: "0px" }}>September 20, 2022</p>
             </Box>
             <Box className={classes.galleryBox}>
