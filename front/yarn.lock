@@ -10616,10 +10616,10 @@ react-image-lightbox@^5.1.4:
     prop-types "^15.7.2"
     react-modal "^3.11.1"
 
-react-image-video-lightbox@3.0.0-rc2.1:
-  version "3.0.0-rc2.1"
-  resolved "https://registry.yarnpkg.com/react-image-video-lightbox/-/react-image-video-lightbox-3.0.0-rc2.1.tgz#6c129db34d72e6351044d09aa21862898ce7ce50"
-  integrity sha512-GmWUFFm7IZLtfzkUUnYghbQK/AcWT0mCBkcEs62zMAtN/G5otZcENuKqLMT7WXsaH/d7mrBjTF8LT4WO+mUBnw==
+react-image-video-lightbox@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-image-video-lightbox/-/react-image-video-lightbox-3.0.0.tgz#14f7090a6fd042cf55bd6387ee46e4573e9c024d"
+  integrity sha512-kEF6r1oZ6wPQIlVzsmmOgIAvaPdpQg8CVUNoggnGBR3GnaHdiRoGbyoty1smtoovjfzIFDHP3P6mLU4R//7COQ==
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
