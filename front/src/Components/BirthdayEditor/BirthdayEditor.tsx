@@ -137,7 +137,7 @@ interface IFolderProps {
        <ReactSwitch
       checked={params.row.fields.isActive}
       onChange={handleChangeIsActiveToggle}
-      onColor={'#0000FF'}
+      onColor={'#00FFFF'}
       checkedIcon={false}
       uncheckedIcon={false}
     />
@@ -149,7 +149,7 @@ interface IFolderProps {
       <ReactSwitch
      checked={params.row.fields.EnableLikes}
      onChange={handleChangeEnableLikesToggle}
-     onColor={'#0000FF'}
+     onColor={'#00FFFF'}
      checkedIcon={false}
      uncheckedIcon={false}
    />
@@ -164,7 +164,7 @@ interface IFolderProps {
       <ReactSwitch
      checked={params.row.fields.EnableCommands}
      onChange={handleChangeEnableCommentsToggle}
-     onColor={'#0000FF'}
+     onColor={'#00FFFF'}
      checkedIcon={false}
      uncheckedIcon={false}
    />
@@ -178,7 +178,7 @@ interface IFolderProps {
       <ReactSwitch
       checked={params.row.fields.ShareAsEmail}
       onChange={handleChangeShareAsEmailToggle}
-      onColor={'#0000FF'}
+      onColor={'#00FFFF'}
       checkedIcon={false}
       uncheckedIcon={false}
    />
