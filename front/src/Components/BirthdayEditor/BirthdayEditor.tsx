@@ -53,142 +53,141 @@ const rows = [
   // { id: 9, Title: 'Milestone comes as DP World marks a decade of partnership', Description: 'DP World Sokhna  has celebrated its 10th anniversary  by announcing it is near', Image: activeView, ModifiedOn: '10 months ago', IsActive: 'Roxie', EnableLikes: 'Harvey', EnableComments: 65, ShareAsEmail: 'info@gmail.com', RecipientEmail: 'contact@gmail.com' },
 ];
 interface IFolderProps {
+
  
   onClick?: (obj:any) => void;
   data:any,
   isLoading:any,
   isSuccess:any,
-  
+
 }
 
 
 // const BirthdayEditor = () => {
-  const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
+const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
+
   const { onClick,data,isLoading,isSuccess } = props
+
   // const isMounted = React.useRef(true)
   // const [empData ,setEmpData ]= useState([]);
   // useEffect(()=>{
   //   if (isMounted) setEmpData(allData)
-   
+
+
   // },[])
-  const handleChangeIsActiveToggle = (val:any) => {
+  const handleChangeIsActiveToggle = (val: any) => {
     // setChecked(val);
-    console.log(val,'hhhfhf')
+    console.log(val, 'hhhfhf')
   };
-  const handleChangeEnableLikesToggle = (val:any) => {
+  const handleChangeEnableLikesToggle = (val: any) => {
     // setChecked(val);
-    console.log(val,'hhhfhfdddd')
+    console.log(val, 'hhhfhfdddd')
   };
-  const handleChangeEnableCommentsToggle = (val:any) => {
+  const handleChangeEnableCommentsToggle = (val: any) => {
     // setChecked(val);
-    console.log(val,'hhhfhfdddd')
+    console.log(val, 'hhhfhfdddd')
   };
-  const handleChangeShareAsEmailToggle = (val:any) => {
+  const handleChangeShareAsEmailToggle = (val: any) => {
     // setChecked(val);
-    console.log(val,'hhhfhfdddd')
+    console.log(val, 'hhhfhfdddd')
   };
   const columns: GridColDef[] = [
-    { 
-      field: 'id', 
-      headerName: 'ID', 
+    {
+      field: 'id',
+      headerName: 'ID',
       width: 70,
-      valueGetter : (allData:any) => allData.row.fields.id
+      valueGetter: (allData: any) => allData.row.fields.id
     },
-    { field: 'Title', 
-      headerName: 'Title', 
-      width: 160 ,
-       valueGetter : (allData:any) => allData.row.fields.Title
+    {
+      field: 'Title',
+      headerName: 'Title',
+      width: 160,
+      valueGetter: (allData: any) => allData.row.fields.Title
     },
     // { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
-    { field: 'Name',
-      headerName: 'Name', 
+    {
+      field: 'Name',
+      headerName: 'Name',
       width: 160,
-      valueGetter : (allData:any) => allData.row.fields.Name
+      valueGetter: (allData: any) => allData.row.fields.Name
     },
-    { field: 'DOB', 
-      headerName: 'DOB', 
-      width: 160 ,
-      valueGetter : (allData:any) => allData.row.fields.DOB
+    {
+      field: 'DOB',
+      headerName: 'DOB',
+      width: 160,
+      valueGetter: (allData: any) => allData.row.fields.DOB
     },
-     { field: 'EmpImg', headerName: 'Image', width: 130, 
-     renderCell: (params) => <img src={params.row.fields.EmpImg}/> 
+    {
+      field: 'EmpImg', headerName: 'Image', width: 130,
+      renderCell: (params) => <img src={params.row.fields.EmpImg}  style={{width:"80px", height:"50px"}}/>
     },
-    { field: 'Dept', 
-      headerName: 'Designation', 
-      width: 130 ,
-      valueGetter : (allData:any) => allData.row.fields.Dept
-    },
-    { field: 'DOJ',
-     headerName: 'DOJ', 
-     type: 'date', 
-     width: 130,
-     valueGetter : (allData:any) => allData.row.fields.DOJ
-    },
-    { field: 'Description', 
-      headerName: 'Description', 
+    {
+      field: 'Dept',
+      headerName: 'Designation',
       width: 130,
-      valueGetter : (allData:any) => allData.row.fields.Description
-    },
-    { field: 'isActive', 
-      headerName: 'IS Active', 
-      width: 100,
-      renderCell: (params) => 
-       <ReactSwitch
-      checked={params.row.fields.isActive}
-      onChange={handleChangeIsActiveToggle}
-      onColor={'#00FFFF'}
-      checkedIcon={false}
-      uncheckedIcon={false}
-    />
-    },
-    { field: 'EnableLikes', 
-      headerName: 'EnableLikes', 
-      width: 100,
-      renderCell: (params) => 
-      <ReactSwitch
-     checked={params.row.fields.EnableLikes}
-     onChange={handleChangeEnableLikesToggle}
-     onColor={'#00FFFF'}
-     checkedIcon={false}
-     uncheckedIcon={false}
-   />
-  
+      valueGetter: (allData: any) => allData.row.fields.Dept
     },
     {
-      field: 'EnableCommands',
-      headerName: 'EnableComments',
-      // type: 'image',
-      width: 100,
-      renderCell: (params) => 
-      <ReactSwitch
-     checked={params.row.fields.EnableCommands}
-     onChange={handleChangeEnableCommentsToggle}
-     onColor={'#00FFFF'}
-     checkedIcon={false}
-     uncheckedIcon={false}
-   />
+      field: 'DOJ',
+      headerName: 'DOJ',
+      type: 'date',
+      width: 130,
+      valueGetter: (allData: any) => allData.row.fields.DOJ
     },
     {
-      field: 'ShareAsEmail',
-      headerName: 'ShareAsEmail',
-      type: 'email',
-      width: 160,
-      renderCell: (params) => 
-      <ReactSwitch
-      checked={params.row.fields.ShareAsEmail}
-      onChange={handleChangeShareAsEmailToggle}
-      onColor={'#00FFFF'}
-      checkedIcon={false}
-      uncheckedIcon={false}
-   />
+      field: 'Description',
+      headerName: 'Description',
+      width: 130,
+      valueGetter: (allData: any) => allData.row.fields.Description
     },
-    // {
-    //   field: 'RecipientEmail',
-    //   headerName: 'RecipientEmail',
-    //   type: 'email',
-    //   width: 160,
-    // },
+    {
+      field: 'isActive',
+      headerName: 'IS Active',
+      width: 100,
+      renderCell: (params) =>
+        <ReactSwitch
+          checked={params.row.fields.isActive}
+          onChange={handleChangeIsActiveToggle}
+          onColor={'#009BAD'}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          width={40}
+          height={20}
+        />
+    },
+    {
+      field: 'EnableLikes',
+      headerName: 'EnableLikes',
+      width: 100,
+      renderCell: (params) =>
+        <ReactSwitch
+          checked={params.row.fields.EnableLikes}
+          onChange={handleChangeEnableLikesToggle}
+          onColor={'#009BAD'}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          width={40}
+          height={20}
+        />
+
+
+   
+
+      renderCell: (params) =>
+        <ReactSwitch
+          checked={params.row.fields.ShareAsEmail}
+          onChange={handleChangeShareAsEmailToggle}
+          onColor={'#009BAD'}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          width={40}
+          height={20}
+        />
+
+     
+    },
+   
   ];
   // console.log(empData,'ththytwwwwwwwwwwwwwwwwwwwww')
   const [openOne, setOpenOne] = React.useState<boolean>(false);
@@ -419,7 +418,7 @@ interface IFolderProps {
   const fileRef = React.useRef<HTMLInputElement | null>(null)
   const [selectedFiles, setSelectedFiles] = useState<File | null>();
   const [fileSelected, setFileSelected] = useState<any>('');
-  const [names,setNames] = useState<any>('');
+  const [names, setNames] = useState<any>('');
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event?.target?.files?.[0].name)
@@ -428,8 +427,8 @@ interface IFolderProps {
     let reader = new FileReader();
     // @ts-ignore
     reader.readAsDataURL(event?.target?.files?.[0])
-    reader.onload= (e) =>{
-        console.log(e.target?.result,'kkkkttt')
+    reader.onload = (e) => {
+      console.log(e.target?.result, 'kkkkttt')
       setFileSelected(e.target?.result)
       //@ts-ignore
       // var eee4 = window.atob(e.target?.result)
@@ -437,25 +436,25 @@ interface IFolderProps {
     }
 
   };
-  
+
   const handleSubmit = async () => {
     console.log('grdgdg')
     const announcementData = {
       // token :tokens,
-      name:EmpName,
+      name: EmpName,
       title: Title,
       description: Description,
-      designation:Designation,
+      designation: Designation,
       image: fileSelected,
       imageName: names,
-      dob:dob,
-      doj:doj,
+      dob: dob,
+      doj: doj,
       isActive: isActives,
       EnableLikes: enablelikes,
       EnableCommands: enableCommands,
       SharedAsEmail: sharedAsEmails,
-      isDraft:false
-      
+      isDraft: false
+
     }
     //  await sendItem(announcementData)
     onClick?.(announcementData)
@@ -464,53 +463,55 @@ interface IFolderProps {
     console.log('grdgdg')
     const announcementData = {
       // token :tokens,
-      name:EmpName,
+      name: EmpName,
       title: Title,
       description: Description,
-      designation:Designation,
+      designation: Designation,
       image: fileSelected,
       imageName: names,
-      dob:dob,
-      doj:doj,
+      dob: dob,
+      doj: doj,
       isActive: isActives,
       EnableLikes: enablelikes,
       EnableCommands: enableCommands,
       SharedAsEmail: sharedAsEmails,
-      isDraft:true
-      
+      isDraft: true
+
     }
     //  await sendItem(announcementData)
     onClick?.(announcementData)
   }
 
   const [files, setFiles] = useState<File[]>([]);
-  
+
   let content
 
   if (isLoading) {
     content = <CircularProgress />
   } else if (isSuccess) {
-    content = 
-    <div style={{ display: 'flex', height: '100%'}}>
-      <Box sx={{ flexGrow: 1 }}>
-    { data?.response &&
-      <DataGrid 
-        // autoHeight
-        // autoWidth
-        getRowId={(row) => row.id}
-        rows={data?.response}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-          checkboxSelection
-        //sx={{ height: '100%', width: '100%' }}
-    
-   />}
-   </Box>
-    </div>
-  
+
+    content =
+      <div style={{ display: 'flex', height: '100%' }}>
+        <Box sx={{ flexGrow: 1 }}>
+          {data?.response &&
+            <DataGrid
+              // autoHeight
+              // autoWidth
+              getRowId={(row) => row.id}
+              rows={data?.response}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              checkboxSelection
+            //sx={{ height: '100%', width: '100%' }}
+
+            />}
+        </Box>
+      </div>
+
   }
-  
+
+
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
@@ -619,10 +620,10 @@ interface IFolderProps {
 
                 <div style={{ marginBottom: "15px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-                  <img src={image} alt="" className={classes.titleIcon} />
-                      Image<img src={Asterisk} alt="..." />
+                    <img src={image} alt="" className={classes.titleIcon} />
+                    Image<img src={Asterisk} alt="..." />
                   </InputLabel>
-                   <Grid className={classes.svg}>
+                  <Grid className={classes.svg}>
                     {/* <FileUpload value={files} onChange={setFiles} /> */}
                     <img src={browse} alt="" />
                     <p>drag and drop here</p>
@@ -903,7 +904,7 @@ interface IFolderProps {
                   <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                     submit
                   </Button>
-                  <Button   onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
+                  <Button onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                 </Grid>
 
               </DialogActions>
@@ -912,8 +913,11 @@ interface IFolderProps {
 
           </Grid>
         </Grid>
-       {content}
-        
+
+        {content}
+
+
+  
 
         {/* <DataGrid
           rows={rows}
@@ -923,7 +927,7 @@ interface IFolderProps {
           rowsPerPageOptions={[5]}
           checkboxSelection
         />  */}
-        
+
         {/* {empData.length>0
                         ? <DataGrid
                             rows={empData}
@@ -934,8 +938,7 @@ interface IFolderProps {
                         : <Typography variant="h6" >No pastor for this church yet!</Typography>
                     } */}
 
-        
-       
+
       </Box>
     </div>
   );

@@ -25,6 +25,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import like from "../../Assets/Images/like.svg";
+import enableLike from "../../Assets/Images/enableLike.svg";
 import share from "../../Assets/Images/share.svg";
 import pin from "../../Assets/Images/pin.svg";
 import internet from "../../Assets/Images/internet.svg";
@@ -181,19 +182,29 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
       },
     ],
   };
+
   const [likes, setLikes] = useState(10);
   const [isClicked, setIsClicked] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
     if (isClicked) {
       setLikes(likes - 1);
+      setIsActive(isActive)
+
     } else {
       setLikes(likes + 1);
+
     }
     setIsClicked(!isClicked);
+    setIsActive(!isActive)
   };
-  const [isActive, setIsActive] = useState(false);
-  // onClick={() => setIsActive(! isActive)}> {isActive ? activeIcon : inactiveIcon}
+
+ const hide=()=>{
+  setIsActive(!isActive);
+  setIsClicked(!isClicked);
+
+ }
 
   return (
     <AuthenticatedTemplate>
@@ -241,7 +252,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <CardActionArea>
                           <CardMedia
                             // className={classes.newsImg}
-                            style={{ margin: '7px', borderRadius: "4px", width: "97%", position:"relative" }}
+                            style={{ margin: '7px', borderRadius: "4px", width: "97%", position: "relative" }}
                             component="img"
                             height="160"
                             // title={card.fields?.LinkTitle}
@@ -270,9 +281,17 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                             </Stack>
                             <div className={classes.row}>
                               <div className={classes.block} >
-                                <img src={like} alt="like" className={ `like-button ${isClicked && 'liked'}` } onClick={ handleClick }/>
+                                <div style={{width:"40px", display:"flex", justifyContent:"space-between"}}>
+                                {
+                                  isActive ?
+                                    <img src={enableLike} alt="like" onClick={hide} style={{width:"15px"}}/>
+                                    :
+                                    <img src={like} alt="like" className={`like-button ${isClicked && 'liked'}`} onClick={handleClick} style={{width:"15px"}}/>
+                                }
+
                                 {/* <span className="likes-counter">{ `Like | ${likes}` }</span> */}
-                                <span className="likes-counter">{`${likes}`}</span>
+                                <span className="likes-counter" style={{fontSize:"12px"}}>{`${likes}`}</span>
+                                </div>
                               </div>
                               <div className={classes.block}>
                                 <img src={share} alt="like" />
@@ -299,13 +318,13 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                   alignItems="center"
                   paddingTop={1} >
                   <div>
-                    <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer",color:"#009BAD"  }} />
+                    <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer", color: "#009BAD" }} />
                   </div>
                   <div>
-                    <MoreHorizIcon  style={{color:"#009BAD" }}/>
+                    <MoreHorizIcon style={{ color: "#009BAD" }} />
                   </div>
                   <div>
-                    <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer", color:"#009BAD" }} />
+                    <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer", color: "#009BAD" }} />
                   </div>
                 </Stack>
               </div>

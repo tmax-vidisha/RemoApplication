@@ -76,7 +76,7 @@ export const useStyles = makeStyles({
     },
   },
   MainPart: {
-     height: 550,
+     height:'500px',
      width: '100%',
     backgroundColor: "white",
     marginLeft:"20px",
