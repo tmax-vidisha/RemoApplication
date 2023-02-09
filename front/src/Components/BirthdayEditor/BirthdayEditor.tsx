@@ -170,24 +170,38 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
           width={40}
           height={20}
         />
-
-
-   
-
+      },
+    {
+      field: 'EnableComments',
+      headerName: 'EnableComments',
+      width: 100,
       renderCell: (params) =>
         <ReactSwitch
-          checked={params.row.fields.ShareAsEmail}
-          onChange={handleChangeShareAsEmailToggle}
+          checked={params.row.fields.EnableComments}
+          onChange={handleChangeEnableCommentsToggle}
           onColor={'#009BAD'}
           checkedIcon={false}
           uncheckedIcon={false}
           width={40}
           height={20}
         />
-
-     
-    },
-   
+      },
+    {
+      field: 'ShareAsEmail',
+      headerName: 'ShareAsEmail',
+      width: 100,
+      renderCell: (params) =>
+        <ReactSwitch
+        checked={params.row.fields.ShareAsEmail}
+        onChange={handleChangeShareAsEmailToggle}
+          onColor={'#009BAD'}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          width={40}
+          height={20}
+        />
+      },
+    
   ];
   // console.log(empData,'ththytwwwwwwwwwwwwwwwwwwwww')
   const [openOne, setOpenOne] = React.useState<boolean>(false);
