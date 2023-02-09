@@ -12,6 +12,7 @@ import { useStyles } from "./Styles";
 import { useGetCeoMessageQuery,useUpdateCeoMsgTokenMutation,useGetAllCeoMsgQuery } from '../../services/APIs'
 import moment from "moment";
 import love from "../../Assets/Images/love.svg"
+import likeActive from "../../Assets/Images/loveActive.svg"
 interface IFolderProps {
    // ceomsg: any;
    data:any, 
@@ -62,6 +63,28 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
     const { data, error, isLoading } =   props
     // console.log(data,'980ccccccc9090')
 
+    const [likes, setLikes] = useState(10);
+    const [isClicked, setIsClicked] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+  
+    const handleClick = () => {
+      if (isClicked) {
+        setLikes(likes - 1);
+        setIsActive(isActive)
+  
+      } else {
+        setLikes(likes + 1);
+  
+      }
+      setIsClicked(!isClicked);
+      setIsActive(!isActive)
+    };
+
+    const hide=()=>{
+      setIsActive(!isActive);
+      setIsClicked(!isClicked);
+    
+     };
   return (
 
     <AuthenticatedTemplate>
@@ -93,7 +116,6 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
           <Card className={classes.contentRoot} elevation={0}>
             <CardContent>
               <div className={classes.ceoImg}>
-
                 <CardMedia component="img" 
                   //  image={data.value[1].fields?.ImageURL.Url} 
                   image={data?.response.image} 
@@ -102,15 +124,20 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
                 {/* <img  src ="https://remoblobstorage.blob.core.windows.net/candidate/Bird.jpg?st=2022-06-08T12%3A55%3A31Z&se=2022-06-08T13%3A55%3A31Z&sp=r&sv=2018-03-28&sr=b&sig=y2SaHETj51cDcFSkY3eL%2Fj82O2S1XK2rKbl4jG8DvH0%3D" /> */}
               </div>
               <div className={classes.ceoContentHeader}>
-                <Typography variant="subtitle1" component="h6">
-                {data?.response.value[0].fields?.UserName} <img src={love} alt="" style={{width:"15px"}}/>
+                <Typography variant="subtitle1" component="h6" >
+                {data?.response.value[0].fields?.UserName}
+                { isActive ?
+                  <img src={likeActive} alt="" style={{width:"15px", marginLeft:"15px"}} onClick={hide} />
+                  :
+                  <img src={love} alt="" style={{width:"15px", marginLeft:"15px"}} className={`like-button ${isClicked && 'liked'}`} onClick={handleClick}/>
+                }
+                <span className="likes-counter" style={{fontSize:"12px", marginLeft:"10px"}}>{`${likes}`}</span>
                 </Typography>
                 <Typography
                   variant="caption"
                   display="block"
                   gutterBottom
-                  className={classes.ceoCreatedDate}
-                >
+                  className={classes.ceoCreatedDate}>
                   {moment(data?.response.value[0].fields?.Modified).fromNow()}
                 </Typography>
                 <Typography
