@@ -40,6 +40,7 @@ import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
 import browse from "../../Assets/Images/browse.svg";
+import MultipleSelectPlaceholder from './Category';
 var moment = require("moment-timezone");
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -611,7 +612,7 @@ interface IFolderProps {
                        style={{ width: "100%" }}                
                         onChange={handleChangeStartTime}                  
                              // placeholder="HR/MM/ss"                
-                         InputLabelProps={{               
+                         InputLabelProps={{             
                          color: "secondary",             
                          className: "DatePicker",    
                             style: { color: "gray" },     
@@ -712,13 +713,14 @@ interface IFolderProps {
                     <img src={title} alt="" className={classes.titleIcon} />
                     Category<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
                   </InputLabel>
-                  <TextField
+                  {/* <TextField
                     id="outlined-adornment-weight"
                     className={classes.span}
                     style={{ width: "100%" }}
                     onChange={handleChangeCategoryField}
                     placeholder="Enter a name"
-                  />
+                  /> */}
+                  <MultipleSelectPlaceholder/>
                 </div>
 
                 <div style={{ marginBottom: "15px" }}>
