@@ -23,6 +23,8 @@ import copylink from '../../Assets/Images/copy link.svg';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
+import { CircularProgress } from '@mui/material';
+import ReactSwitch from 'react-switch';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
 // import { useUploadItemInAnnouncementMutation } from '../../services/contentEditor';
@@ -45,37 +47,6 @@ const renderCell = (params: any) => {
   )
 }
 
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 200 },
-  { field: 'Description', headerName: 'Description', width: 400 },
-  { field: 'Image', headerName: 'Image', width: 130 },
-  { field: 'Modified On', headerName: 'Modified On', width: 130 },
- 
-  { field: 'IsActive', headerName: 'IsActive', type: 'image', width: 130 },
-  { field: 'EnableLikes', headerName: 'EnableLikes', width: 130 },
-  {
-    field: 'EnableComments',
-    headerName: 'EnableComments',
-    type: 'number',
-    width: 130,
-  },
-  {
-    field: 'ShareAsEmail',
-    headerName: 'ShareAsEmail',
-    // description: 'This column has a value getter and is not sortable.',
-    type: 'email',
-    width: 160,
-    // valueGetter: (params: GridValueGetterParams) =>
-    //   `${params.row.EnableLikes || ''} ${params.row.IsActive || ''}`,
-  },
-  {
-    field: 'RecipientEmail',
-    headerName: 'RecipientEmail',
-    type: 'email',
-    width: 160,
-  },
-];
 
 
 const rows = [
@@ -93,14 +64,131 @@ const rows = [
 interface IFolderProps {
 
   onClick?: (obj: any) => void;
-
+  data:any,
+  isLoading:any,
+  isSuccess:any,
 }
 
 // const TableAnnouncement = () => {
   const TableAnnouncement: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
   const {token} = useCustom();
-  const { onClick } = props
+  const { onClick,data,isLoading,isSuccess } = props
+  console.log(data,'uuuuuuuuuuuuuuuu')
+  const handleChangeIsActiveToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhf')
+  };
+  const handleChangeEnableLikesToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhfdddd')
+  };
+  const handleChangeEnableCommentsToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhfdddd')
+  };
+  const handleChangeShareAsEmailToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhfdddd')
+  };
+  const columns: GridColDef[] = [
+    { field: 'id', 
+      headerName: 'ID', 
+      width: 70,
+      valueGetter : (allData:any) => allData.row.fields.id
+    },
+    { 
+      field: 'Title', 
+      headerName: 'Title', 
+      width: 200,
+      valueGetter : (allData:any) => allData.row.fields.Title
+    },
+    { 
+      field: 'Description', 
+      headerName: 'Description', 
+      width: 400,
+      valueGetter : (allData:any) => allData.row.fields.Description
+    },
+    { 
+      field: 'Image', 
+      headerName: 'Image',
+      width: 130,
+      renderCell: (params) => <img src={params.row.fields.Image}/>
+      },
+    { 
+      field: 'Modified', 
+      headerName: 'Modified On', 
+      width: 130,
+      valueGetter : (allData:any) => allData.row.fields.Modified
+    },
+    {
+      field: 'RecipientEmail',
+      headerName: 'RecipientEmail',
+      type: 'email',
+      width: 160,
+      valueGetter : (allData:any) => allData.row.fields.RecipientEmail
+    },
+    { field: 'isActive', 
+      headerName: 'IsActive', 
+      type: 'image', 
+      width: 130,
+      renderCell: (params) => 
+       <ReactSwitch
+      checked={params.row.fields.isActive}
+      onChange={handleChangeIsActiveToggle}
+      onColor={'#00FFFF'}
+      checkedIcon={false}
+      uncheckedIcon={false}
+    />
+    
+    },
+    { field: 'EnableLikes', 
+      headerName: 'EnableLikes', 
+      width: 130,
+      renderCell: (params) => 
+      <ReactSwitch
+     checked={params.row.fields.EnableLikes}
+     onChange={handleChangeEnableLikesToggle}
+     onColor={'#00FFFF'}
+     checkedIcon={false}
+     uncheckedIcon={false}
+   />
+    
+    },
+    {
+      field: 'EnableCommands',
+      headerName: 'EnableComments',
+      type: 'number',
+      width: 130,
+      renderCell: (params) => 
+      <ReactSwitch
+     checked={params.row.fields.EnableCommands}
+     onChange={handleChangeEnableCommentsToggle}
+     onColor={'#00FFFF'}
+     checkedIcon={false}
+     uncheckedIcon={false}
+   />
+    },
+    {
+      field: 'SharedAsEmail',
+      headerName: 'ShareAsEmail',
+      // description: 'This column has a value getter and is not sortable.',
+      type: 'email',
+      width: 160,
+      renderCell: (params) => 
+      <ReactSwitch
+      checked={params.row.fields.ShareAsEmail}
+      onChange={handleChangeShareAsEmailToggle}
+      onColor={'#00FFFF'}
+      checkedIcon={false}
+      uncheckedIcon={false}
+   />
+      // valueGetter: (params: GridValueGetterParams) =>
+      //   `${params.row.EnableLikes || ''} ${params.row.IsActive || ''}`,
+    }
+    
+  ];
+  
   const [open, setOpen] = useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
 
@@ -442,7 +530,31 @@ if( docUrl !== undefined){
 }
  
 }
+let content
 
+  if (isLoading) {
+    content = <CircularProgress />
+  } else if (isSuccess) {
+    content = 
+    <div style={{ display: 'flex', height: '100%'}}>
+      <Box sx={{ flexGrow: 1 }}>
+    { data?.response &&
+      <DataGrid 
+        // autoHeight
+        // autoWidth
+        getRowId={(row) => row.id}
+        rows={data?.response}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+          checkboxSelection
+        //sx={{ height: '100%', width: '100%' }}
+    
+   />}
+   </Box>
+    </div>
+  
+  }
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
@@ -816,13 +928,14 @@ if( docUrl !== undefined){
 
         </Grid>
       </Grid>
-      <DataGrid
+      {/* <DataGrid
         rows={rows}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
-      />
+      /> */}
+      {content}
       </Box>
     </div>
   );

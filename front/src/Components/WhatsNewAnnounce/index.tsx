@@ -17,8 +17,8 @@ import ship1 from "../../Assets/Images/ship1.png"
 import ship2 from "../../Assets/Images/ship2.png"
 import ship3 from "../../Assets/Images/ship3.png"
 import ship4 from "../../Assets/Images/ship4.png"
-
-
+import { useLocation } from 'react-router-dom';
+var moment = require("moment-timezone");
 const itemLists = [
     {
         image: ship1,
@@ -44,6 +44,13 @@ const itemLists = [
 
 
 const WhatsNewAnnounce = () => {
+    let location = useLocation();
+
+    console.log(location.state);
+
+    
+    const { data = [] } = location.state;
+    console.log(data,'jjjuyyj')
     const classes = useStyles();
     return (
         <div>
@@ -77,11 +84,11 @@ const WhatsNewAnnounce = () => {
 
                         <Grid className={classes.bigContent}>
                             {
-                                itemLists.map((item) => (
+                             data && data?.map((item:any) => (
                                     <Box className={classes.boxContent}>
-                                        <img src={item.image} alt="img" style={{width:"250px"}} />
-                                        <p className={classes.itemDate}>{item.date}</p>
-                                        <p className={classes.itemDate}>{item.title}</p>
+                                        <img src={item.fields.Image} alt="img" style={{width:"250px"}} />
+                                        <p className={classes.itemDate}>{moment(item?.fields.Modified).format('DD-MM-YYYY')}</p>
+                                        <p className={classes.itemDate}>{item.fields.Title}</p>
                                     </Box>
                                 ))
                             }

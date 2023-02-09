@@ -1,8 +1,12 @@
 import React from 'react'
 import NewsEditor from '../../Components/NewsEditor/NewsEditor'
 import { useUploadItemInRemoNewsMutation } from '../../services/contentEditor'
+import { useGetAllNewsQuery } from '../../services/APIs';
+import useCustom from '../../hooks/useCustom';
 const NewsContentEditorPage = () => {
     const [sendItem] = useUploadItemInRemoNewsMutation();
+    const {token} = useCustom();
+    const { data,isLoading,isSuccess } = useGetAllNewsQuery(token)
    
     const  sendData= async(obj:any) =>{
 
@@ -29,6 +33,9 @@ const NewsContentEditorPage = () => {
     <div>
       <NewsEditor
         onClick={sendData}
+        data={data}
+        isLoading={isLoading}
+        isSuccess={isSuccess}
        />
     </div>
   )

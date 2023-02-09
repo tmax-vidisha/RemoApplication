@@ -54,10 +54,11 @@ const rows = [
 ];
 interface IFolderProps {
 
-  onClick?: (obj: any) => void;
-  data: any,
-  isLoading: any,
-  isSuccess: any,
+ 
+  onClick?: (obj:any) => void;
+  data:any,
+  isLoading:any,
+  isSuccess:any,
 
 }
 
@@ -65,11 +66,14 @@ interface IFolderProps {
 // const BirthdayEditor = () => {
 const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { onClick, data, isLoading, isSuccess } = props
+
+  const { onClick,data,isLoading,isSuccess } = props
+
   // const isMounted = React.useRef(true)
   // const [empData ,setEmpData ]= useState([]);
   // useEffect(()=>{
   //   if (isMounted) setEmpData(allData)
+
 
   // },[])
   const handleChangeIsActiveToggle = (val: any) => {
@@ -167,28 +171,9 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
           height={20}
         />
 
-    },
-    {
-      field: 'EnableCommands',
-      headerName: 'EnableComments',
-      // type: 'image',
-      width: 100,
-      renderCell: (params) =>
-        <ReactSwitch
-          checked={params.row.fields.EnableCommands}
-          onChange={handleChangeEnableCommentsToggle}
-          onColor={'#009BAD'}
-          checkedIcon={false}
-          uncheckedIcon={false}
-          width={40}
-          height={20}
-        />
-    },
-    {
-      field: 'ShareAsEmail',
-      headerName: 'ShareAsEmail',
-      type: 'email',
-      width: 160,
+
+   
+
       renderCell: (params) =>
         <ReactSwitch
           checked={params.row.fields.ShareAsEmail}
@@ -199,13 +184,10 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
           width={40}
           height={20}
         />
+
+     
     },
-    // {
-    //   field: 'RecipientEmail',
-    //   headerName: 'RecipientEmail',
-    //   type: 'email',
-    //   width: 160,
-    // },
+   
   ];
   // console.log(empData,'ththytwwwwwwwwwwwwwwwwwwwww')
   const [openOne, setOpenOne] = React.useState<boolean>(false);
@@ -507,6 +489,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   if (isLoading) {
     content = <CircularProgress />
   } else if (isSuccess) {
+
     content =
       <div style={{ display: 'flex', height: '100%' }}>
         <Box sx={{ flexGrow: 1 }}>
@@ -527,6 +510,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       </div>
 
   }
+
 
   return (
     <div className={classes.Section}>
@@ -929,8 +913,11 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
           </Grid>
         </Grid>
+
         {content}
 
+
+  
 
         {/* <DataGrid
           rows={rows}
@@ -950,7 +937,6 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                         />
                         : <Typography variant="h6" >No pastor for this church yet!</Typography>
                     } */}
-
 
 
       </Box>

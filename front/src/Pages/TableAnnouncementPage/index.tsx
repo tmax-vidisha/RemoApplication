@@ -3,13 +3,14 @@ import { Grid } from '@mui/material';
 import SideBar from './../../Components/WorkSpaceOne/SideBar';
 import TableAnnouncement from './../../Components/Announcement/TableAnnouncement';
 import { useStyles } from './Styles';
-import {useUploadItemInAnnouncementMutation} from '../../services/contentEditor'
-
+import {useUploadItemInAnnouncementMutation,useGetLatestAnnouncementQuery} from '../../services/contentEditor'
+import useCustom from '../../hooks/useCustom';
 
 const TableAnnouncementPage = () => {
     const classes=useStyles();
     const [sendItem] = useUploadItemInAnnouncementMutation();
-   
+    const {token} = useCustom();
+    const { data,isLoading,isSuccess } = useGetLatestAnnouncementQuery(token)
     const  sendData= async(obj:any) =>{
 
       console.log(obj,'hgfhgfhfgjtjyj')
@@ -39,7 +40,9 @@ const TableAnnouncementPage = () => {
                 <Grid item xs={11} >
                     <TableAnnouncement
                        onClick={sendData}
-                    
+                       data={data}
+                       isLoading={isLoading}
+                       isSuccess={isSuccess}
                     />
                     {/* <AnnouncementInputPage/>
                     <AnnouncementPage/> */}

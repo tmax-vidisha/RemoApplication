@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from '../Birthday/index';
-import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Checkbox, CircularProgress, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
 import Dropzone from "react-dropzone";
 import title from '../../Assets/Images/title.svg';
 import image from '../../Assets/Images/image.svg';
@@ -28,6 +28,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
 import { useStyles } from './Styles';
 import FileUpload from "react-material-file-upload";
+import ReactSwitch from 'react-switch';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
@@ -39,31 +40,6 @@ var moment = require("moment-timezone");
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width:70 },
-  { field: 'Status', headerName: 'Status', width: 70 },
-  { field: 'Description', headerName: 'Description', width: 130 },
-  { field: 'Image', headerName: 'Image', width: 130 },
-  { field: 'DetailsPageUrl', headerName: 'DetailsPageUrl', width: 130 },
-  { field: 'Site Pages ID', headerName: 'Site Pages ID', width: 70 },
-  { field: 'Is Active', headerName: 'Is Active',type: 'image', width: 70 },
-  { field: 'EnableLikes', headerName: 'EnableLikes', type: 'image', width: 100 },
-  {
-    field: 'EnableComments',
-    headerName: 'EnableComments',
-    type: 'image',
-    width: 100,
-  },
-  {
-      field: 'ShareAsEmail',
-      headerName: 'ShareAsEmail',
-      type: 'email',
-      width: 160,
-    },
-    { field: 'Page View Count', headerName: 'Page View Count', width: 70 },
-    { field: 'Created', headerName: 'Created', width: 70 }
-];
 
 
 const rows = [
@@ -80,13 +56,121 @@ const rows = [
 interface IFolderProps {
 
   onClick?: (obj: any) => void;
+  data:any,
+  isLoading:any,
+  isSuccess:any,
 
 }
 
 // const NewsEditor= () => {
 const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { onClick } = props
+  const { onClick,data,isLoading,isSuccess  } = props
+  console.log(data,'hththththt')
+  const handleChangeIsActiveToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhf')
+  };
+  const handleChangeEnableLikesToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhfdddd')
+  };
+  const handleChangeEnableCommentsToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhfdddd')
+  };
+  const handleChangeShareAsEmailToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhfdddd')
+  };
+  const columns: GridColDef[] = [
+    { field: 'id', 
+      headerName: 'ID', 
+      width: 70,
+      valueGetter : (allData:any) => allData.row.fields.id
+    },
+    { 
+      field: 'Title', 
+      headerName: 'Title', 
+      width:70,
+      valueGetter : (allData:any) => allData.row.fields.Title
+    },
+    // { field: 'Status', headerName: 'Status', width: 70 },
+    { 
+      field: 'Description', 
+      headerName: 'Description', 
+      width: 130,
+      valueGetter : (allData:any) => allData.row.fields.Description
+    },
+    { field: 'Reference', 
+      headerName: 'Reference', 
+      width: 130,
+      valueGetter : (allData:any) => allData.row.fields.Reference
+    },
+    { field: 'NewsImage', 
+      headerName: 'Image', 
+      width: 130, 
+      renderCell: (params) => <img src={params.row.fields.NewsImage}/> 
+   },
+    // { field: 'Site Pages ID', headerName: 'Site Pages ID', width: 70 },
+    { field: 'isActive', 
+      headerName: 'Is Active',
+      // type: 'image', 
+      width: 70,
+      renderCell: (params) => 
+      <ReactSwitch
+      checked={params.row.fields.isActive}
+      onChange={handleChangeIsActiveToggle}
+      onColor={'#00FFFF'}
+      checkedIcon={false}
+      uncheckedIcon={false}
+      />
+    },
+    { field: 'EnableLikes', 
+      headerName: 'EnableLikes', 
+      // type: 'image', 
+      width: 100 ,
+      renderCell: (params) => 
+      <ReactSwitch
+     checked={params.row.fields.EnableLikes}
+     onChange={handleChangeEnableLikesToggle}
+     onColor={'#00FFFF'}
+     checkedIcon={false}
+     uncheckedIcon={false}
+   />
+    },
+    {
+      field: 'EnableCommands',
+      headerName: 'EnableComments',
+      type: 'image',
+      width: 100,
+      renderCell: (params) => 
+      <ReactSwitch
+     checked={params.row.fields.EnableCommands}
+     onChange={handleChangeEnableCommentsToggle}
+     onColor={'#00FFFF'}
+     checkedIcon={false}
+     uncheckedIcon={false}
+   />
+    },
+    {
+        field: 'SharedAsEmail',
+        headerName: 'ShareAsEmail',
+        type: 'email',
+        width: 160,
+        renderCell: (params) => 
+      <ReactSwitch
+      checked={params.row.fields.SharedAsEmail}
+      onChange={handleChangeShareAsEmailToggle}
+      onColor={'#00FFFF'}
+      checkedIcon={false}
+      uncheckedIcon={false}
+   />
+      },
+      // { field: 'Page View Count', headerName: 'Page View Count', width: 70 },
+      // { field: 'Created', headerName: 'Created', width: 70 }
+  ];
+  
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -378,6 +462,32 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
      await onClick?.(announcementData)
   }
   const today = moment();
+  let content
+
+  if (isLoading) {
+    content = <CircularProgress />
+  } else if (isSuccess) {
+    content = 
+    <div style={{ display: 'flex', height: '100%'}}>
+      <Box sx={{ flexGrow: 1 }}>
+    { data?.response &&
+      <DataGrid 
+        // autoHeight
+        // autoWidth
+        getRowId={(row) => row.id}
+        rows={data?.response}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+          checkboxSelection
+        //sx={{ height: '100%', width: '100%' }}
+    
+   />}
+   </Box>
+    </div>
+  
+  }
+  
   return (
     <div className={classes.Section}>
     <Box className={classes.MainPart}>
@@ -807,13 +917,14 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
         </Grid>
       </Grid>
-      <DataGrid
+      {/* <DataGrid
         rows={rows}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
-      />
+      /> */}
+      {content}
     </Box>
   </div>
   );
