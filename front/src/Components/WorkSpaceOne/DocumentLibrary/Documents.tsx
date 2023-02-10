@@ -55,11 +55,11 @@ const [page, setPage] = React.useState(0);
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Name</TableCell>
-                                <TableCell align="right">Last Modified By</TableCell>
-                                <TableCell align="right">Last Modified Date</TableCell>
-                                <TableCell align="right">File Size</TableCell>
-                                <TableCell align="right">Actions</TableCell>
+                                <TableCell className={classes.theadCell}>Name</TableCell>
+                                <TableCell className={classes.theadCell}>Last Modified By</TableCell>
+                                <TableCell className={classes.theadCell}>Last Modified Date</TableCell>
+                                <TableCell className={classes.theadCell}>File Size</TableCell>
+                                <TableCell className={classes.theadCell}>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -68,13 +68,13 @@ const [page, setPage] = React.useState(0);
                                 key={row.name}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell component="th" scope="row">
+                                <TableCell className={classes.TableCell}>
                                     {row.name}
                                 </TableCell>
-                                <TableCell align="right">{row.lastModifiedBy}</TableCell>
-                                <TableCell align="right">{row.ModifiedDate}</TableCell>
-                                <TableCell align="right">{row.fileSize}</TableCell>
-                                <TableCell align="right">{row.Actions}</TableCell>
+                                <TableCell className={classes.TableCell}>{row.lastModifiedBy}</TableCell>
+                                <TableCell className={classes.TableCell}>{row.ModifiedDate}</TableCell>
+                                <TableCell className={classes.TableCell}>{row.fileSize}</TableCell>
+                                <TableCell className={classes.TableCell}>{row.Actions}</TableCell>
                             </TableRow>
                         ))} 
                            

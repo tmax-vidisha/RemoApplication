@@ -113,9 +113,9 @@ export const useStyles = makeStyles({
   bigPart: {
     // marginRight: "25px",
     backgroundColor: "white",
-    marginTop: "20px",
+    // marginTop: "20px",
     borderRadius: "10px",
-    padding: "10px"
+    // padding: "10px"
   },
   divFile: {
     color: "#1b6189",
@@ -309,6 +309,21 @@ export const useStyles = makeStyles({
   shortBy:{
     color: "#606c74",
     fontSize:"14px"
+  },
+  theadCell: {
+    color: "#606C74 !important",
+    fontSize: "12px !important",
+    padding: "5px 5px !important",
+    fontWeight: "600 !important",
+    fontFamily: " 'DM Sans', sans-serif!important",
+    textAlign:"left"
+  },
+  TableCell: {
+    padding: "5px ",
+    fontSize: "12px !important",
+    color: "#606C74 !important",
+    fontFamily: " 'DM Sans', sans-serif!important",
+    textAlign:"left"
   },
 
 });
