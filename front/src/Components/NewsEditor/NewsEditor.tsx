@@ -43,134 +43,147 @@ const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 
 const rows = [
-  { id: 1, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
-  { id: 2, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
-  { id: 3, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
-  { id: 4, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
-  { id: 5, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
-  { id: 6, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
-  { id: 7, Title: 'UAE President , VIP meetings', Status: 'Active',Description: 'DP World Sokhna  has celebrated its 10th anniversary',Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com','Site Pages ID':"32",IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />,'Share As email': <Switch {...label} defaultChecked />,"Page View Count":32, Created:"august 12 2022" ,  },
+  { id: 1, Title: 'UAE President , VIP meetings', Status: 'Active', Description: 'DP World Sokhna  has celebrated its 10th anniversary', Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com', 'Site Pages ID': "32", IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />, 'Share As email': <Switch {...label} defaultChecked />, "Page View Count": 32, Created: "august 12 2022", },
+  { id: 2, Title: 'UAE President , VIP meetings', Status: 'Active', Description: 'DP World Sokhna  has celebrated its 10th anniversary', Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com', 'Site Pages ID': "32", IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />, 'Share As email': <Switch {...label} defaultChecked />, "Page View Count": 32, Created: "august 12 2022", },
+  { id: 3, Title: 'UAE President , VIP meetings', Status: 'Active', Description: 'DP World Sokhna  has celebrated its 10th anniversary', Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com', 'Site Pages ID': "32", IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />, 'Share As email': <Switch {...label} defaultChecked />, "Page View Count": 32, Created: "august 12 2022", },
+  { id: 4, Title: 'UAE President , VIP meetings', Status: 'Active', Description: 'DP World Sokhna  has celebrated its 10th anniversary', Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com', 'Site Pages ID': "32", IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />, 'Share As email': <Switch {...label} defaultChecked />, "Page View Count": 32, Created: "august 12 2022", },
+  { id: 5, Title: 'UAE President , VIP meetings', Status: 'Active', Description: 'DP World Sokhna  has celebrated its 10th anniversary', Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com', 'Site Pages ID': "32", IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />, 'Share As email': <Switch {...label} defaultChecked />, "Page View Count": 32, Created: "august 12 2022", },
+  { id: 6, Title: 'UAE President , VIP meetings', Status: 'Active', Description: 'DP World Sokhna  has celebrated its 10th anniversary', Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com', 'Site Pages ID': "32", IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />, 'Share As email': <Switch {...label} defaultChecked />, "Page View Count": 32, Created: "august 12 2022", },
+  { id: 7, Title: 'UAE President , VIP meetings', Status: 'Active', Description: 'DP World Sokhna  has celebrated its 10th anniversary', Image: <img src={image} alt="" />, DetailsPageUrl: 'https://remodigitalsharepoint.com', 'Site Pages ID': "32", IsActive: 'yes ', "Enable Likes": <Switch {...label} defaultChecked />, "Enable Comments": <Switch {...label} defaultChecked />, 'Share As email': <Switch {...label} defaultChecked />, "Page View Count": 32, Created: "august 12 2022", },
 
- 
+
 ];
 interface IFolderProps {
 
   onClick?: (obj: any) => void;
-  data:any,
-  isLoading:any,
-  isSuccess:any,
+  data: any,
+  isLoading: any,
+  isSuccess: any,
 
 }
 
 // const NewsEditor= () => {
 const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { onClick,data,isLoading,isSuccess  } = props
-  console.log(data,'hththththt')
-  const handleChangeIsActiveToggle = (val:any) => {
+  const { onClick, data, isLoading, isSuccess } = props
+  console.log(data, 'hththththt')
+  const handleChangeIsActiveToggle = (val: any) => {
     // setChecked(val);
-    console.log(val,'hhhfhf')
+    console.log(val, 'hhhfhf')
   };
-  const handleChangeEnableLikesToggle = (val:any) => {
+  const handleChangeEnableLikesToggle = (val: any) => {
     // setChecked(val);
-    console.log(val,'hhhfhfdddd')
+    console.log(val, 'hhhfhfdddd')
   };
-  const handleChangeEnableCommentsToggle = (val:any) => {
+  const handleChangeEnableCommentsToggle = (val: any) => {
     // setChecked(val);
-    console.log(val,'hhhfhfdddd')
+    console.log(val, 'hhhfhfdddd')
   };
-  const handleChangeShareAsEmailToggle = (val:any) => {
+  const handleChangeShareAsEmailToggle = (val: any) => {
     // setChecked(val);
-    console.log(val,'hhhfhfdddd')
+    console.log(val, 'hhhfhfdddd')
   };
   const columns: GridColDef[] = [
-    { field: 'id', 
-      headerName: 'ID', 
-      width: 70,
-      valueGetter : (allData:any) => allData.row.fields.id
+    {
+      field: 'id',
+      headerName: 'ID',
+      width: 60,
+      valueGetter: (allData: any) => allData.row.fields.id
     },
-    { 
-      field: 'Title', 
-      headerName: 'Title', 
-      width:70,
-      valueGetter : (allData:any) => allData.row.fields.Title
+    {
+      field: 'Title',
+      headerName: 'Title',
+      width: 130,
+      valueGetter: (allData: any) => allData.row.fields.Title
     },
     // { field: 'Status', headerName: 'Status', width: 70 },
-    { 
-      field: 'Description', 
-      headerName: 'Description', 
-      width: 130,
-      valueGetter : (allData:any) => allData.row.fields.Description
+    {
+      field: 'Description',
+      headerName: 'Description',
+      width: 300,
+      valueGetter: (allData: any) => allData.row.fields.Description
     },
-    { field: 'Reference', 
-      headerName: 'Reference', 
-      width: 130,
-      valueGetter : (allData:any) => allData.row.fields.Reference
+    {
+      field: 'Reference',
+      headerName: 'Reference',
+      width: 100,
+      valueGetter: (allData: any) => allData.row.fields.Reference
     },
-    { field: 'NewsImage', 
-      headerName: 'Image', 
-      width: 130, 
-      renderCell: (params) => <img src={params.row.fields.NewsImage}/> 
-   },
+    {
+      field: 'NewsImage',
+      headerName: 'Image',
+      width: 130,
+      renderCell: (params) => <img src={params.row.fields.NewsImage}style={{width:"80px", height:"50px"}} />
+    },
     // { field: 'Site Pages ID', headerName: 'Site Pages ID', width: 70 },
-    { field: 'isActive', 
+    {
+      field: 'isActive',
       headerName: 'Is Active',
       // type: 'image', 
-      width: 70,
-      renderCell: (params) => 
-      <ReactSwitch
-      checked={params.row.fields.isActive}
-      onChange={handleChangeIsActiveToggle}
-      onColor={'#00FFFF'}
-      checkedIcon={false}
-      uncheckedIcon={false}
-      />
+      width: 80,
+      renderCell: (params) =>
+        <ReactSwitch
+          checked={params.row.fields.isActive}
+          onChange={handleChangeIsActiveToggle}
+          onColor={'#009BAD'}
+          width={40}
+          height={20}
+          checkedIcon={false}
+          uncheckedIcon={false}
+        />
     },
-    { field: 'EnableLikes', 
-      headerName: 'EnableLikes', 
+    {
+      field: 'EnableLikes',
+      headerName: 'EnableLikes',
       // type: 'image', 
-      width: 100 ,
-      renderCell: (params) => 
-      <ReactSwitch
-     checked={params.row.fields.EnableLikes}
-     onChange={handleChangeEnableLikesToggle}
-     onColor={'#00FFFF'}
-     checkedIcon={false}
-     uncheckedIcon={false}
-   />
+      width: 100,
+      renderCell: (params) =>
+        <ReactSwitch
+          checked={params.row.fields.EnableLikes}
+          onChange={handleChangeEnableLikesToggle}
+          onColor={'#009BAD'}
+          width={40}
+          height={20}
+          checkedIcon={false}
+          uncheckedIcon={false}
+        />
     },
     {
       field: 'EnableCommands',
       headerName: 'EnableComments',
       type: 'image',
       width: 100,
-      renderCell: (params) => 
-      <ReactSwitch
-     checked={params.row.fields.EnableCommands}
-     onChange={handleChangeEnableCommentsToggle}
-     onColor={'#00FFFF'}
-     checkedIcon={false}
-     uncheckedIcon={false}
-   />
+      renderCell: (params) =>
+        <ReactSwitch
+          checked={params.row.fields.EnableCommands}
+          onChange={handleChangeEnableCommentsToggle}
+          onColor={'#009BAD'}
+          width={40}
+          height={20}
+          checkedIcon={false}
+          uncheckedIcon={false}
+        />
     },
     {
-        field: 'SharedAsEmail',
-        headerName: 'ShareAsEmail',
-        type: 'email',
-        width: 160,
-        renderCell: (params) => 
-      <ReactSwitch
-      checked={params.row.fields.SharedAsEmail}
-      onChange={handleChangeShareAsEmailToggle}
-      onColor={'#00FFFF'}
-      checkedIcon={false}
-      uncheckedIcon={false}
-   />
-      },
-      // { field: 'Page View Count', headerName: 'Page View Count', width: 70 },
-      // { field: 'Created', headerName: 'Created', width: 70 }
+      field: 'SharedAsEmail',
+      headerName: 'ShareAsEmail',
+      type: 'email',
+      width: 100,
+      renderCell: (params) =>
+        <ReactSwitch
+          checked={params.row.fields.SharedAsEmail}
+          onChange={handleChangeShareAsEmailToggle}
+          onColor={'#009BAD'}
+          width={40}
+          height={20}
+          checkedIcon={false}
+          uncheckedIcon={false}
+        />
+    },
+    // { field: 'Page View Count', headerName: 'Page View Count', width: 70 },
+    // { field: 'Created', headerName: 'Created', width: 70 }
   ];
-  
+
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -382,7 +395,7 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       });
     }
   };
- 
+
 
   const [files, setFiles] = useState<File[]>([]);
   const fileRef = React.useRef<HTMLInputElement | null>(null)
@@ -438,10 +451,10 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       EnableLikes: enablelikes,
       EnableCommands: enableCommands,
       SharedAsEmail: sharedAsEmails,
-      Reference:Reference,
-      isDraft:false
+      Reference: Reference,
+      isDraft: false
     }
-     await onClick?.(announcementData)
+    await onClick?.(announcementData)
   }
 
   const handleSave = async () => {
@@ -456,10 +469,10 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       EnableLikes: enablelikes,
       EnableCommands: enableCommands,
       SharedAsEmail: sharedAsEmails,
-      Reference:Reference,
-      isDraft:true
+      Reference: Reference,
+      isDraft: true
     }
-     await onClick?.(announcementData)
+    await onClick?.(announcementData)
   }
   const today = moment();
   let content
@@ -467,114 +480,114 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   if (isLoading) {
     content = <CircularProgress />
   } else if (isSuccess) {
-    content = 
-    <div style={{ display: 'flex', height: '100%'}}>
-      <Box sx={{ flexGrow: 1 }}>
-    { data?.response &&
-      <DataGrid 
-        // autoHeight
-        // autoWidth
-        getRowId={(row) => row.id}
-        rows={data?.response}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-          checkboxSelection
-        //sx={{ height: '100%', width: '100%' }}
-    
-   />}
-   </Box>
-    </div>
-  
+    content =
+      <div style={{ display: 'flex', height: '100%' }}>
+        <Box sx={{ flexGrow: 1 }}>
+          {data?.response &&
+            <DataGrid
+              // autoHeight
+              // autoWidth
+              getRowId={(row) => row.id}
+              rows={data?.response}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              checkboxSelection
+            //sx={{ height: '100%', width: '100%' }}
+
+            />}
+        </Box>
+      </div>
+
   }
-  
+
   return (
     <div className={classes.Section}>
-    <Box className={classes.MainPart}>
-      <Grid className={classes.upperPart}>
-        <Grid>News </Grid>
-        <Grid className={classes.new}>
-          <Button
-            onClick={handleClickOpen}
-            className={classes.create}
-            sx={{ textTransform: "capitalize", }}>
-            <span className={classes.plus}><LocalHospitalIcon /></span>
-            New
-          </Button>
-          <Dialog
-            classes={{
-              paper: classes.newPosOfDialog
-            }}
-            open={openOne}
-            onClose={handleClose}
-            style={{ marginTop: "60px", height: "650px" }}
-          >
-            <DialogTitle id="alert-dialog-title" >
-              <Grid className={classes.dialogTitle}>
-                <Grid>
-                  <Button className={classes.dialogBtn}>
-                    <img src={save} alt="" style={{ width: "13px", marginRight: "5px", }} />
-                    <span style={{ color: "#606C74", textTransform: "capitalize" }}>Save</span>
-                  </Button>
-                  <Button style={{ color: "#606C74", fontSize: "12px" }}>
-                    <img src={cancel} alt="" style={{ width: "13px", marginRight: "5px" }} />
-                    <span style={{ textTransform: "capitalize" }}>Cancel</span>
-                  </Button>
-                  <Button>
-                    <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
-                    <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Copy Link</span>
-                  </Button>
-                  <Button>
-                    <img src={publish} alt="" style={{ width: "12px", marginRight: "5px" }} />
-                    <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Publish</span>
-                  </Button>
+      <Box className={classes.MainPart}>
+        <Grid className={classes.upperPart}>
+          <Grid>News </Grid>
+          <Grid className={classes.new}>
+            <Button
+              onClick={handleClickOpen}
+              className={classes.create}
+              sx={{ textTransform: "capitalize", }}>
+              <span className={classes.plus}><LocalHospitalIcon /></span>
+              New
+            </Button>
+            <Dialog
+              classes={{
+                paper: classes.newPosOfDialog
+              }}
+              open={openOne}
+              onClose={handleClose}
+              style={{ marginTop: "60px", height: "650px" }}
+            >
+              <DialogTitle id="alert-dialog-title" >
+                <Grid className={classes.dialogTitle}>
+                  <Grid>
+                    <Button className={classes.dialogBtn}>
+                      <img src={save} alt="" style={{ width: "13px", marginRight: "5px", }} />
+                      <span style={{ color: "#606C74", textTransform: "capitalize" }}>Save</span>
+                    </Button>
+                    <Button style={{ color: "#606C74", fontSize: "12px" }}>
+                      <img src={cancel} alt="" style={{ width: "13px", marginRight: "5px" }} />
+                      <span style={{ textTransform: "capitalize" }}>Cancel</span>
+                    </Button>
+                    <Button>
+                      <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                      <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Copy Link</span>
+                    </Button>
+                    <Button>
+                      <img src={publish} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                      <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Publish</span>
+                    </Button>
+                  </Grid>
+                  <Grid>
+                    <Button onClick={handleClose}>
+                      <img src={cancel} alt="" style={{ width: "13px" }} />
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid>
-                  <Button onClick={handleClose}>
-                    <img src={cancel} alt="" style={{ width: "13px" }} />
-                  </Button>
-                </Grid>
-              </Grid>
-            </DialogTitle>
+              </DialogTitle>
 
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                <Divider />
-                <p style={{ textAlign: "left" }}>New Item</p>
-              </DialogContentText>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={title} alt="" className={classes.titleIcon} />
-                  Title<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
-                  placeholder="Enter value here"
-                />
-              </div>
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
-                  <img src={descripton} alt="" className={classes.titleIcon} />
-                  Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-multiline-static"
-                  // label="Multiline"
-                  multiline
-                  rows={4}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeDescriptionField}
-                />
-              </div>
-              <div style={{ marginBottom: "15px" }}>
-                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
-                  <img src={image} alt="" className={classes.titleIcon} />
-                      Image<img src={Asterisk} alt="..." />
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  <Divider />
+                  <p style={{ textAlign: "left" }}>New Item</p>
+                </DialogContentText>
+                <div style={{ marginBottom: "10px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                    <img src={title} alt="" className={classes.titleIcon} />
+                    Title<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
                   </InputLabel>
-                   <Grid className={classes.svg}>
+                  <TextField
+                    id="outlined-adornment-weight"
+                    className={classes.span}
+                    style={{ width: "100%" }}
+                    onChange={handleChangeTitleField}
+                    placeholder="Enter value here"
+                  />
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" className={classes.label}>
+                    <img src={descripton} alt="" className={classes.titleIcon} />
+                    Description<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                  </InputLabel>
+                  <TextField
+                    id="outlined-multiline-static"
+                    // label="Multiline"
+                    multiline
+                    rows={4}
+                    style={{ width: "100%" }}
+                    onChange={handleChangeDescriptionField}
+                  />
+                </div>
+                <div style={{ marginBottom: "15px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                    <img src={image} alt="" className={classes.titleIcon} />
+                    Image<img src={Asterisk} alt="..." />
+                  </InputLabel>
+                  <Grid className={classes.svg}>
                     {/* <FileUpload value={files} onChange={setFiles} /> */}
                     <img src={browse} alt="" />
                     <p>drag and drop here</p>
@@ -628,7 +641,7 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   onChange={handleChangeDescriptionField}
                 />
               </div> */}
-              {/* <div style={{ marginBottom: "10px" }}>
+                {/* <div style={{ marginBottom: "10px" }}>
                 <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                   <img src={title} alt="" className={classes.titleIcon} />
                  Short Title<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -641,7 +654,7 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   placeholder="Enter value here"
                 />
               </div> */}
-              {/* <div style={{ marginBottom: "10px" }}>
+                {/* <div style={{ marginBottom: "10px" }}>
                 <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                   <img src={dept} alt="" className={classes.titleIcon} />
                  Department<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -654,20 +667,20 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   placeholder="Enter value here"
                 />
               </div> */}
-              <div style={{ marginBottom: "10px" }}>
-                <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
-                  <img src={dept} alt="" className={classes.titleIcon} />
-                Reference<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
-                </InputLabel>
-                <TextField
-                  id="outlined-adornment-weight"
-                  className={classes.span}
-                  style={{ width: "100%" }}
-                  onChange={handleChangeReference}
-                  placeholder="Enter value here"
-                />
-              </div>
-              {/* <div style={{ marginBottom: "10px" }}>
+                <div style={{ marginBottom: "10px" }}>
+                  <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
+                    <img src={dept} alt="" className={classes.titleIcon} />
+                    Reference<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
+                  </InputLabel>
+                  <TextField
+                    id="outlined-adornment-weight"
+                    className={classes.span}
+                    style={{ width: "100%" }}
+                    onChange={handleChangeReference}
+                    placeholder="Enter value here"
+                  />
+                </div>
+                {/* <div style={{ marginBottom: "10px" }}>
                 <InputLabel htmlFor="input-with-icon-adornment" className={classes.label} >
                   <img src={dept} alt="" className={classes.titleIcon} />
                 Dept<img src={Asterisk} alt="..." style={{ marginBottom: "5px", }} />
@@ -680,96 +693,96 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   placeholder="Enter value here"
                 />
               </div> */}
-              
-              
-              <Grid>
-                <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
-                  <Box>
-                    <img src={isActive} alt="" style={{ width: "15px", marginRight: "15px" }} />
-                    <span>IsActive</span>
-                  </Box>
-                  <Box style={{ display: 'flex', }}>
-                    <FormControlLabel
-                      label="Yes"
-                      control={<Checkbox checked={checkedyesisActive} onChange={handleChangeisActiveyes} />}
-                    />
-                    <FormControlLabel
-                      label="No"
-                      control={<Checkbox checked={checkednoisActive} onChange={handleChangeisActiveno} />}
-                    />
-                  </Box>
 
-                </Box>
-                <Grid sx={{ display: 'flex', justifyContent: "space-between" }}>
-                  <Box>
-                    <img src={like1} alt="" style={{ width: "15px", marginRight: "15px" }} />
-                    <span>EnableLikes </span>
-                  </Box>
-                  <Box style={{ display: 'flex', }}>
-
-                    <FormControlLabel
-                      label="Yes"
-                      control={<Checkbox checked={checkedyesEnableLikes} onChange={handleChangeEnableLikesyes} />}
-                    />
-                    <FormControlLabel
-                      label="No"
-                      control={<Checkbox checked={checkednoEnableLikes} onChange={handleChangeEnableLikesno} />}
-                    />
-                  </Box>
-
-                </Grid>
-              </Grid>
-              <Grid>
 
                 <Grid>
                   <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
                     <Box>
-                      <img src={comments} alt="" className={classes.checkLike} />
-                      <span> EnableCommands</span>
-
+                      <img src={isActive} alt="" style={{ width: "15px", marginRight: "15px" }} />
+                      <span>IsActive</span>
                     </Box>
-                    <Box style={{ display: "flex" }}>
+                    <Box style={{ display: 'flex', }}>
                       <FormControlLabel
                         label="Yes"
-                        control={<Checkbox checked={checkedyesEnableCommands} onChange={handleChangeEnableCommandsyes} />}
+                        control={<Checkbox checked={checkedyesisActive} onChange={handleChangeisActiveyes} />}
                       />
                       <FormControlLabel
                         label="No"
-                        control={<Checkbox checked={checkednoEnableCommands} onChange={handleChangeEnableCommandsno} />}
+                        control={<Checkbox checked={checkednoisActive} onChange={handleChangeisActiveno} />}
                       />
                     </Box>
 
                   </Box>
-                  <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
+                  <Grid sx={{ display: 'flex', justifyContent: "space-between" }}>
                     <Box>
-                      <img src={shareasemail} alt="" className={classes.checkLike} />
-                      <span>  ShareAsEmail</span>
+                      <img src={like1} alt="" style={{ width: "15px", marginRight: "15px" }} />
+                      <span>EnableLikes </span>
                     </Box>
-                    <Box style={{ display: "flex" }}>
+                    <Box style={{ display: 'flex', }}>
+
                       <FormControlLabel
                         label="Yes"
-                        control={<Checkbox checked={checkedyesSharedAsEmail}
-                          onChange={handleChangeSharedAsEmailyes} />}
+                        control={<Checkbox checked={checkedyesEnableLikes} onChange={handleChangeEnableLikesyes} />}
                       />
                       <FormControlLabel
                         label="No"
-                        control={<Checkbox checked={checkednoSharedAsEmail}
-                          onChange={handleChangeSharedAsEmailno} />}
+                        control={<Checkbox checked={checkednoEnableLikes} onChange={handleChangeEnableLikesno} />}
                       />
                     </Box>
 
-                  </Box>
-
+                  </Grid>
                 </Grid>
-              </Grid>
+                <Grid>
 
- {/* <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
+                  <Grid>
+                    <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
+                      <Box>
+                        <img src={comments} alt="" className={classes.checkLike} />
+                        <span> EnableCommands</span>
+
+                      </Box>
+                      <Box style={{ display: "flex" }}>
+                        <FormControlLabel
+                          label="Yes"
+                          control={<Checkbox checked={checkedyesEnableCommands} onChange={handleChangeEnableCommandsyes} />}
+                        />
+                        <FormControlLabel
+                          label="No"
+                          control={<Checkbox checked={checkednoEnableCommands} onChange={handleChangeEnableCommandsno} />}
+                        />
+                      </Box>
+
+                    </Box>
+                    <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
+                      <Box>
+                        <img src={shareasemail} alt="" className={classes.checkLike} />
+                        <span>  ShareAsEmail</span>
+                      </Box>
+                      <Box style={{ display: "flex" }}>
+                        <FormControlLabel
+                          label="Yes"
+                          control={<Checkbox checked={checkedyesSharedAsEmail}
+                            onChange={handleChangeSharedAsEmailyes} />}
+                        />
+                        <FormControlLabel
+                          label="No"
+                          control={<Checkbox checked={checkednoSharedAsEmail}
+                            onChange={handleChangeSharedAsEmailno} />}
+                        />
+                      </Box>
+
+                    </Box>
+
+                  </Grid>
+                </Grid>
+
+                {/* <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
               <img src={recipientEmail} alt="" style={{ width: "13px", marginRight: "15px" }} />
               RecipentEmail
             </InputLabel>
             <TextField
               id="outlined-adornment-weight" sx={{ width: "100%" }} onChange={handleChangeReciepientEmailField} /> */}
-               {/* <div style={{ marginBottom: "15px" }}>
+                {/* <div style={{ marginBottom: "15px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
                   <img src={Attachment} alt="" className={classes.titleIcon} />
                   Attachments<img src={Asterisk} alt="..." />
@@ -814,119 +827,119 @@ const NewsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </div>
                   </Grid>
                 </div> */}
-           
-            </DialogContent>
-            <DialogActions>
-              <Grid className={classes.actionDivTwo}>
-                <Button onClick={handleClickPreview} className={classes.saveBtn}>
-                  Preview
-                </Button>
-                <Dialog
-                  classes={{
-                    paper: classes.newPosOfDialog
-                  }}
-                  open={openPreview}
-                  onClose={handleClosePreview}
-                  style={{ marginTop: "60px", height: "650px" }}
-                >
-                  <DialogTitle id="alert-dialog-title" >
-                    <Grid style={{ display: "flex", justifyContent: "space-between", }}>
-                      <Grid>
-                        <Button style={{ color: "#606C74", fontSize: "12px" }}>
-                          <img src={save} alt="" style={{ width: "13px", marginRight: "5px", textTransform: "capitalize" }} />
-                          Save
-                        </Button>
-                        <Button style={{ color: "#606C74", fontSize: "12px" }}>
-                          <img src={cancel} alt="" style={{ width: "13px", marginRight: "5px" }} />
-                          Cancel
-                        </Button>
-                        <Button>
-                          <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
-                          <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Copy Link</span>
-                        </Button>
-                        <Button>
-                          <img src={publish} alt="" style={{ width: "12px", marginRight: "5px" }} />
-                          <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Publish</span>
-                        </Button>
-                      </Grid>
-                      <Grid>
-                        <Button onClick={handleClosePreview}>
-                          <img src={cancel} alt="" style={{ width: "13px" }} />
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </DialogTitle>
 
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                      <Divider />
-                      <p style={{ textAlign: "left" }}>New Item</p>
-                    </DialogContentText>
-                    <Grid>
-                      <Box>
-                        <img src={fileSelected} alt="" className={classes.backgroundImage} />
-                        {/* <img src={girl} alt="" className={classes.girl} />
+              </DialogContent>
+              <DialogActions>
+                <Grid className={classes.actionDivTwo}>
+                  <Button onClick={handleClickPreview} className={classes.saveBtn}>
+                    Preview
+                  </Button>
+                  <Dialog
+                    classes={{
+                      paper: classes.newPosOfDialog
+                    }}
+                    open={openPreview}
+                    onClose={handleClosePreview}
+                    style={{ marginTop: "60px", height: "650px" }}
+                  >
+                    <DialogTitle id="alert-dialog-title" >
+                      <Grid style={{ display: "flex", justifyContent: "space-between", }}>
+                        <Grid>
+                          <Button style={{ color: "#606C74", fontSize: "12px" }}>
+                            <img src={save} alt="" style={{ width: "13px", marginRight: "5px", textTransform: "capitalize" }} />
+                            Save
+                          </Button>
+                          <Button style={{ color: "#606C74", fontSize: "12px" }}>
+                            <img src={cancel} alt="" style={{ width: "13px", marginRight: "5px" }} />
+                            Cancel
+                          </Button>
+                          <Button>
+                            <img src={copylink} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                            <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Copy Link</span>
+                          </Button>
+                          <Button>
+                            <img src={publish} alt="" style={{ width: "12px", marginRight: "5px" }} />
+                            <span style={{ color: "#606C74", textTransform: "capitalize", fontSize: "12px" }}> Publish</span>
+                          </Button>
+                        </Grid>
+                        <Grid>
+                          <Button onClick={handleClosePreview}>
+                            <img src={cancel} alt="" style={{ width: "13px" }} />
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </DialogTitle>
+
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        <Divider />
+                        <p style={{ textAlign: "left" }}>New Item</p>
+                      </DialogContentText>
+                      <Grid>
+                        <Box>
+                          <img src={fileSelected} alt="" className={classes.backgroundImage} />
+                          {/* <img src={girl} alt="" className={classes.girl} />
                         <p>Ayesha Siddiqa</p>
                         <p>HR Manager</p> */}
-                      </Box>
-                      <Grid>
-                        <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>{Title} </Typography>
-                        <div className={classes.newsPrev3}>
-                          <p>{Reference}</p>
-                          <p>{ today.format('DD-MM-YYYY')}</p>
-                        </div>
-                        <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                          {Description}
-                        </p>
+                        </Box>
+                        <Grid>
+                          <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>{Title} </Typography>
+                          <div className={classes.newsPrev3}>
+                            <p>{Reference}</p>
+                            <p>{today.format('DD-MM-YYYY')}</p>
+                          </div>
+                          <p style={{ textAlign: "left", marginLeft: "15px" }}>
+                            {Description}
+                          </p>
+                        </Grid>
+                        <Grid className={classes.iconDiv}>
+                          <div className={classes.iconView}>
+                            <span><img src={love} alt="" /></span>
+                            <span>10</span>
+                          </div>
+                          <div className={classes.iconView}>
+                            <span><img src={comments} alt="" /></span>
+                            <span>10</span>
+                          </div>
+                          <div className={classes.iconView}>
+                            <span> <img src={view} alt="" />
+                            </span><span>10</span>
+                          </div>
+                        </Grid>
                       </Grid>
-                      <Grid className={classes.iconDiv}>
-                        <div className={classes.iconView}>
-                          <span><img src={love} alt="" /></span>
-                          <span>10</span>
-                        </div>
-                        <div className={classes.iconView}>
-                          <span><img src={comments} alt="" /></span>
-                          <span>10</span>
-                        </div>
-                        <div className={classes.iconView}>
-                          <span> <img src={view} alt="" />
-                          </span><span>10</span>
-                        </div>
+                    </DialogContent>
+                    <DialogActions>
+                      <Grid className={classes.actionPart}>
+                        <Button onClick={handleSave} autoFocus className={classes.saveBtn}>Save</Button>
+                        <Button onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                       </Grid>
-                    </Grid>
-                  </DialogContent>
-                  <DialogActions>
-                    <Grid className={classes.actionPart}>
-                      <Button onClick={handleSave} autoFocus className={classes.saveBtn}>Save</Button>
-                      <Button onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
-                    </Grid>
-                  </DialogActions>
+                    </DialogActions>
 
-                </Dialog>
+                  </Dialog>
 
-                <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
-                <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
-                  submit
-                </Button>
-                <Button onClick={handleClose} className={classes.cancelBtn}>Cancel</Button>
-              </Grid>
+                  <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
+                  <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
+                    submit
+                  </Button>
+                  <Button onClick={handleClose} className={classes.cancelBtn}>Cancel</Button>
+                </Grid>
 
-            </DialogActions>
+              </DialogActions>
 
-          </Dialog>
+            </Dialog>
 
+          </Grid>
         </Grid>
-      </Grid>
-      {/* <DataGrid
+        {/* <DataGrid
         rows={rows}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
       /> */}
-      {content}
-    </Box>
-  </div>
+        {content}
+      </Box>
+    </div>
   );
 };
 

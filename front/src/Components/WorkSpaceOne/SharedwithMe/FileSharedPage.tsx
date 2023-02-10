@@ -261,6 +261,16 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const openOn = Boolean(anchorEl);
+
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return (
         <Grid>
             <Grid className={classes.divText}>
@@ -271,11 +281,11 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Name</TableCell>
-                                <TableCell align="right">Last Modified By</TableCell>
-                                <TableCell align="right">Last Modified Date</TableCell>
-                                <TableCell align="right">File Size</TableCell>
-                                <TableCell align="right">Actions</TableCell>
+                                <TableCell className={classes.theadCell}>Name</TableCell>
+                                <TableCell className={classes.theadCell}>Last Modified By</TableCell>
+                                <TableCell className={classes.theadCell}>Last Modified Date</TableCell>
+                                <TableCell className={classes.theadCell}>File Size</TableCell>
+                                <TableCell className={classes.theadCell}>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -324,7 +334,7 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
 
-                                            <TableCell component="th" scope="row">
+                                            <TableCell className={classes.TableCell}>
                                                 {/* <Link 
                                                     onClick={()=>{
                                                         // folderClickHandler(item.id,item.name)
@@ -358,18 +368,17 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 </Link>
 
                                             </TableCell>
-                                            <TableCell align="right">
+                                            <TableCell className={classes.TableCell}>
                                                 {item.lastModifiedBy.user.displayName}
                                             </TableCell>
-                                            <TableCell align="right">
+                                            <TableCell className={classes.TableCell}>
                                                 {createdDate}
                                             </TableCell>
-                                            <TableCell align="right">
+                                            <TableCell className={classes.TableCell}>
                                                 {item.size}
                                             </TableCell>
-                                            <TableCell align="right">
-
-                                                {/* <Grid style={{ borderRadius: "10px", }} >
+                                            <TableCell className={classes.TableCell}>
+                                                 <Grid style={{ borderRadius: "10px", }} >
                                                             <Button
                                                                 id="fade-button"
                                                                 aria-controls={openOn ? 'fade-menu' : undefined}
@@ -391,7 +400,11 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                  onClose={handleClose}
                                                                  TransitionComponent={Fade}
                                                                  className={classes.menu}
-                                                                 
+                                                                 elevation={0}
+                                                                 style={{
+                                                                   marginTop: "1em",
+                                                                   boxShadow: "10px 1px 30px -10px #c2bcbc",
+                                                                 }}
                                                             >
 
                                                                 <MenuItem >
@@ -423,7 +436,7 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                 </MenuItem>
                                                                 
                                                             </Menu>
-                                                        </Grid> */}
+                                                        </Grid> 
                                             </TableCell>
                                         </TableRow>
                                     )
