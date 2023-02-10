@@ -1,10 +1,12 @@
 import React from 'react'
 import EventsEditor from '../../Components/EventsEditor/EventsEditor'
 import { useUploadItemInRemoEventsMutation } from '../../services/contentEditor'
-
+import {useGetAllRemoEventsQuery } from '../../services/APIs';
+import useCustom from '../../hooks/useCustom';
 const EventsContentEditorPage = () => {
   const [sendItem] = useUploadItemInRemoEventsMutation();
-   
+  const {token} = useCustom();
+  const { data,isLoading,isSuccess } = useGetAllRemoEventsQuery(token)
   const  sendData= async(obj:any) =>{
 
     console.log(obj,'hgfhgfhfgjtjyj')
@@ -29,6 +31,9 @@ const EventsContentEditorPage = () => {
     <div>
         <EventsEditor
          onClick={sendData}
+         data = {data}
+         isLoading={isLoading}
+         isSuccess={isSuccess}
         />
     </div>
   )

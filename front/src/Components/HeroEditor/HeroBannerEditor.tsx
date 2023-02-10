@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from '../Birthday/index';
-import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Checkbox, CircularProgress, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
 import Dropzone from "react-dropzone";
+import ReactSwitch from 'react-switch';
 import title from '../../Assets/Images/title.svg';
 import image from '../../Assets/Images/image.svg';
 import isActive from '../../Assets/Images/isActive.svg';
@@ -40,22 +41,7 @@ import { useStyles } from './Styles';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 300 },
-  { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
-  { field: 'Description', headerName: 'Description', width: 130 },
-  { field: 'ExpiresOn', headerName: 'ExpiresOn', width: 100 },
-  { field: 'Image/video', headerName: 'Image/video', width: 130 },
-  { field: 'IS Active', headerName: 'IS Active', width: 100 },
-  { field: 'EnableLikes', headerName: 'EnableLikes', type: 'image', width: 100 },
-  {
-    field: 'EnableComments',
-    headerName: 'EnableComments',
-    type: 'image',
-    width: 100,
-  },
-];
+
 
 
 const rows = [
@@ -73,6 +59,9 @@ const rows = [
 interface IFolderProps {
  
   onClick?: (obj:any) => void;
+  data:any,
+  isLoading:any,
+  isSuccess:any,
   
 }
 
@@ -80,9 +69,122 @@ interface IFolderProps {
 const HeroBannerEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
   const {token} = useCustom();
-  const { onClick } = props
+  const { onClick,data,isLoading,isSuccess } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
+  const handleChangeIsActiveToggle = (val: any) => {
+    // setChecked(val);
+    console.log(val, 'hhhfhf')
+  };
+  const handleChangeEnableLikesToggle = (val: any) => {
+    // setChecked(val);
+    console.log(val, 'hhhfhfdddd')
+  };
+  const handleChangeEnableCommentsToggle = (val: any) => {
+    // setChecked(val);
+    console.log(val, 'hhhfhfdddd')
+  };
+  const handleChangeShareAsEmailToggle = (val: any) => {
+    // setChecked(val);
+    console.log(val, 'hhhfhfdddd')
+  };
+  const columns: GridColDef[] = [
+    { field: 'id', 
+      headerName: 'ID', 
+      width: 70,
+      valueGetter: (allData: any) => allData.row.fields.id
+    },
+    { field: 'Title', 
+      headerName: 'Title', 
+      width: 300,
+      valueGetter: (allData: any) => allData.row.fields.Title
+     },
+    // { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
+    { field: 'Description', 
+      headerName: 'Description', 
+      width: 130,
+      valueGetter: (allData: any) => allData.row.fields.Description
+    },
+    { field: 'ExpiresOn', 
+      headerName: 'ExpiresOn', 
+      width: 100,
+      valueGetter: (allData: any) => allData.row.fields.ExpiresOn
+     },
+    { field: 'Url', 
+      headerName: 'Image/video', 
+      width: 130,
+      //@ts-ignore
+      renderCell: params =>{
+    
+      // <img src={params.row.fields.Url}  style={{width:"80px", height:"50px"}}/>  
+      if (params.row.fields.FileType=="mp4") {
+        return   <video  style={{width:"80px", height:"50px"}}><source src={params.row.fields.Url} type="video/mp4" /></video>
+      }
+      return <img src={params.row.fields.Url}  style={{width:"80px", height:"50px"}}/>  
+    }
+     
+  },
+    { field: 'isActive', 
+      headerName: 'IS Active', 
+      width: 100,
+      renderCell: (params) =>
+        <ReactSwitch
+          checked={params.row.fields.isActive}
+          onChange={handleChangeIsActiveToggle}
+          onColor={'#009BAD'}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          width={40}
+          height={20}
+        />
+    },
+    { field: 'EnableLikes', 
+      headerName: 'EnableLikes', 
+      type: 'image', 
+      width: 100,
+      renderCell: (params) =>
+      <ReactSwitch
+        checked={params.row.fields.EnableLikes}
+        onChange={handleChangeEnableLikesToggle}
+        onColor={'#009BAD'}
+        checkedIcon={false}
+        uncheckedIcon={false}
+        width={40}
+        height={20}
+      />
+    },
+    {
+      field: 'EnableCommands',
+      headerName: 'EnableComments',
+      type: 'image',
+      width: 100,
+      renderCell: (params) =>
+      <ReactSwitch
+        checked={params.row.fields.EnableLikes}
+        onChange={handleChangeEnableCommentsToggle}
+        onColor={'#009BAD'}
+        checkedIcon={false}
+        uncheckedIcon={false}
+        width={40}
+        height={20}
+      />
+    },
+    {
+      field: 'ShareAsEmail',
+      headerName: 'ShareAsEmail',
+      width: 100,
+      renderCell: (params) =>
+        <ReactSwitch
+        checked={params.row.fields.ShareAsEmail}
+        onChange={handleChangeShareAsEmailToggle}
+          onColor={'#009BAD'}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          width={40}
+          height={20}
+        />
+      },
+  ];
   const handleClickOpen = () => {
     setOpenOne(true);
   };
@@ -511,6 +613,33 @@ async function  uploadItemDocument (){
   }
    
   }
+
+  let content
+
+  if (isLoading) {
+    content = <CircularProgress />
+  } else if (isSuccess) {
+    content = 
+    <div style={{ display: 'flex', height: '100%'}}>
+      <Box sx={{ flexGrow: 1 }}>
+    { data?.response &&
+      <DataGrid 
+        // autoHeight
+        // autoWidth
+        getRowId={(row) => row.id}
+        rows={data?.response}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+          checkboxSelection
+        //sx={{ height: '100%', width: '100%' }}
+    
+   />}
+   </Box>
+    </div>
+  
+  }
+
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
@@ -920,13 +1049,14 @@ async function  uploadItemDocument (){
 
           </Grid>
         </Grid>
-        <DataGrid
+        {/* <DataGrid
           rows={rows}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
           checkboxSelection
-        />
+        /> */}
+        {content}
       </Box>
     </div>
   );
