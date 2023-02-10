@@ -18,16 +18,15 @@ const MenuProps = {
 };
 
 const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
+    'Meetings',
+    'Work Hours',
+    'Business',
+    'Holiday',
+    'Get-together',
+    'Gifts',
+    'Birthday',
+    'Anniversary',
+    
 ];
 
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
