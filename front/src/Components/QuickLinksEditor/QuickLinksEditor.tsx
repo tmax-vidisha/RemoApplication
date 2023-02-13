@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from '../Birthday/index';
-import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Checkbox, CircularProgress, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
 import Dropzone from "react-dropzone";
 import title from '../../Assets/Images/title.svg';
 import image from '../../Assets/Images/image.svg';
@@ -34,21 +34,10 @@ import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
 import browse from "../../Assets/Images/browse.svg";
+import ReactSwitch from 'react-switch';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 130 },
-  { field: 'Hover On Icon', headerName: 'Hover On Icon', type: 'image', width: 130 },
-  { field: 'Hover Off Icon', headerName: 'Hover Off Icon', type: 'image', width: 130 },
-  { field: 'Open In New Tab', headerName: 'Open In New Tab', type: 'image', width: 130 },
-  { field: 'Order', headerName: 'Order',  width: 70 },
-  { field: 'IS Active', headerName: 'IS Active', type: 'image', width: 100 },
-  { field: 'URL', headerName: 'URL', type: 'text', width: 130 },
-  { field: 'Accessible To', headerName: 'Accessible To', type: 'text', width: 130 },
- 
-];
 
 
 const rows = [
@@ -62,12 +51,99 @@ const rows = [
   { id: 9, Title: 'IT service ','Hover On Icon':<Switch {...label} defaultChecked />,'Hover Off Icon':<Switch {...label} defaultChecked />, 'Open In New Tab':<Switch {...label} defaultChecked />, Order: 2, 'Is Active': <Switch {...label} defaultChecked />, URL: "www.remodigital.com",'Accessible To': 'Jahanara',  },
 ];
 
+interface IFolderProps {
 
-const QuickLinksEditor= () => {
+  onClick?: (obj: any) => void;
+  data:any,
+  isLoading:any,
+  isSuccess:any,
+
+}
+
+// const QuickLinksEditor= () => {
+  const QuickLinksEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-
+  const {onClick,data,isLoading,isSuccess} =props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
+  const handleChangeIsActiveToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhf')
+  };
+  const handleChangeOpenNewTab = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhf')
+  };
+  const columns: GridColDef[] = [
+    { field: 'id',
+    headerName: 'ID', 
+    width: 50,
+    valueGetter : (allData:any) => allData.row.fields.id
+  },
+  { field: 'Title', 
+    headerName: 'Title', 
+    width: 70,
+   valueGetter : (allData:any) => allData.row.fields.Title
+  },
+  { field: 'HoverOn', 
+    headerName: 'Hover On icon', 
+     // type: 'image', 
+     width: 130,
+    renderCell: (params) => <img src={params.row.fields.HoverOn}/>
+  },
+  { field: 'HoverOff',
+    headerName: 'Hover Off icon', 
+     // type: 'image', 
+     width: 130,
+     renderCell: (params) => <img src={params.row.fields.HoverOff}/>
+  },
+  { field: 'OpenInNewTab', 
+    headerName: 'Open in New Tab', 
+    // type: 'image', 
+     width: 130,
+     renderCell: (params) => 
+    <ReactSwitch
+     checked={params.row.fields.OpenInNewTab}
+     onChange={handleChangeOpenNewTab}
+     onColor={'#00FFFF'}
+     checkedIcon={false}
+     uncheckedIcon={false}
+    />
+
+  },
+  { field: 'OO', 
+    headerName: 'Order', 
+    width: 100 ,
+    valueGetter : (allData:any) => allData.row.fields.OO
+
+},
+{ field: 'isActive', 
+  headerName: 'IS Active', 
+  width: 100,
+  renderCell: (params) => 
+  <ReactSwitch
+  checked={params.row.fields.isActive}
+  onChange={handleChangeIsActiveToggle}
+  onColor={'#00FFFF'}
+  checkedIcon={false}
+  uncheckedIcon={false}
+  />
+ },
+    { field: 'Url', 
+      headerName: 'URL', 
+      type: 'text', 
+      width: 130,
+      valueGetter : (allData:any) => allData.row.fields.Url
+    },
+    { field: 'AccessibleTo', 
+      headerName: 'Accessible To', 
+      type: 'text', 
+      width: 130,
+      valueGetter : (allData:any) => allData.row.fields.AccessibleTo
+    },
+   
+  ];
+  
   const handleClickOpen = () => {
     setOpenOne(true);
   };
@@ -100,7 +176,10 @@ const QuickLinksEditor= () => {
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
   const [Title, setTitle] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
+  const [Order, setOrder] = useState<any>('');
+  const [showImg, setShowImg] = useState<boolean>(true)
   const [RecipientEmail, setRecipientEmail] = useState<any>('');
+  const [accessible,setAccessible]= useState<any>('');
   const [state, setState] = useState({
     warningMsg: ""
   })
@@ -194,11 +273,18 @@ const QuickLinksEditor= () => {
     console.log(event.target.value)
     setDescription(event.target.value);
   };
+  const handleChangeOrderField = (event: any) => {
+    console.log(event.target.value)
+    setOrder(event.target.value);
+  };
   const handleChangeReciepientEmailField = (event: any) => {
     console.log(event.target.value)
     setRecipientEmail(event.target.value);
   };
-
+  const handleChangeAccessible = (event: any) => {
+    console.log(event.target.value)
+     setAccessible(event.target.value);
+  };
   useEffect(() => {
     state1.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
     state2.files.forEach((file: any) => URL.revokeObjectURL(file.preview));
@@ -330,18 +416,20 @@ const QuickLinksEditor= () => {
       image: fileSelected,
       imageName: names,
       isActive: isActives,
-      Url:Description,
+      pageDetails:Description,
       // Belongs:belongs,
-      // Accessible:accessible,
+      order:Order,
+      accesible:accessible,
+      openNewTab: enablelikes,
       // EnableCommands: enableCommands,
       // SharedAsEmail: sharedAsEmails,
       // RecipientEmail: RecipientEmail,
       hoverOff: fileSelected1,
       hoverOffName: names1,
-      // isDraft:false
+       isDraft:false
     }
     //  await sendItem(announcementData)
-    // await onClick?.(announcementData)
+     await onClick?.(announcementData)
   }
   const handleSave = async () => {
     console.log('grdgdg')
@@ -352,9 +440,11 @@ const QuickLinksEditor= () => {
       image: fileSelected,
       imageName: names,
       isActive: isActives,
-      Url:Description,
+      pageDetails:Description,
       // Belongs:belongs,
-      // Accessible:accessible,
+      order:Order,
+      accesible:accessible,
+      openNewTab: enablelikes,
       // EnableCommands: enableCommands,
       // SharedAsEmail: sharedAsEmails,
       // RecipientEmail: RecipientEmail,
@@ -363,12 +453,33 @@ const QuickLinksEditor= () => {
       isDraft:true
     }
     //  await sendItem(announcementData)
-    // await onClick?.(announcementData)
+    await onClick?.(announcementData)
   }
-  const handleChangeAccessible = (event: any) => {
-    console.log(event.target.value)
-    // setAccessible(event.target.value);
-  };
+  let content
+
+  if (isLoading) {
+    content = <CircularProgress />
+  } else if (isSuccess) {
+    content = 
+    <div style={{ display: 'flex', height: '100%'}}>
+      <Box sx={{ flexGrow: 1 }}>
+    { data?.response &&
+      <DataGrid 
+        // autoHeight
+        // autoWidth
+        getRowId={(row) => row.id}
+        rows={data?.response}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+          checkboxSelection
+        //sx={{ height: '100%', width: '100%' }}
+    
+   />}
+   </Box>
+    </div>
+  
+  }
 
   return (
     <div className={classes.Section}>
@@ -535,14 +646,14 @@ const QuickLinksEditor= () => {
                       <span>Open In New Tab</span>
                     </Box>
                     <Box style={{ display: 'flex', }}>
-                      <FormControlLabel
-                        label="Yes"
-                        control={<Checkbox checked={checkedyesisActive} onChange={handleChangeisActiveyes} />}
-                      />
-                      <FormControlLabel
-                        label="No"
-                        control={<Checkbox checked={checkednoisActive} onChange={handleChangeisActiveno} />}
-                      />
+                    <FormControlLabel
+                      label="Yes"
+                      control={<Checkbox checked={checkedyesEnableLikes} onChange={handleChangeEnableLikesyes} />}
+                    />
+                    <FormControlLabel
+                      label="No"
+                      control={<Checkbox checked={checkednoEnableLikes} onChange={handleChangeEnableLikesno} />}
+                    />
                     </Box>
 
                   </Box>
@@ -574,7 +685,7 @@ const QuickLinksEditor= () => {
                   id="outlined-adornment-weight"
                   className={classes.span}
                   style={{ width: "100%" }}
-                  onChange={handleChangeTitleField}
+                  onChange={handleChangeOrderField}
                   placeholder="Enter value here"
                 />
               </div>
@@ -605,8 +716,8 @@ const QuickLinksEditor= () => {
                     placeholder="Enter value here"
                   />
                 </div>
-              <Grid>
-                <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
+              {/* <Grid>
+                {/* <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
                   <Box>
                     <img src={isActive} alt="" style={{ width: "15px", marginRight: "15px" }} />
                     <span>IsActive</span>
@@ -622,8 +733,8 @@ const QuickLinksEditor= () => {
                     />
                   </Box>
 
-                </Box>
-                <Grid sx={{ display: 'flex', justifyContent: "space-between" }}>
+                </Box> */}
+                {/* <Grid sx={{ display: 'flex', justifyContent: "space-between" }}>
                   <Box>
                     <img src={like1} alt="" style={{ width: "15px", marginRight: "15px" }} />
                     <span>EnableLikes </span>
@@ -640,8 +751,8 @@ const QuickLinksEditor= () => {
                     />
                   </Box>
 
-                </Grid>
-              </Grid>
+                </Grid> 
+              </Grid> */}
               <div style={{ marginBottom: "15px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
                     <img src={image} alt="" className={classes.titleIcon} />
@@ -738,14 +849,19 @@ const QuickLinksEditor= () => {
                     <Grid>
                         <Box>
                           <p>IT Service</p>
-                          <img src={fileSelected1} alt="" className={classes.backgroundImage} />
+                          {/* <img src={fileSelected1} alt="" className={classes.backgroundImage} /> */}
+                          {showImg ? 
+                        <img src={fileSelected} alt="" className={classes.backgroundImage} onClick={()=>setShowImg(false)} /> :
+                        <img src={fileSelected1} alt="" className={classes.backgroundImage} onClick={()=>setShowImg(true)}/>
+                        
+                        }
                           {/* <img src={girl} alt="" className={classes.girl} />
                         <p>HR Manager</p> */}
                         </Box>
                         <Grid>
                           <Typography style={{ textAlign: "left", margin: "15px", fontWeight: 600 }}>https://red-moss-0dcddaf10.2.azurestaticapps.net{Description}</Typography>
                           <p style={{ textAlign: "left", marginLeft: "15px" }}>
-                            Belongs to <a href="/">XKhsKLDjsfjsdlgjldf</a>
+                            Belongs to <a href="/">{accessible}</a>
                           </p>
                         </Grid>
                         <Grid className={classes.iconDiv}>
@@ -766,18 +882,18 @@ const QuickLinksEditor= () => {
                   </DialogContent>
                   <DialogActions>
                     <Grid className={classes.actionPart}>
-                      <Button onClick={handleClosePreview} autoFocus className={classes.saveBtn}>Save</Button>
-                      <Button className={classes.cancelBtn}>Cancel</Button>
+                      <Button onClick={handleSave}  autoFocus className={classes.saveBtn}>Save</Button>
+                      <Button onClick={handleClosePreview} className={classes.cancelBtn}>Cancel</Button>
                     </Grid>
                   </DialogActions>
 
                 </Dialog>
 
-                <Button onClick={handleClose} className={classes.saveBtn}>Save</Button>
+                <Button onClick={handleSave} className={classes.saveBtn}>Save</Button>
                 <Button onClick={handleSubmit} autoFocus className={classes.saveBtn}>
                   submit
                 </Button>
-                <Button className={classes.cancelBtn}>Cancel</Button>
+                <Button  onClick={handleClose}className={classes.cancelBtn}>Cancel</Button>
               </Grid>
 
             </DialogActions>
@@ -786,13 +902,14 @@ const QuickLinksEditor= () => {
 
         </Grid>
       </Grid>
-      <DataGrid
+      {/* <DataGrid
         rows={rows}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection
-      />
+      /> */}
+      {content}
     </Box>
   </div>
   );
