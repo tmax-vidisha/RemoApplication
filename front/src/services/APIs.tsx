@@ -930,6 +930,16 @@ export const graphApi = createApi({
             //  keepUnusedDataFor: 5,
             // providesTags : [ 'News'],
         }),
+        getAllRemoQuickLinkData: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/quicklinksdata/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+            // providesTags : [ 'News'],
+        }),
         getAllRemoEvents: builder.query<any, any>({
             query: (id) => ({
                 url: `/api/v1/token/events/${id}`,
@@ -1025,7 +1035,8 @@ export const {
     useCreateTokenwithEventDataOneMutation,
     useCreateTokenwithEventDataLandingMutation,
     useGetAllContentEditorQuery,
-    useGetAllRemoEventsQuery
+    useGetAllRemoEventsQuery,
+    useGetAllRemoQuickLinkDataQuery
 
     
     

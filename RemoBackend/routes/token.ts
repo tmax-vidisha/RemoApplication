@@ -16,7 +16,8 @@ import {getToken,
     getRemoNews,
     getRemoHero,
     getRemoContentEditorMaster,
-    getRemoEvents
+    getRemoEvents,
+    getRemoQuickLinkData
 } from '../controllers/token'
 
 const router = Router()
@@ -30,6 +31,7 @@ router.route('/quicklink/:token').get(getQuicklinkData)
 router.route('/recentfiles/:token').get(getRecentFilesData)
 router.route('/announcement/:token').get(getAnnouncementData)
 router.route('/navigation/:token').get(getNavigationData)
+router.route('/quicklinksdata/:token').get(getRemoQuickLinkData)
 router.route('/ceomsg/:token').get(getCeoMsgData)
 router.route('/news/:token').get(getRemoNews)
 router.route('/emp/:token').get(getEmpData)
