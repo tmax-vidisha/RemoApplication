@@ -118,14 +118,14 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
               <div className={classes.ceoImg}>
                 <CardMedia component="img" 
                   //  image={data.value[1].fields?.ImageURL.Url} 
-                  image={data?.response.image} 
+                  image={data?.response[0].fields.Image} 
                   // image={data.value[7].fields?.profileUrl} 
                    />
                 {/* <img  src ="https://remoblobstorage.blob.core.windows.net/candidate/Bird.jpg?st=2022-06-08T12%3A55%3A31Z&se=2022-06-08T13%3A55%3A31Z&sp=r&sv=2018-03-28&sr=b&sig=y2SaHETj51cDcFSkY3eL%2Fj82O2S1XK2rKbl4jG8DvH0%3D" /> */}
               </div>
               <div className={classes.ceoContentHeader}>
                 <Typography variant="subtitle1" component="h6" >
-                {data?.response.value[0].fields?.UserName}
+                {data?.response[0].fields?.Name}
                 { isActive ?
                   <img src={likeActive} alt="" style={{width:"15px", marginLeft:"15px"}} onClick={hide} />
                   :
@@ -138,7 +138,7 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
                   display="block"
                   gutterBottom
                   className={classes.ceoCreatedDate}>
-                  {moment(data?.response.value[0].fields?.Modified).fromNow()}
+                  {moment(data?.response[0].fields?.Modified).fromNow()}
                 </Typography>
                 <Typography
                   className={classes.ceoContent}
@@ -148,7 +148,7 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <Fragment>
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: data?.response.value[0].fields.Description,
+                        __html: data?.response[0].fields.Description,
                       }}
                       style={{textAlign:"left"}}
                     />

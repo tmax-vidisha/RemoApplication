@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from '../Birthday/index';
-import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Checkbox, CircularProgress, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
 import Dropzone from "react-dropzone";
 import title from '../../Assets/Images/title.svg';
 import image from '../../Assets/Images/image.svg';
@@ -26,6 +26,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
+import ReactSwitch from 'react-switch';
 import { useStyles } from './Styles';
 import FileUpload from "react-material-file-upload";
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
@@ -37,17 +38,6 @@ import browse from "../../Assets/Images/browse.svg";
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 200 },
-  { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
-  { field: 'Name', headerName: 'Name', width: 100 },
-  { field: 'Description', headerName: 'Description', width: 130 },
-  { field: 'Designation', headerName: 'Designation', width: 130 },
-  { field: 'Image', headerName: 'Image', width: 130 },
-  { field: 'IS Active', headerName: 'IS Active', width: 100 },
-
-];
 
 
 const rows = [
@@ -65,15 +55,72 @@ const rows = [
 interface IFolderProps {
 
   onClick?: (obj: any) => void;
+  data:any,
+  isLoading:any,
+  isSuccess:any,
 
 }
 
 // const CeoEditor = () => {
 const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { onClick } = props
+  const { onClick,data,isLoading,isSuccess } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
+  const handleChangeIsActiveToggle = (val: any) => {
+    // setChecked(val);
+    console.log(val, 'hhhfhf')
+  };
+  const columns: GridColDef[] = [
+    { field: 'id', 
+    headerName: 'ID', 
+    width: 70,
+    valueGetter : (allData:any) => allData.row.fields.id
+  },
+  { field: 'Title', 
+    headerName: 'Title', 
+    width: 300,
+    valueGetter : (allData:any) => allData.row.fields.Title
+  },
+    { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
+    { field: 'Name', 
+      headerName: 'Name', 
+      width: 100,
+      valueGetter: (allData: any) => allData.row.fields.Name
+    },
+    { field: 'Description', 
+    headerName: 'Description', 
+    width: 130,
+    valueGetter: (allData: any) => allData.row.fields.Description
+  },
+    { field: 'Designation', 
+      headerName: 'Designation', 
+      width: 130,
+      valueGetter: (allData: any) => allData.row.fields.Designation
+    },
+    { field: 'Image', 
+      headerName: 'Image', 
+      width: 130,
+      renderCell: (params) => <img src={params.row.fields.Image}  style={{width:"80px", height:"50px"}}/>
+    },
+    { field: 'isActive', 
+      headerName: 'IS Active', 
+      width: 100,
+      renderCell: (params) =>
+      <ReactSwitch
+        checked={params.row.fields.isActive}
+        onChange={handleChangeIsActiveToggle}
+        onColor={'#009BAD'}
+        checkedIcon={false}
+        uncheckedIcon={false}
+        width={40}
+        height={20}
+      />
+  
+  },
+  
+  ];
+  
   const handleClickOpen = () => {
     setOpenOne(true);
   };
@@ -372,7 +419,31 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   }
 
   const [files, setFiles] = useState<File[]>([]);
+  let content
 
+  if (isLoading) {
+    content = <CircularProgress />
+  } else if (isSuccess) {
+    content = 
+    <div style={{ display: 'flex', height: '100%'}}>
+      <Box sx={{ flexGrow: 1 }}>
+    { data?.response &&
+      <DataGrid 
+        // autoHeight
+        // autoWidth
+        getRowId={(row) => row.id}
+        rows={data?.response}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+          checkboxSelection
+        //sx={{ height: '100%', width: '100%' }}
+    
+   />}
+   </Box>
+    </div>
+  
+  }
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
@@ -689,13 +760,14 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
           </Grid>
         </Grid>
-        <DataGrid
+        {/* <DataGrid
           rows={rows}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
           checkboxSelection
-        />
+        /> */}
+        {content}
       </Box>
     </div>
   );

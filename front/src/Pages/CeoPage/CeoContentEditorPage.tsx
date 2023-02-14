@@ -1,9 +1,12 @@
 import React from 'react'
 import CeoEditor from '../../Components/CeoEditor/CeoEditor'
 import {useUploadItemInCeoMutation} from '../../services/contentEditor'
+import { useGetAllCeoMsgQuery } from '../../services/APIs';
+import useCustom from '../../hooks/useCustom';
 const CeoContentEditorPage = () => {
     const [sendItem] = useUploadItemInCeoMutation();
-   
+    const {token} = useCustom();
+    const { data,isLoading,isSuccess } =useGetAllCeoMsgQuery(token)
     const  sendData= async(obj:any) =>{
 
       console.log(obj,'hgfhgfhfgjtjyj')
@@ -28,6 +31,9 @@ const CeoContentEditorPage = () => {
     <div>
         <CeoEditor
           onClick={sendData}
+          data = {data}
+          isLoading={isLoading}
+          isSuccess={isSuccess}
         />
     </div>
   )

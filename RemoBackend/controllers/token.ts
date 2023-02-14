@@ -623,12 +623,33 @@ const getCeoMsgData = asyncHandler(async(req:Request, res:Response) => {
 
   }else {
     
-  res.status(200).json({
-     success: true,
-     response :await ceomsg(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Ceo_Message}/items?$expand=fields`,token)
+  // res.status(200).json({
+  //    success: true,
+  //    response :await ceomsg(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Ceo_Message}/items?$expand=fields`,token)
  
-  });
+  // });
+  const response = 
+  // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+    // await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/0ec4e29a-d2ec-4835-a011-ea8a3fe33ed4/items?$expand=fields`, {
+      await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists('Ceo')/items?$expand=fields&$select=*&$filter=fields/isDraft  ne '1'`, {
+    headers: {
+        'Authorization': `Bearer ${token} `,
+        'Content-Type': 'application/json',
+        'Prefer':'HonorNonIndexedQueriesWarningMayFailRandomly'
+      
+      }
+    
+})
 
+
+console.log(response.data.value,"meetingssssssssssssssssssssssss" )
+res.status(200).json({
+  success: true,
+  response :response.data.value,
+  // response1:responseTop.data.value
+
+
+});
   }
 
 })
