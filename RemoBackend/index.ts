@@ -12,7 +12,9 @@ import events from './routes/contenteditor/events'
 import ceo from './routes/contenteditor/ceo';
 import news from './routes/contenteditor/news';
 import navigation from './routes/contenteditor/navigation'
-import quicklink from './routes/contenteditor/quicklinks'
+
+import quicklink from './routes/contenteditor/quicklinks';
+
 import contentEditor from './routes/contenteditor/contenteditor'
 import employee from './routes/contenteditor/emphighlight'
 import photosandvideo from './routes/photoandvideo/photosandvideo' 

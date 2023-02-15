@@ -165,4 +165,4 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
   )
 }
 
-export default CeoMessageInformation
+export default CeoMessageInformation;
