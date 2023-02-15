@@ -3,9 +3,12 @@ import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from '../Birthday/index';
+import { Theme, useTheme } from '@mui/material/styles';
 // import dayjs, { Dayjs } from 'dayjs';
-import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Checkbox, CircularProgress, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, OutlinedInput, TextField, Toolbar, Typography } from '@mui/material';
 import Dropzone from "react-dropzone";
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import title from '../../Assets/Images/title.svg';
 import image from '../../Assets/Images/image.svg';
 import clock from '../../Assets/Images/clock.svg';
@@ -35,6 +38,7 @@ import { Box } from '@mui/material';
 import { useStyles } from './Styles';
 import FileUpload from "react-material-file-upload";
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import ReactSwitch from 'react-switch';
 import Switch from '@mui/material/Switch';
 import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
@@ -44,38 +48,6 @@ import MultipleSelectPlaceholder from './Category';
 var moment = require("moment-timezone");
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 300 },
-  { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
-  // { field: 'Name', headerName: 'Name', width: 100 },
-  { field: 'Event Date', headerName: 'Event Date', width: 100 },
-  { field: 'End Date', headerName: 'End Date', width: 100 },
-  // { field: 'Image', headerName: 'Image', width: 130 },
-  // { field: 'Designation', headerName: 'Designation', width: 130 },
-  // { field: 'DOJ', headerName: 'DOJ', type: 'date', width: 130 },
-  // { field: 'Description', headerName: 'Description', width: 130 },
-  // { field: 'IS Active', headerName: 'IS Active', width: 100 },
-  // { field: 'EnableLikes', headerName: 'EnableLikes', type: 'image', width: 100 },
-  // {
-  //   field: 'EnableComments',
-  //   headerName: 'EnableComments',
-  //   type: 'image',
-  //   width: 100,
-  // },
-  // {
-  //   field: 'ShareAsEmail',
-  //   headerName: 'ShareAsEmail',
-  //   type: 'email',
-  //   width: 160,
-  // },
-  // {
-  //   field: 'RecipientEmail',
-  //   headerName: 'RecipientEmail',
-  //   type: 'email',
-  //   width: 160,
-  // },
-];
 
 
 const rows = [
@@ -93,15 +65,129 @@ const rows = [
 interface IFolderProps {
 
   onClick?: (obj: any) => void;
+  data:any,
+  isLoading:any,
+  isSuccess:any,
 
 }
 
 // const EventsEditor = () => {
   const EventsEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { onClick } = props
+  const theme = useTheme();
+  const { onClick,data,isLoading,isSuccess } = props
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
+  const handleChangeIsActiveToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhf')
+  };
+  const columns: GridColDef[] = [
+    { field: 'id', 
+      headerName: 'ID', 
+      width: 70,
+      valueGetter : (allData:any) => allData.row.fields.id
+    },
+    { field: 'Title', 
+      headerName: 'Title', 
+      width: 300,
+      valueGetter : (allData:any) => allData.row.fields.Title
+    },
+    // { field: 'Status', headerName: 'Status', type: 'image', width: 70 },
+    // { field: 'Name', headerName: 'Name', width: 100 },
+    { field: 'EventDate', 
+      headerName: 'Event Date', 
+      width: 100,
+      valueGetter : (allData:any) => allData.row.fields.EventDate
+     },
+    { field: 'EndDate', 
+      headerName: 'End Date', 
+      width: 100,
+      valueGetter : (allData:any) => allData.row.fields.EndDate
+    },
+    // { field: 'Image', headerName: 'Image', width: 130 },
+    // { field: 'Designation', headerName: 'Designation', width: 130 },
+    // { field: 'DOJ', headerName: 'DOJ', type: 'date', width: 130 },
+    // { field: 'Description', headerName: 'Description', width: 130 },
+    { field: 'IsActive', 
+      headerName: 'IS Active', 
+      width: 100 ,
+      renderCell: (params) => 
+       <ReactSwitch
+      checked={params.row.fields.IsActive}
+      onChange={handleChangeIsActiveToggle}
+      onColor={'#00FFFF'}
+      checkedIcon={false}
+      uncheckedIcon={false}
+    />
+    },
+    // { field: 'EnableLikes', headerName: 'EnableLikes', type: 'image', width: 100 },
+    // {
+    //   field: 'EnableComments',
+    //   headerName: 'EnableComments',
+    //   type: 'image',
+    //   width: 100,
+    // },
+    // {
+    //   field: 'ShareAsEmail',
+    //   headerName: 'ShareAsEmail',
+    //   type: 'email',
+    //   width: 160,
+    // },
+    // {
+    //   field: 'RecipientEmail',
+    //   headerName: 'RecipientEmail',
+    //   type: 'email',
+    //   width: 160,
+    // },
+  ];
+  const ITEM_HEIGHT = 30;
+const ITEM_PADDING_TOP = 5;
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width:250,
+        },
+    },
+};
+const namesCat = [
+  {
+    name: 'Meetings',
+  },
+  {
+    name:  'Work Hours',
+  },
+  {
+    name:  'Business',
+  },
+  {
+    name:'Holiday',
+  },
+  {
+    name:'Get-together',
+  },
+  {
+    name: 'Gifts',
+  },
+  {
+    name: 'Birthday',
+  },
+  {
+    name:  'Anniversary',
+  }
+ ];
+
+function getStyles(name: string, personName: readonly string[], theme: Theme) {
+  return {
+      fontWeight:
+          personName.indexOf(name) === -1
+              ? theme.typography.fontWeightRegular
+              : theme.typography.fontWeightMedium,
+  };
+}
+
+  
   const handleClickOpen = () => {
     setOpenOne(true);
   };
@@ -134,7 +220,8 @@ interface IFolderProps {
   const [sharedAsEmails, setSharedEmails] = useState<boolean>(false)
   const [Title, setTitle] = useState<any>('');
   const [location, setLocation] = useState<any>('');
-  const [category, setCategory] = useState<any>('');
+  const [category, setCategory] = React.useState('Meeting');
+  const [personName, setPersonName] = React.useState<string[]>([]);
   const [startDate, setStartDate] = useState<any>('');
   const [endDate, setEndDate] = useState<any>('');
   const [Description, setDescription] = useState<any>('');
@@ -266,7 +353,15 @@ interface IFolderProps {
   };
   const handleChangeCategoryField = (event: any) => {
     console.log(event.target.value)
-   setCategory(event.target.value);
+  setCategory(event.target.value);
+//   const {
+//     target: { value },
+// } = event;
+// setPersonName(
+//     // On autofill we get a stringified value.
+//     typeof value === 'string' ? value.split(',') : value,
+// );
+// console.log(personName)
   };
   const handleChangeStartDateField = (event: any) => {
     // console.log( moment(event.target.value).format('DD-MM-YYYY'))
@@ -489,6 +584,33 @@ interface IFolderProps {
       isDraft:true
     }
     await onClick?.(announcementData)
+  }
+
+  
+  let content
+
+  if (isLoading) {
+    content = <CircularProgress />
+  } else if (isSuccess) {
+    content = 
+    <div style={{ display: 'flex', height: '100%'}}>
+      <Box sx={{ flexGrow: 1 }}>
+    { data?.response &&
+      <DataGrid 
+        // autoHeight
+        // autoWidth
+        getRowId={(row) => row.id}
+        rows={data?.response}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+          checkboxSelection
+        //sx={{ height: '100%', width: '100%' }}
+    
+   />}
+   </Box>
+    </div>
+  
   }
 
   return (
@@ -720,7 +842,27 @@ interface IFolderProps {
                     onChange={handleChangeCategoryField}
                     placeholder="Enter a name"
                   /> */}
-                  <MultipleSelectPlaceholder/>
+                  <div>
+                  <FormControl sx={{ m: 0, width:' 100%', mt: 0 }} >
+                {/* <InputLabel id="demo-simple-select-standard-label"><span>usd</span> </InputLabel> */}
+                <Select
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  value={category}
+                  onChange={handleChangeCategoryField}
+                  MenuProps={{ PaperProps: { sx: { maxHeight: 90 } } }}
+                  label={category}
+                  style={{ width: "100%",textAlign:"left", color:"#606C74",height: "35px"}}
+                >
+                  {namesCat &&
+                    namesCat.map((brand: any) => {
+                      // const { fields = {} } = brand
+                      return <MenuItem style={{ width: "50px", fontSize: "10px" }} value={brand.name} key={brand.name} >{brand.name}</MenuItem>
+                    })
+                  }
+                </Select>
+              </FormControl>
+        </div>
                 </div>
 
                 <div style={{ marginBottom: "15px" }}>
@@ -911,13 +1053,7 @@ interface IFolderProps {
 
           </Grid>
         </Grid>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        />
+       {content}
       </Box>
     </div>
   );

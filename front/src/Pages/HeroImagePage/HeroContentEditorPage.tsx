@@ -2,10 +2,12 @@ import React from 'react'
 
 import HeroBannerEditor from '../../Components/HeroEditor/HeroBannerEditor'
 import {useUploadItemInHeroBannerMutation} from '../../services/contentEditor'
-
+import {useGetAllHeroQuery} from '../../services/APIs';
+import useCustom from '../../hooks/useCustom';
 const HeroContentEditorPage = () => {
     const [sendItem] = useUploadItemInHeroBannerMutation();
-   
+    const {token} = useCustom();
+    const { data,isLoading,isSuccess } = useGetAllHeroQuery(token)
     const  sendData= async(obj:any) =>{
 
       console.log(obj,'hgfhgfhfgjtjyj')
@@ -30,6 +32,9 @@ const HeroContentEditorPage = () => {
     <div>
         <HeroBannerEditor
          onClick={sendData}
+         data = {data}
+         isLoading={isLoading}
+         isSuccess={isSuccess}
         />
     </div>
   )

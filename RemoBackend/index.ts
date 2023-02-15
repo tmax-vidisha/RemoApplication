@@ -12,6 +12,7 @@ import events from './routes/contenteditor/events'
 import ceo from './routes/contenteditor/ceo';
 import news from './routes/contenteditor/news';
 import navigation from './routes/contenteditor/navigation'
+import quicklink from './routes/contenteditor/quicklinks';
 import contentEditor from './routes/contenteditor/contenteditor'
 import employee from './routes/contenteditor/emphighlight'
 import photosandvideo from './routes/photoandvideo/photosandvideo' 
@@ -1541,7 +1542,7 @@ app.use(`/api/v1/header`,header)
 
 // app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events)
 
-app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events,navigation,contentEditor)
+app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events,navigation,contentEditor,quicklink)
 
 app.use(`/api/v1/gallery`,photosandvideo)
 

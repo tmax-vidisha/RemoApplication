@@ -473,6 +473,12 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Grid>
                     <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
                         <button>
+                            {/* <img src={ } alt="" /> */}
+                        </button>
+                        <button>
+
+                        </button>
+                        <button>
                             <GridViewOutlinedIcon />
                         </button>
                         <button style={{ marginLeft: "15px" }} >

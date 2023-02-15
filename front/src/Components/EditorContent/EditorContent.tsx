@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from '../Birthday/index';
-import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Checkbox, CircularProgress, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography } from '@mui/material';
 import Dropzone from "react-dropzone";
 import title from '../../Assets/Images/title.svg';
 import image from '../../Assets/Images/image.svg';
@@ -34,20 +34,11 @@ import girl from "../../Assets/Images/girl.jpg";
 import love from "../../Assets/Images/love.svg";
 import view from "../../Assets/Images/viewNew.svg";
 import browse from "../../Assets/Images/browse.svg";
+import ReactSwitch from 'react-switch';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Title', headerName: 'Title', width: 130 },
-  { field: 'URL', headerName: 'URL', type: 'text', width: 130 },
-  { field: 'Hover On Icon', headerName: 'Hover On Icon', type: 'image', width: 130 },
-  { field: 'Hover Off Icon', headerName: 'Hover Off Icon', type: 'image', width: 130 },
-  { field: 'IS Active', headerName: 'IS Active', type: 'image', width: 100 },
-  { field: 'Accessible To', headerName: 'Accessible To', type: 'text', width: 130 },
-  { field: 'Belongs To', headerName: 'Belongs To', type: 'text', width: 130 },
 
-];
 
 const rows = [
   { id: 1, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
@@ -64,12 +55,77 @@ const rows = [
 interface IFolderProps {
 
   onClick?: (obj: any) => void;
+  data:any,
+  isLoading:any,
+  isSuccess:any,
 
 }
 // const EditorContent = () => {
   const EditorContent: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { onClick } = props
+  const { onClick,data,isLoading,isSuccess } = props
+  const handleChangeIsActiveToggle = (val:any) => {
+    // setChecked(val);
+    console.log(val,'hhhfhf')
+  };
+  const columns: GridColDef[] = [
+    { field: 'id', 
+      headerName: 'ID', 
+      width: 70,
+      valueGetter : (allData:any) => allData.row.fields.id
+    },
+    { field: 'Title', 
+      headerName: 'Title', 
+      width: 130 ,
+      valueGetter : (allData:any) => allData.row.fields.Title
+    },
+    { field: 'Url', 
+      headerName: 'URL', 
+      type: 'text', 
+      width: 130 ,
+      valueGetter : (allData:any) => allData.row.fields.Url
+      
+    },
+    { field: 'HoverOn', 
+      headerName: 'Hover On Icon', 
+      // type: 'image', 
+      width: 130,
+      renderCell: (params) => <img src={params.row.fields.HoverOn}/>
+    
+    },
+    { field: 'HoverOff', 
+      headerName: 'Hover Off Icon', 
+      type: 'image', 
+      width: 130,
+      renderCell: (params) => <img src={params.row.fields.HoverOff}/>
+    },
+    { field: 'isActive', 
+      headerName: 'IS Active', 
+      // type: 'image', 
+      width: 100,
+      renderCell: (params) => 
+       <ReactSwitch
+      checked={params.row.fields.isActive}
+      onChange={handleChangeIsActiveToggle}
+      onColor={'#00FFFF'}
+      checkedIcon={false}
+      uncheckedIcon={false}
+    />
+     },
+    { field: 'AccessibleTo', 
+      headerName: 'Accessible To', 
+      type: 'text', 
+      width: 130,
+      valueGetter : (allData:any) => allData.row.fields.AccessibleTo
+    },
+    { field: 'Belongs To', 
+      headerName: 'BelongsTo', 
+      type: 'text', 
+      width: 130 ,
+      valueGetter : (allData:any) => allData.row.fields.BelongsTo
+    },
+  
+  ];
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
   const handleClickOpen = () => {
@@ -378,6 +434,32 @@ interface IFolderProps {
     }
     //  await sendItem(announcementData)
     await onClick?.(announcementData)
+  }
+
+  let content
+
+  if (isLoading) {
+    content = <CircularProgress />
+  } else if (isSuccess) {
+    content = 
+    <div style={{ display: 'flex', height: '100%'}}>
+      <Box sx={{ flexGrow: 1 }}>
+    { data?.response &&
+      <DataGrid 
+        // autoHeight
+        // autoWidth
+        getRowId={(row) => row.id}
+        rows={data?.response}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+          checkboxSelection
+        //sx={{ height: '100%', width: '100%' }}
+    
+   />}
+   </Box>
+    </div>
+  
   }
   return (
     <div className={classes.Section}>
@@ -739,7 +821,7 @@ interface IFolderProps {
 
           </Grid>
         </Grid>
-        <DataGrid
+        {/* <DataGrid
           rows={rows}
           columns={columns}
           // pageSize={5}
@@ -747,7 +829,8 @@ interface IFolderProps {
           checkboxSelection
           pageSize={5} 
           rowsPerPageOptions={[2, 5, 7]}
-        />
+        /> */}
+        {content}
       </Box>
     </div>
   );

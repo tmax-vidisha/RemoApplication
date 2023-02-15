@@ -34,7 +34,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
 
   const { data, error, isLoading } = props
-  // console.log(data,'980ccccccc9090')
+  console.log(data?.response[0],'CEo')
   const [content, setContent] = useState<string>("Drop Something Here");
   const dragStartHandler = (
     event: React.DragEvent<HTMLDivElement>,
@@ -59,7 +59,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
   return (
     // <div>CeoMessage</div>
     <AuthenticatedTemplate>
-      {/* <Draggable> */}
+     
       
       <Paper elevation={0}>
           {isLoading ? (
@@ -86,7 +86,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
                           color="black"
                           className={classes.headRow}
                         >
-                          {data?.response.value[0].fields?.UserName}
+                          {data?.response[0].fields?.Name}
                         </Typography>
                         <Typography
                           className={classes.ceoContent}
@@ -97,7 +97,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
                           <Fragment>
                             <div
                               dangerouslySetInnerHTML={{
-                                __html: data?.response.value[0].fields.Description,
+                                __html: data?.response[0].fields.Description,
                               }}
                             />
                           </Fragment>
@@ -114,7 +114,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
                         <CardMedia
                           component="img"
                           height="170"
-                          image={data?.response.image}
+                          image={data?.response[0].fields.Image}
                         />
                         {/* <img   src ={data.image}  height="180" width="170"/> */}
 
@@ -128,8 +128,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
             </>
           )}
         </Paper>
-      
-      {/* </Draggable> */}
+    
     </AuthenticatedTemplate>
   )
 }

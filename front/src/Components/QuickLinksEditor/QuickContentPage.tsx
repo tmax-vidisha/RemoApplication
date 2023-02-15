@@ -3,8 +3,8 @@ import WhatsNew from './../Header/WhatsNew';
 import { Grid ,Box } from '@mui/material';
 import SideBar from './../WorkSpaceOne/SideBar';
 import { useStyles } from './Styles';
-import QuickLinksEditor from './QuickLinksEditor';
-
+// import QuickLinksEditor from './QuickLinksEditor';
+import {QuickLinkContentEditorPage} from '../../Pages';
 
 const QuickContentPage= () => {
     const classes=useStyles()
@@ -23,7 +23,7 @@ const QuickContentPage= () => {
                             <SideBar />
                         </Grid>
                         <Grid item xs={11} >
-                            <QuickLinksEditor/>
+                            <QuickLinkContentEditorPage/>
                         </Grid>
                        
                     </Grid>

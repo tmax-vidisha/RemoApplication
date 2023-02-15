@@ -106,6 +106,15 @@ export const contentEditorApi = createApi({
             }),
 
         }),
+        uploadItemInRemoQuicklink: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/remoquicklinks/uploadItem',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+
+        }),
         // getItemChildrenOneDrive: builder.mutation<any, any>({
         //     query: (data) => ({
         //         url: '/api/v1/onedrive/getItemChildren',
@@ -172,7 +181,8 @@ export const {
 
      useUploadItemInRemoEventsMutation,
      useUploadItemInRemoNavigationMutation,
-     useUploadItemInRemoContentEditorMasterMutation
+     useUploadItemInRemoContentEditorMasterMutation,
+     useUploadItemInRemoQuicklinkMutation
 
     // useGetItemChildrenOneDriveMutation,
     // useGetAllRootItemsOneDriveQuery,

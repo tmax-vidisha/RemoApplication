@@ -930,6 +930,26 @@ export const graphApi = createApi({
             //  keepUnusedDataFor: 5,
             // providesTags : [ 'News'],
         }),
+        getAllRemoQuickLinkData: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/quicklinksdata/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+            // providesTags : [ 'News'],
+        }),
+        getAllRemoEvents: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/events/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+            // providesTags : [ 'News'],
+        }),
     }),
 })
 
@@ -988,7 +1008,7 @@ export const {
     useCreateTokenwithEmpDataMutation,
     useCreateTokenwithUserQuickDataMutation,
     useGetAllsubSitesQuery,
-    useCreateTokenwithDrivesOfSubSitesMutation,
+     useCreateTokenwithDrivesOfSubSitesMutation,
     useCreateTokenwithSubSitesOfItemsMutation,
     useCreateTokenwithSubSitesofItemsIdMutation,
     useCreateTokenwithDataWorkspaceMutation,
@@ -1014,7 +1034,9 @@ export const {
     useCreateTokenwithEmpDataItemIdMutation,
     useCreateTokenwithEventDataOneMutation,
     useCreateTokenwithEventDataLandingMutation,
-    useGetAllContentEditorQuery
+    useGetAllContentEditorQuery,
+    useGetAllRemoEventsQuery,
+    useGetAllRemoQuickLinkDataQuery
 
     
     
