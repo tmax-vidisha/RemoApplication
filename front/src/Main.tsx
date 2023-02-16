@@ -397,7 +397,7 @@ const Main = () => {
                               element={<EventsContentPage/>} />
                             <Route
                               path="/galleryContentPage"
-                              element={<GalleryContentPage/>} />
+                              element={<SimpleReactLightbox><GalleryContentPage/></SimpleReactLightbox>} />
                             <Route
                               path="/highlightsContentPage"
                               element={<HighlightsContentPage/>} />

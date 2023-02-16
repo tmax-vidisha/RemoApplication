@@ -21,6 +21,7 @@ import cancel from '../../Assets/Images/cancel.svg'
 import birthday from '../../Assets/Images/birthday.jpg'
 import copylink from '../../Assets/Images/copy link.svg';
 import { Link } from 'react-router-dom';
+import { SRLWrapper } from "simple-react-lightbox";
 import calenderIcon from '../../Assets/Images/calenderGrey.svg';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -44,11 +45,19 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import LightBoxGallery from './LightBoxGallery';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
+interface IFolderProps {
 
+  // onClick?: (obj: any) => void;
+  data:any,
+  isLoading:any,
+  isSuccess:any,
+}
 
-const GalleryEditor = () => {
+// const GalleryEditor = () => {
+  const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-
+  const {data,isLoading,isSuccess} =props
+  console.log(data,'lllsssssssslll')
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openOn = Boolean(anchorEl);
 
@@ -318,7 +327,8 @@ const GalleryEditor = () => {
             </div>
             <UploadFile />
           </Grid> */}
-          <Grid className={classes.boxContain}>
+          
+          {/* <Grid className={classes.boxContain}>
             <Box className={classes.galleryBox} onClick={onClickShow}>
               <img src={folderW} alt="" />
               <div style={{ margin: "0px" }}>Approvals Folder</div>
@@ -342,7 +352,40 @@ const GalleryEditor = () => {
           </Grid>
           <Grid>
             <LightBoxGallery />
-          </Grid>
+          </Grid> */}
+         {data?.response && data?.response?.map((item: any) => {
+                                             let ext = item.name.split('.').pop();
+                                             if(ext ==item.name){
+                                            return(    
+                                              <Grid className={classes.boxContain} key={item.id}>
+                                              <Box className={classes.galleryBox} onClick={onClickShow}>
+                                                <img src={folderW} alt="" />
+                                                <div style={{ margin: "0px" }}>{item.name}</div>
+                                                <p style={{ margin: "0px" }}>{item.lastModifiedDateTime}</p>
+                                              </Box>
+                                              
+                                            </Grid>
+                                            )    
+                                             }else{
+                                                return(
+                                                  
+                                                    <Grid key={item.id}>
+                                                      <SRLWrapper>
+                                                    <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
+                                                   
+                                                    <img
+                                                        src={item.webUrl}
+                                                        style={{ width: "170px", height: "100px", margin: "20px", borderRadius: "10px" }}
+                                                        alt="Gallery"
+                                                    />
+                                                </Box>
+                                                </SRLWrapper>
+                                                 {/* <LightBoxGallery data={item} /> */}
+                                                </Grid>
+                                                )
+                                             }
+                                          })
+                                        }
         </Box>
 
       </Box>

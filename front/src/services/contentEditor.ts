@@ -115,6 +115,14 @@ export const contentEditorApi = createApi({
             }),
 
         }),
+        getGalleryRoot: builder.query<any, any>({
+            // query: () => '/api/v1/onedrive/getAllRootItems',
+            query: (id) => ({
+                url: `/api/v1/contentEditor/galleryroot/${id}`,
+                // headers:{ "authorization": `${AccessToken}` },
+            }),
+            // providesTags: ['OneDriveRootItems'],
+        }),
         // getItemChildrenOneDrive: builder.mutation<any, any>({
         //     query: (data) => ({
         //         url: '/api/v1/onedrive/getItemChildren',
@@ -182,7 +190,8 @@ export const {
      useUploadItemInRemoEventsMutation,
      useUploadItemInRemoNavigationMutation,
      useUploadItemInRemoContentEditorMasterMutation,
-     useUploadItemInRemoQuicklinkMutation
+     useUploadItemInRemoQuicklinkMutation,
+     useGetGalleryRootQuery
 
     // useGetItemChildrenOneDriveMutation,
     // useGetAllRootItemsOneDriveQuery,
