@@ -37,6 +37,7 @@ import NavigationContentEditorPage from "./QuickLinkPage/NavigationContentEditor
 import ContentEditorMasterPage from "./ContentEditorMaster/ContentEditorMasterPage";
 import ContentEditorDashBoardPage from "./ContentEditorMaster/ContentEditorDashBoardPage";
 import QuickLinkContentEditorPage from "./QuickLinkPage/QuickLinkContentEditorPage";
+import GalleryContentEditorPage from "./Gallery/GalleryContentEditorPage";
 export {
     
         EventsPage,
@@ -77,6 +78,7 @@ export {
         NavigationContentEditorPage,
         ContentEditorMasterPage,
         ContentEditorDashBoardPage,
-        QuickLinkContentEditorPage
+        QuickLinkContentEditorPage,
+        GalleryContentEditorPage
 
       };

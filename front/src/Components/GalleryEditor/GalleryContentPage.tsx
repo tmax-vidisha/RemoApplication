@@ -6,7 +6,7 @@ import { useStyles } from './Styles';
 
 import GalleryEditor from './GalleryEditor';
 import LightBoxGallery from './LightBoxGallery';
-
+import { GalleryContentEditorPage } from '../../Pages';
 const GalleryContentPage= () => {
     const classes=useStyles()
     return (
@@ -24,7 +24,7 @@ const GalleryContentPage= () => {
                         </Grid>
                         <Grid item xs={11} >
                        
-                            <GalleryEditor/>
+                            <GalleryContentEditorPage/>
                         </Grid>
                     </Grid>
                 </Box>

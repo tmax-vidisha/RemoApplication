@@ -15,7 +15,8 @@ import navigation from './routes/contenteditor/navigation'
 import quicklink from './routes/contenteditor/quicklinks'
 import contentEditor from './routes/contenteditor/contenteditor'
 import employee from './routes/contenteditor/emphighlight'
-import photosandvideo from './routes/photoandvideo/photosandvideo' 
+import photosandvideo from './routes/photoandvideo/photosandvideo'
+import gallery from './routes/contenteditor/gallery' 
 import header from './routes/header'
 // const RemoToken = require('./controllers/token')
 // const graph = require('./routes/graph')
@@ -1542,7 +1543,7 @@ app.use(`/api/v1/header`,header)
 
 // app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events)
 
-app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events,navigation,contentEditor,quicklink)
+app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events,navigation,contentEditor,quicklink,gallery)
 
 app.use(`/api/v1/gallery`,photosandvideo)
 

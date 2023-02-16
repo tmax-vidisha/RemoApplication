@@ -36,13 +36,23 @@ const data = [
     type: "video"
   }
 ];
+interface IFolderProps {
 
+  // onClick?: (obj: any) => void;
+  data:any,
+  // isLoading:any,
+  // isSuccess:any,
+}
 
-const LightBoxGallery = () => {
+// const LightBoxGallery = () => {
+  const LightBoxGallery: React.FC<IFolderProps> = (props: IFolderProps) => {
 
   const [open, setopen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-
+   const {data } =props
+  //  console.log(data,'khtyjtytttttttttttttttttttttt')
+   const yuy = [data]
+   console.log(yuy,'kkk')
   const openlightbox = (index: any) => {
     console.log(index);
     setCurrentIndex(index);
@@ -52,24 +62,33 @@ const LightBoxGallery = () => {
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
 
-        {data.map((item, index) => {
-          return <div>
-            <img src={item.thumbnail} onClick={() => openlightbox(index)} />
-          </div>
+       
+      {yuy.map((item, index) => {
+         return <div key ={item.id}>
+            <img src={data.webUrl} onClick={() => openlightbox(item.id)} />
+            </div>
         })}
+      
       </div>
       {open && (
+        // <ReactImageVideoLightbox
+        //   data={data.webUrl}
+        //   // startIndex={currentIndex}
+        //   showResourceCount={true}
+        //   onCloseCallback={() => setopen(false)}
+        //   onNavigationCallback={(currentIndex: any) =>
+        //     console.log(`Current index: ${currentIndex}`)
+        //   }
+        // />
         <ReactImageVideoLightbox
-          data={data}
-          startIndex={currentIndex}
-          showResourceCount={true}
-          onCloseCallback={() => setopen(false)}
-          onNavigationCallback={(currentIndex: any) =>
-            console.log(`Current index: ${currentIndex}`)
-          }
-        />
+        data={yuy}
+        startIndex={0}
+        showResourceCount={true}
+        onCloseCallback={() => setopen(false)}
+      />
       )}
     </div>
+    // <>ddth</>
   );
 };
 
