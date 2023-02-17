@@ -97,12 +97,12 @@ interface IFolderProps {
     // { field: 'Name', headerName: 'Name', width: 100 },
     { field: 'EventDate', 
       headerName: 'Event Date', 
-      width: 100,
+      width: 200,
       valueGetter : (allData:any) => allData.row.fields.EventDate
      },
     { field: 'EndDate', 
       headerName: 'End Date', 
-      width: 100,
+      width: 200,
       valueGetter : (allData:any) => allData.row.fields.EndDate
     },
     // { field: 'Image', headerName: 'Image', width: 130 },
@@ -116,7 +116,9 @@ interface IFolderProps {
        <ReactSwitch
       checked={params.row.fields.IsActive}
       onChange={handleChangeIsActiveToggle}
-      onColor={'#00FFFF'}
+      onColor={'#009BAD'}
+      width={40}
+      height={20}
       checkedIcon={false}
       uncheckedIcon={false}
     />
