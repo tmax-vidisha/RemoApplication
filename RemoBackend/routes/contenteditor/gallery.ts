@@ -1,13 +1,13 @@
 import express from "express";
 import {Router} from "express";
-import { getAllRoot } from "../../controllers/contenteditor/gallery";
+import { getAllRoot,getGalleryChildren } from "../../controllers/contenteditor/gallery";
 
 const router = Router();
 
 
 
-// router.route('/announcement/uploadItem').post(postTableAnnouncement);
-router.route('/galleryroot/:token').get(getAllRoot);
 
+router.route('/galleryroot/:token').get(getAllRoot);
+router.route('/getGalleryItemChildren').post(getGalleryChildren);
 
 export default router;

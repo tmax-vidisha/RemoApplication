@@ -123,15 +123,15 @@ export const contentEditorApi = createApi({
             }),
             // providesTags: ['OneDriveRootItems'],
         }),
-        // getItemChildrenOneDrive: builder.mutation<any, any>({
-        //     query: (data) => ({
-        //         url: '/api/v1/onedrive/getItemChildren',
-        //         // headers:{ 'Content-Type': 'application/json' },
-        //         method: "POST",
-        //         body: data
-        //     }),
+        getItemInGallery: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/getGalleryItemChildren',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
 
-        // }),
+        }),
         // deleteItemOneDrive: builder.mutation<any, any>({
         //     query: (data) => ({
         //         url: '/api/v1/onedrive/deleteOneDriveItem',
@@ -191,7 +191,9 @@ export const {
      useUploadItemInRemoNavigationMutation,
      useUploadItemInRemoContentEditorMasterMutation,
      useUploadItemInRemoQuicklinkMutation,
-     useGetGalleryRootQuery
+     useGetGalleryRootQuery,
+     useGetItemInGalleryMutation
+    
 
     // useGetItemChildrenOneDriveMutation,
     // useGetAllRootItemsOneDriveQuery,
