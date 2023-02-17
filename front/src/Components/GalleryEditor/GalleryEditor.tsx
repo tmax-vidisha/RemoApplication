@@ -47,7 +47,7 @@ import LightBoxGallery from './LightBoxGallery';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 interface IFolderProps {
 
-  // onClick?: (obj: any) => void;
+  onClick: (id: string, name: string, folder: any) => void
   data:any,
   isLoading:any,
   isSuccess:any,
@@ -56,7 +56,7 @@ interface IFolderProps {
 // const GalleryEditor = () => {
   const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const {data,isLoading,isSuccess} =props
+  const {data,isLoading,isSuccess ,onClick} =props
   console.log(data,'lllsssssssslll')
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openOn = Boolean(anchorEl);
@@ -131,7 +131,7 @@ interface IFolderProps {
   }
   const [uploadedFiles, setUploadedFiles] = useState([])
   const [fileLimit, setFileLimit] = useState(false);
-
+  const [Images1, setImages1] = useState([])
   const handleUploadFiles = (files: any) => {
     const uploaded = [...uploadedFiles];
     let limitExceeded = false;
@@ -165,7 +165,21 @@ interface IFolderProps {
   const handleClickHide=()=>{
     setShow(true)
 }
+const handleItem = (id:any)=>{
+    console.log(id,'thththhjyj')
+}
 
+var ages = [32, 33, 16, 40];
+
+
+
+function checkAge(age:any) {
+  let ext = age.name.split('.').pop();
+  if (ext !==age.name) {
+    return age;
+  }
+}  
+let  content= data?.response.filter(checkAge)
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
@@ -360,32 +374,48 @@ interface IFolderProps {
                                               <Grid className={classes.boxContain} key={item.id}>
                                               <Box className={classes.galleryBox} onClick={onClickShow}>
                                                 <img src={folderW} alt="" />
-                                                <div style={{ margin: "0px" }}>{item.name}</div>
+                                                <div style={{ margin: "0px" }} onClick={()=>onClick(item.id, item.name, item.folder)}>{item.name}</div>
                                                 <p style={{ margin: "0px" }}>{item.lastModifiedDateTime}</p>
                                               </Box>
                                               
                                             </Grid>
                                             )    
-                                             }else{
-                                                return(
-                                                  
-                                                    <Grid key={item.id}>
-                                                      <SRLWrapper>
-                                                    <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
-                                                   
-                                                    <img
-                                                        src={item.webUrl}
-                                                        style={{ width: "170px", height: "100px", margin: "20px", borderRadius: "10px" }}
-                                                        alt="Gallery"
-                                                    />
-                                                </Box>
-                                                </SRLWrapper>
-                                                 {/* <LightBoxGallery data={item} /> */}
-                                                </Grid>
-                                                )
                                              }
+                                            //  else{
+                                            //     return(
+                                                  
+                                            //         <Grid key={item.id}>
+                                            //           <SRLWrapper>
+                                            //         <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
+                                                   
+                                            //         <img
+                                            //             src={item.webUrl}
+                                            //             style={{ width: "170px", height: "100px", margin: "20px", borderRadius: "10px" }}
+                                            //             alt="Gallery"
+                                            //         />
+                                            //     </Box>
+                                            //     </SRLWrapper>
+                                            //      {/* <LightBoxGallery data={item} /> */}
+                                            //     </Grid>
+                                            //     )
+                                            //  }
                                           })
                                         }
+             
+             <SRLWrapper>
+                <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
+                  {
+                  content &&  content?.map((item: any) => (
+                      <Grid key={item.id} >
+                        <img src={item.webUrl} style={{ width: "167px", height: "170px", margin: "20px", borderRadius: "10px" }} />
+                      </Grid>
+                    ))
+                  }
+
+                </Box>
+              </SRLWrapper>
+              {/* <LightBoxGallery data={content} /> */}
+                       
         </Box>
 
       </Box>
