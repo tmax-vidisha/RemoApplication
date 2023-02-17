@@ -41,90 +41,100 @@ const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 
 const rows = [
-  { id: 1, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
-  { id: 2, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
-  { id: 3, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
-  { id: 4, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
-  { id: 5, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
-  { id: 6, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
-  { id: 7, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
-  { id: 8, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />,'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
+  { id: 1, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />, 'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
+  { id: 2, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />, 'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
+  { id: 3, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />, 'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
+  { id: 4, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />, 'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
+  { id: 5, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />, 'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
+  { id: 6, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />, 'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
+  { id: 7, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />, 'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
+  { id: 8, Title: 'Hero Banner', Url: 'https://www.remo.com', 'Hover On Icon': <img src={image} alt="" />, 'Hover Off Icon': <img src={image} alt="" />, IsActive: <Switch {...label} defaultChecked />, 'Accessible To': ' Siva ', 'Belongs To': 'Siva ', },
 
 ];
 
 interface IFolderProps {
 
   onClick?: (obj: any) => void;
-  data:any,
-  isLoading:any,
-  isSuccess:any,
+  data: any,
+  isLoading: any,
+  isSuccess: any,
 
 }
 // const EditorContent = () => {
-  const EditorContent: React.FC<IFolderProps> = (props: IFolderProps) => {
+const EditorContent: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { onClick,data,isLoading,isSuccess } = props
-  const handleChangeIsActiveToggle = (val:any) => {
+  const { onClick, data, isLoading, isSuccess } = props
+  const handleChangeIsActiveToggle = (val: any) => {
     // setChecked(val);
-    console.log(val,'hhhfhf')
+    console.log(val, 'hhhfhf')
   };
   const columns: GridColDef[] = [
-    { field: 'id', 
-      headerName: 'ID', 
+    {
+      field: 'id',
+      headerName: 'ID',
       width: 70,
-      valueGetter : (allData:any) => allData.row.fields.id
+      valueGetter: (allData: any) => allData.row.fields.id
     },
-    { field: 'Title', 
-      headerName: 'Title', 
-      width: 130 ,
-      valueGetter : (allData:any) => allData.row.fields.Title
+    {
+      field: 'Title',
+      headerName: 'Title',
+      width: 130,
+      valueGetter: (allData: any) => allData.row.fields.Title
     },
-    { field: 'Url', 
-      headerName: 'URL', 
-      type: 'text', 
-      width: 130 ,
-      valueGetter : (allData:any) => allData.row.fields.Url
-      
+    {
+      field: 'Url',
+      headerName: 'URL',
+      type: 'text',
+      width: 130,
+      valueGetter: (allData: any) => allData.row.fields.Url
+
     },
-    { field: 'HoverOn', 
-      headerName: 'Hover On Icon', 
+    {
+      field: 'HoverOn',
+      headerName: 'Hover On Icon',
       // type: 'image', 
       width: 130,
-      renderCell: (params) => <img src={params.row.fields.HoverOn}/>
-    
+      renderCell: (params) => <img src={params.row.fields.HoverOn} style={{ width: "40px", height: "40px" }} />
+
     },
-    { field: 'HoverOff', 
-      headerName: 'Hover Off Icon', 
-      type: 'image', 
+    {
+      field: 'HoverOff',
+      headerName: 'Hover Off Icon',
+      type: 'image',
       width: 130,
-      renderCell: (params) => <img src={params.row.fields.HoverOff}/>
+      renderCell: (params) => <img src={params.row.fields.HoverOff} style={{ width: "40px", height: "40px" }} />
     },
-    { field: 'isActive', 
-      headerName: 'IS Active', 
+    {
+      field: 'isActive',
+      headerName: 'IS Active',
       // type: 'image', 
       width: 100,
-      renderCell: (params) => 
-       <ReactSwitch
-      checked={params.row.fields.isActive}
-      onChange={handleChangeIsActiveToggle}
-      onColor={'#00FFFF'}
-      checkedIcon={false}
-      uncheckedIcon={false}
-    />
-     },
-    { field: 'AccessibleTo', 
-      headerName: 'Accessible To', 
-      type: 'text', 
+      renderCell: (params) =>
+        <ReactSwitch
+          checked={params.row.fields.isActive}
+          onChange={handleChangeIsActiveToggle}
+          onColor={'#009BAD'}
+          width={40}
+          height={20}
+          checkedIcon={false}
+          uncheckedIcon={false}
+        />
+    },
+    {
+      field: 'AccessibleTo',
+      headerName: 'Accessible To',
+      type: 'text',
       width: 130,
-      valueGetter : (allData:any) => allData.row.fields.AccessibleTo
+      valueGetter: (allData: any) => allData.row.fields.AccessibleTo
     },
-    { field: 'Belongs To', 
-      headerName: 'BelongsTo', 
-      type: 'text', 
-      width: 130 ,
-      valueGetter : (allData:any) => allData.row.fields.BelongsTo
+    {
+      field: 'Belongs To',
+      headerName: 'BelongsTo',
+      type: 'text',
+      width: 130,
+      valueGetter: (allData: any) => allData.row.fields.BelongsTo
     },
-  
+
   ];
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
@@ -346,7 +356,7 @@ interface IFolderProps {
       });
     }
   };
- 
+
 
   const [files, setFiles] = useState<File[]>([]);
   const fileRef = React.useRef<HTMLInputElement | null>(null)
@@ -396,19 +406,19 @@ interface IFolderProps {
     const announcementData = {
       // token :tokens,
       title: Title,
-      
+
       image: fileSelected,
       imageName: names,
       isActive: isActives,
-      Url:Description,
-      Belongs:belongs,
-      Accessible:accessible,
+      Url: Description,
+      Belongs: belongs,
+      Accessible: accessible,
       // EnableCommands: enableCommands,
       // SharedAsEmail: sharedAsEmails,
       // RecipientEmail: RecipientEmail,
       hoverOff: fileSelected1,
       hoverOffName: names1,
-      isDraft:false
+      isDraft: false
     }
     //  await sendItem(announcementData)
     await onClick?.(announcementData)
@@ -418,19 +428,19 @@ interface IFolderProps {
     const announcementData = {
       // token :tokens,
       title: Title,
-      
+
       image: fileSelected,
       imageName: names,
       isActive: isActives,
-      Url:Description,
-      Belongs:belongs,
-      Accessible:accessible,
+      Url: Description,
+      Belongs: belongs,
+      Accessible: accessible,
       // EnableCommands: enableCommands,
       // SharedAsEmail: sharedAsEmails,
       // RecipientEmail: RecipientEmail,
       hoverOff: fileSelected1,
       hoverOffName: names1,
-      isDraft:true
+      isDraft: true
     }
     //  await sendItem(announcementData)
     await onClick?.(announcementData)
@@ -441,25 +451,25 @@ interface IFolderProps {
   if (isLoading) {
     content = <CircularProgress />
   } else if (isSuccess) {
-    content = 
-    <div style={{ display: 'flex', height: '100%'}}>
-      <Box sx={{ flexGrow: 1 }}>
-    { data?.response &&
-      <DataGrid 
-        // autoHeight
-        // autoWidth
-        getRowId={(row) => row.id}
-        rows={data?.response}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-          checkboxSelection
-        //sx={{ height: '100%', width: '100%' }}
-    
-   />}
-   </Box>
-    </div>
-  
+    content =
+      <div style={{ display: 'flex', height: '100%' }}>
+        <Box sx={{ flexGrow: 1 }}>
+          {data?.response &&
+            <DataGrid
+              // autoHeight
+              // autoWidth
+              getRowId={(row) => row.id}
+              rows={data?.response}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              checkboxSelection
+            //sx={{ height: '100%', width: '100%' }}
+
+            />}
+        </Box>
+      </div>
+
   }
   return (
     <div className={classes.Section}>
@@ -475,7 +485,7 @@ interface IFolderProps {
               New
             </Button>
             <Dialog
-              classes={{paper: classes.newPosOfDialog}}
+              classes={{ paper: classes.newPosOfDialog }}
               open={openOne}
               onClose={handleClose}
               style={{ marginTop: "60px", height: "650px" }}>
@@ -542,7 +552,7 @@ interface IFolderProps {
                 <div style={{ marginBottom: "15px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
                     <img src={image} alt="" className={classes.titleIcon} />
-                   Hover On Icon<img src={Asterisk} alt="..." />
+                    Hover On Icon<img src={Asterisk} alt="..." />
                   </InputLabel>
                   <Grid className={classes.svg}>
                     {/* <FileUpload value={files} onChange={setFiles} /> */}
@@ -587,7 +597,7 @@ interface IFolderProps {
                 <div style={{ marginBottom: "15px" }}>
                   <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>
                     <img src={image} alt="" className={classes.titleIcon} />
-                   Hover Off Icon<img src={Asterisk} alt="..." />
+                    Hover Off Icon<img src={Asterisk} alt="..." />
                   </InputLabel>
                   <Grid className={classes.svg}>
                     {/* <FileUpload value={files} onChange={setFiles} /> */}

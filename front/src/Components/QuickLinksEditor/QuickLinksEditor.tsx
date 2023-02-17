@@ -105,7 +105,9 @@ interface IFolderProps {
     <ReactSwitch
      checked={params.row.fields.OpenInNewTab}
      onChange={handleChangeOpenNewTab}
-     onColor={'#00FFFF'}
+     onColor={'#009BAD'}
+      width={40}
+      height={20}
      checkedIcon={false}
      uncheckedIcon={false}
     />
@@ -124,7 +126,9 @@ interface IFolderProps {
   <ReactSwitch
   checked={params.row.fields.isActive}
   onChange={handleChangeIsActiveToggle}
-  onColor={'#00FFFF'}
+  onColor={'#009BAD'}
+      width={40}
+      height={20}
   checkedIcon={false}
   uncheckedIcon={false}
   />

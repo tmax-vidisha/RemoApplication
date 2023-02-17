@@ -80,7 +80,7 @@ interface IFolderProps {
     },
     { field: 'Title', 
       headerName: 'Title', 
-      width: 70,
+      width: 200,
       valueGetter : (allData:any) => allData.row.fields.Title
     },
     { field: 'HoverOn', 
@@ -103,7 +103,9 @@ interface IFolderProps {
       <ReactSwitch
      checked={params.row.fields.OpenInNewTab}
      onChange={handleChangeOpenNewTab}
-     onColor={'#00FFFF'}
+     onColor={'#009BAD'}
+     width={40}
+     height={20}
      checkedIcon={false}
      uncheckedIcon={false}
    />
@@ -122,7 +124,9 @@ interface IFolderProps {
       <ReactSwitch
      checked={params.row.fields.isActive}
      onChange={handleChangeIsActiveToggle}
-     onColor={'#00FFFF'}
+     onColor={'#009BAD'}
+     width={40}
+     height={20}
      checkedIcon={false}
      uncheckedIcon={false}
    />
@@ -130,7 +134,7 @@ interface IFolderProps {
     { field: 'PageDetailsUrl', 
       headerName: 'URL', 
       type: 'text', 
-      width: 100,
+      width: 200,
       valueGetter : (allData:any) => allData.row.fields.PageDetailsUrl
     },
     // {field: 'Link Master ID',headerName: 'Link Master ID',type: 'text', width: 200,},

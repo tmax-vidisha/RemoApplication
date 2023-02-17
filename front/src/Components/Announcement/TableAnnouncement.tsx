@@ -113,7 +113,7 @@ interface IFolderProps {
       field: 'Image', 
       headerName: 'Image',
       width: 130,
-      renderCell: (params) => <img src={params.row.fields.Image}/>
+      renderCell: (params) => <img src={params.row.fields.Image} style={{width:"80px", height:"50px"}}/>
       },
     { 
       field: 'Modified', 
@@ -131,25 +131,29 @@ interface IFolderProps {
     { field: 'isActive', 
       headerName: 'IsActive', 
       type: 'image', 
-      width: 130,
+      width: 100,
       renderCell: (params) => 
        <ReactSwitch
       checked={params.row.fields.isActive}
       onChange={handleChangeIsActiveToggle}
-      onColor={'#00FFFF'}
       checkedIcon={false}
       uncheckedIcon={false}
+       onColor={'#009BAD'}
+      width={40}
+      height={20}
     />
     
     },
     { field: 'EnableLikes', 
       headerName: 'EnableLikes', 
-      width: 130,
+      width: 100,
       renderCell: (params) => 
       <ReactSwitch
      checked={params.row.fields.EnableLikes}
      onChange={handleChangeEnableLikesToggle}
-     onColor={'#00FFFF'}
+     onColor={'#009BAD'}
+      width={40}
+      height={20}
      checkedIcon={false}
      uncheckedIcon={false}
    />
@@ -159,12 +163,14 @@ interface IFolderProps {
       field: 'EnableCommands',
       headerName: 'EnableComments',
       type: 'number',
-      width: 130,
+      width: 100,
       renderCell: (params) => 
       <ReactSwitch
      checked={params.row.fields.EnableCommands}
      onChange={handleChangeEnableCommentsToggle}
-     onColor={'#00FFFF'}
+     onColor={'#009BAD'}
+      width={40}
+      height={20}
      checkedIcon={false}
      uncheckedIcon={false}
    />
@@ -174,12 +180,14 @@ interface IFolderProps {
       headerName: 'ShareAsEmail',
       // description: 'This column has a value getter and is not sortable.',
       type: 'email',
-      width: 160,
+      width: 100,
       renderCell: (params) => 
       <ReactSwitch
       checked={params.row.fields.ShareAsEmail}
       onChange={handleChangeShareAsEmailToggle}
-      onColor={'#00FFFF'}
+      onColor={'#009BAD'}
+      width={40}
+      height={20}
       checkedIcon={false}
       uncheckedIcon={false}
    />
