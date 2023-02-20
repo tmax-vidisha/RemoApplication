@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from '../Birthday/index';
-import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography, Paper } from '@mui/material';
+import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography, Paper, CircularProgress } from '@mui/material';
 import Dropzone from "react-dropzone";
 import title from '../../Assets/Images/title.svg';
 import image from '../../Assets/Images/image.svg';
@@ -48,19 +48,22 @@ const label = { inputProps: { 'aria-label': 'Switch demo' } };
 interface IFolderProps {
 
   onClick: (id: string, name: string, folder: any) => void
-  data:any,
-  isLoading:any,
-  isSuccess:any,
+  data: any,
+  isLoading: any,
+  isSuccess: any,
+  ItemChildren: any,
+  isSuccessItem: any,
+  itemChildrenIsLoading: any
 }
 
 // const GalleryEditor = () => {
-  const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
+const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const {data,isLoading,isSuccess ,onClick} =props
-  console.log(data,'lllsssssssslll')
+  const { data, isLoading, isSuccess, onClick, ItemChildren, isSuccessItem, itemChildrenIsLoading } = props
+  console.log(data, 'lllsssssssslll')
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openOn = Boolean(anchorEl);
-
+  const [openPage, setOpenPage] = useState<boolean>(true)
   const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
   const openTwo = Boolean(anchorE2);
   const handleClickTwo = (event: React.MouseEvent<HTMLElement>) => {
@@ -162,48 +165,60 @@ interface IFolderProps {
     setShowResults(true);
   }
   const [show, setShow] = useState<boolean>(false);
-  const handleClickHide=()=>{
+  const handleClickHide = () => {
     setShow(true)
-}
-const handleItem = (id:any)=>{
-    console.log(id,'thththhjyj')
-}
-
-var ages = [32, 33, 16, 40];
-
-
-
-function checkAge(age:any) {
-  let ext = age.name.split('.').pop();
-  if (ext !==age.name) {
-    return age;
   }
-}  
-let  content= data?.response.filter(checkAge)
+  const handleItem = (id: any) => {
+    console.log(id, 'thththhjyj')
+  }
+
+  var ages = [32, 33, 16, 40];
+
+
+
+  function checkAge(age: any) {
+    let ext = age.name.split('.').pop();
+    if (ext !== age.name) {
+      return age;
+    }
+  }
+  let content = data?.response.filter(checkAge)
+  let content1;
+  if (itemChildrenIsLoading) {
+    content1 = <CircularProgress />
+  } else if (isSuccessItem) {
+    content1 = ItemChildren?.response.filter(checkAge)
+
+  }
+  console.log(content1, 'htrht55555555555555555555')
+
+  // let  filterImages = content1 && content1?.filter((person: any) => person.file.mimeType == "image/jpeg")
+  // let filterdVideoData = content1 && content1?.filter((person: any) => person.file.mimeType == 'video/mp4')
   return (
     <div className={classes.Section}>
-      <Box className={classes.MainPart}>
-        <Grid className={classes.upperPart}>
-          {/* <Grid style={{color:'#18496a'}}>Picture Gallery </Grid> */}
-          <div className={classes.contentHeader} >
-            <Typography variant="caption" display="block" gutterBottom>
-              <Breadcrumbs
-                className={classes.breadcrumbs}
-                separator={<NavigateNextIcon fontSize="small" />}
-                aria-label="breadcrumb"
-              >
-                <Link to="/" className={classes.breadLinks}  >
-                  Picture Gallery
-                </Link>
-                {/* <Typography className={classes.breadLinks}>
+      {openPage ? (
+        <Box className={classes.MainPart}>
+          <Grid className={classes.upperPart}>
+            {/* <Grid style={{color:'#18496a'}}>Picture Gallery </Grid> */}
+            <div className={classes.contentHeader} >
+              <Typography variant="caption" display="block" gutterBottom>
+                <Breadcrumbs
+                  className={classes.breadcrumbs}
+                  separator={<NavigateNextIcon fontSize="small" />}
+                  aria-label="breadcrumb"
+                >
+                  <Link to="/" className={classes.breadLinks}  >
+                    Picture Gallery
+                  </Link>
+                  {/* <Typography className={classes.breadLinks}>
                   Approvals Folder
                 </Typography> */}
-                {showResults ? <Typography>Approvals Folder</Typography>
-                  : <Typography>Remo Folder </Typography>}
-              </Breadcrumbs>
-            </Typography>
-          </div>
-          {/* <Grid>
+                  {showResults ? <Typography>Approvals Folder</Typography>
+                    : <Typography>Remo Folder </Typography>}
+                </Breadcrumbs>
+              </Typography>
+            </div>
+            {/* <Grid>
             <input type='file' id='fileUpload' accept='application/pdf, image/png, mp4/video '
               onChange={handleFileEvent}
               disabled={fileLimit} />
@@ -211,124 +226,124 @@ let  content= data?.response.filter(checkAge)
               <a className={`btn btn-primary ${!fileLimit ? '' : 'disabled'}`}>Upload </a>
             </label>
           </Grid> */}
-          <Grid style={{ width: "230px", display: "flex", justifyContent: "space-between", marginRight: "20px" }}>
-            <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} >
-              <Button
-                id="fade-button"
-                aria-controls={openTwo ? 'fade-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={openOn ? 'true' : undefined}
-                onClick={handleClickTwo}
-                // className={classes.create}
-                sx={{ textTransform: "capitalize", backgroundColor: "#e5f5f7 !important", color: '#18496a' }}>
-                <span className={classes.plus}>
-                  <img src={uploadB} alt="" />
-                </span>
-                Upload
-              </Button>
-              <Menu
-                id="fade-menu"
-                MenuListProps={{
-                  'aria-labelledby': 'fade-button',
-                }}
-                anchorEl={anchorE2}
-                open={openTwo}
-                onClose={handleCloseTwo}
-                TransitionComponent={Fade}
-                className={classes.menu}
-              >
-                <MenuItem>
-                  <div>
-                    <img src={folder} alt="folder" className={classes.menuImage} /> Files
-                  </div>
-                </MenuItem>
-                <MenuItem >
-                  <div>
-                    <img src={folder} alt="folder" className={classes.menuImage} /> Folders
-                  </div>
-                </MenuItem>
-              </Menu>
+            <Grid style={{ width: "230px", display: "flex", justifyContent: "space-between", marginRight: "20px" }}>
+              <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} >
+                <Button
+                  id="fade-button"
+                  aria-controls={openTwo ? 'fade-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={openOn ? 'true' : undefined}
+                  onClick={handleClickTwo}
+                  // className={classes.create}
+                  sx={{ textTransform: "capitalize", backgroundColor: "#e5f5f7 !important", color: '#18496a' }}>
+                  <span className={classes.plus}>
+                    <img src={uploadB} alt="" />
+                  </span>
+                  Upload
+                </Button>
+                <Menu
+                  id="fade-menu"
+                  MenuListProps={{
+                    'aria-labelledby': 'fade-button',
+                  }}
+                  anchorEl={anchorE2}
+                  open={openTwo}
+                  onClose={handleCloseTwo}
+                  TransitionComponent={Fade}
+                  className={classes.menu}
+                >
+                  <MenuItem>
+                    <div>
+                      <img src={folder} alt="folder" className={classes.menuImage} /> Files
+                    </div>
+                  </MenuItem>
+                  <MenuItem >
+                    <div>
+                      <img src={folder} alt="folder" className={classes.menuImage} /> Folders
+                    </div>
+                  </MenuItem>
+                </Menu>
 
-            </Grid>
-            <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
+              </Grid>
+              <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
 
-              <Button
-                id="fade-button"
-                aria-controls={openOn ? 'fade-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={openOn ? 'true' : undefined}
-                onClick={handleClick}
-                className={classes.create}
-                sx={{ textTransform: "capitalize", backgroundColor: "rgb(50 168 189) !important" }}>
-                <span className={classes.plus}><LocalHospitalIcon /></span>
-                New
-              </Button>
-              <Menu
-                id="fade-menu"
-                MenuListProps={{
-                  'aria-labelledby': 'fade-button',
-                }}
-                anchorEl={anchorEl}
-                open={openOn}
-                onClose={handleClose}
-                TransitionComponent={Fade}
-                className={classes.menu}
-              >
-                <MenuItem >
-                  <div onClick={handleClickOne}>
-                    <img src={folder} alt="folder" className={classes.menuImage} /> Folders
-                  </div>
-                  <Dialog open={openOne} onClose={handleCloseOne}>
-                    <DialogTitle>
-                      <div className={classes.dialogT}>
-                        <div>Create New Folder</div>
-                        <div onClick={handleCloseOne} style={{ cursor: "pointer" }}>
-                          <img src={cancel} alt="" />
+                <Button
+                  id="fade-button"
+                  aria-controls={openOn ? 'fade-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={openOn ? 'true' : undefined}
+                  onClick={handleClick}
+                  className={classes.create}
+                  sx={{ textTransform: "capitalize", backgroundColor: "rgb(50 168 189) !important" }}>
+                  <span className={classes.plus}><LocalHospitalIcon /></span>
+                  New
+                </Button>
+                <Menu
+                  id="fade-menu"
+                  MenuListProps={{
+                    'aria-labelledby': 'fade-button',
+                  }}
+                  anchorEl={anchorEl}
+                  open={openOn}
+                  onClose={handleClose}
+                  TransitionComponent={Fade}
+                  className={classes.menu}
+                >
+                  <MenuItem >
+                    <div onClick={handleClickOne}>
+                      <img src={folder} alt="folder" className={classes.menuImage} /> Folders
+                    </div>
+                    <Dialog open={openOne} onClose={handleCloseOne}>
+                      <DialogTitle>
+                        <div className={classes.dialogT}>
+                          <div>Create New Folder</div>
+                          <div onClick={handleCloseOne} style={{ cursor: "pointer" }}>
+                            <img src={cancel} alt="" />
+                          </div>
                         </div>
-                      </div>
-                    </DialogTitle>
-                    <DialogContent>
-                      <p style={{ margin: "0px 0px 5px 0px", textAlign: "left" }}>Enter the name</p>
-                      <input type="text" onChange={handleOnChange} style={{ width: "300px", height: "20px" }} />
-                    </DialogContent>
-                    <DialogActions>
-                      <div style={{ width: "150px", marginRight: "180px" }}>
-                        <Button
-                          // onClick={handleFormSubmit}
-                          onClick={handleClickThree}
-                          autoFocus style={{ backgroundColor: "#009BAD", color: "white", textTransform: "none" }}>
-                          Create
-                        </Button>
-                        <Dialog open={openThree} onClose={handleCloseThree}>
-                          {/* <DialogTitle>{"Create New Folder"}</DialogTitle> */}
-                          <DialogContent>
-                            <Box>
-                              <img src={success} alt="" style={{ width: "50px" }} />
-                              <Typography>Folder Created SuccessFully</Typography>
-                            </Box>
-                          </DialogContent>
-                          <DialogActions style={{ width: "170px" }}>
-                            <Button autoFocus style={{ backgroundColor: "#009BAD", color: "white" }} onClick={handleCloseThree}>
-                              Ok
-                            </Button>
-                          </DialogActions>
-                        </Dialog>
-                        <Button onClick={handleCloseOne}
-                          color="primary" autoFocus style={{ textTransform: "none" }}>
-                          Close
-                        </Button>
-                      </div>
-                    </DialogActions>
-                  </Dialog>
-                </MenuItem>
-              </Menu>
+                      </DialogTitle>
+                      <DialogContent>
+                        <p style={{ margin: "0px 0px 5px 0px", textAlign: "left" }}>Enter the name</p>
+                        <input type="text" onChange={handleOnChange} style={{ width: "300px", height: "20px" }} />
+                      </DialogContent>
+                      <DialogActions>
+                        <div style={{ width: "150px", marginRight: "180px" }}>
+                          <Button
+                            // onClick={handleFormSubmit}
+                            onClick={handleClickThree}
+                            autoFocus style={{ backgroundColor: "#009BAD", color: "white", textTransform: "none" }}>
+                            Create
+                          </Button>
+                          <Dialog open={openThree} onClose={handleCloseThree}>
+                            {/* <DialogTitle>{"Create New Folder"}</DialogTitle> */}
+                            <DialogContent>
+                              <Box>
+                                <img src={success} alt="" style={{ width: "50px" }} />
+                                <Typography>Folder Created SuccessFully</Typography>
+                              </Box>
+                            </DialogContent>
+                            <DialogActions style={{ width: "170px" }}>
+                              <Button autoFocus style={{ backgroundColor: "#009BAD", color: "white" }} onClick={handleCloseThree}>
+                                Ok
+                              </Button>
+                            </DialogActions>
+                          </Dialog>
+                          <Button onClick={handleCloseOne}
+                            color="primary" autoFocus style={{ textTransform: "none" }}>
+                            Close
+                          </Button>
+                        </div>
+                      </DialogActions>
+                    </Dialog>
+                  </MenuItem>
+                </Menu>
 
+              </Grid>
             </Grid>
-          </Grid>
 
-        </Grid>
-        <Box style={{ padding: "30px" }}>
-          {/* <Grid>
+          </Grid>
+          <Box style={{ padding: "30px" }}>
+            {/* <Grid>
             <div className="uploaded-files-list">
               {uploadedFiles.map((file, name: any) => (
                 <div>
@@ -341,8 +356,8 @@ let  content= data?.response.filter(checkAge)
             </div>
             <UploadFile />
           </Grid> */}
-          
-          {/* <Grid className={classes.boxContain}>
+
+            {/* <Grid className={classes.boxContain}>
             <Box className={classes.galleryBox} onClick={onClickShow}>
               <img src={folderW} alt="" />
               <div style={{ margin: "0px" }}>Approvals Folder</div>
@@ -367,58 +382,357 @@ let  content= data?.response.filter(checkAge)
           <Grid>
             <LightBoxGallery />
           </Grid> */}
-         {data?.response && data?.response?.map((item: any) => {
-                                             let ext = item.name.split('.').pop();
-                                             if(ext ==item.name){
-                                            return(    
-                                              <Grid className={classes.boxContain} key={item.id}>
-                                              <Box className={classes.galleryBox} onClick={onClickShow}>
-                                                <img src={folderW} alt="" />
-                                                <div style={{ margin: "0px" }} onClick={()=>onClick(item.id, item.name, item.folder)}>{item.name}</div>
-                                                <p style={{ margin: "0px" }}>{item.lastModifiedDateTime}</p>
-                                              </Box>
-                                              
-                                            </Grid>
-                                            )    
-                                             }
-                                            //  else{
-                                            //     return(
-                                                  
-                                            //         <Grid key={item.id}>
-                                            //           <SRLWrapper>
-                                            //         <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
-                                                   
-                                            //         <img
-                                            //             src={item.webUrl}
-                                            //             style={{ width: "170px", height: "100px", margin: "20px", borderRadius: "10px" }}
-                                            //             alt="Gallery"
-                                            //         />
-                                            //     </Box>
-                                            //     </SRLWrapper>
-                                            //      {/* <LightBoxGallery data={item} /> */}
-                                            //     </Grid>
-                                            //     )
-                                            //  }
-                                          })
-                                        }
-             
-             <SRLWrapper>
-                <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
+           {isLoading && <CircularProgress/>}
+          { isSuccess &&( 
+            <div>
+            {data?.response && data?.response?.map((item: any) => {
+              let ext = item.name.split('.').pop();
+              if (ext == item.name) {
+                return (
+                  <Grid className={classes.boxContain} key={item.id}>
+                    <Box className={classes.galleryBox} onClick={onClickShow}>
+                      <img src={folderW} alt="" />
+                      <div style={{ margin: "0px" }} onClick={() => { onClick(item.id, item.name, item.folder); setOpenPage(false) }}>{item.name}</div>
+                      <p style={{ margin: "0px" }}>{item.lastModifiedDateTime}</p>
+                    </Box>
+
+                  </Grid>
+                )
+              }
+              else if (item.file.mimeType == 'image/jpeg') {
+                return (
+
+                  <Grid key={item.id}>
+                    <SRLWrapper>
+                      <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
+
+                        <img
+                          src={item.webUrl}
+                          style={{ width: "170px", height: "100px", margin: "20px", borderRadius: "10px" }}
+                          alt="Gallery"
+                        />
+                      </Box>
+                    </SRLWrapper>
+
+                  </Grid>
+
+                )
+              } else {
+                return (
+                  <Grid key={item.id}>
+                    <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
+                      <video width="200" height="150" >
+                        <source src={item.webUrl} type="video/mp4" />
+                      </video>
+                    </Box>
+
+                  </Grid>
+
+                )
+              }
+            })
+            }
+            </div>)}
+            {/* <SRLWrapper>
+              <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
+                {
+                  content && content?.map((item: any) => (
+                    <Grid key={item.id} >
+                      <img src={item.webUrl} style={{ width: "167px", height: "170px", margin: "20px", borderRadius: "10px" }} />
+                    </Grid>
+                  ))
+                }
+
+              </Box>
+            </SRLWrapper> */}
+            {/* <LightBoxGallery data={content} /> */}
+
+          </Box>
+
+        </Box>
+      ) : (
+
+        <Box className={classes.MainPart}>
+          <Grid className={classes.upperPart}>
+            {/* <Grid style={{color:'#18496a'}}>Picture Gallery </Grid> */}
+            <div className={classes.contentHeader} >
+              <Typography variant="caption" display="block" gutterBottom>
+                <Breadcrumbs
+                  className={classes.breadcrumbs}
+                  separator={<NavigateNextIcon fontSize="small" />}
+                  aria-label="breadcrumb"
+                >
+                  <Link to="/" className={classes.breadLinks}  >
+                    Picture Gallery
+                  </Link>
+                  {/* <Typography className={classes.breadLinks}>
+                  Approvals Folder
+                </Typography> */}
+                  {showResults ? <Typography>Approvals Folder</Typography>
+                    : <Typography>Remo Folder </Typography>}
+                </Breadcrumbs>
+              </Typography>
+            </div>
+            {/* <Grid>
+            <input type='file' id='fileUpload' accept='application/pdf, image/png, mp4/video '
+              onChange={handleFileEvent}
+              disabled={fileLimit} />
+            <label htmlFor="fileUpLoad">
+              <a className={`btn btn-primary ${!fileLimit ? '' : 'disabled'}`}>Upload </a>
+            </label>
+          </Grid> */}
+            <Grid style={{ width: "230px", display: "flex", justifyContent: "space-between", marginRight: "20px" }}>
+              <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} >
+                <Button
+                  id="fade-button"
+                  aria-controls={openTwo ? 'fade-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={openOn ? 'true' : undefined}
+                  onClick={handleClickTwo}
+                  // className={classes.create}
+                  sx={{ textTransform: "capitalize", backgroundColor: "#e5f5f7 !important", color: '#18496a' }}>
+                  <span className={classes.plus}>
+                    <img src={uploadB} alt="" />
+                  </span>
+                  Upload
+                </Button>
+                <Menu
+                  id="fade-menu"
+                  MenuListProps={{
+                    'aria-labelledby': 'fade-button',
+                  }}
+                  anchorEl={anchorE2}
+                  open={openTwo}
+                  onClose={handleCloseTwo}
+                  TransitionComponent={Fade}
+                  className={classes.menu}
+                >
+                  <MenuItem>
+                    <div>
+                      <img src={folder} alt="folder" className={classes.menuImage} /> Files
+                    </div>
+                  </MenuItem>
+                  <MenuItem >
+                    <div>
+                      <img src={folder} alt="folder" className={classes.menuImage} /> Folders
+                    </div>
+                  </MenuItem>
+                </Menu>
+
+              </Grid>
+              <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
+
+                <Button
+                  id="fade-button"
+                  aria-controls={openOn ? 'fade-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={openOn ? 'true' : undefined}
+                  onClick={handleClick}
+                  className={classes.create}
+                  sx={{ textTransform: "capitalize", backgroundColor: "rgb(50 168 189) !important" }}>
+                  <span className={classes.plus}><LocalHospitalIcon /></span>
+                  New
+                </Button>
+                <Menu
+                  id="fade-menu"
+                  MenuListProps={{
+                    'aria-labelledby': 'fade-button',
+                  }}
+                  anchorEl={anchorEl}
+                  open={openOn}
+                  onClose={handleClose}
+                  TransitionComponent={Fade}
+                  className={classes.menu}
+                >
+                  <MenuItem >
+                    <div onClick={handleClickOne}>
+                      <img src={folder} alt="folder" className={classes.menuImage} /> Folders
+                    </div>
+                    <Dialog open={openOne} onClose={handleCloseOne}>
+                      <DialogTitle>
+                        <div className={classes.dialogT}>
+                          <div>Create New Folder</div>
+                          <div onClick={handleCloseOne} style={{ cursor: "pointer" }}>
+                            <img src={cancel} alt="" />
+                          </div>
+                        </div>
+                      </DialogTitle>
+                      <DialogContent>
+                        <p style={{ margin: "0px 0px 5px 0px", textAlign: "left" }}>Enter the name</p>
+                        <input type="text" onChange={handleOnChange} style={{ width: "300px", height: "20px" }} />
+                      </DialogContent>
+                      <DialogActions>
+                        <div style={{ width: "150px", marginRight: "180px" }}>
+                          <Button
+                            // onClick={handleFormSubmit}
+                            onClick={handleClickThree}
+                            autoFocus style={{ backgroundColor: "#009BAD", color: "white", textTransform: "none" }}>
+                            Create
+                          </Button>
+                          <Dialog open={openThree} onClose={handleCloseThree}>
+                            {/* <DialogTitle>{"Create New Folder"}</DialogTitle> */}
+                            <DialogContent>
+                              <Box>
+                                <img src={success} alt="" style={{ width: "50px" }} />
+                                <Typography>Folder Created SuccessFully</Typography>
+                              </Box>
+                            </DialogContent>
+                            <DialogActions style={{ width: "170px" }}>
+                              <Button autoFocus style={{ backgroundColor: "#009BAD", color: "white" }} onClick={handleCloseThree}>
+                                Ok
+                              </Button>
+                            </DialogActions>
+                          </Dialog>
+                          <Button onClick={handleCloseOne}
+                            color="primary" autoFocus style={{ textTransform: "none" }}>
+                            Close
+                          </Button>
+                        </div>
+                      </DialogActions>
+                    </Dialog>
+                  </MenuItem>
+                </Menu>
+
+              </Grid>
+            </Grid>
+
+          </Grid>
+          <Box style={{ padding: "30px" }}>
+            {/* <Grid>
+            <div className="uploaded-files-list">
+              {uploadedFiles.map((file, name: any) => (
+                <div>
+                  
+                  {file.name}
+                </div>
+              ))
+              }
+
+            </div>
+            <UploadFile />
+          </Grid> */}
+
+            {/* <Grid className={classes.boxContain}>
+            <Box className={classes.galleryBox} onClick={onClickShow}>
+              <img src={folderW} alt="" />
+              <div style={{ margin: "0px" }}>Approvals Folder</div>
+              <p style={{ margin: "0px" }}>September 20, 2022</p>
+            </Box>
+            <Box className={classes.galleryBox} onClick={handleClickHide}>
+              <img src={folderW} alt="" />
+              <div style={{ margin: "0px" }}>Remo Folder</div>
+              <p style={{ margin: "0px" }}>September 20, 2022</p>
+            </Box>
+            <Box className={classes.galleryBox}>
+              <img src={folderW} alt="" />
+              <div style={{ margin: "0px" }}>Approvals Folder</div>
+              <p style={{ margin: "0px" }}>September 20, 2022</p>
+            </Box>
+            <Box className={classes.galleryBox}>
+              <img src={folderW} alt="" />
+              <div style={{ margin: "0px" }}>Approvals Folder</div>
+              <p style={{ margin: "0px" }}>September 20, 2022</p>
+            </Box>
+          </Grid>
+          <Grid>
+            <LightBoxGallery />
+          </Grid> */}
+           {itemChildrenIsLoading && <CircularProgress/>}
+          { isSuccessItem &&(
+            <div>
+            {ItemChildren?.response && ItemChildren?.response?.map((item: any) => {
+              let ext = item.name.split('.').pop();
+              if (ext == item.name) {
+                return (
+                  <Grid className={classes.boxContain} key={item.id}>
+                    <Box className={classes.galleryBox} onClick={onClickShow}>
+                      <img src={folderW} alt="" />
+                      <div style={{ margin: "0px" }} onClick={() => onClick(item.id, item.name, item.folder)}>{item.name}</div>
+                      <p style={{ margin: "0px" }}>{item.lastModifiedDateTime}</p>
+                    </Box>
+
+                  </Grid>
+                )
+              }
+              else if (item.file.mimeType == 'image/jpeg') {
+                return (
+
+                  <Grid key={item.id}>
+                    <SRLWrapper>
+                      <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
+
+                        <img
+                          src={item.webUrl}
+                          style={{ width: "170px", height: "100px", margin: "20px", borderRadius: "10px" }}
+                          alt="Gallery"
+                        />
+                      </Box>
+                    </SRLWrapper>
+
+                  </Grid>
+
+                )
+              } else {
+                return (
+                  <Grid key={item.id}>
+                    <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
+                      <video width="200" height="150" >
+                        <source src={item.webUrl} type="video/mp4" />
+                      </video>
+                    </Box>
+
+                  </Grid>
+
+                )
+              }
+            })
+            } </div>
+            )}
+            {/* <Box>
+            {content1 && content1?.filter((person: any) => person.file.mimeType == 'video/mp4').map((person:any)=>{
+                     <Grid>
+                     <video width="200" height="150" >
+                       <source src={person.webUrl} type="video/mp4" />
+                     </video>
+                   </Grid>
+
+            })}
+
+            </Box> */}
+
+            {/* <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
                   {
-                  content &&  content?.map((item: any) => (
+                  filterImages &&  filterImages?.map((item: any) => (
                       <Grid key={item.id} >
+                         <SRLWrapper>
                         <img src={item.webUrl} style={{ width: "167px", height: "170px", margin: "20px", borderRadius: "10px" }} />
+                        </SRLWrapper>
+                        
                       </Grid>
                     ))
                   }
+                   {
+                 filterdVideoData &&    filterdVideoData.map((item: any) => (
 
-                </Box>
-              </SRLWrapper>
-              {/* <LightBoxGallery data={content} /> */}
-                       
+                      <Grid>
+                        <video width="200" height="150" >
+                          <source src={item.webUrl} type="video/mp4" />
+                        </video>
+                      </Grid>
+                    ))
+                  }
+                </Box> */}
+
+
+            {/* <LightBoxGallery data={content1} /> */}
+
+          </Box>
+
         </Box>
 
-      </Box>
+
+
+      )}
     </div>
   );
 };
