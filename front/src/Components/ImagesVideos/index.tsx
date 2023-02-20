@@ -59,6 +59,7 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
     // const ImagesVideos = () => {
     const classes = useStyles();
     const { data, error, isLoading, onClick, dataItem, dataItemError, dataItemIsLoading } = props
+    console.log(data,'yyyyyyyyyyyyyyyyydeeeee')
     const [show, setShow] = useState<boolean>(true);
     const navigate = useNavigate();
 
@@ -115,7 +116,10 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 <div>
                                     <Box style={{ margin: "10px", textAlign: "left" }}><p style={{ color: "#39c8cf", }}>Events</p></Box>
                                     <Grid style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", marginBottom: "20px" }}>
-                                        {data?.response && data?.response?.map((item: any) => (
+                                        {data?.response && data?.response?.map((item: any) => {
+                                             let ext = item.name.split('.').pop();
+                                             if(ext ==item.name){
+                                            return(    
                                             <Grid>
                                                 <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
                                                     {/* {item.image} */}
@@ -134,7 +138,22 @@ const ImagesVideos: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     {item.name}
                                                 </Typography>
                                             </Grid>
-                                        ))
+                                            )    
+                                             }else{
+                                                return(
+                                                    <Grid>
+                                                    <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
+                                                    {/* {item.image} */}
+                                                    <img
+                                                        src={item.webUrl}
+                                                        style={{ width: "170px", height: "100px", margin: "20px", borderRadius: "10px" }}
+                                                        alt="Gallery"
+                                                    />
+                                                </Box>
+                                                </Grid>
+                                                )
+                                             }
+                                          })
                                         }
                                     </Grid>
                                 </div>

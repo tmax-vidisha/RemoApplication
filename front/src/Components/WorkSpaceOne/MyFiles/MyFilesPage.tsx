@@ -23,6 +23,7 @@ import useCustom from '../../../hooks/useCustom';
 import Breadcrumb from '../../../hooks/Breadcrumb';
 import { useGetAllRootItemsOneDriveQuery, useGetItemChildrenOneDriveMutation } from '../../../services/graph';
 import moment from "moment";
+import starred from '../../../Assets/Images/starred.svg';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import actions from '../../../Assets/Images/action-dots.svg';
@@ -83,7 +84,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     console.log(copyResponse?.response, 'CopyLink')
     const [openOne, setOpenOne] = React.useState(false);
 
-
+   
     const handleClickOne = (popup: any) => {
         setOpenOne(true);
     };
@@ -91,6 +92,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     const handleCloseOne = () => {
         setOpenOne(false);
     };
+   
 
     const handledelete = () => {
         onDelete?.(id, name)
@@ -419,13 +421,24 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     //     let prices = products.map(p => p.price.substring(3));
     //     setPrices(prices)
     // }, []);
+    const [showResult, setShowResult] = useState(false);
+    const [openEight, setOpenEight] = React.useState(false);
+    const handleClickEight = (popup: any) => {
+        setOpenEight(true);
+    };
+
+    const handleCloseEight = () => {
+        setOpenEight(false);
+    };
+    const onClickShow = () => {
+        setShowResult(true)
+    }
 
     const sortAscending = () => {
         const sortAscPrices = [...prices]
         sortAscPrices.sort((a, b) => a - b)
         setPrices(sortAscPrices)
     }
-
     const sortDescending = () => {
         const sortDescPrices = [...prices]
         sortDescPrices.sort((a, b) => a - b).reverse()
@@ -472,12 +485,41 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                         </FormControl>
                     </Grid>
                     <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
-                        <button>
-                            {/* <img src={ } alt="" /> */}
-                        </button>
-                        <button>
+                        {
+                            showResult ?
+                                <>
+                                    <button>
+                                        <img src={starred} alt="" />
+                                    </button>
+                                    <button>
+                                        <img src={deleteIcon} alt="" onClick={handleClickEight} />
+                                    </button>
+                                </> : null
+                        }
+                        <Dialog open={openEight} onClose={handleClickEight}>
+                            <DialogContent>
+                                <Typography>
+                                    <Box style={{ textAlign: "center", color: "#1baab5", }}>
+                                        <img src={success} alt="delete" style={{ width: "80px", color: "#1baab5", }} />
+                                    </Box>
+                                </Typography>
+                                <Grid>
+                                    <Box>
+                                        <Typography style={{ textAlign: "center" }}>deleted Items move to trash successfully</Typography>
+                                    </Box>
+                                </Grid>
 
-                        </button>
+                            </DialogContent>
+
+                            <DialogActions style={{ display: "flex", justifyContent: "space-between", margin: "auto" }}>
+                                <Button autoFocus style={{ backgroundColor: "#1baab5", color: "white" }}>
+                                    <p onClick={handleCloseEight}> OK</p>
+                                </Button>
+                                <Button autoFocus onClick={handleCloseEight} >
+                                    Cancel
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                         <button>
                             <GridViewOutlinedIcon />
                         </button>
@@ -550,7 +592,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 key={item.name}
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
-                                                <TableCell className={classes.theadCell}><Checkbox /></TableCell>
+                                                <TableCell className={classes.theadCell} onClick={onClickShow}><Checkbox /></TableCell>
                                                 <TableCell className={classes.TableCell}>
                                                     {/* <Link 
                                                     onClick={()=>{

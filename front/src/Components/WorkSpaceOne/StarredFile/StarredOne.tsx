@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper, Link, TablePagination } from '@mui/material';
 import moment from "moment";
-import starred from '../../../Assets/Images/starred.svg';
+import starred from '../../../Assets/Images/StarredB.svg';
 import { useStyles } from './Style';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 // interface IFolderProps {
