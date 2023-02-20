@@ -9,7 +9,7 @@ const GalleryContentEditorPage = () => {
     
     const {token} = useCustom();
     const { data,isLoading,isSuccess } = useGetGalleryRootQuery(token)
-    const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemInGalleryMutation();
+    const [sendItem, { data: ItemChildren,isSuccess : isSuccessItem, isLoading: itemChildrenIsLoading }] = useGetItemInGalleryMutation();
     console.log(ItemChildren,'kkkytryr')
     const folderClickHandler = async (
       // obj:any
@@ -52,6 +52,9 @@ const GalleryContentEditorPage = () => {
        isLoading={isLoading}
        isSuccess={isSuccess}
       onClick={folderClickHandler}
+      ItemChildren={ItemChildren}
+      isSuccessItem={isSuccessItem}
+      itemChildrenIsLoading={itemChildrenIsLoading}
     
     />
     </div>

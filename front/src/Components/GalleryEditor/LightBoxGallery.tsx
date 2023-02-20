@@ -64,7 +64,7 @@ interface IFolderProps {
       {data && data?.map((item:any, index:any) => {
         return <img src={item.webUrl} onClick={() => openlightbox(index)} />;
       })}
-      <div>kdkdk</div>
+      
       {open && (
         <ReactImageVideoLightbox
           data={data}
