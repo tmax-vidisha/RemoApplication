@@ -54,12 +54,14 @@ interface IFolderProps {
   ItemChildren: any,
   isSuccessItem: any,
   itemChildrenIsLoading: any
+  createNewFolder?: (obj: any) => void;
+  createdNewFolderSucessfull:any
 }
 
 // const GalleryEditor = () => {
 const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { data, isLoading, isSuccess, onClick, ItemChildren, isSuccessItem, itemChildrenIsLoading } = props
+  const { data, isLoading, isSuccess, onClick, ItemChildren, isSuccessItem, itemChildrenIsLoading,createNewFolder,createdNewFolderSucessfull } = props
   console.log(data, 'lllsssssssslll')
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openOn = Boolean(anchorEl);
@@ -75,9 +77,7 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
   const [anchorE3, setAnchorE3] = React.useState<null | HTMLElement>(null);
   const openThree = Boolean(anchorE3);
-  const handleClickThree = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorE3(event.currentTarget);
-  };
+  
   const handleCloseThree = () => {
     setAnchorE3(null);
   };
@@ -99,11 +99,37 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
 
   const [text, setText] = useState<string>('');
-
+  const [text1, setText1] = useState<string>('');
+  const [ItemId, setItemId] = useState<string>('');
   const handleOnChange = (e: any) => {
     setText(e.target.value);
     console.log(e.target.value);
   }
+  // const handleOnChange1 = (e: any) => {
+  //   setText1(e.target.value);
+  //   console.log(e.target.value);
+  //   // console.log(ItemId,'gjhyjyttt')
+  // }
+  let Iteh:any;
+  const handleClickItem = (id:any)=>{
+    console.log(id,'folderIddddddddddddddddddddddddddddddddddddddddd')
+    // setItemId(id)
+    setText1(id)
+    // console.log(ItemId,'ttrrr')
+  }
+  // console.log(ItemId,'rryr55')
+  const handleClickThree = async(event: React.MouseEvent<HTMLElement>) => {
+    setAnchorE3(event.currentTarget);
+    console.log(text1)
+    console.log(ItemId,'kkkky')
+    const announcementData = {
+      // token :tokens,
+      folderName:text,
+      ItemId:text1
+    }
+    //  await sendItem(announcementData)
+    await createNewFolder?.(announcementData)
+  };
   const handleFormSubmit = async (e: any) => {
     e.preventDefault();
     const Data = {
@@ -200,7 +226,7 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
         <Box className={classes.MainPart}>
           <Grid className={classes.upperPart}>
             {/* <Grid style={{color:'#18496a'}}>Picture Gallery </Grid> */}
-            <div className={classes.contentHeader} >
+            {/* <div className={classes.contentHeader} >
               <Typography variant="caption" display="block" gutterBottom>
                 <Breadcrumbs
                   className={classes.breadcrumbs}
@@ -210,14 +236,12 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <Link to="/" className={classes.breadLinks}  >
                     Picture Gallery
                   </Link>
-                  {/* <Typography className={classes.breadLinks}>
-                  Approvals Folder
-                </Typography> */}
+                
                   {showResults ? <Typography>Approvals Folder</Typography>
                     : <Typography>Remo Folder </Typography>}
                 </Breadcrumbs>
               </Typography>
-            </div>
+            </div> */}
             {/* <Grid>
             <input type='file' id='fileUpload' accept='application/pdf, image/png, mp4/video '
               onChange={handleFileEvent}
@@ -314,19 +338,25 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                             autoFocus style={{ backgroundColor: "#009BAD", color: "white", textTransform: "none" }}>
                             Create
                           </Button>
+                        
                           <Dialog open={openThree} onClose={handleCloseThree}>
-                            {/* <DialogTitle>{"Create New Folder"}</DialogTitle> */}
-                            <DialogContent>
-                              <Box>
-                                <img src={success} alt="" style={{ width: "50px" }} />
-                                <Typography>Folder Created SuccessFully</Typography>
-                              </Box>
-                            </DialogContent>
-                            <DialogActions style={{ width: "170px" }}>
-                              <Button autoFocus style={{ backgroundColor: "#009BAD", color: "white" }} onClick={handleCloseThree}>
-                                Ok
-                              </Button>
-                            </DialogActions>
+                            {createdNewFolderSucessfull && (
+                              <div>
+                                  <DialogContent>
+                                  <Box>
+                                    <img src={success} alt="" style={{ width: "50px" }} />
+                                    <Typography>Folder Created SuccessFully</Typography>
+                                  </Box>
+                                </DialogContent>
+                                <DialogActions style={{ width: "170px" }}>
+                                <Button autoFocus style={{ backgroundColor: "#009BAD", color: "white" }} onClick={handleCloseThree}>
+                                  Ok
+                                </Button>
+                               </DialogActions>
+                              </div>
+                            )}
+                            
+                            
                           </Dialog>
                           <Button onClick={handleCloseOne}
                             color="primary" autoFocus style={{ textTransform: "none" }}>
@@ -392,7 +422,7 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <Grid className={classes.boxContain} key={item.id}>
                     <Box className={classes.galleryBox} onClick={onClickShow}>
                       <img src={folderW} alt="" />
-                      <div style={{ margin: "0px" }} onClick={() => { onClick(item.id, item.name, item.folder); setOpenPage(false) }}>{item.name}</div>
+                      <div style={{ margin: "0px" }} onClick={() => { onClick(item.id, item.name, item.folder); setOpenPage(false);handleClickItem(item.id) }}>{item.name}</div>
                       <p style={{ margin: "0px" }}>{item.lastModifiedDateTime}</p>
                     </Box>
 
@@ -455,7 +485,7 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
         <Box className={classes.MainPart}>
           <Grid className={classes.upperPart}>
             {/* <Grid style={{color:'#18496a'}}>Picture Gallery </Grid> */}
-            <div className={classes.contentHeader} >
+            {/* <div className={classes.contentHeader} >
               <Typography variant="caption" display="block" gutterBottom>
                 <Breadcrumbs
                   className={classes.breadcrumbs}
@@ -465,14 +495,12 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <Link to="/" className={classes.breadLinks}  >
                     Picture Gallery
                   </Link>
-                  {/* <Typography className={classes.breadLinks}>
-                  Approvals Folder
-                </Typography> */}
+                 
                   {showResults ? <Typography>Approvals Folder</Typography>
                     : <Typography>Remo Folder </Typography>}
                 </Breadcrumbs>
               </Typography>
-            </div>
+            </div> */}
             {/* <Grid>
             <input type='file' id='fileUpload' accept='application/pdf, image/png, mp4/video '
               onChange={handleFileEvent}
@@ -570,18 +598,22 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                             Create
                           </Button>
                           <Dialog open={openThree} onClose={handleCloseThree}>
-                            {/* <DialogTitle>{"Create New Folder"}</DialogTitle> */}
-                            <DialogContent>
-                              <Box>
-                                <img src={success} alt="" style={{ width: "50px" }} />
-                                <Typography>Folder Created SuccessFully</Typography>
-                              </Box>
-                            </DialogContent>
-                            <DialogActions style={{ width: "170px" }}>
-                              <Button autoFocus style={{ backgroundColor: "#009BAD", color: "white" }} onClick={handleCloseThree}>
-                                Ok
-                              </Button>
-                            </DialogActions>
+                           
+                          {createdNewFolderSucessfull && (
+                              <div>
+                                  <DialogContent>
+                                  <Box>
+                                    <img src={success} alt="" style={{ width: "50px" }} />
+                                    <Typography>Folder Created SuccessFully</Typography>
+                                  </Box>
+                                </DialogContent>
+                                <DialogActions style={{ width: "170px" }}>
+                                <Button autoFocus style={{ backgroundColor: "#009BAD", color: "white" }} onClick={handleCloseThree}>
+                                  Ok
+                                </Button>
+                               </DialogActions>
+                              </div>
+                            )}
                           </Dialog>
                           <Button onClick={handleCloseOne}
                             color="primary" autoFocus style={{ textTransform: "none" }}>
@@ -647,7 +679,7 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <Grid className={classes.boxContain} key={item.id}>
                     <Box className={classes.galleryBox} onClick={onClickShow}>
                       <img src={folderW} alt="" />
-                      <div style={{ margin: "0px" }} onClick={() => onClick(item.id, item.name, item.folder)}>{item.name}</div>
+                      <div style={{ margin: "0px" }} onClick={() =>{ onClick(item.id, item.name, item.folder);handleClickItem(item.id) }}>{item.name}</div>
                       <p style={{ margin: "0px" }}>{item.lastModifiedDateTime}</p>
                     </Box>
 

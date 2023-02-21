@@ -132,6 +132,15 @@ export const contentEditorApi = createApi({
             }),
 
         }),
+        uploadFolderRemoGallery: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/remophotoGallery/uploadItem',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+
+        }),
         // deleteItemOneDrive: builder.mutation<any, any>({
         //     query: (data) => ({
         //         url: '/api/v1/onedrive/deleteOneDriveItem',
@@ -192,7 +201,8 @@ export const {
      useUploadItemInRemoContentEditorMasterMutation,
      useUploadItemInRemoQuicklinkMutation,
      useGetGalleryRootQuery,
-     useGetItemInGalleryMutation
+     useGetItemInGalleryMutation,
+     useUploadFolderRemoGalleryMutation
     
 
     // useGetItemChildrenOneDriveMutation,
