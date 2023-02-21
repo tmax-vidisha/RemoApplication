@@ -11,6 +11,13 @@ export const useStyles = makeStyles({
     color: "#009BAD !important",
     marginBottom: "12px !important",
   },
+  meetHeader2: {
+    fontSize: "12px !important",
+    color: "#009BAD !important",
+    marginBottom: "12px !important",
+    backgroundColor:"#e6ffe6",
+    padding:"3px"
+  },
 
   meetTime: {
     fontSize: "11px !important",
