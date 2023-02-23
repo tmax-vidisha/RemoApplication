@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import activeView from './../../Assets/Images/activeView.svg';
 import Announcement from '../Birthday/index';
+import axios from 'axios';
 import { AppBar, Button, Checkbox, Dialog, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, IconButton, InputLabel, TextField, Toolbar, Typography, Paper, CircularProgress } from '@mui/material';
 import Dropzone from "react-dropzone";
 import title from '../../Assets/Images/title.svg';
@@ -40,6 +41,7 @@ import folder from "../../Assets/Images/folder.svg";
 import success from "../../Assets/Images/successB.svg";
 import folderW from "../../Assets/Images/whiteFolder.svg";
 import UploadFile from './UploadFile';
+import useCustom from '../../hooks/useCustom';
 import Swal from 'sweetalert2';
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import LightBoxGallery from './LightBoxGallery';
@@ -55,14 +57,16 @@ interface IFolderProps {
   isSuccessItem: any,
   itemChildrenIsLoading: any
   createNewFolder?: (obj: any) => void;
-  createdNewFolderSucessfull:any
+  createdNewFolderSucessfull:any;
+  uploadFile?: (obj: any) => void;
 }
 
 // const GalleryEditor = () => {
 const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { data, isLoading, isSuccess, onClick, ItemChildren, isSuccessItem, itemChildrenIsLoading,createNewFolder,createdNewFolderSucessfull } = props
+  const { data, isLoading, isSuccess, onClick, ItemChildren, isSuccessItem, itemChildrenIsLoading,createNewFolder,createdNewFolderSucessfull,uploadFile } = props
   console.log(data, 'lllsssssssslll')
+  const {token}=useCustom();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openOn = Boolean(anchorEl);
   const [openPage, setOpenPage] = useState<boolean>(true)
@@ -197,7 +201,126 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const handleItem = (id: any) => {
     console.log(id, 'thththhjyj')
   }
+  const initialState = {
+    // open: false,
+    files: [],
+    selectedFile: null,
+    // uploadLinks: [],
+    // showlinks: false
+  };
+  const [state, setState] = React.useState(initialState);
+  const [seleccionArchivo, setSeleccionArchivo] = useState<File>();
+  const [names, setNames] = useState<any>('');
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event?.target?.files?.[0])
+    setSeleccionArchivo(event?.target?.files?.[0]);
+    setNames(event?.target?.files?.[0].name)
+    //console.log(e.target.files);
+    // const file = event.target.files[0];
 
+    // if (e.target.files[0] !== undefined) {
+    //   const reader = new FileReader();
+    //   reader.readAsDataURL(e.target.files[0]);
+      
+      
+    //   setNames(e.target.files[0].name)
+    //   setSeleccionArchivo(e.target.files);
+
+    //   reader.onload = (e) => {
+    //     e.preventDefault();
+    //     console.log(e);
+    //     //@ts-ignore
+    //     setSeleccionArchivo(e.target.result); // le damos el binario de la imagen para mostrarla en pantalla
+    //   };
+    // }
+    
+  };
+  // const [file, setFile] = useState();
+  // const [fileName, setFileName] = useState("");
+  // const onFileChange = function (e: React.ChangeEvent<HTMLInputElement>) {
+  //   //@ts-ignore
+  //   setFile(e.target.files[0]);
+  //   //@ts-ignore
+  //       setFileName(e.target.files[0].name);
+  // };
+  // console.log(fileSelected,'ttttttff')
+  // console.log(names,'thtrhrt')
+  async function  uploadItemDocument (){
+    if(!text1){
+    try {
+      const response = await fetch(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/drives/b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikN7l5pVNJUCQrB4Gn3-Lhaw/items/root:/${names}:/content`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          "Content-type":   'application/json'
+        },
+        body: seleccionArchivo
+      });
+      const data = await response.json();
+      // enter you logic when the fetch is successful
+      console.log(data, 'rtwssssssssss');
+      return data.webUrl
+      // return data
+    } catch (error) {
+      // enter your logic for when there is an error (ex. error toast)
+  
+      console.log(error)
+    }
+  }else{
+    try {
+      const response = await fetch(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/drives/b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikN7l5pVNJUCQrB4Gn3-Lhaw/items/${text1}:/${names}:/content`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          "Content-type":   'application/json'
+        },
+        body: seleccionArchivo
+      });
+      const data = await response.json();
+      // enter you logic when the fetch is successful
+      console.log(data, 'rtwssssssssss');
+      return data.webUrl
+      // return data
+    } catch (error) {
+      // enter your logic for when there is an error (ex. error toast)
+  
+      console.log(error)
+    }
+
+  }
+  }
+  const handleUploadFile =async()=>{
+    // const formData = new FormData();
+    // //@ts-ignore
+    //     formData.append("file", file);
+    //     formData.append("fileName", fileName);
+    //     try {
+    //       const res = await axios.post(
+    //         "http://localhost:4000/api/v1/contentEditor/remophotoGallery/uploadFileItem",
+    //         formData
+    //       );
+    //       console.log(res);
+    //     } catch (ex) {
+    //       console.log(ex);
+    //     }
+    // const formData = new FormData();
+    // //@ts-ignore
+    //   formData.append("image", fileSelected, fileSelected.name);
+    // console.log(formData)
+    // // let form_data = new FormData();
+    // //     // for(let i=0;i<seleccionArchivo.length;i++)
+    // //     // {
+    // //     // form_data.append('fileContent',seleccionArchivo);
+
+    // //     // }
+    // //     console.log(form_data,'kkk')
+    //   const Data = {
+    //   fileContent:fileSelected,
+    //   // folderName:fileSelected.name,
+    //   ItemId:text1
+    // }
+    // uploadFile?.(Data)
+  }
   var ages = [32, 33, 16, 40];
 
 
@@ -276,9 +399,18 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   TransitionComponent={Fade}
                   className={classes.menu}
                 >
-                  <MenuItem>
+                  <MenuItem onClick={uploadItemDocument}>
                     <div>
                       <img src={folder} alt="folder" className={classes.menuImage} /> Files
+                      <input
+                       className="file-upload-input"
+                       type="file"
+                       accept="image/*, application/pdf,application/vnd.ms-excel"
+                       multiple
+                       onChange={(e) => {
+                       onFileChange(e);
+                     }}
+                    />
                     </div>
                   </MenuItem>
                   <MenuItem >
@@ -535,9 +667,18 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   TransitionComponent={Fade}
                   className={classes.menu}
                 >
-                  <MenuItem>
+                  <MenuItem onClick={uploadItemDocument}>
                     <div>
                       <img src={folder} alt="folder" className={classes.menuImage} /> Files
+                      <input
+                       className="file-upload-input"
+                       type="file"
+                       accept="image/*, application/pdf,application/vnd.ms-excel"
+                       multiple
+                       onChange={(e) => {
+                       onFileChange(e);
+                     }}
+                    />
                     </div>
                   </MenuItem>
                   <MenuItem >
@@ -575,6 +716,7 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <MenuItem >
                     <div onClick={handleClickOne}>
                       <img src={folder} alt="folder" className={classes.menuImage} /> Folders
+                      
                     </div>
                     <Dialog open={openOne} onClose={handleCloseOne}>
                       <DialogTitle>
