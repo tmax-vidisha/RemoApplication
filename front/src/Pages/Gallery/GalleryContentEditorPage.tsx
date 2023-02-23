@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import NewsEditor from '../../Components/NewsEditor/NewsEditor'
 import { ActionType } from '../../Store copy/Actions/actionTypes';
-import {useGetGalleryRootQuery,useGetItemInGalleryMutation,useUploadFolderRemoGalleryMutation } from '../../services/contentEditor'
+import {useGetGalleryRootQuery,useGetItemInGalleryMutation,useUploadFolderRemoGalleryMutation,useUploadFileRemoGalleryMutation } from '../../services/contentEditor'
 // import { useG } from '../../services/APIs';
 import useCustom from '../../hooks/useCustom';
 import Breadcrumb from '../../hooks/Breadcrumb';
@@ -14,6 +14,7 @@ const GalleryContentEditorPage = () => {
     const { data,isLoading,isSuccess } = useGetGalleryRootQuery(token)
     const [sendItem, { data: ItemChildren,isSuccess : isSuccessItem, isLoading: itemChildrenIsLoading }] = useGetItemInGalleryMutation();
     const [sendData, {isSuccess : createdNewFolderSucessfull}] = useUploadFolderRemoGalleryMutation();
+    const [sendData1] = useUploadFileRemoGalleryMutation();
     console.log(ItemChildren,'kkkytryr')
     const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
       breadcrumbs: [{
@@ -94,6 +95,27 @@ const  createNewFolder= async(obj:any) =>{
   await sendData(obj)
 }
 
+const  uploadFile= async(obj:any) =>{
+
+  console.log(obj,'hgfhgfhfgjtjyj')
+    // console.log(name,'uuuuu')
+  //   const {name ,lastModified,lastModifiedDate,size,type,webkitRelativePath } = data
+
+  //   const see ={
+  //       name,
+  //       lastModified,
+  //       lastModifiedDate,
+  //       size,
+  //       type,
+  //       webkitRelativePath
+  //   }
+  //   const Data = {
+  //       names:name,
+  //      fileSelected:data
+  //  }
+  await sendData1(obj)
+}
+
 
 
   return (
@@ -110,6 +132,7 @@ const  createNewFolder= async(obj:any) =>{
       itemChildrenIsLoading={itemChildrenIsLoading}
       createNewFolder={createNewFolder}
       createdNewFolderSucessfull={createdNewFolderSucessfull}
+      uploadFile={uploadFile}
     />
     </div>
   )

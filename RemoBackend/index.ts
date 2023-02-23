@@ -12,7 +12,7 @@ import events from './routes/contenteditor/events'
 import ceo from './routes/contenteditor/ceo';
 import news from './routes/contenteditor/news';
 import navigation from './routes/contenteditor/navigation'
-
+import fileupload from 'express-fileupload'
 import quicklink from './routes/contenteditor/quicklinks';
 
 import contentEditor from './routes/contenteditor/contenteditor'
@@ -39,6 +39,8 @@ const app = express();
 // app.use(express.json());
 app.use(bodyParser.json({ limit: "50mb" }))
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
+app.use(fileupload());
+app.use(express.static("files"));
 // app.use(express.urlencoded({limit: '25mb', extended: true}));
 // app.use(bodyParser.json({ limit: "50mb" }))
 app.use(cors());
