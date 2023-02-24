@@ -12,12 +12,13 @@ import events from './routes/contenteditor/events'
 import ceo from './routes/contenteditor/ceo';
 import news from './routes/contenteditor/news';
 import navigation from './routes/contenteditor/navigation'
-
+import fileupload from 'express-fileupload'
 import quicklink from './routes/contenteditor/quicklinks';
 
 import contentEditor from './routes/contenteditor/contenteditor'
 import employee from './routes/contenteditor/emphighlight'
-import photosandvideo from './routes/photoandvideo/photosandvideo' 
+import photosandvideo from './routes/photoandvideo/photosandvideo'
+import gallery from './routes/contenteditor/gallery' 
 import header from './routes/header'
 // const RemoToken = require('./controllers/token')
 // const graph = require('./routes/graph')
@@ -38,6 +39,8 @@ const app = express();
 // app.use(express.json());
 app.use(bodyParser.json({ limit: "50mb" }))
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
+app.use(fileupload());
+app.use(express.static("files"));
 // app.use(express.urlencoded({limit: '25mb', extended: true}));
 // app.use(bodyParser.json({ limit: "50mb" }))
 app.use(cors());
@@ -1544,7 +1547,7 @@ app.use(`/api/v1/header`,header)
 
 // app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events)
 
-app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events,navigation,contentEditor,quicklink)
+app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events,navigation,contentEditor,quicklink,gallery)
 
 app.use(`/api/v1/gallery`,photosandvideo)
 

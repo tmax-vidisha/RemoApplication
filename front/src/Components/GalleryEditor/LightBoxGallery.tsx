@@ -9,67 +9,76 @@ import { useState } from 'react';
 // @ts-ignore
 import ReactImageVideoLightbox from "react-image-video-lightbox";
 
-const data = [
-  {
-    index: 0,
-    // url: "https://placekitten.com/450/300",
-    url: gIcon,
-    // thumbnail: "https://placekitten.com/450/300",
-    thumbnail: gSortIcon,
-    type: "photo"
-  },
-  {
-    index: 1,
-    url: gIcon,
-    thumbnail: gSortIcon,
-    type: "video"
-  },
-  {
-    index: 2,
-    url: gIcon,
-    type: "photo"
-  },
-  {
-    index: 3,
-    url: gIcon,
-    thumbnail: gSortIcon,
-    type: "video"
-  }
-];
+// const data = [
+//   {
+//     index: 0,
+//     // url: "https://placekitten.com/450/300",
+//     url: gIcon,
+//     // thumbnail: "https://placekitten.com/450/300",
+//     thumbnail: gSortIcon,
+//     type: "photo"
+//   },
+//   {
+//     index: 1,
+//     url: gIcon,
+//     thumbnail: gSortIcon,
+//     type: "video"
+//   },
+//   {
+//     index: 2,
+//     url: gIcon,
+//     type: "photo"
+//   },
+//   {
+//     index: 3,
+//     url: gIcon,
+//     thumbnail: gSortIcon,
+//     type: "video"
+//   }
+// ];
+interface IFolderProps {
 
+  // onClick?: (obj: any) => void;
+  data:any,
+  // isLoading:any,
+  // isSuccess:any,
+}
 
-const LightBoxGallery = () => {
+// const LightBoxGallery = () => {
+  const LightBoxGallery: React.FC<IFolderProps> = (props: IFolderProps) => {
 
   const [open, setopen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const openlightbox = (index: any) => {
+   const {data } =props
+  //  console.log(data,'khtyjtytttttttttttttttttttttt')
+  //  const yuy = [data]
+  //  console.log(yuy,'kkk')
+  const openlightbox = (index:any) => {
     console.log(index);
     setCurrentIndex(index);
     setopen(true);
   };
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-
-        {data.map((item, index) => {
-          return <div>
-            <img src={item.thumbnail} onClick={() => openlightbox(index)} />
-          </div>
-        })}
-      </div>
+       
+      {data && data?.map((item:any, index:any) => {
+        return <img src={item.webUrl} onClick={() => openlightbox(index)} />;
+      })}
+      
       {open && (
         <ReactImageVideoLightbox
           data={data}
           startIndex={currentIndex}
           showResourceCount={true}
           onCloseCallback={() => setopen(false)}
-          onNavigationCallback={(currentIndex: any) =>
-            console.log(`Current index: ${currentIndex}`)
-          }
+          // onNavigationCallback={(currentIndex:any) =>
+          //   console.log(`Current index: ${currentIndex}`)
+          // }
         />
       )}
     </div>
+   
+    // <>ddth</>
   );
 };
 

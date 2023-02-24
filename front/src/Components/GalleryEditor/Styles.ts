@@ -76,11 +76,11 @@ export const useStyles = makeStyles({
     },
   },
   MainPart: {
-     height: 550,
-     width: '100%',
+    height: 550,
+    width: '100%',
     backgroundColor: "white",
-    marginLeft:"20px",
-    paddingRight:"10px",
+    marginLeft: "20px",
+    paddingRight: "10px",
     //  padding: "30px",
     // margin:"30px",
     // marginRight:"50px",
@@ -88,21 +88,25 @@ export const useStyles = makeStyles({
     //  border: "1px solid red",
     borderTopRightRadius: '9px',
   },
- Section: {
+  Section: {
     height: 'auto',
-     width: '100%',
+    width: '100%',
     backgroundColor: "#d1eae33b",
-   paddingRight: "55px",
+    paddingRight: "55px",
     // marginRight: '50px',
     //  border: "1px solid red",
     borderTopRightRadius: '9px',
   },
 
   upperPart: {
-    display: "flex",
-    justifyContent: "space-between",
-    margin: "30px",
-    paddingTop: "30px"
+  // display: "flex",
+  // justifyContent: "space-between",
+    // margin: "30px",
+    // paddingTop: "30px"
+    left: " 74%",
+    position: "absolute",
+    marginBottom:"40px",
+    top: "4%"
   },
   new: {
     width: "100px",
@@ -216,7 +220,7 @@ export const useStyles = makeStyles({
       display: "block",
       color: "white",
       backgroundColor: "#b8bdc1",
-      fontSize:"12px"
+      fontSize: "12px"
     }
   },
 
@@ -286,41 +290,42 @@ export const useStyles = makeStyles({
 
 
   },
-boxContain:{
-  display:"grid",
-   gridTemplateColumns:"repeat(4, 1fr)"
-},
-
-  galleryBox:{
-    border: "1px solid #f2ebebdb",
-     width: "160px",
-      height: "auto", 
-      padding:"12px",
-       borderRadius:"10px",
-       margin:"20px",
-       "& img":{
-        width:"50px"
-       },
-      "& div":{
-        color:"#009BAD",
-      },
-      "& p":{
-        color: "#606C74 !important",
-        fontSize: "12px"
-      }
+  boxContain: {
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    marginTop:"30px"
   },
-  dialogT:{
-    display:"flex",
-     justifyContent:"space-between",
-     fontSize:"15px",
-     color:"#009BAD"
+
+  galleryBox: {
+    border: "1px solid #f2ebebdb",
+    width: "160px",
+    height: "auto",
+    padding: "12px",
+    borderRadius: "10px",
+    margin: "20px",
+    "& img": {
+      width: "50px"
+    },
+    "& div": {
+      color: "#009BAD",
+    },
+    "& p": {
+      color: "#606C74 !important",
+      fontSize: "12px"
+    }
+  },
+  dialogT: {
+    display: "flex",
+    justifyContent: "space-between",
+    fontSize: "15px",
+    color: "#009BAD"
   },
   breadcrumbs: {
-    color:'#18496a',
+    color: '#18496a',
     display: "inline-flex",
   },
   breadLinks: {
-    color:'#18496a',
+    color: '#18496a',
     opacity: 0.8,
     textDecoration: "none !important",
   },
@@ -356,7 +361,7 @@ boxContain:{
     // position: "relative",
   },
 
-  
+
   innerBannerOverlay: {
     // position: "absolute",
     // width: "100%",
@@ -365,7 +370,7 @@ boxContain:{
     color: "#ffffff",
     bottom: 0,
     borderRadius: "8px",
-   
+
   },
 
 

@@ -115,15 +115,41 @@ export const contentEditorApi = createApi({
             }),
 
         }),
-        // getItemChildrenOneDrive: builder.mutation<any, any>({
-        //     query: (data) => ({
-        //         url: '/api/v1/onedrive/getItemChildren',
-        //         // headers:{ 'Content-Type': 'application/json' },
-        //         method: "POST",
-        //         body: data
-        //     }),
+        getGalleryRoot: builder.query<any, any>({
+            // query: () => '/api/v1/onedrive/getAllRootItems',
+            query: (id) => ({
+                url: `/api/v1/contentEditor/galleryroot/${id}`,
+                // headers:{ "authorization": `${AccessToken}` },
+            }),
+            // providesTags: ['OneDriveRootItems'],
+        }),
+        getItemInGallery: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/getGalleryItemChildren',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
 
-        // }),
+        }),
+        uploadFolderRemoGallery: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/remophotoGallery/uploadItem',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+
+        }),
+        uploadFileRemoGallery: builder.mutation<any, any>({
+            query: (data) => ({
+                url: '/api/v1/contentEditor/remophotoGallery/uploadFileItem',
+                headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+
+        }),
         // deleteItemOneDrive: builder.mutation<any, any>({
         //     query: (data) => ({
         //         url: '/api/v1/onedrive/deleteOneDriveItem',
@@ -182,7 +208,12 @@ export const {
      useUploadItemInRemoEventsMutation,
      useUploadItemInRemoNavigationMutation,
      useUploadItemInRemoContentEditorMasterMutation,
-     useUploadItemInRemoQuicklinkMutation
+     useUploadItemInRemoQuicklinkMutation,
+     useGetGalleryRootQuery,
+     useGetItemInGalleryMutation,
+     useUploadFolderRemoGalleryMutation,
+     useUploadFileRemoGalleryMutation
+    
 
     // useGetItemChildrenOneDriveMutation,
     // useGetAllRootItemsOneDriveQuery,
