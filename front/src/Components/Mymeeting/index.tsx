@@ -91,15 +91,32 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
               >
                 Upcoming Event
               </Typography>
-              <Typography className={classes.meetHeader2}><img src={calendar} alt="" /><span style={{ paddingLeft: "10px" }}>{current_time}</span>
-                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <Typography className={classes.meetHeader2}>
+                {/* <img src={calendar} alt="" /><span style={{ paddingLeft: "10px" }}>{current_time}</span> */}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DesktopDatePicker
                     inputFormat="MM/DD/YYYY"
                     value={value}
                     onChange={handleChange}
-                    renderInput={(params) => <TextField {...params} />}
+                    className={classes.calendarRoot}
+                    renderInput={(params) => <TextField {...params}
+                      sx={{
+                        svg: { color: '#009BAD' },
+                        input: { color: '#B2B2B2' },
+                        // border:{color:"none"}
+                        padding: "none"
+                      }}
+                    />}
                   />
-                </LocalizationProvider> */}
+                </LocalizationProvider>
+                {/* <label>
+                  <DatePicker
+                    selected={dateInput}
+                    onChange={(date) => setDateInput(date)}
+                    minDate={moment().toDate()}
+                    showPopperArrow={false} />
+                  <CalendarIcon />
+                </label> */}
               </Typography>
             </Stack>
             <Grid >
@@ -189,7 +206,13 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
                           </Grid>
                           <Grid item xs={0.5}>
                             <Typography className={classes.meetText}>
-                              <img src={teams} alt="" />
+                              <a
+                                target={"_blank"}
+                                //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+                                href="https://teams.microsoft.com/_?culture=en-in&country=in#/conversations/19:meeting_NzdhM2FkNDMtOWU1ZC00NzVhLTgxZmEtYzA0ZjU4YjBhYTkz@thread.v2?ctx=chat"
+                              >
+                                <img src={teams} alt="" />
+                              </a>
                             </Typography>
                           </Grid>
 
