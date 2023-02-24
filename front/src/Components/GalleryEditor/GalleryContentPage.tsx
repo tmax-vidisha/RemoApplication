@@ -8,6 +8,7 @@ import GalleryEditor from './GalleryEditor';
 import LightBoxGallery from './LightBoxGallery';
 import GalleryContentEditorPage from '../../Pages/Gallery/GalleryContentEditorPage';
 
+
 const GalleryContentPage= () => {
     const classes=useStyles()
     return (
@@ -24,8 +25,8 @@ const GalleryContentPage= () => {
                             <SideBar />
                         </Grid>
                         <Grid item xs={11} >
-                        <GalleryContentEditorPage/>
-                            {/* <GalleryEditor/> */}
+                       
+                            <GalleryContentEditorPage/>
                         </Grid>
                     </Grid>
                 </Box>
