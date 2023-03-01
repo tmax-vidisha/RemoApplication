@@ -15,8 +15,8 @@ export const useStyles = makeStyles({
     fontSize: "12px !important",
     color: "#009BAD !important",
     marginBottom: "12px !important",
-    backgroundColor:"#e6ffe6",
-    padding:"3px"
+    backgroundColor: "#e6ffe6",
+    padding: "3px"
   },
 
   meetTime: {
@@ -27,60 +27,59 @@ export const useStyles = makeStyles({
   meetText: {
     fontSize: "12px !important",
     color: "black !important",
-    opacity:"85%",
+    opacity: "85%",
     // marginBottom: "6px !important",
-    textAlign:"left"
+    textAlign: "left"
   },
-  meetBorder:{
-    borderLeft:"1px solid #DDDDDD  !important",
+  meetBorder: {
+    borderLeft: "1px solid #DDDDDD  !important",
     // height:"63px",
-    opacity:"5",
-    marginBottom:"10px !important",
-    paddingBottom:"10px !important",
-    marginLeft:"10px !important"
+    opacity: "5",
+    marginBottom: "10px !important",
+    paddingBottom: "10px !important",
+    marginLeft: "10px !important"
   },
-  todo:{
-    border:"none",
-     height:"30px",
-     textAlign:"center",
-    fontSize:"12px",
-    width:"70px",
-    color:"gray",
-    "& : hover":{
-      color:"blue", 
+  todo: {
+    border: "none",
+    height: "30px",
+    textAlign: "center",
+    fontSize: "12px",
+    width: "70px",
+    color: "gray",
+    "& : hover": {
+      color: "blue",
     },
-    backgroundColor:"white",
-    "& :hover":{
-      backgroundColor:"#e1f5f3",
-      height:"30px",
+    backgroundColor: "white",
+    "& :hover": {
+      backgroundColor: "#e1f5f3",
+      height: "30px",
     }
-    
+
   },
 
-  calendar:{
-    width: "240px",
-      maxWidth: "240px",
-      marginTop:"50px",
-      border: "none",
-      fontSize:"10px",
-      color:'#bab4b4',
-    "& react-calendar":{
-      width: "240px",
-      maxWidth: "240px",
-      background: "white",
-      border: "none",
-      lineHeight: "1.125em",
-    }
+  task: {
+    display: "flex",
+    justifyContent: "flex-start",
+    marginTop: "15px",
+    color: "blue",
+    fontSize: "15px",
+    "& span": {
+      marginRight: "10px",
+    },
   },
+  calendarRoot: {
+    "& .MuiInputBase-root": {
+      border: "0",
+      outline:"none",
+      padding: "1px !important",
+      fontSize: "12px",
+      "& css-nxo287-MuiInputBase-input-MuiOutlinedInput-input":{
+        padding:"1px !important",
+      },
+      "& .MuiInputBase-input": {
+        padding: "1px !important"
+      }
 
-  task:{
-    display:"flex",
-     justifyContent:"flex-start",
-      marginTop:"15px",
-       color:"blue",
-       fontSize:"15px",
-       "& span":{
-        marginRight:"10px",
-       }
-  }
+    },
+  },
 });

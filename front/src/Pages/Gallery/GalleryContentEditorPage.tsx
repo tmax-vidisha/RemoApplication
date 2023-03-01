@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react'
 import NewsEditor from '../../Components/NewsEditor/NewsEditor'
 import { ActionType } from '../../Store copy/Actions/actionTypes';
+
 import {useGetGalleryRootQuery,useGetItemInGalleryMutation,useUploadFolderRemoGalleryMutation,useUploadFileRemoGalleryMutation } from '../../services/contentEditor'
 // import { useG } from '../../services/APIs';
 import useCustom from '../../hooks/useCustom';
@@ -62,11 +63,62 @@ const GalleryContentEditorPage = () => {
      
 
       // setShow(!show)
+
   };
   const breadcrumbClickHandler = async (id: string) => {
     await updateBreadCrumbAction(id);
     // await getFolderChildrenAction(id);
     const Data = {
+
+      // name:id,
+      ItemId: id,
+      //    Name:name
+    }
+    //  console.log(fd)
+    await sendItem(Data)
+  };
+  const createNewFolder = async (obj: any) => {
+
+    console.log(obj, 'hgfhgfhfgjtjyj')
+    // console.log(name,'uuuuu')
+    //   const {name ,lastModified,lastModifiedDate,size,type,webkitRelativePath } = data
+
+    //   const see ={
+    //       name,
+    //       lastModified,
+    //       lastModifiedDate,
+    //       size,
+    //       type,
+    //       webkitRelativePath
+    //   }
+    //   const Data = {
+    //       names:name,
+    //      fileSelected:data
+    //  }
+    await sendData(obj)
+  }
+
+  const uploadFile = async (obj: any) => {
+
+    console.log(obj, 'hgfhgfhfgjtjyj')
+    // console.log(name,'uuuuu')
+    //   const {name ,lastModified,lastModifiedDate,size,type,webkitRelativePath } = data
+
+    //   const see ={
+    //       name,
+    //       lastModified,
+    //       lastModifiedDate,
+    //       size,
+    //       type,
+    //       webkitRelativePath
+    //   }
+    //   const Data = {
+    //       names:name,
+    //      fileSelected:data
+    //  }
+    await sendData1(obj)
+  }
+
         // name:id,
         ItemId: id,
         //    Name:name
@@ -118,7 +170,52 @@ const  uploadFile= async(obj:any) =>{
 
 
 
+
   return (
+
+    <div style={{
+      height: 'auto',
+      width: '100%',
+      backgroundColor: "#d1eae33b",
+      paddingRight: "55px",
+      // marginRight: '50px',
+      //  border: "1px solid red",
+      borderTopRightRadius: '9px',
+      paddingTop:"40px"
+    }}>
+      <div style={{
+        height: 550,
+        width: '95%',
+        backgroundColor: "white",
+        marginLeft: "20px",
+        paddingRight: "10px",
+         padding: "30px",
+        position:"relative",
+        borderTopRightRadius: '9px',
+        // margin:"30px",
+        // marginRight:"50px",
+        // paddingRight: '10px',
+        //  border: "1px solid red",
+        
+      }}>
+        <div style={{marginLeft:"50px", position: "absolute"}}>
+          <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
+            getChildHandler={breadcrumbClickHandler} />
+        </div>
+        <GalleryEditor
+          data={data}
+          isLoading={isLoading}
+          isSuccess={isSuccess}
+          onClick={folderClickHandler}
+          ItemChildren={ItemChildren}
+          isSuccessItem={isSuccessItem}
+          itemChildrenIsLoading={itemChildrenIsLoading}
+          createNewFolder={createNewFolder}
+          createdNewFolderSucessfull={createdNewFolderSucessfull}
+          uploadFile={uploadFile}
+        />
+      </div>
+
     <div>
        <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs} 
                     getChildHandler={breadcrumbClickHandler}  />
@@ -134,6 +231,7 @@ const  uploadFile= async(obj:any) =>{
       createdNewFolderSucessfull={createdNewFolderSucessfull}
       uploadFile={uploadFile}
     />
+
     </div>
   )
 }
