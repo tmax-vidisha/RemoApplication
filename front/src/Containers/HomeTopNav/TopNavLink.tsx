@@ -75,7 +75,10 @@ function a11yProps(index: number) {
 interface IFolderProps {
     data: any,
     error: any,
-    isLoading: any
+    isLoading: any,
+    quicklinkdata:any,
+    quicklinkerror:any,
+    quicklinkisloading:any
   }
 // const TopNavLink = () => {
 const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
@@ -84,7 +87,7 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
     const [showResults, setShowResults] = useState(true);
     const onClick = () => setShowResults(false);
     const HandleClick = () => setShowResults(true);
-    const { data, error, isLoading } = props
+    const { data, error, isLoading,quicklinkdata,quicklinkerror,quicklinkisloading } = props
   console.log(data?.response, 'Navigationdddddd')
     const [value, setValue] = React.useState(0);
 
@@ -240,21 +243,21 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
                         </TabPanel>
                         <TabPanel value={value} index={1}>
                             <List className={classes.topItems}>
-                                {myLinkList.map((item: any, id: any, index: any) => {
-                                    const { Icon, IconHover, onClick, path } = item;
-                                    console.log(myLinkList, "itemsList");
-
+                                {quicklinkdata?.response && quicklinkdata?.response.map((item: any, id: any, index: any) => {
+                                    // const { Icon, IconHover, onClick, path } = item;
+                                    // console.log(myLinkList, "itemsList");
+                                    const { fields = {} } = item;
                                     return (
                                         <ListItem key={index} onClick={onClick} className={classes.topMenu}>
-                                            {myLinkList && (
-                                                 <NavLink end to={path} className={classes.topLink}>
-                                                 <img src={Icon} alt="..." className="topImg" />
+                                            {quicklinkdata?.response && (
+                                                 <NavLink end to={fields.Url} className={classes.topLink}>
+                                                 <img src={fields.HoverOff} alt="..." className="topImg" />
                                                  <img
-                                                     src={IconHover}
+                                                     src={fields.HoverOn}
                                                      alt=""
                                                      className="topImgH"
                                                  />
-                                                 <p className={classes.topText} > {item.label}</p>
+                                                 <p className={classes.topText} > {fields.Title}</p>
                                              </NavLink>)
                                             }
                                         </ListItem>

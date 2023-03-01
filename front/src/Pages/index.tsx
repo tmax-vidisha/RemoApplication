@@ -38,6 +38,8 @@ import ContentEditorMasterPage from "./ContentEditorMaster/ContentEditorMasterPa
 import ContentEditorDashBoardPage from "./ContentEditorMaster/ContentEditorDashBoardPage";
 import QuickLinkContentEditorPage from "./QuickLinkPage/QuickLinkContentEditorPage";
 import GalleryContentEditorPage from "./Gallery/GalleryContentEditorPage";
+import StarredPage from "./WorkSpace/OneDrive/StarredPage";
+import TrashedPage from "./WorkSpace/OneDrive/TrashedPage"; 
 export {
     
         EventsPage,
@@ -79,6 +81,8 @@ export {
         ContentEditorMasterPage,
         ContentEditorDashBoardPage,
         QuickLinkContentEditorPage,
-        GalleryContentEditorPage
+        GalleryContentEditorPage,
+        StarredPage,
+        TrashedPage
 
       };

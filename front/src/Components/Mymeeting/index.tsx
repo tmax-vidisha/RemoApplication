@@ -39,7 +39,8 @@ var moment = require("moment-timezone");
 interface IFolderProps {
   data: any,
   error: any,
-  isLoading: any
+  isLoading: any,
+  
 }
 
 // const Mymeeting = () => {
@@ -48,7 +49,7 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
   // const {token} = useCustom();
   // const { data, error, isLoading } = useGetAllMeetingsQuery(token)
   const { data, error, isLoading } = props
-  // console.log(data,'meetingsssssssssssss')
+  console.log(data, 'meetingsssssttttecxssssssss')
 
   const [alignment, setAlignment] = React.useState<string | null>('left');
 
@@ -189,7 +190,13 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
                           </Grid>
                           <Grid item xs={0.5}>
                             <Typography className={classes.meetText}>
-                              <img src={teams} alt="" />
+                              <a
+                                target={"_blank"}
+                                //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+                                href={item.onlineMeeting.joinUrl}
+                              >  <img src={teams} alt="" />
+                              </a>
+
                             </Typography>
                           </Grid>
 

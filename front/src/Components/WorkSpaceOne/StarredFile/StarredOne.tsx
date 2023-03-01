@@ -1,19 +1,20 @@
 import React from 'react';
-import { Grid, Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper, Link, TablePagination } from '@mui/material';
+import { Grid, Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper, Link, TablePagination, CircularProgress } from '@mui/material';
 import moment from "moment";
 import starred from '../../../Assets/Images/StarredB.svg';
 import { useStyles } from './Style';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-// interface IFolderProps {
-//     data: any,
-//     error: any,
-//     isLoading: any,
-// }
+interface IFolderProps {
+    data: any,
+    isSuccess: any,
+    isLoading: any,
+}
 
-const StarredOne = () => {
-
+// const StarredOne = () => {
+    const StarredOne: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
-
+    const {data,isSuccess,isLoading} =props
+    console.log(data?.response ,'Starred')
     function createData(
         name: string,
         lastModifiedBy: string,
@@ -46,6 +47,18 @@ const StarredOne = () => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+    const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+   
+function niceBytes(x:any){
+
+  let l = 0, n = parseInt(x, 10) || 0;
+
+  while(n >= 1024 && ++l){
+      n = n/1024;
+  }
+  
+  return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
+}
 
     return (
         <Grid>
@@ -65,19 +78,24 @@ const StarredOne = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                        {isLoading && <CircularProgress/>}
+                        {isSuccess && (
+                            <>
+                            { data?.response && data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row:any) => (
                                 <TableRow
-                                    key={row.name}
+                                    key={row.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                     <TableCell component="th" scope="row">
                                         {row.name}
                                     </TableCell>
-                                    <TableCell align="right">{row.lastModifiedBy}</TableCell>
-                                    <TableCell align="right">{row.ModifiedDate}</TableCell>
-                                    <TableCell align="right">{row.fileSize}</TableCell>
-                                    <TableCell align="right">{row.Actions}</TableCell>
+                                    <TableCell align="right">{row.lastModifiedBy.user.displayName}</TableCell>
+                                    <TableCell align="right">{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
+                                    <TableCell align="right">{niceBytes(row.size)}</TableCell>
+                                    {/* <TableCell align="right">{row.Actions}</TableCell> */}
                                 </TableRow>
-                            ))}
+                            ))} 
+                            </>
+                            )}
                         </TableBody>
                     </Table>
                 </TableContainer>

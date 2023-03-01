@@ -1,4 +1,4 @@
-import { Grid, Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper, Link, DialogContent, Typography, Box, Button, DialogActions, Menu, MenuItem, Dialog } from '@mui/material';
+import { Grid, Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper, Link, DialogContent, Typography, Box, Button, DialogActions, Menu, MenuItem, Dialog, CircularProgress } from '@mui/material';
 import React, { useState } from 'react'
 import moment from "moment";
 import { useStyles } from './Styles';
@@ -132,8 +132,7 @@ function SimpleDialog(props: SimpleDialogProps) {
         setOpenOneCopy(true);
     };
 
-
-
+    
     return (
         <Grid style={{ borderRadius: "10px", }} >
             <Button
@@ -286,7 +285,7 @@ function SimpleDialog(props: SimpleDialogProps) {
 
 interface IFolderProps {
     data: any,
-    error: any,
+    isSuccess: any,
     isLoading: any,
     onCopy?: (id: string, name: string) => void;
     copyResponse: any
@@ -296,7 +295,7 @@ interface IFolderProps {
     deleteResponse: any,
 }
 const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
-    const { data, isLoading, error, onCopy, copyResponse, onClick, downloadUrl, onDelete, deleteResponse } = props
+    const { data, isLoading, isSuccess, onCopy, copyResponse, onClick, downloadUrl, onDelete, deleteResponse } = props
     //const RecentFile = () => {
     // const { token } = useCustom();
     // const { data, error, isLoading } = useGetAllRecentItemsQuery(token);
@@ -331,6 +330,20 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+   
+    function niceBytes(x:any){
+    
+      let l = 0, n = parseInt(x, 10) || 0;
+    
+      while(n >= 1024 && ++l){
+          n = n/1024;
+      }
+      
+      return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
+    }
+
     return (
         <Grid>
             <Grid className={classes.divText}>
@@ -364,6 +377,9 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 <TableCell align="right">{row.Actions}</TableCell>
                             </TableRow>
                         ))} */}
+                          {isLoading && <CircularProgress/>}
+                          {isSuccess  && (
+                            <>
                             {data?.response &&
                                 data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
                                     //   const { fields = {} } = item;
@@ -435,7 +451,7 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 {createdDate}
                                             </TableCell>
                                             <TableCell align="right">
-                                                {item.size}
+                                                {niceBytes(item.size)}
                                             </TableCell>
                                             <TableCell align="right">
                                                 <Grid
@@ -460,7 +476,8 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         </TableRow>
                                     )
                                 })}
-
+                                </>
+                                )}
                         </TableBody>
 
                     </Table>

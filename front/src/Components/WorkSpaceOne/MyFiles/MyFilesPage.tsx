@@ -2,7 +2,7 @@ import React, { useState, useReducer } from 'react';
 import { breadcrumbsReducer, foldersReducer } from '../../../Store copy/Reducer/foldersReducer';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
 import WPOneDrive from '../../Workspace/OneDrive/index';
-import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, Checkbox, TablePagination } from '@mui/material';
+import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, Checkbox, TablePagination, CircularProgress } from '@mui/material';
 import { Typography } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -247,10 +247,10 @@ function SimpleDialog(props: SimpleDialogProps) {
 
 interface IFolderProps {
     data: any,
-    error: any,
+    isSuccess: any,
     isLoading: any,
     ItemChildren: any,
-    itemChildrenError: any,
+    itemChildrenSuccess: any,
     itemChildrenIsLoading: any,
     onClick: (id: string, name: string, folder: any) => void
     // onSubmit: (object: any) => void;
@@ -277,7 +277,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     //@ts-ignore
     // const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token);
     // console.log(data?.response)
-    const { data, error, isLoading, ItemChildren, itemChildrenError, itemChildrenIsLoading, onClick, onDelete, deleteResponse, onCopy, copyResponse } = props;
+    const { data, isSuccess, isLoading, ItemChildren, itemChildrenSuccess, itemChildrenIsLoading, onClick, onDelete, deleteResponse, onCopy, copyResponse } = props;
     // const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
     // console.log(ItemChildren?.response, 'yujujujuys')
     // const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
@@ -402,19 +402,136 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         // console.log(id,name,folder)
         onClick(id, name, folder)
     }
-    const [selected, setSelected] = useState(false);
-
-    const handleBoxChange = (e: any) => {
-        const value = e.target.value;
-        console.log(value);
-        if (value == "all") {
-            setSelected(true)
-            return;
+    // const [selected, setSelected] = useState(false);
+    const [userData, setUserdata]= useState([]);
+    useEffect (()=>{
+        if(isLoading){
+            <>isLoading</>
+        }else if(isSuccess){
+        setUserdata(data?.response)
         }
-
-        setSelected(value);
+    })
+    console.log(userData,'rrttt')
+    // const isAllSelected =
+    // data?.response.length > 0 && selected.length === data?.response.length;
+    const [selectData,setSelectData]= useState([]);
+    const handleBoxChange = (e: any) => {
+        let array=[]
+        const { name, checked } = e.target;
+    if (name === "allSelect") {
+      let tempUser = userData.map((user:any) => {
+        return { ...user, isChecked: checked };
+      });
+      
+      console.log(tempUser,'all')
+      //@ts-ignore
+      setSelectData(tempUser)
+      //@ts-ignore
+      setUserdata(tempUser);
     }
-
+    else {
+        //@ts-ignore
+      let tempUser = userData.map((user:any) =>
+        user.name === name ? { ...user, isChecked: checked } : user
+      );
+      console.log(tempUser,'ltt')
+      
+      //@ts-ignore
+      setSelectData(tempUser)
+       //@ts-ignore
+      setUserdata(tempUser);
+    }
+  
+    }
+    const handleBoxChange1 = (e: any) => {
+        let array=[]
+        const { name, checked } = e.target;
+    console.log(name,checked)
+    let tempUser =   ItemChildren?.response.map((user:any) =>
+        user.name === name ? { ...user, isChecked: checked } : user
+      );
+      console.log(tempUser,'ltt')
+      setSelectData(tempUser)
+    }
+    const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`
+    const Site_Id = 'tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43'
+    const heroBannerDriveId ="b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikNSXwtOP-0VTpmA2oOYWlnu"
+    const documentsId ="b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikMF_Pl86wt6RJ301fEG4lAL"
+    const trashId ="b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikPA6Y9HwDJ4TLznL7CJStDS"
+    const handleSub =async()=>{
+           for(let i =0;i<selectData.length;i++){
+            //@ts-ignore
+            let ext = selectData[i].name.split('.').pop();
+            //@ts-ignore
+            // if(ext!== selectData[i].name){
+            //     console.log(selectData[i])
+            // }
+    // if (ext !== age.name)
+            //@ts-ignore
+            if(selectData[i].isChecked== true  && ext !== selectData[i].name){
+                console.log(selectData[i],'trreeeeeeeeeeee')
+               
+            try {
+                //@ts-ignore
+                const response = await fetch(`${BASE_PATH}/${Site_Id}/drives/${documentsId}/items/root:/${selectData[i].name}:/content`, {
+                  method: 'PUT',
+                  headers: {
+                    'Authorization': `Bearer ${token}`,
+                    "Content-type":   'application/json'
+                  },
+                  body: selectData[i]
+                });
+                const data = await response.json();
+                // enter you logic when the fetch is successful
+                console.log(data, 'rtwssssssssss');
+                return data.webUrl
+                // return data
+              } catch (error) {
+                // enter your logic for when there is an error (ex. error toast)
+            
+                console.log(error)
+              }
+           }
+        
+        }
+    }
+    const handleSub1 =async()=>{
+        for(let i =0;i<selectData.length;i++){
+         //@ts-ignore
+         let ext = selectData[i].name.split('.').pop();
+         //@ts-ignore
+         // if(ext!== selectData[i].name){
+         //     console.log(selectData[i])
+         // }
+ // if (ext !== age.name)
+         //@ts-ignore
+         if(selectData[i].isChecked== true  && ext !== selectData[i].name){
+             console.log(selectData[i],'trreeeeeeeeeeee')
+            
+         try {
+             //@ts-ignore
+             const response = await fetch(`${BASE_PATH}/${Site_Id}/drives/${trashId}/items/root:/${selectData[i].name}:/content`, {
+               method: 'PUT',
+               headers: {
+                 'Authorization': `Bearer ${token}`,
+                 "Content-type":   'application/json'
+               },
+               body: selectData[i]
+             });
+             const data = await response.json();
+             // enter you logic when the fetch is successful
+             console.log(data, 'rtwssssssssss');
+             return data.webUrl
+             // return data
+           } catch (error) {
+             // enter your logic for when there is an error (ex. error toast)
+         
+             console.log(error)
+           }
+        }
+     
+     }
+ }
     const [prices, setPrices] = useState([])
 
     // useEffect(() => {
@@ -456,7 +573,18 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-
+    const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+   
+    function niceBytes(x:any){
+    
+      let l = 0, n = parseInt(x, 10) || 0;
+    
+      while(n >= 1024 && ++l){
+          n = n/1024;
+      }
+      
+      return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
+    }
     return (
         <div>
             <Grid className={classes.bigPart} >
@@ -488,10 +616,10 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                         {
                             showResult ?
                                 <>
-                                    <button>
+                                    <button onClick={handleSub}>
                                         <img src={starred} alt="" />
                                     </button>
-                                    <button>
+                                    <button onClick={handleSub1}>
                                         <img src={deleteIcon} alt="" onClick={handleClickEight} />
                                     </button>
                                 </> : null
@@ -532,10 +660,19 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell className={classes.theadCell}>
-                                    <Checkbox
-                                        value="all"
-                                        onChange={handleBoxChange} />
+                                <TableCell className={classes.theadCell} onClick={onClickShow}>
+                                    {/* <Checkbox
+                                       name="allselect"
+                                       checked= { !data?.response.some( (user:any)=>user?.isChecked!==true)}
+                                        onChange={handleBoxChange} /> */}
+                                        {/* <Checkbox name="allselect" checked= { !data?.response.some( (user:any)=>user?.isChecked!==true)} onChange={ handleBoxChange}  />  */}
+                                        <Checkbox  
+                                         name="allSelect"
+                                         checked={
+                                           data?.response.filter((user:any) => user?.isChecked !== true).length < 1
+                                         }
+                                        
+                                          onChange={handleBoxChange} />
                                 </TableCell>
                                 <TableCell className={classes.theadCell}>Name</TableCell>
                                 <TableCell className={classes.theadCell}>Last Modified By</TableCell>
@@ -560,11 +697,15 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     </TableRow>
                                 ))}
                             </TableBody> */}
-
+                       
                         {show ?
+                            
                             <TableBody>
+                                 {isLoading && <CircularProgress/>}
+                                 {isSuccess  && (
+                                    <>
                                 {data?.response &&
-                                    data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
+                                   data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
                                         //   const { fields = {} } = item;
 
                                         // const  Url= item["@microsoft.graph.downloadUrl"];
@@ -592,7 +733,16 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 key={item.name}
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
-                                                <TableCell className={classes.theadCell} onClick={onClickShow}><Checkbox /></TableCell>
+                                                <TableCell className={classes.theadCell} 
+                                                 onClick={onClickShow}
+                                                >
+                                                    <Checkbox name={item.name} 
+                                                    checked={item?.isChecked || false}
+                                                    // checked ={checked.includes(item)}
+                                                    onChange={handleBoxChange}/>
+                                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
+                                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
+                                                </TableCell>
                                                 <TableCell className={classes.TableCell}>
                                                     {/* <Link 
                                                     onClick={()=>{
@@ -633,7 +783,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     {createdDate}
                                                 </TableCell>
                                                 <TableCell className={classes.TableCell}>
-                                                    {item.size}
+                                                    {niceBytes(item.size)}
                                                 </TableCell>
                                                 <TableCell padding="none">
                                                     <Grid
@@ -717,10 +867,15 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                             </TableRow>
                                         )
                                     })}
+                                    </>
+                                    )}
 
                             </TableBody> :
+                            
                             <TableBody>
-
+                                  {itemChildrenIsLoading && <CircularProgress/>}
+                                  {itemChildrenSuccess  && ( 
+                                    <>
                                 {ItemChildren?.response &&
                                     ItemChildren?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
                                         //   const { fields = {} } = item;
@@ -746,7 +901,16 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                             <TableRow
                                                 key={item.name}
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                                <TableCell className={classes.theadCell}></TableCell>
+                                                <TableCell className={classes.theadCell}
+                                                 onClick={onClickShow}
+                                                >
+                                                     <Checkbox 
+                                                     name={item.name} 
+                                                    checked={item?.isChecked || false}
+                                                    // checked ={checked.includes(item)}
+                                                    onChange={handleBoxChange1}
+                                                    />
+                                                </TableCell>
                                                 <TableCell className={classes.TableCell}>
                                                     {/* <Link 
                                                 onClick={()=>{
@@ -783,7 +947,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                     {createdDate}
                                                 </TableCell>
                                                 <TableCell className={classes.TableCell}>
-                                                    {item.size}
+                                                {niceBytes(item.size)}
                                                 </TableCell>
                                                 <TableCell className={classes.TableCell}>
                                                     <Grid
@@ -864,6 +1028,8 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                             </TableRow>
                                         )
                                     })}
+                                    </>
+                                     )}
 
                             </TableBody>
 
