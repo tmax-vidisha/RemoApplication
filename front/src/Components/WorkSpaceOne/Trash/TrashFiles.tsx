@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
 import WPOneDrive from '../../Workspace/OneDrive/index';
-import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions } from '@mui/material';
+import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, CircularProgress } from '@mui/material';
 import { Typography } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -216,14 +216,15 @@ function SimpleDialog(props: SimpleDialogProps) {
 }
 interface IFolderProps {
     data: any,
-    error: any,
+    isSuccess: any,
     isLoading: any,
 }
 
 
-const TrashFiles = () => {
+// const TrashFiles = () => {
+    const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
 const classes = useStyles();
-
+const {data ,isLoading,isSuccess} =props
 const [page, setPage] = React.useState(0);
 const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -255,6 +256,18 @@ const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => 
         createData('Dream designs', "Jahanara", "August 30 2022", "2 kb", "now", <img src={actions} alt="" />),
 
     ];
+    const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+   
+function niceBytes(x:any){
+
+  let l = 0, n = parseInt(x, 10) || 0;
+
+  while(n >= 1024 && ++l){
+      n = n/1024;
+  }
+  
+  return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
+}
     return (
         <Grid>
             <Grid className={classes.divText}>
@@ -274,22 +287,26 @@ const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => 
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                        {isLoading && <CircularProgress/>}
+                        {isSuccess && (
+                            <>
+                            { data?.response && data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row:any) => (
                                 <TableRow
-                                    key={row.name}
+                                    key={row.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell component="th" scope="row">
                                         {row.name}
                                     </TableCell>
-                                    <TableCell align="right">{row.lastModifiedBy}</TableCell>
-                                    <TableCell align="right">{row.ModifiedDate}</TableCell>
-                                    <TableCell align="right">{row.fileSize}</TableCell>
-                                    <TableCell align="right">{row.deleted}</TableCell>
-                                    <TableCell align="right">{row.Actions}</TableCell>
+                                    <TableCell align="right">{row.lastModifiedBy.user.displayName}</TableCell>
+                                    <TableCell align="right">{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
+                                    <TableCell align="right">{niceBytes(row.size)}</TableCell>
+                                    <TableCell align="right">{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
+                                    {/* <TableCell align="right">{row.Actions}</TableCell> */}
                                 </TableRow>
                             ))}
-
+                            </>
+                            )}
 
                         </TableBody>
 

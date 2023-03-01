@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
 import WPOneDrive from '../../Workspace/OneDrive/index';
-import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, Stack, Pagination } from '@mui/material';
+import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, Stack, Pagination, CircularProgress } from '@mui/material';
 import { Typography } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -216,14 +216,14 @@ function SimpleDialog(props: SimpleDialogProps) {
 }
 interface IFolderProps {
     data: any,
-    error: any,
+    isSuccess: any,
     isLoading: any,
 }
 
 //const FileShared: React.FC<IFolderProps> = (props: IFolderProps) =>{
 const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
-    const { data, isLoading, error } = props
+    const { data, isLoading, isSuccess } = props
     const [age, setAge] = React.useState('');
     const [show, setShow] = useState<boolean>(true);
     const classes = useStyles();
@@ -271,6 +271,18 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+   
+    function niceBytes(x:any){
+    
+        let l = 0, n = parseInt(x, 10) || 0;
+      
+        while(n >= 1024 && ++l){
+            n = n/1024;
+        }
+        
+        return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
+      }
     return (
         <Grid>
             <Grid className={classes.divText}>
@@ -303,7 +315,9 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         <TableCell align="right">{row.Actions}</TableCell>
                                     </TableRow>
                                 ))} */}
-
+                             {isLoading && <CircularProgress/>}
+                             {isSuccess  && (
+                            <>
                             {data?.response &&
                                 data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
                                     //   const { fields = {} } = item;
@@ -375,7 +389,7 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                 {createdDate}
                                             </TableCell>
                                             <TableCell className={classes.TableCell}>
-                                                {item.size}
+                                            {niceBytes(item.size)}
                                             </TableCell>
                                             <TableCell className={classes.TableCell}>
                                                  <Grid style={{ borderRadius: "10px", }} >
@@ -441,7 +455,8 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         </TableRow>
                                     )
                                 })}
-
+                            </>
+                             )}
                         </TableBody>
 
                     </Table>

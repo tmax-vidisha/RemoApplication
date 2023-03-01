@@ -147,6 +147,22 @@ export const oneDriveApi = createApi({
   }),
   // providesTags : [ 'OneDriveRootItems'],
   }),
+  getAllStarredItems: builder.query<any, any>({
+    // query: () => '/api/v1/onedrive/getAllRootItems',
+    query: (id) => ({
+      url: `/api/v1/onedrive/getStarred/${id}`,
+      // headers:{ "authorization": `${AccessToken}` },
+  }),
+  // providesTags : [ 'OneDriveRootItems'],
+  }),
+  getAllTrashedItems: builder.query<any, any>({
+    // query: () => '/api/v1/onedrive/getAllRootItems',
+    query: (id) => ({
+      url: `/api/v1/onedrive/getTrashed/${id}`,
+      // headers:{ "authorization": `${AccessToken}` },
+  }),
+  // providesTags : [ 'OneDriveRootItems'],
+  }),
   downloadUrlItemOneDrive: builder.mutation<any, any>({
     query: (data) => ({
         url: '/api/v1/onedrive/getRecentFiles/downloadurl',
@@ -168,7 +184,9 @@ export const {
                 useCopylinkOneDriveMutation,
                 useGetAllSharedItemsQuery,
                 useGetAllRecentItemsQuery,
-                useDownloadUrlItemOneDriveMutation
+                useDownloadUrlItemOneDriveMutation,
+                useGetAllStarredItemsQuery,
+                useGetAllTrashedItemsQuery
                 
               
               

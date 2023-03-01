@@ -5,7 +5,7 @@ import useCustom from '../../../hooks/useCustom'
 import { useGetAllSharedItemsQuery } from '../../../services/graph'
 const SharedFilePage = () => {
     const { token } = useCustom();
-    const { data, error, isLoading } = useGetAllSharedItemsQuery(token);
+    const { data, isSuccess, isLoading } = useGetAllSharedItemsQuery(token);
     console.log(data,'Shared ')
 
   return (
@@ -13,7 +13,7 @@ const SharedFilePage = () => {
         <FileSharedPage
         data={data}
         isLoading={isLoading}
-        error={error}
+        isSuccess={isSuccess}
         />
     </AuthenticatedTemplate>
   )
