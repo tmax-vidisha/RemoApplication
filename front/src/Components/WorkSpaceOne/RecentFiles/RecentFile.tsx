@@ -1,4 +1,5 @@
-import { Grid, Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper, Link, DialogContent, Typography, Box, Button, DialogActions, Menu, MenuItem, Dialog, CircularProgress } from '@mui/material';
+//@ts-nocheck
+import { Grid, Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper, Link, DialogContent, Typography, Box, Button, DialogActions, Menu, MenuItem, Dialog, CircularProgress, Select, FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
 import React, { useState } from 'react'
 import moment from "moment";
 import { useStyles } from './Styles';
@@ -26,6 +27,10 @@ interface SimpleDialogProps {
     downloadUrl: any,
     onDelete?: (id: string, name: string) => void;
     deleteResponse: any;
+    deleteLoading: any,
+    deleteSuccess: any,
+    copySuccess: any,
+    copyLoading: any,
     // open: boolean;
     // // selectedValue: string;
     //  onClose: () => void;
@@ -36,18 +41,11 @@ function SimpleDialog(props: SimpleDialogProps) {
     const classes = useStyles();
     // const { onClose, selectedValue, open } = props;
 
-    const { id, name, webUrl, onCopy, copyResponse, onClick, downloadUrl, onDelete, deleteResponse
-        // folder, 
-
-        //  onOpenFolder, 
-
-
-
-    } = props
+    const { id, name, webUrl, onCopy, copyResponse, onClick, downloadUrl, onDelete, deleteResponse, deleteLoading, deleteSuccess, copyLoading, copySuccess } = props
     console.log(id, name, webUrl, 'tytrudtutsswwww'
         // folder,
     )
-    console.log(deleteResponse, 'tuuu56ue6ue6u6eu6u')
+    // console.log(deleteResponse, 'tuuu56ue6ue6u6eu6u')
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const openOn = Boolean(anchorEl);
@@ -81,7 +79,12 @@ function SimpleDialog(props: SimpleDialogProps) {
     const handledelete = () => {
         onDelete?.(id, name)
         setOpenOne(false);
-        setOpenTwo(true)
+        if (deleteLoading) {
+            <>Loading</>
+        } else if (deleteSuccess) {
+            setOpenTwo(true)
+            console.log(deleteResponse, 'tuuu56ue6ue6u6eu6u')
+        }
         // if (deleteResponse?.success === true) {
         //     setOpenTwo(true)
         // }
@@ -113,16 +116,20 @@ function SimpleDialog(props: SimpleDialogProps) {
 
     const handleCopy = async () => {
         onCopy?.(id, name)
-        navigator.clipboard.writeText(copyResponse?.response)
-        try {
-            await navigator.clipboard.writeText(copyResponse?.response);
-            setCopySuccess('Copied!');
-            console.log('Copied')
-        } catch (err) {
-            setCopySuccess('Failed to copy!');
-            // console.log('Failed to copy!')
+        // navigator.clipboard.writeText(copyResponse?.response)
+        if (copyLoading) {
+            <>Loading</>
         }
-        //   setOpenOneCopy(true);
+        else if (copySuccess) {
+            try {
+                await navigator.clipboard.writeText(copyResponse?.response);
+                setCopySuccess('Copied!');
+                // console.log('Copied')
+            } catch (err) {
+                setCopySuccess('Failed to copy!');
+                // console.log('Failed to copy!')
+            }
+        }
     }
     const handleOpenOneCopy = () => {
         setOpenOneCopy(true);
@@ -132,7 +139,7 @@ function SimpleDialog(props: SimpleDialogProps) {
         setOpenOneCopy(true);
     };
 
-    
+
     return (
         <Grid style={{ borderRadius: "10px", }} >
             <Button
@@ -293,9 +300,13 @@ interface IFolderProps {
     downloadUrl: any,
     onDelete?: (id: string, name: string) => void;
     deleteResponse: any,
+    deleteLoading: any,
+    deleteSuccess: any,
+    copySuccess: any,
+    copyLoading: any,
 }
 const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
-    const { data, isLoading, isSuccess, onCopy, copyResponse, onClick, downloadUrl, onDelete, deleteResponse } = props
+    const { data, isLoading, isSuccess, onCopy, copyResponse, onClick, downloadUrl, onDelete, deleteResponse, deleteLoading, deleteSuccess, copyLoading, copySuccess } = props
     //const RecentFile = () => {
     // const { token } = useCustom();
     // const { data, error, isLoading } = useGetAllRecentItemsQuery(token);
@@ -305,6 +316,16 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
     const [itemName, setItemName] = useState<string>('');
     const [itemfolder, setItemFolder] = useState<any>();
     const [downUrl, setDownUrl] = useState<string>('');
+    const [age, setAge] = React.useState('');
+
+
+
+
+
+    const handleChange = (event: SelectChangeEvent) => {
+        setAge(event.target.value);
+    };
+
     const de = (id: any, name: any, folder: any,
         // download:any
     ) => {
@@ -330,18 +351,79 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+    const [userData, setUserdata] = useState<any>([]);
+    const [sortedData, setSortedData] = useState<any>('')
+    const sortAscending = () => {
+
+        // console.log('newest')
+        setSortedData('newest')
+        console.log(sortedData)
+        // const sortAscPrices = [...prices]
+        // sortAscPrices.sort((a, b) => a - b)
+        // setPrices(sortAscPrices)
+        // setMode('newest')
+        // console.log(mode)
+        // console.log(show,'show')
+        // if(show == false){
+        //     Object.freeze(ItemChildren?.response);
+        // const arrCopy = [...ItemChildren?.response];
+        // setUserdata(arrCopy)
+        // }else{
+        //     Object.freeze(data?.response);
+        //     const arrCopy = [...data?.response];
+        //     setUserdata(arrCopy)
+        // }
+
+    }
+
+    const sortDescending = () => {
+        // console.log('oldest')
+        setSortedData('oldest')
+        console.log(sortedData)
+        // setMode('oldest')
+        // console.log(mode)
+
+        // if(show == false){
+        //     Object.freeze(ItemChildren?.response);
+        //     const arrCopy = [...ItemChildren?.response];
+        //     setUserdata(arrCopy)
+        // }else{
+        //     Object.freeze(data?.response);
+        //     const arrCopy = [...data?.response];
+        //     setUserdata(arrCopy)
+        // }
+        // setMode('')
+        // const sortDescPrices = [...prices]
+        // sortDescPrices.sort((a, b) => a - b).reverse()
+        // setPrices(sortDescPrices)
+        // setDescending(true)
+        // var array = [{id: 1, date: 'Mar 12 2012 10:00:00 AM'}, {id: 2, date: 'Mar 8 2012 08:00:00 AM'}];
+
+        //         Object.freeze(data?.response);
+
+        //       const arrCopy = [...data?.response];
+        // // console.log(arrCopy,'kkk')
+        //               //@ts-ignore
+
+        //         var sortedArray = arrCopy.sort((a,b) => Date.parse(new Date(a.lastModifiedDateTime  )) - Date.parse(new Date(b.lastModifiedDateTime            ))).reverse();
+        //         //@ts-ignore
+        //         setUserdata(sortedArray,'soret')
+
+
+    }
+
 
     const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
-   
-    function niceBytes(x:any){
-    
-      let l = 0, n = parseInt(x, 10) || 0;
-    
-      while(n >= 1024 && ++l){
-          n = n/1024;
-      }
-      
-      return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
+
+    function niceBytes(x: any) {
+
+        let l = 0, n = parseInt(x, 10) || 0;
+
+        while (n >= 1024 && ++l) {
+            n = n / 1024;
+        }
+
+        return (n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
     }
 
     return (
@@ -351,7 +433,43 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
             </Grid>
 
             <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
+
                 <TableContainer component={Paper}>
+                    <Grid>
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
+                            <InputLabel id="demo-simple-select-standard-label">
+                                <span className={classes.shortSpan}>Sort by</span>
+
+                            </InputLabel>
+                            <Select
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard"
+                                value={age}
+                                onChange={handleChange}
+                                label="Age"
+                                style={{ width: "100px" }}
+                            >
+                                {/* <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem> */}
+                                <MenuItem value={10} 
+                                onClick={() =>{ 
+                                    setSortedData('newest')
+                                    Object.freeze(data?.response);
+                                        const arrCopy = [...data?.response];
+                                        setUserdata(arrCopy)
+                                        
+                                }}><span className={classes.shortBy}>Newest</span></MenuItem>
+                                <MenuItem value={20} onClick={() => {
+                                    setSortedData('oldest')
+                                    Object.freeze(data?.response);
+                                    const arrCopy = [...data?.response];
+                                    setUserdata(arrCopy)
+                                    }}><span className={classes.shortBy}>Oldest</span></MenuItem>
+
+                            </Select>
+                        </FormControl>
+                    </Grid>
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
@@ -377,107 +495,205 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 <TableCell align="right">{row.Actions}</TableCell>
                             </TableRow>
                         ))} */}
-                          {isLoading && <CircularProgress/>}
-                          {isSuccess  && (
-                            <>
-                            {data?.response &&
-                                data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
-                                    //   const { fields = {} } = item;
+                            {isLoading && <CircularProgress />}
+                            {
+                                sortedData === 'newest'
+                                    ?
+                                    <>
+                                            {isSuccess && (
+                                                <>
+                                                    {userData.sort((a:any,b:any) => Date.parse(new Date(a.lastModifiedDateTime  )) - Date.parse(new Date(b.lastModifiedDateTime   ))).reverse().slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
 
-                                    // const  Url= item["@microsoft.graph.downloadUrl"];
-                                    // console.log(Url,'llll')
-                                    //   // console.log(fields,'yjyjyjyjyj')
-                                    //   var eventTitle = fields?.Title;
-                                    //   console.log(eventTitle,'yjyjyjyjyj')
-                                    //   var eventStart = moment(fields?.EventDate).format("llll");
-                                    //   var eventDate = moment(fields?.EndDate).format("llll");
+                                                            let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
 
-                                    //   var eventIsActive = fields.IsActive;
-                                    // let createdMonth = moment(item.lastModifiedDateTime).format("MMM");
-                                    // let createdYear = moment(item.lastModifiedDateTime).format("YYYY");
-                                    let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
-                                    //   var createdDate = moment(
-                                    //     item.lastModifiedDateTime
-                                    //   ).fromNow();
-                                    // let result = (item?.folder === undefined) ? item?.webUrl :'';
-                                    // let result ; 
-                                    // if(item?.folder === undefined){
-                                    //   result= item?.webUrl
-                                    // }
-                                    return (
-                                        <TableRow
-                                            key={item.name}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
+                                                            return (
+                                                                <TableRow
+                                                                    key={index}
+                                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                                >
 
-                                            <TableCell component="th" scope="row">
-                                                {/* <Link 
-                                            onClick={()=>{
-                                                // folderClickHandler(item.id,item.name)
-                                            //  if(item.name.includes('.txt') || item.name.includes('.xlsx') || item.name.includes('.docx')  || item.name.includes('.pptx')){
-                                                if(item.folder === undefined){
-                                            //   setUrl(item?.webUrl)
-                                                 console.log(item?.webUrl)
-                                                 
-                                            }else{
-                                               
-                                                //   handleSubmit(item?.folder);
-                                                 console.log(item?.folder)
-                                                 folderClickHandler(item.id,item.name)
-                                                 setShow(!show)
-                                            }
-                                        }}
-                                        
-                                            //   href={`${result}`}
-                                            > */}
-                                                <Link
-                                                    // onClick={() => {
-                                                    //     setShow(!show)
-                                                    //     onClick(item.id, item.name, item.folder)
-                                                    //     //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+                                                                    <TableCell component="th" scope="row">
 
+                                                                        <Link
 
-                                                    // }}
-                                                    href={`${item.webUrl}`}
-                                                >
-                                                    {item.name}
-                                                </Link>
+                                                                            href={`${item.webUrl}`}
+                                                                        >
+                                                                            {item.name}
+                                                                        </Link>
 
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                {item.lastModifiedBy.user.displayName}
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                {createdDate}
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                {niceBytes(item.size)}
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                <Grid
-                                                    onClick={() => de(item.id, item.name, item.webUrl
-                                                    )}
-                                                >
-                                                    <SimpleDialog
-                                                        id={itemId}
-                                                        name={itemName}
-                                                        webUrl={itemfolder}
-                                                        onCopy={onCopy}
-                                                        copyResponse={copyResponse}
-                                                        onClick={onClick}
-                                                        downloadUrl={downloadUrl}
-                                                        onDelete={onDelete}
-                                                        deleteResponse={deleteResponse}
-                                                    />
-                                                    {/* dgrgrgrhgrhgr */}
-                                                </Grid>
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        {item.lastModifiedBy.user.displayName}
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        {createdDate}
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        {niceBytes(item.size)}
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        <Grid
+                                                                            onClick={() => de(item.id, item.name, item.webUrl
+                                                                            )}
+                                                                        >
+                                                                            <SimpleDialog
+                                                                                id={itemId}
+                                                                                name={itemName}
+                                                                                webUrl={itemfolder}
+                                                                                onCopy={onCopy}
+                                                                                copyResponse={copyResponse}
+                                                                                onClick={onClick}
+                                                                                downloadUrl={downloadUrl}
+                                                                                onDelete={onDelete}
+                                                                                deleteResponse={deleteResponse}
+                                                                                deleteLoading={deleteLoading}
+                                                                                deleteSuccess={deleteSuccess}
+                                                                                copyLoading={copyLoading}
+                                                                                copySuccess={copySuccess}
+                                                                            />
+                                                                            {/* dgrgrgrhgrhgr */}
+                                                                        </Grid>
 
-                                            </TableCell>
-                                        </TableRow>
-                                    )
-                                })}
-                                </>
-                                )}
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                            )
+                                                        })}
+                                                </>
+                                            )}
+                                        </>
+                                    :
+                                    sortedData === 'oldest'
+                                        ?
+                                        <>
+                                            {isSuccess && (
+                                                <>
+                                                    {userData.sort((a:any,b:any) => Date.parse(new Date(a.lastModifiedDateTime  )) - Date.parse(new Date(b.lastModifiedDateTime   ))).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
+
+                                                            let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
+
+                                                            return (
+                                                                <TableRow
+                                                                    key={index}
+                                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                                >
+
+                                                                    <TableCell component="th" scope="row">
+
+                                                                        <Link
+
+                                                                            href={`${item.webUrl}`}
+                                                                        >
+                                                                            {item.name}
+                                                                        </Link>
+
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        {item.lastModifiedBy.user.displayName}
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        {createdDate}
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        {niceBytes(item.size)}
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        <Grid
+                                                                            onClick={() => de(item.id, item.name, item.webUrl
+                                                                            )}
+                                                                        >
+                                                                            <SimpleDialog
+                                                                                id={itemId}
+                                                                                name={itemName}
+                                                                                webUrl={itemfolder}
+                                                                                onCopy={onCopy}
+                                                                                copyResponse={copyResponse}
+                                                                                onClick={onClick}
+                                                                                downloadUrl={downloadUrl}
+                                                                                onDelete={onDelete}
+                                                                                deleteResponse={deleteResponse}
+                                                                                deleteLoading={deleteLoading}
+                                                                                deleteSuccess={deleteSuccess}
+                                                                                copyLoading={copyLoading}
+                                                                                copySuccess={copySuccess}
+                                                                            />
+                                                                            {/* dgrgrgrhgrhgr */}
+                                                                        </Grid>
+
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                            )
+                                                        })}
+                                                </>
+                                            )}
+                                        </>
+
+                                        :
+                                        <>
+                                            {isSuccess && (
+                                                <>
+                                                    {data?.response &&
+                                                        data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
+
+                                                            let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
+
+                                                            return (
+                                                                <TableRow
+                                                                    key={index}
+                                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                                >
+
+                                                                    <TableCell component="th" scope="row">
+
+                                                                        <Link
+
+                                                                            href={`${item.webUrl}`}
+                                                                        >
+                                                                            {item.name}
+                                                                        </Link>
+
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        {item.lastModifiedBy.user.displayName}
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        {createdDate}
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        {niceBytes(item.size)}
+                                                                    </TableCell>
+                                                                    <TableCell align="right">
+                                                                        <Grid
+                                                                            onClick={() => de(item.id, item.name, item.webUrl
+                                                                            )}
+                                                                        >
+                                                                            <SimpleDialog
+                                                                                id={itemId}
+                                                                                name={itemName}
+                                                                                webUrl={itemfolder}
+                                                                                onCopy={onCopy}
+                                                                                copyResponse={copyResponse}
+                                                                                onClick={onClick}
+                                                                                downloadUrl={downloadUrl}
+                                                                                onDelete={onDelete}
+                                                                                deleteResponse={deleteResponse}
+                                                                                deleteLoading={deleteLoading}
+                                                                                deleteSuccess={deleteSuccess}
+                                                                                copyLoading={copyLoading}
+                                                                                copySuccess={copySuccess}
+                                                                            />
+                                                                            {/* dgrgrgrhgrhgr */}
+                                                                        </Grid>
+
+                                                                    </TableCell>
+                                                                </TableRow>
+                                                            )
+                                                        })}
+                                                </>
+                                            )}
+                                        </>
+
+                            }
+
                         </TableBody>
 
                     </Table>

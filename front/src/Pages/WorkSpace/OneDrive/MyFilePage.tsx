@@ -20,8 +20,8 @@ const MyFilePage = () => {
     const classes = useStyles();
     const { data, isSuccess, isLoading } = useGetAllRootItemsOneDriveQuery(token)
     const [sendItem, { data: ItemChildren, isSuccess: itemChildrenSuccess, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
-    const [sendDeleteItem, { data: deleteResponse }] = useDeleteItemOneDriveMutation();
-    const [sendCopyItem, { data: copyResponse }] = useCopylinkOneDriveMutation();
+    const [sendDeleteItem, { data: deleteResponse ,isSuccess:deleteSuccess,isLoading:deleteLoading }] = useDeleteItemOneDriveMutation();
+    const [sendCopyItem, { data: copyResponse,isSuccess:copySuccess,isLoading:copyLoading }] = useCopylinkOneDriveMutation();
     console.log(data?.response)
     const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
         breadcrumbs: [{
@@ -122,8 +122,12 @@ const MyFilePage = () => {
                     itemChildrenIsLoading={itemChildrenIsLoading}
                     onClick={folderClickHandler}
                     onDelete={deleteDriveItem}
+                    deleteLoading={deleteLoading}
                     deleteResponse={deleteResponse}
+                    deleteSuccess={deleteSuccess}
                     onCopy={copylinkDriveItem}
+                    copyLoading={copyLoading}
+                    copySuccess={copySuccess}
                     copyResponse={copyResponse}
                 />
                 </Grid>
