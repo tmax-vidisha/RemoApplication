@@ -47,7 +47,7 @@ interface IFolderProps {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-    const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
    
 function niceBytes(x:any){
 
