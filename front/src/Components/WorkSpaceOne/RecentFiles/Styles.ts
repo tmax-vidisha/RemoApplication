@@ -13,7 +13,7 @@ export const useStyles = makeStyles({
     width: 80,
     height: 50,
   },
-
+  
   topClear: {
     justifyContent: "end !important",
     padding: "0 !important",
@@ -69,6 +69,15 @@ export const useStyles = makeStyles({
     backgroundColor: "#33adff",
     color: "white",
     textTransform: "capitalize"
+  },
+  shortSpan:{
+    color: "#606c74",
+    fontSize:"13px",
+    marginRight:"10px"
+  },
+  shortBy:{
+    color: "#606c74",
+    fontSize:"14px"
   },
   plus: {
     textAlign: "center",
