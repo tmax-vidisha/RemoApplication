@@ -325,7 +325,6 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
 
 
-
   function checkAge(age: any) {
     let ext = age.name.split('.').pop();
     if (ext !== age.name) {
@@ -350,9 +349,6 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
         <Box>
           <Grid className={classes.upperPart}>
            {/* <div className={classes.contentHeader} >
-
-
-
               <Typography variant="caption" display="block" gutterBottom>
                 <Breadcrumbs
                   className={classes.breadcrumbs}
@@ -367,20 +363,8 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                     : <Typography>Remo Folder </Typography>}
                 </Breadcrumbs>
               </Typography>
-
+            </div>  */}
             <Grid style={{ width: "230px", display: "flex", justifyContent:"flex-end", marginRight: "20px" }}>
-
-            </div> */}
-            {/* <Grid>
-            <input type='file' id='fileUpload' accept='application/pdf, image/png, mp4/video '
-              onChange={handleFileEvent}
-              disabled={fileLimit} />
-            <label htmlFor="fileUpLoad">
-              <a className={`btn btn-primary ${!fileLimit ? '' : 'disabled'}`}>Upload </a>
-            </label>
-          </Grid> */}
-            <Grid style={{ width: "230px", display: "flex", justifyContent: "space-between", marginRight: "20px" }}>
-
               <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} >
                 <Button
                   id="fade-button"
@@ -651,371 +635,6 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <MenuItem >
                     <div onClick={handleClickOne}>
                       <img src={folder} alt="folder" className={classes.menuImage} /> Folders
-
-                    </div>
-                    <Dialog open={openOne} onClose={handleCloseOne}>
-                      <DialogTitle>
-                        <div className={classes.dialogT}>
-                          <div>Create New Folder</div>
-                          <div onClick={handleCloseOne} style={{ cursor: "pointer" }}>
-                            <img src={cancel} alt="" />
-                          </div>
-
-                        </div>
-                      </DialogTitle>
-                      <DialogContent>
-                        <p style={{ margin: "0px 0px 5px 0px", textAlign: "left" }}>Enter the name</p>
-                        <input type="text" onChange={handleOnChange} style={{ width: "300px", height: "20px" }} />
-                      </DialogContent>
-                      <DialogActions>
-                        <div style={{ width: "150px", marginRight: "180px" }}>
-                          <Button
-                            // onClick={handleFormSubmit}
-                            onClick={handleClickThree}
-                            autoFocus style={{ backgroundColor: "#009BAD", color: "white", textTransform: "none" }}>
-                            Create
-                          </Button>
-                          <Dialog open={openThree} onClose={handleCloseThree}>
-                           
-                          {createdNewFolderSucessfull && (
-                              <div>
-                                  <DialogContent>
-                                  <Box>
-                                    <img src={success} alt="" style={{ width: "50px" }} />
-                                    <Typography>Folder Created SuccessFully</Typography>
-                                  </Box>
-                                </DialogContent>
-                                <DialogActions style={{ width: "170px" }}>
-                                <Button autoFocus style={{ backgroundColor: "#009BAD", color: "white" }} onClick={handleCloseThree}>
-                                  Ok
-                                </Button>
-                               </DialogActions>
-                              </div>
-                            )}
-                          </Dialog>
-                          <Button onClick={handleCloseOne}
-                            color="primary" autoFocus style={{ textTransform: "none" }}>
-                            Close
-                          </Button>
-                        </div>
-
-                        </div>
-                      </DialogTitle>
-                      <DialogContent>
-                        <p style={{ margin: "0px 0px 5px 0px", textAlign: "left" }}>Enter the name</p>
-                        <input type="text" onChange={handleOnChange} style={{ width: "300px", height: "20px" }} />
-                      </DialogContent>
-                      <DialogActions>
-                        <div style={{ width: "150px", marginRight: "180px" }}>
-                          <Button
-                            // onClick={handleFormSubmit}
-                            onClick={handleClickThree}
-                            autoFocus style={{ backgroundColor: "#009BAD", color: "white", textTransform: "none" }}>
-                            Create
-                          </Button>
-                        
-                          <Dialog open={openThree} onClose={handleCloseThree}>
-                            {createdNewFolderSucessfull && (
-                              <div>
-                                  <DialogContent>
-                                  <Box>
-                                    <img src={success} alt="" style={{ width: "50px" }} />
-                                    <Typography>Folder Created SuccessFully</Typography>
-                                  </Box>
-                                </DialogContent>
-                                <DialogActions style={{ width: "170px" }}>
-                                <Button autoFocus style={{ backgroundColor: "#009BAD", color: "white" }} onClick={handleCloseThree}>
-                                  Ok
-                                </Button>
-                               </DialogActions>
-                              </div>
-                            )}
-                            
-                            
-                          </Dialog>
-                          <Button onClick={handleCloseOne}
-                            color="primary" autoFocus style={{ textTransform: "none" }}>
-                            Close
-                          </Button>
-                        </div>
-
-                      </DialogActions>
-                    </Dialog>
-                  </MenuItem>
-                </Menu>
-
-              </Grid>
-            </Grid>
-
-          </Grid> 
-          
-          <Box>
-           
-           {itemChildrenIsLoading && <CircularProgress/>}
-          { isSuccessItem &&(
-            <div className={classes.boxContain}>
-            {ItemChildren?.response && ItemChildren?.response?.map((item: any) => {
-              let ext = item.name.split('.').pop();
-              if (ext == item.name) {
-                return (
-                    <Box className={classes.galleryBox} onClick={onClickShow} key={item.id}>
-                      <img src={folderW} alt="" />
-                      <div style={{ margin: "0px" }} onClick={() =>{ onClick(item.id, item.name, item.folder);handleClickItem(item.id) }}>{item.name}</div>
-                      <p style={{ margin: "0px" }}>{item.lastModifiedDateTime}</p>
-                    </Box>
-                )
-              }
-              else if (item.file.mimeType == 'image/jpeg') {
-                return (
-
-                  <Grid key={item.id}>
-                    <SRLWrapper>
-                      <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
-
-                        <img
-                          src={item.webUrl}
-                          style={{ width: "170px", height: "100px", margin: "20px", borderRadius: "10px" }}
-                          alt="Gallery"
-                        />
-                      </Box>
-                    </SRLWrapper>
-
-                  </Grid>
-
-                )
-              } else {
-                return (
-                  <Grid key={item.id}>
-                    <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
-                      <video width="200" height="150" >
-                        <source src={item.webUrl} type="video/mp4" />
-                      </video>
-                    </Box>
-
-                  </Grid>
-
-                )
-
-
-          </Grid>
-          <Box style={{ padding: "30px" }}>
-            {/* <Grid>
-            <div className="uploaded-files-list">
-              {uploadedFiles.map((file, name: any) => (
-                <div>
-                  
-                  {file.name}
-                </div>
-              ))
-
-              }
-            })
-            } </div>
-            )}
-            
-          </Box>
-
-            </div>
-            <UploadFile />
-          </Grid> */}
-
-            {/* <Grid className={classes.boxContain}>
-            <Box className={classes.galleryBox} onClick={onClickShow}>
-              <img src={folderW} alt="" />
-              <div style={{ margin: "0px" }}>Approvals Folder</div>
-              <p style={{ margin: "0px" }}>September 20, 2022</p>
-            </Box>
-            <Box className={classes.galleryBox} onClick={handleClickHide}>
-              <img src={folderW} alt="" />
-              <div style={{ margin: "0px" }}>Remo Folder</div>
-              <p style={{ margin: "0px" }}>September 20, 2022</p>
-            </Box>
-            <Box className={classes.galleryBox}>
-              <img src={folderW} alt="" />
-              <div style={{ margin: "0px" }}>Approvals Folder</div>
-              <p style={{ margin: "0px" }}>September 20, 2022</p>
-            </Box>
-            <Box className={classes.galleryBox}>
-              <img src={folderW} alt="" />
-              <div style={{ margin: "0px" }}>Approvals Folder</div>
-              <p style={{ margin: "0px" }}>September 20, 2022</p>
-            </Box>
-          </Grid>
-          <Grid>
-            <LightBoxGallery />
-          </Grid> */}
-           {isLoading && <CircularProgress/>}
-          { isSuccess &&( 
-            <div>
-            {data?.response && data?.response?.map((item: any) => {
-              let ext = item.name.split('.').pop();
-              if (ext == item.name) {
-                return (
-                  <Grid className={classes.boxContain} key={item.id}>
-                    <Box className={classes.galleryBox} onClick={onClickShow}>
-                      <img src={folderW} alt="" />
-                      <div style={{ margin: "0px" }} onClick={() => { onClick(item.id, item.name, item.folder); setOpenPage(false);handleClickItem(item.id) }}>{item.name}</div>
-                      <p style={{ margin: "0px" }}>{item.lastModifiedDateTime}</p>
-                    </Box>
-
-                  </Grid>
-                )
-              }
-              else if (item.file.mimeType == 'image/jpeg') {
-                return (
-
-                  <Grid key={item.id}>
-                    <SRLWrapper>
-                      <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
-
-                        <img
-                          src={item.webUrl}
-                          style={{ width: "170px", height: "100px", margin: "20px", borderRadius: "10px" }}
-                          alt="Gallery"
-                        />
-                      </Box>
-                    </SRLWrapper>
-
-                  </Grid>
-
-                )
-              } else {
-                return (
-                  <Grid key={item.id}>
-                    <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
-                      <video width="200" height="150" >
-                        <source src={item.webUrl} type="video/mp4" />
-                      </video>
-                    </Box>
-
-                  </Grid>
-
-                )
-              }
-            })
-            }
-            </div>)}
-            {/* <SRLWrapper>
-              <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
-                {
-                  content && content?.map((item: any) => (
-                    <Grid key={item.id} >
-                      <img src={item.webUrl} style={{ width: "167px", height: "170px", margin: "20px", borderRadius: "10px" }} />
-                    </Grid>
-                  ))
-                }
-
-              </Box>
-            </SRLWrapper> */}
-            {/* <LightBoxGallery data={content} /> */}
-
-          </Box>
-
-        </Box>
-      ) : (
-
-        <Box className={classes.MainPart}>
-          <Grid className={classes.upperPart}>
-            {/* <Grid style={{color:'#18496a'}}>Picture Gallery </Grid> */}
-            {/* <div className={classes.contentHeader} >
-              <Typography variant="caption" display="block" gutterBottom>
-                <Breadcrumbs
-                  className={classes.breadcrumbs}
-                  separator={<NavigateNextIcon fontSize="small" />}
-                  aria-label="breadcrumb"
-                >
-                  <Link to="/" className={classes.breadLinks}  >
-                    Picture Gallery
-                  </Link>
-                 
-                  {showResults ? <Typography>Approvals Folder</Typography>
-                    : <Typography>Remo Folder </Typography>}
-                </Breadcrumbs>
-              </Typography>
-            </div> */}
-            {/* <Grid>
-            <input type='file' id='fileUpload' accept='application/pdf, image/png, mp4/video '
-              onChange={handleFileEvent}
-              disabled={fileLimit} />
-            <label htmlFor="fileUpLoad">
-              <a className={`btn btn-primary ${!fileLimit ? '' : 'disabled'}`}>Upload </a>
-            </label>
-          </Grid> */}
-            <Grid style={{ width: "230px", display: "flex", justifyContent: "space-between", marginRight: "20px" }}>
-              <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} >
-                <Button
-                  id="fade-button"
-                  aria-controls={openTwo ? 'fade-menu' : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={openOn ? 'true' : undefined}
-                  onClick={handleClickTwo}
-                  // className={classes.create}
-                  sx={{ textTransform: "capitalize", backgroundColor: "#e5f5f7 !important", color: '#18496a' }}>
-                  <span className={classes.plus}>
-                    <img src={uploadB} alt="" />
-                  </span>
-                  Upload
-                </Button>
-                <Menu
-                  id="fade-menu"
-                  MenuListProps={{
-                    'aria-labelledby': 'fade-button',
-                  }}
-                  anchorEl={anchorE2}
-                  open={openTwo}
-                  onClose={handleCloseTwo}
-                  TransitionComponent={Fade}
-                  className={classes.menu}
-                >
-                  <MenuItem onClick={uploadItemDocument}>
-                    <div>
-                      <img src={folder} alt="folder" className={classes.menuImage} /> Files
-                      <input
-                       className="file-upload-input"
-                       type="file"
-                       accept="image/*, application/pdf,application/vnd.ms-excel"
-                       multiple
-                       onChange={(e) => {
-                       onFileChange(e);
-                     }}
-                    />
-                    </div>
-                  </MenuItem>
-                  <MenuItem >
-                    <div>
-                      <img src={folder} alt="folder" className={classes.menuImage} /> Folders
-                    </div>
-                  </MenuItem>
-                </Menu>
-
-              </Grid>
-              <Grid style={{ textTransform: "capitalize", borderRadius: "10px", }} className={classes.create}>
-
-                <Button
-                  id="fade-button"
-                  aria-controls={openOn ? 'fade-menu' : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={openOn ? 'true' : undefined}
-                  onClick={handleClick}
-                  className={classes.create}
-                  sx={{ textTransform: "capitalize", backgroundColor: "rgb(50 168 189) !important" }}>
-                  <span className={classes.plus}><LocalHospitalIcon /></span>
-                  New
-                </Button>
-                <Menu
-                  id="fade-menu"
-                  MenuListProps={{
-                    'aria-labelledby': 'fade-button',
-                  }}
-                  anchorEl={anchorEl}
-                  open={openOn}
-                  onClose={handleClose}
-                  TransitionComponent={Fade}
-                  className={classes.menu}
-                >
-                  <MenuItem >
-                    <div onClick={handleClickOne}>
-                      <img src={folder} alt="folder" className={classes.menuImage} /> Folders
                       
                     </div>
                     <Dialog open={openOne} onClose={handleCloseOne}>
@@ -1069,63 +688,22 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
               </Grid>
             </Grid>
-
-          </Grid>
-          <Box style={{ padding: "30px" }}>
-            {/* <Grid>
-            <div className="uploaded-files-list">
-              {uploadedFiles.map((file, name: any) => (
-                <div>
-                  
-                  {file.name}
-                </div>
-              ))
-              }
-
-            </div>
-            <UploadFile />
-          </Grid> */}
-
-            {/* <Grid className={classes.boxContain}>
-            <Box className={classes.galleryBox} onClick={onClickShow}>
-              <img src={folderW} alt="" />
-              <div style={{ margin: "0px" }}>Approvals Folder</div>
-              <p style={{ margin: "0px" }}>September 20, 2022</p>
-            </Box>
-            <Box className={classes.galleryBox} onClick={handleClickHide}>
-              <img src={folderW} alt="" />
-              <div style={{ margin: "0px" }}>Remo Folder</div>
-              <p style={{ margin: "0px" }}>September 20, 2022</p>
-            </Box>
-            <Box className={classes.galleryBox}>
-              <img src={folderW} alt="" />
-              <div style={{ margin: "0px" }}>Approvals Folder</div>
-              <p style={{ margin: "0px" }}>September 20, 2022</p>
-            </Box>
-            <Box className={classes.galleryBox}>
-              <img src={folderW} alt="" />
-              <div style={{ margin: "0px" }}>Approvals Folder</div>
-              <p style={{ margin: "0px" }}>September 20, 2022</p>
-            </Box>
-          </Grid>
-          <Grid>
-            <LightBoxGallery />
-          </Grid> */}
+          </Grid> 
+          
+          <Box>
+           
            {itemChildrenIsLoading && <CircularProgress/>}
           { isSuccessItem &&(
-            <div>
+            <div className={classes.boxContain}>
             {ItemChildren?.response && ItemChildren?.response?.map((item: any) => {
               let ext = item.name.split('.').pop();
               if (ext == item.name) {
                 return (
-                  <Grid className={classes.boxContain} key={item.id}>
-                    <Box className={classes.galleryBox} onClick={onClickShow}>
+                    <Box className={classes.galleryBox} onClick={onClickShow} key={item.id}>
                       <img src={folderW} alt="" />
                       <div style={{ margin: "0px" }} onClick={() =>{ onClick(item.id, item.name, item.folder);handleClickItem(item.id) }}>{item.name}</div>
                       <p style={{ margin: "0px" }}>{item.lastModifiedDateTime}</p>
                     </Box>
-
-                  </Grid>
                 )
               }
               else if (item.file.mimeType == 'image/jpeg') {
@@ -1134,7 +712,6 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <Grid key={item.id}>
                     <SRLWrapper>
                       <Box style={{ width: "180px", height: "100px", margin: "20px" }}>
-
                         <img
                           src={item.webUrl}
                           style={{ width: "170px", height: "100px", margin: "20px", borderRadius: "10px" }}
@@ -1162,46 +739,8 @@ const GalleryEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
             })
             } </div>
             )}
-            {/* <Box>
-            {content1 && content1?.filter((person: any) => person.file.mimeType == 'video/mp4').map((person:any)=>{
-                     <Grid>
-                     <video width="200" height="150" >
-                       <source src={person.webUrl} type="video/mp4" />
-                     </video>
-                   </Grid>
-
-            })}
-
-            </Box> */}
-
-            {/* <Box style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
-                  {
-                  filterImages &&  filterImages?.map((item: any) => (
-                      <Grid key={item.id} >
-                         <SRLWrapper>
-                        <img src={item.webUrl} style={{ width: "167px", height: "170px", margin: "20px", borderRadius: "10px" }} />
-                        </SRLWrapper>
-                        
-                      </Grid>
-                    ))
-                  }
-                   {
-                 filterdVideoData &&    filterdVideoData.map((item: any) => (
-
-                      <Grid>
-                        <video width="200" height="150" >
-                          <source src={item.webUrl} type="video/mp4" />
-                        </video>
-                      </Grid>
-                    ))
-                  }
-                </Box> */}
-
-
-            {/* <LightBoxGallery data={content1} /> */}
-
+            
           </Box>
-
 
         </Box>
 
