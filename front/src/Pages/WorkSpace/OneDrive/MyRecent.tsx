@@ -12,12 +12,12 @@ import Breadcrumb from '../../../hooks/Breadcrumb';
 const MyRecent = () => {
   const classes = useStyles();
   const { token } = useCustom();
-  const { data, error, isLoading } = useGetAllRecentItemsQuery(token);
+  const { data, isSuccess, isLoading } = useGetAllRecentItemsQuery(token);
   console.log(data, 'ttuuuyyyjsg')
-  const [sendCopyItem, { data: copyResponse }] = useCopylinkOneDriveMutation();
+  const [sendCopyItem, { data: copyResponse,isSuccess:copySuccess,isLoading:copyLoading  }] = useCopylinkOneDriveMutation();
   const [sendItem, { data: ItemDownloadUrl, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useDownloadUrlItemOneDriveMutation();
   console.log(ItemDownloadUrl, 'grdrhtrh')
-  const [sendDeleteItem, { data: deleteResponse }] = useDeleteItemOneDriveMutation();
+  const [sendDeleteItem, { data: deleteResponse,isSuccess:deleteSuccess,isLoading:deleteLoading }] = useDeleteItemOneDriveMutation();
   const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
     breadcrumbs: [{
         id: '',
@@ -118,13 +118,18 @@ const breadcrumbClickHandler = async (id: string) => {
         <RecentFile
           data={data}
           isLoading={isLoading}
-          error={error}
+          isSuccess={isSuccess}
           onCopy={copylinkDriveItem}
           copyResponse={copyResponse}
           onClick={getDownloadDriveItem}
           downloadUrl={ItemDownloadUrl}
           onDelete={deleteDriveItem}
           deleteResponse={deleteResponse}
+          deleteLoading={deleteLoading}
+          deleteSuccess={deleteSuccess}
+          copyLoading={copyLoading}
+          copySuccess={copySuccess}
+                    
         />
       {/* </Grid> */}
     </AuthenticatedTemplate>

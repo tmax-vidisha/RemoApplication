@@ -5,6 +5,7 @@ import Mymeeting from '../../Components/Mymeeting';
 const MeetingsPage = () => {
     const {token} = useCustom();
     const { data, error, isLoading } = useGetAllMeetingsQuery(token)
+    
   console.log(data,"meetings ")
   return (
     <div>
@@ -12,6 +13,7 @@ const MeetingsPage = () => {
            data = {data}
            isLoading={isLoading}
            error= {error}
+           
         />
     </div>
   )

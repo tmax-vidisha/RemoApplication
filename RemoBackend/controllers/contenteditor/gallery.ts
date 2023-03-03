@@ -2,17 +2,17 @@
 import axios from 'axios'
 import express, { Request, Response } from "express";
 import fetch from 'node-fetch'
-import fileUpload from 'express-fileupload';
-import bodyParser from 'body-parser';
+// import fileUpload from 'express-fileupload';
+// import bodyParser from 'body-parser';
 import asyncHandler from '../../middleware/asyncHandler'
-const app = express();
+// const app = express();
  
 // app.use(cors());
-app.use(fileUpload());
-app.use(express.static("files"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser. text({type: '/'}));
+// app.use(fileUpload());
+// app.use(express.static("files"));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser. text({type: '/'}));
 const getAllRoot = asyncHandler(async(req:Request, res:Response) => {
     console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
   

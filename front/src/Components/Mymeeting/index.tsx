@@ -39,7 +39,8 @@ var moment = require("moment-timezone");
 interface IFolderProps {
   data: any,
   error: any,
-  isLoading: any
+  isLoading: any,
+  
 }
 
 // const Mymeeting = () => {
@@ -48,7 +49,7 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
   // const {token} = useCustom();
   // const { data, error, isLoading } = useGetAllMeetingsQuery(token)
   const { data, error, isLoading } = props
-  // console.log(data,'meetingsssssssssssss')
+  console.log(data, 'meetingsssssttttecxssssssss')
 
   const [alignment, setAlignment] = React.useState<string | null>('left');
 
@@ -91,32 +92,15 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
               >
                 Upcoming Event
               </Typography>
-              <Typography className={classes.meetHeader2}>
-                {/* <img src={calendar} alt="" /><span style={{ paddingLeft: "10px" }}>{current_time}</span> */}
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <Typography className={classes.meetHeader2}><img src={calendar} alt="" /><span style={{ paddingLeft: "10px" }}>{current_time}</span>
+                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DesktopDatePicker
                     inputFormat="MM/DD/YYYY"
                     value={value}
                     onChange={handleChange}
-                    className={classes.calendarRoot}
-                    renderInput={(params) => <TextField {...params}
-                      sx={{
-                        svg: { color: '#009BAD' },
-                        input: { color: '#B2B2B2' },
-                        // border:{color:"none"}
-                        padding: "none"
-                      }}
-                    />}
+                    renderInput={(params) => <TextField {...params} />}
                   />
-                </LocalizationProvider>
-                {/* <label>
-                  <DatePicker
-                    selected={dateInput}
-                    onChange={(date) => setDateInput(date)}
-                    minDate={moment().toDate()}
-                    showPopperArrow={false} />
-                  <CalendarIcon />
-                </label> */}
+                </LocalizationProvider> */}
               </Typography>
             </Stack>
             <Grid >
@@ -209,10 +193,10 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
                               <a
                                 target={"_blank"}
                                 //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
-                                href="https://teams.microsoft.com/_?culture=en-in&country=in#/conversations/19:meeting_NzdhM2FkNDMtOWU1ZC00NzVhLTgxZmEtYzA0ZjU4YjBhYTkz@thread.v2?ctx=chat"
-                              >
-                                <img src={teams} alt="" />
+                                href={item.onlineMeeting.joinUrl}
+                              >  <img src={teams} alt="" />
                               </a>
+
                             </Typography>
                           </Grid>
 

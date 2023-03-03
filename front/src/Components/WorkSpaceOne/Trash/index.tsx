@@ -7,7 +7,7 @@ import announcementIcon from "../../../Assets/Images/announcement.svg";
 import { useStyles } from './Styles';
 import TrashFiles from './TrashFiles';
 import AllLinks from '../../Quicklinks/AllLinks';
-
+import {TrashedPage} from '../../../Pages';
 const Trash = () => {
     const classes = useStyles();
     return (
@@ -32,7 +32,7 @@ const Trash = () => {
                     </Grid>
                     <Grid item xs={7} style={{ paddingLeft: "8px", }}>
                         <SearchPart />
-                        <TrashFiles />
+                        <TrashedPage />
                     </Grid>
                     <Grid item xs={2}>
                             <AllLinks />

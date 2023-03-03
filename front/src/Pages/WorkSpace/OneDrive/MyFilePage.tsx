@@ -18,10 +18,10 @@ import { styled } from '@mui/material/styles';
 const MyFilePage = () => {
     const { token } = useCustom();
     const classes = useStyles();
-    const { data, error, isLoading } = useGetAllRootItemsOneDriveQuery(token)
-    const [sendItem, { data: ItemChildren, error: itemChildrenError, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
-    const [sendDeleteItem, { data: deleteResponse }] = useDeleteItemOneDriveMutation();
-    const [sendCopyItem, { data: copyResponse }] = useCopylinkOneDriveMutation();
+    const { data, isSuccess, isLoading } = useGetAllRootItemsOneDriveQuery(token)
+    const [sendItem, { data: ItemChildren, isSuccess: itemChildrenSuccess, isLoading: itemChildrenIsLoading }] = useGetItemChildrenOneDriveMutation();
+    const [sendDeleteItem, { data: deleteResponse ,isSuccess:deleteSuccess,isLoading:deleteLoading }] = useDeleteItemOneDriveMutation();
+    const [sendCopyItem, { data: copyResponse,isSuccess:copySuccess,isLoading:copyLoading }] = useCopylinkOneDriveMutation();
     console.log(data?.response)
     const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
         breadcrumbs: [{
@@ -115,15 +115,19 @@ const MyFilePage = () => {
                     getChildHandler={breadcrumbClickHandler}  />
                 <MyFilesPage
                     data={data}
-                    error={error}
+                    isSuccess={isSuccess}
                     isLoading={isLoading}
                     ItemChildren={ItemChildren}
-                    itemChildrenError={itemChildrenError}
+                    itemChildrenSuccess={itemChildrenSuccess}
                     itemChildrenIsLoading={itemChildrenIsLoading}
                     onClick={folderClickHandler}
                     onDelete={deleteDriveItem}
+                    deleteLoading={deleteLoading}
                     deleteResponse={deleteResponse}
+                    deleteSuccess={deleteSuccess}
                     onCopy={copylinkDriveItem}
+                    copyLoading={copyLoading}
+                    copySuccess={copySuccess}
                     copyResponse={copyResponse}
                 />
                 </Grid>

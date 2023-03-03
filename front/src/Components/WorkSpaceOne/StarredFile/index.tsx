@@ -5,8 +5,9 @@ import SideBar from '../SideBar';
 import LeftMenu from '../LeftMenu';
 import SearchPart from '../SearchPart';
 import announcementIcon from "../../../Assets/Images/announcement.svg";
-import StarredOne from './StarredOne';
+// import StarredOne from './StarredOne';
 import AllLinks from '../../Quicklinks/AllLinks';
+import { StarredPage } from '../../../Pages';
 
 const StarredFile = () => {
     const classes = useStyles();
@@ -34,7 +35,7 @@ const StarredFile = () => {
                         </Grid>
                         <Grid item xs={7} style={{ paddingLeft: "8px" }}>
                             <SearchPart />
-                            <StarredOne />
+                            <StarredPage />
                         </Grid>
                         <Grid item xs={2}>
                             <AllLinks />
