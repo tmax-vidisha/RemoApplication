@@ -7,7 +7,7 @@ import Menu from "@mui/material/Menu";
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from '@mui/icons-material/AccountCircleOutlined';
-import { Container, Grid, Hidden } from "@mui/material";
+import { Container, Grid, Hidden, Popper, Grow, ClickAwayListener, MenuList } from "@mui/material";
 import MailIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
@@ -71,29 +71,76 @@ interface IFolderProps {
   UserError: any,
   UserLoading: any,
   EmpData: any,
-  EmpError: any,
+  EmpSuccess: any,
   EmpLoading: any
 }
 // const Header = () => {
 const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const { data, error, isLoading, CountData, CountError, CountLoading, UserData, UserError, UserLoading, EmpData, EmpError, EmpLoading } = props
+  const { data, error, isLoading, CountData, CountError, CountLoading, UserData, UserError, UserLoading, EmpData, EmpSuccess, EmpLoading } = props
   const { token } = useCustom();
   //@ts-ignore
 
   // const { data, error, isLoading } = useGetAllUnReadMailsQuery(token)
   // const { data:CountData, error:CountError, isLoading:CountLoading } = useGetAllUnReadMeetingsQuery(token)
   // const { data:UserData, error:UserError, isLoading:UserLoading } = useGetAllUserInfoQuery(token)
+
   console.log(EmpData?.response, 'EmpInfo')
   const open = Boolean(anchorEl);
   const classes = useStyles();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const [open1, setOpen1] = React.useState(false);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
+  const [userData, setUserdata] = useState<any>([]);
+  let CurrentDate: any = moment(new Date()).format("DD-MM");
+  console.log(CurrentDate, "Date")
+  const handleToggle = () => {
+    setOpen1((prevOpen) => !prevOpen);
+    Object.freeze(EmpData?.response);
+    const arrCopy = [...EmpData?.response];
+
+    // const rr = arrCopy.filter((movie: any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i: any) => {return i.fields.Name})
+    // console.log(rr,'yyyyy')
+    setUserdata(arrCopy.filter((movie: any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i: any) => {
+            return i.fields.Name
+          }))
+        console.log(userData,'kkkkrtuyytryhtyr')
   };
 
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
+  const handleClose = (event: Event | React.SyntheticEvent) => {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return;
+    }
+
+    setOpen1(false);
+  };
+
+  function handleListKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen1(false);
+    } else if (event.key === 'Escape') {
+      setOpen1(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open1);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open1 === false) {
+      anchorRef.current!.focus();
+    }
+
+    prevOpen.current = open1;
+  }, [open1]);
 
   const handleProfileMenuOpen = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -242,35 +289,42 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   //   </IconButton>
   //   <p>Profile</p>
   // </MenuItem>;
-  let CurrentDate: any = moment(new Date()).format("DD-MM");
-  console.log(CurrentDate, "Date")
 
-  useEffect(() => {
-    if (EmpData?.response !== undefined) {
-      const EmpN = EmpData?.response && EmpData?.response?.filter((movie: any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i: any) => {
-        return i.fields.Name
-      })
-      setBirthdayName(EmpN)
-      console.log(birthdayName, 'ggggggeeeeeeeee')
-      if (birthdayName.length > 0) {
-        console.log('Birhdadddy')
-        {
-          birthdayName.map((i: any) => {
-            return console.log(i)
-          })
-        }
-      } else {
-        console.log('No Birthday')
-      }
 
-      // console.log(EmpN ,'rgregreg')
-      //   let modifiedArr = EmpN.map(function(element:any){
-      //     return element ;
+  // useEffect(() => {
+  //     if(EmpLoading){
+  //       <>Loading</>
+  //     }
+  //     else if(EmpSuccess){
+  //     Object.freeze(EmpData?.response);
+  //     const arrCopy = [...EmpData?.response];
+  //     // setUserdata(arrCopy)
+  //     const EmpN =arrCopy.filter((movie: any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i: any) => {
+  //       return i.fields.Name
+  //     })
+  //     setBirthdayName(EmpN)
+  //   }
+  //     // console.log(birthdayName, 'ggggggeeeeeeeee')
+  //     // if (birthdayName.length > 0) {
+  //     //   console.log('Birhdadddy')
+  //     //   {
+  //     //     birthdayName.map((i: any) => {
+  //     //       return console.log(i,'tytryhrthtrhrthsaasass')
+  //     //     })
+  //     //   }
+  //     // } else {
+  //     //   console.log('No Birthday')
+  //     // }
 
-      // });
+  //     // console.log(EmpN ,'rgregreg')
+  //     //   let modifiedArr = EmpN.map(function(element:any){
+  //     //     return element ;
 
-    }
-  }, [])
+  //     // });
+
+
+
+  // }, [])
   //   const  EmpN = EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
   //     return i.fields.Name
   //   })
@@ -308,7 +362,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <ToggleButton />
                 </div> */}
                 <div style={{ marginLeft: "50px" }}>
-                  <IconButton
+                  {/* <IconButton
                     size="large"
                     aria-label="unread mail count"
                     color="inherit"
@@ -337,7 +391,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                   >
 
-                    {/* <MenuItem onClick={handleClose}>Ayesha's birthday Today</MenuItem> */}
+                  
                     {birthdayName.length > 0 ? (
                     birthdayName.map((i: any) => {
                       console.log(i,'kkkkkkkkkkkk')
@@ -346,8 +400,61 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   ) : (
                     <MenuItem onClick={handleClose}>No birthday Today</MenuItem>
                   )}
-                  </Menu>
+                  </Menu> */}
+                  <IconButton
+                    ref={anchorRef}
+                    id="composition-button"
+                    size="large"
+                    aria-label="unread mail count"
+                    color="inherit"
+                    aria-controls={open1 ? 'composition-menu' : undefined}
+                    aria-expanded={open1 ? 'true' : undefined}
+                    aria-haspopup="true"
+                    onClick={handleToggle}
+                  >
+                    <Badge color="error" sx={{ top: "9px" }}>
+                      <img src={birthday} alt="" />
+                    </Badge>
+                  </IconButton>
+                  <Popper
+                    open={open1}
+                    anchorEl={anchorRef.current}
+                    role={undefined}
+                    placement="bottom-start"
+                    transition
+                    disablePortal
+                  >
+                    {({ TransitionProps, placement }) => (
+                      <Grow
+                        {...TransitionProps}
+                        style={{
+                          transformOrigin:
+                            placement === 'bottom-start' ? 'left top' : 'left bottom',
+                        }}
+                      >
+                        <Paper>
+                          <ClickAwayListener onClickAway={handleClose}>
+                            <MenuList
+                              autoFocusItem={open1}
+                              id="composition-menu"
+                              aria-labelledby="composition-button"
+                              onKeyDown={handleListKeyDown}
 
+                            >
+                              {userData.length >0 ? userData.map((i:any)=>{
+                                return (
+                                  <MenuItem onClick={handleClose}>{i}</MenuItem>
+                                )
+                              }): <MenuItem onClick={handleClose}>No Data</MenuItem>}
+                              {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
+                              <MenuItem onClick={handleClose}>My account</MenuItem>
+                              <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+                            </MenuList>
+                          </ClickAwayListener>
+                        </Paper>
+                      </Grow>
+                    )}
+                  </Popper>
 
 
                   {/* {EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
@@ -366,48 +473,48 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                           
                         //  return <MenuItem onClick={handleClose}>{i.fields.Name}</MenuItem>
             })} */}
-                
 
-              
-              </div>
-              <div>
-                <IconButton
-                  size="large"
-                  aria-label="unread mail count"
-                  color="inherit"
-                  onClick={handleClickOpen}
-                  aria-controls={openFirst ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={openFirst ? "true" : undefined}
-                >
-                  <Badge color="error" sx={{ top: "9px" }}>
-                    <img src={temp} alt="" />
-                  </Badge>
-                </IconButton>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorE2}
-                  open={openFirst}
-                  onClose={handleOnClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                  PaperProps={{
-                    style: {
-                      width: 350,
-                      height: 150,
-                      overflow: "Hidden",
-                    },
-                  }} >
-                  <img src={close} alt="" onClick={handleOnClose} style={{ width: "15px", marginRight: "-290px", cursor: "pointer" }} />
-                  <MenuItem>
-                    <WeatherPage />
-                  </MenuItem>
 
-                </Menu>
-              </div>
 
-              {/* <div>
+                </div>
+                <div>
+                  <IconButton
+                    size="large"
+                    aria-label="unread mail count"
+                    color="inherit"
+                    onClick={handleClickOpen}
+                    aria-controls={openFirst ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={openFirst ? "true" : undefined}
+                  >
+                    <Badge color="error" sx={{ top: "9px" }}>
+                      <img src={temp} alt="" />
+                    </Badge>
+                  </IconButton>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorE2}
+                    open={openFirst}
+                    onClose={handleOnClose}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
+                    }}
+                    PaperProps={{
+                      style: {
+                        width: 350,
+                        height: 150,
+                        overflow: "Hidden",
+                      },
+                    }} >
+                    <img src={close} alt="" onClick={handleOnClose} style={{ width: "15px", marginRight: "-290px", cursor: "pointer" }} />
+                    <MenuItem>
+                      <WeatherPage />
+                    </MenuItem>
+
+                  </Menu>
+                </div>
+
+                {/* <div>
                   <IconButton
                     size="small"
                     aria-label="unread mail count"
@@ -445,164 +552,164 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                 </div>  */}
 
-              <div style={{ marginTop: "7px" }}>
+                <div style={{ marginTop: "7px" }}>
+                  <IconButton
+                    size="large"
+                    aria-label="unread mail count"
+                    color="inherit"
+                    onClick={handleClickSecOpen}
+                    aria-controls={openSecond ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={openSecond ? "true" : undefined}
+                  >
+                    <Badge sx={{
+                      top: "3px",
+                    }}>
+                      <img src={calendarWhite} alt="calendar" />
+                    </Badge>
+                  </IconButton>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorE3}
+                    open={openSecond}
+                    onClose={handleSecOnClose}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
+                    }}
+                    PaperProps={{
+                      style: {
+                        marginTop: 8,
+                        width: 300
+                      },
+                    }}
+                  >
+                    <MenuItem onClick={handleSecOnClose}>
+                      <Calendar
+                        onChange={onChange}
+                        value={value}
+                      />
+                      {/* <SubCalendar/> */}
+                    </MenuItem>
+                  </Menu>
+                </div>
+
+                <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                ><a
+                  target={"_blank"}
+                  //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+                  href="https://teams.microsoft.com/_?culture=en-in&country=in#/conversations/19:meeting_NzdhM2FkNDMtOWU1ZC00NzVhLTgxZmEtYzA0ZjU4YjBhYTkz@thread.v2?ctx=chat"
+                >
+                    <Badge badgeContent={CountData?.response.length} color="error" sx={{
+                      top: "3px",
+                      "& .MuiBadge-badge": {
+                        color: "white",
+                        backgroundColor: "#009BAD"
+                      }
+                    }}>
+                      <img src={teamm} alt="teams" />
+                    </Badge>
+                  </a>
+                </IconButton>
                 <IconButton
                   size="large"
                   aria-label="unread mail count"
+                  color="inherit">
+                  <a
+                    target={"_blank"}
+                    href="https://outlook.office.com/mail/inbox">
+                    <Badge badgeContent={data?.response?.unreadItemCount} color="error" sx={{
+                      top: "3px",
+                      "& .MuiBadge-badge": {
+                        color: "white",
+                        backgroundColor: "#009BAD"
+                      }
+                    }}>
+                      <img src={outlookIcon} alt="Outlook" />
+                    </Badge>
+                  </a>
+                </IconButton>
+                <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
                   color="inherit"
-                  onClick={handleClickSecOpen}
-                  aria-controls={openSecond ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={openSecond ? "true" : undefined}
                 >
-                  <Badge sx={{
-                    top: "3px",
-                  }}>
-                    <img src={calendarWhite} alt="calendar" />
-                  </Badge>
+                  <a
+                    target={"_blank"}
+                    // href="https://outlook.office.com/mail/inbox"
+                    href="https://login.microsoftonline.com/common/oauth2/authorize?client_id=00000002-0000-0ff1-ce00-000000000000&redirect_uri=https%3a%2f%2foutlook.office.com%2fowa%2f&resource=00000002-0000-0ff1-ce00-000000000000&response_mode=form_post&response_type=code+id_token&scope=openid&msafed=1&msaredir=1&client-request-id=9199217e-2710-702d-8273-3869284ea20c&protectedtoken=true&claims=%7b%22id_token%22%3a%7b%22xms_cc%22%3a%7b%22values%22%3a%5b%22CP1%22%5d%7d%7d%7d&nonce=638000473460699608.5e4b27b8-11e3-4083-a0cc-f12e7b6603f2&state=Dcu7DoIwFIDhou_iVjm92MtAHEgMMbigiYatp5REYgMBgvHt7fD9258RQvbJLskghWglDABILaQCZa0CczwFiVyjoYwFQSUYQR14T3vGg0alQPQ8S2-dj1-Xn5fVraFghzl07zn49TEWrmrAVzdV_-zWvZoFuZ3raGMbP0N7Pw3IYcPnZcLSThivWyjNHw"
+                  >
+                    <Badge color="error" sx={{ top: "3px" }}>
+                      <img src={onenote} alt="teams" />
+                    </Badge>
+                  </a>
+                </IconButton>
+
+                <IconButton
+                  sx={{ top: "3px" }}
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  color="inherit"
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick5}>
+                  <img
+                    src={userimg}
+                    alt="pic"
+                    style={{
+                      width: "35px",
+                      height: "35px",
+                      borderRadius: "30px",
+                    }}
+                  />
                 </IconButton>
                 <Menu
                   id="basic-menu"
-                  anchorEl={anchorE3}
-                  open={openSecond}
-                  onClose={handleSecOnClose}
+                  anchorEl={anchorEl5}
+                  open={open5}
+                  onClose={handleClose5}
                   MenuListProps={{
-                    "aria-labelledby": "basic-button",
+                    'aria-labelledby': 'basic-button',
                   }}
                   PaperProps={{
                     style: {
-                      marginTop: 8,
-                      width: 300
+                      marginTop: -2
                     },
-                  }}
-                >
-                  <MenuItem onClick={handleSecOnClose}>
-                    <Calendar
-                      onChange={onChange}
-                      value={value}
-                    />
-                    {/* <SubCalendar/> */}
-                  </MenuItem>
+                  }}>
+                  <Box>
+                    <Grid style={{ color: "#009BAD", fontSize: "13px" }}>{UserData?.response?.name}</Grid>
+                    <Grid style={{ fontSize: "12px" }}>{UserData?.response?.email}</Grid>
+                  </Box>
+                  <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
+                  <MenuItem onClick={handleClose5} className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
+                  <MenuItem onClick={handleClose5} className={classes.profile}><img src={banner} alt="account" />Display on your banner view</MenuItem>
+                  <MenuItem onClick={handleClose5} className={classes.profile}><img src={signOut} alt="account" />SignOut</MenuItem>
                 </Menu>
-              </div>
-
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              ><a
-                target={"_blank"}
-               //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
-               href="https://teams.microsoft.com/_?culture=en-in&country=in#/conversations/19:meeting_NzdhM2FkNDMtOWU1ZC00NzVhLTgxZmEtYzA0ZjU4YjBhYTkz@thread.v2?ctx=chat"
-              >
-                  <Badge badgeContent={CountData?.response.length} color="error" sx={{
-                    top: "3px",
-                    "& .MuiBadge-badge": {
-                      color: "white",
-                      backgroundColor: "#009BAD"
-                    }
-                  }}>
-                    <img src={teamm} alt="teams" />
-                  </Badge>
-                </a>
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="unread mail count"
-                color="inherit">
-                <a
-                  target={"_blank"}
-                  href="https://outlook.office.com/mail/inbox">
-                  <Badge badgeContent={data?.response?.unreadItemCount} color="error" sx={{
-                    top: "3px",
-                    "& .MuiBadge-badge": {
-                      color: "white",
-                      backgroundColor: "#009BAD"
-                    }
-                  }}>
-                    <img src={outlookIcon} alt="Outlook" />
-                  </Badge>
-                </a>
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <a
-                  target={"_blank"}
-                  // href="https://outlook.office.com/mail/inbox"
-                  href="https://login.microsoftonline.com/common/oauth2/authorize?client_id=00000002-0000-0ff1-ce00-000000000000&redirect_uri=https%3a%2f%2foutlook.office.com%2fowa%2f&resource=00000002-0000-0ff1-ce00-000000000000&response_mode=form_post&response_type=code+id_token&scope=openid&msafed=1&msaredir=1&client-request-id=9199217e-2710-702d-8273-3869284ea20c&protectedtoken=true&claims=%7b%22id_token%22%3a%7b%22xms_cc%22%3a%7b%22values%22%3a%5b%22CP1%22%5d%7d%7d%7d&nonce=638000473460699608.5e4b27b8-11e3-4083-a0cc-f12e7b6603f2&state=Dcu7DoIwFIDhou_iVjm92MtAHEgMMbigiYatp5REYgMBgvHt7fD9258RQvbJLskghWglDABILaQCZa0CczwFiVyjoYwFQSUYQR14T3vGg0alQPQ8S2-dj1-Xn5fVraFghzl07zn49TEWrmrAVzdV_-zWvZoFuZ3raGMbP0N7Pw3IYcPnZcLSThivWyjNHw"
+              </Box>
+              <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="show more"
+                  //   aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  //   onClick={handleMobileMenuOpen}
+                  color="inherit"
+                  sx={{ top: "9px" }}
                 >
-                  <Badge color="error" sx={{ top: "3px" }}>
-                    <img src={onenote} alt="teams" />
-                  </Badge>
-                </a>
-              </IconButton>
-
-              <IconButton
-                sx={{ top: "3px" }}
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                color="inherit"
-                id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick5}>
-                <img
-                  src={userimg}
-                  alt="pic"
-                  style={{
-                    width: "35px",
-                    height: "35px",
-                    borderRadius: "30px",
-                  }}
-                />
-              </IconButton>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl5}
-                open={open5}
-                onClose={handleClose5}
-                MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
-                PaperProps={{
-                  style: {
-                    marginTop: -2
-                  },
-                }}>
-                <Box>
-                  <Grid style={{ color: "#009BAD", fontSize: "13px" }}>{UserData?.response?.name}</Grid>
-                  <Grid style={{ fontSize: "12px" }}>{UserData?.response?.email}</Grid>
-                </Box>
-                <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
-                <MenuItem onClick={handleClose5} className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
-                <MenuItem onClick={handleClose5} className={classes.profile}><img src={banner} alt="account" />Display on your banner view</MenuItem>
-                <MenuItem onClick={handleClose5} className={classes.profile}><img src={signOut} alt="account" />SignOut</MenuItem>
-              </Menu>
-            </Box>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                //   aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                //   onClick={handleMobileMenuOpen}
-                color="inherit"
-                sx={{ top: "9px" }}
-              >
-                <MoreIcon />
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </Container>
-      </StyledAppBar>
-      {/* {renderMobileMenu}
+                  <MoreIcon />
+                </IconButton>
+              </Box>
+            </Toolbar>
+          </Container>
+        </StyledAppBar>
+        {/* {renderMobileMenu}
       {renderMenu} */}
-    </Box>
+      </Box>
     </AuthenticatedTemplate >
   )
 }
