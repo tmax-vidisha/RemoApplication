@@ -37,6 +37,7 @@ import Fade from '@mui/material/Fade';
 import DialogContentText from '@mui/material/DialogContentText/DialogContentText';
 import { Options16Filled } from '@fluentui/react-icons';
 import { useEffect } from 'react';
+import { SortbyNewestFirst, SortbyOldestFirst } from './Shorting';
 
 
 interface SimpleDialogProps {
@@ -84,7 +85,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     console.log(copyResponse?.response, 'CopyLink')
     const [openOne, setOpenOne] = React.useState(false);
 
-   
+
     const handleClickOne = (popup: any) => {
         setOpenOne(true);
     };
@@ -92,7 +93,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     const handleCloseOne = () => {
         setOpenOne(false);
     };
-   
+
 
     const handledelete = () => {
         onDelete?.(id, name)
@@ -434,16 +435,36 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         setShowResult(true)
     }
 
-    const sortAscending = () => {
-        const sortAscPrices = [...prices]
-        sortAscPrices.sort((a, b) => a - b)
-        setPrices(sortAscPrices)
-    }
-    const sortDescending = () => {
-        const sortDescPrices = [...prices]
-        sortDescPrices.sort((a, b) => a - b).reverse()
-        setPrices(sortDescPrices)
-    }
+    // const sortAscending = () => {
+    //     const sortAscPrices = [...prices]
+    //     sortAscPrices.sort((a, b) => a - b)
+    //     setPrices(sortAscPrices)
+    // }
+    // const sortDescending = () => {
+    //     const sortDescPrices = [...prices]
+    //     sortDescPrices.sort((a, b) => a - b).reverse()
+    //     setPrices(sortDescPrices)
+    // }
+
+    const [NewData, setNewData] = useState(data);
+
+    const [SortingValue, setSortingValue] = useState("default");
+
+    const handleSorting = (e: any) => {
+        setSortingValue(e.target.value);
+        console.log(e.target.value, SortingValue);
+        switch (e.target.value) {
+            case "newestFirst":
+                setNewData(SortbyNewestFirst(NewData));
+                break;
+            case "oldestFirst":
+                setNewData(SortbyOldestFirst(NewData));
+                break;
+            default:
+                setNewData(data);
+        }
+    };
+
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -462,26 +483,28 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
             <Grid className={classes.bigPart} >
                 <Grid className={classes.myFile}>
                     <Grid>
+                    <span className={classes.shortSpan}>Sort by</span>
                         <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
                             <InputLabel id="demo-simple-select-standard-label">
-                                <span className={classes.shortSpan}>Sort by</span>
+                              
                                 {/* <span className={classes.shortBy}>Newest</span> */}
                             </InputLabel>
-                            <Select
+                            <select onChange={handleSorting} style={{ width: "130px" }}>
+                                <option value="newestFirst" className={classes.shortBy}>Newest </option>
+                                <option value="oldestFirst" className={classes.shortBy}>Oldest </option>
+                            </select>
+                            {/* <Select
                                 labelId="demo-simple-select-standard-label"
                                 id="demo-simple-select-standard"
                                 value={age}
-                                onChange={handleChange}
+                                onChange={handleSorting}
                                 label="Age"
                                 style={{ width: "100px" }}
                             >
-                                {/* <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem> */}
-                                <MenuItem value={10} onClick={sortAscending}><span className={classes.shortBy}>Newest</span></MenuItem>
-                                <MenuItem value={20} onClick={sortDescending}><span className={classes.shortBy}>Oldest</span></MenuItem>
+                                <MenuItem value={10} ><span className={classes.shortBy}>Newest</span></MenuItem>
+                                <MenuItem value={20} ><span className={classes.shortBy}>Oldest</span></MenuItem>
 
-                            </Select>
+                            </Select> */}
                         </FormControl>
                     </Grid>
                     <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
@@ -563,7 +586,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                         {show ?
                             <TableBody>
-                                {data?.response &&
+                                {  data?.response &&
                                     data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
                                         //   const { fields = {} } = item;
 
