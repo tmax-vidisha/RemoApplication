@@ -115,9 +115,18 @@ export const useStyles = makeStyles({
   bigPart: {
     // marginRight: "25px",
     backgroundColor: "white",
-    marginTop: "20px",
+    // marginTop: "20px",
     borderRadius: "10px",
-    padding: "10px"
+    // padding: "10px"
+  },
+  shortSpan: {
+    color: "#606c74",
+    fontSize: "13px",
+    marginRight: "10px"
+  },
+  shortBy: {
+    color: "#606c74",
+    fontSize: "14px"
   },
   divFile: {
     color: "#1b6189",
@@ -304,6 +313,26 @@ export const useStyles = makeStyles({
     textAlign: "left",
 
   },
+  restoreText: {
 
+    "& img": {
+      width: "10px",
+      paddingRight: "10px",
+    },
+    "& span": {
+      color: "#009BAD",
+      fontSize: "8px",
+    },
+    "& p": {
+      color: "#606C74",
+      fontSize: "8px",
+    }
+  },
+  popup: {
+    "& .css-1irc8sz-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper": {
+      top: "149px !important",
+      left: "787px !important",
+    }
+  }
 });
 

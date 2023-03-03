@@ -165,4 +165,4 @@ const GalleryContentEditorPage = () => {
   )
 }
 
-export default GalleryContentEditorPage
+export default GalleryContentEditorPage;
