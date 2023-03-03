@@ -133,11 +133,20 @@ const postTableAnnouncement = asyncHandler(async (req: Request, res: Response) =
       const data = await response.json();
       // enter you logic when the fetch is successful
       console.log(data);
+      return res.status(201).json({
+        success: true,
+        response:"List Item created"
+      });
       // return data
     } catch (error) {
       // enter your logic for when there is an error (ex. error toast)
 
       console.log(error)
+      return res.status(500).json({
+        success: false,
+        // error: error,
+        response:'List Item Creation Failed'
+      });
     }
 
 //     const response = 
@@ -163,9 +172,9 @@ const postTableAnnouncement = asyncHandler(async (req: Request, res: Response) =
 const getLatestAnnouncement = asyncHandler(async(req:Request, res:Response) => {
   console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
-  // const  token = req.headers.authorization
+  const  token = req.headers.authorization
   // console.log(req.body)
-  const {token} = req.params
+  // const {token} = req.params
   //  const {token} = req.body
   console.log(token,'llll')
   // console.log(req.body,'gregrthtrht')

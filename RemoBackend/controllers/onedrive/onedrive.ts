@@ -431,9 +431,9 @@ const uploadItemInOneDrive = asyncHandler(async (req: Request, res: Response) =>
 const getAllOneDriveItemsRoot = asyncHandler(async (req: Request, res: Response) => {
   console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
-  // const  token = req.headers.authorization
+   const  token = req.headers.authorization
   console.log(req.body)
-  const { token } = req.params
+  // const { token } = req.params
   // //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -651,9 +651,9 @@ const copylinkDriveItem = asyncHandler(async (req: Request, res: Response) => {
 const getAllOneDriveSharedItems = asyncHandler(async (req: Request, res: Response) => {
   console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
-  // const  token = req.headers.authorization
+  const  token = req.headers.authorization
   console.log(req.body)
-  const { token } = req.params
+  // const { token } = req.params
   // //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -690,9 +690,9 @@ const getAllOneDriveSharedItems = asyncHandler(async (req: Request, res: Respons
 const getAllOneDriveRecentFiles = asyncHandler(async (req: Request, res: Response) => {
   console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
-  // const  token = req.headers.authorization
+   const  token = req.headers.authorization
   console.log(req.body)
-  const { token } = req.params
+  // const { token } = req.params
   // //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -775,9 +775,9 @@ const getAllOneDriveItemDownloadUrl = asyncHandler(async (req: Request, res: Res
 const getAllStarred = asyncHandler(async(req:Request, res:Response) => {
   console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
-  // const  token = req.headers.authorization
+const  token = req.headers.authorization
   // console.log(req.body)
-  const {token} = req.params
+  // const {token} = req.params
   //  const {token} = req.body
   console.log(token,'llll')
   // console.log(req.body,'gregrthtrht')
@@ -827,9 +827,9 @@ const getAllStarred = asyncHandler(async(req:Request, res:Response) => {
 const getAllTrashed = asyncHandler(async(req:Request, res:Response) => {
   console.log(req.headers.authorization,'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
-  // const  token = req.headers.authorization
+  const  token = req.headers.authorization
   // console.log(req.body)
-  const {token} = req.params
+  // const {token} = req.params
   //  const {token} = req.body
   console.log(token,'llll')
   // console.log(req.body,'gregrthtrht')

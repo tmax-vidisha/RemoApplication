@@ -8,7 +8,7 @@ import useCustom from '../../hooks/useCustom';
 
 const TableAnnouncementPage = () => {
     const classes=useStyles();
-    const [sendItem] = useUploadItemInAnnouncementMutation();
+    const [sendItem,{data:createdResponse,isLoading:createdLoading,isSuccess:createdSuccess}] = useUploadItemInAnnouncementMutation();
     const {token} = useCustom();
     const { data,isLoading,isSuccess } = useGetLatestAnnouncementQuery(token)
     const  sendData= async(obj:any) =>{
@@ -31,6 +31,11 @@ const TableAnnouncementPage = () => {
       //  }
       await sendItem(obj)
     }
+    if(createdLoading){
+        console.log('Loading')
+     }else if(createdSuccess){
+       console.log(createdResponse?.response,'created')
+     }
     return (
         <div  style={{ margin: "30px", }}>
             <Grid container item xs={12} className={classes.bigPaper}>
