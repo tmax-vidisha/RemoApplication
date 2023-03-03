@@ -125,7 +125,7 @@ const Gallery = () => {
                   <img src="https://media.istockphoto.com/photos/young-people-work-in-modern-office-picture-id881484382?k=20&m=881484382&s=612x612&w=0&h=SIZswZgkHtJagAnKZLyWXUQmq7Y-aDCIc_nzGQxlXjY=" />
                  
                 </div> */}
-                  <div className={classes.galleryWidth}>
+                  {/* <div className={classes.galleryWidth}>
 
                     {data?.response && data?.response?.map((step: any, indx: any) => {
                       let ext = step.name.split('.').pop();
@@ -144,7 +144,7 @@ const Gallery = () => {
                       }
                     })}
 
-                  </div>
+                  </div> */}
                 </Stack>
               </div>
             </CardContent>

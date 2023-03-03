@@ -4,7 +4,7 @@ import { useUploadItemInRemoNavigationMutation } from '../../services/contentEdi
 import {useGetAllNavigationQuery} from '../../services/APIs';
 import useCustom from '../../hooks/useCustom';
 const NavigationContentEditorPage = () => {
-    const [sendItem] = useUploadItemInRemoNavigationMutation();
+    const [sendItem,{data:createdResponse,isLoading:createdLoading,isSuccess:createdSuccess}] = useUploadItemInRemoNavigationMutation();
     const {token} = useCustom();
     const { data,isLoading,isSuccess } = useGetAllNavigationQuery(token)
     const  sendData= async(obj:any) =>{
@@ -27,6 +27,11 @@ const NavigationContentEditorPage = () => {
       //  }
       await sendItem(obj)
     }
+    if(createdLoading){
+      console.log('Loading')
+   }else if(createdSuccess){
+     console.log(createdResponse?.response,'created')
+   }
   return (
     <div>
         <NavigationEditor

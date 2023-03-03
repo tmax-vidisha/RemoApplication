@@ -4,7 +4,7 @@ import { useUploadItemInRemoNewsMutation } from '../../services/contentEditor'
 import { useGetAllNewsQuery } from '../../services/APIs';
 import useCustom from '../../hooks/useCustom';
 const NewsContentEditorPage = () => {
-    const [sendItem] = useUploadItemInRemoNewsMutation();
+    const [sendItem,{data:createdResponse,isLoading:createdLoading,isSuccess:createdSuccess}] = useUploadItemInRemoNewsMutation();
     const {token} = useCustom();
     const { data,isLoading,isSuccess } = useGetAllNewsQuery(token)
    
@@ -28,7 +28,11 @@ const NewsContentEditorPage = () => {
       //  }
       await sendItem(obj)
     }
-    
+    if(createdLoading){
+      console.log('Loading')
+   }else if(createdSuccess){
+     console.log(createdResponse?.response,'created')
+   }
   return (
     <div>
       <NewsEditor

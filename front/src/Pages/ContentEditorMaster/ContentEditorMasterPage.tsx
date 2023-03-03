@@ -4,7 +4,7 @@ import {useUploadItemInRemoContentEditorMasterMutation} from '../../services/con
 import {useGetAllContentEditorQuery } from '../../services/APIs';
 import useCustom from '../../hooks/useCustom'
 const ContentEditorMasterPage = () => {
-     const [sendItem] = useUploadItemInRemoContentEditorMasterMutation();
+     const [sendItem,{data:createdResponse,isLoading:createdLoading,isSuccess:createdSuccess}] = useUploadItemInRemoContentEditorMasterMutation();
      const {token} = useCustom();
      const { data,isLoading,isSuccess } = useGetAllContentEditorQuery(token)
     const  sendData= async(obj:any) =>{
@@ -27,6 +27,7 @@ const ContentEditorMasterPage = () => {
       //  }
       await sendItem(obj)
     }
+    console.log(createdResponse?.response,'created')
   return (
     <div>
         <EditorContent

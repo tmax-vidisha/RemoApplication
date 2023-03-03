@@ -4,7 +4,7 @@ import {useGetAllRemoQuickLinkDataQuery}from '../../services/APIs';
 import useCustom from '../../hooks/useCustom';
 import QuickLinksEditor from '../../Components/QuickLinksEditor/QuickLinksEditor'
 const QuickLinkContentEditorPage = () => {
-    const [sendItem] = useUploadItemInRemoQuicklinkMutation();
+    const [sendItem,{data:createdResponse,isLoading:createdLoading,isSuccess:createdSuccess}] = useUploadItemInRemoQuicklinkMutation();
     const {token} = useCustom();
     const { data,isLoading,isSuccess } = useGetAllRemoQuickLinkDataQuery(token)
     const  sendData= async(obj:any) =>{
@@ -27,6 +27,11 @@ const QuickLinkContentEditorPage = () => {
         //  }
         await sendItem(obj)
       }
+      if(createdLoading){
+        console.log('Loading')
+     }else if(createdSuccess){
+       console.log(createdResponse?.response,'created')
+     }
   return (
     <div>
         <QuickLinksEditor
