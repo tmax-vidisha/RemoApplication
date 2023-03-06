@@ -477,11 +477,12 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   }}
                 >
                   <MenuItem onClick={handleSecOnClose}>
-                    <Calendar
+                    <p>Calendar</p>
+                    {/* <Calendar
                       onChange={onChange}
                       value={value}
-                    />
-                    {/* <SubCalendar/> */}
+                    /> */}
+                   
                   </MenuItem>
                 </Menu>
               </div>

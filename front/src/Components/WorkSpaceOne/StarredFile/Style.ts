@@ -263,6 +263,30 @@ export const useStyles = makeStyles({
     textAlign: "left",
 
   },
+  shortSpan:{
+    color: "#606c74",
+    fontSize:"13px",
+    marginRight:"10px"
+  },
+  shortBy:{
+    color: "#606c74",
+    fontSize:"14px"
+  },
 
+  theadCell: {
+    color: "#606C74 !important",
+    fontSize: "12px !important",
+    padding: "5px 5px !important",
+    fontWeight: "600 !important",
+    fontFamily: " 'DM Sans', sans-serif!important",
+    textAlign:"left"
+  },
+  TableCell: {
+    padding: "5px !important",
+    fontSize: "12px !important",
+    color: "#606C74 !important",
+    fontFamily: " 'DM Sans', sans-serif!important",
+    textAlign:"left"
+  },
 });
 

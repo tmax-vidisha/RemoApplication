@@ -38,7 +38,6 @@ import Fade from '@mui/material/Fade';
 import DialogContentText from '@mui/material/DialogContentText/DialogContentText';
 import { Options16Filled } from '@fluentui/react-icons';
 import { useEffect } from 'react';
-import { SortbyNewestFirst, SortbyOldestFirst } from './Shorting';
 
 
 interface SimpleDialogProps {
@@ -98,9 +97,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     const handleCloseOne = () => {
         setOpenOne(false);
     };
-
     const [openTwo, setOpenTwo] = React.useState(false);
-
 
 
     const handledelete = () => {
@@ -575,39 +572,6 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const onClickShow = () => {
         setShowResult(true)
     }
-
-
-    // const sortAscending = () => {
-    //     const sortAscPrices = [...prices]
-    //     sortAscPrices.sort((a, b) => a - b)
-    //     setPrices(sortAscPrices)
-    // }
-    // const sortDescending = () => {
-    //     const sortDescPrices = [...prices]
-    //     sortDescPrices.sort((a, b) => a - b).reverse()
-    //     setPrices(sortDescPrices)
-    // }
-
-    const [NewData, setNewData] = useState(data);
-
-    const [SortingValue, setSortingValue] = useState("default");
-
-    const handleSorting = (e: any) => {
-        setSortingValue(e.target.value);
-        console.log(e.target.value, SortingValue);
-        switch (e.target.value) {
-            case "newestFirst":
-                setNewData(SortbyNewestFirst(NewData));
-                break;
-            case "oldestFirst":
-                setNewData(SortbyOldestFirst(NewData));
-                break;
-            default:
-                setNewData(data);
-        }
-    };
-
-
     const [mode, setMode] = useState<String>('');
     const sortAscending = () => {
         // const sortAscPrices = [...prices]
@@ -662,7 +626,6 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     }
 
-
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -691,28 +654,23 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
             <Grid className={classes.bigPart} >
                 <Grid className={classes.myFile}>
                     <Grid>
-                    <span className={classes.shortSpan}>Sort by</span>
                         <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
                             <InputLabel id="demo-simple-select-standard-label">
-                              
+                                <span className={classes.shortSpan}>Sort by</span>
                                 {/* <span className={classes.shortBy}>Newest</span> */}
                             </InputLabel>
-                            <select onChange={handleSorting} style={{ width: "130px" }}>
-                                <option value="newestFirst" className={classes.shortBy}>Newest </option>
-                                <option value="oldestFirst" className={classes.shortBy}>Oldest </option>
-                            </select>
-                            {/* <Select
+                            <Select
                                 labelId="demo-simple-select-standard-label"
                                 id="demo-simple-select-standard"
                                 value={age}
-                                onChange={handleSorting}
+                                onChange={handleChange}
                                 label="Age"
                                 style={{ width: "100px" }}
                             >
-                                <MenuItem value={10} ><span className={classes.shortBy}>Newest</span></MenuItem>
-                                <MenuItem value={20} ><span className={classes.shortBy}>Oldest</span></MenuItem>
+                                <MenuItem value={10} onClick={sortAscending}><span className={classes.shortBy}>Newest</span></MenuItem>
+                                <MenuItem value={20} onClick={sortDescending}><span className={classes.shortBy}>Oldest</span></MenuItem>
 
-                            </Select> */}
+                            </Select>
                         </FormControl>
                     </Grid>
                     <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
@@ -802,63 +760,6 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                             </TableBody> */}
 
                         {show ?
-
-                            <TableBody>
-                                {  data?.response &&
-                                    data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
-                                        //   const { fields = {} } = item;
-
-                                        // const  Url= item["@microsoft.graph.downloadUrl"];
-                                        // console.log(Url,'llll')
-                                        //   // console.log(fields,'yjyjyjyjyj')
-                                        //   var eventTitle = fields?.Title;
-                                        //   console.log(eventTitle,'yjyjyjyjyj')
-                                        //   var eventStart = moment(fields?.EventDate).format("llll");
-                                        //   var eventDate = moment(fields?.EndDate).format("llll");
-
-                                        //   var eventIsActive = fields.IsActive;
-                                        // let createdMonth = moment(item.lastModifiedDateTime).format("MMM");
-                                        // let createdYear = moment(item.lastModifiedDateTime).format("YYYY");
-                                        let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
-                                        //   var createdDate = moment(
-                                        //     item.lastModifiedDateTime
-                                        //   ).fromNow();
-                                        // let result = (item?.folder === undefined) ? item?.webUrl :'';
-                                        // let result ; 
-                                        // if(item?.folder === undefined){
-                                        //   result= item?.webUrl
-                                        // }
-                                        return (
-                                            <TableRow
-                                                key={item.name}
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                            >
-                                                <TableCell className={classes.theadCell} onClick={onClickShow}><Checkbox /></TableCell>
-                                                <TableCell className={classes.TableCell}>
-                                                    {/* <Link 
-                                                    onClick={()=>{
-                                                        // folderClickHandler(item.id,item.name)
-                                                    //  if(item.name.includes('.txt') || item.name.includes('.xlsx') || item.name.includes('.docx')  || item.name.includes('.pptx')){
-                                                        if(item.folder === undefined){
-                                                    //   setUrl(item?.webUrl)
-                                                         console.log(item?.webUrl)
-                                                         
-                                                    }else{
-                                                       
-                                                        //   handleSubmit(item?.folder);
-                                                         console.log(item?.folder)
-                                                         folderClickHandler(item.id,item.name)
-                                                         setShow(!show)
-                                                    }
-                                                }}
-                                                
-                                                    //   href={`${result}`}
-                                                    > */}
-                                                    <Link onClick={() => {
-                                                        setShow(!show)
-                                                        onClick(item.id, item.name, item.folder)
-                                                        //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
-
 
                             <TableBody>
                                 {isLoading && <CircularProgress />}
