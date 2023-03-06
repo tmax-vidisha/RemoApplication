@@ -667,9 +667,6 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 label="Age"
                                 style={{ width: "100px" }}
                             >
-                                {/* <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem> */}
                                 <MenuItem value={10} onClick={sortAscending}><span className={classes.shortBy}>Newest</span></MenuItem>
                                 <MenuItem value={20} onClick={sortDescending}><span className={classes.shortBy}>Oldest</span></MenuItem>
 

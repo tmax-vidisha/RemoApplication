@@ -333,6 +333,23 @@ export const useStyles = makeStyles({
       top: "149px !important",
       left: "787px !important",
     }
-  }
+  },
+  theadCell: {
+    color: "#606C74 !important",
+    fontSize: "12px !important",
+    padding: "5px 5px !important",
+    fontWeight: "600 !important",
+    fontFamily: " 'DM Sans', sans-serif!important",
+    textAlign:"left",
+    width:"auto"
+  },
+  TableCell: {
+    padding: "5px ",
+    fontSize: "12px !important",
+    color: "#606C74 !important",
+    fontFamily: " 'DM Sans', sans-serif!important",
+    textAlign:"left"
+  },
+ 
 });
 
