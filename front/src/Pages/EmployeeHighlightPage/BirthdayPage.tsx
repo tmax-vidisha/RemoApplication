@@ -4,7 +4,7 @@ import {useUploadItemInEmployeeMutation} from '../../services/contentEditor'
 import { useGetAllEmpQuery } from '../../services/APIs';
 import useCustom from '../../hooks/useCustom';
 const BirthdayPage = () => {
-    const [sendItem] = useUploadItemInEmployeeMutation();
+    const [sendItem,{data:createdResponse,isLoading:createdLoading,isSuccess:createdSuccess}] = useUploadItemInEmployeeMutation();
     const {token} = useCustom();
     const { data,isLoading,isSuccess } = useGetAllEmpQuery(token)
     // console.log(data?.response ,'EmpBirth')
@@ -34,6 +34,11 @@ const BirthdayPage = () => {
       //  }
       await sendItem(obj)
     }
+    if(createdLoading){
+      console.log('Loading')
+   }else if(createdSuccess){
+     console.log(createdResponse?.response,'created')
+   }
   return (
     <div>
         <BirthdayEditor

@@ -35,6 +35,15 @@ import restore from '../../../Assets/Images/restore.svg';
 import Modal from '@mui/material/Modal';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ListIcon from '@mui/icons-material/List';
+=======
+import deleteBlue from '../../../Assets/Images/delete-blue.svg';
+import success from '../../../Assets/Images/success.svg';
+import Fade from '@mui/material/Fade';
+import starred from '../../../Assets/Images/starred.svg';
+import { useStyles } from './Styles';
+import TablePagination from '@mui/material/TablePagination';
+
+
 
 interface SimpleDialogProps {
     id: any,
@@ -222,6 +231,7 @@ interface IFolderProps {
     isSuccess: any,
     isLoading: any,
 }
+
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -250,6 +260,25 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+
+
+// const TrashFiles = () => {
+    const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
+const classes = useStyles();
+const {data ,isLoading,isSuccess} =props
+const [page, setPage] = React.useState(0);
+const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+const handleChangePage = (event: unknown, newPage: number) => {
+  setPage(newPage);
+};
+
+const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setRowsPerPage(+event.target.value);
+  setPage(0);
+};
+
     function createData(
         name: string,
         lastModifiedBy: string,
@@ -271,6 +300,7 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     ];
     const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+
 
     function niceBytes(x: any) {
 
@@ -365,6 +395,24 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </button>
                 </Grid>
             </Grid>
+=======
+   
+function niceBytes(x:any){
+
+  let l = 0, n = parseInt(x, 10) || 0;
+
+  while(n >= 1024 && ++l){
+      n = n/1024;
+  }
+  
+  return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
+}
+    return (
+        <Grid>
+            <Grid className={classes.divText}>
+                Trash
+            </Grid>
+
             <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
@@ -379,6 +427,7 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
+
                             {isLoading && <CircularProgress />}
                             {isSuccess && (
                                 <>
@@ -440,6 +489,27 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     </Modal>
 
                                 </>
+
+                        {isLoading && <CircularProgress/>}
+                        {isSuccess && (
+                            <>
+                            { data?.response && data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row:any) => (
+                                <TableRow
+                                    key={row.id}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell component="th" scope="row">
+                                        {row.name}
+                                    </TableCell>
+                                    <TableCell align="right">{row.lastModifiedBy.user.displayName}</TableCell>
+                                    <TableCell align="right">{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
+                                    <TableCell align="right">{niceBytes(row.size)}</TableCell>
+                                    <TableCell align="right">{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
+                                    {/* <TableCell align="right">{row.Actions}</TableCell> */}
+                                </TableRow>
+                            ))}
+                            </>
+
                             )}
 
                         </TableBody>

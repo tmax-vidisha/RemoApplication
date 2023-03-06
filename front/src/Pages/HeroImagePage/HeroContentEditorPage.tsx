@@ -5,7 +5,7 @@ import {useUploadItemInHeroBannerMutation} from '../../services/contentEditor'
 import {useGetAllHeroQuery} from '../../services/APIs';
 import useCustom from '../../hooks/useCustom';
 const HeroContentEditorPage = () => {
-    const [sendItem] = useUploadItemInHeroBannerMutation();
+    const [sendItem,{data:createdResponse,isLoading:createdLoading,isSuccess:createdSuccess}] = useUploadItemInHeroBannerMutation();
     const {token} = useCustom();
     const { data,isLoading,isSuccess } = useGetAllHeroQuery(token)
     const  sendData= async(obj:any) =>{
@@ -28,6 +28,11 @@ const HeroContentEditorPage = () => {
       //  }
      await sendItem(obj)
     }
+    if(createdLoading){
+      console.log('Loading')
+   }else if(createdSuccess){
+     console.log(createdResponse?.response,'created')
+   }
   return (
     <div>
         <HeroBannerEditor

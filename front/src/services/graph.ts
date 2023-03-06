@@ -1,11 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { AccessToken } from '../App';
-
+import {myAsync} from '../hooks/AccessToken'
 export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: fetchBaseQuery({
     // baseUrl: 'http://20.80.251.108/',
     baseUrl: 'http://localhost:4000/',
+    prepareHeaders: async (headers, query) => {
+      const authResult = await myAsync();
+      if (authResult ) {
+          headers.set('authorization', authResult);
+      }
+      return headers;
+  }
   }),
   endpoints: (builder) => ({
     getAllPrayers: builder.query<any, any>({
@@ -73,17 +80,24 @@ export const oneDriveApi = createApi({
   baseQuery: fetchBaseQuery({
     // baseUrl: 'http://20.80.251.108/',
      baseUrl: 'http://localhost:4000/',
-    prepareHeaders: (headers, { getState }) => {
-      // headers.set('Authorization', `Bearer ${access_token}`);
-       headers.set('Content-Type', 'application/json');
-      headers.set("authorization", `${AccessToken}`);
-      //@ts-ignore
-      //  console.log(Access,'lllldddlllllllllllll');
+    // prepareHeaders: (headers, { getState }) => {
+    //   // headers.set('Authorization', `Bearer ${access_token}`);
+    //    headers.set('Content-Type', 'application/json');
+    //   headers.set("authorization", `${AccessToken}`);
+    //   //@ts-ignore
+    //   //  console.log(Access,'lllldddlllllllllllll');
      
-      // headers.set('Accept', 'application/json');
+    //   // headers.set('Accept', 'application/json');
   
-      return headers
-    },
+    //   return headers
+    // },
+    prepareHeaders: async (headers, query) => {
+      const authResult = await myAsync();
+      if (authResult ) {
+          headers.set('authorization', authResult);
+      }
+      return headers;
+  }
   }),
   tagTypes: ['OneDriveRootItems'],
   endpoints: (builder) => ({

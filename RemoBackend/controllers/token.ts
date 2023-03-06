@@ -351,7 +351,7 @@ const getEventData = asyncHandler(async (req: Request, res: Response) => {
 
   //  const  token = req.headers.authorization
   // console.log(req.body)
-  const { token } = req.params
+  const  token  =req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llssdsdssdsdsdsdsll')
   // console.log(req.body,'gregrthtrht')
@@ -419,7 +419,7 @@ const getQuicklinkData = asyncHandler(async (req: Request, res: Response) => {
 
   //  const  token = req.headers.authorization
   // console.log(req.body)
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -447,7 +447,7 @@ const getRecentFilesData = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -477,7 +477,7 @@ const getAnnouncementData = asyncHandler(async (req: Request, res: Response) => 
   console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
   // const  token = req.headers.authorization
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -507,7 +507,7 @@ const getNavigationData = asyncHandler(async (req: Request, res: Response) => {
   console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
   // const  token = req.headers.authorization
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -559,7 +559,7 @@ const getRemoQuickLinkData = asyncHandler(async (req: Request, res: Response) =>
   console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
   // const  token = req.headers.authorization
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -610,7 +610,7 @@ const getCeoMsgData = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -688,7 +688,7 @@ const getEmpData = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const { token } = req.params
+  const  token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -756,7 +756,7 @@ const getEventsMeetings = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -797,7 +797,7 @@ const getRemoNews = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -851,7 +851,7 @@ const getRemoHero = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -897,7 +897,7 @@ const getRemoContentEditorMaster = asyncHandler(async (req: Request, res: Respon
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -943,7 +943,7 @@ const getRemoEvents = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const { token } = req.params
+  const  token  = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')

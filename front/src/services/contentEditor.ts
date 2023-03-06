@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { AccessToken } from '../App';
-
+import {myAsync} from '../hooks/AccessToken'
 
 
 
@@ -11,17 +11,24 @@ export const contentEditorApi = createApi({
     baseQuery: fetchBaseQuery({
         // baseUrl: 'http://20.80.251.108/',
         baseUrl: 'http://localhost:4000/',
-        prepareHeaders: (headers, { getState }) => {
-            // headers.set('Authorization', `Bearer ${access_token}`);
-            headers.set('Content-Type', 'application/json');
-            headers.set("authorization", `${AccessToken}`);
-            //@ts-ignore
-            //  console.log(Access,'lllldddlllllllllllll');
+        // prepareHeaders: (headers, { getState }) => {
+        //     // headers.set('Authorization', `Bearer ${access_token}`);
+        //     headers.set('Content-Type', 'application/json');
+        //     headers.set("authorization", `${AccessToken}`);
+        //     //@ts-ignore
+        //     //  console.log(Access,'lllldddlllllllllllll');
 
-            // headers.set('Accept', 'application/json');
+        //     // headers.set('Accept', 'application/json');
 
-            return headers
-        },
+        //     return headers
+        // },
+        prepareHeaders: async (headers, query) => {
+            const authResult = await myAsync();
+            if (authResult ) {
+                headers.set('authorization', authResult);
+            }
+            return headers;
+        }
     }),
     // tagTypes: ['OneDriveRootItems'],
     endpoints: (builder) => ({
@@ -56,6 +63,7 @@ export const contentEditorApi = createApi({
                 url: '/api/v1/contentEditor/ceoData/uploadItem',
                 headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
+                mode:"no-cors",
                 body: data
             }),
 
