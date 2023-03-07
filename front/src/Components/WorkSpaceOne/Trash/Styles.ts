@@ -330,8 +330,8 @@ export const useStyles = makeStyles({
   },
   popup: {
     "& .css-1irc8sz-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper": {
-      top: "149px !important",
-      left: "787px !important",
+      // top: "50% !important",
+      // left: "787px !important",
     }
   },
   theadCell: {
@@ -341,7 +341,7 @@ export const useStyles = makeStyles({
     fontWeight: "600 !important",
     fontFamily: " 'DM Sans', sans-serif!important",
     textAlign:"left",
-    width:"auto"
+    minWidth:"80px !important"
   },
   TableCell: {
     padding: "5px ",

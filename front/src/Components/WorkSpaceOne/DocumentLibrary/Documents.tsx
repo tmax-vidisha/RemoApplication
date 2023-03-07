@@ -122,7 +122,7 @@ const [page, setPage] = React.useState(0);
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell className={classes.theadCell}>Name</TableCell>
+                                <TableCell className={classes.theadCell} >Name</TableCell>
                                 <TableCell className={classes.theadCell}>Last Modified By</TableCell>
                                 <TableCell className={classes.theadCell}>Last Modified Date</TableCell>
                                 <TableCell className={classes.theadCell}>File Size</TableCell>

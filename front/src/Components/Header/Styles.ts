@@ -197,6 +197,10 @@ what:{
      marginTop:"10px",
       marginBottom:"10px",
       paddingLeft:"20px"
+},
+bdayText:{
+ color:"gray !important",
+ fontSize:"12px !important"
 }
 
 });

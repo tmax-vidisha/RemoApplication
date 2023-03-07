@@ -104,9 +104,9 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
     // const rr = arrCopy.filter((movie: any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i: any) => {return i.fields.Name})
     // console.log(rr,'yyyyy')
     setUserdata(arrCopy.filter((movie: any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i: any) => {
-            return i.fields.Name
-          }))
-        console.log(userData,'kkkkrtuyytryhtyr')
+      return i.fields.Name
+    }))
+    console.log(userData, 'kkkkrtuyytryhtyr')
   };
 
   // const handleClose = () => {
@@ -438,14 +438,12 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                               autoFocusItem={open1}
                               id="composition-menu"
                               aria-labelledby="composition-button"
-                              onKeyDown={handleListKeyDown}
-
-                            >
-                              {userData.length >0 ? userData.map((i:any)=>{
+                              onKeyDown={handleListKeyDown}>
+                              {userData.length > 0 ? userData.map((i: any) => {
                                 return (
-                                  <MenuItem onClick={handleClose}>{i}</MenuItem>
+                                  <MenuItem onClick={handleClose} className={classes.bdayText}>{i}</MenuItem>
                                 )
-                              }): <MenuItem onClick={handleClose}>No Data</MenuItem>}
+                              }) : <MenuItem onClick={handleClose} className={classes.bdayText}>No Data</MenuItem>}
                               {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
                               <MenuItem onClick={handleClose}>My account</MenuItem>
                               <MenuItem onClick={handleClose}>Logout</MenuItem> */}
@@ -680,36 +678,6 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     style: {
                       marginTop: -2
                     },
-
-                  }}
-                >
-                  <MenuItem onClick={handleSecOnClose}>
-                    <p>Calendar</p>
-                    {/* <Calendar
-                      onChange={onChange}
-                      value={value}
-                    /> */}
-                   
-                  </MenuItem>
-                </Menu>
-              </div>
-
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              ><a
-                target={"_blank"}
-               //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
-               href="https://teams.microsoft.com/_?culture=en-in&country=in#/conversations/19:meeting_NzdhM2FkNDMtOWU1ZC00NzVhLTgxZmEtYzA0ZjU4YjBhYTkz@thread.v2?ctx=chat"
-              >
-                  <Badge badgeContent={CountData?.response.length} color="error" sx={{
-                    top: "3px",
-                    "& .MuiBadge-badge": {
-                      color: "white",
-                      backgroundColor: "#009BAD"
-                    }
-
                   }}>
                   <Box>
                     <Grid style={{ color: "#009BAD", fontSize: "13px" }}>{UserData?.response?.name}</Grid>
