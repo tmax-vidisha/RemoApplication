@@ -24,9 +24,6 @@ import linkIcon from '../../../Assets/Images/link.svg';
 import openIcon from '../../../Assets/Images/open.svg';
 import downloadIcon from '../../../Assets/Images/DOWLOAD.svg';
 import deleteIcon from '../../../Assets/Images/delete.svg';
-import success from '../../../Assets/Images/success.svg';
-import Fade from '@mui/material/Fade';
-import starred from '../../../Assets/Images/starred.svg';
 import starredB from '../../../Assets/Images/StarredB.svg';
 import { useStyles } from './Styles';
 import TablePagination from '@mui/material/TablePagination';
@@ -35,13 +32,9 @@ import restore from '../../../Assets/Images/restore.svg';
 import Modal from '@mui/material/Modal';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ListIcon from '@mui/icons-material/List';
-=======
-import deleteBlue from '../../../Assets/Images/delete-blue.svg';
 import success from '../../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
 import starred from '../../../Assets/Images/starred.svg';
-import { useStyles } from './Styles';
-import TablePagination from '@mui/material/TablePagination';
 
 
 
@@ -261,24 +254,6 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
         setPage(0);
     };
 
-
-
-// const TrashFiles = () => {
-    const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
-const classes = useStyles();
-const {data ,isLoading,isSuccess} =props
-const [page, setPage] = React.useState(0);
-const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-const handleChangePage = (event: unknown, newPage: number) => {
-  setPage(newPage);
-};
-
-const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-  setRowsPerPage(+event.target.value);
-  setPage(0);
-};
-
     function createData(
         name: string,
         lastModifiedBy: string,
@@ -395,35 +370,17 @@ const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => 
                     </button>
                 </Grid>
             </Grid>
-=======
-   
-function niceBytes(x:any){
-
-  let l = 0, n = parseInt(x, 10) || 0;
-
-  while(n >= 1024 && ++l){
-      n = n/1024;
-  }
-  
-  return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
-}
-    return (
-        <Grid>
-            <Grid className={classes.divText}>
-                Trash
-            </Grid>
-
             <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <TableCell className={classes.theadCell}>Name</TableCell>
-                                <TableCell align="right" className={classes.theadCell}>Last Modified By</TableCell>
-                                <TableCell align="right" className={classes.theadCell}>Last Modified Date</TableCell>
-                                <TableCell align="right" className={classes.theadCell}>File Size</TableCell>
-                                <TableCell align="right" className={classes.theadCell}>Deleted</TableCell>
-                                <TableCell align="right" className={classes.theadCell}>Actions</TableCell>
+                                <TableCell  className={classes.theadCell}>Last Modified By</TableCell>
+                                <TableCell  className={classes.theadCell}>Last Modified Date</TableCell>
+                                <TableCell  className={classes.theadCell}>File Size</TableCell>
+                                <TableCell  className={classes.theadCell}>Deleted</TableCell>
+                                <TableCell  className={classes.theadCell}>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -431,19 +388,20 @@ function niceBytes(x:any){
                             {isLoading && <CircularProgress />}
                             {isSuccess && (
                                 <>
-                                    {data?.response && data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any) => (
+                                    {data?.response && data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any, index:any) => (
                                         <TableRow
-                                            key={row.id}
+                                            key={index}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                            <TableCell component="th" scope="row" className={classes.TableCell}>
+                                            <TableCell className={classes.TableCell}>
                                                 {row.name}
                                             </TableCell>
-                                            <TableCell align="right" className={classes.TableCell}>{row.lastModifiedBy.user.displayName}</TableCell>
-                                            <TableCell align="right" className={classes.TableCell}>{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
-                                            <TableCell align="right" className={classes.TableCell}>{niceBytes(row.size)}</TableCell>
-                                            <TableCell align="right" className={classes.TableCell}>{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
-                                            <TableCell align="right" className={classes.TableCell}> <Button
+                                            <TableCell  className={classes.TableCell} >{row.lastModifiedBy.user.displayName}</TableCell>
+                                            <TableCell  className={classes.TableCell} >{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
+                                            <TableCell  className={classes.TableCell} >{niceBytes(row.size)}</TableCell>
+                                            <TableCell  className={classes.TableCell} >{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
+                                            <TableCell  className={classes.TableCell} > 
+                                            <Button
                                                 id="basic-button"
                                                 aria-controls={open ? 'basic-menu' : undefined}
                                                 aria-haspopup="true"
@@ -489,27 +447,6 @@ function niceBytes(x:any){
                                     </Modal>
 
                                 </>
-
-                        {isLoading && <CircularProgress/>}
-                        {isSuccess && (
-                            <>
-                            { data?.response && data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row:any) => (
-                                <TableRow
-                                    key={row.id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="right">{row.lastModifiedBy.user.displayName}</TableCell>
-                                    <TableCell align="right">{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
-                                    <TableCell align="right">{niceBytes(row.size)}</TableCell>
-                                    <TableCell align="right">{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
-                                    {/* <TableCell align="right">{row.Actions}</TableCell> */}
-                                </TableRow>
-                            ))}
-                            </>
-
                             )}
 
                         </TableBody>
