@@ -16,6 +16,7 @@ export const galleryApi = createApi({
             const authResult = await myAsync();
             if (authResult ) {
                 headers.set('authorization', authResult);
+                headers.set("Access-Control-Allow-Origin", "*");
             }
             return headers;
         }

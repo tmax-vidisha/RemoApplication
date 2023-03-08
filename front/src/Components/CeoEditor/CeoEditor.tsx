@@ -387,8 +387,8 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       isActive: isActives,
       designation: designations,
       Name: ceoName,
-      Attachment: fileSelected1,
-      Attachmentname: names1,
+      // Attachment: fileSelected1,
+      // Attachmentname: names1,
       isDraft: false
     }
     // console.log(announcementData)
@@ -409,8 +409,8 @@ const CeoEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       isActive: isActives,
       designation: designations,
       Name: ceoName,
-      Attachment: fileSelected1,
-      Attachmentname: names1,
+      // Attachment: fileSelected1,
+      // Attachmentname: names1,
       isDraft: true
     }
     // console.log(announcementData)
