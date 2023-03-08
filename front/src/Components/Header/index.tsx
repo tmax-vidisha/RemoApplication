@@ -104,9 +104,9 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
     // const rr = arrCopy.filter((movie: any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i: any) => {return i.fields.Name})
     // console.log(rr,'yyyyy')
     setUserdata(arrCopy.filter((movie: any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i: any) => {
-            return i.fields.Name
-          }))
-        console.log(userData,'kkkkrtuyytryhtyr')
+      return i.fields.Name
+    }))
+    console.log(userData, 'kkkkrtuyytryhtyr')
   };
 
   // const handleClose = () => {
@@ -357,11 +357,11 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <SearchBar />
                 </div>
               </Box>
-              <Box sx={{ display: { xs: "none", md: "flex", marginLeft: "80px" } }}>
+              <Box sx={{ display: { xs: "none", md: "flex", paddingLeft:"80px", } }}>
                 {/* <div>
                   <ToggleButton />
                 </div> */}
-                <div style={{ marginLeft: "50px" }}>
+                <div style={{ paddingLeft: "50px",paddingTop:"7px"  }}>
                   {/* <IconButton
                     size="large"
                     aria-label="unread mail count"
@@ -439,13 +439,16 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                               id="composition-menu"
                               aria-labelledby="composition-button"
                               onKeyDown={handleListKeyDown}
-
+                              style={{ paddingTop: "15px" }}
                             >
-                              {userData.length >0 ? userData.map((i:any)=>{
+                              {userData.length > 0 ? userData.map((i: any) => {
                                 return (
-                                  <MenuItem onClick={handleClose}>{i}</MenuItem>
+                                  <>
+                                    <MenuItem onClick={handleClose} className={classes.bdayText}>{i} birthday today!!!</MenuItem>
+                                    <MenuItem className={classes.wish}> Lets wish!</MenuItem>
+                                  </>
                                 )
-                              }): <MenuItem onClick={handleClose}>No Data</MenuItem>}
+                              }) : <MenuItem onClick={handleClose} className={classes.bdayText}>No Data</MenuItem>}
                               {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
                               <MenuItem onClick={handleClose}>My account</MenuItem>
                               <MenuItem onClick={handleClose}>Logout</MenuItem> */}
@@ -499,6 +502,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     MenuListProps={{
                       "aria-labelledby": "basic-button",
                     }}
+                    style={{ paddingTop: "8px" }}
                     PaperProps={{
                       style: {
                         width: 350,
@@ -510,7 +514,6 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     <MenuItem>
                       <WeatherPage />
                     </MenuItem>
-
                   </Menu>
                 </div>
 
@@ -549,10 +552,8 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                       </Button>
                     </DialogActions>
                   </Dialog> 
-
                 </div>  */}
-
-                <div style={{ marginTop: "7px" }}>
+                <div style={{ paddingTop: "10px" }}>
                   <IconButton
                     size="large"
                     aria-label="unread mail count"
@@ -562,13 +563,15 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     aria-haspopup="true"
                     aria-expanded={openSecond ? "true" : undefined}
                   >
-                    <Badge sx={{
-                      top: "3px",
-                    }}>
+                    <a
+                      target={"_blank"}
+                      //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+                      href="https://outlook.office.com/calendar/view/month"
+                    >
                       <img src={calendarWhite} alt="calendar" />
-                    </Badge>
+                    </a>
                   </IconButton>
-                  <Menu
+                  {/* <Menu
                     id="basic-menu"
                     anchorEl={anchorE3}
                     open={openSecond}
@@ -588,9 +591,8 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                         onChange={onChange}
                         value={value}
                       />
-                      {/* <SubCalendar/> */}
                     </MenuItem>
-                  </Menu>
+                  </Menu> */}
                 </div>
 
                 <IconButton

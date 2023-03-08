@@ -23,7 +23,7 @@ const HeaderPage = () => {
           UserData={UserData}
           UserError={UserError}
           UserLoading={UserLoading}
-          EmpData ={EmpData}
+           EmpData ={EmpData}
           EmpSuccess={EmpSuccess}
           EmpLoading={EmpLoading}
 

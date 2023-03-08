@@ -187,16 +187,24 @@ export const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
   },
- 
-what:{
-  boxShadow: "10px 1px 30px -10px #858080fc",
-  height: "40px",
-   display: "flex",
-   justifyContent: "left",
+
+  what: {
+    boxShadow: "10px 1px 30px -10px #858080fc",
+    height: "40px",
+    display: "flex",
+    justifyContent: "left",
     alignItems: "center",
-     marginTop:"10px",
-      marginBottom:"10px",
-      paddingLeft:"20px"
-}
+    marginTop: "10px",
+    marginBottom: "10px",
+    paddingLeft: "20px"
+  },
+  bdayText: {
+    color: "gray !important",
+    fontSize: "12px !important"
+  },
+  wish: {
+    color: "#009BAD !important",
+    fontSize: "12px !important"
+  }
 
 });
