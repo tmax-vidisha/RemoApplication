@@ -69,15 +69,18 @@ export const useStyles = makeStyles({
   },
   calendarRoot: {
     "& .MuiInputBase-root": {
-      border: "0",
-      outline:"none",
+      border: "none !important",
+      outline: "none",
       padding: "1px !important",
       fontSize: "12px",
-      "& css-nxo287-MuiInputBase-input-MuiOutlinedInput-input":{
-        padding:"1px !important",
+      "& css-nxo287-MuiInputBase-input-MuiOutlinedInput-input": {
+        padding: "1px !important",
       },
       "& .MuiInputBase-input": {
         padding: "1px !important"
+      },
+      "& .css-i4bv87-MuiSvgIcon-root": {
+        fill: "#009BAD !important",
       }
 
     },

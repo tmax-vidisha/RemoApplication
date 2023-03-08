@@ -92,15 +92,17 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
               >
                 Upcoming Event
               </Typography>
-              <Typography className={classes.meetHeader2}><img src={calendar} alt="" /><span style={{ paddingLeft: "10px" }}>{current_time}</span>
-                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <Typography className={classes.meetHeader2} style={{width:"110px"}}>
+                {/* <img src={calendar} alt="" /><span style={{ paddingLeft: "10px" }}>{current_time}</span> */}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DesktopDatePicker
-                    inputFormat="MM/DD/YYYY"
+                    inputFormat="DD/MM/YYYY"
                     value={value}
+                    className={classes.calendarRoot}
                     onChange={handleChange}
                     renderInput={(params) => <TextField {...params} />}
                   />
-                </LocalizationProvider> */}
+                </LocalizationProvider> 
               </Typography>
             </Stack>
             <Grid >

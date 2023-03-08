@@ -34,6 +34,7 @@ import downloadIcon from '../../../Assets/Images/DOWLOAD.svg';
 import deleteIcon from '../../../Assets/Images/delete.svg';
 import deleteBlue from '../../../Assets/Images/delete-blue.svg';
 import success from '../../../Assets/Images/success.svg';
+import imageB from '../../../Assets/Images/imageB.svg';
 import Fade from '@mui/material/Fade';
 import DialogContentText from '@mui/material/DialogContentText/DialogContentText';
 import { Options16Filled } from '@fluentui/react-icons';
@@ -638,9 +639,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         setPage(0);
     };
     const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
-
     function niceBytes(x: any) {
-
         let l = 0, n = parseInt(x, 10) || 0;
 
         while (n >= 1024 && ++l) {
@@ -793,11 +792,10 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                 setShow(!show)
                                                                 onClick(item.id, item.name, item.folder)
                                                                 //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
-
-
-                                                            }}
+}}
                                                             // href={`${url}`}
                                                             >
+                                                                <img src={imageB} alt="..." />
                                                                 {item.name}
                                                             </Link>
 

@@ -375,12 +375,12 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell className={classes.theadCell}>Name</TableCell>
-                                <TableCell  className={classes.theadCell}>Last Modified By</TableCell>
-                                <TableCell  className={classes.theadCell}>Last Modified Date</TableCell>
-                                <TableCell  className={classes.theadCell}>File Size</TableCell>
-                                <TableCell  className={classes.theadCell}>Deleted</TableCell>
-                                <TableCell  className={classes.theadCell}>Actions</TableCell>
+                                <TableCell align="left" className={classes.theadCell}>Name</TableCell>
+                                <TableCell align="left" className={classes.theadCell}>Last Modified By</TableCell>
+                                <TableCell align="left" className={classes.theadCell}>Last Modified Date</TableCell>
+                                <TableCell align="left" className={classes.theadCell}>File Size</TableCell>
+                                <TableCell align="left" className={classes.theadCell}>Deleted</TableCell>
+                                <TableCell align="left" className={classes.theadCell}>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -393,14 +393,14 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
                                             key={index}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                            <TableCell className={classes.TableCell}>
+                                            <TableCell align="left" className={classes.TableCell}>
                                                 {row.name}
                                             </TableCell>
-                                            <TableCell  className={classes.TableCell} >{row.lastModifiedBy.user.displayName}</TableCell>
-                                            <TableCell  className={classes.TableCell} >{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
-                                            <TableCell  className={classes.TableCell} >{niceBytes(row.size)}</TableCell>
-                                            <TableCell  className={classes.TableCell} >{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
-                                            <TableCell  className={classes.TableCell} > 
+                                            <TableCell align="left" className={classes.TableCell} >{row.lastModifiedBy.user.displayName}</TableCell>
+                                            <TableCell align="left" className={classes.TableCell} >{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
+                                            <TableCell align="left" className={classes.TableCell} >{niceBytes(row.size)}</TableCell>
+                                            <TableCell align="left" className={classes.TableCell} >{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
+                                            <TableCell align="left" className={classes.TableCell} > 
                                             <Button
                                                 id="basic-button"
                                                 aria-controls={open ? 'basic-menu' : undefined}

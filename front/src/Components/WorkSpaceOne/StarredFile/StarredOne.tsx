@@ -7,6 +7,7 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import ListIcon from '@mui/icons-material/List';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
+import starredB from '../../../Assets/Images/StarredB.svg';
 
 interface IFolderProps {
     data: any,
@@ -140,10 +141,10 @@ function niceBytes(x:any){
                         <TableHead>
                             <TableRow>
                                 <TableCell>Name</TableCell>
-                                <TableCell align="right">Last Modified By</TableCell>
-                                <TableCell align="right">Last Modified Date</TableCell>
-                                <TableCell align="right">File Size</TableCell>
-                                <TableCell align="right">Actions</TableCell>
+                                <TableCell className={classes.theadCell}>Last Modified By</TableCell>
+                                <TableCell className={classes.theadCell}>Last Modified Date</TableCell>
+                                <TableCell className={classes.theadCell}>File Size</TableCell>
+                                <TableCell className={classes.theadCell}>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -157,10 +158,10 @@ function niceBytes(x:any){
                                     <TableCell component="th" scope="row" className={classes.TableCell}>
                                         {row.name}
                                     </TableCell>
-                                    <TableCell align="right" className={classes.TableCell}>{row.lastModifiedBy.user.displayName}</TableCell>
-                                    <TableCell align="right" className={classes.TableCell}>{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
-                                    <TableCell align="right" className={classes.TableCell}>{niceBytes(row.size)}</TableCell>
-                                    {/* <TableCell align="right">{row.Actions}</TableCell> */}
+                                    <TableCell  className={classes.TableCell}>{row.lastModifiedBy.user.displayName}</TableCell>
+                                    <TableCell  className={classes.TableCell}>{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
+                                    <TableCell  className={classes.TableCell}>{niceBytes(row.size)}</TableCell>
+                                    <TableCell align="center" className={classes.TableCell}> <img src={starredB} alt="..." /></TableCell> 
                                 </TableRow>
                             ))} 
                             </>

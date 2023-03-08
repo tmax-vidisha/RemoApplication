@@ -357,11 +357,11 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <SearchBar />
                 </div>
               </Box>
-              <Box sx={{ display: { xs: "none", md: "flex", marginLeft: "80px" } }}>
+              <Box sx={{ display: { xs: "none", md: "flex", paddingLeft:"80px", } }}>
                 {/* <div>
                   <ToggleButton />
                 </div> */}
-                <div style={{ marginLeft: "50px" }}>
+                <div style={{ paddingLeft: "50px",paddingTop:"7px"  }}>
                   {/* <IconButton
                     size="large"
                     aria-label="unread mail count"
@@ -438,10 +438,15 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                               autoFocusItem={open1}
                               id="composition-menu"
                               aria-labelledby="composition-button"
-                              onKeyDown={handleListKeyDown}>
+                              onKeyDown={handleListKeyDown}
+                              style={{ paddingTop: "15px" }}
+                            >
                               {userData.length > 0 ? userData.map((i: any) => {
                                 return (
-                                  <MenuItem onClick={handleClose} className={classes.bdayText}>{i}</MenuItem>
+                                  <>
+                                    <MenuItem onClick={handleClose} className={classes.bdayText}>{i} birthday today!!!</MenuItem>
+                                    <MenuItem className={classes.wish}> Lets wish!</MenuItem>
+                                  </>
                                 )
                               }) : <MenuItem onClick={handleClose} className={classes.bdayText}>No Data</MenuItem>}
                               {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
@@ -497,6 +502,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     MenuListProps={{
                       "aria-labelledby": "basic-button",
                     }}
+                    style={{ paddingTop: "8px" }}
                     PaperProps={{
                       style: {
                         width: 350,
@@ -508,7 +514,6 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     <MenuItem>
                       <WeatherPage />
                     </MenuItem>
-
                   </Menu>
                 </div>
 
@@ -547,10 +552,8 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                       </Button>
                     </DialogActions>
                   </Dialog> 
-
                 </div>  */}
-
-                <div style={{ marginTop: "7px" }}>
+                <div style={{ paddingTop: "10px" }}>
                   <IconButton
                     size="large"
                     aria-label="unread mail count"
@@ -560,13 +563,15 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     aria-haspopup="true"
                     aria-expanded={openSecond ? "true" : undefined}
                   >
-                    <Badge sx={{
-                      top: "3px",
-                    }}>
+                    <a
+                      target={"_blank"}
+                      //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+                      href="https://outlook.office.com/calendar/view/month"
+                    >
                       <img src={calendarWhite} alt="calendar" />
-                    </Badge>
+                    </a>
                   </IconButton>
-                  <Menu
+                  {/* <Menu
                     id="basic-menu"
                     anchorEl={anchorE3}
                     open={openSecond}
@@ -586,9 +591,8 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                         onChange={onChange}
                         value={value}
                       />
-                      {/* <SubCalendar/> */}
                     </MenuItem>
-                  </Menu>
+                  </Menu> */}
                 </div>
 
                 <IconButton
