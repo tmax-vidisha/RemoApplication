@@ -351,8 +351,23 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 label="Age"
                                 style={{ width: "100px" }}
                             >
-                                <MenuItem value={10} ><span className={classes.shortBy}>Newest</span></MenuItem>
-                                <MenuItem value={20} ><span className={classes.shortBy}>Oldest</span></MenuItem>
+                                <MenuItem value={10}
+                                    onClick={() => {
+                                        setSortedData('newest')
+                                        Object.freeze(data?.response);
+                                        const arrCopy = [...data?.response];
+                                        setUserdata(arrCopy)
+
+                                    }}
+                                ><span className={classes.shortBy}>Newest</span></MenuItem>
+                               <MenuItem value={20}
+                                    onClick={() => {
+                                        setSortedData('oldest')
+                                        Object.freeze(data?.response);
+                                        const arrCopy = [...data?.response];
+                                        setUserdata(arrCopy)
+                                    }}
+                                ><span className={classes.shortBy}>Oldest</span></MenuItem>
 
                             </Select>
                         </FormControl>
@@ -404,41 +419,7 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
             <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
 
                 <TableContainer component={Paper}>
-                    <Grid>
-                        <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
-                            <InputLabel id="demo-simple-select-standard-label">
-                                <span className={classes.shortSpan}>Sort by</span>
-                                {/* <span className={classes.shortBy}>Newest</span> */}
-                            </InputLabel>
-                            <Select
-                                labelId="demo-simple-select-standard-label"
-                                id="demo-simple-select-standard"
-                                // value={age}
-                                // onChange={handleChange}
-                                label="Age"
-                                style={{ width: "100px" }}
-                            >
-                                <MenuItem value={10}
-                                    onClick={() => {
-                                        setSortedData('newest')
-                                        Object.freeze(data?.response);
-                                        const arrCopy = [...data?.response];
-                                        setUserdata(arrCopy)
-
-                                    }}
-                                ><span className={classes.shortBy}>Newest</span></MenuItem>
-                                <MenuItem value={20}
-                                    onClick={() => {
-                                        setSortedData('oldest')
-                                        Object.freeze(data?.response);
-                                        const arrCopy = [...data?.response];
-                                        setUserdata(arrCopy)
-                                    }}
-                                ><span className={classes.shortBy}>Oldest</span></MenuItem>
-
-                            </Select>
-                        </FormControl>
-                    </Grid>
+                    
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
