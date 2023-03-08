@@ -13,7 +13,15 @@ export const useStyles = makeStyles({
     width: 80,
     height: 50,
   },
-
+  shortSpan: {
+    color: "#606c74",
+    fontSize: "13px",
+    marginRight: "10px"
+  },
+  shortBy: {
+    color: "#606c74",
+    fontSize: "14px"
+  },
   topClear: {
     justifyContent: "end !important",
     padding: "0 !important",

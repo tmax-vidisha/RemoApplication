@@ -9,7 +9,8 @@ import { uploadItemInOneDrive,
         getAllOneDriveRecentFiles,
         getAllOneDriveItemDownloadUrl,
         getAllStarred,
-        getAllTrashed
+        getAllTrashed,
+        deleteTrashedItem
     } from "../../controllers/onedrive/onedrive";
 // import multer from 'multer'
 const router = Router();
@@ -26,4 +27,5 @@ router.route('/getRecentFiles/:token').get(getAllOneDriveRecentFiles)
 router.route('/getRecentFiles/downloadurl').post(getAllOneDriveItemDownloadUrl)
 router.route('/getStarred/:token').get(getAllStarred)
 router.route('/getTrashed/:token').get(getAllTrashed)
+router.route('/deleteTrashedItem').post(deleteTrashedItem);
 export default router;

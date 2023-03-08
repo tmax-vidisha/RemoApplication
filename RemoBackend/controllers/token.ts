@@ -351,7 +351,7 @@ const getEventData = asyncHandler(async (req: Request, res: Response) => {
 
   //  const  token = req.headers.authorization
   // console.log(req.body)
-  const  token  =req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llssdsdssdsdsdsdsll')
   // console.log(req.body,'gregrthtrht')
@@ -419,7 +419,7 @@ const getQuicklinkData = asyncHandler(async (req: Request, res: Response) => {
 
   //  const  token = req.headers.authorization
   // console.log(req.body)
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -447,7 +447,7 @@ const getRecentFilesData = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -477,7 +477,7 @@ const getAnnouncementData = asyncHandler(async (req: Request, res: Response) => 
   console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
   // const  token = req.headers.authorization
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -507,7 +507,7 @@ const getNavigationData = asyncHandler(async (req: Request, res: Response) => {
   console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
   // const  token = req.headers.authorization
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -559,7 +559,7 @@ const getRemoQuickLinkData = asyncHandler(async (req: Request, res: Response) =>
   console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
   // const  token = req.headers.authorization
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -610,7 +610,7 @@ const getCeoMsgData = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -688,7 +688,7 @@ const getEmpData = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const  token = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -756,7 +756,7 @@ const getEventsMeetings = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -797,7 +797,7 @@ const getRemoNews = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -851,7 +851,7 @@ const getRemoHero = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')
@@ -892,15 +892,58 @@ const getRemoHero = asyncHandler(async (req: Request, res: Response) => {
 
 })
 
+async function checked(token: any) {
+  const res = await axios.get(`https://graph.microsoft.com/v1.0/me`, {
+    headers: {
+      'Authorization': `Bearer ${token} `,
+      'Content-Type': 'application/json',
+
+
+    }
+
+  })
+  // return res.data.mail
+  const list = await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists('Portal Content Admins')/items?$expand=fields`, {
+    headers: {
+      'Authorization': `Bearer ${token} `,
+      'Content-Type': 'application/json',
+      'Prefer': 'HonorNonIndexedQueriesWarningMayFailRandomly'
+
+    }
+
+  })
+  // const present = list.data.value.map((a: any) => {
+  //   // return a.fields.UserName.filter((s: any) => s.Email == 'regrgrgrewswwww')
+  // return  a.fields.UserName.map((w:any) =>{
+  //        if(w.Email == res.data.mail) {
+  //          return true
+  //        }else{
+  //         return false
+  //        }
+  //   })
+  // })
+  // return present
+  
+  const present = list.data.value
+  // var listContacts = function() {
+  //   return present.map(function(contact:any) {
+  //     return contact.fields
+  //   })
+  // };
+  // // console.log(listContacts());
+  // const ee =listContacts()
+ const rr = present.reduce((prev:any, product:any) => prev || product.fields.UserName.find((item:any) => item.Email === res.data.mail), undefined);
+   return rr
+}
+
 const getRemoContentEditorMaster = asyncHandler(async (req: Request, res: Response) => {
   console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
-  console.log(token, 'llll')
-  // console.log(req.body,'gregrthtrht')
+ 
   if (!token) {
 
     return res.status(404).json({
@@ -909,30 +952,46 @@ const getRemoContentEditorMaster = asyncHandler(async (req: Request, res: Respon
     });
 
   } else {
+    console.log(token, 'llll')
+    
+  const ans = await checked(token)
+  
+  console.log(ans,'gregrthtrht')
+    
+    // const checkedValue = ans[0][0].UserEmail
+     if(ans !== undefined){
 
-    const response =
-      // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
-      // await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/0ec4e29a-d2ec-4835-a011-ea8a3fe33ed4/items?$expand=fields`, {
-      await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists('ContentEditorMaster')/items?$expand=fields&$select=*&$filter=fields/isDraft  ne '1'`, {
-        headers: {
-          'Authorization': `Bearer ${token} `,
-          'Content-Type': 'application/json',
-          'Prefer': 'HonorNonIndexedQueriesWarningMayFailRandomly'
+      const response =
+        // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+        // await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/0ec4e29a-d2ec-4835-a011-ea8a3fe33ed4/items?$expand=fields`, {
+        await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists('ContentEditorMaster')/items?$expand=fields&$select=*&$filter=fields/isDraft  ne '1'`, {
+          headers: {
+            'Authorization': `Bearer ${token} `,
+            'Content-Type': 'application/json',
+            'Prefer': 'HonorNonIndexedQueriesWarningMayFailRandomly'
 
-        }
+          }
 
-      })
-
-
-    console.log(response.data.value, "meetingssssssssssssssssssssssss")
-    res.status(200).json({
-      success: true,
-      response: response.data.value,
-      // response1:responseTop.data.value
+        })
 
 
-    });
+      // console.log(response.data.value, "meetingssssssssssssssssssssssss")
+      res.status(200).json({
+        success: true,
+        response: response.data.value,
+        // response1:responseTop.data.value
 
+
+      });
+     }else {
+      res.status(200).json({
+        success: true,
+        response: 'Only Admin can Access',
+        // response1:responseTop.data.value
+
+
+      });
+     }
   }
 
 
@@ -943,7 +1002,7 @@ const getRemoEvents = asyncHandler(async (req: Request, res: Response) => {
 
   // const  token = req.headers.authorization
   // console.log(req.body)
-  const  token  = req.headers.authorization
+  const token = req.headers.authorization
   //  const {token} = req.body
   console.log(token, 'llll')
   // console.log(req.body,'gregrthtrht')

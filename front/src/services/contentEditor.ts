@@ -26,6 +26,7 @@ export const contentEditorApi = createApi({
             const authResult = await myAsync();
             if (authResult ) {
                 headers.set('authorization', authResult);
+                headers.set("Access-Control-Allow-Origin", "*");
             }
             return headers;
         }
@@ -63,7 +64,7 @@ export const contentEditorApi = createApi({
                 url: '/api/v1/contentEditor/ceoData/uploadItem',
                 headers:{ 'Content-Type': 'application/json' },
                 method: "POST",
-                mode:"no-cors",
+                // mode:"no-cors",
                 body: data
             }),
 
