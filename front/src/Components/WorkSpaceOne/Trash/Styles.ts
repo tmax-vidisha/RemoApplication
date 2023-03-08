@@ -341,10 +341,10 @@ export const useStyles = makeStyles({
     fontWeight: "600 !important",
     fontFamily: " 'DM Sans', sans-serif!important",
     textAlign:"left",
-    minWidth:"80px !important"
+    // minWidth:"80px !important"
   },
   TableCell: {
-    padding: "5px ",
+    padding: "5px 4px !important",
     fontSize: "12px !important",
     color: "#606C74 !important",
     fontFamily: " 'DM Sans', sans-serif!important",
