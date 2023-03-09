@@ -116,9 +116,9 @@ const postCeo = asyncHandler(async (req: Request, res: Response) => {
     } = req.body
     console.log(isActive, 'isActive')
     console.log(isDraft,'isDraft')
-     const Image = blobStorage(image, imageName)
-    const File = blobStorage1(Attachment, Attachmentname)
-    // console.log(Image, 'rtretrt')
+      const Image = blobStorage(image, imageName)
+    // const File = blobStorage1(Attachment, Attachmentname)
+     console.log(Image, 'rtretrt')
     //  console.log(File, 'tththththth')
     // //    console.log( title,imageName,isActive,EnableLikes,'ytjytjytjty')
     // console.log(description,'thgtrhj67k87k87k87k87')
@@ -141,7 +141,7 @@ const postCeo = asyncHandler(async (req: Request, res: Response) => {
       });
   
     } else {
-    //     console.log('lllllllllllllllllllllllll')
+       console.log('lllllllllllllllllllllllll')
       const Data = {
         fields: {
           Title: title,
@@ -151,7 +151,7 @@ const postCeo = asyncHandler(async (req: Request, res: Response) => {
           isActive:isActive,
           Designation:designation,
           Name:Name,
-         Attachment:File,
+        //  Attachment:File,
          isDraft:isDraft
   
   
@@ -208,6 +208,9 @@ const postCeo = asyncHandler(async (req: Request, res: Response) => {
   
   })
 
+
+ 
   export {
-    postCeo
+    postCeo,
+    
   }

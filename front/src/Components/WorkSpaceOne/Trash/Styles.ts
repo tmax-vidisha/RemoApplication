@@ -330,8 +330,10 @@ export const useStyles = makeStyles({
   },
   popup: {
     "& .css-1irc8sz-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper": {
+
       top: "55% !important",
       left:" 61% !important",
+
     }
   },
   theadCell: {
@@ -340,16 +342,16 @@ export const useStyles = makeStyles({
     padding: "5px 5px !important",
     fontWeight: "600 !important",
     fontFamily: " 'DM Sans', sans-serif!important",
-    textAlign:"left",
-    // minWidth:"80px !important"
+    textAlign: "left", minWidth: "80px !important"
   },
   TableCell: {
+
     padding: "13px 4px!important",
+
     fontSize: "12px !important",
     color: "#606C74 !important",
     fontFamily: " 'DM Sans', sans-serif!important",
-    textAlign:"left"
+    textAlign: "left"
   },
- 
 });
 
