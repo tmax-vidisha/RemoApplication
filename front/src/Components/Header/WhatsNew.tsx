@@ -41,7 +41,7 @@ const WhatsNew = () => {
                     <span onClick={handleItem1}><img src={announce} alt="" /></span>  <p style={{ marginLeft: "20px" }}>
                         <b>WHAT'S NEW</b>
                         {/* <Link to="/whatsAnnouneReadMore" style={{ color: "#606C74", textDecoration: "none", paddingLeft: "20px" }}>{data?.response[0].fields.Title}</Link> </p> */}
-                        <span style={{ color: "#606C74", textDecoration: "none", paddingLeft: "20px" }} onClick={handleItem}>{data?.response[0].fields.Title}</span> </p>
+                        <span style={{ color: "#606C74", textDecoration: "none", paddingLeft: "20px", cursor:"pointer" }} onClick={handleItem}>{data?.response[0].fields.Title}</span> </p>
                 </Paper>
             </Grid>
         </div>

@@ -8,19 +8,17 @@ import { useStyles } from './Styles';
 import TrashFiles from './TrashFiles';
 import AllLinks from '../../Quicklinks/AllLinks';
 import {TrashedPage} from '../../../Pages';
+import WhatsNew from '../../Header/WhatsNew';
 const Trash = () => {
     const classes = useStyles();
     return (
         <Grid>
-            <Grid item xs={10}>
-                {/* <IconText /> */}
-            </Grid>
+             {/*<Grid item xs={10}>
+                <IconText /> 
+            </Grid>*/}
             <Grid item xs={12}>
-                <Paper style={{ height: "50px", display: "flex", justifyContent: "flex-start", alignItems: "center", marginTop: "15px" }} elevation={0}>
-
-                    <Typography style={{ textAlign: "center", marginLeft: "30px", marginRight: "30px" }}><span> <img src={announcementIcon} alt="" /></span> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus   </Typography>
-                </Paper>
-            </Grid>
+                    <WhatsNew />
+                </Grid>
             <Box style={{ margin: "30px" }}>
 
                 <Grid container item xs={12} className={classes.bigPaper}>
