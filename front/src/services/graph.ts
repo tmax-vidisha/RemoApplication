@@ -147,6 +147,15 @@ export const oneDriveApi = createApi({
     }),
     
   }),
+  deleteItemStarred: builder.mutation<any, any>({
+    query: (data) => ({
+        url: '/api/v1/onedrive/deleteStarredItem',
+        // headers:{ 'Content-Type': 'application/json' },
+        method: "POST",
+        body: data
+    }),
+    
+  }),
   copylinkOneDrive: builder.mutation<any, any>({
     query: (data) => ({
         url: '/api/v1/onedrive/copylinkOneDriveItem',
@@ -212,7 +221,8 @@ export const {
                 useDownloadUrlItemOneDriveMutation,
                 useGetAllStarredItemsQuery,
                 useGetAllTrashedItemsQuery,
-                useDeleteItemTrashedMutation
+                useDeleteItemTrashedMutation,
+                useDeleteItemStarredMutation
                 
               
               
