@@ -10,7 +10,7 @@ const HeaderPage = () => {
     const { data, error, isLoading } = useGetAllUnReadMailsQuery(token)
     const { data:CountData, error:CountError, isLoading:CountLoading } = useGetAllUnReadMeetingsQuery(token)
     const { data:UserData, error:UserError, isLoading:UserLoading } = useGetAllUserInfoQuery(token)
-    const { data:EmpData, isSuccess:EmpSuccess, isLoading:EmpLoading } = useGetAllEmpQuery(token)
+    const { data:EmpData, isSuccess:EmpSuccess, isLoading:EmpLoading } = useGetAllEmpQuery(token,{ refetchOnMountOrArgChange: true })
   return (
     <div>
         <Header
