@@ -68,14 +68,17 @@ export const useStyles = makeStyles({
     // "&:hover": {
     //   color: "#1BAAB5",
     // },
-
+   
     "& div":{
         fontSize:"12px",
         "& p":{
-            fontSize:"12px",
-
+            fontSize:"12px",   
         }
     }
+  },
+  linkText:{
+    color: "#009BAD !important",
+    textDecoration:"none",
   },
 
   linkPart: {

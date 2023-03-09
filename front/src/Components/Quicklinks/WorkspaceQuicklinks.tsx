@@ -12,96 +12,93 @@ const WorkspaceQuicklinks = () => {
     const classes = useStyles();
     return (
         <div>
-           <div style={{ marginTop: "30px" }}>
-                                <Grid style={{ textAlign: "left", fontSize: "15px", marginLeft: "15px" }}>
-                                    Quick Link
-                                </Grid>
-                                <Grid className={classes.mainPart}>
+            <div style={{ marginTop: "30px" }}>
+                <Grid style={{ textAlign: "left", fontSize: "15px", marginLeft: "15px" }}>
+                    Quick Link
+                </Grid>
+                <Grid className={classes.mainPart}>
 
-                                    <Box className={classes.boxContent}>
-                                        <img src={admin} alt="admin" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/AnnoncementInput">IT -Service
-                                            </Link></Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={ITService} alt="ITService" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/CEOInput">
-                                                Admin
-                                            </Link></Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={sales} alt="sales" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/ContentEditor">
-                                                Sales
-                                            </Link>
-                                        </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={vehicle} alt="vehicle" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/AnnouncementReadMore">
-                                                Vehicle Request
-                                            </Link>
+                    <Box className={classes.boxContent}>
+                        <img src={admin} alt="admin" />
+                        <Grid component="p" className={classes.texts}>
+                            <Link to="/AnnoncementInput" className={classes.linkText}>IT -Service
+                            </Link></Grid>
+                    </Box>
+                    <Box className={classes.boxContent}>
+                        <img src={ITService} alt="ITService" />
+                        <Grid component="p" className={classes.texts}>
+                            <Link to="/CEOInput" className={classes.linkText}>
+                                Admin
+                            </Link></Grid>
+                    </Box>
+                    <Box className={classes.boxContent}>
+                        <img src={sales} alt="sales" />
+                        <Grid component="p" className={classes.texts}>
+                            <Link to="/ContentEditor" className={classes.linkText}>
+                                Sales
+                            </Link>
+                        </Grid>
+                    </Box>
+                    <Box className={classes.boxContent}>
+                        <img src={vehicle} alt="vehicle" />
+                        <Grid component="p" className={classes.texts}>
+                            <Link to="/AnnouncementReadMore" className={classes.linkText}>
+                                Vehicle Request
+                            </Link>
 
-                                        </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={sales} alt="announce" />
-                                        <Grid component="p" className={classes.texts}>
+                        </Grid>
+                    </Box>
+                    <Box className={classes.boxContent}>
+                        <img src={sales} alt="announce" />
+                        <Grid component="p" className={classes.texts}>
+                            <Link to="/EventsInput" className={classes.linkText}>
+                                Hub
+                            </Link>
+                        </Grid>
+                    </Box>
+                    <Box className={classes.boxContent}>
+                        <img src={ITService} alt="announce" />
+                        <Grid component="p" className={classes.texts}>
+                            <Link to="/ContentEditor" className={classes.linkText}>
+                                IT Service
+                            </Link>
+                        </Grid>
+                    </Box>
+                    <Box className={classes.boxContent}>
+                        <img src={admin} alt="announce" />
+                        <Grid component="p" className={classes.texts}>
+                            <Link to="/HeroInput" className={classes.linkText}>
+                                Admin
+                            </Link>
+                        </Grid>
+                    </Box>
+                    <Box className={classes.boxContent}>
+                        <img src={sales} alt="announce" />
+                        <Grid component="p" className={classes.texts}>
+                            <Link to="/EmpHighInput" className={classes.linkText}>
+                                Hub
+                            </Link> </Grid>
+                    </Box>
+                    <Box className={classes.boxContent}>
+                        <img src={vehicle} alt="announce" />
+                        <Grid component="p" className={classes.texts}>
+                            <Link to="/EmpHighInput" className={classes.linkText}>
+                                Vehicle Request
+                            </Link> </Grid>
+                    </Box>
 
-                                            <Link to="/EventsInput">
-                                                Hub
-                                            </Link>
-                                        </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={ITService} alt="announce" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/ContentEditor">
-                                                IT Service
-                                            </Link>
-                                        </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={admin} alt="announce" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/HeroInput">
-                                                Admin
-                                            </Link>
-                                        </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={sales} alt="announce" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/EmpHighInput">
-                                                Hub
-                                            </Link> </Grid>
-                                    </Box>
-                                    <Box className={classes.boxContent}>
-                                        <img src={vehicle} alt="announce" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/EmpHighInput">
-                                                Vehicle Request
-                                            </Link> </Grid>
-                                    </Box>
+                    <Box className={classes.boxContent}>
+                        <img src={sales} alt="vehicle" />
+                        <Grid component="p" className={classes.texts}>
+                            <Link to="/AnnouncementReadMore" className={classes.linkText}>
+                                Hub
+                            </Link>
 
-                                    <Box className={classes.boxContent}>
-                                        <img src={sales} alt="vehicle" />
-                                        <Grid component="p" className={classes.texts}>
-                                            <Link to="/AnnouncementReadMore">
-                                                Hub
-                                            </Link>
+                        </Grid>
+                    </Box>
 
-                                        </Grid>
-                                    </Box>
-
-
-
-                                </Grid>
-                            </div> 
+                </Grid>
+            </div>
         </div>
     );
 };
