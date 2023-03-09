@@ -224,6 +224,7 @@ const AnnoncementInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                               dangerouslySetInnerHTML={{
                                 __html: annMessageAsText,
                               }}
+                              style={{whiteSpace:"nowrap"}}
                             />
                           </Fragment>
                         </div>

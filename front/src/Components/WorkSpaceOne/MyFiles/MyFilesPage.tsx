@@ -795,7 +795,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 }}
                                                             // href={`${url}`}
                                                             >
-                                                                <img src={imageB} alt="..." />
+                                                                <img src={imageB} alt="..." style={{width:"15px",marginRight:"3px" }}/>
                                                                 {item.name}
                                                             </Link>
 
@@ -878,6 +878,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                         }}
                                                                         // href={`${url}`}
                                                                         >
+                                                                            <img src={imageB} alt="..." style={{width:"15px",marginRight:"3px" }}/> 
                                                                             {item.name}
                                                                         </Link>
 

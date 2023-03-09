@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState, useReducer } from 'react';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
 import WPOneDrive from '../../Workspace/OneDrive/index';
@@ -223,6 +224,10 @@ interface IFolderProps {
     data: any,
     isSuccess: any,
     isLoading: any,
+    onDelete?: (id: string, name: string) => void;
+    deleteResponse: any;
+    deleteLoading: any,
+    deleteSuccess: any,
 }
 
 const style = {
@@ -241,10 +246,11 @@ const style = {
 // const TrashFiles = () => {
 const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
-    const { data, isLoading, isSuccess } = props
+    const { data, isLoading, isSuccess, onDelete, deleteResponse, deleteLoading, deleteSuccess } = props
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+    const [userData, setUserdata] = useState<any>([]);
+    const [sortedData, setSortedData] = useState<any>('')
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -289,17 +295,31 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
     }
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
+    // const open = Boolean();
+    const [open, setOpen] = useState<boolean>(false)
+    // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
     const handleClose = () => {
         setAnchorEl(null);
+        setOpen(false)
     };
-
+    const [id, setId] = useState('')
+    const [name, setName] = useState('')
+    const submit = (val: any, val1: any) => {
+        // console.log(val,'yuig')
+        setId(val)
+        setName(val1)
+        setOpen(true)
+    }
+    console.log(id, 'hyyrrr')
     const [open1, setOpen1] = React.useState(false);
     const handleOpen1 = () => setOpen1(true);
-    const handleClose1 = () => setOpen1(false);
+    const handleClose1 = () => {
+        setOpen1(false)
+        onDelete?.(id, name)
+
+    };
     return (
         <Grid className={classes.bigPart}>
             <Grid className={classes.divText}>
@@ -320,8 +340,23 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
                             label="Age"
                             style={{ width: "100px" }}
                         >
-                            <MenuItem value={10} ><span className={classes.shortBy}>Newest</span></MenuItem>
-                            <MenuItem value={20} ><span className={classes.shortBy}>Oldest</span></MenuItem>
+                            <MenuItem value={10}
+                                onClick={() => {
+                                    setSortedData('newest')
+                                    Object.freeze(data?.response);
+                                    const arrCopy = [...data?.response];
+                                    setUserdata(arrCopy)
+
+                                }}
+                            ><span className={classes.shortBy}>Newest</span></MenuItem>
+                            <MenuItem value={20}
+                                onClick={() => {
+                                    setSortedData('oldest')
+                                    Object.freeze(data?.response);
+                                    const arrCopy = [...data?.response];
+                                    setUserdata(arrCopy)
+                                }}
+                            ><span className={classes.shortBy}>Oldest</span></MenuItem>
 
                         </Select>
                     </FormControl>
@@ -375,79 +410,151 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell align="left" className={classes.theadCell}>Name</TableCell>
-                                <TableCell align="left" className={classes.theadCell}>Last Modified By</TableCell>
-                                <TableCell align="left" className={classes.theadCell}>Last Modified Date</TableCell>
-                                <TableCell align="left" className={classes.theadCell}>File Size</TableCell>
-                                <TableCell align="left" className={classes.theadCell}>Deleted</TableCell>
-                                <TableCell align="left" className={classes.theadCell}>Actions</TableCell>
+                                <TableCell className={classes.theadCell}>Name</TableCell>
+                                <TableCell className={classes.theadCell}>Last Modified By</TableCell>
+                                <TableCell className={classes.theadCell}>Last Modified Date</TableCell>
+                                <TableCell className={classes.theadCell}>File Size</TableCell>
+                                <TableCell className={classes.theadCell}>Deleted</TableCell>
+                                <TableCell className={classes.theadCell}>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
 
                             {isLoading && <CircularProgress />}
-                            {isSuccess && (
+                            {sortedData === "newest" ?
                                 <>
-                                    {data?.response && data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any, index:any) => (
-                                        <TableRow
-                                            key={index}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
-                                            <TableCell align="left" className={classes.TableCell}>
-                                                {row.name}
-                                            </TableCell>
-                                            <TableCell align="left" className={classes.TableCell} >{row.lastModifiedBy.user.displayName}</TableCell>
-                                            <TableCell align="left" className={classes.TableCell} >{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
-                                            <TableCell align="left" className={classes.TableCell} >{niceBytes(row.size)}</TableCell>
-                                            <TableCell align="left" className={classes.TableCell} >{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
-                                            <TableCell align="left" className={classes.TableCell} > 
-                                            <Button
-                                                id="basic-button"
-                                                aria-controls={open ? 'basic-menu' : undefined}
-                                                aria-haspopup="true"
-                                                aria-expanded={open ? 'true' : undefined}
-                                                onClick={handleClick}>
-                                                {row.Actions}
-                                                <img src={starredB} alt="..." />
-                                            </Button></TableCell>
-                                        </TableRow>
-                                    ))}
-                                    <Menu
-                                        id="basic-menu"
-                                        anchorEl={anchorEl}
-                                        open={open}
-                                        onClose={handleClose}
-                                        MenuListProps={{
-                                            'aria-labelledby': 'basic-button',
-                                        }}
-                                        className={classes.popup}
-                                    >
-                                        <MenuItem onClick={handleClose} className={classes.restoreText}><img src={restore} alt="" /> <p>Restore</p></MenuItem>
-                                        <MenuItem onClick={handleOpen1} className={classes.restoreText}><img src={deleteBlue} alt="" /> <span>Delete Permanently</span> </MenuItem>
+                                    {isSuccess && (
+                                        <>
+                                            {userData.sort((a: any, b: any) => Date.parse(new Date(a.lastModifiedDateTime)) - Date.parse(new Date(b.lastModifiedDateTime))).reverse().slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any, index: any) => (
+                                                <TableRow
+                                                    key={index}
+                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                >
+                                                    <TableCell className={classes.TableCell}>
+                                                        {row.name}
+                                                    </TableCell>
+                                                    <TableCell className={classes.TableCell} >{row.lastModifiedBy.user.displayName}</TableCell>
+                                                    <TableCell className={classes.TableCell} >{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
+                                                    <TableCell className={classes.TableCell} >{niceBytes(row.size)}</TableCell>
+                                                    <TableCell className={classes.TableCell} >{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
+                                                    <TableCell className={classes.TableCell} >
+                                                        <Button
+                                                            id="basic-button"
+                                                            aria-controls={open ? 'basic-menu' : undefined}
+                                                            aria-haspopup="true"
+                                                            aria-expanded={open ? 'true' : undefined}
+                                                            onClick={() => submit(row.id, row.name)}>
 
-                                    </Menu>
-                                    <Modal
-                                        open={open1}
-                                        onClose={handleClose1}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
-                                    >
-                                        <Box sx={style}>
-                                            <Typography id="modal-modal-title" variant="h6" component="h2" style={{ fontSize: "14px", color: "rgb(27, 97, 137)", textAlign: "left" }}>
-                                                Are you sure want to permanently delete this item ?
-                                            </Typography>
-                                            <Typography id="modal-modal-description" sx={{ mt: 2, }} style={{ textAlign: "left", fontSize: "12px", marginBottom: "15px" }}>
-                                                Deleting "screen.png" permanently will also delete its activity and history across the workspace. You can't undo this action.
-                                            </Typography>
-                                            <div style={{ display: "flex", justifyContent: "center" }}>
-                                                <Button style={{ color: "white", backgroundColor: "#009BAD", borderRadius: "4px", textTransform: "none", marginRight: "20px" }} onClick={handleClose1}>Delete Permanently</Button>
-                                                <Button style={{ color: "rgb(27, 97, 137)", backgroundColor: "#ede3e3", borderRadius: "4px" }}>Cancel</Button>
-                                            </div>
-                                        </Box>
-                                    </Modal>
+                                                            <img src={starredB} alt="..." />
+                                                        </Button></TableCell>
+                                                </TableRow>
+                                            ))}
 
+
+                                        </>
+                                    )}
                                 </>
-                            )}
+
+                                : sortedData === 'oldest' ?
+                                    <>
+                                        {isSuccess && (
+                                            <>
+                                                {userData.sort((a: any, b: any) => Date.parse(new Date(a.lastModifiedDateTime)) - Date.parse(new Date(b.lastModifiedDateTime))).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any, index: any) => (
+                                                    <TableRow
+                                                        key={index}
+                                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                    >
+                                                        <TableCell className={classes.TableCell}>
+                                                            {row.name}
+                                                        </TableCell>
+                                                        <TableCell className={classes.TableCell} >{row.lastModifiedBy.user.displayName}</TableCell>
+                                                        <TableCell className={classes.TableCell} >{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
+                                                        <TableCell className={classes.TableCell} >{niceBytes(row.size)}</TableCell>
+                                                        <TableCell className={classes.TableCell} >{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
+                                                        <TableCell className={classes.TableCell} >
+                                                            <Button
+                                                                id="basic-button"
+                                                                aria-controls={open ? 'basic-menu' : undefined}
+                                                                aria-haspopup="true"
+                                                                aria-expanded={open ? 'true' : undefined}
+                                                                onClick={() => submit(row.id, row.name)}>
+
+                                                                <img src={starredB} alt="..." />
+                                                            </Button></TableCell>
+                                                    </TableRow>
+                                                ))}
+
+
+                                            </>
+                                        )}
+                                    </>
+                                    :
+                                    <>
+                                        {isSuccess && (
+                                            <>
+                                                {data?.response && data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any, index: any) => (
+                                                    <TableRow
+                                                        key={index}
+                                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                    >
+                                                        <TableCell className={classes.TableCell}>
+                                                            {row.name}
+                                                        </TableCell>
+                                                        <TableCell className={classes.TableCell} >{row.lastModifiedBy.user.displayName}</TableCell>
+                                                        <TableCell className={classes.TableCell} >{moment(row.lastModifiedDateTime).format("DD-MMM-YYYY")}</TableCell>
+                                                        <TableCell className={classes.TableCell} >{niceBytes(row.size)}</TableCell>
+                                                        <TableCell className={classes.TableCell} >{moment(row.lastModifiedDateTime).fromNow()}</TableCell>
+                                                        <TableCell className={classes.TableCell} >
+                                                            <Button
+                                                                id="basic-button"
+                                                                aria-controls={open ? 'basic-menu' : undefined}
+                                                                aria-haspopup="true"
+                                                                aria-expanded={open ? 'true' : undefined}
+                                                                onClick={() => submit(row.id, row.name)}>
+
+                                                                <img src={starredB} alt="..." />
+                                                            </Button></TableCell>
+                                                    </TableRow>
+                                                ))}
+
+
+                                            </>
+                                        )}
+                                    </>
+                            }
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                                className={classes.popup}
+                            >
+                                <MenuItem onClick={handleClose} className={classes.restoreText}><img src={restore} alt="" /> <p>Restore</p></MenuItem>
+                                <MenuItem onClick={handleOpen1} className={classes.restoreText}><img src={deleteBlue} alt="" /> <span>Delete Permanently</span> </MenuItem>
+
+                            </Menu>
+                            <Modal
+                                open={open1}
+                                onClose={handleClose1}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box sx={style}>
+                                    <Typography id="modal-modal-title" variant="h6" component="h2" style={{ fontSize: "14px", color: "rgb(27, 97, 137)", textAlign: "left" }}>
+                                        Are you sure want to permanently delete this item ?
+                                    </Typography>
+                                    <Typography id="modal-modal-description" sx={{ mt: 2, }} style={{ textAlign: "left", fontSize: "12px", marginBottom: "15px" }}>
+                                        Deleting "screen.png" permanently will also delete its activity and history across the workspace. You can't undo this action.
+                                    </Typography>
+                                    <div style={{ display: "flex", justifyContent: "center" }}>
+                                        <Button style={{ color: "white", backgroundColor: "#009BAD", borderRadius: "4px", textTransform: "none", marginRight: "20px" }} onClick={handleClose1}>Delete Permanently</Button>
+                                        <Button style={{ color: "rgb(27, 97, 137)", backgroundColor: "#ede3e3", borderRadius: "4px" }}>Cancel</Button>
+                                    </div>
+                                </Box>
+                            </Modal>
 
                         </TableBody>
 

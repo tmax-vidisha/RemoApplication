@@ -12,6 +12,11 @@ import MailIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { AuthenticatedTemplate } from "@azure/msal-react";
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
 import { StyledAppBar } from "./Styles";
 import logo from "../../Assets/Images/logo_white.svg";
 import teams from "../../Assets/Images/tq2.svg";
@@ -19,6 +24,7 @@ import outlookIcon from "../../Assets/Images/tq3.svg";
 // import { useGetUnReadMailsQuery } from '../../services/APIs';
 import userimg from "../../Assets/Images/userimg.svg";
 import birthday from "../../Assets/Images/birthday.svg";
+import bdayIcon from "../../Assets/Images/bdayIcon.svg";
 import temp from "../../Assets/Images/temp.svg";
 import teamm from "../../Assets/Images/teamm.svg";
 import calendarWhite from "../../Assets/Images/calendarWhite.svg";
@@ -54,7 +60,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
 
 
 interface type {
@@ -357,11 +362,11 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <SearchBar />
                 </div>
               </Box>
-              <Box sx={{ display: { xs: "none", md: "flex", paddingLeft:"80px", } }}>
+              <Box sx={{ display: { xs: "none", md: "flex", paddingLeft: "80px", } }}>
                 {/* <div>
                   <ToggleButton />
                 </div> */}
-                <div style={{ paddingLeft: "50px",paddingTop:"7px"  }}>
+                <div style={{ paddingLeft: "50px", paddingTop: "7px" }}>
                   {/* <IconButton
                     size="large"
                     aria-label="unread mail count"
@@ -439,13 +444,41 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                               id="composition-menu"
                               aria-labelledby="composition-button"
                               onKeyDown={handleListKeyDown}
-                              style={{ paddingTop: "15px" }}
+                              style={{ marginTop: "14px", padding:"0px" }}
                             >
                               {userData.length > 0 ? userData.map((i: any) => {
                                 return (
                                   <>
-                                    <MenuItem onClick={handleClose} className={classes.bdayText}>{i} birthday today!!!</MenuItem>
-                                    <MenuItem className={classes.wish}> Lets wish!</MenuItem>
+                                    <MenuItem onClick={handleClose} className={classes.bdayText}>
+                                      <List style={{padding:"0px !important"}}>
+                                        <ListItem style={{padding:"0px !important", margin:"0px"}}>
+                                          <ListItemAvatar>
+                                            <img src={bdayIcon} alt="" />
+                                          </ListItemAvatar>
+                                          <ListItemText 
+                                          primary={`${i} birthday today!!!`} secondary="Lets wish!"
+                                          primaryTypographyProps={{
+                                            fontSize: '12px',
+                                            color: "gray !important",
+                                          }}
+                                          secondaryTypographyProps={{
+                                            fontSize: '12px',
+                                            color: "#009BAD !important",
+                                          }}
+                                            />
+                                        </ListItem>
+                                      </List>
+                                      {/* <div style={{ display: "flex", justifyContent: "center" }}>
+                                        <div>
+                                          <img src={bdayIcon} alt="" />
+                                        </div>
+                                        <div>
+                                          <p>{i} birthday today!!!</p>
+                                          <p className={classes.wish}>Lets wish!</p>
+                                        </div>
+                                      </div> */}
+                                    </MenuItem>
+
                                   </>
                                 )
                               }) : <MenuItem onClick={handleClose} className={classes.bdayText}>No Data</MenuItem>}
@@ -499,7 +532,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     MenuListProps={{
                       "aria-labelledby": "basic-button",
                     }}
-                    style={{ paddingTop: "8px" }}
+                    style={{ paddingTop: "8px", marginTop: "15px" }}
                     PaperProps={{
                       style: {
                         width: 350,
@@ -637,8 +670,8 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                 >
                   <a
                     target={"_blank"}
-                    // href="https://outlook.office.com/mail/inbox"
-                    href="https://www.microsoft.com/en-in/microsoft-365/onenote/digital-note-taking-app"
+                    href="https://login.microsoftonline.com/common/oauth2/authorize?response_mode=form_post&response_type=id_token+code&scope=openid&msafed=0&nonce=3587ee97-ed5e-4e16-bb94-7f1af1203849.638139440948541424&state=https%3a%2f%2fwww.onenote.com%2fnotebooks%3fwdoriginpoc%26auth%3d2%26nf%3d1&client_id=2d4d3d8e-2be3-4bef-9f87-7875a61c29de&redirect_uri=https%3a%2f%2fwww.onenote.com%2fauth%2fsignin"
+                  // href="https://www.microsoft.com/en-in/microsoft-365/onenote/digital-note-taking-app"
                   >
                     <Badge color="error" sx={{ top: "3px" }}>
                       <img src={onenote} alt="teams" />

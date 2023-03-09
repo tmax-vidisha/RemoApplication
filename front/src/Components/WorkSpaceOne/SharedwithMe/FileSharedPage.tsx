@@ -1,7 +1,10 @@
+//@ts-nocheck
 import React, { useState, useReducer } from 'react';
 import { ActionType } from '../../../Store copy/Actions/actionTypes';
 import WPOneDrive from '../../Workspace/OneDrive/index';
+
 import { Grid, Link, Button, Dialog, DialogContent, Box, DialogActions, Stack, Pagination, CircularProgress, FormControl, MenuItem } from '@mui/material';
+
 import { Typography } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -219,6 +222,14 @@ interface IFolderProps {
     data: any,
     isSuccess: any,
     isLoading: any,
+    // onCopy?: (id: string, name: string) => void;
+    // copyResponse: any;
+    // onClick?: (id: string, name: string) => void;
+    // downloadUrl: any,
+    // copySuccess: any,
+    // copyLoading: any,
+    // itemDownloadSuccess:any,
+    // itemDownloadIsLoading:any
 }
 
 //const FileShared: React.FC<IFolderProps> = (props: IFolderProps) =>{
@@ -228,6 +239,8 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const [age, setAge] = React.useState('');
     const [show, setShow] = useState<boolean>(true);
     const classes = useStyles();
+    const [userData, setUserdata] = useState<any>([]);
+    const [sortedData, setSortedData] = useState<any>('')
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
         //setAge('');
@@ -264,26 +277,60 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     };
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-    const openOn = Boolean(anchorEl);
-
+    // const openOn = Boolean(anchorEl);
+    const [openOn, setOpenOn] = useState<boolean>(false)
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
+    const [id, setId] = useState('')
+    const [name, setName] = useState('')
+    const [webUrls, setWebUrls] = useState('')
+    const submit = (ids: any, nam: any, url: any) => {
+        console.log(ids, nam, url, 'yuig')
+        setId(ids)
+        setName(nam)
+        setWebUrls(url)
+        setOpenOn(true)
+    }
+    const handleFolderOpen = () => {
+        // onOpenFolder(id, name, 
+        //     // folder
+        //     )
+        window.open(webUrls)
+    }
+    // const handleCopy = async () => {
+    //     onCopy?.(id, name)
+    //     // navigator.clipboard.writeText(copyResponse?.response)
+    //     if (copyLoading) {
+    //        console.log('Loading')
+    //     }
+    //     else if (copySuccess) {
+    //         try {
+    //             await navigator.clipboard.writeText(copyResponse?.response);
+    //             // setCopySuccess('Copied!');
+    //             console.log('Copied')
+    //         } catch (err) {
+    //             // setCopySuccess('Failed to copy!');
+    //             console.log('Failed to copy!')
+    //         }
+    //     }
+    // }
     const handleClose = () => {
         setAnchorEl(null);
+        setOpenOn(false)
     };
     const units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
-   
-    function niceBytes(x:any){
-    
+
+    function niceBytes(x: any) {
+
         let l = 0, n = parseInt(x, 10) || 0;
-      
-        while(n >= 1024 && ++l){
-            n = n/1024;
+
+        while (n >= 1024 && ++l) {
+            n = n / 1024;
         }
-        
-        return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
-      }
+
+        return (n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
+    }
     return (
         <Grid className={classes.bigPart} >
             <Grid className={classes.divText}>
@@ -304,8 +351,23 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 label="Age"
                                 style={{ width: "100px" }}
                             >
-                                <MenuItem value={10} ><span className={classes.shortBy}>Newest</span></MenuItem>
-                                <MenuItem value={20} ><span className={classes.shortBy}>Oldest</span></MenuItem>
+                                <MenuItem value={10}
+                                    onClick={() => {
+                                        setSortedData('newest')
+                                        Object.freeze(data?.response);
+                                        const arrCopy = [...data?.response];
+                                        setUserdata(arrCopy)
+
+                                    }}
+                                ><span className={classes.shortBy}>Newest</span></MenuItem>
+                               <MenuItem value={20}
+                                    onClick={() => {
+                                        setSortedData('oldest')
+                                        Object.freeze(data?.response);
+                                        const arrCopy = [...data?.response];
+                                        setUserdata(arrCopy)
+                                    }}
+                                ><span className={classes.shortBy}>Oldest</span></MenuItem>
 
                             </Select>
                         </FormControl>
@@ -355,7 +417,9 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Grid>
                 </Grid>
             <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
+
                 <TableContainer component={Paper}>
+                    
                     <Table sx={{ minWidth: 600 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
@@ -381,120 +445,85 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         <TableCell align="right">{row.Actions}</TableCell>
                                     </TableRow>
                                 ))} */}
-                             {isLoading && <CircularProgress/>}
-                             {isSuccess  && (
-                            <>
-                            {data?.response &&
-                                data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
-                                    //   const { fields = {} } = item;
+                            {isLoading && <CircularProgress />}
+                            {sortedData === "newest"
+                                ?
+                                <>
+                                    {isSuccess && (
+                                        <>
+                                            {userData.sort((a: any, b: any) => Date.parse(new Date(a.lastModifiedDateTime)) - Date.parse(new Date(b.lastModifiedDateTime))).reverse().slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
 
-                                    // const  Url= item["@microsoft.graph.downloadUrl"];
-                                    // console.log(Url,'llll')
-                                    //   // console.log(fields,'yjyjyjyjyj')
-                                    //   var eventTitle = fields?.Title;
-                                    //   console.log(eventTitle,'yjyjyjyjyj')
-                                    //   var eventStart = moment(fields?.EventDate).format("llll");
-                                    //   var eventDate = moment(fields?.EndDate).format("llll");
+                                                let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
 
-                                    //   var eventIsActive = fields.IsActive;
-                                    // let createdMonth = moment(item.lastModifiedDateTime).format("MMM");
-                                    // let createdYear = moment(item.lastModifiedDateTime).format("YYYY");
-                                    let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
-                                    //   var createdDate = moment(
-                                    //     item.lastModifiedDateTime
-                                    //   ).fromNow();
-                                    // let result = (item?.folder === undefined) ? item?.webUrl :'';
-                                    // let result ; 
-                                    // if(item?.folder === undefined){
-                                    //   result= item?.webUrl
-                                    // }
-                                    return (
-                                        <TableRow
-                                            key={item.name}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
+                                                return (
+                                                    <TableRow
+                                                        key={index}
+                                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                    >
 
-                                            <TableCell className={classes.TableCell}>
-                                                {/* <Link 
-                                                    onClick={()=>{
-                                                        // folderClickHandler(item.id,item.name)
-                                                    //  if(item.name.includes('.txt') || item.name.includes('.xlsx') || item.name.includes('.docx')  || item.name.includes('.pptx')){
-                                                        if(item.folder === undefined){
-                                                    //   setUrl(item?.webUrl)
-                                                         console.log(item?.webUrl)
-                                                         
-                                                    }else{
-                                                       
-                                                        //   handleSubmit(item?.folder);
-                                                         console.log(item?.folder)
-                                                         folderClickHandler(item.id,item.name)
-                                                         setShow(!show)
-                                                    }
-                                                }}
-                                                
-                                                    //   href={`${result}`}
-                                                    > */}
-                                                <Link
-                                                    // onClick={() => {
-                                                    //     setShow(!show)
-                                                    //     onClick(item.id, item.name, item.folder)
-                                                    //     //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+                                                        <TableCell className={classes.TableCell}>
+
+                                                            <Link
+                                                                // onClick={() => {
+                                                                //     setShow(!show)
+                                                                //     onClick(item.id, item.name, item.folder)
+                                                                //     //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
 
 
-                                                    // }}
-                                                    href={`${item.webUrl}`}
-                                                >
-                                                    {item.name}
-                                                </Link>
-
-                                            </TableCell>
-                                            <TableCell className={classes.TableCell}>
-                                                {item.lastModifiedBy.user.displayName}
-                                            </TableCell>
-                                            <TableCell className={classes.TableCell}>
-                                                {createdDate}
-                                            </TableCell>
-                                            <TableCell className={classes.TableCell}>
-                                            {niceBytes(item.size)}
-                                            </TableCell>
-                                            <TableCell className={classes.TableCell}>
-                                                 <Grid style={{ borderRadius: "10px", }} >
-                                                            <Button
-                                                                id="fade-button"
-                                                                aria-controls={openOn ? 'fade-menu' : undefined}
-                                                                aria-haspopup="true"
-                                                                aria-expanded={openOn ? 'true' : undefined}
-                                                                onClick={handleClick}
-                                                               
+                                                                // }}
+                                                                href={`${item.webUrl}`}
                                                             >
+                                                                {item.name}
+                                                            </Link>
 
-                                                                <img src={actions} alt="actions" />
-                                                            </Button>
-                                                            <Menu
-                                                                 id="fade-menu"
-                                                                 MenuListProps={{
-                                                                     'aria-labelledby': 'fade-button',
-                                                                 }}
-                                                                 anchorEl={anchorEl}
-                                                                 open={openOn}
-                                                                 onClose={handleClose}
-                                                                 TransitionComponent={Fade}
-                                                                 className={classes.menu}
-                                                                 elevation={0}
-                                                                 style={{
-                                                                   marginTop: "1em",
-                                                                   boxShadow: "10px 1px 30px -10px #c2bcbc",
-                                                                 }}
-                                                            >
+                                                        </TableCell>
+                                                        <TableCell className={classes.TableCell}>
+                                                            {item.lastModifiedBy.user.displayName}
+                                                        </TableCell>
+                                                        <TableCell className={classes.TableCell}>
+                                                            {createdDate}
+                                                        </TableCell>
+                                                        <TableCell className={classes.TableCell}>
+                                                            {niceBytes(item.size)}
+                                                        </TableCell>
+                                                        <TableCell className={classes.TableCell}>
+                                                            <Grid style={{ borderRadius: "10px", }} >
+                                                                <Button
+                                                                    id="fade-button"
+                                                                    aria-controls={openOn ? 'fade-menu' : undefined}
+                                                                    aria-haspopup="true"
+                                                                    aria-expanded={openOn ? 'true' : undefined}
+                                                                    onClick={() => submit(item.id, item.name, item.webUrl)}
 
-                                                                <MenuItem >
-                                                                    <div className={classes.items}>
-                                                                        <img src={openIcon} alt="folder" /> Open
-                                                                    </div>
-                                                                   
-                                                                </MenuItem>
+                                                                >
 
-                                                                <MenuItem>
+                                                                    <img src={actions} alt="actions" />
+                                                                </Button>
+                                                                <Menu
+                                                                    id="fade-menu"
+                                                                    MenuListProps={{
+                                                                        'aria-labelledby': 'fade-button',
+                                                                    }}
+                                                                    anchorEl={anchorEl}
+                                                                    open={openOn}
+                                                                    onClose={handleClose}
+                                                                    TransitionComponent={Fade}
+                                                                    className={classes.menu}
+                                                                    elevation={0}
+                                                                    style={{
+                                                                        marginTop: "1em",
+                                                                        boxShadow: "10px 1px 30px -10px #c2bcbc",
+                                                                    }}
+                                                                >
+
+                                                                    <MenuItem >
+                                                                        <div className={classes.items} onClick={handleFolderOpen}>
+                                                                            <img src={openIcon} alt="folder" /> Open
+                                                                        </div>
+
+                                                                    </MenuItem>
+
+                                                                    {/* <MenuItem>
                                                                     <div className={classes.items}>
                                                                         <img src={linkIcon} alt="linkIcon" /> Copy Link
                                                                     </div>
@@ -513,16 +542,234 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                         
                                                                     </div>
                                                                    
+                                                                </MenuItem> */}
+
+                                                                </Menu>
+                                                            </Grid>
+                                                        </TableCell>
+                                                    </TableRow>
+                                                )
+                                            })}
+                                        </>
+                                    )}
+                                </>
+                                : sortedData === "oldest"
+                                    ?
+                                    <>
+                                        {isSuccess && (
+                                            <>
+                                                {userData.sort((a: any, b: any) => Date.parse(new Date(a.lastModifiedDateTime)) - Date.parse(new Date(b.lastModifiedDateTime))).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
+
+                                                    let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
+
+                                                    return (
+                                                        <TableRow
+                                                            key={index}
+                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                        >
+
+                                                            <TableCell className={classes.TableCell}>
+
+                                                                <Link
+                                                                    // onClick={() => {
+                                                                    //     setShow(!show)
+                                                                    //     onClick(item.id, item.name, item.folder)
+                                                                    //     //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+
+
+                                                                    // }}
+                                                                    href={`${item.webUrl}`}
+                                                                >
+                                                                    {item.name}
+                                                                </Link>
+
+                                                            </TableCell>
+                                                            <TableCell className={classes.TableCell}>
+                                                                {item.lastModifiedBy.user.displayName}
+                                                            </TableCell>
+                                                            <TableCell className={classes.TableCell}>
+                                                                {createdDate}
+                                                            </TableCell>
+                                                            <TableCell className={classes.TableCell}>
+                                                                {niceBytes(item.size)}
+                                                            </TableCell>
+                                                            <TableCell className={classes.TableCell}>
+                                                                <Grid style={{ borderRadius: "10px", }} >
+                                                                    <Button
+                                                                        id="fade-button"
+                                                                        aria-controls={openOn ? 'fade-menu' : undefined}
+                                                                        aria-haspopup="true"
+                                                                        aria-expanded={openOn ? 'true' : undefined}
+                                                                        onClick={() => submit(item.id, item.name, item.webUrl)}
+
+                                                                    >
+
+                                                                        <img src={actions} alt="actions" />
+                                                                    </Button>
+                                                                    <Menu
+                                                                        id="fade-menu"
+                                                                        MenuListProps={{
+                                                                            'aria-labelledby': 'fade-button',
+                                                                        }}
+                                                                        anchorEl={anchorEl}
+                                                                        open={openOn}
+                                                                        onClose={handleClose}
+                                                                        TransitionComponent={Fade}
+                                                                        className={classes.menu}
+                                                                        elevation={0}
+                                                                        style={{
+                                                                            marginTop: "1em",
+                                                                            boxShadow: "10px 1px 30px -10px #c2bcbc",
+                                                                        }}
+                                                                    >
+
+                                                                        <MenuItem >
+                                                                            <div className={classes.items} onClick={handleFolderOpen}>
+                                                                                <img src={openIcon} alt="folder" /> Open
+                                                                            </div>
+
+                                                                        </MenuItem>
+
+                                                                        {/* <MenuItem>
+                                                                    <div className={classes.items}>
+                                                                        <img src={linkIcon} alt="linkIcon" /> Copy Link
+                                                                    </div>
+
                                                                 </MenuItem>
-                                                                
-                                                            </Menu>
-                                                        </Grid> 
-                                            </TableCell>
-                                        </TableRow>
-                                    )
-                                })}
-                            </>
-                             )}
+                                                                <MenuItem>
+                                                                    <div className={classes.items}>
+                                                                        <img src={downloadIcon} alt="downloadIcon"  /> Download
+                                                                    </div>
+                                                                    
+                                                                </MenuItem>
+                                                                <MenuItem>
+                                                                    <div className={classes.items}>
+                                                                        
+                                                                        <img src={deleteIcon} alt="deleteIcon"  /> Delete
+                                                                        
+                                                                    </div>
+                                                                   
+                                                                </MenuItem> */}
+
+                                                                    </Menu>
+                                                                </Grid>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    )
+                                                })}
+                                            </>
+                                        )}
+                                    </>
+                                    :
+                                    <>
+                                        {isSuccess && (
+                                            <>
+                                                {data?.response &&
+                                                    data?.response.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
+
+                                                        let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
+
+                                                        return (
+                                                            <TableRow
+                                                                key={index}
+                                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                            >
+
+                                                                <TableCell className={classes.TableCell}>
+
+                                                                    <Link
+                                                                        // onClick={() => {
+                                                                        //     setShow(!show)
+                                                                        //     onClick(item.id, item.name, item.folder)
+                                                                        //     //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+
+
+                                                                        // }}
+                                                                        href={`${item.webUrl}`}
+                                                                    >
+                                                                        {item.name}
+                                                                    </Link>
+
+                                                                </TableCell>
+                                                                <TableCell className={classes.TableCell}>
+                                                                    {item.lastModifiedBy.user.displayName}
+                                                                </TableCell>
+                                                                <TableCell className={classes.TableCell}>
+                                                                    {createdDate}
+                                                                </TableCell>
+                                                                <TableCell className={classes.TableCell}>
+                                                                    {niceBytes(item.size)}
+                                                                </TableCell>
+                                                                <TableCell className={classes.TableCell}>
+                                                                    <Grid style={{ borderRadius: "10px", }} >
+                                                                        <Button
+                                                                            id="fade-button"
+                                                                            aria-controls={openOn ? 'fade-menu' : undefined}
+                                                                            aria-haspopup="true"
+                                                                            aria-expanded={openOn ? 'true' : undefined}
+                                                                            onClick={() => submit(item.id, item.name, item.webUrl)}
+
+                                                                        >
+
+                                                                            <img src={actions} alt="actions" />
+                                                                        </Button>
+                                                                        <Menu
+                                                                            id="fade-menu"
+                                                                            MenuListProps={{
+                                                                                'aria-labelledby': 'fade-button',
+                                                                            }}
+                                                                            anchorEl={anchorEl}
+                                                                            open={openOn}
+                                                                            onClose={handleClose}
+                                                                            TransitionComponent={Fade}
+                                                                            className={classes.menu}
+                                                                            elevation={0}
+                                                                            style={{
+                                                                                marginTop: "1em",
+                                                                                boxShadow: "10px 1px 30px -10px #c2bcbc",
+                                                                            }}
+                                                                        >
+
+                                                                            <MenuItem >
+                                                                                <div className={classes.items} onClick={handleFolderOpen}>
+                                                                                    <img src={openIcon} alt="folder" /> Open
+                                                                                </div>
+
+                                                                            </MenuItem>
+
+                                                                            {/* <MenuItem>
+                                                                    <div className={classes.items}>
+                                                                        <img src={linkIcon} alt="linkIcon" /> Copy Link
+                                                                    </div>
+
+                                                                </MenuItem>
+                                                                <MenuItem>
+                                                                    <div className={classes.items}>
+                                                                        <img src={downloadIcon} alt="downloadIcon"  /> Download
+                                                                    </div>
+                                                                    
+                                                                </MenuItem>
+                                                                <MenuItem>
+                                                                    <div className={classes.items}>
+                                                                        
+                                                                        <img src={deleteIcon} alt="deleteIcon"  /> Delete
+                                                                        
+                                                                    </div>
+                                                                   
+                                                                </MenuItem> */}
+
+                                                                        </Menu>
+                                                                    </Grid>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        )
+                                                    })}
+                                            </>
+                                        )}
+                                    </>
+
+                            }
+
                         </TableBody>
 
                     </Table>

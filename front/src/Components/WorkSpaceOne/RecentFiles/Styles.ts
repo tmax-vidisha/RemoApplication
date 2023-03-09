@@ -323,7 +323,7 @@ export const useStyles = makeStyles({
     textAlign:"left"
   },
   TableCell: {
-    padding: "5px ",
+    padding: "13px 4px!important",
     fontSize: "12px !important",
     color: "#606C74 !important",
     fontFamily: " 'DM Sans', sans-serif!important",

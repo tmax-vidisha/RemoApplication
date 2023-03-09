@@ -10,6 +10,7 @@ export const usersApi = createApi({
       const authResult = await myAsync();
       if (authResult ) {
           headers.set('authorization', authResult);
+          headers.set("Access-Control-Allow-Origin", "*");
       }
       return headers;
   }
@@ -95,6 +96,7 @@ export const oneDriveApi = createApi({
       const authResult = await myAsync();
       if (authResult ) {
           headers.set('authorization', authResult);
+          headers.set("Access-Control-Allow-Origin", "*");
       }
       return headers;
   }
@@ -130,6 +132,15 @@ export const oneDriveApi = createApi({
   deleteItemOneDrive: builder.mutation<any, any>({
     query: (data) => ({
         url: '/api/v1/onedrive/deleteOneDriveItem',
+        // headers:{ 'Content-Type': 'application/json' },
+        method: "POST",
+        body: data
+    }),
+    
+  }),
+  deleteItemTrashed: builder.mutation<any, any>({
+    query: (data) => ({
+        url: '/api/v1/onedrive/deleteTrashedItem',
         // headers:{ 'Content-Type': 'application/json' },
         method: "POST",
         body: data
@@ -200,10 +211,10 @@ export const {
                 useGetAllRecentItemsQuery,
                 useDownloadUrlItemOneDriveMutation,
                 useGetAllStarredItemsQuery,
-                useGetAllTrashedItemsQuery
+                useGetAllTrashedItemsQuery,
+                useDeleteItemTrashedMutation
                 
               
               
               } = oneDriveApi
-
 

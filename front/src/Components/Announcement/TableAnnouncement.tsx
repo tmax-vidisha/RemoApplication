@@ -107,7 +107,8 @@ interface IFolderProps {
       field: 'Description', 
       headerName: 'Description', 
       width: 400,
-      valueGetter : (allData:any) => allData.row.fields.Description
+      valueGetter : (allData:any) => allData.row.fields.Description,
+     
     },
     { 
       field: 'Image', 
