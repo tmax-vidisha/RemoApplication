@@ -476,9 +476,6 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                           
                         //  return <MenuItem onClick={handleClose}>{i.fields.Name}</MenuItem>
             })} */}
-
-
-
                 </div>
                 <div>
                   <IconButton
@@ -641,7 +638,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   <a
                     target={"_blank"}
                     // href="https://outlook.office.com/mail/inbox"
-                    href="https://login.microsoftonline.com/common/oauth2/authorize?client_id=00000002-0000-0ff1-ce00-000000000000&redirect_uri=https%3a%2f%2foutlook.office.com%2fowa%2f&resource=00000002-0000-0ff1-ce00-000000000000&response_mode=form_post&response_type=code+id_token&scope=openid&msafed=1&msaredir=1&client-request-id=9199217e-2710-702d-8273-3869284ea20c&protectedtoken=true&claims=%7b%22id_token%22%3a%7b%22xms_cc%22%3a%7b%22values%22%3a%5b%22CP1%22%5d%7d%7d%7d&nonce=638000473460699608.5e4b27b8-11e3-4083-a0cc-f12e7b6603f2&state=Dcu7DoIwFIDhou_iVjm92MtAHEgMMbigiYatp5REYgMBgvHt7fD9258RQvbJLskghWglDABILaQCZa0CczwFiVyjoYwFQSUYQR14T3vGg0alQPQ8S2-dj1-Xn5fVraFghzl07zn49TEWrmrAVzdV_-zWvZoFuZ3raGMbP0N7Pw3IYcPnZcLSThivWyjNHw"
+                    href="https://www.microsoft.com/en-in/microsoft-365/onenote/digital-note-taking-app"
                   >
                     <Badge color="error" sx={{ top: "3px" }}>
                       <img src={onenote} alt="teams" />
