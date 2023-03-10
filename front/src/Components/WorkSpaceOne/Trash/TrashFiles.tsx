@@ -35,8 +35,6 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import ListIcon from '@mui/icons-material/List';
 import success from '../../../Assets/Images/success.svg';
 import Fade from '@mui/material/Fade';
-import starred from '../../../Assets/Images/starred.svg';
-
 
 
 interface SimpleDialogProps {
@@ -444,8 +442,7 @@ const TrashFiles: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                             aria-haspopup="true"
                                                             aria-expanded={open ? 'true' : undefined}
                                                             onClick={() => submit(row.id, row.name)}>
-
-                                                            <img src={starredB} alt="..." />
+                                                           <img src={actions} alt="actions" />
                                                         </Button></TableCell>
                                                 </TableRow>
                                             ))}

@@ -99,6 +99,7 @@ import WhatsNewAnnounce from './Components/WhatsNewAnnounce';
 import WhatsAnnouneReadMore from './Components/WhatsNewAnnounce/WhatsAnnouneReadMore';
 import WorkspaceQuicklinks from './Components/Quicklinks/WorkspaceQuicklinks';
 import MyFiles from './Components/WorkSpaceOne/MyFiles';
+import OrgChart from './Components/Quicklinks/OrgChart';
 
 
 
@@ -437,6 +438,9 @@ const Main = () => {
                             <Route
                               path="/myFiles"
                               element={<MyFiles />} />
+                            <Route
+                              path="/orgChartPage"
+                              element={<OrgChart />} />
                         
                         </Routes>
                     </ThemeProvider>
