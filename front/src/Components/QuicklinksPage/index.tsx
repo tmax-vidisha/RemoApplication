@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Box, Grid, Typography, Card, Link, Breadcrumbs, Icon } from '@mui/material';
+import { Container, Box, Grid, Typography, Card, Link, Breadcrumbs, Icon, Button } from '@mui/material';
 import { Paper } from '@mui/material';
 import IconText from './../Header/IconText';
 import { useStyles } from './Styles';
@@ -12,7 +12,6 @@ import hub from "./../../Assets/Images/hub.svg";
 import dragDrop from "./../../Assets/Images/dragdropIcon.svg";
 import { useLocation } from 'react-router-dom';
 import birthday from "../../Assets/Images/girl.jpg";
-import { Button } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import QuickLinks from './../Quicklinks/index';
 import { useState } from 'react';
@@ -57,8 +56,8 @@ const QuicklinksPage = () => {
         },
 
     ]
-    const [show , setShow]=useState(false);
-    const handleClick=()=>{
+    const [show, setShow] = useState(false);
+    const handleClick = () => {
         setShow(true)
     }
 
@@ -97,15 +96,26 @@ const QuicklinksPage = () => {
                     <Grid item xs={12} style={{ backgroundColor: "white" }}>
 
                         <Grid className={classes.bigBox}>
-                            <p className={classes.addedText}>Added Quicklinks</p>
-                            <p className={classes.dragText}><img src={dragDrop} alt="" />you can drag and drop to change position</p>
+                            <div>
+                                <p className={classes.addedText}>Added Quicklinks</p>
+                            </div>
+                            <div>
+                                <p className={classes.dragText}><img src={dragDrop} alt="" />you can drag and drop to change position</p> 
+                                {show ?
+                                    <Button style={{color:"white",
+                                    backgroundColor: "#009BAD",}}>Apply</Button> : <></>
+                                }
+
+                            </div>
+
+
                         </Grid>
 
-                        <Grid  className={classes.bigBox}>
+                        <Grid className={classes.bigBox}>
                             {
                                 itemList.map((item) => (
                                     <Box className={classes.boxIcon}>
-                                        <img src={item.icon} alt="" />
+                                        <img src={item.icon} alt="" onClick={handleClick} />
                                         <p className={classes.iconTitle}>{item.text} </p>
                                     </Box>
                                 ))
