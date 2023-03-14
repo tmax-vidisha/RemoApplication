@@ -143,16 +143,16 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
             label: "Quick Links",
             Icon: quickLinks,
             IconHover: quickLinksHover,
-            onClick: () => navigate("/quickLinks"),
-            to: '/quickLinks',
+            onClick: () => navigate("/quickLinksPage"),
+            to: '/quickLinksPage',
         },
         {
             id: 6,
             label: "Org Chart",
             Icon: orgChart,
             IconHover: orgChartHover,
-            onClick: () => navigate("/quickLinks"),
-            to: '/quickLinks',
+            onClick: () => navigate("/orgChart"),
+            to: '/orgChart',
         },
     ];
 

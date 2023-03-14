@@ -268,20 +268,13 @@ const NewsReadMore: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 <div>
 
                                     <Stack
-
                                         direction="row"
-
                                         justifyContent="space-between"
-
                                         alignItems="center"
-
                                         paddingTop={1}
-
                                     >
                                     </Stack>
-
                                 </div>
-
                             </CardContent>
                         </>
                     )}

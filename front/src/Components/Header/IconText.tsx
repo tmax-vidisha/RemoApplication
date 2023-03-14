@@ -76,8 +76,8 @@ const IconText = (props: any) => {
       label: "Org Chart",
       Icon: orgChart,
       iconHover: orgChart,
-      onClick: () => history.push("/quickLinks"),
-      to: '/quickLinks',
+      onClick: () => history.push("/orgChart"),
+      to: '/orgChart',
     },
   ];
   const [id1, setId1] = useState(0);
@@ -92,7 +92,7 @@ const IconText = (props: any) => {
     const el = event.target;
     let colorhex = [
       "#4ddbff",
-      "#666666",    
+      "#666666",
     ];
     el.style.color = colorhex[Math.floor(Math.random() * 12)];
   };
@@ -104,7 +104,7 @@ const IconText = (props: any) => {
   };
   return (
     <Paper >
-      <Grid item xs={12} style={{ paddingTop: "10px" , }}>
+      <Grid item xs={12} style={{ paddingTop: "10px", }}>
         <Grid item xs={9} className={classes.textPart} >
           <Grid onMouseEnter={event => onMouseOver(event)}
             onMouseOut={event => onMouseOut(event)}>
@@ -131,11 +131,19 @@ const IconText = (props: any) => {
             </Link>
           </Grid>
           <Grid onMouseEnter={event => onMouseOver(event)}
-            onMouseOut={event => onMouseOut(event)}>Department</Grid>
-          <Grid onMouseEnter={event => onMouseOver(event)}
-            onMouseOut={event => onMouseOut(event)}>Quick Links</Grid>
-          <Grid onMouseEnter={event => onMouseOver(event)}
-            onMouseOut={event => onMouseOut(event)}>Org Chart</Grid>
+            onMouseOut={event => onMouseOut(event)}>
+            Department
+          </Grid>
+          <Grid onMouseEnter={event => onMouseOver(event)} onMouseOut={event => onMouseOut(event)}>
+            <Link to="/quickLinksPage" className={classes.link}>
+              Quick Links
+            </Link>
+          </Grid>
+          <Grid onMouseEnter={event => onMouseOver(event)} onMouseOut={event => onMouseOut(event)}>
+            <Link to="/orgChart" className={classes.link}>
+              Org Chart
+            </Link>
+          </Grid>
           {/* <Grid>
                 {itemsList.map((item: any, id: any, index: any) => {
                     const { icon, label, onClick, path } = item;
