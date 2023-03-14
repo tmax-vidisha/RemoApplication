@@ -49,10 +49,10 @@ export const topNavigationBar = [
   },
   {
     name: "Quick Links",
-    details: [{ Title: "Link1", Desc: "Link", Path: "/" }],
+    details: [{ Title: "Link1", Desc: "Link", Path: "/quickLinksPage" }],
   },
   {
     name: "Org Chart",
-    details: [{ Title: "Link1", Desc: "Link", Path: "/" }],
+    details: [{ Title: "Link1", Desc: "Link", Path: "/orgChart" }],
   },
 ];
