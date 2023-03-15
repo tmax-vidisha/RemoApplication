@@ -215,8 +215,8 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
       label: "Org Chart",
       Icon: orgChart,
       iconHover: orgChartHover,
-      onClick: () => navigate("/quickLinks"),
-      to: '/quickLinks',
+      onClick: () => navigate("/orgChart"),
+      to: '/orgChart',
     },
   ];
 

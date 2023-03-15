@@ -91,8 +91,8 @@ const SideBar = (props: any) => {
       label: "Org Chart",
       Icon: orgChart,
       iconHover: orgChart,
-      onClick: () => history.push("/quickLinks"),
-      to: '/quickLinks',
+      onClick: () => history.push("/orgChart"),
+      to: '/orgChart',
     },
   ];
 
@@ -148,7 +148,7 @@ const SideBar = (props: any) => {
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
               <ListItemButton>
-                <Link to="/">
+                <Link to="/orgChart">
                   <img src={orgChart} alt="orgChart" />
                 </Link>
 

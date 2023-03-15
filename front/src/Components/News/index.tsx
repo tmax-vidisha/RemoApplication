@@ -28,6 +28,7 @@ import like from "../../Assets/Images/like.svg";
 import enableLike from "../../Assets/Images/enableLike.svg";
 import share from "../../Assets/Images/share.svg";
 import pin from "../../Assets/Images/pin.svg";
+import pinActive from "../../Assets/Images/pinActive.svg";
 import internet from "../../Assets/Images/internet.svg";
 import SkeletonAnimation from "../../Containers/Skeleton";
 import Slider from 'react-slick'
@@ -200,11 +201,12 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
     setIsActive(!isActive)
   };
 
- const hide=()=>{
-  setIsActive(!isActive);
-  setIsClicked(!isClicked);
+  const hide = () => {
+    setIsActive(!isActive);
+    setIsClicked(!isClicked);
 
- }
+  }
+  const [isActive2, setIsActive2] = useState(false);
 
   return (
     <AuthenticatedTemplate>
@@ -281,26 +283,35 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                             </Stack>
                             <div className={classes.row}>
                               <div className={classes.block} >
-                                <div style={{width:"40px", display:"flex", justifyContent:"space-between"}}>
-                                {
-                                  isActive ?
-                                    <img src={enableLike} alt="like" onClick={hide} style={{width:"15px"}}/>
-                                    :
-                                    <img src={like} alt="like" className={`like-button ${isClicked && 'liked'}`} onClick={handleClick} style={{width:"15px"}}/>
-                                }
+                                <div style={{ width: "40px", display: "flex", justifyContent: "space-between" }}>
+                                  {
+                                    isActive ?
+                                      <img src={enableLike} alt="like" onClick={hide} style={{ width: "15px" }} />
+                                      :
+                                      <img src={like} alt="like" className={`like-button ${isClicked && 'liked'}`} onClick={handleClick} style={{ width: "15px" }} />
+                                  }
 
-                                {/* <span className="likes-counter">{ `Like | ${likes}` }</span> */}
-                                <span className="likes-counter" style={{fontSize:"12px"}}>{`${likes}`}</span>
+                                  {/* <span className="likes-counter">{ `Like | ${likes}` }</span> */}
+                                  <span className="likes-counter" style={{ fontSize: "12px" }}>{`${likes}`}</span>
                                 </div>
                               </div>
                               <div className={classes.block}>
-                                <img src={share} alt="like" />
+                                <a href="mailto:https://outlook.office.com/mail/">
+                                  <img src={share} alt="like" />
+                                </a>
                               </div>
                               <div className={classes.block}>
-                                <img src={pin} alt="like" />
+                                {
+                                  isActive2 ?
+                                    <img src={pinActive} alt="like" onClick={() => { setIsActive2(!isActive2) }} />
+                                    :
+                                    <img src={pin} alt="like" onClick={() => { setIsActive2(!isActive2) }} />}
+
                               </div>
                               <div className={classes.block}>
-                                <img src={internet} alt="like" />
+                                <a href="https://www.google.com/search?q=globalnews" target="_blank">
+                                  <img src={internet} alt="like" />
+                                </a>
                               </div>
                             </div>
                           </CardContent>
