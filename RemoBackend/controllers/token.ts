@@ -1043,6 +1043,99 @@ const getRemoEvents = asyncHandler(async (req: Request, res: Response) => {
 
 })
 
+async function getEmail(token: any) {
+  const res = await axios.get(`https://graph.microsoft.com/v1.0/me`, {
+    headers: {
+      'Authorization': `Bearer ${token} `,
+      'Content-Type': 'application/json',
+
+
+    }
+
+  })
+   return res.data.mail
+  
+}
+
+const getUserSpecificQuickLink = asyncHandler(async (req: Request, res: Response) => {
+  console.log(req.headers.authorization, 'tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy')
+
+  // const  token = req.headers.authorization
+  // console.log(req.body)
+  const token = req.headers.authorization
+  //  const {token} = req.body
+  console.log(token, 'llll')
+  // console.log(req.body,'gregrthtrht')
+  if (!token) {
+
+    return res.status(404).json({
+      success: false,
+      error: "No Token found"
+    });
+
+  } else {
+    const ans = await getEmail(token)
+    console.log(ans,'nas')
+    const response =
+      // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+      // await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/0ec4e29a-d2ec-4835-a011-ea8a3fe33ed4/items?$expand=fields`, {
+      await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/d438556e-ff96-47cc-803d-c14ffb9c4d2a/items?expand=fields(select=GlobalQuickLinks,GlobalQuickLinks_x003a__x0020_Ho)&$filter=fields/Title eq '${ans}'`, {
+        headers: {
+          'Authorization': `Bearer ${token} `,
+          'Content-Type': 'application/json',
+          'Prefer': 'HonorNonIndexedQueriesWarningMayFailRandomly'
+
+        }
+
+      })
+
+     const arrayObj =response.data.value
+    const arrayObj1 =arrayObj.map((item:any)=>{
+    return ( 
+    
+      item.fields.GlobalQuickLinks_x003a__x0020_Ho.map((i:any)=>{
+        return{
+          LookupId: i.LookupId,
+          Image: i.LookupValue
+        }
+      }))
+    })
+    const  arre = arrayObj.map((item:any)=>{
+      return (
+        item.fields.GlobalQuickLinks.map((i:any)=>{
+          return {
+            LookupId:i.LookupId,
+            LookupValue:i.LookupValue
+          }
+        })
+      )
+    })
+    const arrMap = arrayObj1.flatMap((m:any) => m);
+    const arrMap2 =  arre.flatMap((m:any) => m);
+
+    let arr3 = arrMap2.map((item:any, i:any) => Object.assign({}, item, arrMap[i]));
+    // const obj3 = arre.map((item:any) => {
+    //   return {
+    //     ...item, // will consist all the items from object2
+    //     // get index from object1 where the code matches
+    //     Image: arrayObj1.find((elem:any) => elem.LookupId === item.LookupId)
+    //   }
+    // });
+    // let arr3 = arr1.map((item, i) => Object.assign({}, item, arr2[i]));
+    
+    // console.log(response.data.value, "meetingssssssssssssssssssssssss")
+    res.status(200).json({
+      success: true,
+      response: arr3
+      // response1:responseTop.data.value
+
+
+    });
+
+  }
+
+
+})
 
 
 
@@ -1066,7 +1159,8 @@ export {
   getRemoHero,
   getRemoContentEditorMaster,
   getRemoEvents,
-  getRemoQuickLinkData
+  getRemoQuickLinkData,
+  getUserSpecificQuickLink
 
 
 }

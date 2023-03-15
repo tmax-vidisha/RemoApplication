@@ -17,7 +17,8 @@ import {getToken,
     getRemoHero,
     getRemoContentEditorMaster,
     getRemoEvents,
-    getRemoQuickLinkData
+    getRemoQuickLinkData,
+    getUserSpecificQuickLink
 } from '../controllers/token'
 
 const router = Router()
@@ -39,6 +40,7 @@ router.route('/hero/:token').get(getRemoHero)
 router.route('/mymeetings/:token').get(getEventsMeetings)
 router.route('/contenteditormaster/:token').get(getRemoContentEditorMaster)
 router.route('/events/:token').get(getRemoEvents)
+router.route('/userSpecificQuicklinks/:token').get(getUserSpecificQuickLink)
 // router.route('/folder').post(getFolderData)
 // router.route('/recent').get(createRequset);
 // router.route('/ssss').get(sendData)
