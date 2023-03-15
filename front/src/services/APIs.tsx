@@ -866,6 +866,15 @@ export const graphApi = createApi({
             }),
             
         }),
+       postRemoUserQuickLinkData: builder.mutation<any, any>({
+            query: (data) => ({
+                url: 'api/v1/lists/userRemoquicklinkdata',
+                // headers:{ 'Content-Type': 'application/json' },
+                method: "POST",
+                body: data
+            }),
+            
+        }),
         getAllsubSites: builder.query<any, any>({
             query: (id) => ({
                 url: `/api/v1/sites/subSites/${id}`,
@@ -951,6 +960,16 @@ export const graphApi = createApi({
         getAllRemoEvents: builder.query<any, any>({
             query: (id) => ({
                 url: `/api/v1/token/events/${id}`,
+                headers:{ "authorization": `${AccessToken}` },
+            }),
+            // //@ts-ignore
+            // providesTags: cacher.providesList("User"),
+            //  keepUnusedDataFor: 5,
+            // providesTags : [ 'News'],
+        }),
+        getAllUserSpecificQuiclinks: builder.query<any, any>({
+            query: (id) => ({
+                url: `/api/v1/token/userSpecificQuicklinks/${id}`,
                 headers:{ "authorization": `${AccessToken}` },
             }),
             // //@ts-ignore
@@ -1044,7 +1063,9 @@ export const {
     useCreateTokenwithEventDataLandingMutation,
     useGetAllContentEditorQuery,
     useGetAllRemoEventsQuery,
-    useGetAllRemoQuickLinkDataQuery
+    useGetAllRemoQuickLinkDataQuery,
+    usePostRemoUserQuickLinkDataMutation,
+    useGetAllUserSpecificQuiclinksQuery
 
     
     

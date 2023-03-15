@@ -1462,6 +1462,121 @@ console.log(responseDate)
 
 })
 
+async function checked(token: any) {
+  const res = await axios.get(`https://graph.microsoft.com/v1.0/me`, {
+    headers: {
+      'Authorization': `Bearer ${token} `,
+      'Content-Type': 'application/json',
+
+
+    }
+
+  })
+   return res.data.mail
+  
+}
+
+const postRemoUserQuicklinkData = asyncHandler(async (req: Request, res: Response) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  console.log(req.headers.authorization, 'tssccccttddddttttvvvvvtttttttyy')
+  const token = req.headers.authorization
+  const {
+    title, Ids
+    // token,
+    // title,desc,
+    // eventtitle,eventdesc, 
+    //  eventdate,enddate,herotitle, heropic,
+    //  picname,ceotitle,ceodesc,ceousername,
+    //  ceoposition,ceopic,ceopicname,
+    //  newstitle,newsdesc,newspic,newspicname,
+    //  employyetitle, empname,empdept,emppic,emppicname,
+    // userquicklink, globalquicklink
+  } = req.body
+  // console.log(token,'llll')
+   console.log(title,'ytjytjytjty')
+   console.log(Ids,'thgtrhj67k87k87k87k87')
+  // console.log(userquicklink,'thgtrhj67k87k87k87k87')
+  //  console.log(globalquicklink,'rgtreyrewyreyweywsF')
+  // console.log(empname,'tey54u6565ieutudrusya')
+  // console.log(empdept,'gregrthtrht')
+  // console.log(emppicname,'gregrthtrht')
+  if (!token) {
+    // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+    // console.log(dataFiles,'dgdfgthtrhytjytjyt')
+    // return res.status(200).json({
+    //     success: true,
+    //     data: dataFiles
+    // });
+    //  res.send(dataFiles)
+    return res.status(404).json({
+      success: false,
+      error: "No Token found"
+    });
+
+  } else {
+     console.log('hrthrthhrh')
+     const ans = await checked(token)
+  
+     console.log(ans,'gregrthtrht')
+     const Data = {
+      fields: {
+        Title: ans,
+        // Url: 'tgrgsg',
+        // UserEmail: 'fsdfsdfsdfsdfdsf',
+        'GlobalQuickLinksLookupId@odata.type': "Collection(Edm.Int32)",
+        GlobalQuickLinksLookupId: Ids
+
+
+        //@ts-ignore
+        // heroUrl: response.image
+      }
+    }
+    try {
+      const response = await fetch(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/d438556e-ff96-47cc-803d-c14ffb9c4d2a/items`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Data)
+      });
+      const data = await response.json();
+      // enter you logic when the fetch is successful
+      console.log(data);
+      return res.status(201).json({
+        success: true,
+        response:"List Item created"
+      });
+      // return data
+    } catch (error) {
+      // enter your logic for when there is an error (ex. error toast)
+
+      console.log(error)
+      return res.status(500).json({
+        success: false,
+        // error: error,
+        response:'List Item Creation Failed'
+      });
+    }
+
+
+    // if( token && userquicklink && globalquicklink){
+    // const UserQuickLink = await createPostRequsetUserQuickLink(`${BASE_PATH}/${REMO_SITE_ID}/lists/${NewQuickLinkUser}/items`, token, userquicklink, globalquicklink)
+    // console.log(UserQuickLink, 'ttryjyju7k76k76k')
+    // res.status(200).json({
+    //   // success: true,
+    //   UserQuickLink
+
+    // });
+
+   
+  }
+
+})
+
+
 
 export {
   // getData,
@@ -1479,5 +1594,6 @@ export {
   RemEmpHighlightItemId,
   postRemoEventData,
   getRemoEventData,
-  getRemoEventDataLanding
+  getRemoEventDataLanding,
+  postRemoUserQuicklinkData
 }

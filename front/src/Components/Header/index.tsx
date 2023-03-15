@@ -481,7 +481,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                                   </>
                                 )
-                              }) : <MenuItem onClick={handleClose} className={classes.bdayText}>No Data</MenuItem>}
+                              }) : <MenuItem onClick={handleClose} className={classes.bdayText}>No Birthday Today</MenuItem>}
                               {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
                               <MenuItem onClick={handleClose}>My account</MenuItem>
                               <MenuItem onClick={handleClose}>Logout</MenuItem> */}

@@ -31,7 +31,8 @@ import {
     MoreNewsPage,
     ImagesAndVideosPage,
     ViewAllEventPage,
-    HeaderPage
+    HeaderPage,
+    QuickLinkAddPage
      } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';
@@ -424,7 +425,7 @@ const Main = () => {
                               element={<Trash/>} />
                             <Route
                               path="/quickLinksPage"
-                              element={<QuicklinksPage/>} />
+                              element={<QuickLinkAddPage/>} />
                             <Route
                               path="/whatsNewAnnounce"
                               element={<WhatsNewAnnounce/>} />
