@@ -31,7 +31,8 @@ import {
     MoreNewsPage,
     ImagesAndVideosPage,
     ViewAllEventPage,
-    HeaderPage
+    HeaderPage,
+    QuickLinkAddPage
      } from './Pages';
 import AnnouncementReadMore from './Components/AnnouncementReadMore';
 import CeoMessageInformation from './Components/CeoMessageInformation';

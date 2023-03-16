@@ -1,6 +1,8 @@
 //@ts-nocheck
 import React from 'react';
+
 import { Container, Box, Grid, Typography, Card, Link, Breadcrumbs, Icon, CircularProgress } from '@mui/material';
+
 import { Paper } from '@mui/material';
 import IconText from './../Header/IconText';
 import { useStyles } from './Styles';
@@ -24,15 +26,19 @@ interface IFolderProps {
     data: any,
     isLoading: any,
     isSuccess: any,
-    userData: any,
-    userLoading: any,
-    userSuccess: any
+
+    userData:any,
+    userLoading:any,
+    userSuccess:any
+
 
 }
 // const QuicklinksPage = () => {
 const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
-    const { data, isLoading, isSuccess, onClick, userData, userLoading, userSuccess } = props
+
+    const { data, isLoading, isSuccess, onClick,userData,userLoading,userSuccess } = props
+
     let location = useLocation();
     console.log(location.state);
 
@@ -149,7 +155,9 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         }
         onClick?.(Data)
     }
+
     const [text, setText] = useState('');
+
     return (
         <div>
             <IconText />
@@ -219,6 +227,7 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 setUsers(arrCopy)
 
                             }}>
+
                                 <img src={add} alt="" />
                                 <p className={classes.iconTitle}>Add Quicklnks </p>
                             </Box>
@@ -288,10 +297,67 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                             </Grid>
                         }
 
+
+
+                                        return (
+                                            <div key={index}>
+                                                <Box className={classes.boxIcon} >
+
+                                                    <img src={item.fields.HoverOff} alt="" />
+                                                    <p className={classes.iconTitle}>{item.fields.Title} </p>
+                                                </Box>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </Grid>
+                            :
+                            <Grid>
+                            <div >
+                                <input
+                                    type="checkbox"
+                                    className="form-check-input"
+                                    name="allSelect"
+                                    // checked={
+                                    //   users.filter((user) => user?.isChecked !== true).length < 1
+                                    // }
+
+                                    checked={!users.some((user: any) => user?.isChecked !== true)}
+                                    onChange={handleChange}
+                                />
+                                <label >All Select</label>
+                            </div>
+                            <Grid item xs={12} className={classes.bigBox} >
+                                {
+                                  users &&  users.map((item: any, index: any) => {
+
+                                        return (
+                                            <div key={index}>
+                                                <Box className={classes.boxIcon} >
+                                                    <input
+                                                        type="checkbox"
+                                                        className="form-check-input"
+                                                        name={item.fields.id}
+                                                        checked={item?.isChecked || false}
+                                                        onChange={handleChange}
+                                                    />
+                                                    <img src={item.fields.HoverOff} alt="" />
+                                                    <p className={classes.iconTitle}>{item.fields.Title} </p>
+                                                </Box>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </Grid>
+                        </Grid>
+                            }
+                        
+
                     </Grid>
                 </Paper>
 
             </Container>
+
             <div>
                 <input
                     value={text}
@@ -299,6 +365,7 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                     style={{ width: `${text.length}ch` }}
                 />
             </div>
+
         </div>
     );
 };

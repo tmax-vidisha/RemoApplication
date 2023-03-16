@@ -5,7 +5,7 @@ import { useGetAllTrashedItemsQuery,useDeleteItemTrashedMutation} from '../../..
 
 const TrashedPage = () => {
     const { token } = useCustom();
-    const { data, isSuccess, isLoading } = useGetAllTrashedItemsQuery(token)
+    const { data, isSuccess, isLoading } = useGetAllTrashedItemsQuery(token,{ refetchOnMountOrArgChange: true })
     const [sendDeleteItem, { data: deleteResponse,isSuccess:deleteSuccess,isLoading:deleteLoading }] = useDeleteItemTrashedMutation();
     const deleteDriveItem = async (id: string, name: string) => {
       console.log(id, name)
