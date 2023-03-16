@@ -12,7 +12,8 @@ import { getPostData,
          RemEmpHighlightItemId,
          postRemoEventData,
          getRemoEventData,
-         getRemoEventDataLanding
+         getRemoEventDataLanding,
+         postRemoUserQuicklinkData
         } from  "../controllers/postdata";
 
 // const { getData } = require("../controllers/graph");
@@ -56,5 +57,5 @@ router.route('/empdata').post(postRemEmpHighlight)
 
 router.route('/empItemdata').post(RemEmpHighlightItemId)
 router.route('/userquicklinkdata').post(postUserQuicklinkData)
-
+router.route('/userRemoquicklinkdata').post(postRemoUserQuicklinkData)
 export default router;
