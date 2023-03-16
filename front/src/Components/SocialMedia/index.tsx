@@ -10,7 +10,13 @@ import LinkedInIcon from "../../Assets/Images/s4.svg";
 import { FacebookEmbed, LinkedInEmbed, InstagramEmbed } from 'react-social-media-embed';
 import { FacebookProvider, Page } from 'react-facebook';
 // import LinkedinSDK from 'react-linkedin-sdk'
-
+import {
+  LinkedinCompanyProfile,
+  LinkedinFollowCompany,
+  LinkedinLogin,
+  LinkedinAddProfile,
+  LinkedinProfile,
+} from 'react-social-plugins';
 // import { Facebook } from 'reactjs-social-embed';
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -187,16 +193,17 @@ const SocialMedia = () => {
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <LinkedInEmbed
-              //url="https://www.linkedin.com/embed/feed/update/urn:li:share:6898694772484112384"
-              //url="https://www.linkedin.com/embed/feed/update/urn:li:share:6955728295980056577"
-              //url="https://www.linkedin.com/embed/feed/update/urn:li:share:6955091372349542400"
-              //url="https://www.linkedin.com/company/google/?originalSubdomain=in"
-              //postUrl="https://www.linkedin.com/posts/google_interviewing-is-not-one-sided-as-an-aspiring-activity-6954114739874512897-N4OR?utm_source=linkedin_share&utm_medium=member_desktop_web"
               postUrl="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7034478094585315328"
               url="https://widgets.sociablekit.com/linkedin-page-posts/iframe/106017"
               width={325}
               height={370}
             />
+            {/* <LinkedinProfile
+              lang="en_US"
+              profileUrl="https://www.linkedin.com/in/jahanara-khatun/"
+              format="inline" // Or "hover"
+              text="jahanara-khatun" // text to show in "hover" format
+            /> */}
             {/* <LinkedinSDk
               clientId="123456789010"
               callBack={responseLinkedin}
