@@ -101,6 +101,7 @@ import WhatsAnnouneReadMore from './Components/WhatsNewAnnounce/WhatsAnnouneRead
 import WorkspaceQuicklinks from './Components/Quicklinks/WorkspaceQuicklinks';
 import MyFiles from './Components/WorkSpaceOne/MyFiles';
 import OrgChartPage from './Components/Quicklinks/OrgChartPage';
+import QuickLinkAddPage from './Pages/QuickLinkPage/QuickLinkAddPage';
 
 
 
@@ -424,7 +425,10 @@ const Main = () => {
                             <Route
                               path="/trash"
                               element={<Trash/>} />
-                            <Route
+                            {/* <Route
+                              path="/quickLinksPage"
+                              element={<QuicklinksPage/>} /> */}
+                               <Route
                               path="/quickLinksPage"
                               element={<QuickLinkAddPage/>} />
                             <Route
