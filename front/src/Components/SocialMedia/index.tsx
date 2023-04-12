@@ -138,11 +138,10 @@ const SocialMedia = () => {
           <Timeline
             dataSource={{
               sourceType: "profile",
-              screenName: "remo_digital",
-
+              screenName: "TMaXSystems",
             }}
             options={{
-              height: "307",
+              height: "383",
             }}
           />
           {/* <div id="twitter">
@@ -184,26 +183,27 @@ const SocialMedia = () => {
             //maxWidth={320}
             //hideCaption={false}
             //containerTagName='div'
-
+              height={383}
             />
+           
           </div>
 
         </TabPanel>
         <TabPanel value={value} index={2}>
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <LinkedInEmbed
+            {/* <LinkedInEmbed
               postUrl="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7034478094585315328"
               url="https://widgets.sociablekit.com/linkedin-page-posts/iframe/106017"
               width={325}
               height={370}
-            />
-            {/* <LinkedinProfile
-              lang="en_US"
-              profileUrl="https://www.linkedin.com/in/jahanara-khatun/"
-              format="inline" // Or "hover"
-              text="jahanara-khatun" // text to show in "hover" format
             /> */}
+             {/* <LinkedinProfile
+              lang="en_US"
+              profileUrl="https://www.linkedin.com/company/technomax-systems/"
+              format="inline" // Or "hover"
+              text="technomax-systems" // text to show in "hover" format
+            />  */}
             {/* <LinkedinSDk
               clientId="123456789010"
               callBack={responseLinkedin}
@@ -215,7 +215,10 @@ const SocialMedia = () => {
               // icon={<Icon />}
               getOAuthToken
             />, */}
-
+            <iframe 
+            src="https://www.sociablekit.com/app/embed/64771" 
+            // src="https://www.linkedin.com/embed/feed/update/urn:li:share:7034061306097782784"
+            width="100%" height="383"></iframe>
           </div>
         </TabPanel>
         <TabPanel value={value} index={3}>
@@ -231,12 +234,8 @@ const SocialMedia = () => {
             {/* <Facebook type="post" width="100%" height="680px" show_text={true}
               url="https://www.facebook.com/postmalone/posts/1992925354174335" /> */}
 
-            <iframe src='https://www.sociablekit.com/app/embed/64772' width='350' height='370' ></iframe>
-
+            <iframe src='https://www.sociablekit.com/app/embed/64772' width="100%" height='383' ></iframe>
           </div>
-
-
-
         </TabPanel>
       </Paper>
     </>

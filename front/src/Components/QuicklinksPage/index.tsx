@@ -21,25 +21,20 @@ import QuickLinks from './../Quicklinks/index';
 import { useState, useEffect } from 'react';
 
 interface IFolderProps {
-
     onClick?: (obj: any) => void;
     data: any,
     isLoading: any,
     isSuccess: any,
-
     userData: any,
     userLoading: any,
     userSuccess: any
-
-
 }
 // const QuicklinksPage = () => {
 const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
-
     const { data, isLoading, isSuccess, onClick, userData, userLoading, userSuccess } = props
-
     let location = useLocation();
+
     console.log(location.state);
 
     const itemList = [

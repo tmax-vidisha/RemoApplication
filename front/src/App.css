@@ -21,7 +21,7 @@ body {
   padding: 16px;
 }
 .timeline-Widget {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   background-color: #fff;
   border-radius: 0 !important;
 }

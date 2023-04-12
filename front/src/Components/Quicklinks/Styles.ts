@@ -39,13 +39,13 @@ export const useStyles = makeStyles({
   },
   contentEditorWidth: {
     width: "100%",
-    
+
   },
   cardHeight: {
     paddingTop: "20px",
     background: "transparent !important",
     boxShadow: "none",
-    borderRadius:"10px"
+    borderRadius: "10px"
   },
   contentHeader: {
     position: "relative",
@@ -139,44 +139,44 @@ export const useStyles = makeStyles({
       color: "#009BAD !important",
     },
   },
-  boxContent:{
-    width:"80px",
-    height:"80px",
-    border:"1px solid #eee7e7",
-    boxShadow:"5px 3px 10px 4px #eee7e7",
-    margin:"10px",
-    padding:"10px",
-    backgroundColor:"#e6ffe6",
-    borderRadius:"10px",
-    marginLeft:"5px"
+  boxContent: {
+    width: "80px",
+    height: "80px",
+    border: "1px solid #eee7e7",
+    boxShadow: "5px 3px 10px 4px #eee7e7",
+    margin: "10px",
+    padding: "10px",
+    backgroundColor: "#e6ffe6",
+    borderRadius: "10px",
+    marginLeft: "5px"
   },
-  mainPart:{
-    display:"grid",
+  mainPart: {
+    display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
-    padding:"20px",
-    backgroundColor:"white",
-    width:"250px",
-    paddingTop:"5px"
+    padding: "20px",
+    backgroundColor: "white",
+    width: "250px",
+    paddingTop: "5px"
   },
-  texts:{
-    fontSize:"12px",
-    marginTop:"10px",
+  texts: {
+    fontSize: "12px",
+    marginTop: "10px",
     color: "#1BAAB5",
     // color: "#606C74",
     // "&:hover": {
     //   color: "#1BAAB5",
     // },
-   
-    "& div":{
-        fontSize:"12px",
-        "& p":{
-            fontSize:"12px",   
-        }
+
+    "& div": {
+      fontSize: "12px",
+      "& p": {
+        fontSize: "12px",
+      }
     }
   },
-  linkText:{
+  linkText: {
     color: "#009BAD !important",
-    textDecoration:"none",
+    textDecoration: "none",
   },
 
   linkPart: {
@@ -196,160 +196,138 @@ export const useStyles = makeStyles({
 
     // marginTop: "5px",
     // marginRight: "10px"
-    display:"flex",
-    justifyContent:"space-between",
+    display: "flex",
+    justifyContent: "space-between",
 
   },
-  
- 
+
+
   linkBtn: {
     backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
     marginRight: "30px !important",
     padding: "5px 10px !important"
   },
-  quickLinkDiv:{
-    paddingTop: "20px", 
+  quickLinkDiv: {
+    paddingTop: "20px",
     backgroundColor: "white",
-     width: "260px", 
-     borderRadius: "20px"
+    width: "260px",
+    borderRadius: "10px"
   },
-  
-  // boxContent:{
-  //   width:"90px",
-  //   height:"95px",
-  //   border:"1px solid #eee7e7",
-  //   boxShadow:"5px 3px 10px 4px #eee7e7",
-  //   margin:"15px",
-  //   padding:"10px",
-  //   backgroundColor:"#e6ffe6",
-  //   borderRadius:"10px",
-  //   marginLeft:"5px"
-  // },
-  // mainPart:{
-  //   display:"grid",
-  //   gridTemplateColumns: "repeat(2, 1fr)",
-  //   padding:"20px",
-  //   backgroundColor:"white",
-  //   width:"250px",
-  //   paddingTop:"5px"
-  // },
-  // texts:{
-  //   fontSize:"12px",
-  //   marginTop:"10px",
-  //   color: "#1BAAB5",
-  //   // color: "#606C74",
-  //   // "&:hover": {
-  //   //   color: "#1BAAB5",
-  //   // },
+  OrgBox: {
+    width: "150px",
+    height: "80px",
+    border: "1px solid #eee7e7",
+    boxShadow: "5px 3px 10px 4px #eee7e7",
+    margin: "15px",
+    padding: "10px",
+    backgroundColor: "#f0f6f094",
+    borderRadius: "10px",
+    marginLeft: "5px",
+    position: "relative"
+  },
+  orgImg: {
+    width: "50px",
+    borderRadius: "50%",
+    position: "absolute",
+    //  margin:"-40px",
+    marginTop: "-35px",
+    marginLeft: "-23px",
+  },
+  pTextOrg: {
+    color: "#009BAD",
+    margin: "0px",
+    paddingTop: "30px",
+    fontSize: "12px"
+  },
+  TextOrg: {
+    color: "#606C74",
+    margin: "0px",
+    paddingTop: "10px",
+    fontSize: "12px"
+  },
+  plusMinus: {
+    width: "20px",
+    height:"20px",
+    backgroundColor: "#009BAD",
+    position: "absolute",
+    cursor: "pointer",
+    borderRadius: "50%",
+    marginLeft: "-15px",
 
-  //   "& div":{
-  //       fontSize:"12px",
-  //       "& p":{
-  //           fontSize:"12px",
+  },
 
-  //       }
-  //   }
-  // },
-
-  // linkPart: {
-  //   backgroundColor: "#33adff",
-  //   color: "white",
-  //   textTransform: "capitalize"
-  // },
-  // plus: {
-  //   textAlign: "center",
-  //   marginTop: "5px",
-  //   marginRight: "10px",
-  //   // backgroundColor:" white !important",
-  //   color: "white !important"
-  // },
-
-  // quick: {
-  //   // marginTop: "5px",
-  //    //marginRight: "10px",
-  //   display:"flex",
-  //   justifyContent:"space-around",
-
-  // },
-  // linkBtn: {
-  //   backgroundColor: "rgb(50 168 189) !important",
-  //   color: "white !important",
-  //   marginRight: "30px !important",
-  //   padding: "5px 10px !important"
-  // },
-
-  ListItemText:{
-    "& span":{
-      fontSize:"12px",
+  ListItemText: {
+    "& span": {
+      fontSize: "12px",
     },
-    " & p":{
-      fontSize:"12px",
+    " & p": {
+      fontSize: "12px",
     }
   },
-  meeting:{
-    "& MuiButtonBase":{
-      color: "gray !important", 
+  meeting: {
+    "& MuiButtonBase": {
+      color: "gray !important",
       textTransform: "capitalize !important",
-       backgroundColor: " #e6ffe6 !important",
-        border: "5px solid white !important",
-         maxHeight: "55px !important", 
-         width: "auto !important",
+      backgroundColor: " #e6ffe6 !important",
+      border: "5px solid white !important",
+      maxHeight: "55px !important",
+      width: "auto !important",
     },
-    "& css-1e6y48t-MuiButtonBase-root-MuiButton-root":{
-      color: "gray ", 
+    "& css-1e6y48t-MuiButtonBase-root-MuiButton-root": {
+      color: "gray ",
       textTransform: "capitalize ",
-       backgroundColor: " #e6ffe6 ",
-        border: "5px solid white ",
-         maxHeight: "55px ", 
-         width: "auto ",
+      backgroundColor: " #e6ffe6 ",
+      border: "5px solid white ",
+      maxHeight: "55px ",
+      width: "auto ",
     }
-    
+
   },
 
-  calendar:{
-    fontSize:"12px",
-    width:"240px",
-    margin:"5px",
-    border:"none",
-    height:"275px",
-    "& .react-calendar":{
-      fontSize:"12px",
-      maxWidth:"200px !important",
-      width:"240px",
-      "& .react-calendar__navigation":{
+  calendar: {
+    fontSize: "12px",
+    width: "240px",
+    margin: "5px",
+    border: "none",
+    height: "275px",
+    "& .react-calendar": {
+      fontSize: "12px",
+      maxWidth: "200px !important",
+      width: "240px",
+      "& .react-calendar__navigation": {
         display: "flex",
         height: "35px !important",
-        marginBottom:" 1em",
+        marginBottom: " 1em",
       },
-      "& .react-calendar__month-view__weekdays":{
-        textTransform:"capitalize",
+      "& .react-calendar__month-view__weekdays": {
+        textTransform: "capitalize",
       },
-      "& .react-calendar__month-view__days":{
-        "& .react-calendar__tile ":{
-          fontSize:"9px",
+      "& .react-calendar__month-view__days": {
+        "& .react-calendar__tile ": {
+          fontSize: "9px",
         }
       },
-      "& .react-calendar button":{
-        fontSize:"9px",
+      "& .react-calendar button": {
+        fontSize: "9px",
       }
     }
   },
-  todo:{
-    border:"none",
-     height:"30px",
-     textAlign:"center",
-    fontSize:"12px",
-    width:"70px",
-    color:"gray",
-    "& : hover":{
-      color:"blue", 
+  todo: {
+    border: "none",
+    height: "30px",
+    textAlign: "center",
+    fontSize: "12px",
+    width: "70px",
+    color: "gray",
+    "& : hover": {
+      color: "blue",
     },
-    backgroundColor:"white",
-    "& :hover":{
-      backgroundColor:"#e1f5f3",
-      height:"30px",
+    backgroundColor: "white",
+    "& :hover": {
+      backgroundColor: "#e1f5f3",
+      height: "30px",
     }
-    
+
   },
 });

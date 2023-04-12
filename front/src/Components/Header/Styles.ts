@@ -28,26 +28,9 @@ export const StyledAppBar = styled(AppBar)(({ theme }) => ({
 
 export const useStyles = makeStyles({
 
-  footer: {
-    backgroundColor: "White",
-    boxShadow: "0 1px 10px 0 rgba(0, 0, 0, 0.12)",
-    boxSizing: "border-box",
-    width: "100%",
-    textAlign: "center",
-    padding: "30px 50px",
-  },
+ 
 
-  footerLeft: {
-    "& p": {
-      color: "#009BAD ",
-      fontSize: "16px",
-      margin: "0",
-      fontFamily: "roboto"
-
-
-    },
-
-  },
+  
 
   MuiSwitch: {
     // width: "100px",
@@ -119,50 +102,6 @@ export const useStyles = makeStyles({
     textDecoration: "none"
   },
 
-  // root: {
-  //   width: "140px",
-  //   height: "40px",
-  //   padding: "0px"
-  // },
-  // switchBase: {
-  //   color: "#818181",
-  //   padding: "1px",
-  //   "&$checked": {
-  //     "& + $track": {
-  //       backgroundColor: "#23bf58"
-  //     }
-  //   }
-  // },
-  // thumb: {
-  //   color: "white",
-  //   width: "20px",
-  //   height: "20px",
-  //   margin: "1px"
-  // },
-  // track: {
-  //   borderRadius: "20px",
-  //   backgroundColor: "#818181",
-  //   opacity: "1 !important",
-  //   "&:after, &:before": {
-  //     color: "white",
-  //     fontSize: "11px",
-  //     position: "absolute",
-  //     top: "6px"
-  //   },
-  //   "&:after": {
-  //     content: "'On'",
-  //     left: "8px"
-  //   },
-  //   "&:before": {
-  //     content: "'Off'",
-  //     right: "7px"
-  //   }
-  // },
-  // checked: {
-  //   color: "#23bf58 !important",
-  //   transform: "translateX(26px) !important"
-  // },
-
 
   profile: {
     fontSize: "12px !important",
@@ -194,8 +133,8 @@ export const useStyles = makeStyles({
     display: "flex",
     justifyContent: "left",
     alignItems: "center",
-    marginTop: "10px",
-    marginBottom: "10px",
+    marginTop: "0px",
+    marginBottom: "16px",
     paddingLeft: "20px"
   },
   bdayText: {
@@ -205,6 +144,36 @@ export const useStyles = makeStyles({
   wish: {
     color: "#009BAD !important",
     fontSize: "12px !important"
+  },
+  header:{
+    width: "100%",
+    position:"static",
+    backgroundColor:"#02354D !important",
+    color:"white",
+    ['@media (max-width:768px)']: { // eslint-disable-line no-useless-computed-key
+      width: "100% !important",     
+  },
+  },
+  midHeader:{
+    display:"flex",
+    justifyContent:"space-between"
+  },
+  pl50:{
+    paddingLeft:"50px",
+    paddingTop:"7px"
+  },
+  pTpl20:{
+    paddingLeft:"20px",
+    paddingTop:"20px"
+  },
+  ml80pt20:{
+    marginLeft: "80px",
+    // paddingTop:"20px",
+  },
+  menu: {
+    "& .MuiPaper-root": {
+      backgroundColor: "#02354D !important"
+    }
   }
 
 });

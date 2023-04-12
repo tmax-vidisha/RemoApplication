@@ -123,16 +123,18 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
                    />
                 {/* <img  src ="https://remoblobstorage.blob.core.windows.net/candidate/Bird.jpg?st=2022-06-08T12%3A55%3A31Z&se=2022-06-08T13%3A55%3A31Z&sp=r&sv=2018-03-28&sr=b&sig=y2SaHETj51cDcFSkY3eL%2Fj82O2S1XK2rKbl4jG8DvH0%3D" /> */}
               </div>
-              <div className={classes.ceoContentHeader}>
-                <Typography variant="subtitle1" component="h6" >
-                {data?.response[0].fields?.Name}
+              <div>
+                <div className={classes.ceoContentHeader}>
+                <span>{data?.response[0].fields?.Name}</span>
+                <div>
                 { isActive ?
                   <img src={likeActive} alt="" style={{width:"15px", marginLeft:"15px"}} onClick={hide} />
                   :
                   <img src={love} alt="" style={{width:"15px", marginLeft:"15px"}} className={`like-button ${isClicked && 'liked'}`} onClick={handleClick}/>
                 }
+                </div>
                 <span className="likes-counter" style={{fontSize:"12px", marginLeft:"10px"}}>{`${likes}`}</span>
-                </Typography>
+                </div>
                 <Typography
                   variant="caption"
                   display="block"

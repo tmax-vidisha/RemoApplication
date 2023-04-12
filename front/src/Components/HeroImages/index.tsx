@@ -173,110 +173,70 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     <div>
 
-    <AuthenticatedTemplate>
+      <AuthenticatedTemplate>
 
-      {/* <Draggable> */}
+        {/* <Draggable> */}
 
-      <Box sx={{ flexGrow: 1, position: "relative" }}>
+        <Box sx={{ flexGrow: 1, position: "relative" }}>
 
-        {isLoading ? (
+          {isLoading ? (
 
-          <SkeletonAnimation />
+            <SkeletonAnimation />
 
-        ) : (
+          ) : (
 
-          <>
-
-            <AutoPlaySwipeableViews
-
-              axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-
-              index={activeStep}
-
-
-
-              onChangeIndex={handleStepChange}
-
-              enableMouseEvents
-
-            >
-
-              {data?.response &&
-
-                data?.response?.map((item: any, index: any) => {
-
-                  const { fields = {} } = item;
-
-                  var HeroTitle = fields?.Title;
-
-                  if (fields?.FileType == "mp4") {
-
-                    return (
-
-                      <div key={index} style={{ position: "relative" }}>
-
-                        <p className={classes.videoTitle} onClick={() => handleReadMoreVideo(fields?.Url, HeroTitle, fields.Description, fields?.Modified)}>{HeroTitle}</p>
-
-                        <video className={classes.video}>
-
-                          <source src={fields?.Url} type="video/mp4" />
-
-                        </video>
-
-                        <button onClick={() => handleClick(fields?.Url)} className={classes.exploreBtn}><span><PlayArrowIcon  style={{width:"15px"}}/></span><span style={{fontSize:"12px", marginTop:"5px", marginLeft:"5px"}}>Start Explore</span></button>
-
-                      </div>
-
-                    );
-
-                  }
-
-                  else {
-
-                    return (
-
-                      //         <div key={index} className={classes.videoContent}>
-
-                      //            <p className={classes.videoTitle} onClick={()=> handleReadMoreImages(fields?.Url,HeroTitle,fields.Description,fields?.Modified)}>{HeroTitle}</p>
-
-                      //          <img src={fields?.Url} className={classes.video} />
-
-                      //  </div>
-
-                      <Card>
-
-                        <div style={{ position: "relative" }}>
-
-                          <CardMedia className={classes.displayImg} component="img" image={fields?.Url} title={HeroTitle} alt="Pancakes" />
-
-                          <div className={classes.videoTitle} onClick={() => handleReadMoreImages(fields?.Url, HeroTitle, fields.Description, fields?.Modified)}> {HeroTitle}</div>
-
+            <>
+              <AutoPlaySwipeableViews
+                axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+                index={activeStep} onChangeIndex={handleStepChange}
+                enableMouseEvents>
+                {data?.response &&
+                  data?.response?.map((item: any, index: any) => {
+                    const { fields = {} } = item;
+                    var HeroTitle = fields?.Title;
+                    if (fields?.FileType == "mp4") {
+                      return (
+                        <div key={index} style={{ position: "relative" }}>
+                          <p className={classes.videoTitle} onClick={() => handleReadMoreVideo(fields?.Url, HeroTitle, fields.Description, fields?.Modified)}>{HeroTitle}</p>
+                          <video className={classes.video}>
+                            <source src={fields?.Url} type="video/mp4" />
+                          </video>
+                          <button onClick={() => handleClick(fields?.Url)} className={classes.exploreBtn}><span><PlayArrowIcon style={{ width: "15px" }} /></span><span style={{ fontSize: "12px", marginTop: "5px", marginLeft: "5px" }}>Start Explore</span></button>
                         </div>
+                      );
+                    }
+                    else {
+                      return (
+                        //         <div key={index} className={classes.videoContent}>
 
-                      </Card>
+                        //            <p className={classes.videoTitle} onClick={()=> handleReadMoreImages(fields?.Url,HeroTitle,fields.Description,fields?.Modified)}>{HeroTitle}</p>
 
-                    );
+                        //          <img src={fields?.Url} className={classes.video} />
 
-                  }
+                        //  </div>
 
-                })}
+                        <Card>
+                          <div style={{ position: "relative" }}>
+                            <CardMedia className={classes.displayImg} component="img" image={fields?.Url} title={HeroTitle} alt="Pancakes" />
+                            <div className={classes.videoTitle} onClick={() => handleReadMoreImages(fields?.Url, HeroTitle, fields.Description, fields?.Modified)}> {HeroTitle}</div>
+                          </div>
+                        </Card>
 
-            </AutoPlaySwipeableViews>
+                      );
 
+                    }
 
+                  })}
 
-          </>
+              </AutoPlaySwipeableViews>
+            </>
+          )}
+        </Box>
+        {/* </Draggable> */}
+      </AuthenticatedTemplate>
 
-        )}
+    </div>
 
-      </Box>
-
-      {/* </Draggable> */}
-
-    </AuthenticatedTemplate>
-
-  </div>
- 
   )
 }
 

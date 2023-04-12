@@ -91,9 +91,13 @@ export const useStyles = makeStyles({
   },
   ceoContentHeader: {
     width: "auto-fit",
-    "& h6": {
-      fontSize: "1.5rem !important",
-      textAlign:"left"
-    },
+    display:"flex",
+    textAlign:"left",
+    fontSize: "1.5rem !important",
+
+    // "& h6": {
+    //   fontSize: "1.5rem !important",
+    //   textAlign:"left"
+    // },
   },
 });

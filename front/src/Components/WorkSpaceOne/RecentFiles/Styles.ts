@@ -122,7 +122,7 @@ export const useStyles = makeStyles({
     padding: "5px 10px !important"
   },
   bigPart: {
-    // marginRight: "25px",
+  marginRight: "20px",
     backgroundColor: "white",
     marginTop: "20px",
     borderRadius: "10px",
@@ -326,9 +326,19 @@ export const useStyles = makeStyles({
     padding: "13px 4px!important",
     fontSize: "12px !important",
     color: "#606C74 !important",
-    fontFamily: " 'DM Sans', sans-serif!important",
-    textAlign:"left"
+    fontFamily: " 'DM Sans', sans-serif !important",
+    // display:"block",
+    textAlign:"left",
   },
+  nameTableCell:{
+    padding: "13px 4px!important",
+    fontSize: "12px !important",
+    color: "#606C74 !important",
+    fontFamily: " 'DM Sans', sans-serif!important",
+    textAlign:"left",
+  width:"100px",
+  overflowWrap: "break-word",
+  }
  
 });
 

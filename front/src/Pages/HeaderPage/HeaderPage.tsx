@@ -3,6 +3,7 @@ import Header from '../../Components/Header'
 import useCustom from '../../hooks/useCustom';
 import { useGetAllEmpQuery } from '../../services/APIs';
 import { useGetAllUnReadMeetingsQuery, useGetAllUserInfoQuery, useGetAllUnReadMailsQuery } from '../../services/graph';
+import NewHeader from '../../Components/Header/NewHeader';
 const HeaderPage = () => {
     const {token} = useCustom();
     //@ts-ignore
@@ -26,9 +27,22 @@ const HeaderPage = () => {
            EmpData ={EmpData}
           EmpSuccess={EmpSuccess}
           EmpLoading={EmpLoading}
-
-        
         />
+        {/* <NewHeader
+          data={data}
+          isLoading={isLoading}
+          error={error}
+          CountData={CountData}
+          CountError={CountError}
+          CountLoading={CountLoading}
+          UserData={UserData}
+          UserError={UserError}
+          UserLoading={UserLoading}
+           EmpData ={EmpData}
+          EmpSuccess={EmpSuccess}
+          EmpLoading={EmpLoading}
+        
+        /> */}
     </div>
   )
 }
