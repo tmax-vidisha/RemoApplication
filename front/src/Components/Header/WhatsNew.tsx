@@ -35,12 +35,10 @@ const WhatsNew = () => {
       }
     return (
         <div>
-            <Grid item xs={12} style={{ backgroundColor: "#e6e6e6" }}>
-                <Paper className={classes.what} elevation={0}>
-                    {/* <Link to="/whatsNewAnnounce"><img src={announce} alt="" /></Link>  <p style={{ marginLeft: "20px" }}> */}
+            <Grid item xs={12} style={{ backgroundColor: "#eef7f4" }}>
+                <Paper className={classes.what} elevation={0} style={{ backgroundColor: "#eef7f4" }}>
                     <span onClick={handleItem1}><img src={announce} alt=""  style={{cursor:"pointer"}}/></span>  <p style={{ marginLeft: "20px",  }}>
                         <b>WHAT'S NEW</b>
-                        {/* <Link to="/whatsAnnouneReadMore" style={{ color: "#606C74", textDecoration: "none", paddingLeft: "20px" }}>{data?.response[0].fields.Title}</Link> </p> */}
                         <span style={{ color: "#606C74", textDecoration: "none", paddingLeft: "20px", cursor:"pointer" }} onClick={handleItem}>{data?.response[0].fields.Title}</span> </p>
                 </Paper>
             </Grid>

@@ -648,6 +648,8 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
         return (n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
     }
+
+    const [tableWidth, setTableWidth] = useState(650)
     return (
         <div>
             <Grid className={classes.bigPart} >
@@ -672,7 +674,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                             </Select>
                         </FormControl>
                     </Grid>
-                    <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
+                    <Grid style={{ marginTop: "20px", }}>
                         {
                             showResult ?
                                 <>
@@ -717,7 +719,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Grid>
                 </Grid>
                 <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 600 }} aria-label="simple table">
+                    <Table aria-label="simple table" style={{width: `${tableWidth}px`}}>
                         <TableHead>
                             <TableRow>
                                 <TableCell className={classes.theadCell} onClick={onClickShow}>
@@ -738,28 +740,10 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 <TableCell className={classes.theadCell}>Last Modified By</TableCell>
                                 <TableCell className={classes.theadCell} >Last Modified Date</TableCell>
                                 <TableCell className={classes.theadCell}>File Size</TableCell>
-                                <TableCell padding="none" style={{ color: "#606C74" }}>Actions</TableCell>
+                                <TableCell padding="none" className={classes.theadCell} >Actions</TableCell>
                             </TableRow>
                         </TableHead>
-                        {/* <TableBody>
-                                {rows.map((row) => (
-                                    <TableRow
-                                        key={row.name}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell component="th" scope="row">
-                                            {row.name}
-                                        </TableCell>
-                                        <TableCell align="right">{row.lastModifiedBy}</TableCell>
-                                        <TableCell align="right">{row.ModifiedDate}</TableCell>
-                                        <TableCell align="right">{row.fileSize}</TableCell>
-                                        <TableCell align="right">{row.Actions}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody> */}
-
                         {show ?
-
                             <TableBody>
                                 {isLoading && <CircularProgress />}
                                 {
@@ -1257,12 +1241,9 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 
 
                             </TableBody>
-
-
                         }
 
                     </Table>
-
                 </TableContainer>
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 20]}

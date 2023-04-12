@@ -63,9 +63,7 @@ import RecentFiles from './Components/WorkSpaceOne/RecentFiles';
 import StarredFile from './Components/WorkSpaceOne/StarredFile/index';
 import SubNews from './Components/NewsReadMore/SubNews';
 import ImagesVideos from './Components/ImagesVideos';
-
 import GalleryFolder from './Components/ImagesVideos/GalleryFolder';
-
 import FolderItems from './Components/ImagesVideos/FolderItems';
 // import PluginImgVideo from './Components/ImagesVideos/PluginImgVideo';
 import SimpleReactLightbox from 'simple-react-lightbox'
@@ -101,9 +99,7 @@ import WhatsAnnouneReadMore from './Components/WhatsNewAnnounce/WhatsAnnouneRead
 import WorkspaceQuicklinks from './Components/Quicklinks/WorkspaceQuicklinks';
 import MyFiles from './Components/WorkSpaceOne/MyFiles';
 import OrgChartPage from './Components/Quicklinks/OrgChartPage';
-
-
-
+import NewHeader from './Components/Header/NewHeader';
 
 
 const theme = createTheme({
@@ -225,7 +221,8 @@ const Main = () => {
                                     <Typography> <b>WHAT'S NEW</b>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio voluptatibus in blanditiis dolorum Optio voluptatibus  </Typography>
                                 </Paper>
                             </Grid> */}
-                        </AuthenticatedTemplate>
+                            {/* <NewHeader/> */}
+                        </AuthenticatedTemplate>       
                         <Routes>
                             <Route
                                 path="/"

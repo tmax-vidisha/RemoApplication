@@ -97,7 +97,7 @@ const navigate = useNavigate()
         {isLoading ? (
           <SkeletonAnimation />
         ) : (
-          <CardContent sx={{ pb: "16px!important" }}>
+          <CardContent sx={{ pb: "27px!important" }}>
             <AutoPlaySwipeableViews
               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
               index={activeStep}

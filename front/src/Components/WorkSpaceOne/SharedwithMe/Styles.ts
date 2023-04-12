@@ -121,7 +121,7 @@ export const useStyles = makeStyles({
     padding: "5px 10px !important"
   },
   bigPart: {
-    // marginRight: "25px",
+  marginRight: "20px",
     backgroundColor: "white",
     marginTop: "20px",
     borderRadius: "10px",
@@ -138,7 +138,7 @@ export const useStyles = makeStyles({
     marginRight: "20px"
   },
   menu: {
-    marginTop: "15px"
+    marginTop: "0px"
   },
 
   customMenuPopover: {

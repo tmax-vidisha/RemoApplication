@@ -77,8 +77,6 @@ interface IFolderProps {
         />
       )}
     </div>
-   
-    // <>ddth</>
   );
 };
 

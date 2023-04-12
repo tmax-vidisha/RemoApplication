@@ -6,7 +6,11 @@ export const useStyles = makeStyles({
     width: "100%",
     fontSize: "1rem !important",
     marginBottom: "0px !important",
-    textAlign:"left"
+    textAlign:"left",
+    ['@media (max-width:768px)']: { // eslint-disable-line no-useless-computed-key
+      width: "100%",     
+  },
+
   },
   ceoImg: {
     //   paddingTop: "50px",
@@ -32,6 +36,9 @@ export const useStyles = makeStyles({
     marginTop: "7px",
     opacity: 0.6,
     paddingRight: "10px",
+    ['@media (max-width:768px)']: { // eslint-disable-line no-useless-computed-key
+      width: "100%",     
+  },
   },
   readMore: {
     fontSize: " 12px",

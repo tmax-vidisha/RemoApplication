@@ -68,7 +68,7 @@ const Gallery = () => {
       <div>
         <AuthenticatedTemplate>
           <Paper elevation={0}>
-            <CardContent sx={{ pb: "6px!important", height: "380px" }}>
+            <CardContent sx={{ pb: "6px!important", height: "409px" }}>
               <Stack
                 direction="row"
                 justifyContent="space-between"

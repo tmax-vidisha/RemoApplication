@@ -461,7 +461,7 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                                     >
 
-                                                        <TableCell className={classes.TableCell}>
+                                                        <TableCell className={classes.TableCell} >
 
                                                             <Link
                                                                 // onClick={() => {
@@ -493,10 +493,7 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                     aria-controls={openOn ? 'fade-menu' : undefined}
                                                                     aria-haspopup="true"
                                                                     aria-expanded={openOn ? 'true' : undefined}
-                                                                    onClick={() => submit(item.id, item.name, item.webUrl)}
-
-                                                                >
-
+                                                                    onClick={() => submit(item.id, item.name, item.webUrl)}>
                                                                     <img src={actions} alt="actions" />
                                                                 </Button>
                                                                 <Menu
@@ -511,18 +508,14 @@ const FileSharedPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                                                     className={classes.menu}
                                                                     elevation={0}
                                                                     style={{
-                                                                        marginTop: "1em",
+                                                                        marginTop: "50PX",
                                                                         boxShadow: "10px 1px 30px -10px #c2bcbc",
-                                                                    }}
-                                                                >
-
+                                                                    }}>
                                                                     <MenuItem >
                                                                         <div className={classes.items} onClick={handleFolderOpen}>
                                                                             <img src={openIcon} alt="folder" /> Open
                                                                         </div>
-
                                                                     </MenuItem>
-
                                                                     {/* <MenuItem>
                                                                     <div className={classes.items}>
                                                                         <img src={linkIcon} alt="linkIcon" /> Copy Link

@@ -19,7 +19,7 @@ const Trash = () => {
             <Grid item xs={12}>
                     <WhatsNew />
                 </Grid>
-            <Box style={{ margin: "30px" }}>
+            <Box style={{ margin: "20px" }}>
 
                 <Grid container item xs={12} className={classes.bigPaper}>
                     <Grid item xs={1} >

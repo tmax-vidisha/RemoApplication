@@ -85,7 +85,7 @@ function SimpleDialog(props: SimpleDialogProps) {
             <>Loading</>
         } else if (deleteSuccess) {
             setOpenTwo(true)
-            console.log(deleteResponse, 'tuuu56ue6ue6u6eu6u')
+            console.log(deleteResponse, 'delete permanently')
         }
         // if (deleteResponse?.success === true) {
         //     setOpenTwo(true)
@@ -149,10 +149,7 @@ function SimpleDialog(props: SimpleDialogProps) {
                 aria-controls={openOn ? 'fade-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={openOn ? 'true' : undefined}
-                onClick={handleClick}
-
-            >
-
+                onClick={handleClick}>
                 <img src={actions} alt="actions" />
             </Button>
             <Menu
@@ -167,7 +164,6 @@ function SimpleDialog(props: SimpleDialogProps) {
                 className={classes.menu}
 
             >
-
                 <MenuItem >
                     <div className={classes.items} onClick={handleFolderOpen}>
                         <img src={openIcon} alt="folder" /> Open
@@ -230,15 +226,13 @@ function SimpleDialog(props: SimpleDialogProps) {
                         <DialogContent>
                             <Typography>
                                 <Box style={{ textAlign: "center", color: "#1baab5", }}>
-                                    <img src={deleteBlue} alt="delete" style={{ width: "80px", color: "#1baab5", }} />
-
+                                    <img src={deleteBlue} alt="delete" style={{ width: "40px", color: "#1baab5", }} />
                                 </Box>
-                                <Box style={{ margin: "20px", fontSize: "25px", textAlign: "center" }}>
+                                <Box style={{ margin: "5px", fontSize: "20px", textAlign: "center" }}>
                                     Delete
                                 </Box>
                             </Typography>
                             <Grid>
-
                                 <Box>
                                     <Typography style={{ textAlign: "center" }}>This Items contains some information. are you sure to delete it ?</Typography>
                                 </Box>
@@ -514,17 +508,17 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Grid>
                 </Grid>
 
-            <Grid style={{ marginTop: "30px", marginRight: "15px" }}>
+            <Grid style={{ marginTop: "30px", }}>
 
                 <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 600 }} aria-label="simple table">
-                        <TableHead>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
                             <TableRow>
-                                <TableCell className={classes.theadCell}>Name</TableCell>
-                                <TableCell align="right" className={classes.theadCell}>Last Modified By</TableCell>
-                                <TableCell align="right" className={classes.theadCell}>Last Modified Date</TableCell>
-                                <TableCell align="right" className={classes.theadCell}>File Size</TableCell>
-                                <TableCell align="right" className={classes.theadCell}>Actions</TableCell>
+                                <TableCell className={classes.nameTableCell}>Name</TableCell>
+                                <TableCell className={classes.theadCell}>Last Modified By</TableCell>
+                                <TableCell className={classes.theadCell}>Last Modified Date</TableCell>
+                                <TableCell className={classes.theadCell}>File Size</TableCell>
+                                <TableCell className={classes.theadCell}>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -550,24 +544,15 @@ const RecentFile: React.FC<IFolderProps> = (props: IFolderProps) => {
                                             {isSuccess && (
                                                 <>
                                                     {userData.sort((a:any,b:any) => Date.parse(new Date(a.lastModifiedDateTime  )) - Date.parse(new Date(b.lastModifiedDateTime   ))).reverse().slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item: any, index: any) => {
-
                                                             let createdDate = moment(item.lastModifiedDateTime).format("DD-MMM-YYYY");
-
                                                             return (
                                                                 <TableRow
                                                                     key={index}
-                                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                                >
-
-                                                                    <TableCell component="th" scope="row" className={classes.TableCell}>
-
-                                                                        <Link
-
-                                                                            href={`${item.webUrl}`}
-                                                                        >
+                                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                                                    <TableCell className={classes.TableCell}>
+                                                                        <Link href={`${item.webUrl}`} className={classes.nameTableCell}>
                                                                             {item.name}
                                                                         </Link>
-
                                                                     </TableCell>
                                                                     <TableCell align="right" className={classes.TableCell}>
                                                                         {item.lastModifiedBy.user.displayName}

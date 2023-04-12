@@ -111,7 +111,7 @@ export const useStyles = makeStyles({
     padding: "5px 10px !important"
   },
   bigPart: {
-    // marginRight: "25px",
+     marginRight: "20px",
     backgroundColor: "white",
     // marginTop: "20px",
     borderRadius: "10px",

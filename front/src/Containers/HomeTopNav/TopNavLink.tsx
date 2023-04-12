@@ -207,7 +207,7 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
     return (
         <div>
             <Paper elevation={0}>
-                <CardContent style={{ marginBottom: "16px" }} >
+                <CardContent style={{paddingBottom:"10px", paddingTop:"20px"}}>
                     <Box sx={{ width: '100%' }}>
                         <Box sx={{ backgroundColor: "white", width: "250px", margin: "auto", }}>
                             <Tabs value={value} onChange={handleChange} className={classes.tabs}>

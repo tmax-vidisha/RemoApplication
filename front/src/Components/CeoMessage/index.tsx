@@ -57,10 +57,7 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
 
   return (
-    // <div>CeoMessage</div>
     <AuthenticatedTemplate>
-     
-      
       <Paper elevation={0}>
           {isLoading ? (
             <SkeletonAnimation />

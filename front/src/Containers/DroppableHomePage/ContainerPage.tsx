@@ -27,7 +27,7 @@ const style = {
     marginRight: '5px',
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
-    
+
 
 }
 
@@ -49,71 +49,51 @@ export const ContainerPage: FC = () => {
         const [cards, setCards] = useState([
             {
                 id: 1,
-
                 text: <Grid item xs={12} >
-                    <HeroImagePage  />
-                    </Grid>
-                    // <img src={deleteIcon } alt="delete" style={{position:"relative"}}/>
+                    <HeroImagePage />
+                </Grid>
             },
             {
                 id: 2,
-
                 text: <Grid item xs={12}><CeoPage /></Grid>,
-
             },
             {
                 id: 3,
-
                 text: <Grid item xs={12}> <MeetingsPage /></Grid>,
-
             },
             {
                 id: 4,
-
                 text: <Grid item xs={6}> <EmpHighlightPage /></Grid>,
 
             },
             {
                 id: 5,
-
-                text: <Grid item xs={10} style={{marginTop:"-28px"}}>  <NewsPage /></Grid>,
-
+                text: <Grid item xs={10} style={{ marginTop: "-28px" }}>  <NewsPage /></Grid>,
             },
             {
                 id: 6,
-
                 text: <Grid item xs={8} >  <EventsPage /></Grid>,
-
             },
             {
                 id: 7,
-
-                text: <Grid item xs={6} style={{marginTop:"-95px"}}>  <EventsPage /></Grid>,
+                text: <Grid item xs={6} style={{ marginTop: "-95px" }}>  <EventsPage /></Grid>,
 
             },
             {
                 id: 8,
-
-                text:  <Grid item xs={4}><Gallery /> </Grid>,
-
+                text: <Grid item xs={4}><Gallery /> </Grid>,
             },
             {
                 id: 9,
-
-                text:  <Grid item xs={4} style={{marginTop:"-70px"}}><SocialMedia /> </Grid>,
-
+                text: <Grid item xs={4} style={{ marginTop: "-70px" }}><SocialMedia /> </Grid>,
             },
             {
                 id: 10,
-
-                text:  <Grid item xs={4}> <RecentFilePage />  </Grid>,
-
+                text: <Grid item xs={4}> <RecentFilePage />  </Grid>,
             },
             {
                 id: 11,
-
-                text:  <Grid item xs={6}> <SlideShowNews />  </Grid>,
-
+                text: <Grid item xs={6}> <SlideShowNews />  </Grid>,
             },
 
         ])
