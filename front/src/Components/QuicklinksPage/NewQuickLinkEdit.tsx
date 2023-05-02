@@ -5,6 +5,7 @@ import { useStyles } from "./Styles";
 import { useLocation } from 'react-router-dom';
 import { Box, CircularProgress, Grid } from "@mui/material";
 import add from "./../../Assets/Images/addmore.svg";
+import deleteIcon from "./../../Assets/Images/delete.svg";
 
 
 interface IFolderProps {
@@ -115,7 +116,7 @@ const NewQuickLinkEdit: React.FC<IFolderProps> = (props: IFolderProps) => {
           setState([...state, []]);
         }}
       >
-        Add new group
+        Add Quicklnks Group
       </button>
       <button
         type="button"
@@ -123,7 +124,7 @@ const NewQuickLinkEdit: React.FC<IFolderProps> = (props: IFolderProps) => {
           setState([...state, getItems(1)]);
         }}
       >
-        Add new item
+       Add Quicklnks Item
       </button>
       <div style={{ display: "flex" }}>
         <DragDropContext onDragEnd={onDragEnd}>
@@ -168,7 +169,7 @@ const NewQuickLinkEdit: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 );
                               }}
                             >
-                              delete
+                              <img src={deleteIcon} alt="" />
                             </button>
                           </div>
                         </div>
