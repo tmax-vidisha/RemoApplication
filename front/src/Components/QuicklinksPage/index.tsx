@@ -203,12 +203,10 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                          <>
                             {
                              userData?.response.length > 0 ?  userData?.response && userData?.response.map((item:any) => (
-
                                     <Box className={classes.boxIcon}>
                                         <img src={item.Image} alt="" />
                                         <p className={classes.iconTitle}>{item.LookupValue} </p>
                                     </Box>
-
                                 ))
                                 :<p>No User Quicklinks</p>
                             }

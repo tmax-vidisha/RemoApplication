@@ -32,7 +32,7 @@ const QuickLinkAddPage = () => {
   console.log(userData?.response, 'userData')
   return (
     <div>
-      {/* <QuicklinksPage
+   <QuicklinksPage
            data={data}
            isLoading={isLoading}
            isSuccess={isSuccess}
@@ -40,7 +40,7 @@ const QuickLinkAddPage = () => {
            userData={userData}
            userLoading={userLoading}
            userSuccess={userSuccess}
-        /> */}
+        /> 
       {/* <QuicklinksPage
         data={data}
         isLoading={isLoading}
