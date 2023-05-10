@@ -134,8 +134,8 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
             label: 'Department',
             Icon: department,
             IconHover: departmentHover,
-            onClick: () => navigate("/security"),
-            to: '/security',
+            onClick: () => navigate("/departmentContentPage"),
+            to: '/departmentContentPage',
 
         },
         {
@@ -195,8 +195,8 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
             label: 'Admin',
             Icon: admin,
             IconHover: adminHover,
-            onClick: () => navigate("/security"),
-            to: '/security',
+            onClick: () => navigate("/departmentContentPage"),
+            to: '/departmentContentPage',
 
         },
 

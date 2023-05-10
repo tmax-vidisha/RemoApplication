@@ -198,8 +198,8 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
       label: 'Department',
       Icon: department,
       iconHover: departmentHover,
-      onClick: () => navigate("/security"),
-      to: '/security',
+      onClick: () => navigate("/departmentContentPage"),
+      to: '/departmentContentPage',
 
     },
     {
@@ -259,8 +259,8 @@ const HomeTopNav: React.FC<IFolderProps> = (props: IFolderProps) => {
       label: 'Admin',
       icon: admin,
       iconHov: adminHover,
-      onClick: () => navigate("/security"),
-      to: '/security',
+      onClick: () => navigate("/departmentContentPage"),
+      to: '/departmentContentPage',
 
     },
 

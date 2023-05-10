@@ -8,6 +8,7 @@ import add from "./../../Assets/Images/addmore.svg";
 import deleteIcon from "./../../Assets/Images/delete.svg";
 
 
+
 interface IFolderProps {
   onClick?: (obj: any) => void;
   data: any,
@@ -15,7 +16,7 @@ interface IFolderProps {
   isSuccess: any,
   userData: any,
   userLoading: any,
-  userSuccess: any
+  userSuccess: any,
 }
 // fake data generator
 const getItems = (count: any, offset = 0) =>

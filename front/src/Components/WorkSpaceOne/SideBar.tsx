@@ -74,8 +74,8 @@ const SideBar = (props: any) => {
       label: 'Department',
       Icon: department,
       iconHover: department,
-      onClick: () => history.push("/security"),
-      to: '/security',
+      onClick: () => history.push("/departmentContentPage"),
+      to: '/departmentContentPage',
 
     },
     {
