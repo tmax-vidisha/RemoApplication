@@ -19,6 +19,10 @@ import { Button } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import QuickLinks from './../Quicklinks/index';
 import { useState, useEffect } from 'react';
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import DragListItems from './DragListItems';
+import deleteIcon from "./../../Assets/Images/delete-round.svg";
+
 
 interface IFolderProps {
     onClick?: (obj: any) => void;
@@ -27,12 +31,13 @@ interface IFolderProps {
     isSuccess: any,
     userData: any,
     userLoading: any,
-    userSuccess: any
+    userSuccess: any,
+    onDelete?: (id: string) => void;
 }
 // const QuicklinksPage = () => {
 const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
-    const { data, isLoading, isSuccess, onClick, userData, userLoading, userSuccess } = props
+    const { data, isLoading, isSuccess, onClick, userData, userLoading, userSuccess } = props;
     let location = useLocation();
 
     console.log(location.state);
@@ -71,16 +76,14 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     ]
     const [show, setShow] = useState(true);
-    const handleClick = () => {
-        setShow(true)
+    const [showResult, setShowResult]=useState(false)
+    const handleClickShow = () => {
+        setShowResult(true);
     }
     console.log(data?.response, 'tytrytrraa')
 
     const [selectedArray, setSelectedArray] = useState<any>([])
     const [users, setUsers] = useState([]);
-    // const [show,setShow]  = useState(false)
-
-
     // useEffect(() => {
     //     // const www = Object.freeze(data?.response )
     //     // console.log(www,'yyyss')
@@ -150,9 +153,27 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         }
         onClick?.(Data)
     }
-
-    const [text, setText] = useState('');
-
+    const onDragEnd = (result) => {
+        const newItems = Array.from(items);
+        const [removed] = newItems.splice(result.source.index, 1);
+        newItems.splice(result.destination.index, 0, removed);
+        setItems(newItems);
+    };
+   
+    const handleDelete = (id) => {
+        onDelete?.(id)
+        // setOpenOne(false);
+        // if (deleteLoading) {
+        //     <>Loading</>
+        // } else if (deleteSuccess) {
+        //     setOpenTwo(true)
+        // }
+    }
+    
+    function handleRemove(id) {
+        const newList = userData?.response.filter((item) => item.id !== id);
+        console.log(newList, 'uuuuuuuuuuuuuuuu')
+      }
     return (
         <div>
             <IconText />
@@ -164,7 +185,7 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                             <Typography className={classes.breadcrumbs} variant="h6">
 
                                 <Link className={classes.breadLinks} color="inherit" href="/">
-                                    Quicklinks
+                                    QuickLinks
                                 </Link>
                             </Typography>
                             <Typography variant="caption" display="block" gutterBottom>
@@ -176,7 +197,7 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                         Home
                                     </Link>
                                     <Link className={classes.breadLinks} color="inherit" href="/">
-                                        <Typography> Quicklinks  </Typography>
+                                        <Typography> QuickLinks  </Typography>
                                     </Link>
                                 </Breadcrumbs>
                             </Typography>
@@ -186,9 +207,9 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                 <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }} >
                     <Grid item xs={12} style={{ backgroundColor: "white" }}>
 
-                        <Grid item xs={12} className={classes.bigBox}>
+                        <Grid item xs={12} className={classes.addBox}>
                             <Grid item xs={4}>
-                                <p className={classes.addedText}>Added Quicklinks</p>
+                                <p className={classes.addedText}>Added QuickLinks</p>
                             </Grid>
                             <Grid item xs={8}>
                                 <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -198,97 +219,121 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                             </Grid>
                         </Grid>
                         <Grid className={classes.bigBox}>
-                        {userLoading && <CircularProgress />}
-                        {userSuccess && (
-                         <>
-                            {
-                             userData?.response.length > 0 ?  userData?.response && userData?.response.map((item:any) => (
-                                    <Box className={classes.boxIcon}>
-                                        <img src={item.Image} alt="" />
-                                        <p className={classes.iconTitle}>{item.LookupValue} </p>
-                                    </Box>
-                                ))
-                                :<p>No User Quicklinks</p>
-                            }
-                        </>)}
-                           
-                            <Box className={classes.boxIcon} onClick={() =>
-                                 { 
-                                setShow(!show) ;
+                            {userLoading && <CircularProgress />}
+                            {userSuccess && (
+                                <>
+                                    {
+                                        userData?.response.length > 0 ? userData?.response && userData?.response.map((item: any) => (
+                                            <Box className={classes.boxIcon}  onClick={handleDelete}>
+                                                <img src={item.Image} alt="" />
+                                                {showResult && 
+                                                <div className={classes.deleteContent}><img src={deleteIcon} alt="" className={classes.deleteBox} /></div>
+                                                }
+                                                <p className={classes.iconTitle}>{item.LookupValue} </p>
+                                            </Box>
+                                        ))
+                                            : <p>No User QuickLinks</p>
+                                    }
+                                </>)}
+
+                            <Box className={classes.boxIcon} onClick={() => {
+                                setShow(!show);
                                 Object.freeze(data?.response);
                                 const arrCopy = [...data?.response];
                                 setUsers(arrCopy)
-                                
-                                }}>
-                                <img src={add} alt="" />
-                                <p className={classes.iconTitle}>Add Quicklnks </p>
+
+                            }}>
+                                <img src={add} alt="" onClick={handleClickShow}/>
+                                <p className={classes.iconTitle}>Add QuickLinks </p>
                             </Box>
                         </Grid>
 
                     </Grid>
                     <Grid item xs={12} style={{ backgroundColor: "white" }}>
-                        <Grid className={classes.bigBox} style={{ width: "40%" }}>
-                            <p className={classes.addedText}>Quicklinks</p>
+                        <Grid className={classes.addBox}>
+                            <p className={classes.addedText}>QuickLinks</p>
                             <p className={classes.dragText}>Select any 5 links to show in a Home page</p>
                         </Grid>
                         {show ?
                             <Grid item xs={12} className={classes.bigBox} >
-                                {
-                                    data?.response && data?.response.map((item: any, index: any) => {
-
-                                        return (
-                                            <div key={index}>
-                                                <Box className={classes.boxIcon} >
-
-                                                    <img src={item.fields.HoverOff} alt="" />
-                                                    <p className={classes.iconTitle}>{item.fields.Title} </p>
-                                                </Box>
+                                {/* <DragDropContext onDragEnd={onDragEnd}>
+                                    <Droppable droppableId="droppable">
+                                        {(provided) => (
+                                            <div {...provided.droppableProps} ref={provided.innerRef}>
+                                                {items.map((item, index) => (
+                                                    <Draggable key={item.id} draggableId={item.id} index={index}>
+                                                        {(provided, snapshot) => (
+                                                            <DragListItems
+                                                                provided={provided}
+                                                                snapshot={snapshot}
+                                                                item={item}
+                                                            />
+                                                        )}
+                                                    </Draggable>
+                                                ))}
                                             </div>
-                                        )
-                                    })
+                                        )}
+                                    </Droppable>
+                                </DragDropContext> */}
+                                {/* <DragDropContext onDragEnd={onDragEnd}>
+                                <Droppable droppableId="droppable"> */}
+                                {data?.response && data?.response.map((item: any, index: any) => {
+
+                                    return (
+                                        <div key={index}>
+                                            <Box className={classes.boxIcon} >
+                                                <img src={item.fields.HoverOff} alt="" />
+                                                <p className={classes.iconTitle}>{item.fields.Title} </p>
+                                            </Box>
+                                        </div>
+                                    )
+                                })
                                 }
+                                {/* </Droppable>
+                                </DragDropContext> */}
                             </Grid>
                             :
                             <Grid>
-                            <div >
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    name="allSelect"
-                                    // checked={
-                                    //   users.filter((user) => user?.isChecked !== true).length < 1
-                                    // }
+                                <div >
+                                    <input
+                                        type="checkbox"
+                                        className="form-check-input"
+                                        name="allSelect"
+                                        // checked={
+                                        //   users.filter((user) => user?.isChecked !== true).length < 1
+                                        // }
 
-                                    checked={!users.some((user: any) => user?.isChecked !== true)}
-                                    onChange={handleChange}
-                                />
-                                <label >All Select</label>
-                            </div>
-                            <Grid item xs={12} className={classes.bigBox} >
-                                {
-                                  users &&  users.map((item: any, index: any) => {
+                                        checked={!users.some((user: any) => user?.isChecked !== true)}
+                                        onChange={handleChange}
+                                    />
+                                    <label >All Select</label>
+                                </div>
+                                <Grid item xs={12} className={classes.bigBox} >
 
-                                        return (
-                                            <div key={index}>
-                                                <Box className={classes.boxIcon} >
-                                                    <input
-                                                        type="checkbox"
-                                                        className="form-check-input"
-                                                        name={item.fields.id}
-                                                        checked={item?.isChecked || false}
-                                                        onChange={handleChange}
-                                                    />
-                                                    <img src={item.fields.HoverOff} alt="" />
-                                                    <p className={classes.iconTitle}>{item.fields.Title} </p>
-                                                </Box>
-                                            </div>
-                                        )
-                                    })
-                                }
+                                    {
+                                        users && users.map((item: any, index: any) => {
+
+                                            return (
+                                                <div key={index}>
+                                                    <Box className={classes.boxIcon} >
+                                                        <input
+                                                            type="checkbox"
+                                                            className="form-check-input"
+                                                            name={item.fields.id}
+                                                            checked={item?.isChecked || false}
+                                                            onChange={handleChange}
+                                                        />
+                                                        <img src={item.fields.HoverOff} alt="" />
+                                                        <p className={classes.iconTitle}>{item.fields.Title} </p>
+                                                    </Box>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </Grid>
                             </Grid>
-                        </Grid>
-                            }
-                        
+                        }
+
                     </Grid>
                 </Paper>
 

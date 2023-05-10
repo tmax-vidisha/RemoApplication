@@ -39,13 +39,13 @@ export const useStyles = makeStyles({
   },
   contentEditorWidth: {
     width: "100%",
-    
+
   },
   cardHeight: {
     paddingTop: "20px",
     background: "transparent !important",
     boxShadow: "none",
-    borderRadius:"10px"
+    borderRadius: "10px"
   },
   contentHeader: {
     position: "relative",
@@ -105,12 +105,12 @@ export const useStyles = makeStyles({
     paddingRight: "10px",
   },
 
-  videoContent:{
+  videoContent: {
     // position:"relative",
     // border:"1px solid red"
-     
+
   },
-  video:{
+  video: {
     height: '253px',
     display: "block",
     overflow: "hidden",
@@ -119,7 +119,7 @@ export const useStyles = makeStyles({
     // position: "relative",
     paddingBottom: "0px !important"
   },
-  displayImg:{
+  displayImg: {
     height: '253px',
     display: "block",
     overflow: "hidden",
@@ -128,53 +128,72 @@ export const useStyles = makeStyles({
     position: "relative",
     paddingBottom: "0px !important"
   },
-  videoTitle:{
-    position: "absolute", 
+  videoTitle: {
+    position: "absolute",
     color: "white",
     top: '70%',
     left: '34%',
     transform: "translateX(-50%)",
-    textAlign:"left",
-    cursor:"pointer",
+    textAlign: "left",
+    cursor: "pointer",
   },
-  exploreBtn:{
-    position:"absolute",
-    color:"white",
+  exploreBtn: {
+    position: "absolute",
+    color: "white",
     backgroundColor: "#009BAD",
-    bottom:"3%",
-    left:"25%",
-    cursor:"pointer",
-    border:"none",
-    borderRadius:"5px",
-    textAlign:"center",
-    display:"flex",
-    justifyContent:"space-between",
+    bottom: "3%",
+    left: "25%",
+    cursor: "pointer",
+    border: "none",
+    borderRadius: "5px",
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "space-between",
 
- },
- iconTitle:{
-    color:"rgb(73 90 115)",
-     margin:"0px"
- },
- boxIcon:{
-    width:"140px",
-     height:"60px",
-     backgroundColor:"rgb(239 242 243)",
-      padding:"10px",
-       margin:"10px", 
-      borderRadius:"10px"
- },
- addedText:{
-    textAlign:"left", 
-    color:"#009BAD",
-    margin:"15px"
- },
- dragText:{
-    color:" #606C74",
- },
- bigBox:{
-    display:"flex",
-     justifyContent:"space-between",
-     margin:"10px"
- }
-  
+  },
+  iconTitle: {
+    color: "rgb(73 90 115)",
+    margin: "0px"
+  },
+  boxIcon: {
+    width: "140px",
+    height: "60px",
+    backgroundColor: "rgb(239 242 243)",
+    padding: "10px",
+    margin: "10px",
+    borderRadius: "10px"
+  },
+  addedText: {
+    textAlign: "left",
+    color: "#009BAD",
+    margin: "15px"
+  },
+  dragText: {
+    color: " #606C74",
+  },
+  bigBox: {
+    display: "grid",
+    gridTemplateColumns: "repeat(5, 1fr)",
+    gap: "10px"
+  },
+  addBox: {
+    display: "flex",
+    justifyContent: "space-between",
+    margin:"10px"
+  },
+  deleteBox:{
+    width: "100%",
+  },
+  deleteContent:{
+    position: "absolute",
+    paddingLeft:" 125px",
+    marginTop:"-64px",
+    cursor:"pointer"
+
+    // backgroundColor:"#009BAD",
+    // width:"30px",
+    // borderRadius:"50%",
+    // paddingLeft: "40px",
+  }
+
 });
