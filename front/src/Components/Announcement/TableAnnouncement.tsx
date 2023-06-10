@@ -74,18 +74,18 @@ interface IFolderProps {
   const classes = useStyles();
   const {token} = useCustom();
   const { onClick,data,isLoading,isSuccess } = props
-  console.log(data,'uuuuuuuuuuuuuuuu')
+  //console.log(data,'uuuuuuuuuuuuuuuu')
   const handleChangeIsActiveToggle = (val:any) => {
     // setChecked(val);
-    console.log(val,'hhhfhf')
+    //console.log(val,'hhhfhf')
   };
   const handleChangeEnableLikesToggle = (val:any) => {
     // setChecked(val);
-    console.log(val,'hhhfhfdddd')
+   // console.log(val,'hhhfhfdddd')
   };
   const handleChangeEnableCommentsToggle = (val:any) => {
     // setChecked(val);
-    console.log(val,'hhhfhfdddd')
+    //console.log(val,'hhhfhfdddd')
   };
   const handleChangeShareAsEmailToggle = (val:any) => {
     // setChecked(val);
@@ -255,7 +255,7 @@ interface IFolderProps {
 
   const handleChangeisActiveyes = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+   // console.log(event.target.checked)
     setCheckedyesisActive(event.target.checked);
     setIsActives(true)
     //@ts-ignore
@@ -265,7 +265,7 @@ interface IFolderProps {
   };
   const handleChangeisActiveno = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+    //console.log(event.target.checked)
     setCheckednoisActive(event.target.checked);
       //@ts-ignore
       setIsActives(false)
@@ -275,7 +275,7 @@ interface IFolderProps {
   
   const handleChangeEnableLikesyes = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+   // console.log(event.target.checked)
     setCheckedyesEnableLikes(event.target.checked);
    
       setEnableLikes(true)
@@ -284,7 +284,7 @@ interface IFolderProps {
   };
   const handleChangeEnableLikesno = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+   // console.log(event.target.checked)
     setCheckednoEnableLikes(event.target.checked);
     
       setEnableLikes(false)
@@ -300,7 +300,7 @@ interface IFolderProps {
   };
   const handleChangeEnableCommandsno = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+   // console.log(event.target.checked)
     setCheckednoEnableCommands(event.target.checked);
     
       setCommands(false)
@@ -308,7 +308,7 @@ interface IFolderProps {
   };
   const handleChangeSharedAsEmailyes = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+    //console.log(event.target.checked)
     setCheckedyesSharedAsEmail(event.target.checked);
     
       setSharedEmails(true)
@@ -316,22 +316,22 @@ interface IFolderProps {
   };
   const handleChangeSharedAsEmailno = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+   // console.log(event.target.checked)
     setCheckednoSharedAsEmail(event.target.checked);
    
       setSharedEmails(false)
     
   };
   const handleChangeTitleField = (event: any) => {
-    console.log(event.target.value)
+   // console.log(event.target.value)
     setTitle(event.target.value);
   };
   const handleChangeDescriptionField = (event: any) => {
-    console.log(event.target.value)
+    //console.log(event.target.value)
     setDescription(event.target.value);
   };
   const handleChangeReciepientEmailField = (event: any) => {
-    console.log(event.target.value)
+    //console.log(event.target.value)
     setRecipientEmail(event.target.value);
   };
 
@@ -342,7 +342,7 @@ interface IFolderProps {
 
   const addFile = (file:any) => {
     setFilename1(file[0].name)
-    console.log(file[0].name);
+    //console.log(file[0].name);
     setState1({
       files: file.map((file:any) =>
         Object.assign(file, {
@@ -359,7 +359,7 @@ interface IFolderProps {
     } else {
      addFile(accepted);
       setState({ warningMsg: "" });
-      console.log(accepted[0].preview);
+      //console.log(accepted[0].preview);
 
       var blobPromise = new Promise((resolve, reject) => {
         const reader = new window.FileReader();
@@ -368,17 +368,17 @@ interface IFolderProps {
           const base64data = reader.result;
           // this.setState({ base64data: base64data });
           setBase1(base64data)
-          console.log(base64data);
+          //console.log(base64data);
         };
       });
       blobPromise.then(value => {
-       console.log(value);
+       //console.log(value);
       });
     }
   };
   const addFile1 = (file:any) => {
     setFilename2(file[0].name)
-    console.log(file[0].name);
+    //console.log(file[0].name);
     setState2({
       files: file.map((file:any) =>
         Object.assign(file, {
@@ -395,7 +395,7 @@ interface IFolderProps {
     } else {
      addFile1(accepted);
       setState({ warningMsg: "" });
-      console.log(accepted[0].preview);
+      //console.log(accepted[0].preview);
 
       var blobPromise = new Promise((resolve, reject) => {
         const reader = new window.FileReader();
@@ -404,11 +404,11 @@ interface IFolderProps {
           const base64data = reader.result;
           // this.setState({ base64data: base64data });
           setBase2(base64data)
-          console.log(base64data);
+          //console.log(base64data);
         };
       });
       blobPromise.then(value => {
-       console.log(value);
+       //console.log(value);
       });
     }
   };
@@ -479,20 +479,20 @@ async function  uploadItemDocument (){
     });
     const data = await response.json();
     // enter you logic when the fetch is successful
-    console.log(data, 'rtwssssssssss');
+    //console.log(data, 'rtwssssssssss');
     return data.webUrl
     // return data
   } catch (error) {
     // enter your logic for when there is an error (ex. error toast)
 
-    console.log(error)
+   // console.log(error)
   }
 }
 
 const handleSubmit = async  () =>{
-  console.log('grdgdg')
+  //console.log('grdgdg')
   const docUrl :string = await uploadItemDocument();
-  console.log(docUrl,'kkrrrrrrrsssss')
+  //console.log(docUrl,'kkrrrrrrrsssss')
 
 if( docUrl !== undefined){
       const announcementData = {
@@ -515,9 +515,9 @@ if( docUrl !== undefined){
  
 }
 const handleSave = async  () =>{
-  console.log('grdgdg')
+ // console.log('grdgdg')
   const docUrl :string = await uploadItemDocument();
-  console.log(docUrl,'kkrrrrrrrsssss')
+ // console.log(docUrl,'kkrrrrrrrsssss')
 
 if( docUrl !== undefined){
       const announcementData = {

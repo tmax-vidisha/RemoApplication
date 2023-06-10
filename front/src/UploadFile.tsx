@@ -332,7 +332,7 @@ formData.append("fileName", excelblob);
         // const [file] = e.target.files;
         // console.log(file,'ll')
         //  setName(file.name)
-        console.log(pptxblob)
+        // console.log(pptxblob)
          setFileSelected(pptxblob)
        
         const Data = {

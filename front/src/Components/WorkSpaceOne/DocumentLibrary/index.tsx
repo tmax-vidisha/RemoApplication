@@ -9,6 +9,7 @@ import { useStyles } from './Styles';
 import Documents from './Documents';
 import AllLinks from '../../Quicklinks/AllLinks';
 import WhatsNew from '../../Header/WhatsNew';
+import { DocumentPage } from '../../../Pages';
 
 const DocumentLibrary = () => {
     const classes = useStyles();
@@ -29,7 +30,8 @@ const DocumentLibrary = () => {
                     <Grid item xs={7} style={{ paddingLeft: "8px", }}>
 
                         <SearchPart />
-                        <Documents />
+                        {/* <Documents /> */}
+                        <DocumentPage/>
                     </Grid>
                     <Grid item xs={2}>
                         <AllLinks />

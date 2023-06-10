@@ -50,7 +50,7 @@ const QuickLinkAddPage = () => {
         userLoading={userLoading}
         userSuccess={userSuccess}
       /> */}
-      <NewQuickLinkEdit
+      {/* <NewQuickLinkEdit
         data={data}
         isLoading={isLoading}
         isSuccess={isSuccess}
@@ -58,7 +58,7 @@ const QuickLinkAddPage = () => {
         userData={userData}
         userLoading={userLoading}
         userSuccess={userSuccess}
-      />
+      /> */}
 
     </div>
   )

@@ -49,7 +49,7 @@ interface IFolderProps {
 const EditorPage: React.FC<IFolderProps> = (props: IFolderProps) => {
     const classes = useStyles();
     const { data, error, isLoading } = props
-     console.log(data?.response,'fgfdgfd')
+    // console.log(data?.response,'fgfdgfd')
     let navigate = useNavigate();
 
     const itemsList = [

@@ -50,6 +50,7 @@ import SearchBar from './SearchBar';
 import { useGetAllUnReadMailsQuery, useGetAllUnReadMeetingsQuery, useGetAllUserInfoQuery } from '../../services/graph';
 import useCustom from '../../hooks/useCustom';
 import moment from 'moment';
+import SearchComponent from './SearchComponent';
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -346,8 +347,9 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                 <img src={logo} alt="Remo Digital" />
               </RouterNavLink>
             </div>
-            <div className={classes.ml80pt20}>
-              <SearchBar />
+            <div className={classes.ml80pt20}> 
+              {/* <SearchBar /> */}
+              <SearchComponent/>
             </div>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

@@ -161,8 +161,10 @@ export const useStyles = makeStyles({
     backgroundColor: "rgb(239 242 243)",
     padding: "10px",
     margin: "10px",
-    borderRadius: "10px"
+    borderRadius: "10px",
+    cursor:"pointer",
   },
+  
   addedText: {
     textAlign: "left",
     color: "#009BAD",

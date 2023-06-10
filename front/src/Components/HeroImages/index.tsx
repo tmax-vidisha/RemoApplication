@@ -95,7 +95,7 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
 
   const { data, error, isLoading } = props
-  console.log(data, '888ddd88txccccccccccccccctuytuytu888')
+  //console.log(data, '888ddd88txccccccccccccccctuytuytu888')
 
   const handleClick = (Url: any) => {
     navigate('/heroThumbnail', { state: { folderData: Url } })

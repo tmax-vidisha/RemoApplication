@@ -33,6 +33,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useStyles } from './Styles';
 import announce from "../../Assets/Images/announcement.svg";
 import DragandDropPage from './DragandDropPage';
+import DragAndDrop from '../ComponentDragandDrop/DragAndDrop';
 
 const PortalHome = () => {
   const pca = new PublicClientApplication(configuration);
@@ -85,6 +86,7 @@ const PortalHome = () => {
 
           <Grid item xs={4}>
             <CeoPage />
+            {/* <DragAndDrop/> */}
           </Grid>
 
           <Grid item xs={12}>

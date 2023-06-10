@@ -79,7 +79,7 @@ const navigate = useNavigate()
 //     }, [])
 
     const { data, error, isLoading} =  props
-   console.log(data,'Empployeedata')
+  //  console.log(data,'Empployeedata')
   // console.log(ItemData,'juyuykuku')
   const handleItem = (Title:any,Dept:any,img:any,description:any,Name:any) =>{
     //  console.log(itemid,'Idss')
