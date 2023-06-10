@@ -78,19 +78,19 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   // },[])
   const handleChangeIsActiveToggle = (val: any) => {
     // setChecked(val);
-    console.log(val, 'hhhfhf')
+   // console.log(val, 'hhhfhf')
   };
   const handleChangeEnableLikesToggle = (val: any) => {
     // setChecked(val);
-    console.log(val, 'hhhfhfdddd')
+    //console.log(val, 'hhhfhfdddd')
   };
   const handleChangeEnableCommentsToggle = (val: any) => {
     // setChecked(val);
-    console.log(val, 'hhhfhfdddd')
+   // console.log(val, 'hhhfhfdddd')
   };
   const handleChangeShareAsEmailToggle = (val: any) => {
     // setChecked(val);
-    console.log(val, 'hhhfhfdddd')
+    //console.log(val, 'hhhfhfdddd')
   };
   const columns: GridColDef[] = [
     {
@@ -261,7 +261,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
   const handleChangeisActiveyes = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+   // console.log(event.target.checked)
     setCheckedyesisActive(event.target.checked);
     setIsActives(true)
     //@ts-ignore
@@ -271,7 +271,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
   const handleChangeisActiveno = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+   // console.log(event.target.checked)
     setCheckednoisActive(event.target.checked);
     //@ts-ignore
     setIsActives(false)
@@ -281,7 +281,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
   const handleChangeEnableLikesyes = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+    //console.log(event.target.checked)
     setCheckedyesEnableLikes(event.target.checked);
 
     setEnableLikes(true)
@@ -290,7 +290,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
   const handleChangeEnableLikesno = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+   // console.log(event.target.checked)
     setCheckednoEnableLikes(event.target.checked);
 
     setEnableLikes(false)
@@ -298,7 +298,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
   const handleChangeEnableCommandsyes = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+    //console.log(event.target.checked)
     setCheckedyesEnableCommands(event.target.checked);
 
     setCommands(true)
@@ -306,7 +306,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
   const handleChangeEnableCommandsno = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+    //console.log(event.target.checked)
     setCheckednoEnableCommands(event.target.checked);
 
     setCommands(false)
@@ -314,7 +314,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
   const handleChangeSharedAsEmailyes = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+    //console.log(event.target.checked)
     setCheckedyesSharedAsEmail(event.target.checked);
 
     setSharedEmails(true)
@@ -322,34 +322,34 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
   const handleChangeSharedAsEmailno = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+   // console.log(event.target.checked)
     setCheckednoSharedAsEmail(event.target.checked);
 
     setSharedEmails(false)
 
   };
   const handleChangeTitleField = (event: any) => {
-    console.log(event.target.value)
+   // console.log(event.target.value)
     setTitle(event.target.value);
   };
   const handleChangeDescriptionField = (event: any) => {
-    console.log(event.target.value)
+   // console.log(event.target.value)
     setDescription(event.target.value);
   };
   const handleChangeDesignationField = (event: any) => {
-    console.log(event.target.value)
+    //console.log(event.target.value)
     setDesignation(event.target.value);
   };
   const handleChangeNameField = (event: any) => {
-    console.log(event.target.value)
+   // console.log(event.target.value)
     setEmpName(event.target.value);
   };
   const handleChangeDObField = (event: any) => {
-    console.log(event.target.value)
+   // console.log(event.target.value)
     setDob(event.target.value);
   };
   const handleChangeDOjField = (event: any) => {
-    console.log(event.target.value)
+    //console.log(event.target.value)
     setDoj(event.target.value);
   };
   useEffect(() => {
@@ -359,7 +359,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
 
   const addFile = (file: any) => {
     setFilename1(file[0].name)
-    console.log(file[0].name);
+    //console.log(file[0].name);
     setState1({
       files: file.map((file: any) =>
         Object.assign(file, {
@@ -376,7 +376,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     } else {
       addFile(accepted);
       setState({ warningMsg: "" });
-      console.log(accepted[0].preview);
+     // console.log(accepted[0].preview);
 
       var blobPromise = new Promise((resolve, reject) => {
         const reader = new window.FileReader();
@@ -385,17 +385,17 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
           const base64data = reader.result;
           // this.setState({ base64data: base64data });
           setBase1(base64data)
-          console.log(base64data);
+         // console.log(base64data);
         };
       });
       blobPromise.then(value => {
-        console.log(value);
+        //console.log(value);
       });
     }
   };
   const addFile1 = (file: any) => {
     setFilename2(file[0].name)
-    console.log(file[0].name);
+    //console.log(file[0].name);
     setState2({
       files: file.map((file: any) =>
         Object.assign(file, {
@@ -412,7 +412,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     } else {
       addFile1(accepted);
       setState({ warningMsg: "" });
-      console.log(accepted[0].preview);
+     // console.log(accepted[0].preview);
 
       var blobPromise = new Promise((resolve, reject) => {
         const reader = new window.FileReader();
@@ -421,11 +421,11 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
           const base64data = reader.result;
           // this.setState({ base64data: base64data });
           setBase2(base64data)
-          console.log(base64data);
+          //console.log(base64data);
         };
       });
       blobPromise.then(value => {
-        console.log(value);
+        //console.log(value);
       });
     }
   };
@@ -442,7 +442,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     // @ts-ignore
     reader.readAsDataURL(event?.target?.files?.[0])
     reader.onload = (e) => {
-      console.log(e.target?.result, 'kkkkttt')
+      //console.log(e.target?.result, 'kkkkttt')
       setFileSelected(e.target?.result)
       //@ts-ignore
       // var eee4 = window.atob(e.target?.result)
@@ -452,7 +452,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
 
   const handleSubmit = async () => {
-    console.log('grdgdg')
+   // console.log('grdgdg')
     const announcementData = {
       // token :tokens,
       name: EmpName,
@@ -474,7 +474,7 @@ const BirthdayEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     onClick?.(announcementData)
   }
   const handleSave = async () => {
-    console.log('grdgdg')
+    //console.log('grdgdg')
     const announcementData = {
       // token :tokens,
       name: EmpName,

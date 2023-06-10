@@ -33,6 +33,7 @@ interface IFolderProps {
     userLoading: any,
     userSuccess: any,
     onDelete?: (id: string) => void;
+    //onDelete: (itemId: number) => void;
 }
 // const QuicklinksPage = () => {
 const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
@@ -160,14 +161,16 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
         setItems(newItems);
     };
    
-    const handleDelete = (id) => {
-        onDelete?.(id)
-        // setOpenOne(false);
-        // if (deleteLoading) {
-        //     <>Loading</>
-        // } else if (deleteSuccess) {
-        //     setOpenTwo(true)
-        // }
+  
+    const deleteDriveItem = async (id: string, name: string) => {
+        console.log(id, name)
+        const Data = {
+            // name:id,
+            ItemId: id,
+            title: item.LookupValue,
+            image:item.image,
+        }
+        await sendDeleteItem(Data)
     }
     
     function handleRemove(id) {
@@ -224,7 +227,7 @@ const QuicklinksPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 <>
                                     {
                                         userData?.response.length > 0 ? userData?.response && userData?.response.map((item: any) => (
-                                            <Box className={classes.boxIcon}  onClick={handleDelete}>
+                                            <Box className={classes.boxIcon}  onClick={handleRemove}>
                                                 <img src={item.Image} alt="" />
                                                 {showResult && 
                                                 <div className={classes.deleteContent}><img src={deleteIcon} alt="" className={classes.deleteBox} /></div>

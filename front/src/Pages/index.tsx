@@ -41,6 +41,7 @@ import GalleryContentEditorPage from "./Gallery/GalleryContentEditorPage";
 import StarredPage from "./WorkSpace/OneDrive/StarredPage";
 import TrashedPage from "./WorkSpace/OneDrive/TrashedPage"; 
 import QuickLinkAddPage from "./QuickLinkPage/QuickLinkAddPage";
+import DocumentPage from './WorkSpace/OneDrive/DocumentPage';
 export {
     
         EventsPage,
@@ -85,6 +86,7 @@ export {
         GalleryContentEditorPage,
         StarredPage,
         TrashedPage,
-        QuickLinkAddPage
+        QuickLinkAddPage,
+        DocumentPage
 
       };

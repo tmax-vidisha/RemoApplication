@@ -138,7 +138,7 @@ const DepartmentEditor = () => {
 
   const handleChangeisActiveyes = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+   // console.log(event.target.checked)
     setCheckedyesisActive(event.target.checked);
     setIsActives(true)
     //@ts-ignore
@@ -148,7 +148,7 @@ const DepartmentEditor = () => {
   };
   const handleChangeisActiveno = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+    //console.log(event.target.checked)
     setCheckednoisActive(event.target.checked);
     //@ts-ignore
     setIsActives(false)
@@ -183,7 +183,7 @@ const DepartmentEditor = () => {
   };
   const handleChangeEnableCommandsno = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+    //console.log(event.target.checked)
     setCheckednoEnableCommands(event.target.checked);
 
     setCommands(false)
@@ -191,7 +191,7 @@ const DepartmentEditor = () => {
   };
   const handleChangeSharedAsEmailyes = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value)
-    console.log(event.target.checked)
+    //console.log(event.target.checked)
     setCheckedyesSharedAsEmail(event.target.checked);
 
     setSharedEmails(true)

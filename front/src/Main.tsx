@@ -100,6 +100,7 @@ import WorkspaceQuicklinks from './Components/Quicklinks/WorkspaceQuicklinks';
 import MyFiles from './Components/WorkSpaceOne/MyFiles';
 import OrgChartPage from './Components/Quicklinks/OrgChartPage';
 import NewHeader from './Components/Header/NewHeader';
+import DocumentPage from './Pages/WorkSpace/OneDrive/DocumentPage';
 
 
 const theme = createTheme({
@@ -443,6 +444,9 @@ const Main = () => {
                             <Route
                               path="/orgChart"
                               element={<OrgChartPage/>} />
+                            <Route
+                              path="/document"
+                              element={<DocumentPage/>} />
                         
                         </Routes>
                     </ThemeProvider>
