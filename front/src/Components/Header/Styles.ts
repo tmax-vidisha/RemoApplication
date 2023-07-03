@@ -4,7 +4,6 @@ import { styled, alpha } from "@mui/material/styles";
 
 import { makeStyles } from "@mui/styles";
 
-
 export const StyledAppBar = styled(AppBar)(({ theme }) => ({
   color: "inherit",
   background: "#02354D !important",
@@ -20,18 +19,9 @@ export const StyledAppBar = styled(AppBar)(({ theme }) => ({
   "& .MuiSvgIcon-root": {
     color: "#fff",
   },
-
-
 }));
 
-
-
 export const useStyles = makeStyles({
-
- 
-
-  
-
   MuiSwitch: {
     // width: "100px",
     // height: "30px",
@@ -44,7 +34,7 @@ export const useStyles = makeStyles({
       display: "inline-flex",
       overflow: "hidden",
       padding: "11px",
-    }
+    },
   },
   switchBase: {
     color: "#818181",
@@ -53,15 +43,14 @@ export const useStyles = makeStyles({
     "&$checked": {
       "& + $track": {
         backgroundColor: "#23bf58",
-
-      }
-    }
+      },
+    },
   },
   thumb: {
     color: "white",
     width: "20px",
     height: "20px",
-    margin: "1px"
+    margin: "1px",
   },
   track: {
     width: "150px",
@@ -72,20 +61,20 @@ export const useStyles = makeStyles({
       color: "white",
       fontSize: "11px",
       position: "absolute",
-      top: "6px"
+      top: "6px",
     },
     "&:after": {
       content: "'On'",
-      left: "18px"
+      left: "18px",
     },
     "&:before": {
       content: "'Off'",
-      right: "17px"
-    }
+      right: "17px",
+    },
   },
   checked: {
     color: "#23bf58 !important",
-    transform: "translateX(26px) !important"
+    transform: "translateX(26px) !important",
   },
 
   textPart: {
@@ -99,9 +88,8 @@ export const useStyles = makeStyles({
 
   link: {
     color: "#666666",
-    textDecoration: "none"
+    textDecoration: "none",
   },
-
 
   profile: {
     fontSize: "12px !important",
@@ -116,10 +104,10 @@ export const useStyles = makeStyles({
     "& link": {
       "& span": {
         "& span": {
-          color: "#009BAD"
-        }
-      }
-    }
+          color: "#009BAD",
+        },
+      },
+    },
   },
   container: {
     flex: 1,
@@ -135,45 +123,50 @@ export const useStyles = makeStyles({
     alignItems: "center",
     marginTop: "0px",
     marginBottom: "16px",
-    paddingLeft: "20px"
+    paddingLeft: "20px",
   },
   bdayText: {
     color: "gray !important",
-    fontSize: "12px !important"
+    fontSize: "12px !important",
   },
   wish: {
     color: "#009BAD !important",
-    fontSize: "12px !important"
+    fontSize: "12px !important",
   },
-  header:{
+  header: {
     width: "100%",
-    position:"static",
-    backgroundColor:"#02354D !important",
-    color:"white",
-    ['@media (max-width:768px)']: { // eslint-disable-line no-useless-computed-key
-      width: "100% !important",     
+    position: "static",
+    backgroundColor: "#02354D !important",
+    color: "white",
+    ["@media (max-width:768px)"]: {
+      // eslint-disable-line no-useless-computed-key
+      width: "100% !important",
+      color: "white",
+      paddingRight: "0px",
+    },
   },
+  midHeader: {
+    display: "flex",
+    justifyContent: "space-between",
   },
-  midHeader:{
-    display:"flex",
-    justifyContent:"space-between"
+  pl50: {
+    paddingLeft: "50px",
+    paddingTop: "7px",
   },
-  pl50:{
-    paddingLeft:"50px",
-    paddingTop:"7px"
+  pTpl20: {
+    paddingLeft: "20px",
+    paddingTop: "20px",
   },
-  pTpl20:{
-    paddingLeft:"20px",
-    paddingTop:"20px"
-  },
-  ml80pt20:{
+  ml80pt20: {
     marginLeft: "80px",
     // paddingTop:"20px",
+    ["@media (max-width:768px)"]: {
+      marginLeft: "30px",
+    },
   },
   menu: {
     "& .MuiPaper-root": {
-      backgroundColor: "#02354D !important"
-    }
-  }
-
+      backgroundColor: "#02354D !important",
+    },
+  },
 });

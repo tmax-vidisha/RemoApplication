@@ -1,7 +1,7 @@
 import React from 'react';
-import { DndProvider, useDrag } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { CeoPage, HeroImagePage } from '../../Pages';
+// import { DndProvider, useDrag } from "react-dnd";
+// import { HTML5Backend } from "react-dnd-html5-backend";
+// import { CeoPage, HeroImagePage } from '../../Pages';
 import { ContainerPage } from './ContainerPage';
 
 

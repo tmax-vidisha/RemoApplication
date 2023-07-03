@@ -1,5 +1,5 @@
 import React from 'react';
- import  useDrag  from 'react-dnd';
+//  import  useDrag  from 'react-dnd';
 
 const MovableItem = (id:any, index:any) => {
 
