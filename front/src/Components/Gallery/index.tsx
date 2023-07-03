@@ -1,5 +1,5 @@
-import React from 'react'
-import { useGetPhotoGalleryQuery } from '../../services/APIs'
+import React from "react";
+import { useGetPhotoGalleryQuery } from "../../services/APIs";
 import { AuthenticatedTemplate } from "@azure/msal-react";
 import {
   Button,
@@ -9,11 +9,11 @@ import {
   Paper,
   Stack,
   Typography,
-  Link
+  Link,
 } from "@mui/material";
 import { useStyles } from "./Styles";
-import { useGetAllRootItemSharePointQuery } from '../../services/gallery'
-import useCustom from '../../hooks/useCustom';
+import { useGetAllRootItemSharePointQuery } from "../../services/gallery";
+import useCustom from "../../hooks/useCustom";
 
 interface IFolderProps {
   gallery: any;
@@ -27,10 +27,10 @@ const Gallery = () => {
   // const Gallery: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
   const { token } = useCustom();
-  const { data, error, isLoading } = useGetAllRootItemSharePointQuery(token)
+  const { data, error, isLoading } = useGetAllRootItemSharePointQuery(token);
   // const {gallery} = props;
   // const { data, error, isLoading } =   useGetPhotoGalleryQuery('')
-  console.log(data, 'uiiilili')
+  console.log(data, "uiiilili");
   return (
     // <div>Gallery</div>
     // <AuthenticatedTemplate>
@@ -83,24 +83,19 @@ const Gallery = () => {
                 >
                   Images and Videos
                 </Typography>
-                <Typography
-                  variant="h6"
-                  component="h6"
-                  color="secondary"
-
-                >
-                  <Link href="/GalleryFolder" className={classes.galleryHeader}> View All </Link>
-
+                <Typography variant="h6" component="h6" color="secondary">
+                  <Link href="/GalleryFolder" className={classes.galleryHeader}>
+                    {" "}
+                    View All{" "}
+                  </Link>
                 </Typography>
               </Stack>
-
-
               <div>
                 <Stack
                   direction="row"
                   justifyContent="center"
                   alignItems="center"
-                // spacing={2}
+                  // spacing={2}
                 >
                   {/* <div className={classes.column}>
                   <img src="https://media.istockphoto.com/photos/key-in-office-cabinet-lock-picture-id1164813783?k=20&m=1164813783&s=612x612&w=0&h=cAjKzPGnk5od5wj6P6F6F8ynt6VK7PI5rkug9PX1ABI=" />
@@ -152,7 +147,7 @@ const Gallery = () => {
         </AuthenticatedTemplate>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Gallery
+export default Gallery;

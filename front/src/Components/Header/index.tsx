@@ -1,23 +1,31 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, NavLink as RouterNavLink } from "react-router-dom";
-import AppBar from '@mui/material/AppBar';
+import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from '@mui/icons-material/AccountCircleOutlined';
-import { Container, Grid, Hidden, Popper, Grow, ClickAwayListener, MenuList } from "@mui/material";
-import MailIcon from '@mui/icons-material/EmailOutlined';
+import AccountCircle from "@mui/icons-material/AccountCircleOutlined";
+import {
+  Container,
+  Grid,
+  Hidden,
+  Popper,
+  Grow,
+  ClickAwayListener,
+  MenuList,
+} from "@mui/material";
+import MailIcon from "@mui/icons-material/EmailOutlined";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { AuthenticatedTemplate } from "@azure/msal-react";
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
 import { StyledAppBar } from "./Styles";
 import logo from "../../Assets/Images/logo_white.svg";
 import teams from "../../Assets/Images/tq2.svg";
@@ -30,61 +38,76 @@ import temp from "../../Assets/Images/temp.svg";
 import teamm from "../../Assets/Images/teamm.svg";
 import calendarWhite from "../../Assets/Images/calendarWhite.svg";
 import onenote from "../../Assets/Images/onenote.svg";
-import WeatherMap from './WeatherMap';
-import Backdrop from '@mui/material/Backdrop';
-import { Box, Paper, IconButton } from '@mui/material';
-import ToggleButton from './ToggleButton';
-import account from '../../Assets/Images/accountNew.svg';
-import banner from '../../Assets/Images/bannerviewNew.svg';
-import admin from '../../Assets/Images/adminNew.svg';
-import signOut from '../../Assets/Images/signoutNew.svg';
-import { useStyles } from './Styles';
-import SubCalendar from '../Events/SubCalendar';
-import { Calendar } from 'react-calendar';
-import { WeatherPage } from '../../Pages';
+import WeatherMap from "./WeatherMap";
+import Backdrop from "@mui/material/Backdrop";
+import { Box, Paper, IconButton } from "@mui/material";
+import ToggleButton from "./ToggleButton";
+import account from "../../Assets/Images/accountNew.svg";
+import banner from "../../Assets/Images/bannerviewNew.svg";
+import admin from "../../Assets/Images/adminNew.svg";
+import signOut from "../../Assets/Images/signoutNew.svg";
+import { useStyles } from "./Styles";
+import SubCalendar from "../Events/SubCalendar";
+import { Calendar } from "react-calendar";
+import { WeatherPage } from "../../Pages";
 import close from "../../Assets/Images/close.svg";
 
-import SearchBar from './SearchBar';
+import SearchBar from "./SearchBar";
 
-
-import { useGetAllUnReadMailsQuery, useGetAllUnReadMeetingsQuery, useGetAllUserInfoQuery } from '../../services/graph';
-import useCustom from '../../hooks/useCustom';
-import moment from 'moment';
-import SearchComponent from './SearchComponent';
+import {
+  useGetAllUnReadMailsQuery,
+  useGetAllUnReadMeetingsQuery,
+  useGetAllUserInfoQuery,
+} from "../../services/graph";
+import useCustom from "../../hooks/useCustom";
+import moment from "moment";
+import SearchComponent from "./SearchComponent";
 const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
-
 
 interface type {
   onClose: () => void;
 }
 interface IFolderProps {
-  data: any,
-  error: any,
-  isLoading: any,
-  CountData: any,
-  CountError: any,
-  CountLoading: any,
-  UserData: any,
-  UserError: any,
-  UserLoading: any,
-  EmpData: any,
-  EmpSuccess: any,
-  EmpLoading: any
+  data: any;
+  error: any;
+  isLoading: any;
+  CountData: any;
+  CountError: any;
+  CountLoading: any;
+  UserData: any;
+  UserError: any;
+  UserLoading: any;
+  EmpData: any;
+  EmpSuccess: any;
+  EmpLoading: any;
 }
 // const Header = () => {
 const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const { data, error, isLoading, CountData, CountError, CountLoading, UserData, UserError, UserLoading, EmpData, EmpSuccess, EmpLoading } = props
+  const {
+    data,
+    error,
+    isLoading,
+    CountData,
+    CountError,
+    CountLoading,
+    UserData,
+    UserError,
+    UserLoading,
+    EmpData,
+    EmpSuccess,
+    EmpLoading,
+  } = props;
   const { token } = useCustom();
   //@ts-ignore
 
@@ -92,7 +115,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   // const { data:CountData, error:CountError, isLoading:CountLoading } = useGetAllUnReadMeetingsQuery(token)
   // const { data:UserData, error:UserError, isLoading:UserLoading } = useGetAllUserInfoQuery(token)
 
-  console.log(EmpData?.response, 'EmpInfo')
+  console.log(EmpData?.response, "EmpInfo");
   const open = Boolean(anchorEl);
   const classes = useStyles();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -102,7 +125,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   const anchorRef = React.useRef<HTMLButtonElement>(null);
   const [userData, setUserdata] = useState<any>([]);
   let CurrentDate: any = moment(new Date()).format("DD-MM");
-  console.log(CurrentDate, "Date")
+  console.log(CurrentDate, "Date");
   const handleToggle = () => {
     setOpen1((prevOpen) => !prevOpen);
     Object.freeze(EmpData?.response);
@@ -110,10 +133,17 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     // const rr = arrCopy.filter((movie: any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i: any) => {return i.fields.Name})
     // console.log(rr,'yyyyy')
-    setUserdata(arrCopy.filter((movie: any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i: any) => {
-      return i.fields.Name
-    }))
-    console.log(userData, 'kkkkrtuyytryhtyr')
+    setUserdata(
+      arrCopy
+        .filter(
+          (movie: any) =>
+            moment(movie.fields.DOB).format("DD-MM") === CurrentDate
+        )
+        .map((i: any) => {
+          return i.fields.Name;
+        })
+    );
+    console.log(userData, "kkkkrtuyytryhtyr");
   };
 
   // const handleClose = () => {
@@ -131,14 +161,15 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
 
   function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab') {
+    if (event.key === "Tab") {
       event.preventDefault();
       setOpen1(false);
-    } else if (event.key === 'Escape') {
+    } else if (event.key === "Escape") {
       setOpen1(false);
     }
   }
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
+    React.useState<null | HTMLElement>(null);
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open1);
   React.useEffect(() => {
@@ -179,7 +210,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
     (value: any) => {
       setValue(value);
     },
-    [setValue],
+    [setValue]
   );
 
   const [anchorEl5, setAnchorEl5] = React.useState<null | HTMLElement>(null);
@@ -193,32 +224,32 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   const [anchorEl0, setAnchorEl0] = React.useState<null | HTMLElement>(null);
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-};
+  };
 
-const handleMobileMenuClose = () => {
+  const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
-};
+  };
 
-const handleMenuClose = () => {
+  const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-};
-const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  };
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
-};
-  const menuId = 'primary-search-account-menu';
+  };
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
@@ -228,65 +259,326 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-        }}
-        id={mobileMenuId}
-        keepMounted
-        transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-        }}
-        open={isMobileMenuOpen}
-        onClose={handleMobileMenuClose}
-        className={classes.menu}
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+      className={classes.menu}
     >
-        <MenuItem>
-            <IconButton
-                ref={anchorRef}
-                id="composition-button"
-                size="large"
-                aria-label="unread mail count"
-                color="inherit"
-                aria-controls={open1 ? 'composition-menu' : undefined}
-                aria-expanded={open1 ? 'true' : undefined}
-                aria-haspopup="true"
-                onClick={handleToggle}>
-                <Badge color="error" sx={{ top: "9px" }}>
-                    <img src={birthday} alt="" />
-                </Badge>
-            </IconButton>
-        </MenuItem>
-        <MenuItem>
-            <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
+      <MenuItem>
+        <IconButton
+          ref={anchorRef}
+          id="composition-button"
+          size="large"
+          aria-label="unread mail count"
+          color="inherit"
+          aria-controls={open1 ? "composition-menu" : undefined}
+          aria-expanded={open1 ? "true" : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          <Badge color="error" sx={{ top: "9px" }}>
+            <img src={birthday} alt="" />
+          </Badge>
+        </IconButton>
+        <Popper
+          open={open1}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          placement="bottom-start"
+          transition
+          disablePortal
+          style={{ paddingLeft: "825px" }}
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === "bottom-start" ? "left top" : "left bottom",
+              }}
             >
-                <Badge badgeContent={17} color="error">
-                    <NotificationsIcon />
-                </Badge>
-            </IconButton>
-            <p>Notifications</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-            <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="primary-search-account-menu"
-                aria-haspopup="true"
-                color="inherit">
-                <AccountCircle />
-            </IconButton>
-            <p>Profile</p>
-        </MenuItem>
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open1}
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
+                    onKeyDown={handleListKeyDown}
+                    style={{ padding: "0px" }}
+                  >
+                    {userData.length > 0 ? (
+                      userData.map((i: any) => {
+                        return (
+                          <>
+                            <MenuItem
+                              onClick={handleClose}
+                              className={classes.bdayText}
+                            >
+                              <List style={{ padding: "0px !important" }}>
+                                <ListItem
+                                  style={{
+                                    padding: "0px !important",
+                                    margin: "0px",
+                                  }}
+                                >
+                                  <ListItemAvatar>
+                                    <img src={bdayIcon} alt="" />
+                                  </ListItemAvatar>
+                                  <ListItemText
+                                    primary={`${i} birthday today!!!`}
+                                    secondary="Lets wish!"
+                                    primaryTypographyProps={{
+                                      fontSize: "12px",
+                                      color: "gray !important",
+                                    }}
+                                    secondaryTypographyProps={{
+                                      fontSize: "12px",
+                                      color: "#009BAD !important",
+                                    }}
+                                  />
+                                </ListItem>
+                              </List>
+                              {/* <div style={{ display: "flex", justifyContent: "center" }}>
+                                        <div>
+                                          <img src={bdayIcon} alt="" />
+                                        </div>
+                                        <div>
+                                          <p>{i} birthday today!!!</p>
+                                          <p className={classes.wish}>Lets wish!</p>
+                                        </div>
+                                      </div> */}
+                            </MenuItem>
+                          </>
+                        );
+                      })
+                    ) : (
+                      <MenuItem
+                        onClick={handleClose}
+                        className={classes.bdayText}
+                      >
+                        No Birthday Today
+                      </MenuItem>
+                    )}
+                    {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
+                              <MenuItem onClick={handleClose}>My account</MenuItem>
+                              <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          aria-label="unread mail count"
+          color="inherit"
+          onClick={handleClickOpen}
+          aria-controls={openFirst ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={openFirst ? "true" : undefined}
+        >
+          <Badge color="error" sx={{ top: "9px" }}>
+            <img src={temp} alt="" />
+          </Badge>
+        </IconButton>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorE2}
+          open={openFirst}
+          onClose={handleOnClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+          style={{ paddingTop: "8px", marginTop: "15px" }}
+          PaperProps={{
+            style: {
+              width: 350,
+              height: 150,
+              overflow: "Hidden",
+            },
+          }}
+        >
+          <img
+            src={close}
+            alt=""
+            onClick={handleOnClose}
+            style={{
+              width: "15px",
+              marginRight: "-290px",
+              cursor: "pointer",
+            }}
+          />
+          <MenuItem>
+            <WeatherPage />
+          </MenuItem>
+        </Menu>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          aria-label="unread mail count"
+          color="inherit"
+          onClick={handleClickSecOpen}
+          aria-controls={openSecond ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={openSecond ? "true" : undefined}
+        >
+          <a
+            rel="noreferrer"
+            target="_blank"
+            //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+            href="https://outlook.office.com/calendar/view/month"
+          >
+            <img src={calendarWhite} alt="calendar" />
+          </a>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href="https://teams.microsoft.com/_?culture=en-in&country=in"
+          >
+            <Badge
+              badgeContent={CountData?.response.length}
+              color="error"
+              sx={{
+                top: "3px",
+                "& .MuiBadge-badge": {
+                  color: "white",
+                  backgroundColor: "#009BAD",
+                },
+              }}
+            >
+              <img src={teamm} alt="teams" />
+            </Badge>
+          </a>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton size="large" aria-label="unread mail count" color="inherit">
+          <a
+            rel="noreferrer"
+            target={"_blank"}
+            href="https://outlook.office.com/mail/inbox"
+          >
+            <Badge
+              badgeContent={data?.response?.unreadItemCount}
+              color="error"
+              sx={{
+                top: "3px",
+                "& .MuiBadge-badge": {
+                  color: "white",
+                  backgroundColor: "#009BAD",
+                },
+              }}
+            >
+              <img src={outlookIcon} alt="Outlook" />
+            </Badge>
+          </a>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <a
+            rel="noreferrer"
+            target={"_blank"}
+            href="https://www.onenote.com/signin?showHrd=true&wdorigin=poc&culture=en-in&country=IN"
+          >
+            <Badge color="error" sx={{ top: "3px" }}>
+              <img src={onenote} alt="teams" />
+            </Badge>
+          </a>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          sx={{ top: "3px" }}
+          size="large"
+          edge="end"
+          aria-label="account of current user"
+          color="inherit"
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick5}
+        >
+          <img
+            src={userimg}
+            alt="pic"
+            style={{
+              width: "35px",
+              height: "35px",
+              borderRadius: "30px",
+            }}
+          />
+        </IconButton>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl5}
+          open={open5}
+          onClose={handleClose5}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+          PaperProps={{
+            style: {
+              marginTop: -2,
+            },
+          }}
+        >
+          <Box>
+            <Grid style={{ color: "#009BAD", fontSize: "13px" }}>
+              {UserData?.response?.name}
+            </Grid>
+            <Grid style={{ fontSize: "12px" }}>
+              {UserData?.response?.email}
+            </Grid>
+          </Box>
+          <MenuItem onClick={handleClose5} className={classes.profile}>
+            <img src={account} alt="account" /> Manage your account
+          </MenuItem>
+          <MenuItem onClick={handleClose5} className={classes.profile}>
+            <img src={admin} alt="account" />
+            Admin
+          </MenuItem>
+          <MenuItem onClick={handleClose5} className={classes.profile}>
+            <img src={banner} alt="account" />
+            Display on your banner view
+          </MenuItem>
+          <MenuItem onClick={handleClose5} className={classes.profile}>
+            <img src={signOut} alt="account" />
+            SignOut
+          </MenuItem>
+        </Menu>
+      </MenuItem>
     </Menu>
-);
+  );
 
   // useEffect(() => {
   //     if(EmpLoading){
@@ -319,8 +611,6 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
 
   //     // });
 
-
-
   // }, [])
   //   const  EmpN = EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
   //     return i.fields.Name
@@ -335,24 +625,24 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
   // console.log(modifiedArr,'mm')
   return (
     <AuthenticatedTemplate>
-      <Box sx={{ flexGrow: 1 }} >
+      <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" className={classes.header}>
           <Toolbar
             sx={{
-              justifyContent: "space-between"
-            }}>
-
+              justifyContent: "space-between",
+            }}
+          >
             <div>
               <RouterNavLink to="/">
                 <img src={logo} alt="Remo Digital" />
               </RouterNavLink>
             </div>
-            <div className={classes.ml80pt20}> 
-              {/* <SearchBar /> */}
-              <SearchComponent/>
+            <div className={classes.ml80pt20}>
+              <SearchBar />
+              {/* <SearchComponent /> */}
             </div>
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <div className={classes.pl50}>
                 {/* <IconButton
                     size="large"
@@ -399,8 +689,8 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                   size="large"
                   aria-label="unread mail count"
                   color="inherit"
-                  aria-controls={open1 ? 'composition-menu' : undefined}
-                  aria-expanded={open1 ? 'true' : undefined}
+                  aria-controls={open1 ? "composition-menu" : undefined}
+                  aria-expanded={open1 ? "true" : undefined}
                   aria-haspopup="true"
                   onClick={handleToggle}
                 >
@@ -422,7 +712,9 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                       {...TransitionProps}
                       style={{
                         transformOrigin:
-                          placement === 'bottom-start' ? 'left top' : 'left bottom',
+                          placement === "bottom-start"
+                            ? "left top"
+                            : "left bottom",
                       }}
                     >
                       <Paper>
@@ -434,29 +726,41 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                             onKeyDown={handleListKeyDown}
                             style={{ padding: "0px" }}
                           >
-                            {userData.length > 0 ? userData.map((i: any) => {
-                              return (
-                                <>
-                                  <MenuItem onClick={handleClose} className={classes.bdayText}>
-                                    <List style={{ padding: "0px !important" }}>
-                                      <ListItem style={{ padding: "0px !important", margin: "0px" }}>
-                                        <ListItemAvatar>
-                                          <img src={bdayIcon} alt="" />
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                          primary={`${i} birthday today!!!`} secondary="Lets wish!"
-                                          primaryTypographyProps={{
-                                            fontSize: '12px',
-                                            color: "gray !important",
+                            {userData.length > 0 ? (
+                              userData.map((i: any) => {
+                                return (
+                                  <>
+                                    <MenuItem
+                                      onClick={handleClose}
+                                      className={classes.bdayText}
+                                    >
+                                      <List
+                                        style={{ padding: "0px !important" }}
+                                      >
+                                        <ListItem
+                                          style={{
+                                            padding: "0px !important",
+                                            margin: "0px",
                                           }}
-                                          secondaryTypographyProps={{
-                                            fontSize: '12px',
-                                            color: "#009BAD !important",
-                                          }}
-                                        />
-                                      </ListItem>
-                                    </List>
-                                    {/* <div style={{ display: "flex", justifyContent: "center" }}>
+                                        >
+                                          <ListItemAvatar>
+                                            <img src={bdayIcon} alt="" />
+                                          </ListItemAvatar>
+                                          <ListItemText
+                                            primary={`${i} birthday today!!!`}
+                                            secondary="Lets wish!"
+                                            primaryTypographyProps={{
+                                              fontSize: "12px",
+                                              color: "gray !important",
+                                            }}
+                                            secondaryTypographyProps={{
+                                              fontSize: "12px",
+                                              color: "#009BAD !important",
+                                            }}
+                                          />
+                                        </ListItem>
+                                      </List>
+                                      {/* <div style={{ display: "flex", justifyContent: "center" }}>
                                         <div>
                                           <img src={bdayIcon} alt="" />
                                         </div>
@@ -465,11 +769,18 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                                           <p className={classes.wish}>Lets wish!</p>
                                         </div>
                                       </div> */}
-                                  </MenuItem>
-
-                                </>
-                              )
-                            }) : <MenuItem onClick={handleClose} className={classes.bdayText}>No Birthday Today</MenuItem>}
+                                    </MenuItem>
+                                  </>
+                                );
+                              })
+                            ) : (
+                              <MenuItem
+                                onClick={handleClose}
+                                className={classes.bdayText}
+                              >
+                                No Birthday Today
+                              </MenuItem>
+                            )}
                             {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
                               <MenuItem onClick={handleClose}>My account</MenuItem>
                               <MenuItem onClick={handleClose}>Logout</MenuItem> */}
@@ -479,7 +790,6 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                     </Grow>
                   )}
                 </Popper>
-
 
                 {/* {EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
                         //  return <MenuItem onClick={handleClose}></MenuItem>
@@ -527,8 +837,18 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                       height: 150,
                       overflow: "Hidden",
                     },
-                  }} >
-                  <img src={close} alt="" onClick={handleOnClose} style={{ width: "15px", marginRight: "-290px", cursor: "pointer" }} />
+                  }}
+                >
+                  <img
+                    src={close}
+                    alt=""
+                    onClick={handleOnClose}
+                    style={{
+                      width: "15px",
+                      marginRight: "-290px",
+                      cursor: "pointer",
+                    }}
+                  />
                   <MenuItem>
                     <WeatherPage />
                   </MenuItem>
@@ -582,7 +902,8 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                   aria-expanded={openSecond ? "true" : undefined}
                 >
                   <a
-                    target={"_blank"}
+                    rel="noreferrer"
+                    target="_blank"
                     //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
                     href="https://outlook.office.com/calendar/view/month"
                   >
@@ -617,19 +938,25 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                   size="large"
                   aria-label="show 17 new notifications"
                   color="inherit"
-                ><a
-                  target={"_blank"}
-                  href="https://teams.microsoft.com/_?culture=en-in&country=in"
-                //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
-                //href="https://teams.microsoft.com/_?culture=en-in&country=in#/conversations/19:meeting_NzdhM2FkNDMtOWU1ZC00NzVhLTgxZmEtYzA0ZjU4YjBhYTkz@thread.v2?ctx=chat"
                 >
-                    <Badge badgeContent={CountData?.response.length} color="error" sx={{
-                      top: "3px",
-                      "& .MuiBadge-badge": {
-                        color: "white",
-                        backgroundColor: "#009BAD"
-                      }
-                    }}>
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href="https://teams.microsoft.com/_?culture=en-in&country=in"
+                    //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+                    //href="https://teams.microsoft.com/_?culture=en-in&country=in#/conversations/19:meeting_NzdhM2FkNDMtOWU1ZC00NzVhLTgxZmEtYzA0ZjU4YjBhYTkz@thread.v2?ctx=chat"
+                  >
+                    <Badge
+                      badgeContent={CountData?.response.length}
+                      color="error"
+                      sx={{
+                        top: "3px",
+                        "& .MuiBadge-badge": {
+                          color: "white",
+                          backgroundColor: "#009BAD",
+                        },
+                      }}
+                    >
                       <img src={teamm} alt="teams" />
                     </Badge>
                   </a>
@@ -639,17 +966,24 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                 <IconButton
                   size="large"
                   aria-label="unread mail count"
-                  color="inherit">
+                  color="inherit"
+                >
                   <a
+                    rel="noreferrer"
                     target={"_blank"}
-                    href="https://outlook.office.com/mail/inbox">
-                    <Badge badgeContent={data?.response?.unreadItemCount} color="error" sx={{
-                      top: "3px",
-                      "& .MuiBadge-badge": {
-                        color: "white",
-                        backgroundColor: "#009BAD"
-                      }
-                    }}>
+                    href="https://outlook.office.com/mail/inbox"
+                  >
+                    <Badge
+                      badgeContent={data?.response?.unreadItemCount}
+                      color="error"
+                      sx={{
+                        top: "3px",
+                        "& .MuiBadge-badge": {
+                          color: "white",
+                          backgroundColor: "#009BAD",
+                        },
+                      }}
+                    >
                       <img src={outlookIcon} alt="Outlook" />
                     </Badge>
                   </a>
@@ -662,6 +996,7 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                   color="inherit"
                 >
                   <a
+                    rel="noreferrer"
                     target={"_blank"}
                     // href="https://login.microsoftonline.com/common/oauth2/authorize?response_mode=form_post&response_type=id_token+code&scope=openid&msafed=0&nonce=3587ee97-ed5e-4e16-bb94-7f1af1203849.638139440948541424&state=https%3a%2f%2fwww.onenote.com%2fnotebooks%3fwdoriginpoc%26auth%3d2%26nf%3d1&client_id=2d4d3d8e-2be3-4bef-9f87-7875a61c29de&redirect_uri=https%3a%2f%2fwww.onenote.com%2fauth%2fsignin"
                     // href="https://www.microsoft.com/en-in/microsoft-365/onenote/digital-note-taking-app"
@@ -681,10 +1016,11 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                   aria-label="account of current user"
                   color="inherit"
                   id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-controls={open ? "basic-menu" : undefined}
                   aria-haspopup="true"
-                  aria-expanded={open ? 'true' : undefined}
-                  onClick={handleClick5}>
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick5}
+                >
                   <img
                     src={userimg}
                     alt="pic"
@@ -702,41 +1038,58 @@ const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
                 open={open5}
                 onClose={handleClose5}
                 MenuListProps={{
-                  'aria-labelledby': 'basic-button',
+                  "aria-labelledby": "basic-button",
                 }}
                 PaperProps={{
                   style: {
-                    marginTop: -2
+                    marginTop: -2,
                   },
-                }}>
+                }}
+              >
                 <Box>
-                  <Grid style={{ color: "#009BAD", fontSize: "13px" }}>{UserData?.response?.name}</Grid>
-                  <Grid style={{ fontSize: "12px" }}>{UserData?.response?.email}</Grid>
+                  <Grid style={{ color: "#009BAD", fontSize: "13px" }}>
+                    {UserData?.response?.name}
+                  </Grid>
+                  <Grid style={{ fontSize: "12px" }}>
+                    {UserData?.response?.email}
+                  </Grid>
                 </Box>
-                <MenuItem onClick={handleClose5} className={classes.profile}><img src={account} alt="account" /> Manage your account</MenuItem>
-                <MenuItem onClick={handleClose5} className={classes.profile}><img src={admin} alt="account" />Admin</MenuItem>
-                <MenuItem onClick={handleClose5} className={classes.profile}><img src={banner} alt="account" />Display on your banner view</MenuItem>
-                <MenuItem onClick={handleClose5} className={classes.profile}><img src={signOut} alt="account" />SignOut</MenuItem>
+                <MenuItem onClick={handleClose5} className={classes.profile}>
+                  <img src={account} alt="account" /> Manage your account
+                </MenuItem>
+                <MenuItem onClick={handleClose5} className={classes.profile}>
+                  <img src={admin} alt="account" />
+                  Admin
+                </MenuItem>
+                <MenuItem onClick={handleClose5} className={classes.profile}>
+                  <img src={banner} alt="account" />
+                  Display on your banner view
+                </MenuItem>
+                <MenuItem onClick={handleClose5} className={classes.profile}>
+                  <img src={signOut} alt="account" />
+                  SignOut
+                </MenuItem>
               </Menu>
             </Box>
-            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit">
-                            <MoreIcon />
-                        </IconButton>
-                    </Box>
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Box>
           </Toolbar>
         </AppBar>
         {renderMobileMenu}
         {renderMenu}
       </Box>
-    </AuthenticatedTemplate >
-  )
-}
+    </AuthenticatedTemplate>
+  );
+};
 
 export default Header;

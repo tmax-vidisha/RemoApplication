@@ -40,7 +40,6 @@ export const contentEditorApi = createApi({
                 method: "POST",
                 body: data
             }),
-
         }),
         getLatestAnnouncement: builder.query<any, any>({
             // query: () => '/api/v1/onedrive/getAllRootItems',
