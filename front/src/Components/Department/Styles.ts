@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { makeStyles } from "@mui/styles";
 import background from "../../Assets/Images/inner-banner.png";
 
@@ -9,26 +8,16 @@ export const useStyles = makeStyles({
   contentEditorWidth: {
     width: "95%",
   },
-  naNewsImage: {
-    width: "100%",
-    height: "280px",
-    borderRadius: "10px",
-    ["@media (max-width:768px)"]: {
-      width: "max-content",
-      maxWidth: "280px",
-      padding: "0px",
-      marginRight: "58px",
-    },
-  },
   cardHeight: {
-    paddingTop: "20px",
+    paddingBottom: "20px",
     background: "transparent !important",
     boxShadow: "none",
+    position: "relative",
   },
   contentHeader: {
     position: "relative",
     backgroundColor: "unset !important",
-    paddingTop: "15px",
+    paddingTop: "25px",
   },
   contentArea: {
     pl: "0px!important",
@@ -46,6 +35,7 @@ export const useStyles = makeStyles({
     borderRadius: "8px",
     position: "relative",
   },
+
   innerBannerOverlay: {
     position: "absolute",
     width: "100%",
@@ -55,9 +45,14 @@ export const useStyles = makeStyles({
     bottom: 0,
     borderRadius: "8px",
   },
+
+  outerImage: {
+    width: "100%",
+    backgroundImage: `linear-gradient(to bottom, rgba(255,0,0,0), rgb(2 53 77))`,
+  },
   breadcrumbsHeader: {
     fontSize: "20px",
-    lineHeight: "20px",
+    lineHeight: "30px",
     paddingTop: "10px",
   },
   breadcrumbsLinks: {
@@ -170,60 +165,94 @@ export const useStyles = makeStyles({
     width: "100%",
     position: "relative",
   },
-
-  upperContent: {
-    backgroundColor: "white",
-    borderTopLeftRadius: "7px",
-  },
-  firstContent: {
-    borderRight: "1px solid #e6e6e6",
-    paddingRight: "20px",
-    // marginRight: "50px",
+  mainDepart: {
     display: "flex",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    ["@media (max-width:768px)"]: {
+    flexDirection: "column",
+    // justifyContent: "space-between",
+    "@media (max-width:768px)": {
       display: "flex",
-      justifyContent: "space-between",
-      flexDirection: "column",
+      flexDirection: "row",
     },
   },
-  bigText: {
-    width: "310px",
-    textAlign: "left",
-    marginLeft: "10px",
-    fontWeight: "600",
-    ["@media (max-width:768px)"]: {
+  imgPart: {
+    width: "30%",
+    float: "left",
+    paddingTop: "30px",
+    "@media (max-width:768px)": {
       width: "100%",
     },
   },
-  refText: {
-    fontSize: "10px",
-    width: "150px",
-    display: "flex",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    ["@media (max-width:768px)"]: {
-      display: "flex",
-      justifyContent: "space-between",
-      flexDirection: "column",
+  imgFlag: {
+    width: "290px",
+    height: "200px",
+    borderRadius: "10px",
+  },
+  contentPart: {
+    width: "70%",
+    float: "right",
+    textAlign: "left",
+    paddingLeft: "15px",
+    paddingRight: "15px",
+    "@media (max-width:768px)": {
+      width: "100%",
     },
   },
-  fieldImage: {
-    width: "230px",
-    height: "120px",
+  PContent: {
+    color: "#a09e9e",
+  },
+  PaperContent: {
+    padding: "15px",
     borderRadius: "8px",
+    background: "#ffffff",
   },
-  imgBox: {
-    width: "230px",
-    height: "120px",
+  headText: {
+    margin: "0px",
+    padding: "20px",
+    fontSize: "15px",
+    fontWeight: "500",
+    color: "#009BAD",
+    // color: "#606C74",
+    // "&:hover": {
+    //   color: "#1BAAB5",
+    // },
   },
-  imgDetails: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    ["@media (max-width:768px)"]: {
-      display: "grid",
-      gridTemplateColumns: "repeat(1, 1fr)",
+  Listlink: {
+    color: "#606C74",
+
+    textDecoration: "none",
+    "& hover": {
+      color: "#009BAD",
+    },
+    "& .topImg": {
+      margin: "auto",
+      display: "block !important",
+    },
+    "& .topImgH": {
+      margin: "auto",
+      display: "none !important",
+    },
+  },
+  textListItem: {
+    fontSize: "12px",
+    textAlign: "left",
+    "& span": {
+      fontSize: "12px",
+      textAlign: "center",
+    },
+
+    " & img": {},
+  },
+
+  ListItemPart: {
+    //border:"1px solid #eee7e7",
+    //width:"80px",
+    margin: "auto",
+    marginBottom: "15px",
+    borderRadius: "10px",
+    boxShadow: "5px 3px 10px 4px #eee7e7",
+    width: "80%",
+    "& MuiListItem": {
+      width: "80%",
     },
   },
 });

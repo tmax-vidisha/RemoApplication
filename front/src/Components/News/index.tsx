@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from "react";
 import { AuthenticatedTemplate } from "@azure/msal-react";
 import {
   Card,
@@ -10,16 +10,18 @@ import {
   Paper,
   Typography,
   Stack,
-  CardActionArea
+  CardActionArea,
 } from "@mui/material";
-import { Link } from 'react-router-dom';
-import {
-  NavLink as RouterNavLink,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { NavLink as RouterNavLink } from "react-router-dom";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import AccessTimeIcon from "@mui/icons-material/Event";
-import { useGetNewsQuery, useUpdateNewsTokenMutation, useGetAllNewsQuery } from '../../services/APIs';
+import {
+  useGetNewsQuery,
+  useUpdateNewsTokenMutation,
+  useGetAllNewsQuery,
+} from "../../services/APIs";
 import { useStyles } from "./Styles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -31,18 +33,18 @@ import pin from "../../Assets/Images/pin.svg";
 import pinActive from "../../Assets/Images/pinActive.svg";
 import internet from "../../Assets/Images/internet.svg";
 import SkeletonAnimation from "../../Containers/Skeleton";
-import Slider from 'react-slick'
+import Slider from "react-slick";
 // import {FaChevronLeft, FaChevronRight} from 'react-icons'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 
 var moment = require("moment-timezone");
 interface IFolderProps {
-  data: any,
-  error: any,
-  isLoading: any
+  data: any;
+  error: any;
+  isLoading: any;
   // onClick: any;
   // onDownload?: (id: string) => void;
   // onDelete?: (id: string) => void;
@@ -76,18 +78,15 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
   //           return null;
   //         });
 
-
   //       }
 
   //       return null;
   //     }
   //     getAccessToken();
 
-
-
   //   }, [])
-  const { data, error, isLoading } = props
-  console.log(data?.response, 'NewsDary')
+  const { data, error, isLoading } = props;
+  console.log(data?.response, "NewsDary");
 
   // const [slideLeft, setSlideLeft] = React.useState(0);
   // const [isScrolling, setIsScrolling] = React.useState(false);
@@ -191,26 +190,22 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
   const handleClick = () => {
     if (isClicked) {
       setLikes(likes - 1);
-      setIsActive(isActive)
-
+      setIsActive(isActive);
     } else {
       setLikes(likes + 1);
-
     }
     setIsClicked(!isClicked);
-    setIsActive(!isActive)
+    setIsActive(!isActive);
   };
 
   const hide = () => {
     setIsActive(!isActive);
     setIsClicked(!isClicked);
-
-  }
+  };
   const [isActive2, setIsActive2] = useState(false);
 
   return (
     <AuthenticatedTemplate>
-
       <Paper style={{ maxWidth: "100%" }} elevation={0}>
         {isLoading ? (
           <SkeletonAnimation />
@@ -218,7 +213,6 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
           <>
             <CardContent sx={{ pb: "16px!important" }}>
               <Stack
-
                 direction="row"
                 justifyContent="space-between"
                 alignItems="center"
@@ -232,38 +226,42 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                 >
                   News
                 </Typography>
-                <Typography
-                  variant="h6"
-                  component="h6"
-                  color="secondary"
-
-                >
-                  <Link to="/NewsInfo" className={classes.newsHeader1}> View All </Link>
-
+                <Typography variant="h6" component="h6" color="secondary">
+                  <Link to="/NewsInfo" className={classes.newsHeader1}>
+                    {" "}
+                    View All{" "}
+                  </Link>
                 </Typography>
               </Stack>
 
-              <Slider
-                ref={(c) => (slider.current = c)} {...settings}
-              >
-
+              <Slider ref={(c) => (slider.current = c)} {...settings}>
                 {data?.response &&
                   data?.response?.map((card, index) => (
                     <div key={index}>
-                      <Card sx={{ maxWidth: 250, maxHeight: 260 }}>
+                      <Card className={classes.singleCard}>
                         <CardActionArea>
                           <CardMedia
                             // className={classes.newsImg}
-                            style={{ margin: '7px', borderRadius: "4px", width: "97%", position: "relative" }}
+                            style={{
+                              margin: "7px",
+                              borderRadius: "4px",
+                              width: "97%",
+                              position: "relative",
+                            }}
                             component="img"
                             height="160"
                             // title={card.fields?.LinkTitle}
                             image={card.fields?.NewsImage}
                             alt="green iguana"
                           />
-                          <Grid className={classes.cardNewTitle}>{card.fields?.LinkTitle}</Grid>
+                          <Grid className={classes.cardNewTitle}>
+                            {card.fields?.LinkTitle}
+                          </Grid>
                           <CardContent>
-                            <Stack direction="row" justifyContent="space-between">
+                            <Stack
+                              direction="row"
+                              justifyContent="space-between"
+                            >
                               <Typography
                                 className={classes.newsHeader2}
                                 variant="body2"
@@ -278,21 +276,47 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 color="text.primary"
                               >
                                 {/* Thursday, June 05, 2022 */}
-                                {moment(card.fields?.Modified).format('dddd')} {moment(card.fields?.Modified).format("DD")} {moment(card.fields?.Modified).format("MMM")} {moment(card.fields?.Modified).format("YYYY")}
+                                {moment(card.fields?.Modified).format(
+                                  "dddd"
+                                )}{" "}
+                                {moment(card.fields?.Modified).format("DD")}{" "}
+                                {moment(card.fields?.Modified).format("MMM")}{" "}
+                                {moment(card.fields?.Modified).format("YYYY")}
                               </Typography>
                             </Stack>
                             <div className={classes.row}>
-                              <div className={classes.block} >
-                                <div style={{ width: "40px", display: "flex", justifyContent: "space-between" }}>
-                                  {
-                                    isActive ?
-                                      <img src={enableLike} alt="like" onClick={hide} style={{ width: "15px" }} />
-                                      :
-                                      <img src={like} alt="like" className={`like-button ${isClicked && 'liked'}`} onClick={handleClick} style={{ width: "15px" }} />
-                                  }
+                              <div className={classes.block}>
+                                <div
+                                  style={{
+                                    width: "40px",
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                  }}
+                                >
+                                  {isActive ? (
+                                    <img
+                                      src={enableLike}
+                                      alt="like"
+                                      onClick={hide}
+                                      style={{ width: "15px" }}
+                                    />
+                                  ) : (
+                                    <img
+                                      src={like}
+                                      alt="like"
+                                      className={`like-button ${
+                                        isClicked && "liked"
+                                      }`}
+                                      onClick={handleClick}
+                                      style={{ width: "15px" }}
+                                    />
+                                  )}
 
                                   {/* <span className="likes-counter">{ `Like | ${likes}` }</span> */}
-                                  <span className="likes-counter" style={{ fontSize: "12px" }}>{`${likes}`}</span>
+                                  <span
+                                    className="likes-counter"
+                                    style={{ fontSize: "12px" }}
+                                  >{`${likes}`}</span>
                                 </div>
                               </div>
                               <div className={classes.block}>
@@ -301,41 +325,61 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 </a>
                               </div>
                               <div className={classes.block}>
-                                {
-                                  isActive2 ?
-                                    <img src={pinActive} alt="like" onClick={() => { setIsActive2(!isActive2) }} />
-                                    :
-                                    <img src={pin} alt="like" onClick={() => { setIsActive2(!isActive2) }} />}
-
+                                {isActive2 ? (
+                                  <img
+                                    src={pinActive}
+                                    alt="like"
+                                    onClick={() => {
+                                      setIsActive2(!isActive2);
+                                    }}
+                                  />
+                                ) : (
+                                  <img
+                                    src={pin}
+                                    alt="like"
+                                    onClick={() => {
+                                      setIsActive2(!isActive2);
+                                    }}
+                                  />
+                                )}
                               </div>
                               <div className={classes.block}>
-                                <a href="https://www.google.com/search?q=globalnews" target="_blank">
+                                <a
+                                  rel="noreferrer"
+                                  href="https://www.google.com/search?q=globalnews"
+                                  target="_blank"
+                                >
                                   <img src={internet} alt="like" />
                                 </a>
                               </div>
                             </div>
                           </CardContent>
-
                         </CardActionArea>
                       </Card>
                     </div>
                   ))}
-
               </Slider>
               <div>
                 <Stack
                   direction="row"
                   justifyContent="space-between"
                   alignItems="center"
-                  paddingTop={1} >
+                  paddingTop={1}
+                >
                   <div>
-                    <ArrowBackIosIcon onClick={previous} style={{ cursor: "pointer", color: "#009BAD" }} />
+                    <ArrowBackIosIcon
+                      onClick={previous}
+                      style={{ cursor: "pointer", color: "#009BAD" }}
+                    />
                   </div>
                   <div>
                     <MoreHorizIcon style={{ color: "#009BAD" }} />
                   </div>
                   <div>
-                    <ArrowForwardIosIcon onClick={next} style={{ cursor: "pointer", color: "#009BAD" }} />
+                    <ArrowForwardIosIcon
+                      onClick={next}
+                      style={{ cursor: "pointer", color: "#009BAD" }}
+                    />
                   </div>
                 </Stack>
               </div>
@@ -350,15 +394,8 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
             <div>Slide 4</div>
             <div>Slide 5</div>
         </Slider> */}
-
-
     </AuthenticatedTemplate>
-
-  )
-}
+  );
+};
 
 export default News;
-
-
-
-

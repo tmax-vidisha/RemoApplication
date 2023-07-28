@@ -98,18 +98,18 @@ const PortalHome = () => {
             {/* <DragAndDrop/> */}
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} md={12}>
             <HomeNavigationPage />
             {/* <TopNavLink/> */}
           </Grid>
-          <Grid item xs={8}>
+          <Grid item md={8} xs={12}>
             <MeetingsPage />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <EmpHighlightPage />
           </Grid>
-          <Grid item xs={8}>
-            <Grid item xs={12}>
+          <Grid item md={8} xs={12}>
+            <Grid item xs={12} md={12}>
               <NewsPage />
             </Grid>
             <Grid
@@ -124,15 +124,15 @@ const PortalHome = () => {
               }}
               spacing={2}
             >
-              <Grid item xs={6}>
+              <Grid item xs={12} md={6}>
                 <Gallery />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item md={6} xs={12}>
                 <SocialMedia />
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <Grid item xs={12}>
               <EventsPage />
             </Grid>

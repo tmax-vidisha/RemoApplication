@@ -80,10 +80,19 @@ export const useStyles = makeStyles({
   textPart: {
     display: "flex",
     justifyContent: "space-evenly",
+    flexDirection: "row",
     textAlign: "center",
     height: "25px",
     fontSize: "12px",
-    // marginTop: "10px"
+    ["@media (max-width:768px)"]: {
+      display: "flex",
+      justifyContent: "space-between",
+      textAlign: "center",
+      flexDirection: "column",
+      height: "200px",
+      backgroundColor: "white",
+      paddingBottom: "10px",
+    },
   },
 
   link: {

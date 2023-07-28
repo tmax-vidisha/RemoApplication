@@ -75,7 +75,7 @@
 //             spacing={0}
 //             sx={{ justifyContent: "space-between" }}
 //           >
-//           {data?.response && 
+//           {data?.response &&
 //            <Grid item xs={12}  sx={{ maxWidth: " 100%",display:"flex", justifyContent: "space-between", marginRight:"15px" }}  >
 
 //                     <CardMedia
@@ -124,10 +124,9 @@
 //           }
 //           </Grid>
 
-
 //         </CardContent>
 //       </>
-//      )} 
+//      )}
 //   </Paper>
 // </AuthenticatedTemplate>
 
@@ -143,6 +142,13 @@ export const useStyles = makeStyles({
   },
   typo: {
     color: "red",
+  },
+  singleCard: {
+    maxWidth: "250px",
+    maxHeight: "260px",
+    ["@media (max-width:768px)"]: {
+      maxWidth: "100%",
+    },
   },
   newsImg: {
     // paddingTop: "56.25%",
@@ -211,8 +217,6 @@ export const useStyles = makeStyles({
     color: "white",
     fontSize: "12px",
     textAlign: "center",
-    marginLeft:"10px"
-  }
-
-
+    marginLeft: "10px",
+  },
 });
