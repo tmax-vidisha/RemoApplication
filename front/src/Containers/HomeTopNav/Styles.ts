@@ -12,25 +12,27 @@ export const useStyles = makeStyles({
     //     }
     //   }
     // }
-    
+    ["@media (max-width:768px)"]: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+    },
   },
   button: {
     // borderRadius: 14,
     // width: 280,
     // height: 50,
-    border:"1px solid #c9c9c9",
-    boxShadow:"-0.5px 2px 5px 2px #cccccc",
-    textTransform:"none",
+    border: "1px solid #c9c9c9",
+    boxShadow: "-0.5px 2px 5px 2px #cccccc",
+    textTransform: "none",
     "& .MuiTabs-indicator": {
       display: "none",
-      backgroundColor: "orange"
+      backgroundColor: "orange",
     },
-  //   '&:hover': {
-  //     backgroundColor: '#004C9B',
-  //     color: 'white',
-  //     opacity: 1,
-  //  },
-     
+    //   '&:hover': {
+    //     backgroundColor: '#004C9B',
+    //     color: 'white',
+    //     opacity: 1,
+    //  },
   },
 
   topClear: {
@@ -42,7 +44,7 @@ export const useStyles = makeStyles({
     display: "flex",
     background: "#f3f3f3",
     padding: "5px 9px",
-    marginRight:"45px",
+    marginRight: "45px",
     borderRadius: "30px",
     color: "#333333!important",
     fontSize: "14px",
@@ -60,90 +62,88 @@ export const useStyles = makeStyles({
     "& .topImg": {
       margin: "auto",
       display: "block !important",
-      width:"25px"
+      width: "25px",
     },
     "& .topImgH": {
       margin: "auto",
-      color:"#009BAD",
+      color: "#009BAD",
       display: "none !important",
-      width:"25px"
+      width: "25px",
     },
   },
-  topImg:{
+  topImg: {
     margin: "auto",
-      display: "block !important",
-      width:"25px"
+    display: "block !important",
+    width: "25px",
   },
 
-  topImgH:{
+  topImgH: {
     margin: "auto",
-    color:"#009BAD",
+    color: "#009BAD",
     display: "none !important",
-    width:"25px"
-    },
-    
-  topMenu:{
-    "&:hover a p":{
-      color:"#009BAD",
+    width: "25px",
+  },
+
+  topMenu: {
+    "&:hover a p": {
+      color: "#009BAD",
       textDecoration: "none !important",
     },
-    "& a":{
+    "& a": {
       textDecorationLine: "none !important",
-      "&:hover .topImgH":{
-        display:"block !important", 
-        width:"25px"
-     },
-     "&:hover .topImg":{
-      display:"none !important",
-      width:"25px"
+      "&:hover .topImgH": {
+        display: "block !important",
+        width: "25px",
+      },
+      "&:hover .topImg": {
+        display: "none !important",
+        width: "25px",
+      },
     },
-    }
   },
   topText: {
     margin: 0,
     marginTop: "16px",
     fontSize: "13px",
     color: "#acacac",
-    "& a p":{
+    "& a p": {
       textDecoration: "none !important",
-    }
+    },
   },
 
-  
-  block :{
+  block: {
     backgroundColor: "#D25A1E",
     minHeight: "40px",
     // minWidth: "30%",
     width: "calc(50% - 25px)",
     position: "relative",
-    
   },
-  
-  blockLeft :{
+
+  blockLeft: {
     clipPath: "polygon(0 0, 100% 0, calc(100% - 3rem) 100%, 0% 100%)",
   },
-  
-  blockRight :{
+
+  blockRight: {
     marginLeft: "-2rem",
     clipPath: "polygon(3rem 0, 100% 0, 100% 100%, 0% 100%)",
   },
 
   root: {
     flexGrow: 1,
-    backgroundColor: " white"
+    backgroundColor: " white",
   },
   indicator: {
-    backgroundColor: "yellow"
+    backgroundColor: "yellow",
   },
   tabRoot: {
     backgroundColor: " red",
     "&:hover": {
       color: "yellow",
-      opacity: 1
-    }
+      opacity: 1,
+    },
   },
   selectedTab: {
-    color: "yellow"
+    color: "yellow",
   },
   tabs: {
     boxShadow: "0px 0px 11px 0px #b7b1b1",
@@ -153,20 +153,16 @@ export const useStyles = makeStyles({
     },
     "& .MuiButtonBase-root.MuiTab-root": {
       fontSize: "12px",
-      width:"50%",
-      height:"30px"
-      
+      width: "50%",
+      height: "30px",
     },
     "& .Mui-selected": {
       // textDecoration: "underline",
-      color:"white",
-      backgroundColor:"#009BAD",
-     
+      color: "white",
+      backgroundColor: "#009BAD",
     },
     "& .MuiTab-root.Mui-selected": {
-      color: 'white'
-    }
-  
-  }
-  
+      color: "white",
+    },
+  },
 });

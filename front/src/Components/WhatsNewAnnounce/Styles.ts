@@ -61,6 +61,10 @@ export const useStyles = makeStyles({
     position: "relative",
     backgroundColor: "unset !important",
     paddingTop: "21px",
+    ["@media (max-width:768px)"]: {
+      paddingTop: "5px",
+      paddingLeft: "20px",
+    },
   },
   contentArea: {
     paddingLeft: "0px!important",
@@ -71,6 +75,10 @@ export const useStyles = makeStyles({
   breadcrumbs: {
     color: "#fff",
     display: "inline-flex",
+    ["@media (max-width:768px)"]: {
+      display: "flex",
+      flexDirection: "column",
+    },
   },
   ContentAreaBox: {
     // marginTop: "20px",
@@ -103,7 +111,7 @@ export const useStyles = makeStyles({
   },
   contentEditorWidth: {
     width: "95%",
-    backgroundColor:"#f1f1f1"
+    backgroundColor: "#f1f1f1",
   },
   breadcrumbsHeader: {
     fontSize: "20px",
@@ -164,22 +172,36 @@ export const useStyles = makeStyles({
     color: "#555555",
     marginLeft: "20px !important",
   },
-  itemDate:{
-    textAlign:"left", color:"#606C74", fontSize:"12px"
+  itemDate: {
+    textAlign: "left",
+    color: "#606C74",
+    fontSize: "12px",
   },
-  anTitle:{
-    textAlign:"left", paddingTop: "20px", marginLeft:"30px", color:"#009BAD"
+  anTitle: {
+    textAlign: "left",
+    paddingTop: "20px",
+    marginLeft: "30px",
+    color: "#009BAD",
   },
-  bigContent:{
-    display:"grid", gridTemplateColumns:"repeat(4,1fr)", margin:"30px", paddingBottom:"50px"
+  bigContent: {
+    display: "grid",
+    gridTemplateColumns: "repeat(4,1fr)",
+    margin: "30px",
+    paddingBottom: "50px",
   },
-  boxContent:{
-    width:"250px", height:"auto", 
+  boxContent: {
+    width: "250px",
+    height: "auto",
   },
   iconDiv: {
-    display: "flex", justifyContent: "space-between", width: "200px", margin: "30px"
+    display: "flex",
+    justifyContent: "space-between",
+    width: "200px",
+    margin: "30px",
   },
   iconView: {
-    display: "flex", justifyContent: "space-between", width: "50px"
+    display: "flex",
+    justifyContent: "space-between",
+    width: "50px",
   },
 });
