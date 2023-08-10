@@ -45,11 +45,11 @@ const Department = () => {
           </Paper>
         </Card>
         <Paper>
-          <Grid item xs={12} md={12} className={classes.mainDepart}>
-            <Grid xs={4} md={4} className={classes.imgPart}>
+          <Grid container item xs={12} className={classes.mainDepart}>
+            <Grid xs={12} md={4} className={classes.imgPart}>
               <img src={sustain} alt="department" className={classes.imgFlag} />
             </Grid>
-            <Grid xs={8} md={8} className={classes.contentPart}>
+            <Grid xs={12} md={8} className={classes.contentPart}>
               <h2>Information Technology: Building a sustainable future</h2>
               <p className={classes.PContent}>
                 We are fully committed to protecting and preserving the natural
@@ -74,7 +74,9 @@ const Department = () => {
         </Paper>
         <Grid item xs={12}>
           <Grid xs={8} className={classes.PaperContent}>
-            <Grid xs={2}><LeftPanel/></Grid>
+            <Grid xs={2}>
+              <LeftPanel />
+            </Grid>
             <Grid xs={6}></Grid>
           </Grid>
           <Grid xs={4}></Grid>

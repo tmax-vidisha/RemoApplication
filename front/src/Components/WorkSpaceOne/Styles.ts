@@ -1,8 +1,7 @@
 /* eslint-disable */
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
-
   topItems: {
     display: "flex",
     justifyContent: "space-around",
@@ -51,11 +50,11 @@ export const useStyles = makeStyles({
       display: "none !important",
     },
     "&:hover a .topImgH": {
-      display: "block !important"
+      display: "block !important",
     },
 
     "&:hover a p": {
-      color: "#009BAD"
+      color: "#009BAD",
     },
   },
   topText: {
@@ -68,25 +67,23 @@ export const useStyles = makeStyles({
   linkPart: {
     backgroundColor: "#33adff",
     color: "white",
-    textTransform: "capitalize"
+    textTransform: "capitalize",
   },
   plus: {
     textAlign: "center",
     marginTop: "5px",
     marginRight: "10px",
     // backgroundColor:" white !important",
-    color: "white !important"
+    color: "white !important",
   },
 
   quick: {
     marginTop: "5px",
-    marginRight: "10px"
-
+    marginRight: "10px",
   },
   myFile: {
     display: "flex",
     justifyContent: "space-between",
-
   },
   create: {
     // backgroundColor: "rgb(50 168 189) !important",
@@ -100,40 +97,46 @@ export const useStyles = makeStyles({
     color: "white !important",
     // marginRight: "15px !important",
     padding: "3px 8px !important",
-
-
   },
 
   linkBtn: {
     backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
     marginRight: "30px !important",
-    padding: "5px 10px !important"
+    padding: "5px 10px !important",
   },
   bigPart: {
-    // marginRight: "25px",
     backgroundColor: "white",
     marginTop: "20px",
     borderRadius: "10px",
-    padding: "10px"
+    padding: "10px",
+    ["@media (max-width:768px)"]: {},
   },
   divFile: {
     color: "#1b6189",
     marginLeft: "20px",
     marginTop: "20px",
     textAlign: "left",
-
+    ["@media (max-width:768px)"]: {
+      marginLeft: "0px",
+    },
+  },
+  pl8file:{
+    paddingLeft: "8px",
+    ["@media (max-width:768px)"]: {
+      paddingLeft: "0px",
+    },
   },
   menuImage: {
     marginRight: "20px",
   },
   menu: {
-    marginTop: "15px"
+    marginTop: "15px",
   },
 
   customMenuPopover: {
     // take note of !important because default z-index is applied inline
-    zIndex: "1900 !important"
+    zIndex: "1900 !important",
   },
 
   lastMenu: {
@@ -151,9 +154,7 @@ export const useStyles = makeStyles({
     "& img": {
       width: "10px",
       marginRight: "10px",
-
-    }
-
+    },
   },
   dialogTitle: {
     position: "relative",
@@ -168,9 +169,7 @@ export const useStyles = makeStyles({
 
     "& img": {
       width: "80px",
-    }
-
-
+    },
   },
   menuImageDelete: {
     marginRight: "20px",
@@ -180,7 +179,7 @@ export const useStyles = makeStyles({
   dialogFull: {
     position: "relative",
     width: "570px",
-    borderRadius: "20px"
+    borderRadius: "20px",
   },
 
   textListItem: {
@@ -202,8 +201,7 @@ export const useStyles = makeStyles({
     },
     "& img:hover": {
       color: "#009BAD",
-    }
-
+    },
   },
 
   MuiListItemIcon: {
@@ -211,33 +209,31 @@ export const useStyles = makeStyles({
     fontSize: "12px",
     color: "#333333 !important",
     "& .active": {
-      color: "red"
+      color: "red",
     },
     textDecoration: "none !important",
     "& .topImg": {
       margin: "auto",
       display: "block !important",
-      width: "15px"
+      width: "15px",
     },
     "& .topImgH": {
       margin: "auto",
       color: "#009BAD",
       display: "none !important",
-      width: "15px"
+      width: "15px",
     },
-
   },
-  leftMenu:{
+  leftMenu: {
     color: "#606C74",
-    "&:hover":{
+    "&:hover": {
       color: "#1BAAB5",
     },
   },
-  active:{
+  active: {
     color: "#009BAD",
-    backgroundColor:"white"
-},
-
+    backgroundColor: "white",
+  },
 
   topImg: {
     margin: "auto",
@@ -276,7 +272,12 @@ export const useStyles = makeStyles({
       // },
     },
   },
-
+  FirstLeftList: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    ["@media (max-width:768px)"]: {},
+  },
   sideIcon: {
     marginBottom: "20px !important",
   },
@@ -300,7 +301,27 @@ export const useStyles = makeStyles({
     textAlign: "center",
     // width:"75px",
     borderRadius: " 20px 1px 1px 20px",
+    ["@media (max-width:768px)"]: {
+      height: "auto",
+      width: "100%",
+    },
+  },
+  mt210: {
+    marginTop: "210",
+    ["@media (max-width:768px)"]: {
+      marginTop: "1px",
+    },
+  },
 
+  flexEnd: {
+    display: "flex",
+    justifyContent: "flex-end",
+    flexDirection: "row",
+    ["@media (max-width:768px)"]: {
+      display: "flex",
+      justifyContent: "space-between",
+      flexDirection: "column",
+    },
   },
   boxContent: {
     width: "60px",
@@ -317,7 +338,7 @@ export const useStyles = makeStyles({
     gridTemplateColumns: "repeat(2, 1fr)",
     padding: "20px",
     backgroundColor: "white",
-    width: "300px"
+    width: "300px",
   },
   texts: {
     fontSize: "12px",
@@ -332,25 +353,33 @@ export const useStyles = makeStyles({
       fontSize: "12px",
       "& p": {
         fontSize: "12px",
-
-      }
-    }
+      },
+    },
   },
   upperSearch: {
     marginTop: "20px !important",
     position: "static",
     display: "flex",
     justifyContent: "flex-end",
+    ["@media (max-width:768px)"]: {
+      display: "flex",
+      justifyContent: "space-between",
+      flexDirection: "column",
+    },
+  },
+  mbSearch: {
+    marginBottom: "0px",
+    ["@media (max-width:768px)"]: {
+      marginBottom: "20px",
+    },
   },
   shortSpan: {
     color: "#606c74",
     fontSize: "13px",
-    marginRight: "10px"
+    marginRight: "10px",
   },
   shortBy: {
     color: "#606c74",
-    fontSize: "14px"
+    fontSize: "14px",
   },
-
 });
-

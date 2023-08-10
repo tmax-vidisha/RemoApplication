@@ -147,7 +147,7 @@ const LeftMenu = () => {
     const [isActive, setIsActive] = useState(false);
     return (
         <Box sx={{ bgcolor: 'background.paper', height: "100%", }}>
-            <Box style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }} >
+            <Box className={classes.FirstLeftList} >
                 {/* <CssBaseline /> */}
                 <Box >
                     <div style={{ color: "#1b6189", marginTop: "20px" }}>Work Space</div>

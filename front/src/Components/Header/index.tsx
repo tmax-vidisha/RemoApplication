@@ -628,9 +628,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" className={classes.header}>
           <Toolbar
-            sx={{
-              justifyContent: "space-between",
-            }}
+            className={classes.toolbarDiv}
           >
             <div>
               <RouterNavLink to="/">

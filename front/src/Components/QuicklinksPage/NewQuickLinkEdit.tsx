@@ -117,7 +117,7 @@ const NewQuickLinkEdit: React.FC<IFolderProps> = (props: IFolderProps) => {
           setState([...state, []]);
         }}
       >
-        Add Quicklnks Group
+        Add Quicklinks Group
       </button>
       <button
         type="button"
@@ -125,7 +125,7 @@ const NewQuickLinkEdit: React.FC<IFolderProps> = (props: IFolderProps) => {
           setState([...state, getItems(1)]);
         }}
       >
-       Add Quicklnks Item
+       Add Quicklinks Item
       </button>
       <div style={{ display: "flex" }}>
         <DragDropContext onDragEnd={onDragEnd}>

@@ -655,9 +655,7 @@ const PoliciesEditor = () => {
                   />
                 </div>
                 <Grid>
-                  <Box
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
+                  <Box className={classes.flexBetween}>
                     <Box>
                       <img
                         src={isActive}
@@ -687,9 +685,7 @@ const PoliciesEditor = () => {
                       />
                     </Box>
                   </Box>
-                  <Grid
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
+                  <Box className={classes.flexBetween}>
                     <Box>
                       <img
                         src={like1}
@@ -718,75 +714,71 @@ const PoliciesEditor = () => {
                         }
                       />
                     </Box>
-                  </Grid>
+                  </Box>
                 </Grid>
                 <Grid>
-                  <Grid>
-                    <Box
-                      sx={{ display: "flex", justifyContent: "space-between" }}
-                    >
-                      <Box>
-                        <img
-                          src={comments}
-                          alt=""
-                          className={classes.checkLike}
-                        />
-                        <span> EnableCommands</span>
-                      </Box>
-                      <Box style={{ display: "flex" }}>
-                        <FormControlLabel
-                          label="Yes"
-                          control={
-                            <Checkbox
-                              checked={checkedyesEnableCommands}
-                              onChange={handleChangeEnableCommandsyes}
-                            />
-                          }
-                        />
-                        <FormControlLabel
-                          label="No"
-                          control={
-                            <Checkbox
-                              checked={checkednoEnableCommands}
-                              onChange={handleChangeEnableCommandsno}
-                            />
-                          }
-                        />
-                      </Box>
+                  <Box className={classes.flexBetween}>
+                    <Box>
+                      <img
+                        src={comments}
+                        alt=""
+                        className={classes.checkLike}
+                      />
+                      <span> EnableCommands</span>
                     </Box>
-                    <Box
-                      sx={{ display: "flex", justifyContent: "space-between" }}
-                    >
-                      <Box>
-                        <img
-                          src={shareasemail}
-                          alt=""
-                          className={classes.checkLike}
-                        />
-                        <span> ShareAsEmail</span>
-                      </Box>
-                      <Box style={{ display: "flex" }}>
-                        <FormControlLabel
-                          label="Yes"
-                          control={
-                            <Checkbox
-                              checked={checkedyesSharedAsEmail}
-                              onChange={handleChangeSharedAsEmailyes}
-                            />
-                          }
-                        />
-                        <FormControlLabel
-                          label="No"
-                          control={
-                            <Checkbox
-                              checked={checkednoSharedAsEmail}
-                              onChange={handleChangeSharedAsEmailno}
-                            />
-                          }
-                        />
-                      </Box>
+                    <Box style={{ display: "flex" }}>
+                      <FormControlLabel
+                        label="Yes"
+                        control={
+                          <Checkbox
+                            checked={checkedyesEnableCommands}
+                            onChange={handleChangeEnableCommandsyes}
+                          />
+                        }
+                      />
+                      <FormControlLabel
+                        label="No"
+                        control={
+                          <Checkbox
+                            checked={checkednoEnableCommands}
+                            onChange={handleChangeEnableCommandsno}
+                          />
+                        }
+                      />
                     </Box>
-                  </Grid>
+                  </Box>
+                  <Box
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Box>
+                      <img
+                        src={shareasemail}
+                        alt=""
+                        className={classes.checkLike}
+                      />
+                      <span> ShareAsEmail</span>
+                    </Box>
+                    <Box style={{ display: "flex" }}>
+                      <FormControlLabel
+                        label="Yes"
+                        control={
+                          <Checkbox
+                            checked={checkedyesSharedAsEmail}
+                            onChange={handleChangeSharedAsEmailyes}
+                          />
+                        }
+                      />
+                      <FormControlLabel
+                        label="No"
+                        control={
+                          <Checkbox
+                            checked={checkednoSharedAsEmail}
+                            onChange={handleChangeSharedAsEmailno}
+                          />
+                        }
+                      />
+                    </Box>
+                  </Box>
                 </Grid>
 
                 {/* <InputLabel htmlFor="input-with-icon-adornment" style={{ textAlign: "left", margin: "10px" }}>

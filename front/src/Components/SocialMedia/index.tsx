@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from 'react'
+import React from "react";
 import { useStyles } from "./Styles";
 import { Timeline } from "react-twitter-widgets";
 import { AppBar, Box, Tabs, Tab, Typography, Card, Paper } from "@mui/material";
@@ -7,8 +7,12 @@ import FacebookIcon from "../../Assets/Images/s1.svg";
 import InstagramIcon from "../../Assets/Images/s2.svg";
 import TwitterIcon from "../../Assets/Images/s3.svg";
 import LinkedInIcon from "../../Assets/Images/s4.svg";
-import { FacebookEmbed, LinkedInEmbed, InstagramEmbed } from 'react-social-media-embed';
-import { FacebookProvider, Page } from 'react-facebook';
+import {
+  FacebookEmbed,
+  LinkedInEmbed,
+  InstagramEmbed,
+} from "react-social-media-embed";
+import { FacebookProvider, Page } from "react-facebook";
 // import LinkedinSDK from 'react-linkedin-sdk'
 import {
   LinkedinCompanyProfile,
@@ -16,7 +20,7 @@ import {
   LinkedinLogin,
   LinkedinAddProfile,
   LinkedinProfile,
-} from 'react-social-plugins';
+} from "react-social-plugins";
 // import { Facebook } from 'reactjs-social-embed';
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -56,7 +60,6 @@ function a11yProps(index: any) {
     "aria-controls": `scrollable-prevent-tabpanel-${index}`,
   };
 }
-
 
 const SocialMedia = () => {
   const classes = useStyles();
@@ -149,7 +152,6 @@ const SocialMedia = () => {
           </div> */}
         </TabPanel>
         <TabPanel value={value} index={1}>
-
           {/* <InstagramEmbed
             url='https://instagr.am/p/Zw9o4/'
             clientAccessToken='123|456'
@@ -166,8 +168,8 @@ const SocialMedia = () => {
 
           <div
             style={{
-              display: 'flex',
-              justifyContent: 'center',
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <InstagramEmbed
@@ -179,26 +181,23 @@ const SocialMedia = () => {
               // onFailure={() => { }}
               //url="https://www.instagram.com/p/CUbHfhpswxt/"
               url="https://www.instagram.com/p/CgL9BRHJ4ns/"
-            // clientAccessToken="123|456"
-            //maxWidth={320}
-            //hideCaption={false}
-            //containerTagName='div'
+              // clientAccessToken="123|456"
+              //maxWidth={320}
+              //hideCaption={false}
+              //containerTagName='div'
               height={383}
             />
-           
           </div>
-
         </TabPanel>
         <TabPanel value={value} index={2}>
-
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
             {/* <LinkedInEmbed
               postUrl="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7034478094585315328"
               url="https://widgets.sociablekit.com/linkedin-page-posts/iframe/106017"
               width={325}
               height={370}
             /> */}
-             {/* <LinkedinProfile
+            {/* <LinkedinProfile
               lang="en_US"
               profileUrl="https://www.linkedin.com/company/technomax-systems/"
               format="inline" // Or "hover"
@@ -215,14 +214,18 @@ const SocialMedia = () => {
               // icon={<Icon />}
               getOAuthToken
             />, */}
-            <iframe 
-            src="https://www.sociablekit.com/app/embed/64771" 
-            // src="https://www.linkedin.com/embed/feed/update/urn:li:share:7034061306097782784"
-            width="100%" height="383"></iframe>
+
+            <iframe
+              src="https://www.sociablekit.com/app/embed/64771"
+              // src="https://www.linkedin.com/embed/feed/update/urn:li:share:7034061306097782784"
+              width="100%"
+              height="383"
+              title="myFrame"
+            ></iframe>
           </div>
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
             {/* <FacebookEmbed
               //url="https://www.facebook.com/andrewismusic/posts/451971596293956" 
               //url="https://www.facebook.com/taqeefmiddleeast/posts/" 
@@ -234,13 +237,18 @@ const SocialMedia = () => {
             {/* <Facebook type="post" width="100%" height="680px" show_text={true}
               url="https://www.facebook.com/postmalone/posts/1992925354174335" /> */}
 
-            <iframe src='https://www.sociablekit.com/app/embed/64772' width="100%" height='383' ></iframe>
+            <iframe
+              src="https://www.sociablekit.com/app/embed/64772"
+              width="100%"
+              height="383"
+              title="myFrame"
+            ></iframe>
           </div>
         </TabPanel>
       </Paper>
     </>
-  )
-}
+  );
+};
 
 export default SocialMedia;
 

@@ -168,10 +168,11 @@ export const useStyles = makeStyles({
   mainDepart: {
     display: "flex",
     flexDirection: "column",
-    // justifyContent: "space-between",
+    justifyContent: "space-between",
     "@media (max-width:768px)": {
       display: "flex",
       flexDirection: "row",
+      justifyContent: "space-between",
     },
   },
   imgPart: {
@@ -204,6 +205,9 @@ export const useStyles = makeStyles({
     padding: "15px",
     borderRadius: "8px",
     background: "#ffffff",
+    "@media (max-width:768px)": {
+      margin: "15px",
+    },
   },
   headText: {
     margin: "0px",

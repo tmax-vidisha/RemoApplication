@@ -1,8 +1,7 @@
 /* eslint-disable */
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
-
   topItems: {
     display: "flex",
     justifyContent: "space-around",
@@ -51,11 +50,11 @@ export const useStyles = makeStyles({
       display: "none !important",
     },
     "&:hover a .topImgH": {
-      display: "block !important"
+      display: "block !important",
     },
 
     "&:hover a p": {
-      color: "#009BAD"
+      color: "#009BAD",
     },
   },
   topText: {
@@ -64,78 +63,81 @@ export const useStyles = makeStyles({
     fontSize: "13px",
     color: "#acacac",
   },
-
+  pl8file: {
+    paddingLeft: "8px",
+    ["@media (max-width:768px)"]: {
+      paddingLeft: "0px",
+    },
+  },
+  pl30file: {
+    paddingLeft: "30px",
+    ["@media (max-width:768px)"]: {
+      paddingLeft: "0px",
+    },
+  },
   linkPart: {
     backgroundColor: "#33adff",
     color: "white",
-    textTransform: "capitalize"
+    textTransform: "capitalize",
   },
   plus: {
     textAlign: "center",
     marginTop: "5px",
     marginRight: "10px",
     // backgroundColor:" white !important",
-    color: "white !important"
+    color: "white !important",
   },
 
   quick: {
     marginTop: "5px",
-    marginRight: "10px"
-
+    marginRight: "10px",
   },
   myFile: {
     display: "flex",
     justifyContent: "space-between",
-
   },
   create: {
     // backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
     marginRight: "15px !important",
     padding: "3px 8px !important",
-
-
-
   },
   createNew: {
     // backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
     // marginRight: "15px !important",
     padding: "3px 8px !important",
-
-
   },
 
   linkBtn: {
     backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
     marginRight: "30px !important",
-    padding: "5px 10px !important"
+    padding: "5px 10px !important",
   },
   bigPart: {
     // marginRight: "25px",
     backgroundColor: "white",
     marginTop: "20px",
     borderRadius: "10px",
-    padding: "10px"
+    padding: "10px",
   },
   divFile: {
     color: "#1b6189",
     marginLeft: "20px",
     marginTop: "20px",
     textAlign: "left",
-
   },
   menuImage: {
-    marginRight: "20px"
+    marginRight: "20px",
   },
   menu: {
-    marginTop: "15px"
+    marginTop: "15px",
   },
 
   customMenuPopover: {
     // take note of !important because default z-index is applied inline
-    zIndex: "1900 !important"
+    zIndex: "1900 !important",
   },
 
   lastMenu: {
@@ -149,17 +151,13 @@ export const useStyles = makeStyles({
   },
 
   items: {
-
     fontSize: "12px",
 
     "& img": {
-
       width: "10px",
 
       marginRight: "10px",
-
-    }
-
+    },
   },
   dialogTitle: {
     position: "relative",
@@ -174,9 +172,7 @@ export const useStyles = makeStyles({
 
     "& img": {
       width: "80px",
-    }
-
-
+    },
   },
   menuImageDelete: {
     marginRight: "20px",
@@ -186,7 +182,7 @@ export const useStyles = makeStyles({
   dialogFull: {
     position: "relative",
     width: "570px",
-    borderRadius: "20px"
+    borderRadius: "20px",
   },
 
   textListItem: {
@@ -196,17 +192,14 @@ export const useStyles = makeStyles({
       fontSize: "12px",
     },
 
-    " & img": {
-
-    }
-
+    " & img": {},
   },
 
   MuiListItemIcon: {
     maxWidth: "35px",
     "& img": {
       width: "15px",
-    }
+    },
   },
   LeftMenu: {
     // background: "#f8f8f8",
@@ -255,7 +248,6 @@ export const useStyles = makeStyles({
     textAlign: "center",
     //width:"50px",
     borderRadius: " 20px 1px 1px 20px",
-
   },
   boxContent: {
     width: "60px",
@@ -272,7 +264,7 @@ export const useStyles = makeStyles({
     gridTemplateColumns: "repeat(2, 1fr)",
     padding: "20px",
     backgroundColor: "white",
-    width: "300px"
+    width: "300px",
   },
   texts: {
     fontSize: "12px",
@@ -287,23 +279,19 @@ export const useStyles = makeStyles({
       fontSize: "12px",
       "& p": {
         fontSize: "12px",
-
-      }
-    }
+      },
+    },
   },
   upperSearch: {
     marginTop: "20px !important",
     position: "static",
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   divText: {
     color: "#1b6189",
     marginLeft: "20px",
     marginTop: "20px",
     textAlign: "left",
-
   },
-
 });
-

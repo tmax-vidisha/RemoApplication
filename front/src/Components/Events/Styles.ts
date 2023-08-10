@@ -1,5 +1,3 @@
-
-
 import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
@@ -10,9 +8,9 @@ export const useStyles = makeStyles({
     bgcolor: "background.paper",
     paddingTop: "16px!important",
     paddingBottom: "16px!important",
-     "& react-calendar__month-view__weekdays": {
-     textTransform:"capitalize",
-     fontWeight:"200"
+    "& react-calendar__month-view__weekdays": {
+      textTransform: "capitalize",
+      fontWeight: "200",
     },
   },
   Calendar: {
@@ -21,7 +19,44 @@ export const useStyles = makeStyles({
     borderBottom: "1px solid #F1F1F1",
     paddingBottom: "20px",
     margin: "auto",
-
+  },
+  calContent: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    "@media (max-width:768px)": {
+      marginRight: "70px",
+    },
+  },
+  calendar: {
+    fontSize: "12px",
+    width: "260px !important",
+    margin: "5px",
+    border: "1px solid gray",
+    height: "275px",
+    "& .react-calendar": {
+      fontSize: "12px",
+      maxWidth: "200px !important",
+      width: "240px !important",
+      "& .react-calendar__navigation": {
+        display: "flex",
+        height: "35px !important",
+        marginBottom: " 1em",
+      },
+      "& .react-calendar__month-view__weekdays": {
+        textTransform: "capitalize",
+      },
+      "& .react-calendar__month-view__days": {
+        "& .react-calendar__tile ": {
+          fontSize: "9px",
+        },
+      },
+      "& .react-calendar button": {
+        fontSize: "9px",
+      },
+    },
   },
   calenderHeader: {
     fontSize: "1rem !important",
@@ -32,14 +67,31 @@ export const useStyles = makeStyles({
     fontSize: "0.8rem !important",
     color: "#009BAD !important",
     marginBottom: "8px !important",
-    textDecoration:"none !important"
+    textDecoration: "none !important",
   },
   border: {
     border: "1px solid #837c7c17",
     "& react-calendar__month-view__weekdays": {
-      textTransform:"capitalize",
-     },
-
+      textTransform: "capitalize",
+    },
+    "& .react-calendar": {
+      width: "240px !important",
+      maxWidth: "100%",
+    },
+    "@media (max-width:768px)": {
+      "& .react-calendar": {
+        width: "240px !important",
+        maxWidth: "100%",
+      },
+    },
+  },
+  "& .react-calendar": {
+    width: "350px",
+    maxWidth: "100%",
+    "@media (max-width:768px)": {
+      width: "240px !important",
+      maxWidth: "100%",
+    },
   },
   calenderinfo: {
     paddingLeft: "15px",
@@ -51,7 +103,7 @@ export const useStyles = makeStyles({
   //     color: "red",
   //     fontWeight: "bold",
   //     display: "inline-block",
-      
+
   //   },
   // },
   list: {

@@ -147,7 +147,7 @@ const Documents: React.FC<IFolderProps> = (props: IFolderProps) => {
       <Grid className={classes.divText}>Document Library</Grid>
       <Grid className={classes.myFile}>
         <Grid>
-          <FormControl variant="standard" sx={{ m: 1, minWidth: 140 }}>
+          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-standard-label">
               <span className={classes.shortSpan}>Sort by</span>
               {/* <span className={classes.shortBy}>Newest</span> */}
@@ -185,7 +185,7 @@ const Documents: React.FC<IFolderProps> = (props: IFolderProps) => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid style={{ marginTop: "20px", marginRight: "20px" }}>
+        <Grid style={{ marginTop: "20px" }}>
           {/* {
                             showResult ?
                                 <>
@@ -224,7 +224,7 @@ const Documents: React.FC<IFolderProps> = (props: IFolderProps) => {
           <button>
             <GridViewIcon />
           </button>
-          <button style={{ marginLeft: "15px" }}>
+          <button className={classes.ml15Grid}>
             <ListIcon />
           </button>
         </Grid>

@@ -23,7 +23,6 @@ const MyFiles = () => {
                 <WhatsNew/>
             </Grid>
             <Box style={{ margin: "20px", }}>
-
                 <Grid container item xs={12} className={classes.bigPaper}>
                     <Grid item xs={1} >
                         <SideBar />
@@ -32,7 +31,7 @@ const MyFiles = () => {
                         <LeftMenu />
                         {/* <MenuDrawer/> */}
                     </Grid>
-                    <Grid item xs={7} style={{ paddingLeft: "8px",}}>
+                    <Grid item xs={7} className={classes.pl8file}>
                        
                         <SearchPart />
                         <MyFilePage />
