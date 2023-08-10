@@ -13,6 +13,11 @@ const useStyles = makeStyles({
     width: "150px",
     height: "24px",
     padding: "0px",
+    "@media (max-width:768px)": {
+      position: "absolute",
+      top: " 17%",
+      marginLeft: "-67px",
+    },
   },
   switchBase: {
     color: "#818181",
@@ -51,6 +56,17 @@ const useStyles = makeStyles({
   checked: {
     color: "#23bf58 !important",
     transform: "translateX(26px) !important",
+  },
+  divToggle: {
+    width: "150px",
+    position: "absolute",
+    top: "4%",
+    marginLeft: "-40px",
+    "@media (max-width:768px)": {
+      position: "absolute",
+      top: "14%",
+      marginLeft: "-70px",
+    },
   },
 });
 
@@ -96,6 +112,7 @@ const ToggleButton = (permission: any) => {
           //     setShowResults(true);
           //   }}
           //   onClick={handleClick}
+          // className={classes.divToggle}
         />
       </div>
       {checked ? <SecondWorkSpace /> : <WorkSpaceOne />}

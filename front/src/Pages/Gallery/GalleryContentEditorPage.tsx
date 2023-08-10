@@ -1,65 +1,89 @@
-import React, { useReducer } from 'react'
-import NewsEditor from '../../Components/NewsEditor/NewsEditor'
-import { ActionType } from '../../Store copy/Actions/actionTypes';
-import { useGetGalleryRootQuery, useGetItemInGalleryMutation, useUploadFolderRemoGalleryMutation, useUploadFileRemoGalleryMutation } from '../../services/contentEditor'
+import React, { useReducer } from "react";
+import NewsEditor from "../../Components/NewsEditor/NewsEditor";
+import { ActionType } from "../../Store copy/Actions/actionTypes";
+import {
+  useGetGalleryRootQuery,
+  useGetItemInGalleryMutation,
+  useUploadFolderRemoGalleryMutation,
+  useUploadFileRemoGalleryMutation,
+} from "../../services/contentEditor";
 // import { useG } from '../../services/APIs';
-import useCustom from '../../hooks/useCustom';
-import Breadcrumb from '../../hooks/Breadcrumb';
-import { breadcrumbsReducer } from '../../Store copy/Reducer/foldersReducer'
-import GalleryEditor from '../../Components/GalleryEditor/GalleryEditor';
-const GalleryContentEditorPage = () => {
+import useCustom from "../../hooks/useCustom";
+import Breadcrumb from "../../hooks/Breadcrumb";
+import { breadcrumbsReducer } from "../../Store copy/Reducer/foldersReducer";
+import GalleryEditor from "../../Components/GalleryEditor/GalleryEditor";
+import { useStyles } from "./Styles";
 
+const GalleryContentEditorPage = () => {
+  const classes = useStyles();
 
   const { token } = useCustom();
-  const { data, isLoading, isSuccess } = useGetGalleryRootQuery(token)
-  const [sendItem, { data: ItemChildren, isSuccess: isSuccessItem, isLoading: itemChildrenIsLoading }] = useGetItemInGalleryMutation();
-  const [sendData, { isSuccess: createdNewFolderSucessfull }] = useUploadFolderRemoGalleryMutation();
+  const { data, isLoading, isSuccess } = useGetGalleryRootQuery(token);
+  const [
+    sendItem,
+    {
+      data: ItemChildren,
+      isSuccess: isSuccessItem,
+      isLoading: itemChildrenIsLoading,
+    },
+  ] = useGetItemInGalleryMutation();
+  const [sendData, { isSuccess: createdNewFolderSucessfull }] =
+    useUploadFolderRemoGalleryMutation();
   const [sendData1] = useUploadFileRemoGalleryMutation();
-  console.log(ItemChildren, 'kkkytryr')
-  const [breadcrumbsState, breadcrumbsDispatch] = useReducer(breadcrumbsReducer, {
-    breadcrumbs: [{
-      id: '',
-      name: 'Picture Gallery'
-    }]
-  });
-  console.log('breadcrumbsState', breadcrumbsState)
+  console.log(ItemChildren, "kkkytryr");
+  const [breadcrumbsState, breadcrumbsDispatch] = useReducer(
+    breadcrumbsReducer,
+    {
+      breadcrumbs: [
+        {
+          id: "",
+          name: "Picture Gallery",
+        },
+      ],
+    }
+  );
+  console.log("breadcrumbsState", breadcrumbsState);
   const setBreadCrumbAction = async (id: string, name: string) => {
-    return breadcrumbsDispatch({ type: ActionType.SET_BREADCRUMBS, payload: { id, name } });
+    return breadcrumbsDispatch({
+      type: ActionType.SET_BREADCRUMBS,
+      payload: { id, name },
+    });
   };
 
   const updateBreadCrumbAction = async (id: string) => {
-    return breadcrumbsDispatch({ type: ActionType.UPDATE_BREADCRUMBS, payload: { id } });
+    return breadcrumbsDispatch({
+      type: ActionType.UPDATE_BREADCRUMBS,
+      payload: { id },
+    });
   };
   const folderClickHandler = async (
     // obj:any
     id: string,
     name: string,
-    folder: any,
+    folder: any
     // webUrl: any
   ): Promise<void> => {
-
     // await getFolderChildrenAction(id);
     // await setBreadCrumbAction(id, name);
-    console.log(id, 'hthyhythyhyhrthtrh')
-    console.log(folder)
+    console.log(id, "hthyhythyhyhrthtrh");
+    console.log(folder);
     // console.log(webUrl)
     if (folder === undefined) {
       // setUrl(webUrl)
 
-      console.log('Not folder')
+      console.log("Not folder");
     } else {
-      console.log('Its  folder')
+      console.log("Its  folder");
       // setShow(!show)
       const Data = {
         // name:id,
         ItemId: id,
-        Name: name
-      }
+        Name: name,
+      };
       //  console.log(fd)
-      await sendItem(Data)
+      await sendItem(Data);
       await setBreadCrumbAction(id, name);
     }
-
 
     // setShow(!show)
   };
@@ -70,13 +94,12 @@ const GalleryContentEditorPage = () => {
       // name:id,
       ItemId: id,
       //    Name:name
-    }
+    };
     //  console.log(fd)
-    await sendItem(Data)
+    await sendItem(Data);
   };
   const createNewFolder = async (obj: any) => {
-
-    console.log(obj, 'hgfhgfhfgjtjyj')
+    console.log(obj, "hgfhgfhfgjtjyj");
     // console.log(name,'uuuuu')
     //   const {name ,lastModified,lastModifiedDate,size,type,webkitRelativePath } = data
 
@@ -92,12 +115,11 @@ const GalleryContentEditorPage = () => {
     //       names:name,
     //      fileSelected:data
     //  }
-    await sendData(obj)
-  }
+    await sendData(obj);
+  };
 
   const uploadFile = async (obj: any) => {
-
-    console.log(obj, 'hgfhgfhfgjtjyj')
+    console.log(obj, "hgfhgfhfgjtjyj");
     // console.log(name,'uuuuu')
     //   const {name ,lastModified,lastModifiedDate,size,type,webkitRelativePath } = data
 
@@ -113,40 +135,17 @@ const GalleryContentEditorPage = () => {
     //       names:name,
     //      fileSelected:data
     //  }
-    await sendData1(obj)
-  }
-
-
+    await sendData1(obj);
+  };
 
   return (
-    <div style={{
-      height: 'auto',
-      width: '100%',
-      backgroundColor: "#d1eae33b",
-      paddingRight: "55px",
-      // marginRight: '50px',
-      //  border: "1px solid red",
-      borderTopRightRadius: '9px',
-      paddingTop:"40px"
-    }}>
-      <div style={{
-        height: 550,
-        width: '95%',
-        backgroundColor: "white",
-        marginLeft: "20px",
-        paddingRight: "10px",
-         padding: "30px",
-        position:"relative",
-        borderTopRightRadius: '9px',
-        // margin:"30px",
-        // marginRight:"50px",
-        // paddingRight: '10px',
-        //  border: "1px solid red",
-        
-      }}>
-        <div style={{marginLeft:"50px", position: "absolute"}}>
-          <Breadcrumb breadcrumb={breadcrumbsState.breadcrumbs}
-            getChildHandler={breadcrumbClickHandler} />
+    <div className={classes.mainDiv}>
+      <div className={classes.subDiv}>
+        <div className={classes.picture}>
+          <Breadcrumb
+            breadcrumb={breadcrumbsState.breadcrumbs}
+            getChildHandler={breadcrumbClickHandler}
+          />
         </div>
         <GalleryEditor
           data={data}
@@ -162,7 +161,7 @@ const GalleryContentEditorPage = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default GalleryContentEditorPage;

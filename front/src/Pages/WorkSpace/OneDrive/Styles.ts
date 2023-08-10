@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
   // topItems: {
@@ -93,15 +93,12 @@ export const useStyles = makeStyles({
   //   marginRight: "15px !important",
   //   padding: "3px 8px !important",
 
-
-
   // },
   // createNew: {
   //   // backgroundColor: "rgb(50 168 189) !important",
   //   color: "white !important",
   //   // marginRight: "15px !important",
   //   padding: "3px 8px !important",
-
 
   // },
 
@@ -116,20 +113,31 @@ export const useStyles = makeStyles({
     backgroundColor: "white",
     // marginTop: "20px",
     borderRadius: "10px",
-    padding:"10px",
+    padding: "10px",
     boxShadow: "10px 1px 30px -10px #c2bcbc",
+    ["@media (max-width:768px)"]: {
+      marginRight: "0px",
+    },
   },
   divFile: {
     color: "#009BAD",
     marginLeft: "30px",
     marginTop: "20px",
-    marginBottom:"20px",
+    marginBottom: "20px",
     textAlign: "left",
-
+    ["@media (max-width:768px)"]: {
+      marginLeft: "0px",
+    },
   },
-  breadcrumb:{
-    color:"#009BAD"
-  }
+  mr10File: {
+    marginRight: "10px",
+    ["@media (max-width:768px)"]: {
+      marginRight: "0px",
+    },
+  },
+  breadcrumb: {
+    color: "#009BAD",
+  },
   // menuImage: {
   //   marginRight: "20px"
   // },
@@ -164,6 +172,4 @@ export const useStyles = makeStyles({
   //   }
 
   // }
-
 });
-

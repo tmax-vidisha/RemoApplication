@@ -116,18 +116,14 @@ const PortalHome = () => {
               container
               item
               xs={12}
-              style={{
-                marginTop: 0,
-                marginRight: 0,
-                marginLeft: 0,
-                width: "100%",
-              }}
+              className={classes.divContainer}
               spacing={2}
+              style={{ marginTop: "0px" }}
             >
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6} className={classes.divContainer}>
                 <Gallery />
               </Grid>
-              <Grid item md={6} xs={12}>
+              <Grid item md={6} xs={12} className={classes.divContainer}>
                 <SocialMedia />
               </Grid>
             </Grid>

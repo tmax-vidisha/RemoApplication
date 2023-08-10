@@ -12,6 +12,12 @@ export const useStyles = makeStyles({
     height: 0,
     paddingTop: "56.25%", // 16:9
   },
+  m30: {
+    margin: "30px",
+    "@media (max-width:768px)": {
+      margin: "10px",
+    },
+  },
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
@@ -39,7 +45,7 @@ export const useStyles = makeStyles({
     "& a": {
       color: "#ffffff !important",
       textDecoration: "none",
-    }
+    },
   },
   annContents: {
     overflow: "hidden",
@@ -77,7 +83,7 @@ export const useStyles = makeStyles({
   },
   MainPart: {
     height: 550,
-    width: '100%',
+    width: "100%",
     backgroundColor: "white",
     marginLeft: "20px",
     paddingRight: "10px",
@@ -86,27 +92,49 @@ export const useStyles = makeStyles({
     // marginRight:"50px",
     // paddingRight: '10px',
     //  border: "1px solid red",
-    borderTopRightRadius: '9px',
+    borderTopRightRadius: "9px",
+    "@media (max-width:768px)": {
+      marginLeft: "0px",
+      paddingRight: "0px",
+    },
   },
   Section: {
-    height: 'auto',
-    width: '100%',
+    height: "auto",
+    width: "100%",
     backgroundColor: "#d1eae33b",
     paddingRight: "55px",
     // marginRight: '50px',
     //  border: "1px solid red",
-    borderTopRightRadius: '9px',
+    borderTopRightRadius: "9px",
+    "@media (max-width:768px)": {
+      paddingRight: "0px",
+    },
   },
-
+  upperGallery: {
+    width: "230px",
+    display: "flex",
+    justifyContent: "flex-end",
+    marginRight: "20px",
+    "@media (max-width:768px)": {
+      width: "100px",
+      display: "flex",
+      justifyContent: "flex-start",
+    },
+  },
   upperPart: {
-  // display: "flex",
-  // justifyContent: "space-between",
+    // display: "flex",
+    // justifyContent: "space-between",
     // margin: "30px",
     // paddingTop: "30px"
     left: " 74%",
     position: "absolute",
-    marginBottom:"40px",
-    top: "4%"
+    marginBottom: "40px",
+    top: "4%",
+    "@media (max-width:768px)": {
+      marginBottom: "0px",
+      top: "2%",
+      left: "5%",
+    },
   },
   new: {
     width: "100px",
@@ -119,9 +147,8 @@ export const useStyles = makeStyles({
       "& span": {
         color: "white !important",
         backgroundColor: "#009BAD",
-      }
-    }
-
+      },
+    },
   },
   create: {
     // backgroundColor: "rgb(50 168 189) !important",
@@ -134,7 +161,7 @@ export const useStyles = makeStyles({
     marginTop: "5px",
     marginRight: "10px",
     // backgroundColor:" white !important",
-    color: "white !important"
+    color: "white !important",
   },
   newPosOfDialog: {
     position: "absolute",
@@ -151,16 +178,14 @@ export const useStyles = makeStyles({
     border: "3px dashed #eeeeee",
     color: "#bdbdbd",
     backgroundColor: "#fafafa",
-    marginBottom: "20px"
-
+    marginBottom: "20px",
   },
   label: {
     float: "left",
     color: "#606C74 !important",
     textAlign: "left",
     margin: "10px !important",
-    fontSize: "12px !important"
-
+    fontSize: "12px !important",
   },
   bigPaper: {
     //border: "1px solid #f1f1f1",
@@ -174,6 +199,9 @@ export const useStyles = makeStyles({
     // marginRight:"0px",
     backgroundColor: "#d1eae33b",
     background: "#d1eae33b",
+    "@media (max-width:768px)": {
+      paddingRight: "0px",
+    },
   },
   sideBar: {
     // marginLeft: "25px",
@@ -182,7 +210,6 @@ export const useStyles = makeStyles({
     textAlign: "center",
     //width:"50px",
     borderRadius: " 20px 1px 1px 20px",
-
   },
 
   span: {
@@ -194,21 +221,19 @@ export const useStyles = makeStyles({
     "& .MuiInputBase-root": {
       height: 30,
       color: "gray",
-    }
+    },
   },
 
   file: {
     "& MuiBox-root .css-1ubo7yp": {
       borderColor: "red",
       "& MuiFormControl-root": {
-
         "& MuiSvgIcon": {
           color: "black",
-          backgroundColor: "black"
-        }
-      }
+          backgroundColor: "black",
+        },
+      },
     },
-
   },
   svg: {
     // display: "none !important",
@@ -220,8 +245,8 @@ export const useStyles = makeStyles({
       display: "block",
       color: "white",
       backgroundColor: "#b8bdc1",
-      fontSize: "12px"
-    }
+      fontSize: "12px",
+    },
   },
 
   backgroundImage: {
@@ -229,57 +254,73 @@ export const useStyles = makeStyles({
     textAlign: "center",
     borderRadius: "8px",
     position: "relative",
-    width: "500px"
+    width: "500px",
   },
   girl: {
-    position: "sticky", width: "100px", borderRadius: "50%", marginTop: "-54px"
+    position: "sticky",
+    width: "100px",
+    borderRadius: "50%",
+    marginTop: "-54px",
   },
   iconDiv: {
-    display: "flex", justifyContent: "space-between", width: "200px", margin: "15px"
+    display: "flex",
+    justifyContent: "space-between",
+    width: "200px",
+    margin: "15px",
   },
   iconView: {
-    display: "flex", justifyContent: "space-between", width: "50px"
+    display: "flex",
+    justifyContent: "space-between",
+    width: "50px",
   },
   actionPart: {
-    display: "flex", justifyContent: "space-between", width: "200px", marginRight: "350px"
+    display: "flex",
+    justifyContent: "space-between",
+    width: "200px",
+    marginRight: "350px",
   },
   saveBtn: {
     backgroundColor: "#009BAD !important",
     color: "white !important",
-    textDecoration: "none"
+    textDecoration: "none",
   },
   cancelBtn: {
-    backgroundColor: "#606C74 !important", color: "white !important"
+    backgroundColor: "#606C74 !important",
+    color: "white !important",
   },
   actionDivTwo: {
-    display: "flex", justifyContent: "space-between", width: "400px", marginRight: "150px"
+    display: "flex",
+    justifyContent: "space-between",
+    width: "400px",
+    marginRight: "150px",
   },
   titleIcon: {
     width: "13px",
-    marginRight: "5px"
+    marginRight: "5px",
   },
   checkLike: {
     width: "15px",
-    marginRight: "15px"
+    marginRight: "15px",
   },
   dialogTitle: {
-    display: "flex", justifyContent: "space-between",
+    display: "flex",
+    justifyContent: "space-between",
   },
 
   dialogBtn: {
     color: "#606C74 !important",
-    fontSize: "12px"
+    fontSize: "12px",
   },
   menuImage: {
     marginRight: "20px",
   },
   menu: {
-    marginTop: "15px"
+    marginTop: "15px",
   },
   linkPart: {
     backgroundColor: "#33adff",
     color: "white",
-    textTransform: "capitalize"
+    textTransform: "capitalize",
   },
 
   createNew: {
@@ -287,13 +328,18 @@ export const useStyles = makeStyles({
     color: "white !important",
     // marginRight: "15px !important",
     padding: "3px 8px !important",
-
-
   },
   boxContain: {
     display: "grid",
     gridTemplateColumns: "repeat(4, 1fr)",
-    marginTop:"30px"
+    marginTop: "30px",
+    height: "auto",
+    "@media (max-width:768px)": {
+      marginTop: "20px",
+      display: "grid",
+      gridTemplateColumns: "repeat(1, 1fr)",
+      height: "auto",
+    },
   },
 
   galleryBox: {
@@ -304,28 +350,31 @@ export const useStyles = makeStyles({
     borderRadius: "10px",
     margin: "20px",
     "& img": {
-      width: "50px"
+      width: "50px",
     },
     "& div": {
       color: "#009BAD",
     },
     "& p": {
       color: "#606C74 !important",
-      fontSize: "12px"
-    }
+      fontSize: "12px",
+    },
+    "@media (max-width:768px)": {
+      margin: "40px 10px 10px 10px",
+    },
   },
   dialogT: {
     display: "flex",
     justifyContent: "space-between",
     fontSize: "15px",
-    color: "#009BAD"
+    color: "#009BAD",
   },
   breadcrumbs: {
-    color: '#18496a',
+    color: "#18496a",
     display: "inline-flex",
   },
   breadLinks: {
-    color: '#18496a',
+    color: "#18496a",
     opacity: 0.8,
     textDecoration: "none !important",
   },
@@ -361,7 +410,6 @@ export const useStyles = makeStyles({
     // position: "relative",
   },
 
-
   innerBannerOverlay: {
     // position: "absolute",
     // width: "100%",
@@ -370,8 +418,5 @@ export const useStyles = makeStyles({
     color: "#ffffff",
     bottom: 0,
     borderRadius: "8px",
-
   },
-
-
 });

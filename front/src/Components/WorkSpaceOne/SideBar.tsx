@@ -1,5 +1,5 @@
-import React from 'react';
-import MenuItem from '@mui/material/MenuItem';
+import React from "react";
+import MenuItem from "@mui/material/MenuItem";
 import content from "./../../Assets/Images/contentELeft.svg";
 import department from "./../../Assets/Images/departmentLeft.svg";
 import departmentTwo from "./../../Assets/Images/departmentLeft-nav.svg";
@@ -8,24 +8,23 @@ import orgChart from "./../../Assets/Images/orgchartLeft.svg";
 import policy from "./../../Assets/Images/policesLeft.svg";
 import quickLinks from "./../../Assets/Images/quicklinksLeft.svg";
 import workspace from "./../../Assets/Images/workspaceLeft.svg";
-import Menu from '@mui/material/Menu';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Button from '@mui/material/Button';
-import { Grid, Box, List, ListItem } from '@mui/material';
-import { useStyles } from './Styles';
-import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import Menu from "@mui/material/Menu";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Button from "@mui/material/Button";
+import { Grid, Box, List, ListItem } from "@mui/material";
+import { useStyles } from "./Styles";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 // import { Tooltip } from 'office-ui-fabric-react';
-import { useLocation } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { useLocation } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import upload from "../../Assets/Images/uploadWhite.svg";
 import menuBlue from "../../Assets/Images/menu-blue.svg";
 import setting from "../../Assets/Images/settingWhite.svg";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 const SideBar = (props: any) => {
   const classes = useStyles();
@@ -34,49 +33,46 @@ const SideBar = (props: any) => {
   const location = useLocation();
   const theme = useTheme();
 
-
   const itemsList = [
     {
       id: 1,
-      label: 'Home',
+      label: "Home",
       Icon: home,
       iconHover: home,
       onClick: () => history.push("/"),
-      to: '/',
+      to: "/",
     },
     {
       id: 2,
-      label: 'WorkSpace',
+      label: "WorkSpace",
       Icon: workspace,
       iconHover: workspace,
       onClick: () => history.push("/profile"),
-      to: '/profile',
+      to: "/profile",
     },
     {
       id: 3,
-      label: 'Policies & Procedure',
+      label: "Policies & Procedure",
       Icon: policy,
       iconHover: policy,
       onClick: () => history.push("/settings"),
-      to: '/settings',
-
+      to: "/settings",
     },
     {
       id: 4,
-      label: 'Content Editor',
+      label: "Content Editor",
       Icon: content,
       iconHover: content,
       onClick: () => history.push("/account"),
-      to: '/account',
+      to: "/account",
     },
     {
       id: 5,
-      label: 'Department',
+      label: "Department",
       Icon: department,
       iconHover: department,
       onClick: () => history.push("/departmentContentPage"),
-      to: '/departmentContentPage',
-
+      to: "/departmentContentPage",
     },
     {
       id: 6,
@@ -84,7 +80,7 @@ const SideBar = (props: any) => {
       Icon: quickLinks,
       iconHover: quickLinks,
       onClick: () => history.push("/quickLinks"),
-      to: '/quickLinks',
+      to: "/quickLinks",
     },
     {
       id: 7,
@@ -92,14 +88,14 @@ const SideBar = (props: any) => {
       Icon: orgChart,
       iconHover: orgChart,
       onClick: () => history.push("/orgChart"),
-      to: '/orgChart',
+      to: "/orgChart",
     },
   ];
 
   const [id1, setId1] = useState(0);
 
   return (
-    <Grid className={classes.sideBar}>
+    <Grid item xs={12} md={11} className={classes.sideBar}>
       <Box>
         <Grid aria-label="secondary mailbox folders">
           <List>
@@ -113,29 +109,29 @@ const SideBar = (props: any) => {
             <ListItem disablePadding className={classes.sideIcon}>
               <ListItemButton>
                 <Link to="/WorkSpaceOne">
-                <img src={workspace} alt="workspace" />
-                </Link>     
+                  <img src={workspace} alt="workspace" />
+                </Link>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
               <ListItemButton>
                 <Link to="/policiesContentPage">
-                <img src={policy} alt="policy" />
-                </Link>       
+                  <img src={policy} alt="policy" />
+                </Link>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
               <ListItemButton>
                 <Link to="/ContentEditor">
-                <img src={content} alt="content" />
-                </Link>               
+                  <img src={content} alt="content" />
+                </Link>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
               <ListItemButton>
                 <Link to="/departmentContentPage">
-                <img src={departmentTwo} alt="department" />
-                </Link>       
+                  <img src={departmentTwo} alt="department" />
+                </Link>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
@@ -143,7 +139,6 @@ const SideBar = (props: any) => {
                 <Link to="/quickContentPage">
                   <img src={quickLinks} alt="quickLinks" />
                 </Link>
-
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding className={classes.sideIcon}>
@@ -151,7 +146,6 @@ const SideBar = (props: any) => {
                 <Link to="/orgChart">
                   <img src={orgChart} alt="orgChart" />
                 </Link>
-
               </ListItemButton>
             </ListItem>
           </List>
@@ -195,7 +189,7 @@ const SideBar = (props: any) => {
 
           })}
         </List> */}
-        <Grid style={{ marginTop: "210px" }}>
+        <Grid className={classes.mt210}>
           <List>
             <ListItem>
               <ListItemButton>
@@ -215,7 +209,6 @@ const SideBar = (props: any) => {
           </List>
         </Grid>
       </Box>
-
     </Grid>
   );
 };

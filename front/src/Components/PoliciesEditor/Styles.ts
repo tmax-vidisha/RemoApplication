@@ -39,7 +39,7 @@ export const useStyles = makeStyles({
     "& a": {
       color: "#ffffff !important",
       textDecoration: "none",
-    }
+    },
   },
   annContents: {
     overflow: "hidden",
@@ -76,33 +76,51 @@ export const useStyles = makeStyles({
     },
   },
   MainPart: {
-     height: 550,
-     width: '100%',
+    height: "400px",
+    width: "100%",
     backgroundColor: "white",
-    marginLeft:"20px",
-    paddingRight:"10px",
+    marginLeft: "20px",
+    paddingRight: "10px",
     //  padding: "30px",
     // margin:"30px",
     // marginRight:"50px",
     // paddingRight: '10px',
     //  border: "1px solid red",
-    borderTopRightRadius: '9px',
+    borderTopRightRadius: "9px",
+    "@media (max-width:768px)": {
+      marginLeft: "10px",
+      paddingRight: "0px",
+      marginRight: "10px",
+      height: "400px",
+    },
   },
- Section: {
-    height: 'auto',
-     width: '100%',
+  Section: {
+    height: "auto",
+    width: "100%",
     backgroundColor: "#d1eae33b",
-   paddingRight: "55px",
+    paddingRight: "55px",
     // marginRight: '50px',
     //  border: "1px solid red",
-    borderTopRightRadius: '9px',
+    borderTopRightRadius: "9px",
+    "@media (max-width:768px)": {
+      paddingRight: "0px",
+    },
   },
 
+  m30: {
+    margin: "30px",
+    "@media (max-width:768px)": {
+      margin: "0px",
+    },
+  },
   upperPart: {
     display: "flex",
     justifyContent: "space-between",
     margin: "30px",
-    paddingTop: "30px"
+    paddingTop: "30px",
+    "@media (max-width:768px)": {
+      margin: "10px",
+    },
   },
   new: {
     width: "100px",
@@ -115,9 +133,11 @@ export const useStyles = makeStyles({
       "& span": {
         color: "white !important",
         backgroundColor: "#009BAD",
-      }
-    }
-
+      },
+    },
+    "@media (max-width:768px)": {
+      marginRight: "5px",
+    },
   },
   create: {
     // backgroundColor: "rgb(50 168 189) !important",
@@ -125,12 +145,22 @@ export const useStyles = makeStyles({
     marginRight: "15px !important",
     padding: "3px 8px !important",
   },
+  flexBetween: {
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    "@media (max-width:768px)": {
+      display: "flex",
+      justifyContent: "space-between",
+      flexDirection: "column",
+    },
+  },
   plus: {
     textAlign: "center",
     marginTop: "5px",
     marginRight: "10px",
     // backgroundColor:" white !important",
-    color: "white !important"
+    color: "white !important",
   },
   newPosOfDialog: {
     position: "absolute",
@@ -147,16 +177,14 @@ export const useStyles = makeStyles({
     border: "3px dashed #eeeeee",
     color: "#bdbdbd",
     backgroundColor: "#fafafa",
-    marginBottom: "20px"
-
+    marginBottom: "20px",
   },
   label: {
     float: "left",
     color: "#606C74 !important",
     textAlign: "left",
     margin: "10px !important",
-    fontSize: "12px !important"
-
+    fontSize: "12px !important",
   },
   bigPaper: {
     //border: "1px solid #f1f1f1",
@@ -170,6 +198,9 @@ export const useStyles = makeStyles({
     // marginRight:"0px",
     backgroundColor: "#d1eae33b",
     background: "#d1eae33b",
+    "@media (max-width:768px)": {
+      paddingRight: "0px",
+    },
   },
   sideBar: {
     // marginLeft: "25px",
@@ -178,7 +209,6 @@ export const useStyles = makeStyles({
     textAlign: "center",
     //width:"50px",
     borderRadius: " 20px 1px 1px 20px",
-
   },
 
   span: {
@@ -190,21 +220,19 @@ export const useStyles = makeStyles({
     "& .MuiInputBase-root": {
       height: 30,
       color: "gray",
-    }
+    },
   },
 
   file: {
     "& MuiBox-root .css-1ubo7yp": {
       borderColor: "red",
       "& MuiFormControl-root": {
-
         "& MuiSvgIcon": {
           color: "black",
-          backgroundColor: "black"
-        }
-      }
+          backgroundColor: "black",
+        },
+      },
     },
-
   },
   svg: {
     // display: "none !important",
@@ -216,8 +244,8 @@ export const useStyles = makeStyles({
       display: "block",
       color: "white",
       backgroundColor: "#b8bdc1",
-      fontSize:"12px"
-    }
+      fontSize: "12px",
+    },
   },
 
   backgroundImage: {
@@ -225,47 +253,68 @@ export const useStyles = makeStyles({
     textAlign: "center",
     borderRadius: "8px",
     position: "relative",
-    width: "500px"
+    width: "500px",
   },
   girl: {
-    position: "sticky", width: "100px", borderRadius: "50%", marginTop: "-54px"
+    position: "sticky",
+    width: "100px",
+    borderRadius: "50%",
+    marginTop: "-54px",
   },
   iconDiv: {
-    display: "flex", justifyContent: "space-between", width: "200px", margin: "15px"
+    display: "flex",
+    justifyContent: "space-between",
+    width: "200px",
+    margin: "15px",
   },
   iconView: {
-    display: "flex", justifyContent: "space-between", width: "50px"
+    display: "flex",
+    justifyContent: "space-between",
+    width: "50px",
   },
   actionPart: {
-    display: "flex", justifyContent: "space-between", width: "200px", marginRight: "350px"
+    display: "flex",
+    justifyContent: "space-between",
+    width: "200px",
+    marginRight: "350px",
   },
   saveBtn: {
     backgroundColor: "#009BAD !important",
     color: "white !important",
-    textDecoration: "none"
+    textDecoration: "none",
   },
   cancelBtn: {
-    backgroundColor: "#606C74 !important", color: "white !important"
+    backgroundColor: "#606C74 !important",
+    color: "white !important",
   },
   actionDivTwo: {
-    display: "flex", justifyContent: "space-between", width: "400px", marginRight: "150px"
+    display: "flex",
+    justifyContent: "space-between",
+    width: "400px",
+    marginRight: "150px",
+    "@media (max-width:768px)": {
+      display: "flex",
+      justifyContent: "space-between",
+      width: "100%",
+      marginRight: "0px",
+      flexDirection: "column",
+    },
   },
   titleIcon: {
     width: "13px",
-    marginRight: "5px"
+    marginRight: "5px",
   },
   checkLike: {
     width: "15px",
-    marginRight: "15px"
+    marginRight: "15px",
   },
   dialogTitle: {
-    display: "flex", justifyContent: "space-between",
+    display: "flex",
+    justifyContent: "space-between",
   },
 
   dialogBtn: {
     color: "#606C74 !important",
-    fontSize: "12px"
-  }
-
-
+    fontSize: "12px",
+  },
 });

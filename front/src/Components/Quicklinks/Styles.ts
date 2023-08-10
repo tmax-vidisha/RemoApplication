@@ -39,13 +39,12 @@ export const useStyles = makeStyles({
   },
   contentEditorWidth: {
     width: "100%",
-
   },
   cardHeight: {
     paddingTop: "20px",
     background: "transparent !important",
     boxShadow: "none",
-    borderRadius: "10px"
+    borderRadius: "10px",
   },
   contentHeader: {
     position: "relative",
@@ -148,7 +147,7 @@ export const useStyles = makeStyles({
     padding: "10px",
     backgroundColor: "#e6ffe6",
     borderRadius: "10px",
-    marginLeft: "5px"
+    marginLeft: "5px",
   },
   mainPart: {
     display: "grid",
@@ -156,7 +155,7 @@ export const useStyles = makeStyles({
     padding: "20px",
     backgroundColor: "white",
     width: "250px",
-    paddingTop: "5px"
+    paddingTop: "5px",
   },
   texts: {
     fontSize: "12px",
@@ -171,8 +170,8 @@ export const useStyles = makeStyles({
       fontSize: "12px",
       "& p": {
         fontSize: "12px",
-      }
-    }
+      },
+    },
   },
   linkText: {
     color: "#009BAD !important",
@@ -182,37 +181,37 @@ export const useStyles = makeStyles({
   linkPart: {
     backgroundColor: "#33adff",
     color: "white",
-    textTransform: "capitalize"
+    textTransform: "capitalize",
   },
   plus: {
     textAlign: "center",
     marginTop: "5px",
     marginRight: "10px",
     // backgroundColor:" white !important",
-    color: "white !important"
+    color: "white !important",
   },
 
   quick: {
-
     // marginTop: "5px",
     // marginRight: "10px"
     display: "flex",
     justifyContent: "space-between",
-
   },
-
 
   linkBtn: {
     backgroundColor: "rgb(50 168 189) !important",
     color: "white !important",
     marginRight: "30px !important",
-    padding: "5px 10px !important"
+    padding: "5px 10px !important",
   },
   quickLinkDiv: {
     paddingTop: "20px",
     backgroundColor: "white",
     width: "260px",
-    borderRadius: "10px"
+    borderRadius: "10px",
+    ["@media (max-width:768px)"]: {
+      marginTop: "15px",
+    },
   },
   OrgBox: {
     width: "150px",
@@ -224,7 +223,7 @@ export const useStyles = makeStyles({
     backgroundColor: "#f0f6f094",
     borderRadius: "10px",
     marginLeft: "5px",
-    position: "relative"
+    position: "relative",
   },
   orgImg: {
     width: "50px",
@@ -238,23 +237,22 @@ export const useStyles = makeStyles({
     color: "#009BAD",
     margin: "0px",
     paddingTop: "30px",
-    fontSize: "12px"
+    fontSize: "12px",
   },
   TextOrg: {
     color: "#606C74",
     margin: "0px",
     paddingTop: "10px",
-    fontSize: "12px"
+    fontSize: "12px",
   },
   plusMinus: {
     width: "20px",
-    height:"20px",
+    height: "20px",
     backgroundColor: "#009BAD",
     position: "absolute",
     cursor: "pointer",
     borderRadius: "50%",
     marginLeft: "-15px",
-
   },
 
   ListItemText: {
@@ -263,7 +261,7 @@ export const useStyles = makeStyles({
     },
     " & p": {
       fontSize: "12px",
-    }
+    },
   },
   meeting: {
     "& MuiButtonBase": {
@@ -281,20 +279,19 @@ export const useStyles = makeStyles({
       border: "5px solid white ",
       maxHeight: "55px ",
       width: "auto ",
-    }
-
+    },
   },
 
   calendar: {
     fontSize: "12px",
-    width: "240px",
+    width: "240px !important",
     margin: "5px",
     border: "none",
     height: "275px",
     "& .react-calendar": {
       fontSize: "12px",
       maxWidth: "200px !important",
-      width: "240px",
+      width: "240px !important",
       "& .react-calendar__navigation": {
         display: "flex",
         height: "35px !important",
@@ -306,12 +303,12 @@ export const useStyles = makeStyles({
       "& .react-calendar__month-view__days": {
         "& .react-calendar__tile ": {
           fontSize: "9px",
-        }
+        },
       },
       "& .react-calendar button": {
         fontSize: "9px",
-      }
-    }
+      },
+    },
   },
   todo: {
     border: "none",
@@ -327,7 +324,6 @@ export const useStyles = makeStyles({
     "& :hover": {
       backgroundColor: "#e1f5f3",
       height: "30px",
-    }
-
+    },
   },
 });

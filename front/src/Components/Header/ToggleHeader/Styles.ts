@@ -99,7 +99,6 @@ export const useStyles = makeStyles({
     justifyContent: "space-between",
     flexDirection: "row",
     ["@media (max-width:768px)"]: {
-      paddingTop: "16px",
       display: "flex",
       justifyContent: "space-between",
       flexDirection: "column",
@@ -163,6 +162,7 @@ export const useStyles = makeStyles({
       width: "100% !important",
       color: "white",
       paddingRight: "0px",
+      paddingTop: "55px !important",
     },
   },
   midHeader: {
@@ -187,17 +187,6 @@ export const useStyles = makeStyles({
   menu: {
     "& .MuiPaper-root": {
       backgroundColor: "#02354D !important",
-    },
-  },
-  divToggle: {
-    width: "150px",
-    position: "absolute",
-    top: "4%",
-    marginLeft: "-40px",
-    ["@media (max-width:768px)"]: {
-      position: "unset",
-      top: "3%",
-      marginLeft: "-70px",
     },
   },
 });

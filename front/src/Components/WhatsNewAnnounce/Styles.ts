@@ -188,6 +188,11 @@ export const useStyles = makeStyles({
     gridTemplateColumns: "repeat(4,1fr)",
     margin: "30px",
     paddingBottom: "50px",
+    ["@media (max-width:768px)"]: {
+      display: "grid",
+      gridTemplateColumns: "repeat(1,1fr)",
+      margin: "auto 20px",
+    },
   },
   boxContent: {
     width: "250px",

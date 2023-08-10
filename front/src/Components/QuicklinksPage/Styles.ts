@@ -39,13 +39,12 @@ export const useStyles = makeStyles({
   },
   contentEditorWidth: {
     width: "100%",
-
   },
   cardHeight: {
     paddingTop: "20px",
     background: "transparent !important",
     boxShadow: "none",
-    borderRadius: "10px"
+    borderRadius: "10px",
   },
   contentHeader: {
     position: "relative",
@@ -108,31 +107,30 @@ export const useStyles = makeStyles({
   videoContent: {
     // position:"relative",
     // border:"1px solid red"
-
   },
   video: {
-    height: '253px',
+    height: "253px",
     display: "block",
     overflow: "hidden",
     width: "100%",
     borderRadius: "5px",
     // position: "relative",
-    paddingBottom: "0px !important"
+    paddingBottom: "0px !important",
   },
   displayImg: {
-    height: '253px',
+    height: "253px",
     display: "block",
     overflow: "hidden",
     width: "100%",
     borderRadius: "5px",
     position: "relative",
-    paddingBottom: "0px !important"
+    paddingBottom: "0px !important",
   },
   videoTitle: {
     position: "absolute",
     color: "white",
-    top: '70%',
-    left: '34%',
+    top: "70%",
+    left: "34%",
     transform: "translateX(-50%)",
     textAlign: "left",
     cursor: "pointer",
@@ -149,11 +147,10 @@ export const useStyles = makeStyles({
     textAlign: "center",
     display: "flex",
     justifyContent: "space-between",
-
   },
   iconTitle: {
     color: "rgb(73 90 115)",
-    margin: "0px"
+    margin: "0px",
   },
   boxIcon: {
     width: "140px",
@@ -162,13 +159,16 @@ export const useStyles = makeStyles({
     padding: "10px",
     margin: "10px",
     borderRadius: "10px",
-    cursor:"pointer",
+    cursor: "pointer",
+    "@media (max-width:768px)": {
+      margin: "30px 0px 0px 40px",
+    },
   },
-  
+
   addedText: {
     textAlign: "left",
     color: "#009BAD",
-    margin: "15px"
+    margin: "15px",
   },
   dragText: {
     color: " #606C74",
@@ -176,26 +176,31 @@ export const useStyles = makeStyles({
   bigBox: {
     display: "grid",
     gridTemplateColumns: "repeat(5, 1fr)",
-    gap: "10px"
+    gap: "10px",
+    "@media (max-width:768px)": {
+      display: "grid",
+      gridTemplateColumns: "repeat(1, 1fr)",
+      gap: "10px",
+      paddingBottom: "15px",
+    },
   },
   addBox: {
     display: "flex",
     justifyContent: "space-between",
-    margin:"10px"
+    margin: "10px",
   },
-  deleteBox:{
+  deleteBox: {
     width: "100%",
   },
-  deleteContent:{
+  deleteContent: {
     position: "absolute",
-    paddingLeft:" 125px",
-    marginTop:"-64px",
-    cursor:"pointer"
+    paddingLeft: " 125px",
+    marginTop: "-64px",
+    cursor: "pointer",
 
     // backgroundColor:"#009BAD",
     // width:"30px",
     // borderRadius:"50%",
     // paddingLeft: "40px",
-  }
-
+  },
 });
