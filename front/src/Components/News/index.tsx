@@ -183,7 +183,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
     ],
   };
 
-  const [likes, setLikes] = useState(10);
+  const [likes, setLikes] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
   const [isActive, setIsActive] = useState(false);
 

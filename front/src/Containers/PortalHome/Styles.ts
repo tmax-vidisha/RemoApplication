@@ -10,6 +10,12 @@ export const useStyles = makeStyles({
       // maxWidth: "1200px"
     },
   },
+  marginDiv: {
+    marginLeft: "20px",
+    ["@media (max-width:768px)"]: {
+      marginLeft: "5px",
+    },
+  },
   divContainer: {
     marginTop: "0px",
     marginRight: "0px",
@@ -39,6 +45,9 @@ export const useStyles = makeStyles({
     marginTop: "0px",
     marginBottom: "16px",
     paddingLeft: "20px",
+    ["@media (max-width:768px)"]: {
+      paddingLeft: "5px",
+    },
   },
   bdayText: {
     color: "gray !important",

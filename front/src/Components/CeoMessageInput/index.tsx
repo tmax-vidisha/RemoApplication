@@ -1,9 +1,6 @@
 import * as React from "react";
 import { Fragment, useEffect, useState } from "react";
-import {
-  NavLink as RouterNavLink,
-
-} from "react-router-dom";
+import { NavLink as RouterNavLink } from "react-router-dom";
 import { AuthenticatedTemplate } from "@azure/msal-react";
 
 import {
@@ -16,11 +13,17 @@ import {
   CardContent,
   CardMedia,
   Container,
-  
   Paper,
   Typography,
 } from "@mui/material";
-import { useGetCeoMessageQuery, useCreateCeoMessageMutation,useCreateTokenwithDataMutation,useUpdateCeoMsgTokenMutation,useGetAllCeoMsgQuery,useCreateTokenwithCeoDataMutation } from "../../services/APIs";
+import {
+  useGetCeoMessageQuery,
+  useCreateCeoMessageMutation,
+  useCreateTokenwithDataMutation,
+  useUpdateCeoMsgTokenMutation,
+  useGetAllCeoMsgQuery,
+  useCreateTokenwithCeoDataMutation,
+} from "../../services/APIs";
 import { useStyles } from "./Styles";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { EditorState } from "draft-js";
@@ -39,17 +42,16 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { PublicClientApplication } from "@azure/msal-browser";
 import AddCircleOutlineIcon from "@mui/icons-material/Add";
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { configuration } from "../../index";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 var moment = require("moment-timezone");
 interface IFolderProps {
   // ceomsg: any;
-  data:any, 
-  error:any,
-  isLoading:any,
+  data: any;
+  error: any;
+  isLoading: any;
   onSubmit: (object: any) => void;
 }
 
@@ -61,12 +63,12 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
   // const [sendItem] = useCreateCeoMessageMutation();
   // const [sendItem] = useCreateTokenwithCeoDataMutation();
   // const [sendData] = useCreatedataMutation();
-  const { data, error, isLoading, onSubmit } =   props
+  const { data, error, isLoading, onSubmit } = props;
   const [ceoMessage, setCEOMessage] = useState<any>([]);
   const [CeoTitle, setCeoTitle] = useState<any>([]);
   const [CeoPosition, setPosition] = useState<any>([]);
   const [open, setOpen] = useState(false);
-  const [name,setName] = useState<string>('');
+  const [name, setName] = useState<string>("");
   // const [updateToken,{data,isLoading} ] = useUpdateCeoMsgTokenMutation();
   //   console.log(data?.response,'jyjtyddvdvfdvfdvdfvggfgdhhtjytjytjytjty')
   // const pca = new PublicClientApplication(configuration);
@@ -80,7 +82,7 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
   //         account: accounts[0]
   //       }
   //       const accessToken = await pca.acquireTokenSilent(request).then((response) => {
-         
+
   //         // updateToken(response.accessToken);
   //          setToken(response.accessToken)
   //         // console.log(token,'uuuuuu')
@@ -89,7 +91,6 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
   //         console.log(error);
   //         return null;
   //       });
-
 
   //     }
 
@@ -111,24 +112,22 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
     event.preventDefault();
   }
 
-  const [fileSelected, setFileSelected] = useState<any>('');
- 
+  const [fileSelected, setFileSelected] = useState<any>("");
+
   const handleImageChange = function (e: any) {
     const fileList = e.target.files;
     // console.log(fileList[0].name,'uuuu')
-    setName(fileList[0].name)
+    setName(fileList[0].name);
     // console.log(name,'lllllll')
     // if (!fileList) return;
     // setFileSelected(fileList[0]);
     let reader = new FileReader();
     //@ts-ignore
-    reader.readAsDataURL(fileList[0])
-    reader.onload= (e) =>{
+    reader.readAsDataURL(fileList[0]);
+    reader.onload = (e) => {
       // console.log(e.target?.result)
-      setFileSelected(e.target?.result)
-      
-    }
-     
+      setFileSelected(e.target?.result);
+    };
   };
 
   const [editorState, setEditorState] = useState(() =>
@@ -157,7 +156,7 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
   //   .then(data => setCEOMessage(data.fields));
 
   // })
-  
+
   const handleSubmitClick = async () => {
     // try {
     //   var AssetListId = app.driveInfo?.AssetLib;
@@ -175,33 +174,31 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
     //         serverRelativeUrl: response.webUrl,
     //       };
     //  console.log(fileSelected,'jjjjj')
-    
 
-          const CeoItems = {
-            fields: {
-              Title: "CEO Message",
-              Description: convertedContent,
-              UserName: CeoTitle,
-              Position: CeoPosition,
-              ProfilePhoto: fileSelected,
-              Name:name
-            },
-          };
-          const CeoData = {
-              // token:tokens,
-              ceotitle: "CEO Message",
-              ceodesc: convertedContent,
-              ceousername: CeoTitle,
-              ceoposition: CeoPosition,
-              ceopic: fileSelected,
-              ceopicname:name
-            
-          };
-      //  await sendItem(CeoData);
-      onSubmit(CeoData)
-      // var fff = fileSelected.name
-      // console.log(fff,'rrr')
-        // await sendData(fff)
+    const CeoItems = {
+      fields: {
+        Title: "CEO Message",
+        Description: convertedContent,
+        UserName: CeoTitle,
+        Position: CeoPosition,
+        ProfilePhoto: fileSelected,
+        Name: name,
+      },
+    };
+    const CeoData = {
+      // token:tokens,
+      ceotitle: "CEO Message",
+      ceodesc: convertedContent,
+      ceousername: CeoTitle,
+      ceoposition: CeoPosition,
+      ceopic: fileSelected,
+      ceopicname: name,
+    };
+    //  await sendItem(CeoData);
+    onSubmit(CeoData);
+    // var fff = fileSelected.name
+    // console.log(fff,'rrr')
+    // await sendData(fff)
     //       var listId = app.listInfo?.ceoMessage;
     //       if (listId != null) {
     //         let response = await postCeoMessage(
@@ -218,14 +215,12 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
     // } catch (err: any) {
     //   app.displayError!(err.message);
     // }
-    console.log('click')
+    console.log("click");
   };
 
-  
-  console.log(data,'980ccccccc9090')
+  console.log(data, "980ccccccc9090");
 
   return (
-    
     <AuthenticatedTemplate>
       <Container className={classes.contentEditorWidth}>
         <Card className={classes.cardHeight} elevation={0}>
@@ -233,7 +228,7 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
             <div className={classes.innerBannerOverlay}></div>
             <Paper className={classes.contentHeader} elevation={0}>
               <Typography className={classes.breadcrumbs} variant="h6">
-               <Link to="/ContentEditor">Content Editor</Link> 
+                <Link to="/ContentEditor">Content Editor</Link>
               </Typography>
               <Typography variant="caption" display="block" gutterBottom>
                 <Breadcrumbs
@@ -292,9 +287,7 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                   var ceoUserName = fields?.UserName;
                   var ceoMessageAsText = fields.Description;
                   var ceoIsActive = fields.IsActive;
-                  var createdDate = moment(
-                    fields.Modified
-                  ).fromNow();
+                  var createdDate = moment(fields.Modified).fromNow();
 
                   var Position = fields.Position;
                   var img = fields?.profileUrl;
@@ -327,30 +320,55 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                         </p>
                       </TableCell>
                       <TableCell>{Position} </TableCell>
-                      <TableCell><img style={{ width: "93px", height: "82px" }} src={img} /></TableCell>
+                      <TableCell>
+                        <img
+                          src={img}
+                          alt="gjg"
+                          style={{ width: "93px", height: "82px" }}
+                        />
+                      </TableCell>
                       <TableCell sx={{ minWidth: 80 }}>{createdDate}</TableCell>
                       <TableCell sx={{ minWidth: 80, textAlign: "center" }}>
-                        <span className={classes.tableStatusNo}>{ceoIsActive ? "Yes" : "No"}</span>
+                        <span className={classes.tableStatusNo}>
+                          {ceoIsActive ? "Yes" : "No"}
+                        </span>
                       </TableCell>
                     </TableRow>
-                  )
+                  );
                 })}
             </TableBody>
-            
           </Table>
         </TableContainer>
 
         <Fragment>
-          <Dialog
-            maxWidth="md"
-            open={open}
-            onClose={handleClose}
-          >
-            <Box sx={{ display: "flex", padding: "20px 25px", background: "#f8f8f8" }}>
-              <DialogTitle sx={{ pb: 0, padding: 0, lineHeight: "1.25rem", fontSize: "1.50rem" }}> Add New Item</DialogTitle>
+          <Dialog maxWidth="md" open={open} onClose={handleClose}>
+            <Box
+              sx={{
+                display: "flex",
+                padding: "20px 25px",
+                background: "#f8f8f8",
+              }}
+            >
+              <DialogTitle
+                sx={{
+                  pb: 0,
+                  padding: 0,
+                  lineHeight: "1.25rem",
+                  fontSize: "1.50rem",
+                }}
+              >
+                {" "}
+                Add New Item
+              </DialogTitle>
               <Box sx={{ flexGrow: 1 }}></Box>
               <DialogActions sx={{ padding: 0 }}>
-                <Button onClick={handleClose} sx={{ padding: 0, minWidth: "auto", color: "#a5a5a5" }}> <CloseOutlinedIcon /> </Button>
+                <Button
+                  onClick={handleClose}
+                  sx={{ padding: 0, minWidth: "auto", color: "#a5a5a5" }}
+                >
+                  {" "}
+                  <CloseOutlinedIcon />{" "}
+                </Button>
               </DialogActions>
             </Box>
             <DialogContent>
@@ -358,7 +376,7 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                 <Grid xs={12} item>
                   <Typography component="div" sx={{ pb: 1 }}>
                     <TextField
-                      InputLabelProps={{ style: { color: '#333333' } }}
+                      InputLabelProps={{ style: { color: "#333333" } }}
                       autoComplete="off"
                       label="Title"
                       placeholder="Please enter the title"
@@ -370,7 +388,7 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                   </Typography>
                   <Typography component="div" sx={{ pb: 2 }}>
                     <TextField
-                      InputLabelProps={{ style: { color: '#333333' } }}
+                      InputLabelProps={{ style: { color: "#333333" } }}
                       autoComplete="off"
                       label="Position"
                       placeholder="Please enter the position"
@@ -432,16 +450,13 @@ const CeoMessageInput: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </div>
                   </Typography>
                 </Grid>
-
               </Paper>
             </DialogContent>
-
           </Dialog>
         </Fragment>
       </Container>
     </AuthenticatedTemplate>
-   
-  )
-}
+  );
+};
 
-export default CeoMessageInput
+export default CeoMessageInput;

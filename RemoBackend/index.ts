@@ -1,59 +1,65 @@
 import express from "express";
 // const { BlobServiceClient } = require('@azure/storage-blob');
-import token  from './routes/token';
+import token from "./routes/token";
 // const getPostData = require('./routes/graph');
-import graph from './routes/graph';
+import graph from "./routes/graph";
 // const getAllSites = require('./routes/workspace')
-import workspace from './routes/workspace'
-import onedrive  from  './routes/onedrive/onedrive'
-import announcement from './routes/contenteditor/announcement'
-import herobanner from './routes/contenteditor/herobannner'
-import events from './routes/contenteditor/events'
-import ceo from './routes/contenteditor/ceo';
-import news from './routes/contenteditor/news';
-import navigation from './routes/contenteditor/navigation'
-import fileupload from 'express-fileupload'
-import quicklink from './routes/contenteditor/quicklinks';
+import workspace from "./routes/workspace";
+import onedrive from "./routes/onedrive/onedrive";
+import announcement from "./routes/contenteditor/announcement";
+import herobanner from "./routes/contenteditor/herobannner";
+import events from "./routes/contenteditor/events";
+import department from "./routes/contenteditor/department";
+import ceo from "./routes/contenteditor/ceo";
+import news from "./routes/contenteditor/news";
+import navigation from "./routes/contenteditor/navigation";
+import fileupload from "express-fileupload";
+import quicklink from "./routes/contenteditor/quicklinks";
 
-import contentEditor from './routes/contenteditor/contenteditor'
-import employee from './routes/contenteditor/emphighlight'
-import photosandvideo from './routes/photoandvideo/photosandvideo'
-import gallery from './routes/contenteditor/gallery' 
-import header from './routes/header'
+import contentEditor from "./routes/contenteditor/contenteditor";
+import employee from "./routes/contenteditor/emphighlight";
+import photosandvideo from "./routes/photoandvideo/photosandvideo";
+import gallery from "./routes/contenteditor/gallery";
+import header from "./routes/header";
 // const RemoToken = require('./controllers/token')
 // const graph = require('./routes/graph')
 // var azure = require('azure-storage');
-import logger from 'morgan';
+import logger from "morgan";
 // const axios = require('axios')
-import cors from 'cors';
-import  mongoose from 'mongoose';
-import bodyParser from 'body-parser';
+import cors from "cors";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
 import { json } from "body-parser";
 const SERVER_PORT = process.env.PORT || 4000;
 import multer from "multer";
-require('dotenv').config();
-
+require("dotenv").config();
 
 // Create Express App and Routes
 const app = express();
 // app.use(express.json());
-app.use(bodyParser.json({ limit: "50mb" }))
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(
+  bodyParser.urlencoded({
+    limit: "50mb",
+    extended: true,
+    parameterLimit: 50000,
+  })
+);
 // app.use(fileupload());
 // app.use(express.static("files"));
 // app.use(express.urlencoded({limit: '25mb', extended: true}));
 // app.use(bodyParser.json({ limit: "50mb" }))
 app.use(cors());
-app.use(logger('tiny'));
+app.use(logger("tiny"));
 // function DataBase(){
 //   try {
 //     mongoose.connect( DB, {useNewUrlParser: true, useUnifiedTopology: true}, () =>
-//     console.log("connected"));    
-//   }catch (error) { 
-//     console.log("could not connect");    
+//     console.log("connected"));
+//   }catch (error) {
+//     console.log("could not connect");
 //   }
 // }
-// DataBase();  
+// DataBase();
 // const users =[{
 //     name:"rgth",
 //     age:45
@@ -69,30 +75,32 @@ app.use(logger('tiny'));
 // ]
 
 const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`;
-const AZURE_STORAGE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=remoblobstorage;AccountKey=2dyNCBrGp/3St5coni+Xca3mFbQA67byG6qnp81UjypSK65msMG461kPruQ/Vr0EaZS0qk9y7dxewDnnb3kcxQ==;EndpointSuffix=core.windows.net";
-const NewQuickLinkUser = 'b8e303de-b928-4f6a-97dd-4523583fa25d' //UserNewQuickLink
-const GlobalQuickLink = "31822f7f-4709-4be7-b9ff-da41962a67d7" //ExternalQuickLink
-const CID = "b8771df7-e108-41c0-ab73-5f84ac930d24"
-const Annc = "1b883bd5-98ef-4a8c-8390-ee42ffa431f9"
-const EMPH = "14f67e9e-4581-4a06-8c29-f775b8770fe4"
-const NWS = "72988e1e-2ebf-48dc-96ce-2db3cbb7c3e3 "
-const EVTS = "80d2331e-6970-4fe2-aa79-c6cae73bc150"
-const HRO = "7dfccbdf-0469-40e8-ab99-501d6314491f"
-const PHT = " 55cf720b-4646-49ed-bc64-c97ed72b75f0"
-const NAVG = "a33a075f-afbd-477b-bacc-6eb609559fa4"
+const AZURE_STORAGE_CONNECTION_STRING =
+  "DefaultEndpointsProtocol=https;AccountName=remoblobstorage;AccountKey=2dyNCBrGp/3St5coni+Xca3mFbQA67byG6qnp81UjypSK65msMG461kPruQ/Vr0EaZS0qk9y7dxewDnnb3kcxQ==;EndpointSuffix=core.windows.net";
+const NewQuickLinkUser = "b8e303de-b928-4f6a-97dd-4523583fa25d"; //UserNewQuickLink
+const GlobalQuickLink = "31822f7f-4709-4be7-b9ff-da41962a67d7"; //ExternalQuickLink
+const CID = "b8771df7-e108-41c0-ab73-5f84ac930d24";
+const Annc = "1b883bd5-98ef-4a8c-8390-ee42ffa431f9";
+const EMPH = "14f67e9e-4581-4a06-8c29-f775b8770fe4";
+const NWS = "72988e1e-2ebf-48dc-96ce-2db3cbb7c3e3 ";
+const EVTS = "80d2331e-6970-4fe2-aa79-c6cae73bc150";
+const HRO = "7dfccbdf-0469-40e8-ab99-501d6314491f";
+const PHT = " 55cf720b-4646-49ed-bc64-c97ed72b75f0";
+const NAVG = "a33a075f-afbd-477b-bacc-6eb609559fa4";
 
-const REMOSITEID = "tmxin.sharepoint.com,1649e6fd-df59-4f03-8e4b-4d765864f406,d2634703-c0cd-42f6-bfb5-c60555dbcb7d"
-const filterUserEmail = "https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,1649e6fd-df59-4f03-8e4b-4d765864f406,d2634703-c0cd-42f6-bfb5-c60555dbcb7d/lists('UserNewQuickLinks')/items?$expand=fields&$select=*&$filter=fields/UserEmail eq 'vidisha.a@tmax.in'"
+const REMOSITEID =
+  "tmxin.sharepoint.com,1649e6fd-df59-4f03-8e4b-4d765864f406,d2634703-c0cd-42f6-bfb5-c60555dbcb7d";
+const filterUserEmail =
+  "https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,1649e6fd-df59-4f03-8e4b-4d765864f406,d2634703-c0cd-42f6-bfb5-c60555dbcb7d/lists('UserNewQuickLinks')/items?$expand=fields&$select=*&$filter=fields/UserEmail eq 'vidisha.a@tmax.in'";
 
-
-
-const users = [{
-  t: ""
-}];
-app.get('/user', (req:any, res:any) => {
+const users = [
+  {
+    t: "",
+  },
+];
+app.get("/user", (req: any, res: any) => {
   res.send(users);
 });
-
 
 // let tokens;
 // app.post('/user/post', (req, res) => {
@@ -115,7 +123,7 @@ app.get('/user', (req:any, res:any) => {
 //   //   method: 'get',
 //   //   url: 'https://graph.microsoft.com/v1.0/me',
 //   //   headers: {
-//   //     'Authorization': `Bearer ${tokens.token} `,   
+//   //     'Authorization': `Bearer ${tokens.token} `,
 //   //     'Content-Type': 'application/json'
 //   //   },
 //   // }).then(function (res) {
@@ -136,10 +144,8 @@ app.get('/user', (req:any, res:any) => {
 //       res.send(myData);
 //     });
 
-
 //   }
 //   myInfo();
-
 
 //   async function UnreadMailCount(){
 //     const unReadMails = await axios.get("https://graph.microsoft.com/v1.0/me/mailFolders/Inbox/messages?$filter=isRead ne true&$count=true&$top=5000", {
@@ -192,8 +198,6 @@ app.get('/user', (req:any, res:any) => {
 //   }
 //   createUserQuickLink();
 
-
-
 //   async function getUserQuickLink() {
 //     const allItems = await axios.get(`${BASE_PATH}/${REMOSITEID}/lists/${NewQuickLinkUser}/items?$expand=fields`, {
 //       headers: {
@@ -210,7 +214,6 @@ app.get('/user', (req:any, res:any) => {
 
 //   }
 //   getUserQuickLink();
-
 
 //   async function getGlobalQuickLink() {
 //     const globalI = await axios.get(`${BASE_PATH}/${REMOSITEID}/lists/${GlobalQuickLink}/items?$expand=fields`, {
@@ -240,7 +243,6 @@ app.get('/user', (req:any, res:any) => {
 //     // let georgeOrwellBooks = Data.filter(book => book.fields.Title === 'DPW PROMIS')
 //     // .map(book => book.fields.id);
 //     //  console.log(georgeOrwellBooks,'yyyy')
-
 
 //     const listG = {
 //       //  GlobalQuickLinksId :  GId
@@ -314,10 +316,8 @@ app.get('/user', (req:any, res:any) => {
 //     }
 //     postItem();
 
-
 //     res.status(201).send("User created")
 //   })
-
 
 //   async function IntraApp() {
 //     const intra = await axios.get("https://graph.microsoft.com/v1.0/sites?$search=DPW Intranet Application", {
@@ -331,12 +331,9 @@ app.get('/user', (req:any, res:any) => {
 //     // const intrapp = JSON.stringify(intra.data)
 //     //  console.log(intrapp);
 
-
 //     // app.get('/SiteId', (req, res) => {
 //     //   res.send(intrapp);
 //     // });
-    
-
 
 //     // let Site;
 //     // app.post('/site/SiteId', (req, res) => {
@@ -398,7 +395,7 @@ app.get('/user', (req:any, res:any) => {
 //       // console.log(EmployeeHighlightsId,'emp');
 //       // console.log(GalleryId,'Gallery');
 //       // console.log(QuickLinksId,'QL');
-//       // console.log(NavigationId,'navi'); 
+//       // console.log(NavigationId,'navi');
 //       async function CEOMessageListId() {
 //         const ceomsg = await axios.get(`${BASE_PATH}/${SiteId}/lists/${CeoId}/items?$expand=fields`, {
 //           headers: {
@@ -817,7 +814,7 @@ app.get('/user', (req:any, res:any) => {
 //                     }
 //                     const Data = {
 //                       fields:{
-                        
+
 //                       Title: FieldData.fields.Title,
 //                       Description:FieldData.fields.Description,
 //                       UserName:FieldData.fields.UserName,
@@ -827,7 +824,7 @@ app.get('/user', (req:any, res:any) => {
 //                        profileUrl:response.image,
 //                       // ImageURL:{Url:response.image}
 //                       }
-//                     } 
+//                     }
 //                     axios.post(`${BASE_PATH}/${SiteId}/lists/${CeoId}/items`, Data, axiosConfig)
 //                       .then((res) => {
 //                         console.log("RESPONSE RECEIVED: ", res);
@@ -871,7 +868,7 @@ app.get('/user', (req:any, res:any) => {
 //             //   //         Position: FieldData.fields.Position,
 //             //   //         ProfilePhoto:JSON.stringify(json)
 //             //   //         }
-//             //   //       } 
+//             //   //       }
 //             //   //       axios.post(`${BASE_PATH}/${SiteId}/lists/${CeoId}/items`, Data, axiosConfig)
 //             //   //         .then((res) => {
 //             //   //           console.log("RESPONSE RECEIVED: ", res);
@@ -916,7 +913,7 @@ app.get('/user', (req:any, res:any) => {
 //           })
 //         }
 //         newCeoMessage()
-       
+
 //         function HeroInput(){
 //            let HeroField
 //            app.post('/heroinput',(req,res)=>{
@@ -964,7 +961,7 @@ app.get('/user', (req:any, res:any) => {
 //                       Title: HeroField.fields.Title,
 //                       heroUrl:response.image
 //                       }
-//                     } 
+//                     }
 //                     axios.post(`${BASE_PATH}/${SiteId}/lists/${HeroId}/items`, Data, axiosConfig)
 //                       .then((res) => {
 //                         console.log("RESPONSE RECEIVED: ", res);
@@ -1005,7 +1002,7 @@ app.get('/user', (req:any, res:any) => {
 //             //           Title: HeroField.fields.Title,
 //             //           HeroPic:JSON.stringify(json)
 //             //           }
-//             //         } 
+//             //         }
 //             //         axios.post(`${BASE_PATH}/${SiteId}/lists/${HeroId}/items`, Data, axiosConfig)
 //             //           .then((res) => {
 //             //             console.log("RESPONSE RECEIVED: ", res);
@@ -1050,7 +1047,7 @@ app.get('/user', (req:any, res:any) => {
 //              startDate.setMinutes(startDate.getMinutes() - 5);
 //              var expiryDate = new Date(startDate);
 //              expiryDate.setMinutes(startDate.getMinutes() + 60);
- 
+
 //              var sharedAccessPolicy = {
 //                 AccessPolicy: {
 //                 Permissions: [azure.BlobUtilities.SharedAccessPermissions.READ],  //grent read permission only
@@ -1076,7 +1073,7 @@ app.get('/user', (req:any, res:any) => {
 //                       Dept:EmpField.fields.Dept,
 //                       empUrl:response.image
 //                       }
-//                     } 
+//                     }
 //                     axios.post(`${BASE_PATH}/${SiteId}/lists/${EmployeeHighlightsId}/items`, Data, axiosConfig)
 //                       .then((res) => {
 //                         console.log("RESPONSE RECEIVED: ", res);
@@ -1119,7 +1116,7 @@ app.get('/user', (req:any, res:any) => {
 //             //           Dept:EmpField.fields.Dept,
 //             //           EmpImage:JSON.stringify(json)
 //             //           }
-//             //         } 
+//             //         }
 //             //         axios.post(`${BASE_PATH}/${SiteId}/lists/${EmployeeHighlightsId}/items`, Data, axiosConfig)
 //             //           .then((res) => {
 //             //             console.log("RESPONSE RECEIVED: ", res);
@@ -1165,7 +1162,7 @@ app.get('/user', (req:any, res:any) => {
 //              startDate.setMinutes(startDate.getMinutes() - 5);
 //              var expiryDate = new Date(startDate);
 //              expiryDate.setMinutes(startDate.getMinutes() + 60);
- 
+
 //              var sharedAccessPolicy = {
 //                 AccessPolicy: {
 //                 Permissions: [azure.BlobUtilities.SharedAccessPermissions.READ],  //grent read permission only
@@ -1190,7 +1187,7 @@ app.get('/user', (req:any, res:any) => {
 //                       Description:NewsField.fields.Description,
 //                       newsUrl:response.image
 //                       }
-//                     } 
+//                     }
 //                     axios.post(`${BASE_PATH}/${SiteId}/lists/${NewsId}/items`, Data, axiosConfig)
 //                       .then((res) => {
 //                         console.log("RESPONSE RECEIVED: ", res);
@@ -1232,7 +1229,7 @@ app.get('/user', (req:any, res:any) => {
 //             //           Description:NewsField.fields.Description,
 //             //           NewsImage:JSON.stringify(json)
 //             //           }
-//             //         } 
+//             //         }
 //             //         axios.post(`${BASE_PATH}/${SiteId}/lists/${NewsId}/items`, Data, axiosConfig)
 //             //           .then((res) => {
 //             //             console.log("RESPONSE RECEIVED: ", res);
@@ -1281,7 +1278,7 @@ app.get('/user', (req:any, res:any) => {
 
 //             }
 //             postItem();
-//           res.status(201).send("User created") 
+//           res.status(201).send("User created")
 //          })
 //       }
 //       AnnoncementInput();
@@ -1315,9 +1312,7 @@ app.get('/user', (req:any, res:any) => {
 //       EventInput();
 //     }
 
-
 //     ListInfo();
-
 
 //   }
 //   IntraApp();
@@ -1336,7 +1331,7 @@ app.get('/user', (req:any, res:any) => {
 //     });
 //   }
 //   RecentFiles();
-   
+
 //   async function subSites(){
 //     const resp = await axios.get(`${BASE_PATH}/${REMOSITEID}/sites`, {
 //       headers: {
@@ -1358,7 +1353,7 @@ app.get('/user', (req:any, res:any) => {
 //       subSiteId = req.body;
 //       console.log(subSiteId.sitesId, '999vC');
 //       async function getDriveOfSites(){
-        
+
 //             const resp = await axios.get(`${BASE_PATH}/${REMOSITEID}/sites/${subSiteId.sitesId}/drives`, {
 //               headers: {
 //                 'Authorization': `Bearer ${tokens.token} `,
@@ -1396,7 +1391,7 @@ app.get('/user', (req:any, res:any) => {
 //           //   }
 //           //   if(DocId){
 //           //     async function getFolder(){
-            
+
 //           //     const resp = await axios.get(`${BASE_PATH}/${REMOSITEID}/sites/${subSiteId.sitesId}/drives/${drive.driveId}/root/children`, {
 //           //       headers: {
 //           //         'Authorization': `Bearer ${tokens.token} `,
@@ -1411,16 +1406,15 @@ app.get('/user', (req:any, res:any) => {
 //           //   //     console.log('uuukj')
 //           //   // }else{
 //           //   //   console.log(value)
-              
-            
+
 //           //   // }
 //           //     const dataFolder = JSON.stringify(resp.data)
 //           //     // console.log(dataFolder,'yuyuy')
 //           //     app.get('/getFolder', (req, res) => {
 //           //       res.send(dataFolder);
 //           //     });
-            
-//           // } 
+
+//           // }
 //           // getFolder()
 //           //   }
 //           // }
@@ -1436,12 +1430,12 @@ app.get('/user', (req:any, res:any) => {
 //             //  console.log(resp.data,'lklkklllllllllou')
 
 //               const dataFolder = JSON.stringify(resp.data)
-              
+
 //               app.get('/getFolder', (req, res) => {
 //                 res.send(dataFolder);
 //               });
-//             } 
-//           } 
+//             }
+//           }
 //           getFolder();
 
 //           app.post('/ItemId',(req,res)=>{
@@ -1461,7 +1455,7 @@ app.get('/user', (req:any, res:any) => {
 //                 app.get('/getsubFolder', (req, res) => {
 //                   res.send(dataFolder1);
 //                 });
-                
+
 //               }else{
 //                 const respvv = await axios.get(`${BASE_PATH}/${REMOSITEID}/sites/${subSiteId.sitesId}/drives/${drive.driveId}/items/${Item.id}/children`, {
 //                   headers: {
@@ -1471,12 +1465,12 @@ app.get('/user', (req:any, res:any) => {
 //                 });
 //                console.log(respvv.data,'llty')
 //                 var dataFolder1 = JSON.stringify(respvv.data)
-               
+
 //                 app.get('/getsubFolder', (req, res) => {
 //                   res.send(dataFolder1);
 //                 });
 //               }
-              
+
 //             }
 //             FolderItems();
 //             res.status(201).send("User created")
@@ -1484,25 +1478,19 @@ app.get('/user', (req:any, res:any) => {
 
 //           // res.status(201).send("User created")
 //         })
-    
-        
+
 //       }
 //       getDriveOfSites();
 //       // res.status(201).send("User created")
 //     })
 //   }
 //   sendSite();
-  
-
-
-
-
 
 //   // .catch((error) => console.log(error.response));
 //   //   method: 'get',
 //   //   url: 'https://graph.microsoft.com/v1.0/me',
-//   //   headers: { 
-//   //    'Authorization': `Bearer ${tokens.token} `,   
+//   //   headers: {
+//   //    'Authorization': `Bearer ${tokens.token} `,
 //   //     'Content-Type': 'application/json'
 //   //   },
 
@@ -1523,32 +1511,46 @@ app.get('/user', (req:any, res:any) => {
 //   // });
 //   //  res.status(201).send("User created")
 
-
-
-
 // })
 
 const upload = multer({ dest: "../../uploads" });
 app.use(upload.any());
 app.post("/upload_files", upload.array("fileName"), uploadFiles);
-function uploadFiles(req:any, res:any) {
+function uploadFiles(req: any, res: any) {
   console.log(req.body);
   console.log(req.files);
   res.json({ message: "Successfully uploaded files" });
 }
 
-console.log("Remo")
+console.log("Remo");
 
-app.use('/api/v1/token',token)
-app.use(`/api/v1/lists`,graph)
-app.use(`/api/v1/sites`,workspace)
-app.use(`/api/v1/onedrive`,onedrive)
-app.use(`/api/v1/header`,header)
+app.use("/api/v1/token", token);
+app.use(`/api/v1/lists`, graph);
+app.use(`/api/v1/sites`, workspace);
+app.use(`/api/v1/onedrive`, onedrive);
+app.use(`/api/v1/header`, header);
 
 // app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events)
 
-app.use(`/api/v1/contentEditor`,announcement,herobanner,ceo,employee,news,events,navigation,contentEditor,quicklink,gallery)
+app.use(
+  `/api/v1/contentEditor`,
+  announcement,
+  herobanner,
+  ceo,
+  employee,
+  news,
+  events,
+  navigation,
+  contentEditor,
+  quicklink,
+  gallery,
+  department
+);
 
-app.use(`/api/v1/gallery`,photosandvideo)
+app.use(`/api/v1/gallery`, photosandvideo);
 
-app.listen(SERVER_PORT, () => console.log(`Msal Node Auth Code Sample app listening on port ${SERVER_PORT}!`))
+app.listen(SERVER_PORT, () =>
+  console.log(
+    `Msal Node Auth Code Sample app listening on port ${SERVER_PORT}!`
+  )
+);

@@ -1,12 +1,12 @@
 //@ts-nocheck
-import axios from 'axios'
+import axios from 'axios';
 import express, { Request, Response } from "express";
 import azure from 'azure-storage';
 require('dotenv').config();
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
 import asyncHandler from './../../middleware/asyncHandler'
 const Site_Id = 'tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43'
-const Announcement_Id = '4d933ed8-bce3-4429-9af6-8e509eb6d2dc'
+const Announcement_Id = '4d933ed8-bce3-4429-9af6-8e509eb6d2dc';
 const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`;
 
 function blobStorage(image: any, imageName: any) {
@@ -20,11 +20,11 @@ function blobStorage(image: any, imageName: any) {
     const containerName = 'candidate';
     const blobName = imageName
     //@ts-ignore
-    blobService.createBlockBlobFromText(containerName, blobName, buffer, { contentType: type }, function (error, result, response) {
+    blobService.createBlockBlobFromText(containerName, blobName, buffer, { contentType: type },function (error, result, response) {
       if (error) {
         console.log(error);
       } else {
-        console.log(result)
+        console.log(result);
       }
     });
     var startDate = new Date();

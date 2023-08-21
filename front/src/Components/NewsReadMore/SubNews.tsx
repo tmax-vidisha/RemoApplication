@@ -137,138 +137,112 @@ const SubNews: React.FC<IFolderProps> = (props: IFolderProps) => {
           </Paper>
         </Card>
         <Paper className={classes.cardHeight} elevation={0} sx={{ mb: 3 }}>
-          <Grid>
-            <Stack
-              direction="row"
-              spacing={2}
-              style={{ backgroundColor: "white" }}
-            >
+          <Grid
+            container
+            spacing={2}
+            item
+            xs={12}
+            style={{ backgroundColor: "white" }}
+          >
+            <Grid item xs={12} md={6} className={classes.mainSubDiv}>
+              <Grid style={{ fontSize: "10px" }}>
+                <Box style={{ margin: "10px", textAlign: "left" }}>
+                  <p style={{ color: "#39c8cf" }}>
+                    {data?.response[0].fields.Reference}
+                  </p>
+                </Box>
+                <Typography className={classes.nationHeader}>
+                  {data?.response[0].fields.Title}
+                </Typography>
+              </Grid>
+              <Grid>
+                <img
+                  src={data?.response[0].fields.NewsImage}
+                  alt="noo"
+                  className={classes.nationalMainImg}
+                />
+              </Grid>
               <Grid
-                item
-                xs={6}
                 style={{
-                  borderRight: "1px solid #e6e6e6",
-                  paddingRight: "20px",
-                  marginRight: "50px",
+                  width: "150px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  color: "gray",
+                  marginLeft: "20px",
+                  marginBottom: "20px",
                 }}
               >
-                <Grid style={{ fontSize: "10px" }}>
-                  <Box style={{ margin: "10px", textAlign: "left" }}>
-                    <p style={{ color: "#39c8cf" }}>
-                      {data?.response[0].fields.Reference}
-                    </p>
-                  </Box>
-                  <Typography
-                    style={{
-                      width: "350px",
-                      textAlign: "left",
-                      marginLeft: "10px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    {data?.response[0].fields.Title}
-                  </Typography>
-                </Grid>
-                <Grid>
-                  <img
-                    src={data?.response[0].fields.NewsImage}
-                    alt="noo"
-                    style={{
-                      minWidth: "450px",
-                      height: "280px",
-                      borderRadius: "10px",
-                    }}
-                  />
-                </Grid>
-                <Grid
-                  style={{
-                    width: "150px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    color: "gray",
-                    marginLeft: "20px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  <Typography style={{ fontSize: "8px" }}>
-                    {moment(data?.response[0].fields?.Modified).fromNow()}
-                  </Typography>
-                  <Typography style={{ fontSize: "8px" }}> 1k views</Typography>
-                </Grid>
-                <Grid
-                  style={{
-                    width: "500px",
-                    fontSize: "12px",
-                    textAlign: "left",
-                    margin: "20px",
-                  }}
-                >
-                  {data?.response[0].fields.Description}
-                </Grid>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography
-                  style={{
-                    textAlign: "left",
-                    color: "#39c8cf",
-                    fontSize: "12px",
-                    marginTop: "15px",
-                  }}
-                >
-                  <Link href="/MoreNews"> More News on National</Link>
+                <Typography style={{ fontSize: "8px" }}>
+                  {moment(data?.response[0].fields?.Modified).fromNow()}
                 </Typography>
-
-                <List>
-                  {data?.response &&
-                    data?.response
-                      ?.filter(
-                        (person: any) => person.fields.Reference == "National"
-                      )
-                      .map((item: any) => (
-                        <ListItem style={{ borderBottom: "1px solid #e6e6e6" }}>
-                          <Box>
-                            {/* {item.fields.NewsImage} */}
-                            <img
-                              src={item.fields.NewsImage}
-                              alt="nii"
-                              style={{
-                                minWidth: "100px",
-                                height: "70px",
-                                borderRadius: "5px",
-                                marginRight: "20px",
-                              }}
-                            />
-                          </Box>
-                          <Box>
-                            <Typography
-                              style={{
-                                fontSize: "12px",
-                                color: "#8c8c8c",
-                                marginTop: "-33px",
-                              }}
-                            >
-                              {" "}
-                              {item.fields.Title}
-                            </Typography>
-                            <Typography
-                              style={{
-                                fontSize: "10px",
-                                width: "150px",
-                                display: "flex",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              {" "}
-                              <span style={{ color: "#8c8c8c" }}>
-                                {moment(item.fields?.Modified).fromNow()}
-                              </span>
-                            </Typography>
-                          </Box>
-                        </ListItem>
-                      ))}
-                </List>
+                <Typography style={{ fontSize: "8px" }}> 1k views</Typography>
               </Grid>
-            </Stack>
+              <Grid className={classes.description}>
+                {data?.response[0].fields.Description}
+              </Grid>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Typography
+                style={{
+                  textAlign: "left",
+                  color: "#39c8cf",
+                  fontSize: "12px",
+                  marginTop: "15px",
+                }}
+              >
+                <Link href="/MoreNews"> More News on National</Link>
+              </Typography>
+
+              <List>
+                {data?.response &&
+                  data?.response
+                    ?.filter(
+                      (person: any) => person.fields.Reference == "National"
+                    )
+                    .map((item: any) => (
+                      <ListItem style={{ borderBottom: "1px solid #e6e6e6" }}>
+                        <Box>
+                          {/* {item.fields.NewsImage} */}
+                          <img
+                            src={item.fields.NewsImage}
+                            alt="nii"
+                            style={{
+                              minWidth: "100px",
+                              height: "70px",
+                              borderRadius: "5px",
+                              marginRight: "20px",
+                            }}
+                          />
+                        </Box>
+                        <Box>
+                          <Typography
+                            style={{
+                              fontSize: "12px",
+                              color: "#8c8c8c",
+                              marginTop: "-33px",
+                            }}
+                          >
+                            {" "}
+                            {item.fields.Title}
+                          </Typography>
+                          <Typography
+                            style={{
+                              fontSize: "10px",
+                              width: "150px",
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            {" "}
+                            <span style={{ color: "#8c8c8c" }}>
+                              {moment(item.fields?.Modified).fromNow()}
+                            </span>
+                          </Typography>
+                        </Box>
+                      </ListItem>
+                    ))}
+              </List>
+            </Grid>
           </Grid>
         </Paper>
       </Container>

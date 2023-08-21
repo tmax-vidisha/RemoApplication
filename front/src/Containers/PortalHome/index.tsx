@@ -55,7 +55,7 @@ const PortalHome = () => {
           <span onClick={handleItem1}>
             <img src={announce} alt="" style={{ cursor: "pointer" }} />
           </span>{" "}
-          <p style={{ marginLeft: "20px" }}>
+          <p className={classes.marginDiv}>
             <b>WHAT'S NEW</b>
             <span
               style={{

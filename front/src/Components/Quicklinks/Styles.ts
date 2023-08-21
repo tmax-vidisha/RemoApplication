@@ -149,6 +149,16 @@ export const useStyles = makeStyles({
     borderRadius: "10px",
     marginLeft: "5px",
   },
+  mainDiv: {
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    ["@media (max-width:768px)"]: {
+      display: "flex",
+      justifyContent: "space-between",
+      flexDirection: "column",
+    },
+  },
   mainPart: {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
