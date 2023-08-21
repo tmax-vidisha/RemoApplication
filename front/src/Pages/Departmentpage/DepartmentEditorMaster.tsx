@@ -1,9 +1,10 @@
 import React from "react";
-import EditorContent from "../../Components/EditorContent/EditorContent";
-import { useUploadItemInRemoContentEditorMasterMutation } from "../../services/contentEditor";
-import { useGetAllContentEditorQuery } from "../../services/APIs";
+import DepartmentEditor from "../../Components/DepartmentEditor/DepartmentEditor";
 import useCustom from "../../hooks/useCustom";
-const ContentEditorMasterPage = () => {
+import { useGetAllContentEditorQuery } from "../../services/APIs";
+import { useUploadItemInRemoDepartmentMutation } from "../../services/contentEditor";
+
+const DepartmentEditorMaster = () => {
   const [
     sendItem,
     {
@@ -11,14 +12,9 @@ const ContentEditorMasterPage = () => {
       isLoading: createdLoading,
       isSuccess: createdSuccess,
     },
-  ] = useUploadItemInRemoContentEditorMasterMutation();
+  ] = useUploadItemInRemoDepartmentMutation();
   const { token } = useCustom();
-  const {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    data,
-    isLoading,
-    isSuccess,
-  } = useGetAllContentEditorQuery(token);
+  const { data, isLoading, isSuccess } = useGetAllContentEditorQuery(token);
   const sendData = async (obj: any) => {
     console.log(obj, "hgfhgfhfgjtjyj");
     // console.log(name,'uuuuu')
@@ -41,7 +37,7 @@ const ContentEditorMasterPage = () => {
   console.log(createdResponse?.response, "created");
   return (
     <div>
-      <EditorContent
+      <DepartmentEditor
         onClick={sendData}
         data={data}
         isLoading={isLoading}
@@ -51,4 +47,4 @@ const ContentEditorMasterPage = () => {
   );
 };
 
-export default ContentEditorMasterPage;
+export default DepartmentEditorMaster;

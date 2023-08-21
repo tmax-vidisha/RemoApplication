@@ -9,6 +9,44 @@ export const useStyles = makeStyles({
   contentEditorWidth: {
     width: "95%",
   },
+  nationHeader: {
+    width: "350px",
+    textAlign: "left",
+    marginLeft: "10px",
+    fontWeight: "600",
+    ["@media (max-width:768px)"]: {
+      width: "100%",
+      marginLeft: "0px",
+    },
+  },
+  nationalMainImg: {
+    minWidth: "450px",
+    height: "280px",
+    borderRadius: "10px",
+    ["@media (max-width:768px)"]: {
+      minWidth: "100%",
+      width: "100%",
+      height: "100%",
+    },
+  },
+  description: {
+    width: "500px",
+    fontSize: "12px",
+    textAlign: "left",
+    margin: "20px",
+    ["@media (max-width:768px)"]: {
+      width: "100%",
+      margin: "5px",
+    },
+  },
+  mainSubDiv: {
+    borderRight: "1px solid #e6e6e6",
+    paddingRight: "20px",
+    marginRight: "50px",
+    ["@media (max-width:768px)"]: {
+      marginRight: "5px",
+    },
+  },
   naNewsImage: {
     width: "100%",
     height: "280px",

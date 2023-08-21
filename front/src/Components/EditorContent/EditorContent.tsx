@@ -94,7 +94,7 @@ const EditorContent: React.FC<IFolderProps> = (props: IFolderProps) => {
       headerName: 'Hover On Icon',
       // type: 'image', 
       width: 130,
-      renderCell: (params) => <img src={params.row.fields.HoverOn} style={{ width: "40px", height: "40px" }} />
+      renderCell: (params) => <img src={params.row.fields.HoverOn} alt="ghgh" style={{ width: "40px", height: "40px" }} />
 
     },
     {
@@ -102,7 +102,7 @@ const EditorContent: React.FC<IFolderProps> = (props: IFolderProps) => {
       headerName: 'Hover Off Icon',
       type: 'image',
       width: 130,
-      renderCell: (params) => <img src={params.row.fields.HoverOff} style={{ width: "40px", height: "40px" }} />
+      renderCell: (params) => <img src={params.row.fields.HoverOff} alt="ghgh" style={{ width: "40px", height: "40px" }} />
     },
     {
       field: 'isActive',

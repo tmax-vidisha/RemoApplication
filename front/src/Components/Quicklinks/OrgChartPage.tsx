@@ -126,6 +126,7 @@ const OrgChartPage = () => {
               lineWidth={"2px"}
               lineColor={"green"}
               lineBorderRadius={"10px"}
+              // className={classes.mainDiv}
               label={
                 <StyledNode>
                   <div
@@ -160,7 +161,7 @@ const OrgChartPage = () => {
             >
               {expandedNodes.includes("nodeId1") && (
                 <>
-                  <TreeNode
+                  {/* <TreeNode
                     key="nodeId1"
                     label={
                       <StyledNode>
@@ -197,7 +198,7 @@ const OrgChartPage = () => {
                         </StyledNode>
                       }
                     />
-                  </TreeNode>
+                  </TreeNode> */}
                   <TreeNode
                     label={
                       <StyledNode>

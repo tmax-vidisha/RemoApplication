@@ -145,6 +145,14 @@ export const useStyles = makeStyles({
   selectedTab: {
     color: "yellow",
   },
+  tabContainer: {
+    backgroundColor: "white",
+    width: "250px",
+    margin: "auto",
+    ["@media (max-width:768px)"]: {
+      width: "200px",
+    },
+  },
   tabs: {
     boxShadow: "0px 0px 11px 0px #b7b1b1",
     "& .MuiTabs-indicator": {
@@ -155,6 +163,9 @@ export const useStyles = makeStyles({
       fontSize: "12px",
       width: "50%",
       height: "30px",
+      ["@media (max-width:768px)"]: {
+        width: "30%",
+      },
     },
     "& .Mui-selected": {
       // textDecoration: "underline",

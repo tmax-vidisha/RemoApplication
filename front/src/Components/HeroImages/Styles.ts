@@ -10,6 +10,15 @@ export const useStyles = makeStyles({
     borderRadius: "8px",
     width: "100%",
   },
+  bannerHero: {
+    width: "1120px",
+    height: "200px",
+    margin: "15px",
+    ["@media (max-width:768px)"]: {
+      width: "100%",
+      margin: "0px",
+    },
+  },
   text: {
     color: "white",
     //display:'flex',
@@ -39,13 +48,31 @@ export const useStyles = makeStyles({
   },
   contentEditorWidth: {
     width: "100%",
-    
+  },
+  buttonPosition: {
+    position: "absolute",
+    // bottom: "5%",
+    top: "45%",
+    ["@media (max-width:768px)"]: {
+      position: "absolute",
+      // bottom: "-29%",
+      top: "100%",
+      left: "45%",
+    },
+  },
+  videoPart: {
+    width: "100%",
+    height: "200px",
+    position: "relative",
+    ["@media (max-width:768px)"]: {
+      width: "100%",
+    },
   },
   cardHeight: {
     paddingTop: "20px",
     background: "transparent !important",
     boxShadow: "none",
-    borderRadius:"10px"
+    borderRadius: "10px",
   },
   contentHeader: {
     position: "relative",
@@ -105,54 +132,49 @@ export const useStyles = makeStyles({
     paddingRight: "10px",
   },
 
-  videoContent:{
+  videoContent: {
     // position:"relative",
     // border:"1px solid red"
-     
   },
-  video:{
-    height: '253px',
+  video: {
+    height: "253px",
     display: "block",
     overflow: "hidden",
     width: "100%",
     borderRadius: "5px",
     // position: "relative",
-    paddingBottom: "0px !important"
+    paddingBottom: "0px !important",
   },
-  displayImg:{
-    height: '253px',
+  displayImg: {
+    height: "253px",
     display: "block",
     overflow: "hidden",
     width: "100%",
     borderRadius: "5px",
     position: "relative",
-    paddingBottom: "0px !important"
+    paddingBottom: "0px !important",
   },
-  videoTitle:{
-    position: "absolute", 
+  videoTitle: {
+    position: "absolute",
     color: "white",
-    top: '70%',
-    left: '34%',
+    top: "70%",
+    left: "34%",
     transform: "translateX(-50%)",
-    textAlign:"left",
-    cursor:"pointer",
+    textAlign: "left",
+    cursor: "pointer",
   },
-  exploreBtn:{
-    position:"absolute",
-    color:"white",
+  exploreBtn: {
+    position: "absolute",
+    color: "white",
     backgroundColor: "#009BAD",
-    bottom:"3%",
-    left:"25%",
-    cursor:"pointer",
-    border:"none",
-    borderRadius:"5px",
-    textAlign:"center",
-    display:"flex",
-    justifyContent:"space-between",
-
- },
- bannerTitle:{
-
- }
-  
+    bottom: "3%",
+    left: "25%",
+    cursor: "pointer",
+    border: "none",
+    borderRadius: "5px",
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  bannerTitle: {},
 });
