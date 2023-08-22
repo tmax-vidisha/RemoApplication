@@ -265,6 +265,7 @@ const DepartmentEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
       renderCell: (params) => (
         <img
           src={params.row.fields.HoverOn}
+          alt="fhh"
           style={{ width: "40px", height: "40px" }}
         />
       ),
