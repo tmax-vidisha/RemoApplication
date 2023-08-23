@@ -9,7 +9,7 @@ export const useStyles = makeStyles({
     //backgroundColor: theme.palette.background.paper,
   },
   tabWidth: {
-    // Width: "100%",
+    Width: "100%",
   },
   tabHeader: {
     borderRadius: "4px",
@@ -78,14 +78,16 @@ export const useStyles = makeStyles({
     flexDirection: "row",
     height: "54px",
     padding: "10px",
+    width: "285px",
     ["@media (max-width:768px)"]: {
-      width: "90%",
+      width: "85% !important",
     },
   },
   _aa4c: {
     width: "100%",
     ["@media (max-width:768px)"]: {
       width: "95%",
+      minWidth: "280px !important",
     },
   },
 });
