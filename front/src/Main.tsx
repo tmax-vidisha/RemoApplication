@@ -101,7 +101,9 @@ import MyFiles from "./Components/WorkSpaceOne/MyFiles";
 import OrgChartPage from "./Components/Quicklinks/OrgChartPage";
 import NewHeader from "./Components/Header/NewHeader";
 import DocumentPage from "./Pages/WorkSpace/OneDrive/DocumentPage";
-import Department from "./Components/Department/Department";
+import ITDepartment from "./Components/Department/ITDepartment";
+import HRDepartment from "./Components/Department/HRDepartment";
+import DepartmentList from "./Containers/HomeTopNav/DepartmentList";
 
 const theme = createTheme({
   palette: {
@@ -364,7 +366,9 @@ const Main = () => {
               <Route path="/myFiles" element={<MyFiles />} />
               <Route path="/orgChart" element={<OrgChartPage />} />
               <Route path="/document" element={<DocumentPage />} />
-              <Route path="/department" element={<Department />} />
+              <Route path="/itDepartment" element={<ITDepartment />} />
+              <Route path="/hrDepartment" element={<HRDepartment />} />
+              {/* <Route path="/departmentList" element={<DepartmentList />} /> */}
             </Routes>
           </ThemeProvider>
           <Footer />

@@ -18,6 +18,7 @@ import boss from "../../Assets/Images/boss.png";
 import plus from "../../Assets/Images/plusOrg.svg";
 import minus from "../../Assets/Images/minusOrg.svg";
 import { useState } from "react";
+import NewOrgChart from "./NewOrgChart";
 
 interface type {
   div: any[];
@@ -406,6 +407,7 @@ const OrgChartPage = () => {
             </Tree>
           </Grid>
         </Paper>
+        {/* <NewOrgChart/> */}
       </Container>
     </div>
   );

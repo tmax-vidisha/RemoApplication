@@ -36,4 +36,4 @@ const StarredPage = () => {
   )
 }
 
-export default StarredPage
+export default StarredPage;

@@ -4,6 +4,7 @@ import { Grid, Box } from "@mui/material";
 import SideBar from "./../WorkSpaceOne/SideBar";
 import { useStyles } from "./Styles";
 import PoliciesEditor from "./PoliciesEditor";
+import PolicyEditorPage from "../../Pages/PolicyAndProcedureMaster/PolicyEditorPage";
 
 const PoliciesContentPage = () => {
   const classes = useStyles();
@@ -20,7 +21,7 @@ const PoliciesContentPage = () => {
               <SideBar />
             </Grid>
             <Grid item xs={12} md={11}>
-              <PoliciesEditor />
+              <PolicyEditorPage/>
             </Grid>
           </Grid>
         </Box>

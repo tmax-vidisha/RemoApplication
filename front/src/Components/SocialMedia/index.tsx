@@ -145,6 +145,7 @@ const SocialMedia = () => {
             }}
             options={{
               height: "383",
+              minWidth: "280",
             }}
           />
           {/* <div id="twitter">
@@ -170,6 +171,7 @@ const SocialMedia = () => {
             style={{
               display: "flex",
               justifyContent: "center",
+              minWidth: "280px",
             }}
           >
             <InstagramEmbed
@@ -182,7 +184,7 @@ const SocialMedia = () => {
               //url="https://www.instagram.com/p/CUbHfhpswxt/"
               url="https://www.instagram.com/p/CgL9BRHJ4ns/"
               // clientAccessToken="123|456"
-              //maxWidth={320}
+              minWidth={283}
               //hideCaption={false}
               //containerTagName='div'
               height={383}

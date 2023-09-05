@@ -121,6 +121,7 @@ export const graphApi = createApi({
     "Quicklink",
     "Recent",
     "Meetings",
+    "Policy",
   ],
   // keepUnusedDataFor: 30,
   // tagTypes: [...cacher.defaultTags, "User"],
@@ -307,6 +308,25 @@ export const graphApi = createApi({
         return resp;
       },
     }),
+    getPolicyId: builder.query<any, any>({
+      query: () => `listInfo`,
+      transformResponse: (response: any) => {
+        const resp = response.value;
+        let t;
+        resp
+          .filter((p: any) => p.displayName === "Policy")
+          .map((f: any) => (t = f.id));
+        return t;
+      },
+    }),
+    getPolicy: builder.query<any, any>({
+      query: () => `Policy`,
+      transformResponse: (response: any) => {
+        // let y;
+        const resp = response.value;
+        return resp;
+      },
+    }),
     getNavigationId: builder.query<any, any>({
       query: () => `listInfo`,
       transformResponse: (response: any) => {
@@ -377,6 +397,14 @@ export const graphApi = createApi({
     createEvent: builder.mutation<any, any>({
       query: (data) => ({
         url: "eventinput",
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+        body: data,
+      }),
+    }),
+    createPolicy: builder.mutation<any, any>({
+      query: (data) => ({
+        url: "policyinput",
         headers: { "Content-Type": "application/json" },
         method: "POST",
         body: data,
@@ -986,6 +1014,7 @@ export const {
   useGetAllNewsQuery,
   useGetAllEmpQuery,
   useGetAllHeroQuery,
+  useGetPolicyQuery,
   useGetAllMeetingsQuery,
   useCreateTokenwithEmpDataItemIdMutation,
   useCreateTokenwithEventDataOneMutation,

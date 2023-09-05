@@ -63,12 +63,14 @@ export const useStyles = makeStyles({
       margin: "auto",
       display: "block !important",
       width: "25px",
+      height: "25px",
     },
     "& .topImgH": {
       margin: "auto",
       color: "#009BAD",
       display: "none !important",
       width: "25px",
+      height: "25px",
     },
   },
   topImg: {

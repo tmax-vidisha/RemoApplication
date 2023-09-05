@@ -32,6 +32,7 @@ import bodyParser from "body-parser";
 import { json } from "body-parser";
 const SERVER_PORT = process.env.PORT || 4000;
 import multer from "multer";
+import { postPolicy } from "./controllers/contenteditor/Policy";
 require("dotenv").config();
 
 // Create Express App and Routes
@@ -1544,10 +1545,11 @@ app.use(
   contentEditor,
   quicklink,
   gallery,
-  department
+  department,
 );
 
 app.use(`/api/v1/gallery`, photosandvideo);
+app.use(`/api/v1/policy`, postPolicy);
 
 app.listen(SERVER_PORT, () =>
   console.log(

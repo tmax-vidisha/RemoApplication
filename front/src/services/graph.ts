@@ -153,6 +153,14 @@ export const oneDriveApi: any = createApi({
         body: data,
       }),
     }),
+    deleteItemPolicy: builder.mutation<any, any>({
+      query: (data) => ({
+        url: "/api/v1/onedrive/deletePolicyItem",
+        // headers:{ 'Content-Type': 'application/json' },
+        method: "POST",
+        body: data,
+      }),
+    }),
     copylinkOneDrive: builder.mutation<any, any>({
       query: (data) => ({
         url: "/api/v1/onedrive/copylinkOneDriveItem",
@@ -202,6 +210,15 @@ export const oneDriveApi: any = createApi({
       }),
       // providesTags : [ 'OneDriveRootItems'],
     }),
+    getAllPolicyItems: builder.query<any, any>({
+      // query: () => '/api/v1/onedrive/getAllRootItems',
+      query: (id) => ({
+        url: `/api/v1/onedrive/getPolicy`,
+        method: "GET",
+        // headers:{ "authorization": `${AccessToken}` },
+      }),
+      // providesTags : [ 'OneDriveRootItems'],
+    }),
     downloadUrlItemOneDrive: builder.mutation<any, any>({
       query: (data) => ({
         url: "/api/v1/onedrive/getRecentFiles/downloadurl",
@@ -232,7 +249,9 @@ export const {
   useDownloadUrlItemOneDriveMutation,
   useGetAllStarredItemsQuery,
   useGetAllTrashedItemsQuery,
+  useGetAllPolicyItemsQuery,
   useDeleteItemTrashedMutation,
   useDeleteItemStarredMutation,
+  useDeleteItemPolicyMutation,
   useGetAllDocumentItemsQuery,
 } = oneDriveApi;

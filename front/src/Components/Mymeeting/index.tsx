@@ -13,34 +13,30 @@ import { NavLink as RouterNavLink } from "react-router-dom";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import AccessTimeIcon from "@mui/icons-material/Event";
-import {
-  useGetAllMeetingsQuery
-} from "../../services/APIs";
+import { useGetAllMeetingsQuery } from "../../services/APIs";
 import { useStyles } from "./Styles";
 import useCustom from "../../hooks/useCustom";
 import SkeletonAnimation from "../../Containers/Skeleton";
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Calendar from 'react-calendar';
-import AddIcon from '@mui/icons-material/Add';
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Calendar from "react-calendar";
+import AddIcon from "@mui/icons-material/Add";
 import teams from "../../Assets/Images/teams-icon.svg";
 import calendar from "../../Assets/Images/sheduleCalendar.svg";
 
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from "dayjs";
 
-import TextField from '@mui/material/TextField';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import TextField from "@mui/material/TextField";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 
 var moment = require("moment-timezone");
 
-
 interface IFolderProps {
-  data: any,
-  error: any,
-  isLoading: any,
-  
+  data: any;
+  error: any;
+  isLoading: any;
 }
 
 // const Mymeeting = () => {
@@ -48,36 +44,32 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
   // const {token} = useCustom();
   // const { data, error, isLoading } = useGetAllMeetingsQuery(token)
-  const { data, error, isLoading } = props
-  console.log(data, 'meetingsssssttttecxssssssss')
+  const { data, error, isLoading } = props;
+  console.log(data, "meetingsssssttttecxssssssss");
 
-  const [alignment, setAlignment] = React.useState<string | null>('left');
+  const [alignment, setAlignment] = React.useState<string | null>("left");
 
   const handleAlignment = (
     event: React.MouseEvent<HTMLElement>,
-    newAlignment: string | null,
+    newAlignment: string | null
   ) => {
     setAlignment(newAlignment);
   };
   const [isShown, setIsShown] = useState(false);
   const [show, setShow] = useState(false);
   // let current_time = moment().format('DD/MM/YYYY HH:mm:ss')
-  let current_time = moment().format('DD/MM/YYYY');
+  let current_time = moment().format("DD/MM/YYYY");
 
-  const [value, setValue] = React.useState<Dayjs | null>(
-    dayjs(),
-  );
+  const [value, setValue] = React.useState<Dayjs | null>(dayjs());
 
   const handleChange = (newValue: Dayjs | null) => {
     setValue(newValue);
   };
   return (
-
     <AuthenticatedTemplate>
       <Paper style={{ maxWidth: "100%", height: "auto" }} elevation={0}>
-
         <>
-          <CardContent >
+          <CardContent>
             <Stack
               direction="row"
               justifyContent="space-between"
@@ -92,7 +84,10 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
               >
                 Upcoming Event
               </Typography>
-              <Typography className={classes.meetHeader2} style={{width:"110px"}}>
+              <Typography
+                className={classes.meetHeader2}
+                style={{ width: "110px" }}
+              >
                 {/* <img src={calendar} alt="" /><span style={{ paddingLeft: "10px" }}>{current_time}</span> */}
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DesktopDatePicker
@@ -102,10 +97,10 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
                     onChange={handleChange}
                     renderInput={(params) => <TextField {...params} />}
                   />
-                </LocalizationProvider> 
+                </LocalizationProvider>
               </Typography>
             </Stack>
-            <Grid >
+            <Grid>
               {/* <Grid style={{ display: "flex", justifyContent: "flex-start" }}>
                 <Grid style={{ textTransform: "capitalize", marginRight:"20px" }} className={classes.todo}  >
                   <div onClick={() => setIsShown(!isShown)}> Calendar </div>
@@ -162,57 +157,54 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
             </Grid>
 
             <Grid>
-
-
-              <div>
-                {/* <div className={classes.task}>
+              {/* <div className={classes.task}>
                 <span><AddIcon/></span> <span>Add Task </span>
                </div> */}
-                <Grid style={{ overflowY: "scroll", overflowX: "hidden", height: "60px", }}>
-                  {data?.response &&
-                    data?.response?.map((item: any, index: any) => {
-                      const time = item.start.dateTime
-                      // moment(fields?.EventDate).format("MMM");
-                      // let eventYear  = moment(fields?.EventDate).format("YYYY");
-                      // var formatted = moment(time, "HH:mm").format("hh:mm A");
-                      var formatted = moment(time).format('HH:mm A');
-                      console.log(formatted, 'ffffffffffffffffff')
-                      return (
-
-
-                        <Grid container item xs={12} spacing={0}  >
-                          <Grid item xs={0.8}>
-                            <Typography className={classes.meetTime} >{formatted}</Typography>
-
-                          </Grid>
-                          <Grid className={classes.meetBorder} item xs={0.2}>
-                          </Grid>
-                          <Grid item xs={9.5}>
-                            <Typography className={classes.meetText}>{item.subject}</Typography>
-                          </Grid>
-                          <Grid item xs={0.5}>
-                            <Typography className={classes.meetText}>
-                              <a
-                                target={"_blank"}
-                                //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
-                                href={item.onlineMeeting.joinUrl}
-                              >  <img src={teams} alt="" />
-                              </a>
-
-                            </Typography>
-                          </Grid>
-
+              <Grid
+                style={{
+                  overflowY: "scroll",
+                  overflowX: "hidden",
+                  height: "60px",
+                }}
+              >
+                {data?.response &&
+                  data?.response?.map((item: any, index: any) => {
+                    const time = item.start.dateTime;
+                    // moment(fields?.EventDate).format("MMM");
+                    // let eventYear  = moment(fields?.EventDate).format("YYYY");
+                    // var formatted = moment(time, "HH:mm").format("hh:mm A");
+                    var formatted = moment(time).format("HH:mm A");
+                    // console.log(formatted, 'ffffffffffffffffff')
+                    return (
+                      <Grid container item xs={12} spacing={0} key={index}>
+                        <Grid item xs={0.8}>
+                          <p className={classes.meetTime}>{formatted}</p>
                         </Grid>
-
-                      )
-
-
-                    })}
-
-                </Grid>
-              </div>
-
-
+                        <Grid
+                          className={classes.meetBorder}
+                          item
+                          xs={0.2}
+                        ></Grid>
+                        <Grid item xs={9.5}>
+                          <p className={classes.meetText}>{item.subject}</p>
+                        </Grid>
+                        <Grid item xs={0.5}>
+                          <div className={classes.meetText}>
+                            <a
+                              target={"_blank"}
+                              rel="noreferrer"
+                              //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
+                              href={item.onlineMeeting.joinUrl}
+                            >
+                              {" "}
+                              <img src={teams} alt="" />
+                            </a>
+                          </div>
+                        </Grid>
+                      </Grid>
+                    );
+                  })}
+              </Grid>
             </Grid>
             {/* <Grid container item xs={12} spacing={0}>
 
@@ -233,7 +225,6 @@ const Mymeeting: React.FC<IFolderProps> = (props: IFolderProps) => {
               </Grid> */}
           </CardContent>
         </>
-
       </Paper>
     </AuthenticatedTemplate>
   );

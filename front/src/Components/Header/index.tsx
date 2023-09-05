@@ -627,9 +627,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
     <AuthenticatedTemplate>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" className={classes.header}>
-          <Toolbar
-            className={classes.toolbarDiv}
-          >
+          <Toolbar className={classes.toolbarDiv}>
             <div>
               <RouterNavLink to="/">
                 <img src={logo} alt="Remo Digital" />
@@ -692,8 +690,8 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   aria-haspopup="true"
                   onClick={handleToggle}
                 >
-                  <Badge color="error" sx={{ top: "9px" }}>
-                    <img src={birthday} alt="" />
+                  <Badge color="error" sx={{ top: "4px" }}>
+                    <img src={birthday} alt="" className={classes.iconImg} />
                   </Badge>
                 </IconButton>
                 <Popper
@@ -788,7 +786,6 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </Grow>
                   )}
                 </Popper>
-
                 {/* {EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
                         //  return <MenuItem onClick={handleClose}></MenuItem>
                           // return  console.log(i.fields.Name)
@@ -806,7 +803,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                         //  return <MenuItem onClick={handleClose}>{i.fields.Name}</MenuItem>
             })} */}
               </div>
-              <div>
+              <div style={{ paddingTop: "10px" }}>
                 <IconButton
                   size="large"
                   aria-label="unread mail count"
@@ -816,8 +813,8 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   aria-haspopup="true"
                   aria-expanded={openFirst ? "true" : undefined}
                 >
-                  <Badge color="error" sx={{ top: "9px" }}>
-                    <img src={temp} alt="" />
+                  <Badge color="error">
+                    <img src={temp} alt="" className={classes.iconImg} />
                   </Badge>
                 </IconButton>
                 <Menu
@@ -889,7 +886,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     </DialogActions>
                   </Dialog> 
                 </div>  */}
-              <div style={{ paddingTop: "10px" }}>
+              <div style={{ paddingTop: "6px" }}>
                 <IconButton
                   size="large"
                   aria-label="unread mail count"
@@ -905,7 +902,11 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     //href="https://www.microsoft.com/en-in/microsoft-teams/group-chat-software"
                     href="https://outlook.office.com/calendar/view/month"
                   >
-                    <img src={calendarWhite} alt="calendar" />
+                    <img
+                      src={calendarWhite}
+                      alt="calendar"
+                      className={classes.calendarImg}
+                    />
                   </a>
                 </IconButton>
                 {/* <Menu

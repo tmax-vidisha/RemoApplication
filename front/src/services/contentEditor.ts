@@ -55,6 +55,14 @@ export const contentEditorApi = createApi({
         body: data,
       }),
     }),
+    uploadItemInPolicy: builder.mutation<any, any>({
+      query: (data) => ({
+        url: "/api/v1/contentEditor/policy/uploadItem",
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+        body: data,
+      }),
+    }),
     uploadItemInCeo: builder.mutation<any, any>({
       query: (data) => ({
         url: "/api/v1/contentEditor/ceoData/uploadItem",
@@ -203,6 +211,7 @@ export const {
   useUploadItemInAnnouncementMutation,
   useGetLatestAnnouncementQuery,
   useUploadItemInHeroBannerMutation,
+  useUploadItemInPolicyMutation,
   useUploadItemInCeoMutation,
   useUploadItemInEmployeeMutation,
   useUploadItemInRemoNewsMutation,

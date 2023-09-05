@@ -6,11 +6,11 @@ export const useStyles = makeStyles({
     width: "100%",
     fontSize: "1rem !important",
     marginBottom: "0px !important",
-    textAlign:"left",
-    ['@media (max-width:768px)']: { // eslint-disable-line no-useless-computed-key
-      width: "100%",     
-  },
-
+    textAlign: "left",
+    ["@media (max-width:768px)"]: {
+      // eslint-disable-line no-useless-computed-key
+      width: "100%",
+    },
   },
   ceoImg: {
     //   paddingTop: "50px",
@@ -25,7 +25,7 @@ export const useStyles = makeStyles({
   headRow: {
     fontSize: "0.87rem !important",
     marginBottom: "10px!important",
-    lineHeight: "10px!important",
+    lineHeight: "18px!important",
     marginTop: " 12px !important",
   },
   ceoContent: {
@@ -36,9 +36,9 @@ export const useStyles = makeStyles({
     marginTop: "7px",
     opacity: 0.6,
     paddingRight: "10px",
-    ['@media (max-width:768px)']: { // eslint-disable-line no-useless-computed-key
-      width: "100%",     
-  },
+    "@media (max-width:768px)": {
+      width: "100%",
+    },
   },
   readMore: {
     fontSize: " 12px",

@@ -14,65 +14,67 @@ const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`;
 // app.use(bodyParser.json({ limit: "50mb" }))
 // app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
 
-function blobStorage(image: any, imageName: any) {
-  //@ts-ignore
-  var blobService = azure.createBlobService(process.env.AZURE_STORAGE_CONNECTION_STRING);
-  var matches = image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-  if (matches !== null) {
-    var type = matches[1];
-    //@ts-ignore
-    var buffer = new Buffer.from(matches[2], "base64");
-    const containerName = "candidate";
-    const blobName = imageName;
-    //@ts-ignore
-    blobService.createBlockBlobFromText(
-      containerName,
-      blobName,
-      buffer,
-      // { contentType: type },
-      function (error, result, response) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log(result);
-        }
-      }
-    );
-    var startDate = new Date();
-    startDate.setMinutes(startDate.getMinutes() - 300);
-    var expiryDate = new Date(startDate);
-    // expiryDate.setMinutes(startDate.getMinutes() + 300);
-    expiryDate.setMonth(startDate.getMonth() + 12);
-    var sharedAccessPolicy = {
-      AccessPolicy: {
-        Permissions: [azure.BlobUtilities.SharedAccessPermissions.READ], //grent read permission only
-        Start: startDate,
-        Expiry: expiryDate,
-      },
-    };
-    console.log(sharedAccessPolicy, "iiii");
-    //@ts-ignore
-    var sasToken = blobService.generateSharedAccessSignature(
-      containerName,
-      blobName,
-      // sharedAccessPolicy
-    );
-    var response = {};
-    //@ts-ignore
-    response.image = blobService.getUrl(containerName, blobName, sasToken);
-    //@ts-ignore
-    console.log(response.image);
+// function blobStorage(image: any, imageName: any) {
+//   //@ts-ignore
+//   var blobService = azure.createBlobService(
+//     process.env.AZURE_STORAGE_CONNECTION_STRING
+//   );
+//   var matches = image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+//   if (matches !== null) {
+//     var type = matches[1];
+//     //@ts-ignore
+//     var buffer = new Buffer.from(matches[2], "base64");
+//     const containerName = "candidate";
+//     const blobName = imageName;
+//     //@ts-ignore
+//     blobService.createBlockBlobFromText(
+//       containerName,
+//       blobName,
+//       buffer,
+//       // { contentType: type },
+//       function (error, result, response) {
+//         if (error) {
+//           console.log(error);
+//         } else {
+//           console.log(result);
+//         }
+//       }
+//     );
+//     var startDate = new Date();
+//     startDate.setMinutes(startDate.getMinutes() - 300);
+//     var expiryDate = new Date(startDate);
+//     // expiryDate.setMinutes(startDate.getMinutes() + 300);
+//     expiryDate.setMonth(startDate.getMonth() + 12);
+//     var sharedAccessPolicy = {
+//       AccessPolicy: {
+//         Permissions: [azure.BlobUtilities.SharedAccessPermissions.READ], //grent read permission only
+//         Start: startDate,
+//         Expiry: expiryDate,
+//       },
+//     };
+//     console.log(sharedAccessPolicy, "iiii");
+//     //@ts-ignore
+//     var sasToken = blobService.generateSharedAccessSignature(
+//       containerName,
+//       blobName
+//       // sharedAccessPolicy
+//     );
+//     var response = {};
+//     //@ts-ignore
+//     response.image = blobService.getUrl(containerName, blobName, sasToken);
+//     //@ts-ignore
+//     console.log(response.image);
 
-    //@ts-ignore
-    return response.image;
-  }
-}
+//     //@ts-ignore
+//     return response.image;
+//   }
+// }
 
 const postTableDepartment = asyncHandler(
   async (req: Request, res: Response) => {
     // console.log(req.body)
     // const {token} = req.params
-    console.log(req.headers.authorization, "tccccttddddttttvvvvvtttttttyy");
+    console.log(req.headers.authorization, "department content editor");
     const token = req.headers.authorization;
     const {
       // token,
@@ -99,7 +101,7 @@ const postTableDepartment = asyncHandler(
     // console.log(SharedAsEmail, 'SharedAsEmail')
     console.log(image, "image");
     console.log(imageName, "imageName");
-    const Image = blobStorage(image, imageName);
+    // const Image = blobStorage(image, imageName);
     // const File = blobStorage(Attachment, Attachmentname)
     console.log(Image, "rtretrt");
     // console.log(File, 'tththththth')

@@ -8,6 +8,58 @@ export const useStyles = makeStyles({
     color: "#ffffff !important",
     height: "315px",
   },
+  menuImage: {
+    marginRight: "20px",
+  },
+  menuNew: {
+    marginTop: "15px",
+  },
+  items: {
+    fontSize: "12px",
+    "& img": {
+      width: "10px",
+      marginRight: "10px",
+    },
+  },
+  ml15Grid: {
+    marginLeft: "15px",
+    height: " 32px",
+    width: "39px",
+    "@media (max-width:768px)": {
+      marginLeft: "3px",
+    },
+  },
+  menu: {
+    marginTop: "0px",
+  },
+  myFile: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  shortSpan: {
+    color: "#606c74",
+    fontSize: "13px",
+    marginRight: "10px",
+  },
+  shortBy: {
+    color: "#606c74",
+    fontSize: "14px",
+  },
+  theadCell: {
+    color: "#606C74 !important",
+    fontSize: "12px !important",
+    padding: "5px 5px !important",
+    fontWeight: "600 !important",
+    fontFamily: " 'DM Sans', sans-serif!important",
+    textAlign: "left",
+  },
+  TableCell: {
+    padding: "13px 4px!important",
+    fontSize: "12px !important",
+    color: "#606C74 !important",
+    fontFamily: " 'DM Sans', sans-serif!important",
+    textAlign: "left",
+  },
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
