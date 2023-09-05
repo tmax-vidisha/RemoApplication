@@ -1289,13 +1289,7 @@ const DepartmentEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
             </Dialog>
           </Grid>
         </Grid>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        />
+        {content}
       </Box>
     </div>
   );

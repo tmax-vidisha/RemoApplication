@@ -171,10 +171,8 @@ export const useStyles = makeStyles({
   },
   items: {
     fontSize: "12px",
-
     "& img": {
       width: "10px",
-
       marginRight: "10px",
     },
   },

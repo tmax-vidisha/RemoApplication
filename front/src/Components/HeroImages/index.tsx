@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { AuthenticatedTemplate } from "@azure/msal-react";
-import { useGetHeroImageQuery, useUpdateHeroTokenMutation, useGetAllHeroQuery } from '../../services/APIs'
+import {
+  useGetHeroImageQuery,
+  useUpdateHeroTokenMutation,
+  useGetAllHeroQuery,
+} from "../../services/APIs";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import SkeletonAnimation from "../../Containers/Skeleton";
-import { useNavigate } from 'react-router-dom';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { useNavigate } from "react-router-dom";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import {
   Button,
   Card,
@@ -15,21 +19,20 @@ import {
 } from "@mui/material";
 import { useStyles } from "./Styles";
 import { useTheme } from "@mui/material/styles";
-import Carousel from 'react-material-ui-carousel'
+import Carousel from "react-material-ui-carousel";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { configuration } from "../../index";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
-import Draggable from 'react-draggable';
-import { Link } from 'react-router-dom';
-
+import Draggable from "react-draggable";
+import { Link } from "react-router-dom";
 
 // import { height } from 'react-material-ui-carousel/node_modules/@mui/system';
 interface IFolderProps {
   // hero: any;
-  data: any,
-  error: any,
-  isLoading: any
+  data: any;
+  error: any;
+  isLoading: any;
   // onClick: any;
   // onDownload?: (id: string) => void;
   // onDelete?: (id: string) => void;
@@ -70,14 +73,11 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
   //           return null;
   //         });
 
-
   //       }
 
   //       return null;
   //     }
   //     getAccessToken();
-
-
 
   //   }, [])
   //    var maxSteps= data;
@@ -94,19 +94,33 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
     setActiveStep(step);
   };
 
-  const { data, error, isLoading } = props
+  const { data, error, isLoading } = props;
   //console.log(data, '888ddd88txccccccccccccccctuytuytu888')
 
   const handleClick = (Url: any) => {
-    navigate('/heroThumbnail', { state: { folderData: Url } })
-  }
+    navigate("/heroThumbnail", { state: { folderData: Url } });
+  };
 
-  const handleReadMoreVideo = (Url: any, Title: any, Description: any, Modified: any) => {
-    navigate('/heroBannerMore', { state: { folderData: Url, Title, Description, Modified } })
-  }
-  const handleReadMoreImages = (Url: any, Title: any, Description: any, Modified: any) => {
-    navigate('/heroBannerMoreImages', { state: { folderData: Url, Title, Description, Modified } })
-  }
+  const handleReadMoreVideo = (
+    Url: any,
+    Title: any,
+    Description: any,
+    Modified: any
+  ) => {
+    navigate("/heroBannerMore", {
+      state: { folderData: Url, Title, Description, Modified },
+    });
+  };
+  const handleReadMoreImages = (
+    Url: any,
+    Title: any,
+    Description: any,
+    Modified: any
+  ) => {
+    navigate("/heroBannerMoreImages", {
+      state: { folderData: Url, Title, Description, Modified },
+    });
+  };
 
   return (
     // <div>
@@ -170,42 +184,64 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
     //   </AuthenticatedTemplate>
     // </div>
 
-
     <div>
-
       <AuthenticatedTemplate>
-
         {/* <Draggable> */}
 
         <Box sx={{ flexGrow: 1, position: "relative" }}>
-
           {isLoading ? (
-
             <SkeletonAnimation />
-
           ) : (
-
             <>
               <AutoPlaySwipeableViews
                 axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-                index={activeStep} onChangeIndex={handleStepChange}
-                enableMouseEvents>
+                index={activeStep}
+                onChangeIndex={handleStepChange}
+                enableMouseEvents
+              >
                 {data?.response &&
                   data?.response?.map((item: any, index: any) => {
                     const { fields = {} } = item;
                     var HeroTitle = fields?.Title;
-                    if (fields?.FileType == "mp4") {
+                    if (fields?.FileType === "mp4") {
                       return (
                         <div key={index} style={{ position: "relative" }}>
-                          <p className={classes.videoTitle} onClick={() => handleReadMoreVideo(fields?.Url, HeroTitle, fields.Description, fields?.Modified)}>{HeroTitle}</p>
+                          <p
+                            className={classes.videoTitle}
+                            onClick={() =>
+                              handleReadMoreVideo(
+                                fields?.Url,
+                                HeroTitle,
+                                fields.Description,
+                                fields?.Modified
+                              )
+                            }
+                          >
+                            {HeroTitle}
+                          </p>
                           <video className={classes.video}>
                             <source src={fields?.Url} type="video/mp4" />
                           </video>
-                          <button onClick={() => handleClick(fields?.Url)} className={classes.exploreBtn}><span><PlayArrowIcon style={{ width: "15px" }} /></span><span style={{ fontSize: "12px", marginTop: "5px", marginLeft: "5px" }}>Start Explore</span></button>
+                          <button
+                            onClick={() => handleClick(fields?.Url)}
+                            className={classes.exploreBtn}
+                          >
+                            <span>
+                              <PlayArrowIcon style={{ width: "15px" }} />
+                            </span>
+                            <span
+                              style={{
+                                fontSize: "12px",
+                                marginTop: "5px",
+                                marginLeft: "5px",
+                              }}
+                            >
+                              Start Explore
+                            </span>
+                          </button>
                         </div>
                       );
-                    }
-                    else {
+                    } else {
                       return (
                         //         <div key={index} className={classes.videoContent}>
 
@@ -215,29 +251,42 @@ const HeroImages: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                         //  </div>
 
-                        <Card>
+                        <Card key={index}>
                           <div style={{ position: "relative" }}>
-                            <CardMedia className={classes.displayImg} component="img" image={fields?.Url} title={HeroTitle} alt="Pancakes" />
-                            <div className={classes.videoTitle} onClick={() => handleReadMoreImages(fields?.Url, HeroTitle, fields.Description, fields?.Modified)}> {HeroTitle}</div>
+                            <CardMedia
+                              className={classes.displayImg}
+                              component="img"
+                              image={fields?.Url}
+                              title={HeroTitle}
+                              alt="Pancakes"
+                            />
+                            <div
+                              className={classes.videoTitle}
+                              onClick={() =>
+                                handleReadMoreImages(
+                                  fields?.Url,
+                                  HeroTitle,
+                                  fields.Description,
+                                  fields?.Modified
+                                )
+                              }
+                            >
+                              {" "}
+                              {HeroTitle}
+                            </div>
                           </div>
                         </Card>
-
                       );
-
                     }
-
                   })}
-
               </AutoPlaySwipeableViews>
             </>
           )}
         </Box>
         {/* </Draggable> */}
       </AuthenticatedTemplate>
-
     </div>
-
-  )
-}
+  );
+};
 
 export default HeroImages;

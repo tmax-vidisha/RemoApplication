@@ -46,6 +46,14 @@ export const useStyles = makeStyles({
       },
     },
   },
+  iconImg: {
+    width: "25px",
+    height: "25px",
+  },
+  calendarImg: {
+    width: "25px",
+    height: "22px",
+  },
   thumb: {
     color: "white",
     width: "20px",

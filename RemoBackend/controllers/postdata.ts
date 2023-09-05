@@ -10,7 +10,8 @@ const EmpHighlights = "14f67e9e-4581-4a06-8c29-f775b8770fe4"
 const NewQuickLinkUser = 'b8e303de-b928-4f6a-97dd-4523583fa25d'
 const BASE_PATH = `https://graph.microsoft.com/v1.0/sites`;
 const REMO_SITE_ID = "tmxin.sharepoint.com,1649e6fd-df59-4f03-8e4b-4d765864f406,d2634703-c0cd-42f6-bfb5-c60555dbcb7d"
-const Events_Id = "80d2331e-6970-4fe2-aa79-c6cae73bc150"
+const Events_Id = "80d2331e-6970-4fe2-aa79-c6cae73bc150";
+const Policy_Id = "01DH6IWZ33RN4VTWZ2QVGKEWTMWOLSCVPJ";
 const HeroImage_Id = "7dfccbdf-0469-40e8-ab99-501d6314491f"
 const Site_Id = 'tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43'
 const RemoNews_Id = "25fb939d-87e0-4fb5-b575-f11bd916e4df"
@@ -669,7 +670,7 @@ const postEventData = asyncHandler(async (req: Request, res: Response) => {
   // console.log(req.body)
   // const {token} = req.params
   console.log(req.headers.authorization, 'tttddddttttvvvvvtttttttyy')
-  const token = req.headers.authorization
+  const token = req.headers.authorization;
   const {
     // token,
     eventtitle, eventdesc, eventdate, enddate } = req.body
@@ -702,6 +703,52 @@ const postEventData = asyncHandler(async (req: Request, res: Response) => {
     res.status(200).json({
       // success: true,
       Event
+
+    });
+
+
+    // }
+
+  }
+
+})
+const postPolicyData = asyncHandler(async (req: Request, res: Response) => {
+
+  // console.log(req.body)
+  // const {token} = req.params
+  console.log(req.headers.authorization, 'policy')
+  const token = req.headers.authorization
+  const {
+    // token,title,
+    policyname,
+    policymodified,
+    policymodifiedBy,
+    } = req.body
+  // console.log(token,'llll');
+  console.log( policyname,'policy Name');
+  console.log( policymodified, 'policy Modified');
+  console.log(policymodifiedBy, 'policy Modified by');
+  if (!token) {
+    // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
+    // console.log(dataFiles,'dgdfgthtrhytjytjyt')
+    // return res.status(200).json({
+    //     success: true,
+    //     data: dataFiles
+    // });
+    //  res.send(dataFiles)
+    return res.status(404).json({
+      success: false,
+      error: "No Token found"
+    });
+
+  } else {
+
+    // if(token && eventtitle && eventdesc && enddate ){
+    const Policy = await createPostRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Policy_Id}/items`, token, policymodified, policymodifiedBy)
+    console.log(Policy, 'Policy')
+    res.status(200).json({
+      // success: true,
+      Policy
 
     });
 
@@ -1136,7 +1183,6 @@ const postRemoNews = asyncHandler(async (req: Request, res: Response) => {
   }
 
 })
-
 
 const postRemEmpHighlight = asyncHandler(async (req: Request, res: Response) => {
 
@@ -1595,5 +1641,6 @@ export {
   postRemoEventData,
   getRemoEventData,
   getRemoEventDataLanding,
-  postRemoUserQuicklinkData
+  postRemoUserQuicklinkData,
+  postPolicyData
 }

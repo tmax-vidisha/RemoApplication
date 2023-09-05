@@ -66,6 +66,7 @@ export const useStyles = makeStyles({
     ["@media (max-width:768px)"]: {
       display: "flex",
       justifyContent: "space-between !important",
+      flexDirection: "column",
       width: "100%",
       marginRight: " 34px",
       marginLeft: "0px",

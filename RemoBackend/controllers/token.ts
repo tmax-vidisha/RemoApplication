@@ -69,7 +69,7 @@ const createRequset = async (url: any, token: any) => {
       "Content-Type": "application/json",
     },
   });
-  console.log(res.data);
+  //console.log(res.data);
   //  app.get('/files',(req,res)=>{
   //     res.send(JSON.stringify(res.data))
   //  })
@@ -151,7 +151,7 @@ const requestgraph = async (url: any, token: any) => {
       Expiry: expiryDate,
     },
   };
-  console.log(sharedAccessPolicy, "lllltt");
+  //console.log(sharedAccessPolicy, "lllltt");
   // @ts-ignore
   var sasToken = blobService.generateSharedAccessSignature(containerName,blobName,sharedAccessPolicy
   );
@@ -223,7 +223,7 @@ const requestgraphemp = async (url: any, token: any) => {
       Expiry: expiryDate,
     },
   };
-  console.log(sharedAccessPolicy, "lllltt");
+ // console.log(sharedAccessPolicy, "lllltt");
   // @ts-ignore
   var sasToken = blobService.generateSharedAccessSignature(containerName,blobName,sharedAccessPolicy
   );
@@ -296,7 +296,7 @@ const requestgraphhero = async (url: any, token: any) => {
       Expiry: expiryDate,
     },
   };
-  console.log(sharedAccessPolicy, "lllltt");
+ // console.log(sharedAccessPolicy, "lllltt");
   // @ts-ignore
   var sasToken = blobService.generateSharedAccessSignature(containerName,blobName,sharedAccessPolicy
   );
@@ -358,13 +358,13 @@ const createToken = asyncHandler(async (req: any, res: any) => {
 // console.log(AccessToken,'llllll'
 
 const getEventData = asyncHandler(async (req: Request, res: Response) => {
-  console.log(req.headers.authorization, "tsfff");
+  console.log(req.headers.authorization, "getEventData");
 
   //  const  token = req.headers.authorization
   // console.log(req.body)
   const token = req.headers.authorization;
   //  const {token} = req.body
-  console.log(token, "llssdsdssdsdsdsdsll");
+ console.log(token, "getEventData");
   // console.log(req.body,'gregrthtrht')
   if (!token) {
     // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
@@ -423,16 +423,16 @@ const getEventData = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getQuicklinkData = asyncHandler(async (req: Request, res: Response) => {
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   //  const  token = req.headers.authorization
   // console.log(req.body)
   const token = req.headers.authorization;
   //  const {token} = req.body
-  console.log(token, "llll");
+  //console.log(token, "llll");
   // console.log(req.body,'gregrthtrht')
   if (!token) {
     return res.status(404).json({
@@ -451,16 +451,16 @@ const getQuicklinkData = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getRecentFilesData = asyncHandler(async (req: Request, res: Response) => {
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   // const  token = req.headers.authorization
   // console.log(req.body)
   const token = req.headers.authorization;
   //  const {token} = req.body
-  console.log(token, "llll");
+  //console.log(token, "llll");
   // console.log(req.body,'gregrthtrht')
   if (!token) {
     return res.status(404).json({
@@ -482,15 +482,15 @@ const getAnnouncementData = asyncHandler(
   async (req: Request, res: Response) => {
     // console.log(req.headers,'lllllllllll')
     // console.log(req.body)
-    console.log(
-      req.headers.authorization,
-      "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-    );
+    // console.log(
+    //   req.headers.authorization,
+    //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+    // );
 
     // const  token = req.headers.authorization
     const token = req.headers.authorization;
     //  const {token} = req.body
-    console.log(token, "llll");
+   // console.log(token, "llll");
     // console.log(req.body,'gregrthtrht')
     if (!token) {
       return res.status(404).json({
@@ -511,15 +511,15 @@ const getAnnouncementData = asyncHandler(
 
 const getNavigationData = asyncHandler(async (req: Request, res: Response) => {
   // console.log(req.body)
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   // const  token = req.headers.authorization
   const token = req.headers.authorization;
   //  const {token} = req.body
-  console.log(token, "llll");
+  //console.log(token, "llll");
   // console.log(req.body,'gregrthtrht')
   if (!token) {
     return res.status(404).json({
@@ -546,7 +546,7 @@ const getNavigationData = asyncHandler(async (req: Request, res: Response) => {
         }
       );
 
-    console.log(response.data.value, "meetingssssssssssssssssssssssss");
+    //console.log(response.data.value, "meetingssssssssssssssssssssssss");
     res.status(200).json({
       success: true,
       response: response.data.value,
@@ -558,15 +558,15 @@ const getNavigationData = asyncHandler(async (req: Request, res: Response) => {
 const getRemoQuickLinkData = asyncHandler(
   async (req: Request, res: Response) => {
     // console.log(req.body)
-    console.log(
-      req.headers.authorization,
-      "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-    );
+    // console.log(
+    //   req.headers.authorization,
+    //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+    // );
 
     // const  token = req.headers.authorization
     const token = req.headers.authorization;
     //  const {token} = req.body
-    console.log(token, "llll");
+    //console.log(token, "llll");
     // console.log(req.body,'gregrthtrht')
     if (!token) {
       return res.status(404).json({
@@ -593,7 +593,7 @@ const getRemoQuickLinkData = asyncHandler(
           }
         );
 
-      console.log(response.data.value, "meetingssssssssssssssssssssssss");
+      //console.log(response.data.value, "meetingssssssssssssssssssssssss");
       res.status(200).json({
         success: true,
         response: response.data.value,
@@ -604,16 +604,16 @@ const getRemoQuickLinkData = asyncHandler(
 );
 
 const getCeoMsgData = asyncHandler(async (req: Request, res: Response) => {
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   // const  token = req.headers.authorization
   // console.log(req.body)
   const token = req.headers.authorization;
   //  const {token} = req.body
-  console.log(token, "llll");
+  //console.log(token, "llll");
   // console.log(req.body,'gregrthtrht')
   if (!token) {
     return res.status(404).json({
@@ -640,7 +640,7 @@ const getCeoMsgData = asyncHandler(async (req: Request, res: Response) => {
         }
       );
 
-    console.log(response.data.value, "meetingssssssssssssssssssssssss");
+    //console.log(response.data.value, "meetingssssssssssssssssssssssss");
     res.status(200).json({
       success: true,
       response: response.data.value,
@@ -650,16 +650,16 @@ const getCeoMsgData = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getNewsData = asyncHandler(async (req: Request, res: Response) => {
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   // const  token = req.headers.authorization
   // console.log(req.body)
   const { token } = req.params;
   //  const {token} = req.body
-  console.log(token, "llll");
+  //console.log(token, "llll");
   // console.log(req.body,'gregrthtrht')
   if (!token) {
     return res.status(404).json({
@@ -678,10 +678,10 @@ const getNewsData = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getEmpData = asyncHandler(async (req: Request, res: Response) => {
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   // const  token = req.headers.authorization
   // console.log(req.body)
@@ -716,16 +716,16 @@ const getEmpData = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getHeroData = asyncHandler(async (req: Request, res: Response) => {
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   // const  token = req.headers.authorization
   // console.log(req.body)
   const { token } = req.params;
   //  const {token} = req.body
-  console.log(token, "llll");
+  //console.log(token, "llll");
   // console.log(req.body,'gregrthtrht')
   if (!token) {
     return res.status(404).json({
@@ -744,10 +744,10 @@ const getHeroData = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getEventsMeetings = asyncHandler(async (req: Request, res: Response) => {
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   // const  token = req.headers.authorization
   // console.log(req.body)
@@ -783,10 +783,10 @@ const getEventsMeetings = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getRemoNews = asyncHandler(async (req: Request, res: Response) => {
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   // const  token = req.headers.authorization
   // console.log(req.body)
@@ -833,16 +833,16 @@ const getRemoNews = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getRemoHero = asyncHandler(async (req: Request, res: Response) => {
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   // const  token = req.headers.authorization
   // console.log(req.body)
   const token = req.headers.authorization;
   //  const {token} = req.body
-  console.log(token, "llll");
+  //console.log(token, "llll");
   // console.log(req.body,'gregrthtrht')
   if (!token) {
     return res.status(404).json({
@@ -864,7 +864,7 @@ const getRemoHero = asyncHandler(async (req: Request, res: Response) => {
         }
       );
 
-    console.log(response.data.value, "meetingssssssssssssssssssssssss");
+   // console.log(response.data.value, "meetingssssssssssssssssssssssss");
     res.status(200).json({
       success: true,
       response: response.data.value,
@@ -922,7 +922,7 @@ async function checked(token: any) {
 
 const getRemoContentEditorMaster = asyncHandler(
   async (req: Request, res: Response) => {
-    console.log(req.headers.authorization, "content editor mater");
+    //console.log(req.headers.authorization, "content editor mater");
 
     // const  token = req.headers.authorization
     // console.log(req.body)
@@ -935,11 +935,11 @@ const getRemoContentEditorMaster = asyncHandler(
         error: "No Token found",
       });
     } else {
-      console.log(token, "llll");
+     // console.log(token, "llll");
 
       const ans = await checked(token);
 
-      console.log(ans, "gregrthtrht");
+      //console.log(ans, "gregrthtrht");
 
       // const checkedValue = ans[0][0].UserEmail
       if (ans !== undefined) {
@@ -973,18 +973,71 @@ const getRemoContentEditorMaster = asyncHandler(
     }
   }
 );
+const getRemoPolicy = asyncHandler(
+  async (req: Request, res: Response) => {
+    console.log(req.headers.authorization, "policy mater");
+
+    // const  token = req.headers.authorization
+    // console.log(req.body)
+    const token = req.headers.authorization;
+    //  const {token} = req.body
+
+    if (!token) {
+      return res.status(404).json({
+        success: false,
+        error: "No Token found",
+      });
+    } else {
+      console.log(token, "llll");
+
+      const ans = await checked(token);
+
+      console.log(ans, "gregrthtrht");
+
+      // const checkedValue = ans[0][0].UserEmail
+      if (ans !== undefined) {
+        const response =
+          // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
+          // await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/0ec4e29a-d2ec-4835-a011-ea8a3fe33ed4/items?$expand=fields`, {
+          await axios.get(
+            `https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/drives/b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikPU-UPjxittT53b2Hcjy4dk/root/children`,
+            {
+              headers: {
+                Authorization: `Bearer ${token} `,
+                "Content-Type": "application/json",
+                Prefer: "HonorNonIndexedQueriesWarningMayFailRandomly",
+              },
+            }
+          );
+
+        // console.log(response.data.value, "meetingssssssssssssssssssssssss")
+        res.status(200).json({
+          success: true,
+          response: response.data.value,
+          // response1:responseTop.data.value
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          response: "Only Admin can Access",
+          // response1:responseTop.data.value
+        });
+      }
+    }
+  }
+);
 
 const getRemoEvents = asyncHandler(async (req: Request, res: Response) => {
-  console.log(
-    req.headers.authorization,
-    "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-  );
+  // console.log(
+  //   req.headers.authorization,
+  //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+  // );
 
   // const  token = req.headers.authorization
   // console.log(req.body)
   const token = req.headers.authorization;
   //  const {token} = req.body
-  console.log(token, "llll");
+  //console.log(token, "llll");
   // console.log(req.body,'gregrthtrht')
   if (!token) {
     return res.status(404).json({
@@ -1006,7 +1059,7 @@ const getRemoEvents = asyncHandler(async (req: Request, res: Response) => {
         }
       );
 
-    console.log(response.data.value, "meetingssssssssssssssssssssssss");
+    //console.log(response.data.value, "meetingssssssssssssssssssssssss");
     res.status(200).json({
       success: true,
       response: response.data.value,
@@ -1027,16 +1080,16 @@ async function getEmail(token: any) {
 
 const getUserSpecificQuickLink = asyncHandler(
   async (req: Request, res: Response) => {
-    console.log(
-      req.headers.authorization,
-      "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-    );
+    // console.log(
+    //   req.headers.authorization,
+    //   "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+    // );
 
     // const  token = req.headers.authorization
     // console.log(req.body)
     const token = req.headers.authorization;
     //  const {token} = req.body
-    console.log(token, "llll");
+    //console.log(token, "llll");
     // console.log(req.body,'gregrthtrht')
     if (!token) {
       return res.status(404).json({
@@ -1045,7 +1098,7 @@ const getUserSpecificQuickLink = asyncHandler(
       });
     } else {
       const ans = await getEmail(token);
-      console.log(ans, "nas");
+      //console.log(ans, "nas");
       const response =
         // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
         // await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/0ec4e29a-d2ec-4835-a011-ea8a3fe33ed4/items?$expand=fields`, {
@@ -1120,6 +1173,7 @@ export {
   getRemoNews,
   getRemoHero,
   getRemoContentEditorMaster,
+  getRemoPolicy,
   getRemoEvents,
   getRemoQuickLinkData,
   getUserSpecificQuickLink,

@@ -23,6 +23,7 @@ import { configuration } from "../../index";
 import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
 import SubCalendar from "./SubCalendar";
+import { Diversity20Regular } from "@fluentui/react-icons";
 // import SubComponentsPickers from './SubComponentsPickers';
 
 // import { CalendarPicker } from '@mui/x-date-picker/CalendarPicker'
@@ -64,7 +65,7 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
   return (
     <AuthenticatedTemplate>
       <Paper elevation={0}>
-        <List className={classes.root}>
+        <div className={classes.root}>
           <div className={classes.Calendar}>
             <Box className={classes.calContent}>
               <Typography
@@ -102,7 +103,7 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
 
             {/* <SubComponentsPickers/> */}
           </div>
-        </List>
+        </div>
         {data?.response?.length > 0 ? (
           <>
             {data?.response &&
@@ -117,12 +118,12 @@ const Events: React.FC<IFolderProps> = (props: IFolderProps) => {
                 let eventDay = moment(fields?.EventDate).format("dddd");
                 return (
                   <div key={index}>
-                    <Typography className={classes.calenderinfo}>
-                      <li>{eventTitle}</li>
-                      <li className={classes.list}>
+                    <div className={classes.calenderinfo}>
+                      <p>{eventTitle}</p>
+                      <p className={classes.list}>
                         {eventDay} {eventDate} {eventMonth} {eventYear}
-                      </li>
-                    </Typography>
+                      </p>
+                    </div>
                   </div>
                 );
               })}

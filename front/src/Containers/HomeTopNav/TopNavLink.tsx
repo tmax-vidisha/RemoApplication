@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import admin from "./../../Assets/Images/admin.svg";
 import adminHover from "./../../Assets/Images/adminHn.svg";
 import hub from "./../../Assets/Images/hub.svg";
@@ -25,254 +25,374 @@ import quickLinks from "./../../Assets/Images/Quicklinks.svg";
 import quickLinksHover from "./../../Assets/Images/quickLinksHover.svg";
 import workspace from "./../../Assets/Images/workspace.svg";
 import workspaceHover from "./../../Assets/Images/workspaceHover.svg";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import { useStyles } from "./Styles";
 import {
-    Box,
-    CardContent,
-    List,
-    ListItem,
-    Typography,
-    Paper,
-    Tabs, Tab
+  Box,
+  CardContent,
+  List,
+  ListItem,
+  Typography,
+  Paper,
+  Tabs,
+  Tab,
 } from "@mui/material";
 
-
-
 interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
+  children?: React.ReactNode;
+  index: number;
+  value: number;
 }
 
 function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+  const { children, value, index, ...other } = props;
 
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
 }
 
 function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
 }
 
 interface IFolderProps {
-    data: any,
-    error: any,
-    isLoading: any,
-    quicklinkdata:any,
-    quicklinkerror:any,
-    quicklinkisloading:any
-  }
+  data: any;
+  error: any;
+  isLoading: any;
+  quicklinkdata: any;
+  quicklinkerror: any;
+  quicklinkisloading: any;
+}
 // const TopNavLink = () => {
 const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
-    const classes = useStyles();
-    let navigate = useNavigate();
-    const [showResults, setShowResults] = useState(true);
-    const onClick = () => setShowResults(false);
-    const HandleClick = () => setShowResults(true);
-    const { data, error, isLoading,quicklinkdata,quicklinkerror,quicklinkisloading } = props
-  console.log(data?.response, 'Navigationdddddd')
-    const [value, setValue] = React.useState(0);
+  const classes = useStyles();
+  let navigate = useNavigate();
+  const [showResults, setShowResults] = useState(true);
+  const onClick = () => setShowResults(false);
+  const HandleClick = () => setShowResults(true);
+  const {
+    data,
+    error,
+    isLoading,
+    quicklinkdata,
+    quicklinkerror,
+    quicklinkisloading,
+  } = props;
+  console.log(data?.response, "quick link and my link");
+  const [value, setValue] = React.useState(0);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
 
-    const itemsList = [
-        {
-            id: 0,
-            label: 'Home',
-            Icon: home,
-            IconHover: homeHover,
-            onClick: () => navigate("/"),
-            to: '/',
-        },
-        {
-            id: 1,
-            label: 'WorkSpace',
-            Icon: workspace,
-            IconHover: workspaceHover,
-            onClick: () => navigate("/WorkSpaceOne"),
-            to: '/WorkSpaceOne',
-        },
-        {
-            id: 2,
-            label: 'Policies & Procedure',
-            Icon: policy,
-            IconHover: policyHover,
-            onClick: () => navigate("/policiesContentPage"),
-            to: '/policiesContentPage',
+  const itemsList = [
+    {
+      id: 0,
+      label: "Home",
+      Icon: home,
+      IconHover: homeHover,
+      onClick: () => navigate("/"),
+      to: "/",
+    },
+    {
+      id: 1,
+      label: "WorkSpace",
+      Icon: workspace,
+      IconHover: workspaceHover,
+      onClick: () => navigate("/WorkSpaceOne"),
+      to: "/WorkSpaceOne",
+    },
+    {
+      id: 2,
+      label: "Policies & Procedure",
+      Icon: policy,
+      IconHover: policyHover,
+      onClick: () => navigate("/policiesContentPage"),
+      to: "/policiesContentPage",
+    },
+    {
+      id: 3,
+      label: "Content Editor",
+      Icon: content,
+      IconHover: contentHover,
+      onClick: () => navigate("/ContentEditor"),
+      to: "/ContentEditor",
+    },
+    {
+      id: 4,
+      label: "Department",
+      Icon: department,
+      IconHover: departmentHover,
+      // onClick: () => navigate("/departmentContentPage"),
+      // to: "/departmentContentPage",
+    },
+    {
+      id: 5,
+      label: "Quick Links",
+      Icon: quickLinks,
+      IconHover: quickLinksHover,
+      onClick: () => navigate("/quickLinksPage"),
+      to: "/quickLinksPage",
+    },
+    {
+      id: 6,
+      label: "Org Chart",
+      Icon: orgChart,
+      IconHover: orgChartHover,
+      onClick: () => navigate("/orgChart"),
+      to: "/orgChart",
+    },
+  ];
 
-        },
-        {
-            id: 3,
-            label: 'Content Editor',
-            Icon: content,
-            IconHover: contentHover,
-            onClick: () => navigate("/ContentEditor"),
-            to: '/ContentEditor',
-        },
-        {
-            id: 4,
-            label: 'Department',
-            Icon: department,
-            IconHover: departmentHover,
-            onClick: () => navigate("/departmentContentPage"),
-            to: '/departmentContentPage',
+  const myLinkList = [
+    {
+      id: 0,
+      label: "Sales",
+      Icon: sales,
+      IconHover: salesHover,
+      onClick: () => navigate("/"),
+      to: "/",
+    },
+    {
+      id: 1,
+      label: "Vehicle",
+      Icon: vehicle,
+      IconHover: vehicleH,
+      onClick: () => navigate("/WorkSpaceOne"),
+      to: "/WorkSpaceOne",
+    },
+    {
+      id: 2,
+      label: "IT service",
+      Icon: ITservice,
+      IconHover: ITserviceHover,
+      onClick: () => navigate("/policiesContentPage"),
+      to: "/policiesContentPage",
+    },
+    {
+      id: 3,
+      label: "Hub",
+      Icon: hub,
+      IconHover: hubHover,
+      onClick: () => navigate("/ContentEditor"),
+      to: "/ContentEditor",
+    },
+    {
+      id: 4,
+      label: "Admin",
+      Icon: admin,
+      IconHover: adminHover,
+      onClick: () => navigate("/departmentContentPage"),
+      to: "/departmentContentPage",
+    },
+  ];
+  const departmentList = [
+    {
+      id: 0,
+      label: "Home",
+      // Icon: home,
+      // IconHover: homeHover,
+      onClick: () => navigate("/"),
+      to: "/",
+    },
+    {
+      id: 1,
+      label: "All Menu",
+      // Icon: home,
+      // IconHover: homeHover,
+      onClick: () => navigate("/"),
+      to: "/",
+    },
+    {
+      id: 2,
+      label: "IT",
+      // Icon: home,
+      // IconHover: homeHover,
+      onClick: () => navigate("/itDepartment"),
+      to: "/itDepartment",
+    },
+    {
+      id: 3,
+      label: "HR",
+      // Icon: home,
+      // IconHover: homeHover,
+      onClick: () => navigate("hrDepartment"),
+      to: "hrDepartment",
+    },
+  ];
 
-        },
-        {
-            id: 5,
-            label: "Quick Links",
-            Icon: quickLinks,
-            IconHover: quickLinksHover,
-            onClick: () => navigate("/quickLinksPage"),
-            to: '/quickLinksPage',
-        },
-        {
-            id: 6,
-            label: "Org Chart",
-            Icon: orgChart,
-            IconHover: orgChartHover,
-            onClick: () => navigate("/orgChart"),
-            to: '/orgChart',
-        },
-    ];
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  // const [innerTabValue, setInnerTabValue] = useState(0);
+  // const handleInnerTabChange = (event: any, newValue: any) => {
+  //   setInnerTabValue(newValue);
+  // };
+  return (
+    <>
+      <Paper elevation={0}>
+        <CardContent style={{ paddingBottom: "10px", paddingTop: "20px" }}>
+          <Box sx={{ width: "100%" }}>
+            <Box sx={{}} className={classes.tabContainer}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                className={classes.tabs}
+              >
+                <Tab label="Quick Links" {...a11yProps(0)} />
+                <Tab label="My Links" {...a11yProps(1)} />
+              </Tabs>
+            </Box>
+            <TabPanel value={value} index={0}>
+              <List className={classes.topItems}>
+                {data?.response &&
+                  data?.response.map((item: any) => {
+                    const { fields = {} } = item;
+                    // console.log(itemsList, "itemsList");
+                    if (item.id === department) {
+                      return (
+                        <List
+                          className={classes.topItems}
+                          style={{ width: "60%" }}
+                        >
+                          {departmentList.map(
+                            (item: any, id: any, index: any) => {
+                              const { onClick, path } = item;
+                              console.log(departmentList, "departmentList");
 
-    const myLinkList = [
-        {
-            id: 0,
-            label: 'Sales',
-            Icon: sales,
-            IconHover: salesHover,
-            onClick: () => navigate("/"),
-            to: '/',
-        },
-        {
-            id: 1,
-            label: 'Vehicle',
-            Icon: vehicle,
-            IconHover: vehicleH,
-            onClick: () => navigate("/WorkSpaceOne"),
-            to: '/WorkSpaceOne',
-        },
-        {
-            id: 2,
-            label: 'IT service',
-            Icon: ITservice,
-            IconHover: ITserviceHover,
-            onClick: () => navigate("/policiesContentPage"),
-            to: '/policiesContentPage',
+                              return (
+                                <ListItem
+                                  key={index}
+                                  onClick={onClick}
+                                  className={classes.topMenu}
+                                >
+                                  {departmentList && (
+                                    <NavLink
+                                      end
+                                      to={path}
+                                      className={classes.topLink}
+                                    >
+                                      <p className={classes.topText}>
+                                        {" "}
+                                        {item.label}
+                                      </p>
+                                    </NavLink>
+                                  )}
+                                </ListItem>
+                              );
+                            }
+                          )}
+                        </List>
+                      );
+                    }
+                    return (
+                      <ListItem
+                        key={fields.id}
+                        onClick={() => navigate(fields.PageDetailsUrl)}
+                        className={classes.topMenu}
+                      >
+                        {data?.response && (
+                          <NavLink
+                            end
+                            to={fields.PageDetailsUrl}
+                            className={classes.topLink}
+                          >
+                            <img
+                              src={fields.HoverOff}
+                              alt="..."
+                              className="topImg"
+                            />
+                            <img
+                              src={fields.HoverOn}
+                              alt=""
+                              className="topImgH"
+                            />
+                            <p className={classes.topText}> {fields.Title}</p>
+                          </NavLink>
+                        )}
+                      </ListItem>
+                    );
+                  })}
+              </List>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <List className={classes.topItems}>
+                {quicklinkdata?.response &&
+                  quicklinkdata?.response.map(
+                    (item: any, id: any, index: any) => {
+                      const { fields = {} } = item;
+                      return (
+                        <ListItem
+                          key={index}
+                          onClick={onClick}
+                          className={classes.topMenu}
+                        >
+                          {quicklinkdata?.response && (
+                            <NavLink
+                              end
+                              to={fields.Url}
+                              className={classes.topLink}
+                            >
+                              <img
+                                src={fields.HoverOff}
+                                alt="..."
+                                className="topImg"
+                              />
+                              <img
+                                src={fields.HoverOn}
+                                alt=""
+                                className="topImgH"
+                              />
+                              <p className={classes.topText}> {fields.Title}</p>
+                            </NavLink>
+                          )}
+                        </ListItem>
+                      );
+                    }
+                  )}
+              </List>
+            </TabPanel>
+            {/* <TabPanel value={value} index={1}>
+              <List className={classes.topItems} style={{ width: "60%" }}>
+                {departmentList.map((item: any, id: any, index: any) => {
+                  const { onClick, path } = item;
+                  console.log(departmentList, "departmentList");
 
-        },
-        {
-            id: 3,
-            label: 'Hub',
-            Icon: hub,
-            IconHover: hubHover,
-            onClick: () => navigate("/ContentEditor"),
-            to: '/ContentEditor',
-        },
-        {
-            id: 4,
-            label: 'Admin',
-            Icon: admin,
-            IconHover: adminHover,
-            onClick: () => navigate("/departmentContentPage"),
-            to: '/departmentContentPage',
-
-        },
-
-    ];
-
-    const [selectedIndex, setSelectedIndex]=useState(0);
-
-    return (
-        <div>
-            <Paper elevation={0}>
-                <CardContent style={{paddingBottom:"10px", paddingTop:"20px"}}>
-                    <Box sx={{ width: '100%' }}>
-                        <Box sx={{  }} className={classes.tabContainer}>
-                            <Tabs value={value} onChange={handleChange} className={classes.tabs}>
-                                <Tab label="Quick Links" {...a11yProps(0)} />
-                                <Tab label="My Links" {...a11yProps(1)} />
-                            </Tabs>
-                        </Box>
-                        <TabPanel value={value} index={0}>
-                            <List className={classes.topItems}>
-                                {data?.response && data?.response.map((item: any,  index: any) => {
-                                     const { fields = {} } = item;
-                                    // console.log(itemsList, "itemsList");
-
-                                    return (
-                                        <ListItem key={fields.id} onClick={()=>navigate(fields.PageDetailsUrl)} className={classes.topMenu}>
-                                            {data?.response && (
-                                                <NavLink end to={fields.PageDetailsUrl} className={classes.topLink}>
-                                                    <img src={fields.HoverOff} alt="..." className="topImg" />
-                                                    <img
-                                                        src={fields.HoverOn}
-                                                        alt=""
-                                                        className="topImgH"
-                                                    />
-                                                    <p className={classes.topText} > {fields.Title}</p>
-                                                </NavLink>)
-                                            }
-                                        </ListItem>
-                                    )
-                                })}
-
-
-                            </List>
-                        </TabPanel>
-                        <TabPanel value={value} index={1}>
-                            <List className={classes.topItems}>
-                                {quicklinkdata?.response && quicklinkdata?.response.map((item: any, id: any, index: any) => {
-                                    // const { Icon, IconHover, onClick, path } = item;
-                                    // console.log(myLinkList, "itemsList");
-                                    const { fields = {} } = item;
-                                    return (
-                                        <ListItem key={index} onClick={onClick} className={classes.topMenu}>
-                                            {quicklinkdata?.response && (
-                                                 <NavLink end to={fields.Url} className={classes.topLink}>
-                                                 <img src={fields.HoverOff} alt="..." className="topImg" />
-                                                 <img
-                                                     src={fields.HoverOn}
-                                                     alt=""
-                                                     className="topImgH"
-                                                 />
-                                                 <p className={classes.topText} > {fields.Title}</p>
-                                             </NavLink>)
-                                            }
-                                        </ListItem>
-                                        
-                                    )
-                                })}
-
-
-                            </List>
-                        </TabPanel>
-                    </Box>
-                </CardContent>
-            </Paper>
-        </div>
-    );
+                  return (
+                    <ListItem
+                      key={index}
+                      onClick={onClick}
+                      className={classes.topMenu}
+                    >
+                      {departmentList && (
+                        <NavLink end to={path} className={classes.topLink}>
+                          <p className={classes.topText}> {item.label}</p>
+                        </NavLink>
+                      )}
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </TabPanel> */}
+          </Box>
+        </CardContent>
+      </Paper>
+    </>
+  );
 };
 
 export default TopNavLink;

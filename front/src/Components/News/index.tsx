@@ -13,10 +13,6 @@ import {
   CardActionArea,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { NavLink as RouterNavLink } from "react-router-dom";
-import { PublicClientApplication } from "@azure/msal-browser";
-import { configuration } from "../../index";
-import AccessTimeIcon from "@mui/icons-material/Event";
 import {
   useGetNewsQuery,
   useUpdateNewsTokenMutation,
@@ -37,8 +33,6 @@ import Slider from "react-slick";
 // import {FaChevronLeft, FaChevronRight} from 'react-icons'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
-import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 
 var moment = require("moment-timezone");
 interface IFolderProps {
@@ -204,6 +198,28 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
   const [isActive2, setIsActive2] = useState(false);
 
+  // const [tempData, setTempData] = useState([]);
+
+  // useEffect(() => {
+  //   let temp = data.response.map((item) => {
+  //     return {
+  //       ...item,
+  //       likeActive: true,
+  //       likeCount: 0,
+  //     };
+  //     setTempData(temp);
+  //   });
+  // }, [data]);
+
+  // const handleBlue = () => {
+  //   let temp = data.response.map((item) => {
+  //     return {
+  //       ...item,
+  //       likeActive: false,
+  //       likeCount: setTempData(temp),
+  //     };
+  //   });
+  // };
   return (
     <AuthenticatedTemplate>
       <Paper style={{ maxWidth: "100%" }} elevation={0}>

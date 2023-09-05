@@ -14,7 +14,8 @@ import IconText from "../Header/IconText";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import sustain from "../../Assets/Images/sustain.jpg";
 import LeftPanel from "./LeftPanel";
-const Department = () => {
+
+const HRDepartment = () => {
   const classes = useStyles();
   return (
     <div>
@@ -38,7 +39,7 @@ const Department = () => {
                   <Link className={classes.breadLinks} color="inherit" href="/">
                     Home
                   </Link>
-                  <Typography>IT</Typography>
+                  <Typography>HR</Typography>
                 </Breadcrumbs>
               </Typography>
             </Paper>
@@ -86,4 +87,4 @@ const Department = () => {
   );
 };
 
-export default Department;
+export default HRDepartment;
