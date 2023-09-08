@@ -44,8 +44,16 @@ const StyledNode = styled("div")`
 //     cursor: hasChildren ? "pointer" : "default",
 //   })
 // );
+// interface IFolderProps {
+//   data:any, 
+//   error:any,
+//   isLoading:any
+// }
 
-const OrgChartPage = () => {
+// const OrgChart: React.FC<IFolderProps> = (props: IFolderProps) => {
+const OrgChart= ()=> {
+  // const { data, error, isLoading } = props;
+   // console.log(data,'org chart');
   const classes = useStyles();
   let location = useLocation();
   const [show, setShow] = useState(false);
@@ -413,4 +421,4 @@ const OrgChartPage = () => {
   );
 };
 
-export default OrgChartPage;
+export default OrgChart;

@@ -1,13 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Link, NavLink as RouterNavLink } from "react-router-dom";
+import React, { useCallback, useState } from "react";
+import { NavLink as RouterNavLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircleOutlined";
 import {
   Container,
   Grid,
@@ -16,6 +13,7 @@ import {
   Grow,
   ClickAwayListener,
   MenuList,
+  Fade,
 } from "@mui/material";
 import MailIcon from "@mui/icons-material/EmailOutlined";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -149,6 +147,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   // const handleClose = () => {
   //   setAnchorEl(null);
   // };
+
   const handleClose = (event: Event | React.SyntheticEvent) => {
     if (
       anchorRef.current &&
@@ -234,30 +233,33 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+  const handleCloseBDay = () => {
+    setAnchorEl(null);
+  };
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+  //     <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+  //   </Menu>
+  // );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -372,9 +374,6 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                         No Birthday Today
                       </MenuItem>
                     )}
-                    {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-                              <MenuItem onClick={handleClose}>My account</MenuItem>
-                              <MenuItem onClick={handleClose}>Logout</MenuItem> */}
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -623,6 +622,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
   // setBirthdayName(modifiedArr)
 
   // console.log(modifiedArr,'mm')
+
   return (
     <AuthenticatedTemplate>
       <Box sx={{ flexGrow: 1 }}>
@@ -680,112 +680,91 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                   )}
                   </Menu> */}
                 <IconButton
-                  ref={anchorRef}
-                  id="composition-button"
                   size="large"
                   aria-label="unread mail count"
                   color="inherit"
-                  aria-controls={open1 ? "composition-menu" : undefined}
-                  aria-expanded={open1 ? "true" : undefined}
+                  onClick={handleClick}
+                  aria-controls={open ? "basic-menu" : undefined}
                   aria-haspopup="true"
-                  onClick={handleToggle}
+                  aria-expanded={open ? "true" : undefined}
                 >
                   <Badge color="error" sx={{ top: "4px" }}>
                     <img src={birthday} alt="" className={classes.iconImg} />
                   </Badge>
                 </IconButton>
-                <Popper
+
+                {/* <Popper
                   open={open1}
                   anchorEl={anchorRef.current}
                   role={undefined}
-                  placement="bottom-start"
                   transition
-                  disablePortal
-                  style={{ paddingLeft: "825px" }}
+                  placement="right"
+                > */}
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleCloseBDay}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                  style={{ paddingTop: "8px", marginTop: "15px" }}
                 >
-                  {({ TransitionProps, placement }) => (
-                    <Grow
-                      {...TransitionProps}
-                      style={{
-                        transformOrigin:
-                          placement === "bottom-start"
-                            ? "left top"
-                            : "left bottom",
-                      }}
-                    >
-                      <Paper>
-                        <ClickAwayListener onClickAway={handleClose}>
-                          <MenuList
-                            autoFocusItem={open1}
-                            id="composition-menu"
-                            aria-labelledby="composition-button"
-                            onKeyDown={handleListKeyDown}
-                            style={{ padding: "0px" }}
-                          >
-                            {userData.length > 0 ? (
-                              userData.map((i: any) => {
-                                return (
-                                  <>
-                                    <MenuItem
-                                      onClick={handleClose}
-                                      className={classes.bdayText}
-                                    >
-                                      <List
-                                        style={{ padding: "0px !important" }}
-                                      >
-                                        <ListItem
-                                          style={{
-                                            padding: "0px !important",
-                                            margin: "0px",
-                                          }}
-                                        >
-                                          <ListItemAvatar>
-                                            <img src={bdayIcon} alt="" />
-                                          </ListItemAvatar>
-                                          <ListItemText
-                                            primary={`${i} birthday today!!!`}
-                                            secondary="Lets wish!"
-                                            primaryTypographyProps={{
-                                              fontSize: "12px",
-                                              color: "gray !important",
-                                            }}
-                                            secondaryTypographyProps={{
-                                              fontSize: "12px",
-                                              color: "#009BAD !important",
-                                            }}
-                                          />
-                                        </ListItem>
-                                      </List>
-                                      {/* <div style={{ display: "flex", justifyContent: "center" }}>
-                                        <div>
-                                          <img src={bdayIcon} alt="" />
-                                        </div>
-                                        <div>
-                                          <p>{i} birthday today!!!</p>
-                                          <p className={classes.wish}>Lets wish!</p>
-                                        </div>
-                                      </div> */}
-                                    </MenuItem>
-                                  </>
-                                );
-                              })
-                            ) : (
-                              <MenuItem
-                                onClick={handleClose}
-                                className={classes.bdayText}
-                              >
-                                No Birthday Today
-                              </MenuItem>
-                            )}
-                            {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-                              <MenuItem onClick={handleClose}>My account</MenuItem>
-                              <MenuItem onClick={handleClose}>Logout</MenuItem> */}
-                          </MenuList>
-                        </ClickAwayListener>
-                      </Paper>
-                    </Grow>
-                  )}
-                </Popper>
+                  <MenuList
+                    autoFocusItem={open1}
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
+                    onKeyDown={handleListKeyDown}
+                    style={{ padding: "0px" }}
+                  >
+                    {userData.length > 0 ? (
+                      userData.map((i: any) => {
+                        return (
+                          <>
+                            <MenuItem
+                              onClick={handleClose}
+                              className={classes.bdayText}
+                            >
+                              <List style={{ padding: "0px !important" }}>
+                                <ListItem
+                                  style={{
+                                    padding: "0px !important",
+                                    margin: "0px",
+                                  }}
+                                >
+                                  <ListItemAvatar>
+                                    <img src={bdayIcon} alt="" />
+                                  </ListItemAvatar>
+                                  <ListItemText
+                                    primary={`${i} birthday today!!!`}
+                                    secondary="Lets wish!"
+                                    primaryTypographyProps={{
+                                      fontSize: "12px",
+                                      color: "gray !important",
+                                    }}
+                                    secondaryTypographyProps={{
+                                      fontSize: "12px",
+                                      color: "#009BAD !important",
+                                    }}
+                                  />
+                                </ListItem>
+                              </List>
+                            </MenuItem>
+                          </>
+                        );
+                      })
+                    ) : (
+                      <MenuItem
+                        onClick={handleClose}
+                        className={classes.bdayText}
+                      >
+                        No Birthday Today
+                      </MenuItem>
+                    )}
+                  </MenuList>
+                </Menu>
+                {/* </Popper> */}
+
                 {/* {EmpData?.response && EmpData?.response?.filter((movie:any) => moment(movie.fields.DOB).format("DD-MM") === CurrentDate).map((i:any)=>{
                         //  return <MenuItem onClick={handleClose}></MenuItem>
                           // return  console.log(i.fields.Name)
@@ -826,13 +805,13 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
                     "aria-labelledby": "basic-button",
                   }}
                   style={{ paddingTop: "8px", marginTop: "15px" }}
-                  PaperProps={{
-                    style: {
-                      width: 350,
-                      height: 150,
-                      overflow: "Hidden",
-                    },
-                  }}
+                  // PaperProps={{
+                  //   style: {
+                  //     width: 350,
+                  //     height: 150,
+                  //     overflow: "Hidden",
+                  //   },
+                  // }}
                 >
                   <img
                     src={close}
@@ -1085,7 +1064,7 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
           </Toolbar>
         </AppBar>
         {renderMobileMenu}
-        {renderMenu}
+        {/* {renderMenu} */}
       </Box>
     </AuthenticatedTemplate>
   );

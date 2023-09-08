@@ -39,7 +39,7 @@ interface IFolderProps {
   data: any;
   error: any;
   isLoading: any;
-  // onClick: any;
+  //onClick: any;
   // onDownload?: (id: string) => void;
   // onDelete?: (id: string) => void;
   // onRename?: (id: string, name: string) => void;

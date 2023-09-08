@@ -67,7 +67,7 @@ import { configuration } from "../../index";
     // console.log(data,'lllll')
     // const {quicklink} = props;
     const { data, error, isLoading } = props;
-    console.log(data,'thytjytjytjudddddddddddddd')
+    console.log(data,'quick links')
   return (
     // <div> QuickLinks</div>
     <AuthenticatedTemplate>

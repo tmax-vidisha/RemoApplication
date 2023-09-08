@@ -65,7 +65,7 @@ interface IFolderProps {
 const PoliciesEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
   const { onClick, data, isLoading, isSuccess } = props;
-  console.log(data, "hththththt");
+  console.log(data, "policy editor data");
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
 

@@ -122,6 +122,8 @@ export const graphApi = createApi({
     "Recent",
     "Meetings",
     "Policy",
+    "OrgChart",
+    "DepartmentMaster",
   ],
   // keepUnusedDataFor: 30,
   // tagTypes: [...cacher.defaultTags, "User"],
@@ -171,6 +173,14 @@ export const graphApi = createApi({
 
     getCeoMessage: builder.query<any, any>({
       query: () => `CeoMessage`,
+      // transformResponse: (response: any) => {
+      //     // let y;
+      //     const resp =response.value
+      //     return resp
+      //    }
+    }),
+    getDepartmentMaster: builder.query<any, any>({
+      query: () => `DepartmentMaster`,
       // transformResponse: (response: any) => {
       //     // let y;
       //     const resp =response.value
@@ -326,6 +336,14 @@ export const graphApi = createApi({
         const resp = response.value;
         return resp;
       },
+      // query: (id) => ({
+      //   url: `/api/v1/onedrive/getPolicy/${id}`,
+      //   headers: { authorization: `${AccessToken}` },
+      // }),
+      // //@ts-ignore
+      // providesTags: cacher.providesList("User"),
+      //  keepUnusedDataFor: 5,
+      //providesTags: ["Policy"],
     }),
     getNavigationId: builder.query<any, any>({
       query: () => `listInfo`,
@@ -381,6 +399,14 @@ export const graphApi = createApi({
     createCeoMessage: builder.mutation<any, any>({
       query: (data) => ({
         url: "newceo",
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+        body: data,
+      }),
+    }),
+    createDepartmentMaster: builder.mutation<any, any>({
+      query: (data) => ({
+        url: "newDepartment",
         headers: { "Content-Type": "application/json" },
         method: "POST",
         body: data,
@@ -552,6 +578,16 @@ export const graphApi = createApi({
       // keepUnusedDataFor: 5,
       providesTags: ["Quicklink"],
     }),
+    getAllOrgChart: builder.query<any, any>({
+      query: (id) => ({
+        url: `/api/v1/token/orgChart/${id}`,
+        headers: { authorization: `${AccessToken}` },
+      }),
+      // //@ts-ignore
+      // providesTags: cacher.providesList("User"),
+      // keepUnusedDataFor: 5,
+      providesTags: ["OrgChart"],
+    }),
     updateRecentFilesToken: builder.mutation<any, any>({
       query: (id) => ({
         url: `/api/v1/token/recentfiles/${id}`,
@@ -636,6 +672,19 @@ export const graphApi = createApi({
       },
       // invalidatesTags: ['ObjectiveDescription']
     }),
+    updateDepartmentMasterToken: builder.mutation<any, any>({
+      query: (id) => ({
+        url: `/api/v1/token/DepartmentMaster/${id}`,
+        method: "PATCH",
+        body: id,
+      }),
+      transformResponse: (response: any) => {
+        // let y;
+        const resp = response;
+        return resp;
+      },
+      // invalidatesTags: ['ObjectiveDescription']
+    }),
     getAllCeoMsg: builder.query<any, any>({
       query: (id) => ({
         url: `/api/v1/token/ceomsg/${id}`,
@@ -645,6 +694,17 @@ export const graphApi = createApi({
       // providesTags: cacher.providesList("User"),
       //  keepUnusedDataFor: 5,
       providesTags: ["CeoMsg"],
+    }),
+    getAllDepartmentMaster: builder.query<any, any>({
+      query: (id) => ({
+        url: `/api/v1/token/DepartmentMaster/${id}`,
+        headers: { authorization: `${AccessToken}` },
+      }),
+
+      // //@ts-ignore
+      // providesTags: cacher.providesList("User"),
+      //  keepUnusedDataFor: 5,
+      providesTags: ["DepartmentMaster"],
     }),
     updateNewsToken: builder.mutation<any, any>({
       query: (id) => ({
@@ -791,6 +851,14 @@ export const graphApi = createApi({
     createTokenwithCeoData: builder.mutation<any, any>({
       query: (data) => ({
         url: "api/v1/lists/ceodata",
+        // headers:{ 'Content-Type': 'application/json' },
+        method: "POST",
+        body: data,
+      }),
+    }),
+    createTokenwithDepartmentMasterData: builder.mutation<any, any>({
+      query: (data) => ({
+        url: "api/v1/lists/DepartmentMasterdata",
         // headers:{ 'Content-Type': 'application/json' },
         method: "POST",
         body: data,
@@ -962,11 +1030,13 @@ export const {
   useGetNewsQuery,
   useGetEventsQuery,
   useGetCeoMessageQuery,
+  useGetDepartmentMasterQuery,
   useGetListInformationQuery,
   useCreateListItemMutation,
   useGetAllUserQuickLinksQuery,
   usePostGlobalListIdMutation,
   useCreateCeoMessageMutation,
+  useCreateDepartmentMasterMutation,
   useCreateAnnouncementMutation,
   useCreateEventMutation,
   useGetImageQuery,
@@ -987,6 +1057,7 @@ export const {
   useCreateTokenwithEventDataMutation,
   useCreateTokenwithHeroDataMutation,
   useCreateTokenwithCeoDataMutation,
+  useCreateTokenwithDepartmentMasterDataMutation,
   useCreateTokenwithNewsDataMutation,
   useCreateTokenwithEmpDataMutation,
   useCreateTokenwithUserQuickDataMutation,
@@ -1001,6 +1072,7 @@ export const {
   useUpdateNavigationTokenMutation,
   // useUpdateDepartmentTokenMutation,
   useUpdateCeoMsgTokenMutation,
+  useUpdateDepartmentMasterTokenMutation,
   useUpdateNewsTokenMutation,
   useUpdateEmpTokenMutation,
   useUpdateHeroTokenMutation,
@@ -1011,6 +1083,7 @@ export const {
   useGetAllAnnoncementsQuery,
   useGetAllNavigationQuery,
   useGetAllCeoMsgQuery,
+  useGetAllDepartmentMasterQuery,
   useGetAllNewsQuery,
   useGetAllEmpQuery,
   useGetAllHeroQuery,
@@ -1022,6 +1095,7 @@ export const {
   useGetAllContentEditorQuery,
   useGetAllRemoEventsQuery,
   useGetAllRemoQuickLinkDataQuery,
+  useGetAllOrgChartQuery,
   usePostRemoUserQuickLinkDataMutation,
   useGetAllUserSpecificQuiclinksQuery,
 } = graphApi;

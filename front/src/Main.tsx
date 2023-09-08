@@ -98,12 +98,14 @@ import WhatsNewAnnounce from "./Components/WhatsNewAnnounce";
 import WhatsAnnouneReadMore from "./Components/WhatsNewAnnounce/WhatsAnnouneReadMore";
 import WorkspaceQuicklinks from "./Components/Quicklinks/WorkspaceQuicklinks";
 import MyFiles from "./Components/WorkSpaceOne/MyFiles";
-import OrgChartPage from "./Components/Quicklinks/OrgChartPage";
 import NewHeader from "./Components/Header/NewHeader";
 import DocumentPage from "./Pages/WorkSpace/OneDrive/DocumentPage";
-import ITDepartment from "./Components/Department/ITDepartment";
-import HRDepartment from "./Components/Department/HRDepartment";
+import ITDepartment from "./Components/DepartmentMaster/ITDepartment";
+import HRDepartment from "./Components/DepartmentMaster/HRDepartment";
 import DepartmentList from "./Containers/HomeTopNav/DepartmentList";
+import OrgChart from "./Components/Quicklinks/OrgChart";
+import DepartmentMaster from "./Components/DepartmentMaster/DepartmentMaster";
+import DepartmentMasterPage from "./Pages/DepartmentMaster/DepartmentMasterPage";
 
 const theme = createTheme({
   palette: {
@@ -364,11 +366,12 @@ const Main = () => {
               />
               <Route path="/wQuicklinks" element={<WorkspaceQuicklinks />} />
               <Route path="/myFiles" element={<MyFiles />} />
-              <Route path="/orgChart" element={<OrgChartPage />} />
+              <Route path="/orgChart" element={<OrgChart />} />
               <Route path="/document" element={<DocumentPage />} />
               <Route path="/itDepartment" element={<ITDepartment />} />
               <Route path="/hrDepartment" element={<HRDepartment />} />
-              {/* <Route path="/departmentList" element={<DepartmentList />} /> */}
+              {/* <Route path="/departmentMaster" element={<DepartmentMaster />} /> */}
+              <Route path="/departmentMasterPage" element={<DepartmentMasterPage />} />
             </Routes>
           </ThemeProvider>
           <Footer />
