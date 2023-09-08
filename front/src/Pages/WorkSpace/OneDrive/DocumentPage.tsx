@@ -8,7 +8,7 @@ const DocumentPage = () => {
   const { data, isSuccess, isLoading } = useGetAllDocumentItemsQuery(token, {
     refetchOnMountOrArgChange: true,
   });
-  console.log(data, "documenttttttt library");
+ // console.log(data, "documenttttttt library");
   //const [sendDeleteItem, { data: deleteResponse, isSuccess: deleteSuccess, isLoading: deleteLoading }] = useDeleteItemDocumentsMutation();
   // const deleteDriveItem = async (id: string, name: string) => {
   //   console.log(id, name)

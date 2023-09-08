@@ -38,10 +38,7 @@ async function Nested(arr: any, tokens: any) {
 
 const getAllFoldersSharepointLibrary = asyncHandler(
   async (req: Request, res: Response) => {
-    console.log(
-      req.headers.authorization,
-      "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
-    );
+    console.log(req.headers.authorization, "folder share point library");
 
     const token = req.headers.authorization;
     // console.log(req.body)

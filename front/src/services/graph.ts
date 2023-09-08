@@ -215,9 +215,9 @@ export const oneDriveApi: any = createApi({
       query: (id) => ({
         url: `/api/v1/onedrive/getPolicy`,
         method: "GET",
-        // headers:{ "authorization": `${AccessToken}` },
+        headers: { authorization: `${AccessToken}` },
       }),
-      // providesTags : [ 'OneDriveRootItems'],
+      providesTags: ["OneDriveRootItems"],
     }),
     downloadUrlItemOneDrive: builder.mutation<any, any>({
       query: (data) => ({

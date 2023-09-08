@@ -15,8 +15,18 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import sustain from "../../Assets/Images/sustain.jpg";
 import LeftPanel from "./LeftPanel";
 
-const ITDepartment = () => {
+// interface IFolderProps {
+//   // ceomsg: any;
+//   data: any;
+//   error: any;
+//   isLoading: any;
+// }
+
+const ITDepartment= () => {
+// const ITDepartment: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
+  // const { data, error, isLoading } = props;
+  // console.log(data, "department");
   return (
     <div>
       <Paper elevation={0} sx={{ mb: 2 }}>

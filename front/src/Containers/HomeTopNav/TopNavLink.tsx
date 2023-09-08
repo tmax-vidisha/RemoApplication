@@ -142,22 +142,22 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
       // onClick: () => navigate("/departmentContentPage"),
       // to: "/departmentContentPage",
     },
-    {
-      id: 5,
-      label: "Quick Links",
-      Icon: quickLinks,
-      IconHover: quickLinksHover,
-      onClick: () => navigate("/quickLinksPage"),
-      to: "/quickLinksPage",
-    },
-    {
-      id: 6,
-      label: "Org Chart",
-      Icon: orgChart,
-      IconHover: orgChartHover,
-      onClick: () => navigate("/orgChart"),
-      to: "/orgChart",
-    },
+    // {
+    //   id: 5,
+    //   label: "Quick Links",
+    //   Icon: quickLinks,
+    //   IconHover: quickLinksHover,
+    //   onClick: () => navigate("/quickLinksPage"),
+    //   to: "/quickLinksPage",
+    // },
+    // {
+    //   id: 6,
+    //   label: "Org Chart",
+    //   Icon: orgChart,
+    //   IconHover: orgChartHover,
+    //   onClick: () => navigate("/orgChart"),
+    //   to: "/orgChart",
+    // },
   ];
 
   const myLinkList = [
@@ -203,16 +203,16 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
     },
   ];
   const departmentList = [
+    // {
+    //   id: 0,
+    //   label: "Home",
+    //   // Icon: home,
+    //   // IconHover: homeHover,
+    //   onClick: () => navigate("/"),
+    //   to: "/",
+    // },
     {
       id: 0,
-      label: "Home",
-      // Icon: home,
-      // IconHover: homeHover,
-      onClick: () => navigate("/"),
-      to: "/",
-    },
-    {
-      id: 1,
       label: "All Menu",
       // Icon: home,
       // IconHover: homeHover,
@@ -220,7 +220,7 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
       to: "/",
     },
     {
-      id: 2,
+      id: 1,
       label: "IT",
       // Icon: home,
       // IconHover: homeHover,
@@ -228,7 +228,7 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
       to: "/itDepartment",
     },
     {
-      id: 3,
+      id: 2,
       label: "HR",
       // Icon: home,
       // IconHover: homeHover,
@@ -237,11 +237,14 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
     },
   ];
 
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isShowDepartment, setIsShowDepartment] = useState(true);
   // const [innerTabValue, setInnerTabValue] = useState(0);
   // const handleInnerTabChange = (event: any, newValue: any) => {
   //   setInnerTabValue(newValue);
   // };
+  const onClickToggleDepartment=()=>{
+    setIsShowDepartment((prev:any) => !prev)
+  }
   return (
     <>
       <Paper elevation={0}>
@@ -263,7 +266,11 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
                   data?.response.map((item: any) => {
                     const { fields = {} } = item;
                     // console.log(itemsList, "itemsList");
-                    if (item.id === department) {
+                    if (
+                      item.index === 4
+                      // item.id === ||
+                      //item.title === department
+                    ) {
                       return (
                         <List
                           className={classes.topItems}
@@ -276,7 +283,7 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
 
                               return (
                                 <ListItem
-                                  key={index}
+                                  key={id}
                                   onClick={onClick}
                                   className={classes.topMenu}
                                 >
@@ -329,6 +336,72 @@ const TopNavLink: React.FC<IFolderProps> = (props: IFolderProps) => {
                   })}
               </List>
             </TabPanel>
+            {/* <TabPanel value={value} index={0}>
+              <List className={classes.topItems}>
+                {itemsList.map((item: any, id: any, index: any) => {
+                  const { onClick, path } = item;
+                  if (item.id === 4 || item.title === department) {
+                    return (
+                      <List
+                        className={classes.topItems}
+                        style={{ width: "60%" }}
+                      >
+                        {departmentList.map(
+                          (item: any, id: any, index: any) => {
+                            const { onClick, path } = item;
+                            console.log(departmentList, "departmentList");
+
+                            return (
+                              <ListItem
+                                key={index}
+                                onClick={onClick}
+                                className={classes.topMenu}
+                              >
+                                {departmentList && (
+                                  <NavLink
+                                    end
+                                    to={path}
+                                    className={classes.topLink}
+                                  >
+                                    <p className={classes.topText}>
+                                      {" "}
+                                      {item.label}
+                                    </p>
+                                  </NavLink>
+                                )}
+                              </ListItem>
+                            );
+                          }
+                        )}
+                      </List>
+                    );
+                  }
+                  return (
+                    <ListItem
+                      key={index}
+                      onClick={onClick}
+                      className={classes.topMenu}
+                    >
+                      {data?.response && (
+                        <NavLink
+                          end
+                          to={item.onClick}
+                          className={classes.topLink}
+                        >
+                          <img src={item.Icon} alt="..." className="topImg" />
+                          <img
+                            src={item.IconHover}
+                            alt=""
+                            className="topImgH"
+                          />
+                          <p className={classes.topText}> {item.label}</p>
+                        </NavLink>
+                      )}
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </TabPanel> */}
             <TabPanel value={value} index={1}>
               <List className={classes.topItems}>
                 {quicklinkdata?.response &&

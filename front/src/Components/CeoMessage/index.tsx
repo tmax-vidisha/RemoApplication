@@ -34,8 +34,9 @@ const CeoMessage: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
 
   const { data, error, isLoading } = props
-  console.log(data?.response[0],'CEo')
+  console.log(data?.response[0],'CEo');
   const [content, setContent] = useState<string>("Drop Something Here");
+
   const dragStartHandler = (
     event: React.DragEvent<HTMLDivElement>,
     data: string

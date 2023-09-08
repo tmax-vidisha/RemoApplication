@@ -196,7 +196,7 @@ const getLatestDepartment = asyncHandler(
   async (req: Request, res: Response) => {
     console.log(
       req.headers.authorization,
-      "tfssadsadsadasdsaasdasdsadsadsadssccccttddddttttvvvvvtttttttyy"
+      "latest"
     );
 
     const token = req.headers.authorization;

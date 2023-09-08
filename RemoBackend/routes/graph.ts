@@ -4,6 +4,7 @@ import { getPostData,
          postEventData,
          postHeroData,
          postCeoData,
+         postDepartmentListData,
          postNewsData,
          postEmpData,
          postUserQuicklinkData,
@@ -48,6 +49,7 @@ router.route('/data').post(getPostData)
 router.route('/eventdata').post(postRemoEventData)
 router.route('/herodata').post(postHeroData)
 router.route('/ceodata').post(postCeoData)
+router.route('/departmentListdata').post(postDepartmentListData)
 router.route('/newsdata').post(postRemoNews)
 router.route('/eventdataOne').post(getRemoEventData)
 router.route('/eventdataLanding').post(getRemoEventDataLanding)
