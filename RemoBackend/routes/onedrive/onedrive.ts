@@ -16,6 +16,7 @@ import {
   deleteStarredItem,
   getAllOneDriveDocumentItems,
 } from "../../controllers/onedrive/onedrive";
+import { getRemoPolicy } from "../../controllers/token";
 // import multer from 'multer'
 const router = Router();
 // const upload = multer({ dest: "../../uploads" });
@@ -27,6 +28,7 @@ router.route("/deleteOneDriveItem").post(deleteOneDriveItem);
 router.route("/copylinkOneDriveItem").post(copylinkDriveItem);
 router.route("/getSharedItems/:token").get(getAllOneDriveSharedItems);
 router.route("/getPolicy/:token").get(getAllOneDrivePolicyItems);
+router.route("/getPolicy/:token").get(getRemoPolicy);
 router.route("/getDocuments/:token").get(getAllOneDriveDocumentItems);
 router.route("/getRecentFiles/:token").get(getAllOneDriveRecentFiles);
 router.route("/getRecentFiles/downloadurl").post(getAllOneDriveItemDownloadUrl);

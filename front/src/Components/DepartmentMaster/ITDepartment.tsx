@@ -22,8 +22,8 @@ import LeftPanel from "./LeftPanel";
 //   isLoading: any;
 // }
 
-const ITDepartment= () => {
-// const ITDepartment: React.FC<IFolderProps> = (props: IFolderProps) => {
+const ITDepartment = () => {
+  // const ITDepartment: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
   // const { data, error, isLoading } = props;
   // console.log(data, "department");
@@ -46,7 +46,11 @@ const ITDepartment= () => {
                   separator={<NavigateNextIcon fontSize="small" />}
                   aria-label="breadcrumb"
                 >
-                  <Link className={classes.breadLinks} color="inherit" href="/">
+                  <Link
+                    className={classes.breadLinks}
+                    color="inherit"
+                    href="/departmentMasterPage"
+                  >
                     Home
                   </Link>
                   <Typography>IT</Typography>

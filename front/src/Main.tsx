@@ -106,6 +106,7 @@ import DepartmentList from "./Containers/HomeTopNav/DepartmentList";
 import OrgChart from "./Components/Quicklinks/OrgChart";
 import DepartmentMaster from "./Components/DepartmentMaster/DepartmentMaster";
 import DepartmentMasterPage from "./Pages/DepartmentMaster/DepartmentMasterPage";
+import PolicyEditorPage from "./Pages/PolicyAndProcedureMaster/PolicyEditorPage";
 
 const theme = createTheme({
   palette: {
@@ -370,7 +371,7 @@ const Main = () => {
               <Route path="/document" element={<DocumentPage />} />
               <Route path="/itDepartment" element={<ITDepartment />} />
               <Route path="/hrDepartment" element={<HRDepartment />} />
-              {/* <Route path="/departmentMaster" element={<DepartmentMaster />} /> */}
+              <Route path="/policyEditorPage" element={<PolicyEditorPage />} />
               <Route path="/departmentMasterPage" element={<DepartmentMasterPage />} />
             </Routes>
           </ThemeProvider>

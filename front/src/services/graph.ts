@@ -213,7 +213,7 @@ export const oneDriveApi: any = createApi({
     getAllPolicyItems: builder.query<any, any>({
       // query: () => '/api/v1/onedrive/getAllRootItems',
       query: (id) => ({
-        url: `/api/v1/onedrive/getPolicy`,
+        url: `/api/v1/onedrive/getPolicy/${id}`,
         method: "GET",
         headers: { authorization: `${AccessToken}` },
       }),

@@ -36,7 +36,7 @@ const HRDepartment = () => {
                   separator={<NavigateNextIcon fontSize="small" />}
                   aria-label="breadcrumb"
                 >
-                  <Link className={classes.breadLinks} color="inherit" href="/">
+                  <Link className={classes.breadLinks} color="inherit" href="/departmentMasterPage">
                     Home
                   </Link>
                   <Typography>HR</Typography>

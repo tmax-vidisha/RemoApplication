@@ -52,8 +52,24 @@ const DepartmentMaster: React.FC<IFolderProps> = (props: IFolderProps) => {
                     >
                       Home
                     </Link>
-                    <Typography>HR</Typography>
-                    <Typography>IT</Typography>
+                    <Typography>
+                      <Link
+                        className={classes.breadLinks}
+                        color="inherit"
+                        href="/hrDepartment"
+                      >
+                        HR
+                      </Link>
+                    </Typography>
+                    <Typography>
+                      <Link
+                        className={classes.breadLinks}
+                        color="inherit"
+                        href="/itDepartment"
+                      >
+                        IT
+                      </Link>
+                    </Typography>
                   </Breadcrumbs>
                 </Typography>
               </Paper>
@@ -67,7 +83,7 @@ const DepartmentMaster: React.FC<IFolderProps> = (props: IFolderProps) => {
                 var departmentImg = fields?.Image;
                 var departmentText = fields.Description;
                 var departmentIsActive = fields.IsActive;
-                var departPath=fields.path;
+                var departPath = fields.path;
                 return (
                   <Grid
                     container
@@ -78,10 +94,11 @@ const DepartmentMaster: React.FC<IFolderProps> = (props: IFolderProps) => {
                   >
                     <Grid item xs={12} md={4} className={classes.imgPart}>
                       <img
-                          src={sustain}
-                          alt="department"
-                          className={classes.imgFlag}
-                        />
+                        src={sustain}
+                        alt="department"
+                        className={classes.imgFlag}
+                        onClick={departPath}
+                      />
                     </Grid>
                     <Grid item xs={12} md={8} className={classes.contentPart}>
                       <h2>{departmentName}</h2>

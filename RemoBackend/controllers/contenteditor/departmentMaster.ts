@@ -83,25 +83,14 @@ const postDepartmentMaster = asyncHandler(async (req: Request, res: Response) =>
       designation,
       Name,
       isDraft,
-      // ceotitle,ceodesc,ceousername,
-      //  ceoposition,ceopic,ceopicname,
-      //  newstitle,newsdesc,newspic,newspicname,
-      //  employyetitle, empname,empdept,emppic,emppicname,
-      //  userquicklink,globalquicklink
+      
     } = req.body;
     console.log(isActive, "isActive");
     console.log(isDraft, "isDraft");
     const Image = blobStorage(image, imageName);
     // const File = blobStorage1(Attachment, Attachmentname)
     console.log(Image, "rtretrt");
-    //  console.log(File, 'tththththth')
-    // //    console.log( title,imageName,isActive,EnableLikes,'ytjytjytjty')
-    // console.log(description,'thgtrhj67k87k87k87k87')
-    //  console.log(image,'thgtrhj67k87k87k87k87')
-    //  console.log(globalquicklink,'rgtreyrewyreyweywsF')
-    // console.log(empname,'tey54u6565ieutudrusya')
-    // console.log(empdept,'gregrthtrht')
-    // console.log(emppicname,'gregrthtrht')
+    
     if (!token) {
       // const dataFiles = await createRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Events_Id}/items?$expand=fields`, token )
       // console.log(dataFiles,'dgdfgthtrhytjytjyt')
@@ -115,7 +104,7 @@ const postDepartmentMaster = asyncHandler(async (req: Request, res: Response) =>
         error: "No Token found",
       });
     } else {
-      console.log("lllllllllllllllllllllllll");
+      console.log("depart data");
       const Data = {
         fields: {
           Title: title,
@@ -163,22 +152,6 @@ const postDepartmentMaster = asyncHandler(async (req: Request, res: Response) =>
         });
       }
   
-      //     const response =
-      //     // await axios.get('https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location', {
-      //       await axios.get(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/lists/4d933ed8-bce3-4429-9af6-8e509eb6d2dc/items?$expand=fields`, {
-      //       headers: {
-      //           'Authorization': `Bearer ${token} `,
-      //           'Content-Type': 'application/json'
-  
-      //         }
-  
-      //   })
-      //   console.log(response.data.value,"meetingssssssssssssssssssssssss" )
-      //   res.status(200).json({
-      //     success: true,
-      //     response :response.data.value
-  
-      //  });
     }
   });
   
