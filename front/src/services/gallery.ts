@@ -12,6 +12,7 @@ export const galleryApi = createApi({
     baseQuery: fetchBaseQuery({
         // baseUrl: 'http://20.80.251.108/',
          baseUrl: 'http://localhost:4000/',
+        // baseUrl: "https://remoapp23.remodigital.in/",
          prepareHeaders: async (headers, query) => {
             const authResult = await myAsync();
             if (authResult ) {

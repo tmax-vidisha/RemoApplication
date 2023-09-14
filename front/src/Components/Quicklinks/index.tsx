@@ -102,7 +102,7 @@ import { configuration } from "../../index";
                       menuIconHover?.serverUrl +
                       menuIconHover?.serverRelativeUrl;
                     var menuStatus = false;
-                    if (linkName != "" && menuImg != "" && menuImgHover != "") {
+                    if (linkName !== "" && menuImg !== "" && menuImgHover !== "") {
                       menuStatus = true;
                     }
 

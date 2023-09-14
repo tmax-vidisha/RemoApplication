@@ -72,7 +72,7 @@ const IconText = (props: any) => {
       label: "Org Chart",
       Icon: orgChart,
       iconHover: orgChart,
-      onClick: () => history.push("/orgChart"),
+      onClick: () => history.push("/orgChartPage"),
       to: "/orgChart",
     },
   ];

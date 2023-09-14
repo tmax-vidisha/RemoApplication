@@ -89,6 +89,7 @@ export const graphApi = createApi({
   // baseQuery: fetchBaseQuery({baseUrl: 'http://20.80.251.108/',
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4000/",
+   // baseUrl: "https://remoapp23.remodigital.in/",
     // prepareHeaders: (headers, { getState }) => {
     //     // headers.set('Authorization', `Bearer ${access_token}`);
     //     headers.set('Content-Type', 'application/json');
@@ -343,7 +344,7 @@ export const graphApi = createApi({
       // //@ts-ignore
       // providesTags: cacher.providesList("User"),
       keepUnusedDataFor: 5,
-     providesTags: ["Policy"],
+      providesTags: ["Policy"],
     }),
     getNavigationId: builder.query<any, any>({
       query: () => `listInfo`,
