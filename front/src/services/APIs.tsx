@@ -89,6 +89,7 @@ export const graphApi = createApi({
   // baseQuery: fetchBaseQuery({baseUrl: 'http://20.80.251.108/',
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4000/",
+   // baseUrl: "https://remoapp23.remodigital.in/",
     // prepareHeaders: (headers, { getState }) => {
     //     // headers.set('Authorization', `Bearer ${access_token}`);
     //     headers.set('Content-Type', 'application/json');
@@ -330,20 +331,20 @@ export const graphApi = createApi({
       },
     }),
     getPolicy: builder.query<any, any>({
-      query: () => `Policy`,
-      transformResponse: (response: any) => {
-        // let y;
-        const resp = response.value;
-        return resp;
-      },
-      // query: (id) => ({
-      //   url: `/api/v1/onedrive/getPolicy/${id}`,
-      //   headers: { authorization: `${AccessToken}` },
-      // }),
+      // query: () => `Policy`,
+      // transformResponse: (response: any) => {
+      //   // let y;
+      //   const resp = response.value;
+      //   return resp;
+      // },
+      query: (id) => ({
+        url: `/api/v1/onedrive/getPolicy/${id}`,
+        headers: { authorization: `${AccessToken}` },
+      }),
       // //@ts-ignore
       // providesTags: cacher.providesList("User"),
-      //  keepUnusedDataFor: 5,
-      //providesTags: ["Policy"],
+      keepUnusedDataFor: 5,
+      providesTags: ["Policy"],
     }),
     getNavigationId: builder.query<any, any>({
       query: () => `listInfo`,

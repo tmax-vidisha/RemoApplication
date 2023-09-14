@@ -1,6 +1,7 @@
 import React from "react";
-import {  useState } from "react";
+import { useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+
 import {
   Button,
   CircularProgress,
@@ -9,7 +10,18 @@ import {
   Grid,
   Menu,
   MenuItem,
+  Paper,
+  SelectChangeEvent,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
   TextField,
+  Link,
+  Checkbox,
 } from "@mui/material";
 import folder from "./../../Assets/Images/folder.svg";
 import excel from "./../../Assets/Images/excel.svg";
@@ -23,13 +35,23 @@ import { Box } from "@mui/material";
 import { useStyles } from "./Styles";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import { useUploadFileOneDriveMutation } from "../../services/graph";
-
+import moment from "moment";
+import folderImg from "../../Assets/Images/whiteFolder.svg";
 
 interface IFolderProps {
-  onClick?: (obj: any) => void;
   data: any;
-  isLoading: any;
   isSuccess: any;
+  isLoading: any;
+  onCopy?: (id: string, name: string) => void;
+  copyResponse: any;
+  onClick?: (id: string, name: string) => void;
+  downloadUrl: any;
+  onDelete?: (id: string, name: string) => void;
+  deleteResponse: any;
+  deleteLoading: any;
+  deleteSuccess: any;
+  copySuccess: any;
+  copyLoading: any;
 }
 
 // const columns: GridColDef[] = [
@@ -64,8 +86,23 @@ interface IFolderProps {
 
 const PoliciesEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const classes = useStyles();
-  const { onClick, data, isLoading, isSuccess } = props;
+  const {
+    data,
+    isLoading,
+    isSuccess,
+    onCopy,
+    copyResponse,
+    onClick,
+    downloadUrl,
+    onDelete,
+    deleteResponse,
+    deleteLoading,
+    deleteSuccess,
+    copyLoading,
+    copySuccess,
+  } = props;
   console.log(data, "policy editor data");
+  console.log(data?.response[0], "policy editor data");
   const [openOne, setOpenOne] = React.useState<boolean>(false);
   // const [sendItem] = useUploadItemInAnnouncementMutation();
 
@@ -109,7 +146,10 @@ const PoliciesEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   const handleClickOne = (popup: any) => {
     setOpenOne(true);
   };
-
+  const [showResult, setShowResult] = useState(false);
+  const onClickShow = () => {
+    setShowResult(true);
+  };
   const handleCloseOne = () => {
     setOpenOne(false);
   };
@@ -189,7 +229,6 @@ const PoliciesEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
     setOpenFive(false);
   };
 
-
   const [
     sendItem,
     {
@@ -203,31 +242,110 @@ const PoliciesEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   } else if (createdSuccess) {
     console.log("Created");
   }
- 
-  let content;
-  if (isLoading) {
-    content = <CircularProgress />;
-  } else if (isSuccess) {
-    content = (
-      <div style={{ display: "flex", height: "100%" }}>
-        <Box sx={{ flexGrow: 1 }}>
-          {data?.response && (
-            <DataGrid
-              // autoHeight
-              // autoWidth
-              getRowId={(row) => row.id}
-              rows={data?.response}
-              columns={columns}
-              pageSize={5}
-              rowsPerPageOptions={[5]}
-              checkboxSelection
-              //sx={{ height: '100%', width: '100%' }}
-            />
-          )}
-        </Box>
-      </div>
-    );
+
+  const [itemId, setItemId] = useState<string>("");
+  const [itemName, setItemName] = useState<string>("");
+  const [itemfolder, setItemFolder] = useState<any>();
+  const [downUrl, setDownUrl] = useState<string>("");
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value);
+  };
+
+  const de = (
+    id: any,
+    name: any,
+    folder: any
+    // download:any
+  ) => {
+    //  console.log(download,'ygrerthtrhy')
+    //    console.log(id,name)
+    // console.log(folder)
+    setItemId(id);
+    setItemName(name);
+    setItemFolder(folder);
+    // if (folder === undefined) {
+    //     setDownUrl(download)
+    // }
+  };
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+  const [userData, setUserdata] = useState<any>([]);
+  const [sortedData, setSortedData] = useState<any>("");
+  const sortAscending = () => {
+    // console.log('newest')
+    setSortedData("newest");
+    console.log(sortedData);
+  };
+
+  const sortDescending = () => {
+    // console.log('oldest')
+    setSortedData("oldest");
+    console.log(sortedData);
+  };
+
+  const units = [
+    "bytes",
+    "KiB",
+    "MiB",
+    "GiB",
+    "TiB",
+    "PiB",
+    "EiB",
+    "ZiB",
+    "YiB",
+  ];
+
+  function niceBytes(x: any) {
+    let l = 0,
+      n = parseInt(x, 10) || 0;
+
+    while (n >= 1024 && ++l) {
+      n = n / 1024;
+    }
+
+    return n.toFixed(n < 10 && l > 0 ? 1 : 0) + " " + units[l];
   }
+  const handleBoxChange = (e: any) => {
+    let array = [];
+    const { name, checked } = e.target;
+    if (name === "allSelect") {
+      let tempUser = data?.response.map((user: any) => {
+        return { ...user, isChecked: checked };
+      });
+
+      console.log(tempUser, "all");
+      //@ts-ignore
+      setSelectData(tempUser);
+      //@ts-ignore
+      setUserdata(tempUser);
+    } else {
+      //@ts-ignore
+      let tempUser = userData.map((user: any) =>
+        user.name === name ? { ...user, isChecked: checked } : user
+      );
+      console.log(tempUser, "ltt");
+
+      //@ts-ignore
+      setSelectData(tempUser);
+      //@ts-ignore
+      setUserdata(tempUser);
+    }
+  };
+
   return (
     <div className={classes.Section}>
       <Box className={classes.MainPart}>
@@ -459,14 +577,149 @@ const PoliciesEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
             </Menu>
           </Grid>
         </Grid>
-        {/* <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        /> */}
-        {content}
+        <Grid style={{ marginTop: "30px", width: "750px" }}>
+          <TableContainer component={Paper}>
+            <Table sx={{ width: 750 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell
+                    className={classes.theadCell}
+                    onClick={onClickShow}
+                  >
+                    {/* <Checkbox
+                                       name="allselect"
+                                       checked= { !data?.response.some( (user:any)=>user?.isChecked!==true)}
+                                        onChange={handleBoxChange} /> */}
+                    {/* <Checkbox name="allselect" checked= { !data?.response.some( (user:any)=>user?.isChecked!==true)} onChange={ handleBoxChange}  />  */}
+                    <Checkbox
+                      name="allSelect"
+                      checked={
+                        data?.response.filter(
+                          (user: any) => user?.isChecked !== true
+                        ).length < 1
+                      }
+                      onChange={handleBoxChange}
+                    />
+                  </TableCell>
+                  <TableCell className={classes.nameTableCell} align="left">
+                    Name
+                  </TableCell>
+                  <TableCell className={classes.theadCell} align="right">
+                    Modified By
+                  </TableCell>
+                  <TableCell className={classes.theadCell} align="right">
+                    Modified Date
+                  </TableCell>
+                  <TableCell className={classes.theadCell} align="right">
+                    File Size
+                  </TableCell>
+                  {/* <TableCell className={classes.theadCell}>Actions</TableCell> */}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {/* {rows.map((row) => (
+                            <TableRow
+                                key={row.name}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="right">{row.lastModifiedBy}</TableCell>
+                                <TableCell align="right">{row.ModifiedDate}</TableCell>
+                                <TableCell align="right">{row.fileSize}</TableCell>
+                                <TableCell align="right">{row.Actions}</TableCell>
+                            </TableRow>
+                        ))} */}
+                {isLoading && <CircularProgress />}
+
+                {isSuccess && (
+                  <>
+                    {data?.response &&
+                      data?.response
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((item: any, index: any) => {
+                          let createdDate = moment(
+                            item.lastModifiedDateTime
+                          ).format("DD-MMM-YYYY");
+
+                          return (
+                            <TableRow
+                              key={index}
+                              sx={{
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
+                            >
+                              <TableCell
+                                className={classes.theadCell}
+                                onClick={onClickShow}
+                              >
+                                <Checkbox
+                                  name={item.name}
+                                  checked={item?.isChecked || false}
+                                  // checked ={checked.includes(item)}
+                                  onChange={handleBoxChange}
+                                />
+                                {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
+                                {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
+                              </TableCell>
+                              <TableCell
+                                component="th"
+                                scope="row"
+                                className={classes.TableCell}
+                              >
+                                <img
+                                  src={folderImg}
+                                  alt="folder"
+                                  style={{
+                                    width: "25px",
+                                    marginRight: "15px",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                                <Link href={`${item.webUrl}`}>{item.name}</Link>
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                className={classes.TableCell}
+                              >
+                                {item.lastModifiedBy.user.displayName}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                className={classes.TableCell}
+                              >
+                                {createdDate}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                className={classes.TableCell}
+                              >
+                                {niceBytes(item.size)}
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })}
+                  </>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 20]}
+            component="div"
+            count={data?.response.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Grid>
       </Box>
     </div>
   );

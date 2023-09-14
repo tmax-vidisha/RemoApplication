@@ -9,6 +9,7 @@ export const contentEditorApi = createApi({
   baseQuery: fetchBaseQuery({
     // baseUrl: 'http://20.80.251.108/',
     baseUrl: "http://localhost:4000/",
+   // baseUrl: "https://remoapp23.remodigital.in/",
     // prepareHeaders: (headers, { getState }) => {
     //     // headers.set('Authorization', `Bearer ${access_token}`);
     //     headers.set('Content-Type', 'application/json');

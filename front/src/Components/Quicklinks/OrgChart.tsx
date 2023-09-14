@@ -18,7 +18,6 @@ import boss from "../../Assets/Images/boss.png";
 import plus from "../../Assets/Images/plusOrg.svg";
 import minus from "../../Assets/Images/minusOrg.svg";
 import { useState } from "react";
-import NewOrgChart from "./NewOrgChart";
 
 interface type {
   div: any[];
@@ -44,16 +43,16 @@ const StyledNode = styled("div")`
 //     cursor: hasChildren ? "pointer" : "default",
 //   })
 // );
-// interface IFolderProps {
-//   data:any, 
-//   error:any,
-//   isLoading:any
-// }
+interface IFolderProps {
+  data: any;
+  error: any;
+  isLoading: any;
+}
 
-// const OrgChart: React.FC<IFolderProps> = (props: IFolderProps) => {
-const OrgChart= ()=> {
-  // const { data, error, isLoading } = props;
-   // console.log(data,'org chart');
+const OrgChart: React.FC<IFolderProps> = (props: IFolderProps) => {
+  //const OrgChart= ()=> {
+  const { data, error, isLoading } = props;
+  console.log(data, "org chart front");
   const classes = useStyles();
   let location = useLocation();
   const [show, setShow] = useState(false);
@@ -94,6 +93,31 @@ const OrgChart= ()=> {
       setChildNodes([...childNodes, nodeId]);
     }
   };
+  const ceo = () => {
+    let level_1 = data?.response?.filter(
+      (item: any) => item.Level === "Org_level_1"
+    );
+  };
+  const manager = () => {
+    let empData = data?.response?.map((item: any) => item?.fields);
+    let level_1 = empData?.filter((item: any) => item.Levels === "Org-level-1");
+    let level_2: [] = level_1?.map((item: any) => {
+      console.log(
+        "level2",
+        empData.filter(
+          (item2: any) => item2.Manager_code === item.Employee_code
+        )
+      );
+      return {
+        ...item,
+        children: empData.filter(
+          (item2: any) => item2.Manager_code === item.Employee_code
+        ),
+      };
+    });
+    console.log(level_1, level_2, "level");
+    return level_2;
+  };
 
   return (
     <div>
@@ -117,7 +141,11 @@ const OrgChart= ()=> {
                   <Link className={classes.breadLinks} color="inherit" href="/">
                     Home
                   </Link>
-                  <Link className={classes.breadLinks} color="inherit" href="/">
+                  <Link
+                    className={classes.breadLinks}
+                    color="inherit"
+                    href="/orgChartPage"
+                  >
                     <Typography> OrgChart </Typography>
                   </Link>
                 </Breadcrumbs>
@@ -131,7 +159,7 @@ const OrgChart= ()=> {
             xs={12}
             style={{ backgroundColor: "white", padding: "30px" }}
           >
-            <Tree
+            {/* <Tree
               lineWidth={"2px"}
               lineColor={"green"}
               lineBorderRadius={"10px"}
@@ -170,44 +198,6 @@ const OrgChart= ()=> {
             >
               {expandedNodes.includes("nodeId1") && (
                 <>
-                  {/* <TreeNode
-                    key="nodeId1"
-                    label={
-                      <StyledNode>
-                        <div className={classes.OrgBox}>
-                          <img
-                            src={boss}
-                            alt="boss"
-                            className={classes.orgImg}
-                          />
-                          <div>
-                            <p className={classes.pTextOrg}>
-                              TariqAl Ghussein Al
-                            </p>
-                            <p className={classes.TextOrg}>
-                              Chief Executive Officer
-                            </p>
-                          </div>
-                          <div>
-                            <img
-                              src={plus}
-                              alt="plus"
-                              className={classes.plusMinus}
-                              onClick={onClickShowResults}
-                            />
-                          </div>
-                        </div>
-                      </StyledNode>
-                    }
-                  >
-                    <TreeNode
-                      label={
-                        <StyledNode onClick={() => handleChildNode("nodeId1")}>
-                          Grand Child
-                        </StyledNode>
-                      }
-                    />
-                  </TreeNode> */}
                   <TreeNode
                     label={
                       <StyledNode>
@@ -344,7 +334,6 @@ const OrgChart= ()=> {
                         </StyledNode>
                       }
                     />
-                    {/* <TreeNode label={<StyledNode></StyledNode>} /> */}
                   </TreeNode>
                   <TreeNode
                     label={
@@ -412,10 +401,106 @@ const OrgChart= ()=> {
                   </TreeNode>
                 </>
               )}
-            </Tree>
+            </Tree> */}
           </Grid>
         </Paper>
-        {/* <NewOrgChart/> */}
+        <div>
+          {data?.response &&
+            manager()?.map((item: any, index: any) => {
+              const { fields = {} } = item;
+
+              let Name = fields?.Legal_name;
+              let position = fields?.Position_long_description;
+              let email = fields?.Communication_Email;
+              let profile = fields?.UserProfileUrl;
+
+              return (
+                <Tree
+                  lineWidth={"2px"}
+                  lineColor={"green"}
+                  lineBorderRadius={"10px"}
+                  label={
+                    <StyledNode>
+                      <div
+                        className={classes.OrgBox}
+                        onClick={() => handleNodeClick("nodeId1")}
+                      >
+                        <img
+                          src={profile}
+                          alt="boss"
+                          className={classes.orgImg}
+                        />
+                        <div>
+                          <p className={classes.pTextOrg}>{Name}</p>
+                          <p className={classes.TextOrg}>{position}</p>
+                          <p className={classes.TextOrg}>{email}</p>
+                        </div>
+                        <div>
+                          {isActive ? (
+                            <img
+                              src={plus}
+                              alt="plus"
+                              className={classes.plusMinus}
+                              onClick={onClickShowResults}
+                            />
+                          ) : (
+                            <img
+                              src={minus}
+                              alt="plus"
+                              className={classes.plusMinus}
+                              onClick={handleHide}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </StyledNode>
+                  }
+                >
+                  {expandedNodes.includes("nodeId2") && (
+                    <>
+                      <TreeNode
+                        key="nodeId2"
+                        label={
+                          <StyledNode>
+                            <div className={classes.OrgBox}>
+                              <img
+                                src={profile}
+                                alt="boss"
+                                className={classes.orgImg}
+                              />
+                              <div>
+                                <p className={classes.pTextOrg}>{Name}</p>
+                                <p className={classes.TextOrg}>{position}</p>
+                                <p className={classes.TextOrg}>{email}</p>
+                              </div>
+                              <div>
+                                <img
+                                  src={plus}
+                                  alt="plus"
+                                  className={classes.plusMinus}
+                                  onClick={onClickShowResults}
+                                />
+                              </div>
+                            </div>
+                          </StyledNode>
+                        }
+                      >
+                        <TreeNode
+                          label={
+                            <StyledNode
+                              onClick={() => handleChildNode("nodeId3")}
+                            >
+                              Grand Child
+                            </StyledNode>
+                          }
+                        />
+                      </TreeNode>
+                    </>
+                  )}
+                </Tree>
+              );
+            })}
+        </div>
       </Container>
     </div>
   );

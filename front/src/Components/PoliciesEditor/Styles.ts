@@ -8,6 +8,15 @@ export const useStyles = makeStyles({
     color: "#ffffff !important",
     height: "315px",
   },
+  nameTableCell: {
+    padding: "13px 4px!important",
+    fontSize: "12px !important",
+    color: "#606C74 !important",
+    fontFamily: " 'DM Sans', sans-serif!important",
+    textAlign: "left",
+    width: "100px",
+    overflowWrap: "break-word",
+  },
   menuImage: {
     marginRight: "20px",
   },

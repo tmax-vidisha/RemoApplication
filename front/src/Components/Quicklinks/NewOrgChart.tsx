@@ -1,184 +1,207 @@
+import { styled } from "@mui/material";
 import React from "react";
+import { Tree, TreeNode } from "react-organizational-chart";
+import IconText from "../Header/IconText";
+import {
+  Container,
+  Grid,
+  Typography,
+  Card,
+  Link,
+  Breadcrumbs,
+  Paper,
+} from "@mui/material";
+import { useStyles } from "./Styles";
+import { useLocation } from "react-router-dom";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import boss from "../../Assets/Images/boss.png";
+import plus from "../../Assets/Images/plusOrg.svg";
+import minus from "../../Assets/Images/minusOrg.svg";
+import { useState } from "react";
+
+interface Employee {
+  id: number;
+  Name: string;
+  position: string;
+  profile: string;
+  children?: Employee[];
+}
+
+const StyledNode = styled("div")`
+  padding: 5px;
+  border-radius: 8px;
+  display: inline-block;
+  // border: 1px solid white;
+`;
 
 const NewOrgChart = () => {
+  const classes = useStyles();
+  const sampleData: Employee[] = [
+    {
+      id: 1,
+      Name: "CEO",
+      position: "Chief Executive Officer",
+      profile: "profile1.jpg",
+      children: [
+        {
+          id: 2,
+          Name: "Manager 1",
+          position: "Manager",
+          profile: "profile2.jpg",
+          children: [
+            {
+              id: 3,
+              Name: "Employee 1.1",
+              position: "Employee",
+              profile: "profile3.jpg",
+            },
+            // Add more employees here
+          ],
+        },
+        {
+          id: 4,
+          Name: "Manager 2",
+          position: "Manager",
+          profile: "profile4.jpg",
+          children: [
+            {
+              id: 5,
+              Name: "Employee 2.1",
+              position: "Employee",
+              profile: "profile5.jpg",
+            },
+            // Add more employees here
+          ],
+        },
+        // Add more managers here
+      ],
+    },
+  ];
+
+  const [expandedNodes, setExpandedNodes] = useState<number[]>([]);
+
+  const handleNodeClick = (nodeId: number) => {
+    if (expandedNodes.includes(nodeId)) {
+      setExpandedNodes(expandedNodes.filter((id) => id !== nodeId));
+    } else {
+      setExpandedNodes([...expandedNodes, nodeId]);
+    }
+  };
+  const renderEmployee = (employee: Employee) => (
+    <div key={employee.id}>
+      <div onClick={() => handleNodeClick(employee.id)}>
+        <p>Name: {employee.Name}</p>
+        <p>Position: {employee.position}</p>
+      </div>
+      {expandedNodes.includes(employee.id) && employee.children && (
+        <div>{employee.children.map((child) => renderEmployee(child))}</div>
+      )}
+    </div>
+  );
+
+  const [isActive, setIsActive] = useState(false);
+  const [showResults, setShowResults] = React.useState(false);
+
+  const [show2, setShow2] = React.useState(false);
+  const onClickShowResults = () => {
+    setIsActive(!isActive);
+    setShowResults(true);
+  };
+  const onClickShow = () => {
+    setShow2(!show2);
+  };
+  const handleHide = () => {
+    setIsActive(isActive);
+    setShowResults(false);
+  };
+  const HideIcon = () => {
+    setShow2(show2);
+  };
+
   return (
     <div>
-      <div className="content">
-        <h1>Responsive Organization Chart</h1>
-        <figure className="org-chart cf">
-          <ul className="administration">
-            <li>
-              <ul className="director">
-                <li>
-                  <a href="/" ref="">
-                    <span>Director</span>
-                  </a>
-                  <ul className="subdirector">
-                    <li>
-                      <a href="/" ref="">
-                        <span>Assistante Director</span>
-                      </a>
-                    </li>
-                  </ul>
-                  <ul className="departments cf">
-                    <li>
-                      <a href="/" ref="">
-                        <span>Administration</span>
-                      </a>
-                    </li>
-
-                    <li className="department dep-a">
-                      <a href="/" ref="">
-                        <span>Department A</span>
-                      </a>
-                      <ul className="sections">
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section A1</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section A2</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section A3</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section A4</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section A5</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="department dep-b">
-                      <a href="/" ref="">
-                        <span>Department B</span>
-                      </a>
-                      <ul className="sections">
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section B1</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section B2</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section B3</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section B4</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="department dep-c">
-                      <a href="/" ref="">
-                        <span>Department C</span>
-                      </a>
-                      <ul className="sections">
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section C1</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section C2</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section C3</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section C4</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="department dep-d">
-                      <a href="/" ref="">
-                        <span>Department D</span>
-                      </a>
-                      <ul className="sections">
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section D1</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section D2</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section D3</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section D4</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section D5</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section D6</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="department dep-e">
-                      <a href="/" ref="">
-                        <span>Department E</span>
-                      </a>
-                      <ul className="sections">
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section E1</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section E2</span>
-                          </a>
-                        </li>
-                        <li className="section">
-                          <a href="/" ref="">
-                            <span>Section E3</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </figure>
-      </div>
+      <Tree
+        lineWidth={"2px"}
+        lineColor={"green"}
+        lineBorderRadius={"10px"}
+        label={undefined}
+      >
+        {sampleData.map((item) => (
+          <TreeNode
+            key={item.id}
+            label={
+              <StyledNode>
+                <div
+                  className={classes.OrgBox}
+                  onClick={() => handleNodeClick(item.id)}
+                >
+                  <img
+                    src={item.profile}
+                    alt="boss"
+                    className={classes.orgImg}
+                  />
+                  <div>
+                    <p className={classes.pTextOrg}>{item.Name}</p>
+                    <p className={classes.TextOrg}>{item.position}</p>
+                  </div>
+                  <div>
+                    {expandedNodes.includes(item.id) ? (
+                      <img
+                        src={plus}
+                        alt="plus"
+                        className={classes.plusMinus}
+                        onClick={onClickShowResults}
+                      />
+                    ) : (
+                      <img
+                        src={minus}
+                        alt="minus"
+                        className={classes.plusMinus}
+                        onClick={handleHide}
+                      />
+                    )}
+                  </div>
+                </div>
+              </StyledNode>
+            }
+          >
+            {expandedNodes.includes(item.id) && item.children && (
+              <>
+                {item.children.map((child) => (
+                  <TreeNode
+                    key={child.id}
+                    label={
+                      <StyledNode>
+                        <div className={classes.OrgBox}>
+                          <img
+                            src={child.profile}
+                            alt="boss"
+                            className={classes.orgImg}
+                          />
+                          <div>
+                            <p className={classes.pTextOrg}>{child.Name}</p>
+                            <p className={classes.TextOrg}>{child.position}</p>
+                          </div>
+                          <div>
+                            <img
+                              src={plus}
+                              alt="plus"
+                              className={classes.plusMinus}
+                              onClick={onClickShowResults}
+                            />
+                          </div>
+                        </div>
+                      </StyledNode>
+                    }
+                  >
+                    {/* Render grandchildren nodes here if needed */}
+                  </TreeNode>
+                ))}
+              </>
+            )}
+          </TreeNode>
+        ))}
+      </Tree>
     </div>
   );
 };

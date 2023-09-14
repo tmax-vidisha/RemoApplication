@@ -36,6 +36,7 @@ import Table from "@mui/material/Table";
 import { Paper } from "@mui/material";
 import useCustom from "../../../hooks/useCustom";
 import Breadcrumb from "../../../hooks/Breadcrumb";
+import folderImg from "../../../Assets/Images/whiteFolder.svg";
 import {
   useGetAllRootItemsOneDriveQuery,
   useGetItemChildrenOneDriveMutation,
@@ -662,7 +663,7 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
 
   const sortDescending = () => {
-    console.log("ththshththssssssssssssssssssssssssss");
+    console.log("oldest");
     setMode("oldest");
     console.log(mode, "trgtrhtttttttttttttttt");
 
@@ -904,12 +905,21 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                       }}
                                       // href={`${url}`}
                                     >
-                                      <img
+                                      {/* <img
                                         src={imageB}
                                         alt="..."
                                         style={{
                                           width: "15px",
                                           marginRight: "3px",
+                                        }}
+                                      /> */}
+                                      <img
+                                        src={folderImg}
+                                        alt="folder"
+                                        style={{
+                                          width: "25px",
+                                          marginRight: "15px",
+                                          borderRadius: "5px",
                                         }}
                                       />
                                       {item.name}
@@ -1017,12 +1027,21 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                       }}
                                       // href={`${url}`}
                                     >
-                                      <img
+                                      {/* <img
                                         src={imageB}
                                         alt="..."
                                         style={{
                                           width: "15px",
                                           marginRight: "3px",
+                                        }}
+                                      /> */}
+                                       <img
+                                        src={folderImg}
+                                        alt="folder"
+                                        style={{
+                                          width: "25px",
+                                          marginRight: "15px",
+                                          borderRadius: "5px",
                                         }}
                                       />
                                       {item.name}
@@ -1124,6 +1143,15 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                       }}
                                       // href={`${url}`}
                                     >
+                                       <img
+                                        src={folderImg}
+                                        alt="folder"
+                                        style={{
+                                          width: "25px",
+                                          marginRight: "15px",
+                                          borderRadius: "5px",
+                                        }}
+                                      />
                                       {item.name}
                                     </Link>
                                   </TableCell>

@@ -55,7 +55,7 @@ const Policy_Id =
 const postRemoPolicy = asyncHandler(async (req: Request, res: Response) => {
   // console.log(req.body)
   // const {token} = req.params
-  console.log(req.headers.authorization, "tccccttddddttttvvvvvtttttttyy");
+  console.log(req.headers.authorization, "policy header");
   const token = req.headers.authorization;
   const {
     // token,

@@ -310,13 +310,16 @@ export const useStyles = makeStyles({
     marginTop: "20px",
     textAlign: "left",
   },
+  "css-abs8yp-MuiTableCell-root": {
+    textAlign: "left",
+  },
   theadCell: {
     color: "#606C74 !important",
     fontSize: "12px !important",
     padding: "5px 5px !important",
     fontWeight: "600 !important",
     fontFamily: " 'DM Sans', sans-serif!important",
-    textAlign: "left",
+    textAlign: "center",
   },
   TableCell: {
     padding: "13px 4px!important",
@@ -324,7 +327,7 @@ export const useStyles = makeStyles({
     color: "#606C74 !important",
     fontFamily: " 'DM Sans', sans-serif !important",
     // display:"block",
-    textAlign: "left",
+    textAlign: "center",
   },
   nameTableCell: {
     padding: "13px 4px!important",

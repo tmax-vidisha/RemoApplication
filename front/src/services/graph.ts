@@ -15,6 +15,7 @@ export const usersApi = createApi({
   baseQuery: fetchBaseQuery({
     // baseUrl: 'http://20.80.251.108/',
     baseUrl: "http://localhost:4000/",
+   // baseUrl: "https://remoapp23.remodigital.in/",
     prepareHeaders: async (headers, query) => {
       const authResult = await myAsync();
       if (authResult) {
@@ -83,6 +84,7 @@ export const oneDriveApi: any = createApi({
   baseQuery: fetchBaseQuery({
     // baseUrl: 'http://20.80.251.108/',
     baseUrl: "http://localhost:4000/",
+    //baseUrl: "https://remoapp23.remodigital.in/",
     // prepareHeaders: (headers, { getState }) => {
     //   // headers.set('Authorization', `Bearer ${access_token}`);
     //    headers.set('Content-Type', 'application/json');
@@ -213,7 +215,7 @@ export const oneDriveApi: any = createApi({
     getAllPolicyItems: builder.query<any, any>({
       // query: () => '/api/v1/onedrive/getAllRootItems',
       query: (id) => ({
-        url: `/api/v1/onedrive/getPolicy`,
+        url: `/api/v1/onedrive/getPolicy/${id}`,
         method: "GET",
         headers: { authorization: `${AccessToken}` },
       }),

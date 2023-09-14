@@ -225,7 +225,7 @@ export const useStyles = makeStyles({
   },
   OrgBox: {
     width: "150px",
-    height: "80px",
+    height: "auto",
     border: "1px solid #eee7e7",
     boxShadow: "5px 3px 10px 4px #eee7e7",
     margin: "15px",

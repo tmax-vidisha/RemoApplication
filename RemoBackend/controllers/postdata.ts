@@ -745,7 +745,8 @@ const postPolicyData = asyncHandler(async (req: Request, res: Response) => {
   } else {
 
     // if(token && eventtitle && eventdesc && enddate ){
-    const Policy = await createPostRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Policy_Id}/items`, token, policymodified, policymodifiedBy)
+    //const Policy = await createPostRequset(`${BASE_PATH}/${REMO_SITE_ID}/lists/${Policy_Id}/items`, token, policymodified, policymodifiedBy)
+    const Policy = await createPostRequset(`https://graph.microsoft.com/v1.0/sites/tmxin.sharepoint.com,39018770-3534-4cef-a057-785c43b6a200,47c126a5-33ee-420a-a84a-c8430a368a43/drives/b!cIcBOTQ170ygV3hcQ7aiAKUmwUfuMwpCqErIQwo2ikPU-UPjxittT53b2Hcjy4dk/root/children`, token, policymodified, policymodifiedBy)
     console.log(Policy, 'Policy')
     res.status(200).json({
       // success: true,
