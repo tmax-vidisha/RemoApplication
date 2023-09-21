@@ -185,9 +185,11 @@ export const useStyles = makeStyles({
   },
   new: {
     width: "100px",
-    backgroundColor: "#009BAD",
+    // backgroundColor: "#009BAD",
     borderRadius: "5px",
     marginRight: "20px",
+    marginLeft: "50px",
+    marginTop: "-30px",
     "& MuiButton": {
       color: "white !important",
       backgroundColor: "#009BAD",

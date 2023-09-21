@@ -21,7 +21,7 @@ const PoliciesContentPage = () => {
               <SideBar />
             </Grid>
             <Grid item xs={12} md={11}>
-              <PolicyEditorPage/>
+              <PolicyEditorPage />
             </Grid>
           </Grid>
         </Box>
