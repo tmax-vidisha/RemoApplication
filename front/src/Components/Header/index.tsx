@@ -404,13 +404,13 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
             "aria-labelledby": "basic-button",
           }}
           style={{ paddingTop: "8px", marginTop: "15px" }}
-          PaperProps={{
-            style: {
-              width: 350,
-              height: 150,
-              overflow: "Hidden",
-            },
-          }}
+          // PaperProps={{
+          //   style: {
+          //     width: 350,
+          //     height: 150,
+          //     overflow: "Hidden",
+          //   },
+          // }}
         >
           <img
             src={close}
@@ -630,7 +630,11 @@ const Header: React.FC<IFolderProps> = (props: IFolderProps) => {
           <Toolbar className={classes.toolbarDiv}>
             <div>
               <RouterNavLink to="/">
-                <img src={logo} alt="Remo Digital" />
+                <img
+                  src={logo}
+                  alt="Remo Digital"
+                  onClick={() => window.location.reload()}
+                />
               </RouterNavLink>
             </div>
             <div className={classes.ml80pt20}>

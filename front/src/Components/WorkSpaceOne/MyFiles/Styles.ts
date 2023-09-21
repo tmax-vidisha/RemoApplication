@@ -6,6 +6,23 @@ export const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-around",
   },
+  gridViewDetails: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "30px",
+    // @ts-ignore
+    ["@media (max-width:768px)"]:{
+      display: "grid",
+      gridTemplateColumns: "repeat(1, 1fr)",
+      gap: "30px",
+    },
+  },
+  gridCard: {
+    border: "1px solid gray",
+    width: "150px",
+    height: "auto",
+    padding: "16px",
+  },
 
   button: {
     borderRadius: 14,

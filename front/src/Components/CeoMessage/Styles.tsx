@@ -1,13 +1,19 @@
 import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
+  ".css-46bh2p-MuiCardContent-root:last-child": {
+    paddingBottom: "16px",
+  },
+  ".css-46bh2p-MuiCardContent-root": {
+    padding: "16px",
+  },
   contentRoot: {
     display: "flex",
     width: "100%",
     fontSize: "1rem !important",
     marginBottom: "0px !important",
     textAlign: "left",
-    ["@media (max-width:768px)"]: {
+    "@media (max-width:768px)": {
       // eslint-disable-line no-useless-computed-key
       width: "100%",
     },

@@ -108,6 +108,7 @@ import DepartmentMaster from "./Components/DepartmentMaster/DepartmentMaster";
 import DepartmentMasterPage from "./Pages/DepartmentMaster/DepartmentMasterPage";
 import PolicyEditorPage from "./Pages/PolicyAndProcedureMaster/PolicyEditorPage";
 import OrgChartPage from "./Pages/OrgChartPage/OrgChartPage";
+import PortalHome from "./Containers/PortalHome";
 
 const theme = createTheme({
   palette: {
@@ -228,6 +229,7 @@ const Main = () => {
             </AuthenticatedTemplate>
             <Routes>
               <Route path="/" element={<Welcome />} />
+              <Route path="/" element={<PortalHome />} />
               <Route path="/userQuickLink" element={<UserQuickLinkPage />} />
               <Route path="/CEOInput" element={<CeoInputPage />} />
               <Route
@@ -368,12 +370,15 @@ const Main = () => {
               />
               <Route path="/wQuicklinks" element={<WorkspaceQuicklinks />} />
               <Route path="/myFiles" element={<MyFiles />} />
-              <Route path="/orgChartPage" element={<OrgChartPage/>} />
+              <Route path="/orgChartPage" element={<OrgChartPage />} />
               <Route path="/document" element={<DocumentPage />} />
               <Route path="/itDepartment" element={<ITDepartment />} />
               <Route path="/hrDepartment" element={<HRDepartment />} />
               <Route path="/policyEditorPage" element={<PolicyEditorPage />} />
-              <Route path="/departmentMasterPage" element={<DepartmentMasterPage />} />
+              <Route
+                path="/departmentMasterPage"
+                element={<DepartmentMasterPage />}
+              />
             </Routes>
           </ThemeProvider>
           <Footer />

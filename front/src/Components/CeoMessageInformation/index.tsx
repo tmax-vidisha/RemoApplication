@@ -79,18 +79,27 @@ const CeoMessageInformation: React.FC<IFolderProps> = (props: IFolderProps) => {
   const handleClick = () => {
     if (isClicked) {
       setLikes(likes - 1);
-      setIsActive(isActive);
     } else {
       setLikes(likes + 1);
     }
     setIsClicked(!isClicked);
     setIsActive(!isActive);
+  
+    // Store the updated like count in localStorage
+    localStorage.setItem("likes", String(likes + (isClicked ? -1 : 1)));
   };
 
   const hide = () => {
     setIsActive(!isActive);
     setIsClicked(!isClicked);
   };
+  useEffect(() => {
+    const storedLikes = localStorage.getItem("likes");
+    if (storedLikes) {
+      setLikes(parseInt(storedLikes, 10));
+    }
+  }, []);
+
   return (
     <AuthenticatedTemplate>
       <Container className={classes.contentEditorWidth}>

@@ -408,7 +408,6 @@ const OrgChart: React.FC<IFolderProps> = (props: IFolderProps) => {
           {data?.response &&
             manager()?.map((item: any, index: any) => {
               const { fields = {} } = item;
-
               let Name = fields?.Legal_name;
               let position = fields?.Position_long_description;
               let email = fields?.Communication_Email;
