@@ -177,9 +177,11 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
     ],
   };
 
-  const [likes, setLikes] = useState(0);
+  const [likes, setLikes] = useState({});
   const [isClicked, setIsClicked] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const [clickCount, setClickCount] = useState({});
+  const [likeImages, setLikeImages] = useState({});
 
   const handleClick = () => {
     if (isClicked) {
@@ -196,7 +198,6 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
     setIsActive(!isActive);
     setIsClicked(!isClicked);
   };
-  const [isActive2, setIsActive2] = useState(false);
 
   // const [tempData, setTempData] = useState([]);
 
@@ -220,6 +221,69 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
   //     };
   //   });
   // };
+  const handleClick1 = (cardId: any) => {
+    if (!cardId) {
+      setIsActive(!isActive);
+      console.error("Invalid card ID:", cardId);
+      return;
+    }
+    console.log("Card ID:", cardId);
+    setLikeImages((prevImages) => ({
+      ...prevImages,
+      [cardId]: !likeImages[cardId] ? like : enableLike,
+    }));
+
+    setClickCount((prevClickCount) => {
+      const currentCount = prevClickCount[cardId] || 0;
+      const updatedCount = currentCount + (currentCount >= 0 ? 1 : -1);
+
+      const updatedClickCount = {
+        ...prevClickCount,
+        [cardId]: updatedCount,
+      };
+      // Store the updated click counts in localStorage
+      localStorage.setItem("clickCount", JSON.stringify(updatedClickCount));
+
+      return updatedClickCount;
+    });
+    setLikes((prevLikes) => ({
+      ...prevLikes,
+      [cardId]: isClicked
+        ? (prevLikes[cardId] || 0) - 1
+        : (prevLikes[cardId] || 0) + 1,
+    }));
+    setIsClicked(!isClicked);
+    setIsActive(!isActive);
+  };
+  useEffect(() => {
+    const storedClickCount = localStorage.getItem("clickCount");
+    if (storedClickCount) {
+      setClickCount(JSON.parse(storedClickCount));
+    }
+  }, []);
+
+  const [isCardPinned, setIsCardPinned] = useState({});
+
+  const handlePinClick = (cardId) => {
+    if (!cardId) {
+      console.error("Invalid card ID:", cardId);
+      return;
+    }
+
+    setIsCardPinned((prevPinnedState) => ({
+      ...prevPinnedState,
+      [cardId]: !prevPinnedState[cardId],
+    }));
+
+    // Store the updated pinned state in localStorage
+    localStorage.setItem("pinnedState", JSON.stringify(isCardPinned));
+  };
+  useEffect(() => {
+    const storedPinnedState = localStorage.getItem("pinnedState");
+    if (storedPinnedState) {
+      setIsCardPinned(JSON.parse(storedPinnedState));
+    }
+  }, []);
   return (
     <AuthenticatedTemplate>
       <Paper style={{ maxWidth: "100%" }} elevation={0}>
@@ -249,10 +313,9 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                   </Link>
                 </Typography>
               </Stack>
-
               <Slider ref={(c) => (slider.current = c)} {...settings}>
                 {data?.response &&
-                  data?.response?.map((card, index) => (
+                  data?.response?.map((card, index, id) => (
                     <div key={index}>
                       <Card className={classes.singleCard}>
                         <CardActionArea>
@@ -272,6 +335,7 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                           />
                           <Grid className={classes.cardNewTitle}>
                             {card.fields?.LinkTitle}
+                            {card.fields?.id}
                           </Grid>
                           <CardContent>
                             <Stack
@@ -309,11 +373,11 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                                     justifyContent: "space-between",
                                   }}
                                 >
-                                  {isActive ? (
+                                  {/* {isActive ? (
                                     <img
                                       src={enableLike}
                                       alt="like"
-                                      onClick={hide}
+                                      onClick={() => hide(card.fields?.id)}
                                       style={{ width: "15px" }}
                                     />
                                   ) : (
@@ -323,16 +387,33 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                                       className={`like-button ${
                                         isClicked && "liked"
                                       }`}
-                                      onClick={handleClick}
+                                      onClick={() =>
+                                        handleClick1(card?.fields?.id)
+                                      }
                                       style={{ width: "15px" }}
                                     />
-                                  )}
+                                  )} */}
 
+                                  <img
+                                    src={likeImages[card.fields?.id] || like}
+                                    alt="like"
+                                    className={`like-button ${
+                                      isClicked && "liked"
+                                    }`}
+                                    onClick={() =>
+                                      handleClick1(card?.fields?.id)
+                                    }
+                                    style={{ width: "15px" }}
+                                  />
                                   {/* <span className="likes-counter">{ `Like | ${likes}` }</span> */}
                                   <span
                                     className="likes-counter"
                                     style={{ fontSize: "12px" }}
-                                  >{`${likes}`}</span>
+                                  >
+                                    {clickCount[card.fields?.id] || 0}
+                                    {/* {`${likes[card.fields?.id] || 0}`} */}
+                                    {/* {`${likes}`} */}
+                                  </span>
                                 </div>
                               </div>
                               <div className={classes.block}>
@@ -341,21 +422,21 @@ const News: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 </a>
                               </div>
                               <div className={classes.block}>
-                                {isActive2 ? (
+                                {isCardPinned[card.fields?.id] ? (
                                   <img
                                     src={pinActive}
                                     alt="like"
-                                    onClick={() => {
-                                      setIsActive2(!isActive2);
-                                    }}
+                                    onClick={() =>
+                                      handlePinClick(card.fields?.id)
+                                    }
                                   />
                                 ) : (
                                   <img
                                     src={pin}
                                     alt="like"
-                                    onClick={() => {
-                                      setIsActive2(!isActive2);
-                                    }}
+                                    onClick={() =>
+                                      handlePinClick(card.fields?.id)
+                                    }
                                   />
                                 )}
                               </div>

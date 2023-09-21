@@ -728,8 +728,11 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
 
     return n.toFixed(n < 10 && l > 0 ? 1 : 0) + " " + units[l];
   }
-
   const [tableWidth, setTableWidth] = useState(650);
+  const [isGridView, setIsGridView] = useState(true);
+  const toggleView = () => {
+    setIsGridView((prevIsGridView) => !prevIsGridView);
+  };
   return (
     <div>
       <Grid className={classes.bigPart}>
@@ -806,106 +809,118 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                 </Button>
               </DialogActions>
             </Dialog>
-            <button>
-              <GridViewOutlinedIcon />
-            </button>
-            <button className={classes.ml15Grid}>
-              <FormatListBulletedOutlinedIcon />
-            </button>
+            <div onClick={toggleView}>
+              {isGridView ? (
+                <button>
+                  <GridViewOutlinedIcon />
+                </button>
+              ) : (
+                <button className={classes.ml15Grid}>
+                  <FormatListBulletedOutlinedIcon />
+                </button>
+              )}
+            </div>
           </Grid>
         </Grid>
-        <TableContainer component={Paper}>
-          <Table aria-label="simple table" style={{ width: `${tableWidth}px` }}>
-            <TableHead>
-              <TableRow>
-                <TableCell className={classes.theadCell} onClick={onClickShow}>
-                  {/* <Checkbox
+        {isGridView ? (
+          <TableContainer component={Paper}>
+            <Table
+              aria-label="simple table"
+              style={{ width: `${tableWidth}px` }}
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell
+                    className={classes.theadCell}
+                    onClick={onClickShow}
+                  >
+                    {/* <Checkbox
                                        name="allselect"
                                        checked= { !data?.response.some( (user:any)=>user?.isChecked!==true)}
                                         onChange={handleBoxChange} /> */}
-                  {/* <Checkbox name="allselect" checked= { !data?.response.some( (user:any)=>user?.isChecked!==true)} onChange={ handleBoxChange}  />  */}
-                  <Checkbox
-                    name="allSelect"
-                    checked={
-                      data?.response.filter(
-                        (user: any) => user?.isChecked !== true
-                      ).length < 1
-                    }
-                    onChange={handleBoxChange}
-                  />
-                </TableCell>
-                <TableCell className={classes.theadCell}>Name</TableCell>
-                <TableCell className={classes.theadCell}>
-                  Last Modified By
-                </TableCell>
-                <TableCell className={classes.theadCell}>
-                  Last Modified Date
-                </TableCell>
-                <TableCell className={classes.theadCell}>File Size</TableCell>
-                <TableCell padding="none" className={classes.theadCell}>
-                  Actions
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            {show ? (
-              <TableBody>
-                {isLoading && <CircularProgress />}
-                {mode === "oldest" ? (
-                  <>
-                    {isSuccess && (
-                      <>
-                        {userData &&
-                          userData
-                            .sort(
-                              (a: any, b: any) =>
-                                Date.parse(new Date(a.lastModifiedDateTime)) -
-                                Date.parse(new Date(b.lastModifiedDateTime))
-                            )
-                            .slice(
-                              page * rowsPerPage,
-                              page * rowsPerPage + rowsPerPage
-                            )
-                            .map((item: any, index: any) => {
-                              let createdDate = moment(
-                                item.lastModifiedDateTime
-                              ).format("DD-MMM-YYYY");
+                    {/* <Checkbox name="allselect" checked= { !data?.response.some( (user:any)=>user?.isChecked!==true)} onChange={ handleBoxChange}  />  */}
+                    <Checkbox
+                      name="allSelect"
+                      checked={
+                        data?.response.filter(
+                          (user: any) => user?.isChecked !== true
+                        ).length < 1
+                      }
+                      onChange={handleBoxChange}
+                    />
+                  </TableCell>
+                  <TableCell className={classes.theadCell}>Name</TableCell>
+                  <TableCell className={classes.theadCell}>
+                    Last Modified By
+                  </TableCell>
+                  <TableCell className={classes.theadCell}>
+                    Last Modified Date
+                  </TableCell>
+                  <TableCell className={classes.theadCell}>File Size</TableCell>
+                  <TableCell padding="none" className={classes.theadCell}>
+                    Actions
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              {show ? (
+                <TableBody>
+                  {isLoading && <CircularProgress />}
+                  {mode === "oldest" ? (
+                    <>
+                      {isSuccess && (
+                        <>
+                          {userData &&
+                            userData
+                              .sort(
+                                (a: any, b: any) =>
+                                  Date.parse(new Date(a.lastModifiedDateTime)) -
+                                  Date.parse(new Date(b.lastModifiedDateTime))
+                              )
+                              .slice(
+                                page * rowsPerPage,
+                                page * rowsPerPage + rowsPerPage
+                              )
+                              .map((item: any, index: any) => {
+                                let createdDate = moment(
+                                  item.lastModifiedDateTime
+                                ).format("DD-MMM-YYYY");
 
-                              return (
-                                <TableRow
-                                  key={item.name}
-                                  sx={{
-                                    "&:last-child td, &:last-child th": {
-                                      border: 0,
-                                    },
-                                  }}
-                                >
-                                  <TableCell
-                                    className={classes.theadCell}
-                                    onClick={onClickShow}
+                                return (
+                                  <TableRow
+                                    key={item.name}
+                                    sx={{
+                                      "&:last-child td, &:last-child th": {
+                                        border: 0,
+                                      },
+                                    }}
                                   >
-                                    <Checkbox
-                                      name={item.name}
-                                      checked={item?.isChecked || false}
-                                      // checked ={checked.includes(item)}
-                                      onChange={handleBoxChange}
-                                    />
-                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
-                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    <Link
-                                      onClick={() => {
-                                        setShow(!show);
-                                        onClick(
-                                          item.id,
-                                          item.name,
-                                          item.folder
-                                        );
-                                        //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
-                                      }}
-                                      // href={`${url}`}
+                                    <TableCell
+                                      className={classes.theadCell}
+                                      onClick={onClickShow}
                                     >
-                                      {/* <img
+                                      <Checkbox
+                                        name={item.name}
+                                        checked={item?.isChecked || false}
+                                        // checked ={checked.includes(item)}
+                                        onChange={handleBoxChange}
+                                      />
+                                      {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
+                                      {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      <Link
+                                        onClick={() => {
+                                          setShow(!show);
+                                          onClick(
+                                            item.id,
+                                            item.name,
+                                            item.folder
+                                          );
+                                          //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+                                        }}
+                                        // href={`${url}`}
+                                      >
+                                        {/* <img
                                         src={imageB}
                                         alt="..."
                                         style={{
@@ -913,121 +928,121 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                           marginRight: "3px",
                                         }}
                                       /> */}
-                                      <img
-                                        src={folderImg}
-                                        alt="folder"
-                                        style={{
-                                          width: "25px",
-                                          marginRight: "15px",
-                                          borderRadius: "5px",
-                                        }}
-                                      />
-                                      {item.name}
-                                    </Link>
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {item.lastModifiedBy.user.displayName}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {createdDate}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {niceBytes(item.size)}
-                                  </TableCell>
-                                  <TableCell padding="none">
-                                    <Grid
-                                      onClick={() =>
-                                        de(
-                                          item.id,
-                                          item.name,
-                                          item.folder,
-                                          item["@microsoft.graph.downloadUrl"]
-                                        )
-                                      }
-                                    >
-                                      {/* <Button  onClick={()=>de(item.id,item.name)}> */}
-                                      <SimpleDialog
-                                        id={itemId}
-                                        name={itemName}
-                                        onDelete={onDelete}
-                                        folder={itemfolder}
-                                        onOpenFolder={handleOpenFolder}
-                                        deleteResponse={deleteResponse}
-                                        downloadUrl={downUrl}
-                                        onCopy={onCopy}
-                                        copyResponse={copyResponse}
-                                        deleteLoading={deleteLoading}
-                                        deleteSuccess={deleteSuccess}
-                                        copyLoading={copyLoading}
-                                        copySuccess={copySuccess}
-                                      />
+                                        <img
+                                          src={folderImg}
+                                          alt="folder"
+                                          style={{
+                                            width: "25px",
+                                            marginRight: "15px",
+                                            borderRadius: "5px",
+                                          }}
+                                        />
+                                        {item.name}
+                                      </Link>
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {item.lastModifiedBy.user.displayName}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {createdDate}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {niceBytes(item.size)}
+                                    </TableCell>
+                                    <TableCell padding="none">
+                                      <Grid
+                                        onClick={() =>
+                                          de(
+                                            item.id,
+                                            item.name,
+                                            item.folder,
+                                            item["@microsoft.graph.downloadUrl"]
+                                          )
+                                        }
+                                      >
+                                        {/* <Button  onClick={()=>de(item.id,item.name)}> */}
+                                        <SimpleDialog
+                                          id={itemId}
+                                          name={itemName}
+                                          onDelete={onDelete}
+                                          folder={itemfolder}
+                                          onOpenFolder={handleOpenFolder}
+                                          deleteResponse={deleteResponse}
+                                          downloadUrl={downUrl}
+                                          onCopy={onCopy}
+                                          copyResponse={copyResponse}
+                                          deleteLoading={deleteLoading}
+                                          deleteSuccess={deleteSuccess}
+                                          copyLoading={copyLoading}
+                                          copySuccess={copySuccess}
+                                        />
 
-                                      {/* </Button> */}
-                                    </Grid>
-                                  </TableCell>
-                                </TableRow>
-                              );
-                            })}
-                      </>
-                    )}
-                  </>
-                ) : mode === "newest" ? (
-                  <>
-                    {isSuccess && (
-                      <>
-                        {userData &&
-                          userData
-                            .sort(
-                              (a: any, b: any) =>
-                                Date.parse(new Date(a.lastModifiedDateTime)) -
-                                Date.parse(new Date(b.lastModifiedDateTime))
-                            )
-                            .reverse()
-                            .slice(
-                              page * rowsPerPage,
-                              page * rowsPerPage + rowsPerPage
-                            )
-                            .map((item: any, index: any) => {
-                              let createdDate = moment(
-                                item.lastModifiedDateTime
-                              ).format("DD-MMM-YYYY");
+                                        {/* </Button> */}
+                                      </Grid>
+                                    </TableCell>
+                                  </TableRow>
+                                );
+                              })}
+                        </>
+                      )}
+                    </>
+                  ) : mode === "newest" ? (
+                    <>
+                      {isSuccess && (
+                        <>
+                          {userData &&
+                            userData
+                              .sort(
+                                (a: any, b: any) =>
+                                  Date.parse(new Date(a.lastModifiedDateTime)) -
+                                  Date.parse(new Date(b.lastModifiedDateTime))
+                              )
+                              .reverse()
+                              .slice(
+                                page * rowsPerPage,
+                                page * rowsPerPage + rowsPerPage
+                              )
+                              .map((item: any, index: any) => {
+                                let createdDate = moment(
+                                  item.lastModifiedDateTime
+                                ).format("DD-MMM-YYYY");
 
-                              return (
-                                <TableRow
-                                  key={item.name}
-                                  sx={{
-                                    "&:last-child td, &:last-child th": {
-                                      border: 0,
-                                    },
-                                  }}
-                                >
-                                  <TableCell
-                                    className={classes.theadCell}
-                                    onClick={onClickShow}
+                                return (
+                                  <TableRow
+                                    key={item.name}
+                                    sx={{
+                                      "&:last-child td, &:last-child th": {
+                                        border: 0,
+                                      },
+                                    }}
                                   >
-                                    <Checkbox
-                                      name={item.name}
-                                      checked={item?.isChecked || false}
-                                      // checked ={checked.includes(item)}
-                                      onChange={handleBoxChange}
-                                    />
-                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
-                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    <Link
-                                      onClick={() => {
-                                        setShow(!show);
-                                        onClick(
-                                          item.id,
-                                          item.name,
-                                          item.folder
-                                        );
-                                        //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
-                                      }}
-                                      // href={`${url}`}
+                                    <TableCell
+                                      className={classes.theadCell}
+                                      onClick={onClickShow}
                                     >
-                                      {/* <img
+                                      <Checkbox
+                                        name={item.name}
+                                        checked={item?.isChecked || false}
+                                        // checked ={checked.includes(item)}
+                                        onChange={handleBoxChange}
+                                      />
+                                      {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
+                                      {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      <Link
+                                        onClick={() => {
+                                          setShow(!show);
+                                          onClick(
+                                            item.id,
+                                            item.name,
+                                            item.folder
+                                          );
+                                          //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+                                        }}
+                                        // href={`${url}`}
+                                      >
+                                        {/* <img
                                         src={imageB}
                                         alt="..."
                                         style={{
@@ -1035,489 +1050,558 @@ export const MyFilesPage: React.FC<IFolderProps> = (props: IFolderProps) => {
                                           marginRight: "3px",
                                         }}
                                       /> */}
-                                       <img
-                                        src={folderImg}
-                                        alt="folder"
-                                        style={{
-                                          width: "25px",
-                                          marginRight: "15px",
-                                          borderRadius: "5px",
+                                        <img
+                                          src={folderImg}
+                                          alt="folder"
+                                          style={{
+                                            width: "25px",
+                                            marginRight: "15px",
+                                            borderRadius: "5px",
+                                          }}
+                                        />
+                                        {item.name}
+                                      </Link>
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {item.lastModifiedBy.user.displayName}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {createdDate}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {niceBytes(item.size)}
+                                    </TableCell>
+                                    <TableCell padding="none">
+                                      <Grid
+                                        onClick={() =>
+                                          de(
+                                            item.id,
+                                            item.name,
+                                            item.folder,
+                                            item["@microsoft.graph.downloadUrl"]
+                                          )
+                                        }
+                                      >
+                                        {/* <Button  onClick={()=>de(item.id,item.name)}> */}
+                                        <SimpleDialog
+                                          id={itemId}
+                                          name={itemName}
+                                          onDelete={onDelete}
+                                          folder={itemfolder}
+                                          onOpenFolder={handleOpenFolder}
+                                          deleteResponse={deleteResponse}
+                                          downloadUrl={downUrl}
+                                          onCopy={onCopy}
+                                          copyResponse={copyResponse}
+                                          deleteLoading={deleteLoading}
+                                          deleteSuccess={deleteSuccess}
+                                          copyLoading={copyLoading}
+                                          copySuccess={copySuccess}
+                                        />
+
+                                        {/* </Button> */}
+                                      </Grid>
+                                    </TableCell>
+                                  </TableRow>
+                                );
+                              })}
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {isSuccess && (
+                        <>
+                          {data?.response &&
+                            data?.response
+                              .slice(
+                                page * rowsPerPage,
+                                page * rowsPerPage + rowsPerPage
+                              )
+                              .map((item: any, index: any) => {
+                                let createdDate = moment(
+                                  item.lastModifiedDateTime
+                                ).format("DD-MMM-YYYY");
+
+                                return (
+                                  <TableRow
+                                    key={item.name}
+                                    sx={{
+                                      "&:last-child td, &:last-child th": {
+                                        border: 0,
+                                      },
+                                    }}
+                                  >
+                                    <TableCell
+                                      className={classes.theadCell}
+                                      onClick={onClickShow}
+                                    >
+                                      <Checkbox
+                                        name={item.name}
+                                        checked={item?.isChecked || false}
+                                        // checked ={checked.includes(item)}
+                                        onChange={handleBoxChange}
+                                      />
+                                      {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
+                                      {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      <Link
+                                        onClick={() => {
+                                          setShow(!show);
+                                          onClick(
+                                            item.id,
+                                            item.name,
+                                            item.folder
+                                          );
+                                          //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
                                         }}
-                                      />
-                                      {item.name}
-                                    </Link>
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {item.lastModifiedBy.user.displayName}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {createdDate}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {niceBytes(item.size)}
-                                  </TableCell>
-                                  <TableCell padding="none">
-                                    <Grid
-                                      onClick={() =>
-                                        de(
-                                          item.id,
-                                          item.name,
-                                          item.folder,
-                                          item["@microsoft.graph.downloadUrl"]
-                                        )
-                                      }
-                                    >
-                                      {/* <Button  onClick={()=>de(item.id,item.name)}> */}
-                                      <SimpleDialog
-                                        id={itemId}
-                                        name={itemName}
-                                        onDelete={onDelete}
-                                        folder={itemfolder}
-                                        onOpenFolder={handleOpenFolder}
-                                        deleteResponse={deleteResponse}
-                                        downloadUrl={downUrl}
-                                        onCopy={onCopy}
-                                        copyResponse={copyResponse}
-                                        deleteLoading={deleteLoading}
-                                        deleteSuccess={deleteSuccess}
-                                        copyLoading={copyLoading}
-                                        copySuccess={copySuccess}
-                                      />
+                                        // href={`${url}`}
+                                      >
+                                        <img
+                                          src={folderImg}
+                                          alt="folder"
+                                          style={{
+                                            width: "25px",
+                                            marginRight: "15px",
+                                            borderRadius: "5px",
+                                          }}
+                                        />
+                                        {item.name}
+                                      </Link>
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {item.lastModifiedBy.user.displayName}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {createdDate}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {niceBytes(item.size)}
+                                    </TableCell>
+                                    <TableCell padding="none">
+                                      <Grid
+                                        onClick={() =>
+                                          de(
+                                            item.id,
+                                            item.name,
+                                            item.folder,
+                                            item["@microsoft.graph.downloadUrl"]
+                                          )
+                                        }
+                                      >
+                                        {/* <Button  onClick={()=>de(item.id,item.name)}> */}
+                                        <SimpleDialog
+                                          id={itemId}
+                                          name={itemName}
+                                          onDelete={onDelete}
+                                          folder={itemfolder}
+                                          onOpenFolder={handleOpenFolder}
+                                          deleteResponse={deleteResponse}
+                                          downloadUrl={downUrl}
+                                          onCopy={onCopy}
+                                          copyResponse={copyResponse}
+                                          deleteLoading={deleteLoading}
+                                          deleteSuccess={deleteSuccess}
+                                          copyLoading={copyLoading}
+                                          copySuccess={copySuccess}
+                                        />
 
-                                      {/* </Button> */}
-                                    </Grid>
-                                  </TableCell>
-                                </TableRow>
-                              );
-                            })}
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {isSuccess && (
-                      <>
-                        {data?.response &&
-                          data?.response
-                            .slice(
-                              page * rowsPerPage,
-                              page * rowsPerPage + rowsPerPage
-                            )
-                            .map((item: any, index: any) => {
-                              let createdDate = moment(
-                                item.lastModifiedDateTime
-                              ).format("DD-MMM-YYYY");
+                                        {/* </Button> */}
+                                      </Grid>
+                                    </TableCell>
+                                  </TableRow>
+                                );
+                              })}
+                        </>
+                      )}
+                    </>
+                  )}
+                </TableBody>
+              ) : (
+                <TableBody>
+                  {itemChildrenIsLoading && <CircularProgress />}
+                  {mode === "oldest" ? (
+                    <>
+                      {itemChildrenSuccess && (
+                        <>
+                          {userData &&
+                            userData
+                              .sort(
+                                (a: any, b: any) =>
+                                  Date.parse(new Date(a.lastModifiedDateTime)) -
+                                  Date.parse(new Date(b.lastModifiedDateTime))
+                              )
+                              .slice(
+                                page * rowsPerPage,
+                                page * rowsPerPage + rowsPerPage
+                              )
+                              .map((item: any, index: any) => {
+                                let createdDate = moment(
+                                  item.lastModifiedDateTime
+                                ).format("DD-MMM-YYYY");
 
-                              return (
-                                <TableRow
-                                  key={item.name}
-                                  sx={{
-                                    "&:last-child td, &:last-child th": {
-                                      border: 0,
-                                    },
-                                  }}
-                                >
-                                  <TableCell
-                                    className={classes.theadCell}
-                                    onClick={onClickShow}
+                                return (
+                                  <TableRow
+                                    key={item.name}
+                                    sx={{
+                                      "&:last-child td, &:last-child th": {
+                                        border: 0,
+                                      },
+                                    }}
                                   >
-                                    <Checkbox
-                                      name={item.name}
-                                      checked={item?.isChecked || false}
-                                      // checked ={checked.includes(item)}
-                                      onChange={handleBoxChange}
-                                    />
-                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
-                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    <Link
-                                      onClick={() => {
-                                        setShow(!show);
-                                        onClick(
-                                          item.id,
-                                          item.name,
-                                          item.folder
-                                        );
-                                        //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
-                                      }}
-                                      // href={`${url}`}
+                                    <TableCell
+                                      className={classes.theadCell}
+                                      onClick={onClickShow}
                                     >
-                                       <img
-                                        src={folderImg}
-                                        alt="folder"
-                                        style={{
-                                          width: "25px",
-                                          marginRight: "15px",
-                                          borderRadius: "5px",
+                                      <Checkbox
+                                        name={item.name}
+                                        checked={item?.isChecked || false}
+                                        // checked ={checked.includes(item)}
+                                        onChange={handleBoxChange}
+                                      />
+                                      {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
+                                      {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      <Link
+                                        onClick={() => {
+                                          setShow(!show);
+                                          onClick(
+                                            item.id,
+                                            item.name,
+                                            item.folder
+                                          );
+                                          //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
                                         }}
-                                      />
-                                      {item.name}
-                                    </Link>
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {item.lastModifiedBy.user.displayName}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {createdDate}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {niceBytes(item.size)}
-                                  </TableCell>
-                                  <TableCell padding="none">
-                                    <Grid
-                                      onClick={() =>
-                                        de(
-                                          item.id,
-                                          item.name,
-                                          item.folder,
-                                          item["@microsoft.graph.downloadUrl"]
-                                        )
-                                      }
-                                    >
-                                      {/* <Button  onClick={()=>de(item.id,item.name)}> */}
-                                      <SimpleDialog
-                                        id={itemId}
-                                        name={itemName}
-                                        onDelete={onDelete}
-                                        folder={itemfolder}
-                                        onOpenFolder={handleOpenFolder}
-                                        deleteResponse={deleteResponse}
-                                        downloadUrl={downUrl}
-                                        onCopy={onCopy}
-                                        copyResponse={copyResponse}
-                                        deleteLoading={deleteLoading}
-                                        deleteSuccess={deleteSuccess}
-                                        copyLoading={copyLoading}
-                                        copySuccess={copySuccess}
-                                      />
+                                        // href={`${url}`}
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {item.lastModifiedBy.user.displayName}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {createdDate}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {niceBytes(item.size)}
+                                    </TableCell>
+                                    <TableCell padding="none">
+                                      <Grid
+                                        onClick={() =>
+                                          de(
+                                            item.id,
+                                            item.name,
+                                            item.folder,
+                                            item["@microsoft.graph.downloadUrl"]
+                                          )
+                                        }
+                                      >
+                                        {/* <Button  onClick={()=>de(item.id,item.name)}> */}
+                                        <SimpleDialog
+                                          id={itemId}
+                                          name={itemName}
+                                          onDelete={onDelete}
+                                          folder={itemfolder}
+                                          onOpenFolder={handleOpenFolder}
+                                          deleteResponse={deleteResponse}
+                                          downloadUrl={downUrl}
+                                          onCopy={onCopy}
+                                          copyResponse={copyResponse}
+                                          deleteLoading={deleteLoading}
+                                          deleteSuccess={deleteSuccess}
+                                          copyLoading={copyLoading}
+                                          copySuccess={copySuccess}
+                                        />
 
-                                      {/* </Button> */}
-                                    </Grid>
-                                  </TableCell>
-                                </TableRow>
-                              );
-                            })}
-                      </>
-                    )}
-                  </>
-                )}
-              </TableBody>
-            ) : (
-              <TableBody>
-                {itemChildrenIsLoading && <CircularProgress />}
-                {mode === "oldest" ? (
-                  <>
-                    {itemChildrenSuccess && (
-                      <>
-                        {userData &&
-                          userData
-                            .sort(
-                              (a: any, b: any) =>
-                                Date.parse(new Date(a.lastModifiedDateTime)) -
-                                Date.parse(new Date(b.lastModifiedDateTime))
-                            )
-                            .slice(
-                              page * rowsPerPage,
-                              page * rowsPerPage + rowsPerPage
-                            )
-                            .map((item: any, index: any) => {
-                              let createdDate = moment(
-                                item.lastModifiedDateTime
-                              ).format("DD-MMM-YYYY");
+                                        {/* </Button> */}
+                                      </Grid>
+                                    </TableCell>
+                                  </TableRow>
+                                );
+                              })}
+                        </>
+                      )}
+                    </>
+                  ) : mode === "newest" ? (
+                    <>
+                      {itemChildrenSuccess && (
+                        <>
+                          {userData &&
+                            userData
+                              .sort(
+                                (a: any, b: any) =>
+                                  Date.parse(new Date(a.lastModifiedDateTime)) -
+                                  Date.parse(new Date(b.lastModifiedDateTime))
+                              )
+                              .reverse()
+                              .slice(
+                                page * rowsPerPage,
+                                page * rowsPerPage + rowsPerPage
+                              )
+                              .map((item: any, index: any) => {
+                                let createdDate = moment(
+                                  item.lastModifiedDateTime
+                                ).format("DD-MMM-YYYY");
 
-                              return (
-                                <TableRow
-                                  key={item.name}
-                                  sx={{
-                                    "&:last-child td, &:last-child th": {
-                                      border: 0,
-                                    },
-                                  }}
-                                >
-                                  <TableCell
-                                    className={classes.theadCell}
-                                    onClick={onClickShow}
+                                return (
+                                  <TableRow
+                                    key={item.name}
+                                    sx={{
+                                      "&:last-child td, &:last-child th": {
+                                        border: 0,
+                                      },
+                                    }}
                                   >
-                                    <Checkbox
-                                      name={item.name}
-                                      checked={item?.isChecked || false}
-                                      // checked ={checked.includes(item)}
-                                      onChange={handleBoxChange}
-                                    />
-                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
-                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    <Link
-                                      onClick={() => {
-                                        setShow(!show);
-                                        onClick(
-                                          item.id,
-                                          item.name,
-                                          item.folder
-                                        );
-                                        //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
-                                      }}
-                                      // href={`${url}`}
+                                    <TableCell
+                                      className={classes.theadCell}
+                                      onClick={onClickShow}
                                     >
-                                      {item.name}
-                                    </Link>
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {item.lastModifiedBy.user.displayName}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {createdDate}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {niceBytes(item.size)}
-                                  </TableCell>
-                                  <TableCell padding="none">
-                                    <Grid
-                                      onClick={() =>
-                                        de(
-                                          item.id,
-                                          item.name,
-                                          item.folder,
-                                          item["@microsoft.graph.downloadUrl"]
-                                        )
-                                      }
-                                    >
-                                      {/* <Button  onClick={()=>de(item.id,item.name)}> */}
-                                      <SimpleDialog
-                                        id={itemId}
-                                        name={itemName}
-                                        onDelete={onDelete}
-                                        folder={itemfolder}
-                                        onOpenFolder={handleOpenFolder}
-                                        deleteResponse={deleteResponse}
-                                        downloadUrl={downUrl}
-                                        onCopy={onCopy}
-                                        copyResponse={copyResponse}
-                                        deleteLoading={deleteLoading}
-                                        deleteSuccess={deleteSuccess}
-                                        copyLoading={copyLoading}
-                                        copySuccess={copySuccess}
+                                      <Checkbox
+                                        name={item.name}
+                                        checked={item?.isChecked || false}
+                                        // checked ={checked.includes(item)}
+                                        onChange={handleBoxChange}
                                       />
+                                      {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
+                                      {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      <Link
+                                        onClick={() => {
+                                          setShow(!show);
+                                          onClick(
+                                            item.id,
+                                            item.name,
+                                            item.folder
+                                          );
+                                          //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+                                        }}
+                                        // href={`${url}`}
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {item.lastModifiedBy.user.displayName}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {createdDate}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {niceBytes(item.size)}
+                                    </TableCell>
+                                    <TableCell padding="none">
+                                      <Grid
+                                        onClick={() =>
+                                          de(
+                                            item.id,
+                                            item.name,
+                                            item.folder,
+                                            item["@microsoft.graph.downloadUrl"]
+                                          )
+                                        }
+                                      >
+                                        {/* <Button  onClick={()=>de(item.id,item.name)}> */}
+                                        <SimpleDialog
+                                          id={itemId}
+                                          name={itemName}
+                                          onDelete={onDelete}
+                                          folder={itemfolder}
+                                          onOpenFolder={handleOpenFolder}
+                                          deleteResponse={deleteResponse}
+                                          downloadUrl={downUrl}
+                                          onCopy={onCopy}
+                                          copyResponse={copyResponse}
+                                          deleteLoading={deleteLoading}
+                                          deleteSuccess={deleteSuccess}
+                                          copyLoading={copyLoading}
+                                          copySuccess={copySuccess}
+                                        />
 
-                                      {/* </Button> */}
-                                    </Grid>
-                                  </TableCell>
-                                </TableRow>
-                              );
-                            })}
-                      </>
-                    )}
-                  </>
-                ) : mode === "newest" ? (
-                  <>
-                    {itemChildrenSuccess && (
-                      <>
-                        {userData &&
-                          userData
-                            .sort(
-                              (a: any, b: any) =>
-                                Date.parse(new Date(a.lastModifiedDateTime)) -
-                                Date.parse(new Date(b.lastModifiedDateTime))
-                            )
-                            .reverse()
-                            .slice(
-                              page * rowsPerPage,
-                              page * rowsPerPage + rowsPerPage
-                            )
-                            .map((item: any, index: any) => {
-                              let createdDate = moment(
-                                item.lastModifiedDateTime
-                              ).format("DD-MMM-YYYY");
+                                        {/* </Button> */}
+                                      </Grid>
+                                    </TableCell>
+                                  </TableRow>
+                                );
+                              })}
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {itemChildrenSuccess && (
+                        <>
+                          {ItemChildren?.response &&
+                            ItemChildren?.response
+                              .slice(
+                                page * rowsPerPage,
+                                page * rowsPerPage + rowsPerPage
+                              )
+                              .map((item: any, index: any) => {
+                                let createdDate = moment(
+                                  item.lastModifiedDateTime
+                                ).format("DD-MMM-YYYY");
 
-                              return (
-                                <TableRow
-                                  key={item.name}
-                                  sx={{
-                                    "&:last-child td, &:last-child th": {
-                                      border: 0,
-                                    },
-                                  }}
-                                >
-                                  <TableCell
-                                    className={classes.theadCell}
-                                    onClick={onClickShow}
+                                return (
+                                  <TableRow
+                                    key={item.name}
+                                    sx={{
+                                      "&:last-child td, &:last-child th": {
+                                        border: 0,
+                                      },
+                                    }}
                                   >
-                                    <Checkbox
-                                      name={item.name}
-                                      checked={item?.isChecked || false}
-                                      // checked ={checked.includes(item)}
-                                      onChange={handleBoxChange}
-                                    />
-                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
-                                    {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    <Link
-                                      onClick={() => {
-                                        setShow(!show);
-                                        onClick(
-                                          item.id,
-                                          item.name,
-                                          item.folder
-                                        );
-                                        //  folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
-                                      }}
-                                      // href={`${url}`}
+                                    <TableCell
+                                      className={classes.theadCell}
+                                      onClick={onClickShow}
                                     >
-                                      {item.name}
-                                    </Link>
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {item.lastModifiedBy.user.displayName}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {createdDate}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {niceBytes(item.size)}
-                                  </TableCell>
-                                  <TableCell padding="none">
-                                    <Grid
-                                      onClick={() =>
-                                        de(
-                                          item.id,
-                                          item.name,
-                                          item.folder,
-                                          item["@microsoft.graph.downloadUrl"]
-                                        )
-                                      }
-                                    >
-                                      {/* <Button  onClick={()=>de(item.id,item.name)}> */}
-                                      <SimpleDialog
-                                        id={itemId}
-                                        name={itemName}
-                                        onDelete={onDelete}
-                                        folder={itemfolder}
-                                        onOpenFolder={handleOpenFolder}
-                                        deleteResponse={deleteResponse}
-                                        downloadUrl={downUrl}
-                                        onCopy={onCopy}
-                                        copyResponse={copyResponse}
-                                        deleteLoading={deleteLoading}
-                                        deleteSuccess={deleteSuccess}
-                                        copyLoading={copyLoading}
-                                        copySuccess={copySuccess}
+                                      <Checkbox
+                                        name={item.name}
+                                        checked={item?.isChecked || false}
+                                        // checked ={checked.includes(item)}
+                                        onChange={handleBoxChange1}
                                       />
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      <Link
+                                        onClick={() => {
+                                          onClick(
+                                            item.id,
+                                            item.name,
+                                            item.folder
+                                          );
+                                          // folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
+                                        }}
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {item.lastModifiedBy.user.displayName}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {createdDate}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      {niceBytes(item.size)}
+                                    </TableCell>
+                                    <TableCell className={classes.TableCell}>
+                                      <Grid
+                                        onClick={() =>
+                                          de(
+                                            item.id,
+                                            item.name,
+                                            item.folder,
+                                            item["@microsoft.graph.downloadUrl"]
+                                          )
+                                        }
+                                      >
+                                        {/* <Button  onClick={()=>de(item.id,item.name)}> */}
+                                        <SimpleDialog
+                                          id={itemId}
+                                          name={itemName}
+                                          onDelete={onDelete}
+                                          folder={itemfolder}
+                                          onOpenFolder={onClick}
+                                          deleteResponse={deleteResponse}
+                                          downloadUrl={downUrl}
+                                          onCopy={onCopy}
+                                          copyResponse={copyResponse}
+                                          deleteLoading={deleteLoading}
+                                          deleteSuccess={deleteSuccess}
+                                          copyLoading={copyLoading}
+                                          copySuccess={copySuccess}
+                                          //  open={openOn}
+                                          //  onClose={handleClose}
+                                          //  anchorEl={anchorEl}
+                                        />
 
-                                      {/* </Button> */}
-                                    </Grid>
-                                  </TableCell>
-                                </TableRow>
-                              );
-                            })}
-                      </>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {itemChildrenSuccess && (
-                      <>
-                        {ItemChildren?.response &&
-                          ItemChildren?.response
-                            .slice(
-                              page * rowsPerPage,
-                              page * rowsPerPage + rowsPerPage
-                            )
-                            .map((item: any, index: any) => {
-                              let createdDate = moment(
-                                item.lastModifiedDateTime
-                              ).format("DD-MMM-YYYY");
+                                        {/* </Button> */}
+                                      </Grid>
+                                    </TableCell>
+                                  </TableRow>
+                                );
+                              })}
+                        </>
+                      )}
+                    </>
+                  )}
+                </TableBody>
+              )}
+            </Table>
+          </TableContainer>
+        ) : (
+          <Grid>
+            {isSuccess && (
+              <div className={classes.gridViewDetails}>
+                {data?.response &&
+                  data?.response
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((item: any, index: any) => {
+                      let createdDate = moment(
+                        item.lastModifiedDateTime
+                      ).format("DD-MMM-YYYY");
 
-                              return (
-                                <TableRow
-                                  key={item.name}
-                                  sx={{
-                                    "&:last-child td, &:last-child th": {
-                                      border: 0,
-                                    },
-                                  }}
-                                >
-                                  <TableCell
-                                    className={classes.theadCell}
-                                    onClick={onClickShow}
-                                  >
-                                    <Checkbox
-                                      name={item.name}
-                                      checked={item?.isChecked || false}
-                                      // checked ={checked.includes(item)}
-                                      onChange={handleBoxChange1}
-                                    />
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    <Link
-                                      onClick={() => {
-                                        onClick(
-                                          item.id,
-                                          item.name,
-                                          item.folder
-                                        );
-                                        // folderClickHandler(item.id, item.name, item.folder, item?.webUrl)
-                                      }}
-                                    >
-                                      {item.name}
-                                    </Link>
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {item.lastModifiedBy.user.displayName}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {createdDate}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    {niceBytes(item.size)}
-                                  </TableCell>
-                                  <TableCell className={classes.TableCell}>
-                                    <Grid
-                                      onClick={() =>
-                                        de(
-                                          item.id,
-                                          item.name,
-                                          item.folder,
-                                          item["@microsoft.graph.downloadUrl"]
-                                        )
-                                      }
-                                    >
-                                      {/* <Button  onClick={()=>de(item.id,item.name)}> */}
-                                      <SimpleDialog
-                                        id={itemId}
-                                        name={itemName}
-                                        onDelete={onDelete}
-                                        folder={itemfolder}
-                                        onOpenFolder={onClick}
-                                        deleteResponse={deleteResponse}
-                                        downloadUrl={downUrl}
-                                        onCopy={onCopy}
-                                        copyResponse={copyResponse}
-                                        deleteLoading={deleteLoading}
-                                        deleteSuccess={deleteSuccess}
-                                        copyLoading={copyLoading}
-                                        copySuccess={copySuccess}
-                                        //  open={openOn}
-                                        //  onClose={handleClose}
-                                        //  anchorEl={anchorEl}
-                                      />
-
-                                      {/* </Button> */}
-                                    </Grid>
-                                  </TableCell>
-                                </TableRow>
-                              );
-                            })}
-                      </>
-                    )}
-                  </>
-                )}
-              </TableBody>
+                      return (
+                        <div key={item.name} className={classes.gridCard}>
+                          <div>
+                            <Link
+                              onClick={() => {
+                                setShow(!show);
+                                onClick(item.id, item.name, item.folder);
+                              }}
+                            >
+                              <img
+                                src={folderImg}
+                                alt="folder"
+                                style={{
+                                  width: "25px",
+                                  marginRight: "15px",
+                                  borderRadius: "5px",
+                                }}
+                              />
+                              {item.name}
+                            </Link>
+                          </div>
+                          <p> {item.lastModifiedBy.user.displayName}</p>
+                          <p> {createdDate}</p>
+                          <p> {niceBytes(item.size)}</p>
+                          <Grid
+                            onClick={() =>
+                              de(
+                                item.id,
+                                item.name,
+                                item.folder,
+                                item["@microsoft.graph.downloadUrl"]
+                              )
+                            }
+                          >
+                            <SimpleDialog
+                              id={itemId}
+                              name={itemName}
+                              onDelete={onDelete}
+                              folder={itemfolder}
+                              onOpenFolder={handleOpenFolder}
+                              deleteResponse={deleteResponse}
+                              downloadUrl={downUrl}
+                              onCopy={onCopy}
+                              copyResponse={copyResponse}
+                              deleteLoading={deleteLoading}
+                              deleteSuccess={deleteSuccess}
+                              copyLoading={copyLoading}
+                              copySuccess={copySuccess}
+                            />
+                          </Grid>
+                        </div>
+                      );
+                    })}
+              </div>
             )}
-          </Table>
-        </TableContainer>
+          </Grid>
+        )}
         <TablePagination
           rowsPerPageOptions={[5, 10, 20]}
           component="div"

@@ -3,17 +3,18 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
   root: {
-    width: "100%",
-    maxWidth: "95%",
+    width: "335px",
+    // maxWidth: "335px",
+    // height: "150px",
     display: "flex",
-    overflowY: 'hidden',
+    overflowY: "hidden",
     bgcolor: "background.paper",
-     paddingTop: "16px!important",
-   marginBottom: "16px!important",
-    top:"-6px",
+    paddingTop: "16px!important",
+    marginBottom: "16px!important",
+    top: "-6px",
     "& > li": {
       // width: "33.3%",
-       float: "left",
+      float: "left",
       // textAlign: "center",
     },
   },
@@ -28,9 +29,8 @@ export const useStyles = makeStyles({
     "& > h1": {
       fontSize: "15px",
       color: "#009BAD",
-     
     },
-    "& > div": { 
+    "& > div": {
       lineHeight: "13px",
       paddingTop: "3px",
     },
@@ -52,14 +52,21 @@ export const useStyles = makeStyles({
     "& > div": {
       lineHeight: "13px",
       paddingTop: "3px",
-     
     },
   },
 
-  prayer:{
-    position:"absolute", top:"20px", left:"39px", fontSize:"12px",  color: "#009BAD"
+  prayer: {
+    position: "absolute",
+    top: "20px",
+    left: "39px",
+    fontSize: "12px",
+    color: "#009BAD",
   },
-  prayerTime:{
-    position:"absolute", top:"44px",fontSize: "12px",color:"#999999", fontWeight:100
-  }
+  prayerTime: {
+    position: "absolute",
+    top: "44px",
+    fontSize: "12px",
+    color: "#999999",
+    fontWeight: 100,
+  },
 });
