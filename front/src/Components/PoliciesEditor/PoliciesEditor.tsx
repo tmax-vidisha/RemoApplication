@@ -347,277 +347,50 @@ const PoliciesEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
   };
 
   return (
-    <div className={classes.Section}>
-      <Box className={classes.MainPart}>
-        <Grid className={classes.upperPart}>
-          <Grid>Policies & Procedure </Grid>
-          <Grid className={classes.new}>
-            <Button
-              id="fade-button"
-              aria-controls={openOn ? "fade-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={openOn ? "true" : undefined}
-              onClick={handleClick}
-              className={classes.create}
-              sx={{
-                textTransform: "capitalize",
-                backgroundColor: "rgb(50 168 189) !important",
-              }}
-            >
-              <span className={classes.plus}>
-                <LocalHospitalIcon />
-              </span>
-              New
-            </Button>
-            <Menu
-              id="fade-menu"
-              MenuListProps={{
-                "aria-labelledby": "fade-button",
-              }}
-              anchorEl={anchorEl}
-              open={openOn}
-              onClose={handleClose}
-              TransitionComponent={Fade}
-              className={classes.menuNew}
-            >
-              <MenuItem>
-                <div onClick={handleClickOne}>
-                  <img
-                    src={folder}
-                    alt="folder"
-                    className={classes.menuImage}
-                  />{" "}
-                  Folders
-                </div>
-                <Dialog open={openOne} onClose={handleCloseOne}>
-                  <DialogTitle>{"Create New Folder"}</DialogTitle>
-                  <DialogContent>
-                    <Box
-                      component="form"
-                      sx={{
-                        "& > :not(style)": { m: 1, width: "25ch" },
-                      }}
-                      noValidate
-                      autoComplete="off"
-                    >
-                      <TextField
-                        id="outlined-basic"
-                        onChange={handleOnChange}
-                        variant="outlined"
-                      />
-                    </Box>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={handleFormSubmit}
-                      color="primary"
-                      autoFocus
-                    >
-                      Create
-                    </Button>
-                    <Button onClick={handleCloseOne} color="primary" autoFocus>
-                      Close
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </MenuItem>
+    <Grid container spacing={2} item md={12}>
+      {/* <Box className={classes.MainPart}> */}
+      {/* <Grid className={classes.upperPart}> */}
+      {/* <Grid>Policies & Procedure </Grid> */}
 
-              <MenuItem>
-                <div onClick={handleOpenTwo}>
-                  <img src={word} alt="folder" className={classes.menuImage} />{" "}
-                  Word
-                </div>
-                <Dialog open={openTwo} onClose={handleCloseTwo}>
-                  <DialogTitle>{"Create New Word"}</DialogTitle>
-                  <DialogContent>
-                    <Box
-                      component="form"
-                      sx={{
-                        "& > :not(style)": { m: 1, width: "25ch" },
-                      }}
-                      noValidate
-                      autoComplete="off"
-                    >
-                      <TextField
-                        id="outlined-basic"
-                        onChange={handleOnChange}
-                        variant="outlined"
-                      />
-                    </Box>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={handleFormSubmit}
-                      color="primary"
-                      autoFocus
-                    >
-                      Create
-                    </Button>
-                    <Button onClick={handleCloseTwo} color="primary" autoFocus>
-                      Close
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </MenuItem>
-              <MenuItem>
-                <div onClick={handleOpenThree}>
-                  <img src={excel} alt="folder" className={classes.menuImage} />{" "}
-                  Excel
-                </div>
-                <Dialog open={openThree} onClose={handleCloseThree}>
-                  <DialogTitle>{"Create New Excel"}</DialogTitle>
-                  <DialogContent>
-                    <Box
-                      component="form"
-                      sx={{
-                        "& > :not(style)": { m: 1, width: "25ch" },
-                      }}
-                      noValidate
-                      autoComplete="off"
-                    >
-                      <TextField
-                        id="outlined-basic"
-                        onChange={handleOnChange}
-                        variant="outlined"
-                      />
-                    </Box>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={handleFormSubmit}
-                      color="primary"
-                      autoFocus
-                    >
-                      Create
-                    </Button>
-                    <Button
-                      onClick={handleCloseThree}
-                      color="primary"
-                      autoFocus
-                    >
-                      Close
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </MenuItem>
-              <MenuItem>
-                <div onClick={handleOpenFour}>
-                  <img src={pdf} alt="folder" className={classes.menuImage} />{" "}
-                  Pdf
-                </div>
-                <Dialog open={openFour} onClose={handleCloseFour}>
-                  <DialogTitle>{"Create New PDF"}</DialogTitle>
-                  <DialogContent>
-                    <Box
-                      component="form"
-                      sx={{
-                        "& > :not(style)": { m: 1, width: "25ch" },
-                      }}
-                      noValidate
-                      autoComplete="off"
-                    >
-                      <TextField
-                        id="outlined-basic"
-                        onChange={handleOnChange}
-                        variant="outlined"
-                      />
-                    </Box>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={handleFormSubmit}
-                      color="primary"
-                      autoFocus
-                    >
-                      Create
-                    </Button>
-                    <Button onClick={handleCloseFour} color="primary" autoFocus>
-                      Close
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </MenuItem>
-              <MenuItem>
-                <div onClick={handleOpenFive}>
-                  <img src={ppt} alt="folder" className={classes.menuImage} />{" "}
-                  Ppt
-                </div>
-                <Dialog open={openFive} onClose={handleCloseFive}>
-                  <DialogTitle>{"Create New PPT"}</DialogTitle>
-                  <DialogContent>
-                    <Box
-                      component="form"
-                      sx={{
-                        "& > :not(style)": { m: 1, width: "25ch" },
-                      }}
-                      noValidate
-                      autoComplete="off"
-                    >
-                      <TextField
-                        id="outlined-basic"
-                        onChange={handleOnChange}
-                        variant="outlined"
-                      />
-                    </Box>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={handleFormSubmit}
-                      color="primary"
-                      autoFocus
-                    >
-                      Create
-                    </Button>
-                    <Button onClick={handleCloseFive} color="primary" autoFocus>
-                      Close
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </MenuItem>
-            </Menu>
-          </Grid>
-        </Grid>
-        <Grid style={{ marginTop: "30px", width: "750px" }}>
-          <TableContainer component={Paper}>
-            <Table sx={{ width: 750 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell
-                    className={classes.theadCell}
-                    onClick={onClickShow}
-                  >
-                    {/* <Checkbox
+      {/* </Grid> */}
+      <Grid item md={10} xs={12} style={{ marginTop: "30px", width: "750px" }}>
+        <TableContainer component={Paper}>
+          <Table sx={{ width: 750 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell className={classes.theadCell} onClick={onClickShow}>
+                  {/* <Checkbox
                                        name="allselect"
                                        checked= { !data?.response.some( (user:any)=>user?.isChecked!==true)}
                                         onChange={handleBoxChange} /> */}
-                    {/* <Checkbox name="allselect" checked= { !data?.response.some( (user:any)=>user?.isChecked!==true)} onChange={ handleBoxChange}  />  */}
-                    <Checkbox
-                      name="allSelect"
-                      checked={
-                        data?.response.filter(
-                          (user: any) => user?.isChecked !== true
-                        ).length < 1
-                      }
-                      onChange={handleBoxChange}
-                    />
-                  </TableCell>
-                  <TableCell className={classes.nameTableCell} align="left">
-                    Name
-                  </TableCell>
-                  <TableCell className={classes.theadCell} align="right">
-                    Modified By
-                  </TableCell>
-                  <TableCell className={classes.theadCell} align="right">
-                    Modified Date
-                  </TableCell>
-                  <TableCell className={classes.theadCell} align="right">
-                    File Size
-                  </TableCell>
-                  {/* <TableCell className={classes.theadCell}>Actions</TableCell> */}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {/* {rows.map((row) => (
+                  {/* <Checkbox name="allselect" checked= { !data?.response.some( (user:any)=>user?.isChecked!==true)} onChange={ handleBoxChange}  />  */}
+                  <Checkbox
+                    name="allSelect"
+                    checked={
+                      data?.response.filter(
+                        (user: any) => user?.isChecked !== true
+                      ).length < 1
+                    }
+                    onChange={handleBoxChange}
+                  />
+                </TableCell>
+                <TableCell className={classes.nameTableCell} align="left">
+                  Name
+                </TableCell>
+                <TableCell className={classes.theadCell} align="right">
+                  Modified By
+                </TableCell>
+                <TableCell className={classes.theadCell} align="right">
+                  Modified Date
+                </TableCell>
+                <TableCell className={classes.theadCell} align="right">
+                  File Size
+                </TableCell>
+                {/* <TableCell className={classes.theadCell}>Actions</TableCell> */}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* {rows.map((row) => (
                             <TableRow
                                 key={row.name}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -631,97 +404,291 @@ const PoliciesEditor: React.FC<IFolderProps> = (props: IFolderProps) => {
                                 <TableCell align="right">{row.Actions}</TableCell>
                             </TableRow>
                         ))} */}
-                {isLoading && <CircularProgress />}
+              {isLoading && <CircularProgress />}
 
-                {isSuccess && (
-                  <>
-                    {data?.response &&
-                      data?.response
-                        .slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                        .map((item: any, index: any) => {
-                          let createdDate = moment(
-                            item.lastModifiedDateTime
-                          ).format("DD-MMM-YYYY");
+              {isSuccess && (
+                <>
+                  {data?.response &&
+                    data?.response
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                      .map((item: any, index: any) => {
+                        let createdDate = moment(
+                          item.lastModifiedDateTime
+                        ).format("DD-MMM-YYYY");
 
-                          return (
-                            <TableRow
-                              key={index}
-                              sx={{
-                                "&:last-child td, &:last-child th": {
-                                  border: 0,
-                                },
-                              }}
+                        return (
+                          <TableRow
+                            key={index}
+                            sx={{
+                              "&:last-child td, &:last-child th": {
+                                border: 0,
+                              },
+                            }}
+                          >
+                            <TableCell
+                              className={classes.theadCell}
+                              onClick={onClickShow}
                             >
-                              <TableCell
-                                className={classes.theadCell}
-                                onClick={onClickShow}
-                              >
-                                <Checkbox
-                                  name={item.name}
-                                  checked={item?.isChecked || false}
-                                  // checked ={checked.includes(item)}
-                                  onChange={handleBoxChange}
-                                />
-                                {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
-                                {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
-                              </TableCell>
-                              <TableCell
-                                component="th"
-                                scope="row"
-                                className={classes.TableCell}
-                              >
-                                <img
-                                  src={folderImg}
-                                  alt="folder"
-                                  style={{
-                                    width: "25px",
-                                    marginRight: "15px",
-                                    borderRadius: "5px",
-                                  }}
-                                />
-                                <Link href={`${item.webUrl}`}>{item.name}</Link>
-                              </TableCell>
-                              <TableCell
-                                align="right"
-                                className={classes.TableCell}
-                              >
-                                {item.lastModifiedBy.user.displayName}
-                              </TableCell>
-                              <TableCell
-                                align="right"
-                                className={classes.TableCell}
-                              >
-                                {createdDate}
-                              </TableCell>
-                              <TableCell
-                                align="right"
-                                className={classes.TableCell}
-                              >
-                                {niceBytes(item.size)}
-                              </TableCell>
-                            </TableRow>
-                          );
-                        })}
-                  </>
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 20]}
-            component="div"
-            count={data?.response.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Grid>
-      </Box>
-    </div>
+                              <Checkbox
+                                name={item.name}
+                                checked={item?.isChecked || false}
+                                // checked ={checked.includes(item)}
+                                onChange={handleBoxChange}
+                              />
+                              {/* <Checkbox name={ item.name} checked={item?.isChecked|| false }  onChange={handleBoxChange} /> */}
+                              {/* <Checkbox name={ item.name} checked={item?.isChecked|| false } onChange={ handleBoxChange }  /> */}
+                            </TableCell>
+                            <TableCell
+                              component="th"
+                              scope="row"
+                              className={classes.TableCell}
+                            >
+                              <img
+                                src={folderImg}
+                                alt="folder"
+                                style={{
+                                  width: "25px",
+                                  marginRight: "15px",
+                                  borderRadius: "5px",
+                                }}
+                              />
+                              <Link href={`${item.webUrl}`}>{item.name}</Link>
+                            </TableCell>
+                            <TableCell
+                              align="right"
+                              className={classes.TableCell}
+                            >
+                              {item.lastModifiedBy.user.displayName}
+                            </TableCell>
+                            <TableCell
+                              align="right"
+                              className={classes.TableCell}
+                            >
+                              {createdDate}
+                            </TableCell>
+                            <TableCell
+                              align="right"
+                              className={classes.TableCell}
+                            >
+                              {niceBytes(item.size)}
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                </>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 20]}
+          component="div"
+          count={data?.response.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Grid>
+      <Grid item md={2} xs={12} className={classes.new}>
+        <Button
+          id="fade-button"
+          aria-controls={openOn ? "fade-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={openOn ? "true" : undefined}
+          onClick={handleClick}
+          className={classes.create}
+          sx={{
+            textTransform: "capitalize",
+            backgroundColor: "rgb(50 168 189) !important",
+          }}
+        >
+          <span className={classes.plus}>
+            <LocalHospitalIcon />
+          </span>
+          New
+        </Button>
+        <Menu
+          id="fade-menu"
+          MenuListProps={{
+            "aria-labelledby": "fade-button",
+          }}
+          anchorEl={anchorEl}
+          open={openOn}
+          onClose={handleClose}
+          TransitionComponent={Fade}
+          className={classes.menuNew}
+        >
+          <MenuItem>
+            <div onClick={handleClickOne}>
+              <img src={folder} alt="folder" className={classes.menuImage} />{" "}
+              Folders
+            </div>
+            <Dialog open={openOne} onClose={handleCloseOne}>
+              <DialogTitle>{"Create New Folder"}</DialogTitle>
+              <DialogContent>
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="outlined-basic"
+                    onChange={handleOnChange}
+                    variant="outlined"
+                  />
+                </Box>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleFormSubmit} color="primary" autoFocus>
+                  Create
+                </Button>
+                <Button onClick={handleCloseOne} color="primary" autoFocus>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </MenuItem>
+
+          <MenuItem>
+            <div onClick={handleOpenTwo}>
+              <img src={word} alt="folder" className={classes.menuImage} /> Word
+            </div>
+            <Dialog open={openTwo} onClose={handleCloseTwo}>
+              <DialogTitle>{"Create New Word"}</DialogTitle>
+              <DialogContent>
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="outlined-basic"
+                    onChange={handleOnChange}
+                    variant="outlined"
+                  />
+                </Box>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleFormSubmit} color="primary" autoFocus>
+                  Create
+                </Button>
+                <Button onClick={handleCloseTwo} color="primary" autoFocus>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </MenuItem>
+          <MenuItem>
+            <div onClick={handleOpenThree}>
+              <img src={excel} alt="folder" className={classes.menuImage} />{" "}
+              Excel
+            </div>
+            <Dialog open={openThree} onClose={handleCloseThree}>
+              <DialogTitle>{"Create New Excel"}</DialogTitle>
+              <DialogContent>
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="outlined-basic"
+                    onChange={handleOnChange}
+                    variant="outlined"
+                  />
+                </Box>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleFormSubmit} color="primary" autoFocus>
+                  Create
+                </Button>
+                <Button onClick={handleCloseThree} color="primary" autoFocus>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </MenuItem>
+          <MenuItem>
+            <div onClick={handleOpenFour}>
+              <img src={pdf} alt="folder" className={classes.menuImage} /> Pdf
+            </div>
+            <Dialog open={openFour} onClose={handleCloseFour}>
+              <DialogTitle>{"Create New PDF"}</DialogTitle>
+              <DialogContent>
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="outlined-basic"
+                    onChange={handleOnChange}
+                    variant="outlined"
+                  />
+                </Box>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleFormSubmit} color="primary" autoFocus>
+                  Create
+                </Button>
+                <Button onClick={handleCloseFour} color="primary" autoFocus>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </MenuItem>
+          <MenuItem>
+            <div onClick={handleOpenFive}>
+              <img src={ppt} alt="folder" className={classes.menuImage} /> Ppt
+            </div>
+            <Dialog open={openFive} onClose={handleCloseFive}>
+              <DialogTitle>{"Create New PPT"}</DialogTitle>
+              <DialogContent>
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="outlined-basic"
+                    onChange={handleOnChange}
+                    variant="outlined"
+                  />
+                </Box>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleFormSubmit} color="primary" autoFocus>
+                  Create
+                </Button>
+                <Button onClick={handleCloseFive} color="primary" autoFocus>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </MenuItem>
+        </Menu>
+      </Grid>
+      {/* </Box> */}
+    </Grid>
   );
 };
 
